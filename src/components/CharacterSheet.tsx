@@ -14,7 +14,7 @@ import DegreeInput from './ui/DegreeInput';
 import ProgressBar from './ui/ProgressBar';
 import ExpandableSection from './ui/ExpandableSection';
 import Tooltip from './ui/Tooltip';
-import SimulationEventLog, { type StepActionPayload } from './SimulationEventLog';
+import SimulationEventLog, { type StepActionPayload, POOL_ATTRIBUTE_POINTS, MIN_REVEAL, MAX_REVEAL } from './SimulationEventLog';
 
 interface CharacterSheetProps {
   isOpen: boolean;
@@ -202,8 +202,17 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
 
   if (!isOpen) return null;
 
+  const attrSum = Object.values(state.attributes).reduce((s, n) => s + n, 0);
+  const revealedCount = Object.values(Competence).filter((c) => state.competences[c]?.isRevealed).length;
+
   const handleAttributeChange = (attr: Attribute, value: number) => {
-    manager.setAttribute(attr, value);
+    let valueToSet = value;
+    if (simHighlightId === 'create-attributes') {
+      const othersSum = attrSum - (state.attributes[attr] ?? 0);
+      const maxForAttr = Math.max(-50, POOL_ATTRIBUTE_POINTS - othersSum);
+      valueToSet = Math.min(50, Math.max(-50, Math.min(value, maxForAttr)));
+    }
+    manager.setAttribute(attr, valueToSet);
     updateState();
   };
 
@@ -350,6 +359,16 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                 style={{ background: 'linear-gradient(180deg, rgba(40,28,18,0.98) 0%, rgba(30,22,14,0.99) 100%)', boxShadow: '0 0 0 1px #ceb68d, 0 8px 24px rgba(0,0,0,0.5)' }}
               >
                 <p className="text-sm text-amber-100 mb-3 font-medieval">{simTooltip ?? ''}</p>
+                {simHighlightId === 'create-attributes' && (
+                  <p className="text-sm text-amber-200 mb-2 font-medieval font-semibold">
+                    Total : {attrSum} / {POOL_ATTRIBUTE_POINTS} points
+                  </p>
+                )}
+                {simHighlightId === 'create-reveal' && (
+                  <p className="text-sm text-amber-200 mb-2 font-medieval font-semibold">
+                    Compétences révélées : {revealedCount} / {MAX_REVEAL} (min {MIN_REVEAL})
+                  </p>
+                )}
                 {stepAction && (
                   <button
                     type="button"
@@ -374,8 +393,8 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
             }}
             onStepAction={setStepAction}
             creationStateDeps={{
-              attrSum: Object.values(state.attributes).reduce((s, n) => s + n, 0),
-              revealedCount: Object.values(Competence).filter((c) => state.competences[c]?.isRevealed).length,
+              attrSum,
+              revealedCount,
             }}
           />
 
@@ -534,8 +553,9 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                           value={state.attributes[atb1]}
                           onChange={(value) => handleAttributeChange(atb1, value)}
                           min={-50}
-                          max={50}
+                          max={simHighlightId === 'create-attributes' ? Math.min(50, POOL_ATTRIBUTE_POINTS - attrSum + (state.attributes[atb1] ?? 0)) : 50}
                           size="md"
+                          className={simHighlightId === 'create-attributes' ? 'tutorial-input-highlight' : ''}
                         />
                         {/* Attribute name in full caps */}
                         <label className="font-medieval text-xs font-bold text-red-theme uppercase tracking-wide">
@@ -745,19 +765,26 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                                 const totalMarks = manager.getTotalMarks(comp);
                                 const isEprouvee = manager.isCompetenceEprouvee(comp);
                                 
+                                const isRevealStepUnrevealed = simHighlightId === 'create-reveal' && !compData.isRevealed;
                                 return (
                                   <div
                                     key={comp}
                                     data-sim-highlight={`competence-${comp}`}
-                                    className={`text-xs relative rounded transition-all ${simHighlightId === `competence-${comp}` ? 'ring-2 ring-amber-400 ring-offset-1 ring-offset-transparent p-1 -m-1' : ''}`}
+                                    className={`text-xs relative rounded transition-all ${simHighlightId === `competence-${comp}` ? 'ring-2 ring-amber-400 ring-offset-1 ring-offset-transparent p-1 -m-1' : ''} ${isRevealStepUnrevealed ? 'tutorial-reveal-highlight' : ''}`}
                                     title={simHighlightId === `competence-${comp}` ? simTooltip ?? undefined : undefined}
                                   >
                                     {!compData.isRevealed ? (
                                       <button
-                                        onClick={() => revealCompetence(comp)}
+                                        type="button"
+                                        onClick={() => {
+                                          if (simHighlightId === 'create-reveal' && revealedCount >= MAX_REVEAL) return;
+                                          revealCompetence(comp);
+                                        }}
+                                        disabled={simHighlightId === 'create-reveal' && revealedCount >= MAX_REVEAL}
+                                        title={simHighlightId === 'create-reveal' && revealedCount >= MAX_REVEAL ? `Maximum ${MAX_REVEAL} compétences révélées` : undefined}
                                         onMouseEnter={() => setHoveredRevealCompetence(comp)}
                                         onMouseLeave={() => setHoveredRevealCompetence(null)}
-                                        className="font-medieval text-xs font-semibold transition-all duration-300 cursor-pointer relative bg-transparent border-none p-0 m-0 w-full flex items-center"
+                                        className="font-medieval text-xs font-semibold transition-all duration-300 cursor-pointer relative bg-transparent border-none p-0 m-0 w-full flex items-center disabled:opacity-60 disabled:cursor-not-allowed"
                                         style={{
                                           opacity: hoveredRevealCompetence === comp ? 1 : 0.5,
                                           color: hoveredRevealCompetence === comp ? '#4d3000' : 'inherit',

@@ -29,9 +29,9 @@ export interface SimEvent {
   step?: number;
 }
 
-const POOL_ATTRIBUTE_POINTS = 18;
-const MIN_REVEAL = 3;
-const MAX_REVEAL = 5;
+export const POOL_ATTRIBUTE_POINTS = 18;
+export const MIN_REVEAL = 3;
+export const MAX_REVEAL = 5;
 
 const CHALLENGES: { description: string; suggested?: Competence; nivEpreuve?: number }[] = [
   { description: 'Escalader le mur', suggested: Competence.GRIMPE, nivEpreuve: 2 },

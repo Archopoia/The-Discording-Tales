@@ -180,5 +180,18 @@
     animation: tutorial-glow 2s ease-in-out infinite;
     border-radius: 8px;
   }
+
+  /* Creation step: pulse highlight on the actual inputs/controls to interact with */
+  .tutorial-input-highlight {
+    position: relative;
+    animation: tutorial-glow 2s ease-in-out infinite;
+    border-radius: 6px;
+  }
+
+  .tutorial-reveal-highlight {
+    position: relative;
+    animation: tutorial-glow 2s ease-in-out infinite;
+    border-radius: 6px;
+  }
 }
 
