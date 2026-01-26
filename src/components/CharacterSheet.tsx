@@ -357,10 +357,37 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
           </button>
         </div>
 
-        {/* Content - Scrollable */}
+        {/* Event log – fixed at top, does not scroll with sheet */}
+        <div className="shrink-0 overflow-hidden border-b border-border-dark">
+          <SimulationEventLog
+            manager={manager}
+            updateSheet={updateState}
+            onHighlight={(id, tooltip) => {
+              setSimHighlightId(id);
+              setSimTooltip(tooltip ?? null);
+            }}
+            onStepAction={setStepAction}
+            creationStateDeps={{
+              attrSum,
+              revealedCount,
+              diceSum,
+            }}
+            onCreationComplete={() => {
+              const s = manager.getState();
+              const withRevealed = new Set(
+                Object.values(Action).filter((a) =>
+                  getCompetencesForAction(a).some((c) => s.competences[c]?.isRevealed)
+                )
+              );
+              setExpandedActions(withRevealed);
+            }}
+          />
+        </div>
+
+        {/* Content - Scrollable (sheet only; event log stays above) */}
         <div
           ref={contentRef}
-          className="character-sheet-content flex-1 overflow-y-auto overflow-x-visible p-8 relative z-10"
+          className="character-sheet-content flex-1 min-h-0 overflow-y-auto overflow-x-visible p-8 relative z-10"
           style={{ paddingTop: '2rem', paddingBottom: '2rem', isolation: 'isolate' }}
         >
           {/* Tutorial: overlay inside content so aptitudes section (z-110) can sit above it; overlay height = full scroll so top/bottom dimmed */}
@@ -408,31 +435,6 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
               </div>
             </>
           )}
-
-          {/* Simulation event log – above all columns */}
-          <SimulationEventLog
-            manager={manager}
-            updateSheet={updateState}
-            onHighlight={(id, tooltip) => {
-              setSimHighlightId(id);
-              setSimTooltip(tooltip ?? null);
-            }}
-            onStepAction={setStepAction}
-            creationStateDeps={{
-              attrSum,
-              revealedCount,
-              diceSum,
-            }}
-            onCreationComplete={() => {
-              const s = manager.getState();
-              const withRevealed = new Set(
-                Object.values(Action).filter((a) =>
-                  getCompetencesForAction(a).some((c) => s.competences[c]?.isRevealed)
-                )
-              );
-              setExpandedActions(withRevealed);
-            }}
-          />
 
           {/* Aptitudes Section - 8 Columns Side by Side (tutorial target; z-[110] so it draws above the overlay at z-100) */}
           <section
