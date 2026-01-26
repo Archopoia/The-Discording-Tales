@@ -32,6 +32,7 @@ export interface SimEvent {
 export const POOL_ATTRIBUTE_POINTS = 18;
 export const MIN_REVEAL = 3;
 export const MAX_REVEAL = 5;
+export const POOL_DICE = 10;
 
 const CHALLENGES: { description: string; suggested?: Competence; nivEpreuve?: number }[] = [
   { description: 'Escalader le mur', suggested: Competence.GRIMPE, nivEpreuve: 2 },
@@ -64,7 +65,7 @@ function getRollParams(
 }
 
 export type StepActionPayload =
-  | { step: 'attributes' | 'reveal'; label: string; onClick: () => void; disabled: boolean }
+  | { step: 'attributes' | 'reveal' | 'dice'; label: string; onClick: () => void; disabled: boolean }
   | null;
 
 interface SimulationEventLogProps {
@@ -73,7 +74,9 @@ interface SimulationEventLogProps {
   onHighlight?: (id: string | null, tooltip?: string) => void;
   onStepAction?: (action: StepActionPayload) => void;
   /** Pass when in creation so step-action disabled updates when user edits on sheet */
-  creationStateDeps?: { attrSum: number; revealedCount: number };
+  creationStateDeps?: { attrSum: number; revealedCount: number; diceSum?: number };
+  /** Called when creation finishes (after dice step); sheet can collapse actions with no revealed comp */
+  onCreationComplete?: () => void;
 }
 
 export type EventColumn = 'top' | 'competences' | 'progression' | 'souffrance';
@@ -134,6 +137,7 @@ function eventStyle(type: SimEventType): string {
 
 const CREATE_ATTR_TOOLTIP = "Répartissez jusqu'à 18 points entre les 8 attributs (chaque case = +1).";
 const CREATE_REVEAL_TOOLTIP = "Choisissez de 3 à 5 compétences à révéler en cliquant sur « Révéler … ? » sur la feuille.";
+const CREATE_DICE_TOOLTIP = `Répartissez exactement ${POOL_DICE} dés dans les compétences révélées et/ou les compétences de résistance (R[…]), puis lancez.`;
 
 export default function SimulationEventLog({
   manager,
@@ -141,10 +145,11 @@ export default function SimulationEventLog({
   onHighlight,
   onStepAction,
   creationStateDeps,
+  onCreationComplete,
 }: SimulationEventLogProps) {
   const [events, setEvents] = useState<SimEvent[]>([]);
   const [mode, setMode] = useState<'idle' | 'creating' | 'running'>('idle');
-  const [createStep, setCreateStep] = useState<'attributes' | 'reveal'>('attributes');
+  const [createStep, setCreateStep] = useState<'attributes' | 'reveal' | 'dice'>('attributes');
   const [awaitingSkillChoice, setAwaitingSkillChoice] = useState(false);
   const [runningChallengeIdx, setRunningChallengeIdx] = useState(0);
   const topScrollRef = useRef<HTMLDivElement | null>(null);
@@ -171,11 +176,36 @@ export default function SimulationEventLog({
     return () => cancelAnimationFrame(id);
   }, [events]);
 
-  const confirmRevealAndStart = () => {
+  const confirmRevealAndGoToDice = () => {
     const revealed = Object.values(Competence).filter((c) => manager.getState().competences[c]?.isRevealed);
     if (revealed.length < MIN_REVEAL || revealed.length > MAX_REVEAL) return;
     const names = revealed.map(getCompetenceName).join(', ');
-    push('info', `Compétences révélées : ${names}. Seules ces compétences peuvent gagner des marques.`);
+    push('info', `Compétences révélées : ${names}. Répartissez ${POOL_DICE} dés entre elles.`);
+    setCreateStep('dice');
+    onHighlight?.('create-dice', CREATE_DICE_TOOLTIP);
+    onStepAction?.({
+      step: 'dice',
+      label: 'Lancer',
+      onClick: confirmDiceAndStart,
+      disabled: (() => {
+        const diceSum = creationStateDeps?.diceSum ?? Object.values(Competence)
+          .filter((c) => manager.getState().competences[c]?.isRevealed)
+          .reduce((s, c) => s + (manager.getState().competences[c]?.degreeCount ?? 0), 0);
+        return diceSum !== POOL_DICE;
+      })(),
+    });
+  };
+
+  const confirmDiceAndStart = () => {
+    const state = manager.getState();
+    const diceSum =
+      Object.values(Competence)
+        .filter((c) => state.competences[c]?.isRevealed)
+        .reduce((s, c) => s + (state.competences[c]?.degreeCount ?? 0), 0) +
+      Object.values(Souffrance).reduce((s, souf) => s + (state.souffrances[souf]?.resistanceDegreeCount ?? 0), 0);
+    if (diceSum !== POOL_DICE) return;
+    push('info', `${POOL_DICE} dés répartis. Démarrage.`);
+    onCreationComplete?.();
     saveCachedCharacter(manager.getState());
     setMode('running');
     setCreateStep('attributes');
@@ -191,8 +221,8 @@ export default function SimulationEventLog({
     onHighlight?.('create-reveal', CREATE_REVEAL_TOOLTIP);
     onStepAction?.({
       step: 'reveal',
-      label: 'Lancer avec ces compétences',
-      onClick: confirmRevealAndStart,
+      label: 'Valider et répartir les 10 dés',
+      onClick: confirmRevealAndGoToDice,
       disabled: (() => {
         const n = Object.values(Competence).filter((c) => manager.getState().competences[c]?.isRevealed).length;
         return n < MIN_REVEAL || n > MAX_REVEAL;
@@ -207,6 +237,13 @@ export default function SimulationEventLog({
     }
     const attrSum = creationStateDeps?.attrSum ?? Object.values(manager.getState().attributes).reduce((s, n) => s + n, 0);
     const revealedCount = creationStateDeps?.revealedCount ?? Object.values(Competence).filter((c) => manager.getState().competences[c]?.isRevealed).length;
+    const state = manager.getState();
+    const diceSum = creationStateDeps?.diceSum ?? (
+      Object.values(Competence)
+        .filter((c) => state.competences[c]?.isRevealed)
+        .reduce((s, c) => s + (state.competences[c]?.degreeCount ?? 0), 0) +
+      Object.values(Souffrance).reduce((s, souf) => s + (state.souffrances[souf]?.resistanceDegreeCount ?? 0), 0)
+    );
 
     if (createStep === 'attributes') {
       onHighlight?.('create-attributes', CREATE_ATTR_TOOLTIP);
@@ -216,16 +253,24 @@ export default function SimulationEventLog({
         onClick: validateAndGoToReveal,
         disabled: attrSum > POOL_ATTRIBUTE_POINTS,
       });
-    } else {
+    } else if (createStep === 'reveal') {
       onHighlight?.('create-reveal', CREATE_REVEAL_TOOLTIP);
       onStepAction?.({
         step: 'reveal',
-        label: 'Lancer avec ces compétences',
-        onClick: confirmRevealAndStart,
+        label: 'Valider et répartir les 10 dés',
+        onClick: confirmRevealAndGoToDice,
         disabled: revealedCount < MIN_REVEAL || revealedCount > MAX_REVEAL,
       });
+    } else {
+      onHighlight?.('create-dice', CREATE_DICE_TOOLTIP);
+      onStepAction?.({
+        step: 'dice',
+        label: 'Lancer',
+        onClick: confirmDiceAndStart,
+        disabled: diceSum !== POOL_DICE,
+      });
     }
-  }, [mode, createStep, creationStateDeps?.attrSum, creationStateDeps?.revealedCount]);
+  }, [mode, createStep, creationStateDeps?.attrSum, creationStateDeps?.revealedCount, creationStateDeps?.diceSum]);
 
   const startSimulation = () => {
     const cached = loadCachedCharacter();
@@ -391,7 +436,9 @@ export default function SimulationEventLog({
           <p className="text-xs" style={{ color: '#e8f8f7' }}>
             {createStep === 'attributes'
               ? `Répartissez jusqu'à ${POOL_ATTRIBUTE_POINTS} points dans les attributs sur la feuille, puis validez dans la zone mise en surbrillance.`
-              : `Choisissez de ${MIN_REVEAL} à ${MAX_REVEAL} compétences à révéler sur la feuille, puis lancez.`}
+              : createStep === 'reveal'
+                ? `Choisissez de ${MIN_REVEAL} à ${MAX_REVEAL} compétences à révéler sur la feuille, puis validez pour répartir les dés.`
+                : `Répartissez exactement ${POOL_DICE} dés entre compétences révélées et/ou résistances (R[…]), puis lancez.`}
           </p>
         </div>
       )}

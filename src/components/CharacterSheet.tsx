@@ -14,7 +14,7 @@ import DegreeInput from './ui/DegreeInput';
 import ProgressBar from './ui/ProgressBar';
 import ExpandableSection from './ui/ExpandableSection';
 import Tooltip from './ui/Tooltip';
-import SimulationEventLog, { type StepActionPayload, POOL_ATTRIBUTE_POINTS, MIN_REVEAL, MAX_REVEAL } from './SimulationEventLog';
+import SimulationEventLog, { type StepActionPayload, POOL_ATTRIBUTE_POINTS, MIN_REVEAL, MAX_REVEAL, POOL_DICE } from './SimulationEventLog';
 
 interface CharacterSheetProps {
   isOpen: boolean;
@@ -196,14 +196,14 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
 
   // Tutorial creation: scroll target into view
   useEffect(() => {
-    if (simHighlightId === 'create-attributes' || simHighlightId === 'create-reveal') {
+    if (simHighlightId === 'create-attributes' || simHighlightId === 'create-reveal' || simHighlightId === 'create-dice') {
       attributesSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   }, [simHighlightId]);
 
   // Tutorial overlay: match content scroll height so it covers area above/below the aptitudes section (section uses z-110 and stays on top)
   useEffect(() => {
-    if (simHighlightId !== 'create-attributes' && simHighlightId !== 'create-reveal') return;
+    if (simHighlightId !== 'create-attributes' && simHighlightId !== 'create-reveal' && simHighlightId !== 'create-dice') return;
     const el = contentRef.current;
     if (!el) return;
     const sync = () => setTutorialOverlayHeight(el.scrollHeight);
@@ -217,6 +217,11 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
 
   const attrSum = Object.values(state.attributes).reduce((s, n) => s + n, 0);
   const revealedCount = Object.values(Competence).filter((c) => state.competences[c]?.isRevealed).length;
+  const diceSum =
+    Object.values(Competence)
+      .filter((c) => state.competences[c]?.isRevealed)
+      .reduce((s, c) => s + (state.competences[c]?.degreeCount ?? 0), 0) +
+    Object.values(Souffrance).reduce((s, souf) => s + (state.souffrances[souf]?.resistanceDegreeCount ?? 0), 0);
 
   const handleAttributeChange = (attr: Attribute, value: number) => {
     let valueToSet = value;
@@ -359,7 +364,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
           style={{ paddingTop: '2rem', paddingBottom: '2rem', isolation: 'isolate' }}
         >
           {/* Tutorial: overlay inside content so aptitudes section (z-110) can sit above it; overlay height = full scroll so top/bottom dimmed */}
-          {(simHighlightId === 'create-attributes' || simHighlightId === 'create-reveal') && (
+          {(simHighlightId === 'create-attributes' || simHighlightId === 'create-reveal' || simHighlightId === 'create-dice') && (
             <>
               <div
                 className="absolute left-0 right-0 top-0 pointer-events-none"
@@ -383,6 +388,11 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                 {simHighlightId === 'create-reveal' && (
                   <p className="text-sm mb-2 font-medieval font-semibold" style={{ color: '#e8f8f7' }}>
                     Compétences révélées : {revealedCount} / {MAX_REVEAL} (min {MIN_REVEAL})
+                  </p>
+                )}
+                {simHighlightId === 'create-dice' && (
+                  <p className="text-sm mb-2 font-medieval font-semibold" style={{ color: '#e8f8f7' }}>
+                    Dés répartis : {diceSum} / {POOL_DICE}
                   </p>
                 )}
                 {stepAction && (
@@ -411,14 +421,24 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
             creationStateDeps={{
               attrSum,
               revealedCount,
+              diceSum,
+            }}
+            onCreationComplete={() => {
+              const s = manager.getState();
+              const withRevealed = new Set(
+                Object.values(Action).filter((a) =>
+                  getCompetencesForAction(a).some((c) => s.competences[c]?.isRevealed)
+                )
+              );
+              setExpandedActions(withRevealed);
             }}
           />
 
           {/* Aptitudes Section - 8 Columns Side by Side (tutorial target; z-[110] so it draws above the overlay at z-100) */}
           <section
             ref={attributesSectionRef}
-            data-sim-highlight={simHighlightId === 'create-attributes' ? 'create-attributes' : simHighlightId === 'create-reveal' ? 'create-reveal' : undefined}
-            className={`mt-8 relative flex gap-4 items-start transition-all ${simHighlightId === 'create-attributes' || simHighlightId === 'create-reveal' ? 'z-[110] tutorial-spotlight-target' : ''}`}
+            data-sim-highlight={simHighlightId === 'create-attributes' ? 'create-attributes' : simHighlightId === 'create-reveal' ? 'create-reveal' : simHighlightId === 'create-dice' ? 'create-dice' : undefined}
+            className={`mt-8 relative flex gap-4 items-start transition-all ${simHighlightId === 'create-attributes' || simHighlightId === 'create-reveal' || simHighlightId === 'create-dice' ? 'z-[110] tutorial-spotlight-target' : ''}`}
           >
             <div className="flex gap-0 flex-1 items-start" style={{ minWidth: 0 }}>
                 {Object.values(Aptitude).map((aptitude) => {
@@ -643,14 +663,20 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                                 <DegreeInput
                                   value={resistanceDegreeCount}
                                   onChange={(value) => {
-                                    if (godMode) {
-                                      manager.setResistanceDegreeCount(souf, value);
+                                    if (godMode || simHighlightId === 'create-dice') {
+                                      const isDiceStep = simHighlightId === 'create-dice';
+                                      const capped = isDiceStep
+                                        ? Math.min(POOL_DICE - (diceSum - resistanceDegreeCount), Math.max(0, value))
+                                        : value;
+                                      manager.setResistanceDegreeCount(souf, capped);
                                       updateState();
                                     }
                                   }}
                                   min={0}
+                                  max={simHighlightId === 'create-dice' ? Math.max(0, POOL_DICE - diceSum + resistanceDegreeCount) : undefined}
                                   size="sm"
-                                  disabled={!godMode}
+                                  disabled={!godMode && simHighlightId !== 'create-dice'}
+                                  className={simHighlightId === 'create-dice' ? 'tutorial-input-highlight' : ''}
                                 />
                                 <span>{getResistanceCompetenceName(souf)}</span>
                               </div>
@@ -830,14 +856,20 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                                                   <DegreeInput
                                                     value={compData.degreeCount}
                                                     onChange={(value) => {
-                                                      if (godMode) {
-                                                        manager.setCompetenceDegree(comp, value);
+                                                      if (godMode || (simHighlightId === 'create-dice' && compData.isRevealed)) {
+                                                        const isDiceStep = simHighlightId === 'create-dice' && compData.isRevealed;
+                                                        const capped = isDiceStep
+                                                          ? Math.min(POOL_DICE - (diceSum - (compData.degreeCount ?? 0)), Math.max(0, value))
+                                                          : value;
+                                                        manager.setCompetenceDegree(comp, capped);
                                                         updateState();
                                                       }
                                                     }}
                                                     min={0}
+                                                    max={simHighlightId === 'create-dice' && compData.isRevealed ? Math.max(0, POOL_DICE - diceSum + (compData.degreeCount ?? 0)) : undefined}
                                                     size="sm"
-                                                    disabled={!godMode}
+                                                    disabled={!godMode && !(simHighlightId === 'create-dice' && compData.isRevealed)}
+                                                    className={simHighlightId === 'create-dice' && compData.isRevealed ? 'tutorial-input-highlight' : ''}
                                                   />
                                                 </div>
                                                 <span className="text-xs">{getCompetenceName(comp)}</span>
