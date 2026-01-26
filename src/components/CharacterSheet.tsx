@@ -865,7 +865,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                                 const totalMarks = manager.getTotalMarks(comp);
                                 const isEprouvee = manager.isCompetenceEprouvee(comp);
                                 
-                                const isRevealStepUnrevealed = simHighlightId === 'create-reveal' && !compData.isRevealed;
+                                const isRevealStepUnrevealed = simHighlightId === 'create-reveal' && revealedCount < MIN_REVEAL && !compData.isRevealed;
                                 return (
                                   <div
                                     key={comp}
