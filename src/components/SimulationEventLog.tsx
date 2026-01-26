@@ -431,24 +431,6 @@ export default function SimulationEventLog({
         </div>
       </div>
 
-      {mode === 'running' && isChoosingSkill && (
-        <div className="p-3 border-b border-border-dark bg-black/20">
-          <p className="text-xs text-text-cream mb-2">Quelle compétence utiliser ?</p>
-          <div className="flex flex-wrap gap-2">
-            {revealedList.map((comp) => (
-              <button
-                key={comp}
-                type="button"
-                onClick={() => onChooseSkill(comp)}
-                className="px-3 py-1.5 bg-emerald-800 border-2 border-emerald-600 text-text-cream rounded text-xs font-semibold hover:bg-emerald-700"
-              >
-                {getCompetenceName(comp)}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
       <div
         className="p-2 font-mono text-xs space-y-2"
         style={{ background: 'rgba(0,0,0,0.35)', minHeight: '100px' }}
@@ -505,7 +487,7 @@ export default function SimulationEventLog({
                   ref={(el) => {
                     scrollColRefs.current[col] = el;
                   }}
-                  className="max-h-32 overflow-y-auto p-1.5 space-y-1 flex-1 min-h-0"
+                  className="max-h-14 overflow-y-auto p-1.5 space-y-1 flex-1 min-h-0"
                 >
                   {colEvents.length === 0 && (
                     <div className="text-gray-500 italic text-[10px] py-1">—</div>
@@ -521,6 +503,25 @@ export default function SimulationEventLog({
             );
           })}
         </div>
+
+        {/* Quelle compétence utiliser ? — en dessous des trois colonnes */}
+        {mode === 'running' && isChoosingSkill && (
+          <div className="p-3 rounded border border-border-dark bg-black/20 shrink-0">
+            <p className="text-xs text-text-cream mb-2">Quelle compétence utiliser ?</p>
+            <div className="flex flex-wrap gap-2">
+              {revealedList.map((comp) => (
+                <button
+                  key={comp}
+                  type="button"
+                  onClick={() => onChooseSkill(comp)}
+                  className="px-3 py-1.5 bg-emerald-800 border-2 border-emerald-600 text-text-cream rounded text-xs font-semibold hover:bg-emerald-700"
+                >
+                  {getCompetenceName(comp)}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
