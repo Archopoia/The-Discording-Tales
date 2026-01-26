@@ -82,6 +82,34 @@ interface SimulationEventLogProps {
   onHighlight?: (id: string | null, tooltip?: string) => void;
 }
 
+export type EventColumn = 'epreuve' | 'progression' | 'souffrance';
+
+function getEventColumn(type: SimEventType): EventColumn {
+  switch (type) {
+    case 'challenge':
+    case 'choice':
+    case 'resolve':
+    case 'info':
+      return 'epreuve';
+    case 'xp':
+    case 'realize':
+    case 'degree':
+    case 'mastery':
+      return 'progression';
+    case 'souffrance':
+    case 'resistance':
+      return 'souffrance';
+    default:
+      return 'epreuve';
+  }
+}
+
+const COLUMN_LABELS: Record<EventColumn, string> = {
+  epreuve: 'Épreuves & jets',
+  progression: 'Progression (XP, marques, réaliser)',
+  souffrance: 'Souffrance & résistance',
+};
+
 function eventStyle(type: SimEventType): string {
   const base = 'font-mono text-xs py-0.5 px-1 rounded border-l-2 ';
   switch (type) {
@@ -186,7 +214,8 @@ export default function SimulationEventLog({
 
   const runChallenge = (idx: number) => {
     const c = CHALLENGES[idx % CHALLENGES.length];
-    push('challenge', `Défi : ${c.description}`);
+    const nivStr = (c.nivEpreuve ?? 0) >= 0 ? `+${c.nivEpreuve ?? 0}` : `${c.nivEpreuve ?? 0}`;
+    push('challenge', `Défi : ${c.description} — Niv d'épreuve : ${nivStr}`);
     onHighlight?.(null);
     const revealed = Object.values(Competence).filter(
       (comp) => manager.getState().competences[comp]?.isRevealed
@@ -211,8 +240,15 @@ export default function SimulationEventLog({
     const marks = rollResult.criticalFailure ? 5 : rollResult.success || rollResult.criticalSuccess ? 0 : 1;
     for (let i = 0; i < marks; i++) manager.addCompetenceMark(comp);
     updateSheet();
-    push('resolve', `[${getCompetenceName(comp)}] ${rollResult.summary}`);
-    push('xp', `Marques : ${manager.getTotalMarks(comp)}/${MARKS_TO_EPROUVER} pour ${getCompetenceName(comp)}`);
+    const compName = getCompetenceName(comp);
+    const parts = rollResult.summary.split(/\.\s+/);
+    const jetPart = parts[0] ?? rollResult.summary;
+    const comparisonPart = parts[1];
+    const resolveText = comparisonPart
+      ? `[${compName}] ${jetPart}.\n${comparisonPart}`
+      : `[${compName}] ${rollResult.summary}`;
+    push('resolve', resolveText);
+    push('xp', `Marques : ${manager.getTotalMarks(comp)}/${MARKS_TO_EPROUVER} — ${compName}`);
     if (manager.isCompetenceEprouvee(comp)) {
       const action = getCompetenceAction(comp);
       const linkedAttr = getActionLinkedAttribute(action);
@@ -271,7 +307,7 @@ export default function SimulationEventLog({
         style={{ background: 'rgba(100,48,48,0.4)', boxShadow: 'inset 0 0 0 1px #ceb68d' }}
       >
         <span className="text-sm font-bold text-text-cream" style={{ textShadow: '0 1px 2px #000' }}>
-          Journal de simulation — Souffrance → Résistance → XP → Degrés → Maîtrises
+          Journal de simulation — Épreuves (Niv d&apos;épreuve) | Progression (marques, réaliser) | Souffrance & résistance
         </span>
         <div className="flex items-center gap-2">
           {mode === 'idle' && (
@@ -393,22 +429,52 @@ export default function SimulationEventLog({
       )}
 
       <div
-        className="max-h-40 overflow-y-auto p-2 space-y-1 font-mono text-xs"
-        style={{ background: 'rgba(0,0,0,0.35)', minHeight: '80px' }}
+        className="grid grid-cols-1 md:grid-cols-3 gap-2 p-2 font-mono text-xs"
+        style={{ background: 'rgba(0,0,0,0.35)', minHeight: '100px' }}
       >
-        {events.length === 0 && mode === 'idle' && (
-          <div className="text-gray-400 italic py-2">
-            Cliquez sur « Démarrer la simulation » pour voir le pipeline Souffrance → Résistance → XP → Degrés → Maîtrises.
-          </div>
-        )}
-        {events.map((ev, i) => (
-          <div key={i} className={eventStyle(ev.type)}>
-            <span className="text-gray-500 mr-2">#{ev.step ?? i + 1}</span>
-            {ev.text}
-          </div>
-        ))}
-        <div ref={logEndRef} />
+        {(['epreuve', 'progression', 'souffrance'] as const).map((col) => {
+          const colEvents = events
+            .map((ev, i) => ({ ev, i }))
+            .filter(({ ev }) => getEventColumn(ev.type) === col);
+          return (
+            <div
+              key={col}
+              className="flex flex-col rounded border border-border-dark overflow-hidden"
+              style={{ background: 'rgba(0,0,0,0.25)', minWidth: 0 }}
+            >
+              <div
+                className="px-2 py-1 text-[10px] font-bold uppercase tracking-wide shrink-0 border-b border-border-dark"
+                style={{
+                  color: col === 'epreuve' ? '#fcd34d' : col === 'progression' ? '#67e8f9' : '#f9a8d4',
+                  background: 'rgba(0,0,0,0.4)',
+                }}
+              >
+                {COLUMN_LABELS[col]}
+              </div>
+              <div className="max-h-32 overflow-y-auto p-1.5 space-y-1 flex-1 min-h-0">
+                {colEvents.length === 0 && (
+                  <div className="text-gray-500 italic text-[10px] py-1">—</div>
+                )}
+                {colEvents.map(({ ev, i }) => (
+                  <div key={i} className={eventStyle(ev.type)} style={{ whiteSpace: 'pre-line' }}>
+                    <span className="text-gray-500 mr-1.5">#{ev.step ?? i + 1}</span>
+                    {ev.text}
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })}
       </div>
+      {events.length === 0 && mode === 'idle' && (
+        <div
+          className="px-3 py-2 text-center text-gray-400 italic text-xs border-t border-border-dark"
+          style={{ background: 'rgba(0,0,0,0.2)' }}
+        >
+          Cliquez sur « Démarrer la simulation » pour voir les épreuves, la progression (XP, marques, réaliser) et la souffrance & résistance.
+        </div>
+      )}
+      <div ref={logEndRef} />
     </div>
   );
 }

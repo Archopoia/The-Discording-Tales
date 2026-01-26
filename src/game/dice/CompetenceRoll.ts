@@ -64,13 +64,22 @@ export function rollCompetenceCheck(params: CompetenceRollParams): CompetenceRol
   const criticalFailure = diceKept.length === KEEP_COUNT && diceKept.every((d) => d === -1);
   const criticalSuccess = diceKept.length === KEEP_COUNT && diceKept.every((d) => d === 1);
 
-  const keptStr = diceKept.map((d) => (d >= 0 ? `+${d}` : `${d}`)).join(',');
+  const fmt = (n: number) => (n >= 0 ? `+${n}` : `${n}`);
+  const keptStr = diceKept.map((d) => fmt(d)).join(', ');
   let outcome: string;
   if (criticalFailure) outcome = 'Échec critique (+5 marques).';
   else if (criticalSuccess) outcome = 'Succès critique.';
   else if (success) outcome = 'Succès.';
   else outcome = 'Échec (+1 marque).';
-  const summary = `Jet : Niv ${nivAptitude >= 0 ? '+' : ''}${nivAptitude}, ${poolSize}dD → 5 gardés [${keptStr}] = ${result >= 0 ? '+' : ''}${result}. Épreuve ${nivEpreuve >= 0 ? '+' : ''}${nivEpreuve} → ${outcome}`;
+  const resultStr = fmt(result);
+  const nivEpreuveStr = fmt(nivEpreuve);
+  const comparison =
+    success && !criticalSuccess
+      ? `Résultat ${resultStr} ≥ Niv d'épreuve ${nivEpreuveStr} → ${outcome}`
+      : !success && !criticalFailure
+        ? `Résultat ${resultStr} < Niv d'épreuve ${nivEpreuveStr} → ${outcome}`
+        : `Résultat ${resultStr} vs Niv d'épreuve ${nivEpreuveStr} → ${outcome}`;
+  const summary = `Jet : Niv ${fmt(nivAptitude)}, ${poolSize}dD → 5 gardés [${keptStr}] = Résultat ${resultStr}. ${comparison}`;
 
   return {
     result,
