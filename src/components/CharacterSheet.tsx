@@ -230,7 +230,10 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
       .reduce((s, c) => s + (state.competences[c]?.degreeCount ?? 0), 0) +
     Object.values(Souffrance).reduce((s, souf) => s + (state.souffrances[souf]?.resistanceDegreeCount ?? 0), 0);
 
+  const inCreation = simHighlightId === 'create-attributes' || simHighlightId === 'create-reveal' || simHighlightId === 'create-dice';
+
   const handleAttributeChange = (attr: Attribute, value: number) => {
+    if (simHighlightId === 'create-reveal' || simHighlightId === 'create-dice') return;
     let valueToSet = value;
     if (simHighlightId === 'create-attributes') {
       const othersSum = attrSum - (state.attributes[attr] ?? 0);
@@ -358,39 +361,47 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
           </button>
         </div>
 
-        {/* Event log – fixed at top, does not scroll with sheet */}
-        <div className="shrink-0 overflow-hidden relative">
-          <SimulationEventLog
-            manager={manager}
-            updateSheet={updateState}
-            onHighlight={(id, tooltip) => {
-              setSimHighlightId(id);
-              setSimTooltip(tooltip ?? null);
-            }}
-            onStepAction={setStepAction}
-            creationStateDeps={{
-              attrSum,
-              revealedCount,
-              diceSum,
-            }}
-            onCreationComplete={() => {
-              const s = manager.getState();
-              const withRevealed = new Set(
-                Object.values(Action).filter((a) =>
-                  getCompetencesForAction(a).some((c) => s.competences[c]?.isRevealed)
-                )
-              );
-              setExpandedActions(withRevealed);
-            }}
-          />
-          {/* Tutorial: dim the event log so overlay coverage is continuous from log down into sheet; pointer-events-none so buttons stay clickable */}
-          {(simHighlightId === 'create-attributes' || simHighlightId === 'create-reveal' || simHighlightId === 'create-dice') && (
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{ zIndex: 100, background: 'rgba(0,0,0,0.65)' }}
-              aria-hidden
-            />
-          )}
+        {/* Event log – fades out during character creation, fades in when user clicks "Lancer la simulation" */}
+        <div
+          className={`grid shrink-0 overflow-hidden transition-[grid-template-rows] duration-300 ease-in-out ${inCreation ? 'grid-rows-[0fr]' : 'grid-rows-[1fr]'}`}
+        >
+          <div
+            className={`min-h-0 overflow-hidden transition-opacity duration-300 ease-in-out ${inCreation ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+          >
+            <div className="relative">
+              <SimulationEventLog
+                manager={manager}
+                updateSheet={updateState}
+                onHighlight={(id, tooltip) => {
+                  setSimHighlightId(id);
+                  setSimTooltip(tooltip ?? null);
+                }}
+                onStepAction={setStepAction}
+                creationStateDeps={{
+                  attrSum,
+                  revealedCount,
+                  diceSum,
+                }}
+                onCreationComplete={() => {
+                  const s = manager.getState();
+                  const withRevealed = new Set(
+                    Object.values(Action).filter((a) =>
+                      getCompetencesForAction(a).some((c) => s.competences[c]?.isRevealed)
+                    )
+                  );
+                  setExpandedActions(withRevealed);
+                }}
+              />
+              {/* Tutorial: dim the event log so overlay coverage is continuous from log down into sheet; pointer-events-none so buttons stay clickable */}
+              {(simHighlightId === 'create-attributes' || simHighlightId === 'create-reveal' || simHighlightId === 'create-dice') && (
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{ zIndex: 100, background: 'rgba(0,0,0,0.65)' }}
+                  aria-hidden
+                />
+              )}
+            </div>
+          </div>
         </div>
 
         {/* Content - Scrollable (sheet only; event log stays above) */}
@@ -612,6 +623,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                           min={-50}
                           max={simHighlightId === 'create-attributes' ? Math.min(50, POOL_ATTRIBUTE_POINTS - attrSum + (state.attributes[atb1] ?? 0)) : 50}
                           size="md"
+                          disabled={simHighlightId === 'create-reveal' || simHighlightId === 'create-dice'}
                           className={simHighlightId === 'create-attributes' ? 'tutorial-input-highlight' : ''}
                         />
                         {/* Attribute name in full caps */}
