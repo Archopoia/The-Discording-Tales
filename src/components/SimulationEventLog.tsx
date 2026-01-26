@@ -387,8 +387,8 @@ export default function SimulationEventLog({
       </div>
 
       {mode === 'creating' && (
-        <div className="p-2 border-b border-border-dark bg-amber-950/40">
-          <p className="text-xs text-amber-100">
+        <div className="p-2 border-b border-border-dark" style={{ backgroundColor: 'rgba(143, 201, 196, 0.28)' }}>
+          <p className="text-xs" style={{ color: '#e8f8f7' }}>
             {createStep === 'attributes'
               ? `Répartissez jusqu'à ${POOL_ATTRIBUTE_POINTS} points dans les attributs sur la feuille, puis validez dans la zone mise en surbrillance.`
               : `Choisissez de ${MIN_REVEAL} à ${MAX_REVEAL} compétences à révéler sur la feuille, puis lancez.`}

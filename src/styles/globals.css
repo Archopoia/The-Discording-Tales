@@ -165,13 +165,19 @@
     }
   }
 
-  /* Tutorial creation spotlight target: glow and ring */
+  /* Tutorial creation: light, bright turquoise glow */
   @keyframes tutorial-glow {
     0%, 100% {
-      box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.7), 0 0 20px rgba(251, 191, 36, 0.4);
+      box-shadow:
+        0 0 0 1px rgba(168, 221, 217, 0.6),
+        0 0 14px rgba(143, 201, 196, 0.55),
+        0 0 28px rgba(122, 181, 176, 0.35);
     }
     50% {
-      box-shadow: 0 0 0 4px rgba(251, 191, 36, 0.9), 0 0 28px rgba(251, 191, 36, 0.6);
+      box-shadow:
+        0 0 0 1px rgba(184, 230, 227, 0.8),
+        0 0 22px rgba(168, 221, 217, 0.7),
+        0 0 40px rgba(143, 201, 196, 0.45);
     }
   }
 
@@ -181,10 +187,25 @@
     border-radius: 8px;
   }
 
-  /* Creation step: pulse highlight on the actual inputs/controls to interact with */
+  /* Attribute inputs: thicker border pulse so they stand out clearly */
+  @keyframes tutorial-input-glow {
+    0%, 100% {
+      box-shadow:
+        0 0 0 3px rgba(168, 221, 217, 0.7),
+        0 0 16px rgba(143, 201, 196, 0.6),
+        0 0 32px rgba(122, 181, 176, 0.4);
+    }
+    50% {
+      box-shadow:
+        0 0 0 4px rgba(184, 230, 227, 0.95),
+        0 0 24px rgba(168, 221, 217, 0.75),
+        0 0 44px rgba(143, 201, 196, 0.5);
+    }
+  }
+
   .tutorial-input-highlight {
     position: relative;
-    animation: tutorial-glow 2s ease-in-out infinite;
+    animation: tutorial-input-glow 2s ease-in-out infinite;
     border-radius: 6px;
   }
 
@@ -192,6 +213,19 @@
     position: relative;
     animation: tutorial-glow 2s ease-in-out infinite;
     border-radius: 6px;
+  }
+
+  /* Light turquoise ring for sim-highlight targets (souffrance, resistance, competence, mastery) */
+  .tutorial-ring {
+    box-shadow: 0 0 0 1px rgba(168, 221, 217, 0.7), 0 0 14px rgba(143, 201, 196, 0.5);
+  }
+
+  /* Tutorial floating panel primary button – light turquoise to match glow */
+  .tutorial-panel-btn {
+    background-color: #7ab5b0;
+  }
+  .tutorial-panel-btn:hover:not(:disabled) {
+    background-color: #8fc9c4;
   }
 }
 

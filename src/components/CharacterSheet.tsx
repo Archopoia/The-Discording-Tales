@@ -355,17 +355,17 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                 aria-hidden
               />
               <div
-                className="absolute bottom-6 left-1/2 -translate-x-1/2 min-w-[280px] max-w-[90%] z-[120] rounded-lg border-2 border-amber-500/80 p-4 shadow-xl"
-                style={{ background: 'linear-gradient(180deg, rgba(40,28,18,0.98) 0%, rgba(30,22,14,0.99) 100%)', boxShadow: '0 0 0 1px #ceb68d, 0 8px 24px rgba(0,0,0,0.5)' }}
+                className="absolute bottom-6 left-1/2 -translate-x-1/2 min-w-[280px] max-w-[90%] z-[120] rounded-lg border-2 p-4 shadow-xl"
+                style={{ borderColor: 'rgba(143, 201, 196, 0.85)', background: 'linear-gradient(180deg, rgba(40,28,18,0.98) 0%, rgba(30,22,14,0.99) 100%)', boxShadow: '0 0 0 1px rgba(168,221,217,0.5), 0 8px 24px rgba(0,0,0,0.5)' }}
               >
-                <p className="text-sm text-amber-100 mb-3 font-medieval">{simTooltip ?? ''}</p>
+                <p className="text-sm mb-3 font-medieval" style={{ color: '#eefaf9' }}>{simTooltip ?? ''}</p>
                 {simHighlightId === 'create-attributes' && (
-                  <p className="text-sm text-amber-200 mb-2 font-medieval font-semibold">
+                  <p className="text-sm mb-2 font-medieval font-semibold" style={{ color: '#e8f8f7' }}>
                     Total : {attrSum} / {POOL_ATTRIBUTE_POINTS} points
                   </p>
                 )}
                 {simHighlightId === 'create-reveal' && (
-                  <p className="text-sm text-amber-200 mb-2 font-medieval font-semibold">
+                  <p className="text-sm mb-2 font-medieval font-semibold" style={{ color: '#e8f8f7' }}>
                     Compétences révélées : {revealedCount} / {MAX_REVEAL} (min {MIN_REVEAL})
                   </p>
                 )}
@@ -374,7 +374,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                     type="button"
                     onClick={stepAction.onClick}
                     disabled={stepAction.disabled}
-                    className="w-full py-2 px-4 bg-amber-700 hover:bg-amber-600 disabled:opacity-50 disabled:cursor-not-allowed text-text-cream font-semibold border-2 border-border-dark rounded transition-colors"
+                    className="tutorial-panel-btn w-full py-2 px-4 disabled:opacity-50 disabled:cursor-not-allowed text-text-cream font-semibold border-2 border-border-dark rounded transition-colors"
                   >
                     {stepAction.label}
                   </button>
@@ -462,7 +462,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                           return (
                             <div
                               data-sim-highlight={`souffrance-${linkedSouffrance}`}
-                              className={`relative w-full overflow-hidden rounded transition-all ${simHighlightId === `souffrance-${linkedSouffrance}` ? 'ring-2 ring-amber-400 ring-offset-2 ring-offset-[#fffaec]' : ''}`}
+                              className={`relative w-full overflow-hidden rounded transition-all ${simHighlightId === `souffrance-${linkedSouffrance}` ? 'tutorial-ring' : ''}`}
                               style={{
                                 height: '120px', // Increased height for better visibility
                                 minHeight: '120px',
@@ -616,7 +616,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                             <div
                               key={souf}
                               data-sim-highlight={`resistance-${souf}`}
-                              className={`text-xs bg-red-theme-alpha border-2 border-border-dark rounded p-2 ${isEprouvee ? 'overflow-visible' : ''} transition-all ${simHighlightId === `resistance-${souf}` ? 'ring-2 ring-amber-400 ring-offset-2 ring-offset-[#fffaec]' : ''}`}
+                              className={`text-xs bg-red-theme-alpha border-2 border-border-dark rounded p-2 ${isEprouvee ? 'overflow-visible' : ''} transition-all ${simHighlightId === `resistance-${souf}` ? 'tutorial-ring' : ''}`}
                               style={{
                                 boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
                                 ...(isEprouvee ? { overflow: 'visible', position: 'relative', zIndex: 1 } : {})
@@ -770,7 +770,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                                   <div
                                     key={comp}
                                     data-sim-highlight={`competence-${comp}`}
-                                    className={`text-xs relative rounded transition-all ${simHighlightId === `competence-${comp}` ? 'ring-2 ring-amber-400 ring-offset-1 ring-offset-transparent p-1 -m-1' : ''} ${isRevealStepUnrevealed ? 'tutorial-reveal-highlight' : ''}`}
+                                    className={`text-xs relative rounded transition-all ${simHighlightId === `competence-${comp}` ? 'tutorial-ring' : ''} ${isRevealStepUnrevealed ? 'tutorial-reveal-highlight' : ''}`}
                                     title={simHighlightId === `competence-${comp}` ? simTooltip ?? undefined : undefined}
                                   >
                                     {!compData.isRevealed ? (
@@ -787,7 +787,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                                         className="font-medieval text-xs font-semibold transition-all duration-300 cursor-pointer relative bg-transparent border-none p-0 m-0 w-full flex items-center disabled:opacity-60 disabled:cursor-not-allowed"
                                         style={{
                                           opacity: hoveredRevealCompetence === comp ? 1 : 0.5,
-                                          color: hoveredRevealCompetence === comp ? '#4d3000' : 'inherit',
+                                          color: hoveredRevealCompetence === comp ? '#4d3000' : '#72522f',
                                           transform: hoveredRevealCompetence === comp ? 'translateY(-2px)' : 'translateY(0)',
                                           zIndex: hoveredRevealCompetence === comp ? 10 : 'auto',
                                           textShadow: hoveredRevealCompetence === comp ? '0 0 8px #ffebc6, 0 0 12px #f5e6d3, 0 0 16px #e8d5b7' : 'none',
@@ -853,7 +853,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                                             {/* Masteries Section */}
                                             <div
                                               data-sim-highlight={`mastery-${comp}`}
-                                              className={`space-y-1 mt-2 rounded transition-all ${simHighlightId === `mastery-${comp}` ? 'ring-2 ring-amber-400 ring-offset-1 p-1 -m-1' : ''}`}
+                                              className={`space-y-1 mt-2 rounded transition-all ${simHighlightId === `mastery-${comp}` ? 'tutorial-ring' : ''}`}
                                               title={simHighlightId === `mastery-${comp}` ? simTooltip ?? undefined : undefined}
                                             >
                                               {/* Unlock button when there are existing masteries */}
