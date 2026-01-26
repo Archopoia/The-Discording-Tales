@@ -272,6 +272,10 @@ export class CharacterSheetManager {
     this.state.competences[competence].isRevealed = true;
   }
 
+  unrevealCompetence(competence: Competence): void {
+    this.state.competences[competence].isRevealed = false;
+  }
+
   addCompetenceMark(competence: Competence, isEternal: boolean = false): void {
     const comp = this.state.competences[competence];
     for (let i = 0; i < MARKS_TO_EPROUVER; i++) {

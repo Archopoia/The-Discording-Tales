@@ -271,6 +271,21 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
     updateState();
   };
 
+  /** Reset the current creation step so the user can redo that step's choices. */
+  const resetCreationStep = (step: 'attributes' | 'reveal' | 'dice') => {
+    if (step === 'attributes') {
+      Object.values(Attribute).forEach((attr) => manager.setAttribute(attr, 0));
+    } else if (step === 'reveal') {
+      Object.values(Competence).forEach((c) => manager.unrevealCompetence(c));
+    } else {
+      Object.values(Competence).forEach((c) => {
+        if (manager.getState().competences[c]?.isRevealed) manager.setCompetenceDegree(c, 0);
+      });
+      Object.values(Souffrance).forEach((s) => manager.setResistanceDegreeCount(s, 0));
+    }
+    updateState();
+  };
+
   // Get actions for an aptitude
   const getActionsForAptitude = (aptitude: Aptitude): Action[] => {
     return Object.values(Action).filter((action) => getActionAptitude(action) === aptitude);
@@ -446,21 +461,31 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                   </p>
                 )}
                 {stepAction && (
-                  <button
-                    type="button"
-                    onClick={stepAction.onClick}
-                    disabled={stepAction.disabled}
-                    className={`w-full ${FERMER_STYLE.className} disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:bg-red-theme disabled:hover:text-text-cream`}
-                    style={{ boxShadow: FERMER_STYLE.boxShadow }}
-                    onMouseEnter={(e) => {
-                      if (!stepAction.disabled) e.currentTarget.style.boxShadow = FERMER_STYLE.boxShadowHover;
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.boxShadow = FERMER_STYLE.boxShadow;
-                    }}
-                  >
-                    {stepAction.label}
-                  </button>
+                  <div className="flex flex-col gap-2">
+                    <button
+                      type="button"
+                      onClick={stepAction.onClick}
+                      disabled={stepAction.disabled}
+                      className={`w-full ${FERMER_STYLE.className} disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:bg-red-theme disabled:hover:text-text-cream`}
+                      style={{ boxShadow: FERMER_STYLE.boxShadow }}
+                      onMouseEnter={(e) => {
+                        if (!stepAction.disabled) e.currentTarget.style.boxShadow = FERMER_STYLE.boxShadowHover;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.boxShadow = FERMER_STYLE.boxShadow;
+                      }}
+                    >
+                      {stepAction.label}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => resetCreationStep(stepAction.step)}
+                      className="w-full px-4 py-2 font-medieval text-sm border-2 border-border-dark rounded transition-all duration-300 hover:bg-parchment-dark/80 text-text-cream"
+                      style={{ background: 'transparent', boxShadow: '0 1px 3px rgba(0,0,0,0.2)' }}
+                    >
+                      Réinitialiser cette étape
+                    </button>
+                  </div>
                 )}
               </div>
             </>
