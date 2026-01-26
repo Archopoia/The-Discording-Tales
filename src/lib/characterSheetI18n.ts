@@ -183,7 +183,7 @@ const ATTRIBUTE_NAMES_EN: Record<Attribute, string> = {
   [AttrEnum.EMP]: 'Empathy',
   [AttrEnum.PER]: 'Perception',
   [AttrEnum.CRE]: 'Creativity',
-  [AttrEnum.VOL]: 'Will',
+  [AttrEnum.VOL]: 'Willpower',
 };
 
 const ATTRIBUTE_ABBREV_EN: Record<Attribute, string> = {
