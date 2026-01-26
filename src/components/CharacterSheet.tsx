@@ -358,7 +358,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
         </div>
 
         {/* Event log – fixed at top, does not scroll with sheet */}
-        <div className="shrink-0 overflow-hidden border-b border-border-dark">
+        <div className="shrink-0 overflow-hidden border-b border-border-dark relative">
           <SimulationEventLog
             manager={manager}
             updateSheet={updateState}
@@ -382,6 +382,14 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
               setExpandedActions(withRevealed);
             }}
           />
+          {/* Tutorial: dim the event log so overlay coverage is continuous from log down into sheet; pointer-events-none so buttons stay clickable */}
+          {(simHighlightId === 'create-attributes' || simHighlightId === 'create-reveal' || simHighlightId === 'create-dice') && (
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{ zIndex: 100, background: 'rgba(0,0,0,0.65)' }}
+              aria-hidden
+            />
+          )}
         </div>
 
         {/* Content - Scrollable (sheet only; event log stays above) */}
