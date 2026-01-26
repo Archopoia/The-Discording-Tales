@@ -16,6 +16,13 @@ import ExpandableSection from './ui/ExpandableSection';
 import Tooltip from './ui/Tooltip';
 import SimulationEventLog, { type StepActionPayload, POOL_ATTRIBUTE_POINTS, MIN_REVEAL, MAX_REVEAL, POOL_DICE } from './SimulationEventLog';
 
+/** Shared style for Fermer (C) and tutorial confirmation buttons – same look and hover glow */
+const FERMER_STYLE = {
+  className: 'px-4 py-2 bg-red-theme text-text-cream border-2 border-border-dark rounded font-medieval font-semibold transition-all duration-300 relative z-10 hover:bg-hover-bg hover:text-text-dark hover:-translate-y-0.5',
+  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.3), inset 0 0 0 1px #ffebc6',
+  boxShadowHover: '0 0 15px 5px #ffebc6, 0 4px 8px rgba(0, 0, 0, 0.3)',
+} as const;
+
 interface CharacterSheetProps {
   isOpen: boolean;
   onClose: () => void;
@@ -342,16 +349,10 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
           </div>
           <button
             onClick={onClose}
-            className="px-4 py-2 bg-red-theme text-text-cream border-2 border-border-dark rounded font-medieval font-semibold transition-all duration-300 relative z-10 hover:bg-hover-bg hover:text-text-dark hover:-translate-y-0.5"
-            style={{
-              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.3), inset 0 0 0 1px #ffebc6'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.boxShadow = '0 0 15px 5px #ffebc6, 0 4px 8px rgba(0, 0, 0, 0.3)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.3), inset 0 0 0 1px #ffebc6';
-            }}
+            className={FERMER_STYLE.className}
+            style={{ boxShadow: FERMER_STYLE.boxShadow }}
+            onMouseEnter={(e) => { e.currentTarget.style.boxShadow = FERMER_STYLE.boxShadowHover; }}
+            onMouseLeave={(e) => { e.currentTarget.style.boxShadow = FERMER_STYLE.boxShadow; }}
           >
             Fermer (C)
           </button>
@@ -411,8 +412,11 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                 aria-hidden
               />
               <div
-                className="absolute top-6 left-1/2 -translate-x-1/2 min-w-[280px] max-w-[90%] z-[120] rounded-lg border-2 p-4 shadow-xl pointer-events-auto"
-                style={{ borderColor: 'rgba(143, 201, 196, 0.85)', background: 'linear-gradient(180deg, rgba(40,28,18,0.98) 0%, rgba(30,22,14,0.99) 100%)', boxShadow: '0 0 0 1px rgba(168,221,217,0.5), 0 8px 24px rgba(0,0,0,0.5)' }}
+                className="absolute top-6 left-1/2 -translate-x-1/2 min-w-[280px] max-w-[90%] z-[120] rounded-lg border-2 border-border-dark p-4 shadow-xl pointer-events-auto"
+                style={{
+                  background: 'linear-gradient(180deg, rgba(40,28,18,0.98) 0%, rgba(30,22,14,0.99) 100%)',
+                  boxShadow: 'inset 0 0 0 2px #ceb68d, inset 0 0 0 5px #ffebc6, 0 8px 24px rgba(0,0,0,0.5)',
+                }}
               >
                 <p className="text-sm mb-3 font-medieval" style={{ color: '#eefaf9' }}>{simTooltip ?? ''}</p>
                 {simHighlightId === 'create-attributes' && (
@@ -435,7 +439,14 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                     type="button"
                     onClick={stepAction.onClick}
                     disabled={stepAction.disabled}
-                    className="tutorial-panel-btn w-full py-2 px-4 disabled:opacity-50 disabled:cursor-not-allowed text-text-cream font-semibold border-2 border-border-dark rounded transition-colors"
+                    className={`w-full ${FERMER_STYLE.className} disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:bg-red-theme disabled:hover:text-text-cream`}
+                    style={{ boxShadow: FERMER_STYLE.boxShadow }}
+                    onMouseEnter={(e) => {
+                      if (!stepAction.disabled) e.currentTarget.style.boxShadow = FERMER_STYLE.boxShadowHover;
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.boxShadow = FERMER_STYLE.boxShadow;
+                    }}
                   >
                     {stepAction.label}
                   </button>
