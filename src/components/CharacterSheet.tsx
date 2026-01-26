@@ -16,7 +16,7 @@ import ExpandableSection from './ui/ExpandableSection';
 import Tooltip from './ui/Tooltip';
 import SimulationEventLog, { type StepActionPayload, POOL_ATTRIBUTE_POINTS, MIN_REVEAL, MAX_REVEAL, POOL_DICE } from './SimulationEventLog';
 
-/** Shared style for Fermer (C) and tutorial confirmation buttons – same look and hover glow */
+/** Shared style for Fermer and tutorial confirmation buttons – same look and hover glow */
 const FERMER_STYLE = {
   className: 'px-4 py-2 bg-red-theme text-text-cream border-2 border-border-dark rounded font-medieval font-semibold transition-all duration-300 relative z-10 hover:bg-hover-bg hover:text-text-dark hover:-translate-y-0.5',
   boxShadow: '0 2px 4px rgba(0, 0, 0, 0.3), inset 0 0 0 1px #ffebc6',
@@ -163,7 +163,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
     const getFocusables = () => Array.from(overlay.querySelectorAll<HTMLElement>(FOCUSABLE));
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'c' || e.key === 'C') {
+      if (e.key === 'Escape') {
         onClose();
         return;
       }
@@ -372,7 +372,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
             onMouseEnter={(e) => { e.currentTarget.style.boxShadow = FERMER_STYLE.boxShadowHover; }}
             onMouseLeave={(e) => { e.currentTarget.style.boxShadow = FERMER_STYLE.boxShadow; }}
           >
-            Fermer (C)
+            Fermer
           </button>
         </div>
 
