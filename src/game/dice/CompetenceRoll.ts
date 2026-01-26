@@ -15,12 +15,16 @@ export function rollFateDie(): FateFace {
   return 1;
 }
 
+export type RollSummaryLang = 'en' | 'fr';
+
 export interface CompetenceRollParams {
   nivAptitude: number;
   compDegrees: number;
   masteryDegrees: number;
   dsNegative: number;
   nivEpreuve: number;
+  /** Language for summary/outcome text. Default 'fr'. */
+  lang?: RollSummaryLang;
 }
 
 export interface CompetenceRollResult {
@@ -41,7 +45,7 @@ export interface CompetenceRollResult {
  * Result = Niv + sum(kept five). Success if result >= nivEpreuve.
  */
 export function rollCompetenceCheck(params: CompetenceRollParams): CompetenceRollResult {
-  const { nivAptitude, compDegrees, masteryDegrees, dsNegative, nivEpreuve } = params;
+  const { nivAptitude, compDegrees, masteryDegrees, dsNegative, nivEpreuve, lang = 'fr' } = params;
   const positiveDice = 5 + compDegrees + masteryDegrees;
   const poolSize = Math.max(1, positiveDice - Math.max(0, dsNegative));
 
@@ -66,20 +70,25 @@ export function rollCompetenceCheck(params: CompetenceRollParams): CompetenceRol
 
   const fmt = (n: number) => (n >= 0 ? `+${n}` : `${n}`);
   const keptStr = diceKept.map((d) => fmt(d)).join(', ');
+  const isEn = lang === 'en';
   let outcome: string;
-  if (criticalFailure) outcome = 'Échec critique (+5 marques).';
-  else if (criticalSuccess) outcome = 'Succès critique.';
-  else if (success) outcome = 'Succès.';
-  else outcome = 'Échec (+1 marque).';
+  if (criticalFailure) outcome = isEn ? 'Critical failure (+5 marks).' : 'Échec critique (+5 marques).';
+  else if (criticalSuccess) outcome = isEn ? 'Critical success.' : 'Succès critique.';
+  else if (success) outcome = isEn ? 'Success.' : 'Succès.';
+  else outcome = isEn ? 'Failure (+1 mark).' : 'Échec (+1 marque).';
   const resultStr = fmt(result);
   const nivEpreuveStr = fmt(nivEpreuve);
+  const resultLabel = isEn ? 'Result' : 'Résultat';
+  const trialLabel = isEn ? 'Trial level' : "Niv d'épreuve";
   const comparison =
     success && !criticalSuccess
-      ? `Résultat ${resultStr} ≥ Niv d'épreuve ${nivEpreuveStr} → ${outcome}`
+      ? `${resultLabel} ${resultStr} ≥ ${trialLabel} ${nivEpreuveStr} → ${outcome}`
       : !success && !criticalFailure
-        ? `Résultat ${resultStr} < Niv d'épreuve ${nivEpreuveStr} → ${outcome}`
-        : `Résultat ${resultStr} vs Niv d'épreuve ${nivEpreuveStr} → ${outcome}`;
-  const summary = `Jet : Niv ${fmt(nivAptitude)}, ${poolSize}dD → 5 gardés [${keptStr}] = Résultat ${resultStr}. ${comparison}`;
+        ? `${resultLabel} ${resultStr} < ${trialLabel} ${nivEpreuveStr} → ${outcome}`
+        : `${resultLabel} ${resultStr} vs ${trialLabel} ${nivEpreuveStr} → ${outcome}`;
+  const rollLabel = isEn ? 'Roll' : 'Jet';
+  const keptLabel = isEn ? 'kept' : 'gardés';
+  const summary = `${rollLabel}: Niv ${fmt(nivAptitude)}, ${poolSize}dD → 5 ${keptLabel} [${keptStr}] = ${resultLabel} ${resultStr}. ${comparison}`;
 
   return {
     result,

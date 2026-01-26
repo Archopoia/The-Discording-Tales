@@ -55,7 +55,8 @@ const CHALLENGES: { descriptionKey: (typeof CHALLENGE_KEYS)[number]; suggested?:
 function getRollParams(
   manager: CharacterSheetManager,
   comp: Competence,
-  nivEpreuve: number
+  nivEpreuve: number,
+  lang: CharacterSheetLang
 ): CompetenceRollParams {
   const action = getCompetenceAction(comp);
   const aptitude = getActionAptitude(action);
@@ -71,6 +72,7 @@ function getRollParams(
     masteryDegrees,
     dsNegative,
     nivEpreuve,
+    lang,
   };
 }
 
@@ -319,7 +321,7 @@ export default function SimulationEventLog({
     onHighlight?.(`competence-${comp}`, t('marksTooltip', lang));
     const challenge = CHALLENGES[runningChallengeIdx % CHALLENGES.length];
     const nivEpreuve = challenge?.nivEpreuve ?? 0;
-    const rollParams = getRollParams(manager, comp, nivEpreuve);
+    const rollParams = getRollParams(manager, comp, nivEpreuve, lang);
     const rollResult = rollCompetenceCheck(rollParams);
     const marks = rollResult.criticalFailure ? 5 : rollResult.success || rollResult.criticalSuccess ? 0 : 1;
     for (let i = 0; i < marks; i++) manager.addCompetenceMark(comp);
