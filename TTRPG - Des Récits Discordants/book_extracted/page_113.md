@@ -1,0 +1,321 @@
+# Page 113
+
+*Source: publication-113.html*
+
+---
+
+## Modules, Moyens & Membres par Caste
+
+
+**NdG 1 (ÉQUIPE 1 à 3 membres)**
+
+
+**NdG 3 (COMPAGNIE 10 à 30 membres)**
+
+
+**NdG 5 (GUILDE de 100 à 300 membres)**
+
+
+**NdG 7 (ORDRE de 1’000 à 3’000 membres)**
+
+
+**( A )ides - ( Collectivité)**
+
+
+**Soutiens**
+
+Équipe des Soutiens : intendant-valet et guérisseur-apothicaire, bassines, linges et onguents. But : assurer repas, soins légers et herbes thérapeutiques pour le foyer.
+
+Compagnie des Soutiens : 10 - 30 intendants, cuisiniers et apothi- caires, équipée de cuisines, herboristerie et infirmerie de maison. But : maintenir hygiène, nutrition et santé du domaine.
+
+Guilde de Soutiens : corps de service (intendant, sous-intendants, aides, herboristes, chirurgiens), avec cuisines, buanderie, infir- merie et pharmacie centrale. But : garantir confort, propreté et prise en charge médicale des habitants.
+
+Ordre de Soutiens : réseau de plusieurs centaines de serviteurs (officiers de bouche, apothicaires, chirurgiens), hôpitaux, phar- macies, cuisines seigneuriales et buanderies. But : soutenir le bien-être physique et sanitaire de la population.
+
+
+**Animateurs**
+
+Équipe d’Animateurs : conteur et musicien, luth et tambourin en main, captivant un petit auditoire dans la grande salle ou sous un portique par récits et airs simples. But : divertir et renforcer la cohésion.
+
+Compagnie d’Animateurs : 10 - 30 artistes sous un chef de spectacle, munis de tambours, flûtes et costumes, sur une scène de bois pour offrir danses et chants. But : raviver l’entrain collectif et attirer l’attention.
+
+Guilde d’Animateurs : compagnie structurée (maître de troupe, régisseur, interprètes), dotée d’une scène en plein air, de loges et de gradins pour cérémonies et fêtes. But : offrir des spectacles de prestige pour sceller alliances et renommée.
+
+Ordre d’Animateurs : cortège de plusieurs centaines d’interprètes (musiciens, danseurs, conteurs), coordonné par un conseil artis- tique, disposant d’un théâtre et de loges en ville. But : affirmer le statut des mécènes et unir les élites.
+
+
+**Fêtards**
+
+Équipe de Fêtards : flâneur et joueur, pièces et gobelets à la main, sur des bancs dans la salle commune pour offrir un moment de distraction. But : égayer le quotidien par un simple jeu ou pari.
+
+Compagnie de Fêtards : 10 - 30 participants dirigés par un maître de réjouissances, muni de tables basses, flacons, coussins et lampions pour animer les soirées. But : rompre la monotonie et souder les liens sociaux.
+
+Guilde de Fêtards : société de plaisirs organisée (maître de banquet, intendants du jeu, hôtes), offrant banquets, salles de jeu et alcôves discrètes dans un manoir. But : proposer loisirs exclusifs et monnayer l’accès au plaisir.
+
+Ordre de Fêtards : réseau de lieux de divertissement géré par un conseil des délices, comprenant tavernes, salles de jeu et alcôves privées en ville. But : centraliser et réguler les festivités pour générer richesse et influence.
+
+
+**( M )archands - ( Finance)**
+
+
+**Bureaucrates**
+
+Équipe de Bureaucrates : un clerc, un huissier et un greffier itinérant, tablettes de cire, sceau et registres. But : rédiger et authentifier contrats, décrets et décisions locales.
+
+Compagnie de Bureaucrates : 10 - 30 copistes, greffiers et un juge-magistrat, munis de parchemins, encriers et bureaux de comté. But : instruire affaires civiles, délivrer permissions et rendre jugements mineurs.
+
+Guilde de Bureaucrates : réseau de bureaux régionaux (prévôt, secrétaires, scribes, magistrats), halle d’archives, colombiers et relais de messagers. But : administrer finances, justice et correspondance entre seigneurs.
+
+Ordre de Bureaucrates : appareil administratif (chancellerie royale, conseil municipal, greffes, tribunaux supérieurs), chariots d’archives et salles de conférence. But : gouverner, légiférer et coordonner l’ensemble du royaume.
+
+
+**Commerçants**
+
+Équipe de Commerçants : binôme de négociants, balance de bronze, étoffes et épices étalées sur une table. But : assurer un revenu minimal pour subvenir à leurs besoins.
+
+Compagnie de Commerçants : 10 - 30 marchands réunis en foire, étals en bois, registres de dettes et coffres, coordonnés par un négociant principal. But : étendre le réseau de crédit et diver- sifier les marchandises.
+
+Guilde de Commerçants : confrérie marchande, entrepôts, bureaux de change et chemins balisés, encadrée par un conseil de négociateurs. But : maximiser marges et créer des alliances durables.
+
+Ordre de Commerçants : maison de commerce influente, quais fluviaux, salles de négociation et guichets de crédit, guidée par un conseil d’actionnaires. But : dominer les flux commerciaux et investir dans le développement urbain et rural.
+
+
+**Charlatans**
+
+Équipe de Charlatans : saltimbanques (prestidigitateurs, jongleurs, montreurs de marionnettes) munis d’accessoires et lanternes, montant tréteaux devant une auberge ou sur la place. But : capter l’attention des passants.
+
+Compagnie de Charlatans : 10 - 30 forains (acrobates, charmeurs de bêtes, etc.), équipée d’un chapiteau, ménageries et stands de tir à l’arc lors des foires régionales. But : attirer la foule pour vendre friandises, potions et billets de spectacle.
+
+Guilde de Charlatans : cortège de 200 membres (plusieurs chapi- teaux, ménageries, échoppes et tavernes ambulantes), autorisation seigneuriale pour dresser leur foire. But : organiser un marché festif, percevoir péages et négocier leur emplacement.
+
+Ordre de Charlatans : structure permanente de forains et artistes de rue sous une charte de guilde, avec caravansérails réservés et redevances fixes. But : animer fêtes urbaines et défendre les droits des artistes ambulants.
+
+
+**(É)rudits - ( Instruction)**
+
+
+**Chercheurs**
+
+Équipe de Chercheurs : pionniers guidés par un vétéran aux cartes jaunies, armés de boussole, carnet et éprouvettes au comptoir d’observation. But : cartographier et documenter les territoires méconnus.
+
+Compagnie de Chercheurs : 10 - 30 scientifiques de terrain sous un chef de mission, équipés de sextants, journaux de bord et instruments de mesure dans un avant-poste de pierre. But : collecter spécimens et informations scientifiques.
+
+Guilde de Chercheurs : confrérie de 100 - 300 explorateurs structurée en sections (maître des routes, scribes, illustrateurs), avec laboratoires, bibliothèques et postes de veille. But : compiler et publier cartes, spécimens et récits pour enrichir la connais- sance collective.
+
+Ordre de Chercheurs : réseau d’expéditions porté par un conseil central (inspecteurs de route, savants, archivistes), disposant d’observatoires, ateliers cartographiques et ports. But : repousser les frontières du monde et asseoir prestige et influence géopo- litique.
+
+
+**Sages**
+
+Équipe de Sages : un maître-enseignant et deux disciples, table de pierre, carnet et stylet. But : initier à la lecture, à l’écriture et poser les bases d’une discipline.
+
+Compagnie de Sages : 10 - 30 professeurs, copistes et précepteurs, équipés de rouleaux, parchemins, pupitres et salle de classe. But : diffuser savoirs fondamentaux et structurer les premières écoles.
+
+Guilde de Sages : académie de 100 - 300 érudits (recteur, doyens, conférenciers, professeurs), amphithéâtres, laboratoires rudimen- taires, bibliothèque centrale et écoles de quartier. But : former savants et enseignants pour la région.
+
+Ordre de Sages : université de 1 000 - 3 000 membres (chancelier, doyens, professeurs, archivistes), collèges, laboratoires spécia- lisés, presses royales et salles de conférence. But : centraliser, préserver et diffuser le savoir au royaume entier.
+
+
+**Artistes**
+
+Équipe d’Artistes : un ou deux artisans de l’ombre, plume et pigments en main, dans un réduit empli de parchemins vierges. But : capturer l’émotion fugace et la transmettre immuablement.
+
+Compagnie d’Artistes : 15 - 30 créatifs (poètes, illustrateurs, copistes) sous un maître conteur, dotés d’encriers, papiers et pigments. But : composer récits, chants et images pour les cours et les foires.
+
+Guilde d’Artistes : confrérie de 100 - 300 auteurs, dramaturges et artistes dirigée par un prévôt des lettres, appuyée d’éditeurs, comédiens, enlumineurs et relieurs, exploitant théâtre, scrip- torium et atelier de reliure. But : produire œuvres et spectacles pour la noblesse et les fêtes publiques.
+
+Ordre d’Artistes : consortium culturel de 1 000 - 3 000 créa- teurs (dramaturges, écrivains, peintres, musiciens), piloté par un curateur en chef, doté de maisons d’édition, salles de spectacle et académies des arts. But : façonner l’identité collective et promouvoir le mécénat officiel.
+
+
+**( P )rêtres - ( Politique)**
+
+
+**Mages**
+
+Équipe de Mages : voyants et un scribe, munis de runes gravées, osselets et fioles d’herbes, opérant dans un sanctuaire ancien. But : sonder l’avenir et détourner les mauvais présages.
+
+Compagnie de Mages : 20 ésotéristes autour d’un grand-prêtre, avec encensoirs, pentacles et parchemins dans un sanctuaire sombre. But : canaliser les forces occultes et veiller aux équi- libres mystiques.
+
+Guilde de Mages : confrérie ésotérique de 100 - 300 membres (grand-prêtre, prêtres, novices), disposant d’un temple, biblio- thèque hermétique, tour d’observation et salle de visions pour rites publics. But : étendre leur savoir occulte et obtenir faveur divine.
+
+Ordre de Mages : institution sacrée de 1 000 - 3 000 fidèles, dirigée par un collège d’augures et un haut-prêtre, dans un temple étendu aux codex secrets. But : orienter la politique royale et affirmer leur autorité spirituelle.
+
+
+**Cultistes**
+
+Équipe de Cultistes : chapelain-ermite et un à deux acolytes avec un petit autel de bois. But : apporter réconfort, soigner les âmes et bénir la communauté.
+
+Compagnie de Cultistes : 10 - 30 prêtres et diacres portant éten- dards, calices et livres de sermons dans une chapelle paroissiale. But : célébrer offices, recueillir offrandes et guider les fidèles.
+
+Guilde de Cultistes : communauté de 100 - 300 clercs (curé, archiprêtre, prédicateurs), église paroissiale, monastère local et écoles de catéchisme. But : renforcer la foi, organiser pèlerinages et former le clergé mineur.
+
+Ordre de Cultistes : secte de 1 000 - 3 000 croyants, dirigée par un prophète vénéré, chapelains, hérauts et maîtres de chant, élevant cathédrales, amphithéâtres liturgiques et académies de doctrine. But : façonner la pensée collective et soutenir le pouvoir temporel.
+
+
+**Guides**
+
+Équipe de Guides : chef et compagnon, munis d’un bâton sculpté et d’une cape brodée, assis près d’un oratoire pour enseigner légendes et galvaniser quelques fidèles. But : transmettre légendes et galvaniser les fidèles.
+
+Compagnie de Guides : 10 - 30 mentors et hérauts autour d’un orateur renommé, dans une salle d’oratoire, déployant bannières et récits pour unir plusieurs familles. But : encourager loyauté et unité sociale.
+
+Guilde de Guides : confrérie de 100 - 300 mentors et capitaines d’âmes, dirigée par un haut-guide et un collège de lieutenants, exploitant salles de conseil et amphithéâtres couverts pour conseils stratégiques et médiations inter-villages. But : arbitrer conflits et maintenir la cohésion régionale.
+
+Ordre de Guides : réseau de 1 000 - 3 000 guides, structuré en conseil suprême, chartistes et ambassadeurs, s’appuyant sur palais de réunion et écoles de rhétorique. But : diriger les orientations politiques et culturelles.
+
+## Modules, Moyens & Membres par Caste
+
+
+**NdG 1 (ÉQUIPE 1 à 3 membres)**
+
+
+**NdG 3 (COMPAGNIE 10 à 30 membres)**
+
+
+**NdG 5 (GUILDE de 100 à 300 membres)**
+
+
+**NdG 7 (ORDRE de 1’000 à 3’000 membres)**
+
+
+**( A )ides - ( Collectivité)**
+
+
+**Soutiens**
+
+Équipe des Soutiens : intendant-valet et guérisseur-apothicaire, bassines, linges et onguents. But : assurer repas, soins légers et herbes thérapeutiques pour le foyer.
+
+Compagnie des Soutiens : 10 - 30 intendants, cuisiniers et apothi- caires, équipée de cuisines, herboristerie et infirmerie de maison. But : maintenir hygiène, nutrition et santé du domaine.
+
+Guilde de Soutiens : corps de service (intendant, sous-intendants, aides, herboristes, chirurgiens), avec cuisines, buanderie, infir- merie et pharmacie centrale. But : garantir confort, propreté et prise en charge médicale des habitants.
+
+Ordre de Soutiens : réseau de plusieurs centaines de serviteurs (officiers de bouche, apothicaires, chirurgiens), hôpitaux, phar- macies, cuisines seigneuriales et buanderies. But : soutenir le bien-être physique et sanitaire de la population.
+
+
+**Animateurs**
+
+Équipe d’Animateurs : conteur et musicien, luth et tambourin en main, captivant un petit auditoire dans la grande salle ou sous un portique par récits et airs simples. But : divertir et renforcer la cohésion.
+
+Compagnie d’Animateurs : 10 - 30 artistes sous un chef de spectacle, munis de tambours, flûtes et costumes, sur une scène de bois pour offrir danses et chants. But : raviver l’entrain collectif et attirer l’attention.
+
+Guilde d’Animateurs : compagnie structurée (maître de troupe, régisseur, interprètes), dotée d’une scène en plein air, de loges et de gradins pour cérémonies et fêtes. But : offrir des spectacles de prestige pour sceller alliances et renommée.
+
+Ordre d’Animateurs : cortège de plusieurs centaines d’interprètes (musiciens, danseurs, conteurs), coordonné par un conseil artis- tique, disposant d’un théâtre et de loges en ville. But : affirmer le statut des mécènes et unir les élites.
+
+
+**Fêtards**
+
+Équipe de Fêtards : flâneur et joueur, pièces et gobelets à la main, sur des bancs dans la salle commune pour offrir un moment de distraction. But : égayer le quotidien par un simple jeu ou pari.
+
+Compagnie de Fêtards : 10 - 30 participants dirigés par un maître de réjouissances, muni de tables basses, flacons, coussins et lampions pour animer les soirées. But : rompre la monotonie et souder les liens sociaux.
+
+Guilde de Fêtards : société de plaisirs organisée (maître de banquet, intendants du jeu, hôtes), offrant banquets, salles de jeu et alcôves discrètes dans un manoir. But : proposer loisirs exclusifs et monnayer l’accès au plaisir.
+
+Ordre de Fêtards : réseau de lieux de divertissement géré par un conseil des délices, comprenant tavernes, salles de jeu et alcôves privées en ville. But : centraliser et réguler les festivités pour générer richesse et influence.
+
+
+**( M )archands - ( Finance)**
+
+
+**Bureaucrates**
+
+Équipe de Bureaucrates : un clerc, un huissier et un greffier itinérant, tablettes de cire, sceau et registres. But : rédiger et authentifier contrats, décrets et décisions locales.
+
+Compagnie de Bureaucrates : 10 - 30 copistes, greffiers et un juge-magistrat, munis de parchemins, encriers et bureaux de comté. But : instruire affaires civiles, délivrer permissions et rendre jugements mineurs.
+
+Guilde de Bureaucrates : réseau de bureaux régionaux (prévôt, secrétaires, scribes, magistrats), halle d’archives, colombiers et relais de messagers. But : administrer finances, justice et correspondance entre seigneurs.
+
+Ordre de Bureaucrates : appareil administratif (chancellerie royale, conseil municipal, greffes, tribunaux supérieurs), chariots d’archives et salles de conférence. But : gouverner, légiférer et coordonner l’ensemble du royaume.
+
+
+**Commerçants**
+
+Équipe de Commerçants : binôme de négociants, balance de bronze, étoffes et épices étalées sur une table. But : assurer un revenu minimal pour subvenir à leurs besoins.
+
+Compagnie de Commerçants : 10 - 30 marchands réunis en foire, étals en bois, registres de dettes et coffres, coordonnés par un négociant principal. But : étendre le réseau de crédit et diver- sifier les marchandises.
+
+Guilde de Commerçants : confrérie marchande, entrepôts, bureaux de change et chemins balisés, encadrée par un conseil de négociateurs. But : maximiser marges et créer des alliances durables.
+
+Ordre de Commerçants : maison de commerce influente, quais fluviaux, salles de négociation et guichets de crédit, guidée par un conseil d’actionnaires. But : dominer les flux commerciaux et investir dans le développement urbain et rural.
+
+
+**Charlatans**
+
+Équipe de Charlatans : saltimbanques (prestidigitateurs, jongleurs, montreurs de marionnettes) munis d’accessoires et lanternes, montant tréteaux devant une auberge ou sur la place. But : capter l’attention des passants.
+
+Compagnie de Charlatans : 10 - 30 forains (acrobates, charmeurs de bêtes, etc.), équipée d’un chapiteau, ménageries et stands de tir à l’arc lors des foires régionales. But : attirer la foule pour vendre friandises, potions et billets de spectacle.
+
+Guilde de Charlatans : cortège de 200 membres (plusieurs chapi- teaux, ménageries, échoppes et tavernes ambulantes), autorisation seigneuriale pour dresser leur foire. But : organiser un marché festif, percevoir péages et négocier leur emplacement.
+
+Ordre de Charlatans : structure permanente de forains et artistes de rue sous une charte de guilde, avec caravansérails réservés et redevances fixes. But : animer fêtes urbaines et défendre les droits des artistes ambulants.
+
+
+**(É)rudits - ( Instruction)**
+
+
+**Chercheurs**
+
+Équipe de Chercheurs : pionniers guidés par un vétéran aux cartes jaunies, armés de boussole, carnet et éprouvettes au comptoir d’observation. But : cartographier et documenter les territoires méconnus.
+
+Compagnie de Chercheurs : 10 - 30 scientifiques de terrain sous un chef de mission, équipés de sextants, journaux de bord et instruments de mesure dans un avant-poste de pierre. But : collecter spécimens et informations scientifiques.
+
+Guilde de Chercheurs : confrérie de 100 - 300 explorateurs structurée en sections (maître des routes, scribes, illustrateurs), avec laboratoires, bibliothèques et postes de veille. But : compiler et publier cartes, spécimens et récits pour enrichir la connais- sance collective.
+
+Ordre de Chercheurs : réseau d’expéditions porté par un conseil central (inspecteurs de route, savants, archivistes), disposant d’observatoires, ateliers cartographiques et ports. But : repousser les frontières du monde et asseoir prestige et influence géopo- litique.
+
+
+**Sages**
+
+Équipe de Sages : un maître-enseignant et deux disciples, table de pierre, carnet et stylet. But : initier à la lecture, à l’écriture et poser les bases d’une discipline.
+
+Compagnie de Sages : 10 - 30 professeurs, copistes et précepteurs, équipés de rouleaux, parchemins, pupitres et salle de classe. But : diffuser savoirs fondamentaux et structurer les premières écoles.
+
+Guilde de Sages : académie de 100 - 300 érudits (recteur, doyens, conférenciers, professeurs), amphithéâtres, laboratoires rudimen- taires, bibliothèque centrale et écoles de quartier. But : former savants et enseignants pour la région.
+
+Ordre de Sages : université de 1 000 - 3 000 membres (chancelier, doyens, professeurs, archivistes), collèges, laboratoires spécia- lisés, presses royales et salles de conférence. But : centraliser, préserver et diffuser le savoir au royaume entier.
+
+
+**Artistes**
+
+Équipe d’Artistes : un ou deux artisans de l’ombre, plume et pigments en main, dans un réduit empli de parchemins vierges. But : capturer l’émotion fugace et la transmettre immuablement.
+
+Compagnie d’Artistes : 15 - 30 créatifs (poètes, illustrateurs, copistes) sous un maître conteur, dotés d’encriers, papiers et pigments. But : composer récits, chants et images pour les cours et les foires.
+
+Guilde d’Artistes : confrérie de 100 - 300 auteurs, dramaturges et artistes dirigée par un prévôt des lettres, appuyée d’éditeurs, comédiens, enlumineurs et relieurs, exploitant théâtre, scrip- torium et atelier de reliure. But : produire œuvres et spectacles pour la noblesse et les fêtes publiques.
+
+Ordre d’Artistes : consortium culturel de 1 000 - 3 000 créa- teurs (dramaturges, écrivains, peintres, musiciens), piloté par un curateur en chef, doté de maisons d’édition, salles de spectacle et académies des arts. But : façonner l’identité collective et promouvoir le mécénat officiel.
+
+
+**( P )rêtres - ( Politique)**
+
+
+**Mages**
+
+Équipe de Mages : voyants et un scribe, munis de runes gravées, osselets et fioles d’herbes, opérant dans un sanctuaire ancien. But : sonder l’avenir et détourner les mauvais présages.
+
+Compagnie de Mages : 20 ésotéristes autour d’un grand-prêtre, avec encensoirs, pentacles et parchemins dans un sanctuaire sombre. But : canaliser les forces occultes et veiller aux équi- libres mystiques.
+
+Guilde de Mages : confrérie ésotérique de 100 - 300 membres (grand-prêtre, prêtres, novices), disposant d’un temple, biblio- thèque hermétique, tour d’observation et salle de visions pour rites publics. But : étendre leur savoir occulte et obtenir faveur divine.
+
+Ordre de Mages : institution sacrée de 1 000 - 3 000 fidèles, dirigée par un collège d’augures et un haut-prêtre, dans un temple étendu aux codex secrets. But : orienter la politique royale et affirmer leur autorité spirituelle.
+
+
+**Cultistes**
+
+Équipe de Cultistes : chapelain-ermite et un à deux acolytes avec un petit autel de bois. But : apporter réconfort, soigner les âmes et bénir la communauté.
+
+Compagnie de Cultistes : 10 - 30 prêtres et diacres portant éten- dards, calices et livres de sermons dans une chapelle paroissiale. But : célébrer offices, recueillir offrandes et guider les fidèles.
+
+Guilde de Cultistes : communauté de 100 - 300 clercs (curé, archiprêtre, prédicateurs), église paroissiale, monastère local et écoles de catéchisme. But : renforcer la foi, organiser pèlerinages et former le clergé mineur.
+
+Ordre de Cultistes : secte de 1 000 - 3 000 croyants, dirigée par un prophète vénéré, chapelains, hérauts et maîtres de chant, élevant cathédrales, amphithéâtres liturgiques et académies de doctrine. But : façonner la pensée collective et soutenir le pouvoir temporel.
+
+
+**Guides**
+
+Équipe de Guides : chef et compagnon, munis d’un bâton sculpté et d’une cape brodée, assis près d’un oratoire pour enseigner légendes et galvaniser quelques fidèles. But : transmettre légendes et galvaniser les fidèles.
+
+Compagnie de Guides : 10 - 30 mentors et hérauts autour d’un orateur renommé, dans une salle d’oratoire, déployant bannières et récits pour unir plusieurs familles. But : encourager loyauté et unité sociale.
+
+Guilde de Guides : confrérie de 100 - 300 mentors et capitaines d’âmes, dirigée par un haut-guide et un collège de lieutenants, exploitant salles de conseil et amphithéâtres couverts pour conseils stratégiques et médiations inter-villages. But : arbitrer conflits et maintenir la cohésion régionale.
+
+Ordre de Guides : réseau de 1 000 - 3 000 guides, structuré en conseil suprême, chartistes et ambassadeurs, s’appuyant sur palais de réunion et écoles de rhétorique. But : diriger les orientations politiques et culturelles.

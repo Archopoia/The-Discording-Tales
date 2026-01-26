@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>THE DISCORDING TALES – Under our steps awake those mysteries believed to be warring among the stars…</title>
+    <meta content="For those of us who crave DISCOVERY. A journey through exotic cultures, unexplored lands, weird creatures, and untold ways of thinking and being—yearning to experience the vast potentials, technologies and moralities of worlds unlike ours." name="description"/>
+    
+    <!-- Main Stylesheet -->
+    <link href="css/dtd-website.css" rel="stylesheet" type="text/css"/>
+    
+    <!-- Theme Color -->
+    <meta content="#5a1f1f" name="theme-color"/>
+    
+    <!-- Favicon -->
+    <link href="assets/images/cropped-symbolpur.png" rel="icon" sizes="32x32"/>
+</head>
+<body>
+    <!-- Skip to content link for accessibility -->
+    <a class="skip-link screen-reader-text" href="#main-content">Skip to content</a>
+    
+    <!-- WebGL Background Canvas for Procedural Textures -->
+    <!-- This canvas renders marble texture using shaders -->
+    <canvas id="bg-marble-canvas" class="webgl-bg-canvas" aria-hidden="true"></canvas>
+    
+    <!-- Header with Navigation -->
+    <header class="site-header" id="masthead" role="banner">
+        <!-- WebGL canvas for header background texture (gold shader) -->
+        <canvas id="header-gold-canvas" class="webgl-header-canvas" aria-hidden="true"></canvas>
+        <div class="header-bg decorated-container">
+            <div class="site-branding">
+                <a class="site-logo-link" href="#landing" aria-label="Home">
+                    <img alt="The Discording Tales Symbol" class="site-logo" src="assets/images/symbolpur.png" height="300" width="300"/>
+                </a>
+                <h1 class="site-title"><a href="#landing" rel="home">THE DISCORDING TALES</a></h1>
+                <h2 class="site-description">Under our steps awake those mysteries believed to be warring among the stars… A Weird Ethno-Science-Fantasy Gameworld</h2>
+            </div>
+        </div>
+        
+        <nav class="main-navigation" id="site-navigation" role="navigation" aria-label="Main navigation">
+            <button aria-controls="primary-menu" aria-expanded="false" class="menu-toggle" id="menu-toggle">Menu</button>
+            <ul class="menu" id="primary-menu">
+                <li class="menu-item"><a href="#landing" data-tab="landing" class="tab-link active">Home</a></li>
+                <li class="menu-item"><a href="#lore" data-tab="lore" class="tab-link">Worldlore</a></li>
+                <li class="menu-item"><a href="#rules" data-tab="rules" class="tab-link">Ruleset</a></li>
+                <li class="menu-item"><a href="#about" data-tab="about" class="tab-link">About</a></li>
+            </ul>
+            <div class="language-toggle">
+                <button id="lang-en" class="lang-btn active" data-lang="en">EN</button>
+                <button id="lang-fr" class="lang-btn" data-lang="fr">FR</button>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Main Content Area -->
+    <main id="main-content" class="site-content" role="main">
+        
+        <!-- Landing Tab (Home) -->
+        <section id="landing" class="tab-content active" data-lang-key="landing">
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h2 class="hero-title" data-en="For those of us who crave DISCOVERY" data-fr="Pour ceux d'entre nous qui aspirent à la DÉCOUVERTE">For those of us who crave DISCOVERY</h2>
+                    <p class="hero-tagline" data-en="A journey through exotic cultures, unexplored lands, weird creatures, and untold ways of thinking and being—yearning to experience the vast potentials, technologies and moralities of worlds unlike ours, where the thrill and taste of the unknown shape every choice and consequence." data-fr="Un voyage à travers des cultures exotiques, des terres inexplorées, des créatures étranges, et des façons inédites de penser et d'être—aspirant à expérimenter les vastes potentiels, technologies et moralités de mondes différents du nôtre, où le frisson et le goût de l'inconnu façonnent chaque choix et conséquence.">A journey through exotic cultures, unexplored lands, weird creatures, and untold ways of thinking and being—yearning to experience the vast potentials, technologies and moralities of worlds unlike ours, where the thrill and taste of the unknown shape every choice and consequence.</p>
+                    
+                    <div class="cta-container">
+                        <a href="https://www.kickstarter.com/projects/1410517588/the-discording-tales-tabletop-rpg-and-worldlore" class="cta-button" target="_blank" rel="noopener noreferrer">
+                            <span data-en="Raise your Hand" data-fr="Levez la Main">Raise your Hand</span>
+                            <small data-en="(Be notified on launch)" data-fr="(Soyez notifié au lancement)">(Be notified on launch)</small>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Features Section -->
+            <div class="features-section">
+                <div class="container">
+                    <h3 class="section-title" data-en="In a UNIFIED Role-Playing Game" data-fr="Dans un Jeu de Rôle UNIFIÉ">In a UNIFIED Role-Playing Game</h3>
+                    <div class="features-grid">
+                        <div class="genre-card">
+                            <h4 data-en="8 Paths to Interact" data-fr="8 Chemins d'Interaction">8 Paths to Interact</h4>
+                            <p data-en="Battle & Debate<br/>Infiltration & Investigation<br/>Craft & Enigma<br/>Travel & Feast" data-fr="Combat & Débat<br/>Infiltration & Investigation<br/>Artisanat & Énigme<br/>Voyage & Festin">Battle & Debate<br/>Infiltration & Investigation<br/>Craft & Enigma<br/>Travel & Feast</p>
+                        </div>
+                        <div class="genre-card">
+                            <h4 data-en="FREE-FORMING System" data-fr="Système LIBRE-FORMANT">FREE-FORMING System</h4>
+                            <p data-en="Each rule is modular, solving a variety of situations in a logical manner. Create your character throughout the first sessions, as if unfolding naturally." data-fr="Chaque règle est modulaire, résolvant une variété de situations de manière logique. Créez votre personnage tout au long des premières sessions, comme s'il se déployait naturellement.">Each rule is modular, solving a variety of situations in a logical manner. Create your character throughout the first sessions, as if unfolding naturally.</p>
+                        </div>
+                        <div class="genre-card">
+                            <h4 data-en="Equal Depth & Strategy" data-fr="Profondeur et Stratégie Égales">Equal Depth & Strategy</h4>
+                            <p data-en="Every path follows a streamlined progression, from quick single-roll resolutions to intricate, multi-step challenges." data-fr="Chaque chemin suit une progression rationalisée, des résolutions rapides en un seul jet aux défis complexes à plusieurs étapes.">Every path follows a streamlined progression, from quick single-roll resolutions to intricate, multi-step challenges.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Visual Gallery Section -->
+            <div class="gallery-section">
+                <div class="gallery-carousel" id="hero-carousel">
+                    <!-- Images will be populated via JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Newsletter Section -->
+            <div class="newsletter-section">
+                <div class="container">
+                    <h3 data-en="Join the Outpost to hear the latest rumors…" data-fr="Rejoignez l'Avant-poste pour entendre les dernières rumeurs…">Join the Outpost to hear the latest rumors…</h3>
+                    <p class="newsletter-subtitle" data-en="Survive the next euphoric tidal wave!" data-fr="Survivez à la prochaine vague euphorique !">Survive the next euphoric tidal wave!</p>
+                    <form class="newsletter-form" id="newsletter-form">
+                        <input type="email" id="newsletter-email" placeholder="thediscordingtales@gmail.com" required aria-label="Email address"/>
+                        <button type="submit" data-en="Sit by the Fireplace (Subscribe – NO Spam)" data-fr="Asseyez-vous au Coin du Feu (Abonnez-vous – PAS de Spam)">Sit by the Fireplace (Subscribe – NO Spam)</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Lore Tab -->
+        <section id="lore" class="tab-content" data-lang-key="lore">
+            <div class="tab-header">
+                <h2 data-en="Worldlore" data-fr="Lore du Monde">Worldlore</h2>
+                <p class="tab-intro" data-en="Explore the baroque world worthy of myths and their mystical technologies" data-fr="Explorez le monde baroque digne de mythes et de leurs technologies mystiques">Explore the baroque world worthy of myths and their mystical technologies</p>
+            </div>
+            
+            <!-- Cosmology Section -->
+            <div class="lore-section" id="cosmology">
+                <h3 data-en="Cosmology & Divinities" data-fr="Cosmogonie & Divinités">Cosmology & Divinities</h3>
+                <div class="lore-content" data-lang-key="cosmology-content">
+                    <h4 data-en="Fundamental Cosmology" data-fr="Cosmologie Fondamentale">Fundamental Cosmology</h4>
+                    <p data-en="The vast majority of cultures believe they live in a <strong>concave universe</strong> (Cytocosmism) - a hollow universe where space and everything else rushes into a sphere of rock. The 'ground' under everyone's feet would probably be endless." data-fr="La grande majorité des cultures croient vivre dans un <strong>univers concave</strong> (Cytocosmisme) - un univers creux où l'espace et tout le reste s'engouffre au sein d'une sphère de roche. Le 'sol' sous les pieds de tous serait probablement incessant.">The vast majority of cultures believe they live in a <strong>concave universe</strong> (Cytocosmism) - a hollow universe where space and everything else rushes into a sphere of rock. The 'ground' under everyone's feet would probably be endless.</p>
+                    
+                    <h4 data-en="Key Concept: Infinite Continuity" data-fr="Concept Clé : Continuité Infinie">Key Concept: Infinite Continuity</h4>
+                    <p data-en="There are many ways to explain their world, but all or nearly all have <strong>no concept of a creation from a zero point</strong>, but rather of an <strong>infinite continuity of their universe</strong>, always in motion and without any beginning." data-fr="Il y a de nombreuses façons d'expliquer leur monde, mais tous ou presque n'ont <strong>pas le concept d'une création d'un point zéro</strong>, mais plutôt d'une <strong>continuité infinie de leur univers</strong>, toujours en mouvement et sans aucun départ.">There are many ways to explain their world, but all or nearly all have <strong>no concept of a creation from a zero point</strong>, but rather of an <strong>infinite continuity of their universe</strong>, always in motion and without any beginning.</p>
+                    
+                    <h4 data-en="The Braided Cords" data-fr="Les Cordes Tressées">The Braided Cords</h4>
+                    <p data-en="It is customary to explain the world, its invisible phenomena, as all <strong>interconnected by Cords braided from two strands</strong> and knotting into each element, intangible and invisible to their senses." data-fr="Il est coutume d'expliquer le monde, ses phénomènes invisibles, comme étant tous <strong>interconnectés de Cordes tressées de deux fils</strong> et se nouant en chaque élément, intangibles et invisibles de leurs sens.">It is customary to explain the world, its invisible phenomena, as all <strong>interconnected by Cords braided from two strands</strong> and knotting into each element, intangible and invisible to their senses.</p>
+                    <p data-en="<strong>Ultimately, the entire universe would be born from a single continuous cord</strong>, braided upon itself in its immensity, and whose knots are the Rils." data-fr="<strong>Ultimement, l'univers tout entier ne serait qu'issu d'une unique et même corde continue</strong>, tressée sur elle-même dans votre immensité, et dont les nœuds en sont les Rils."><strong>Ultimately, the entire universe would be born from a single continuous cord</strong>, braided upon itself in its immensity, and whose knots are the Rils.</p>
+                    
+                    <h4 data-en="Ô, WÔM, HISM and the Cosmic Structure" data-fr="Ô, WÔM, HISM et la Structure Cosmique">Ô, WÔM, HISM and the Cosmic Structure</h4>
+                    
+                    <div class="genre-card">
+                        <h5><strong>Ô</strong> - The Ultimate Rildée</h5>
+                        <p data-en="<strong>Ô</strong> (World/Location) is the ultimate Rildée, the rilical spirit forming all forms. She is eternally cradled between pain and relief." data-fr="<strong>Ô</strong> (Monde/Localisation) est l'ultime Rildée, l'esprit rilique formant toutes les formes. Elle est éternellement bercée entre douleur et soulagement."><strong>Ô</strong> (World/Location) is the ultimate Rildée, the rilical spirit forming all forms. She is eternally cradled between pain and relief.</p>
+                    </div>
+                    
+                    <div class="genre-card">
+                        <h5><strong>WÔM</strong> - Time</h5>
+                        <p data-en="<strong>WÔM</strong> (Time/Count) is Ô's little siamese brother-sister, perched far away and reconciling all by their judgment establishing each one's wealth and designating how far each realm extends." data-fr="<strong>WÔM</strong> (Temps/Compte) est le petit frère-sœur siamois de Ô, perché au loin et les réconciliant tous par son jugement établissant les richesses de chacun et désignant jusqu'où les royaumes de chacun s'étendent."><strong>WÔM</strong> (Time/Count) is Ô's little siamese brother-sister, perched far away and reconciling all by their judgment establishing each one's wealth and designating how far each realm extends.</p>
+                    </div>
+                    
+                    <div class="genre-card">
+                        <h5><strong>HISM</strong> - Forces</h5>
+                        <p data-en="<strong>HISM</strong> (Forces/Actions-at-Distance/Magic) is the dance of the assembly of tetrarchs in couples so close that they form a single bicephalous whole (beings sometimes wrongly called 'the' SZIIZS) while hating as much as adoring each other." data-fr="<strong>HISM</strong> (Forces/Actions-à-Distance/Magie) est la danse de l'assemblée des tétrarques en couples si proches qu'ils ne font qu'un seul tout bicéphale (des êtres parfois nommés à tort « les » SZIIZS) bien que s'haïssant tout autant que s'adorant."><strong>HISM</strong> (Forces/Actions-at-Distance/Magic) is the dance of the assembly of tetrarchs in couples so close that they form a single bicephalous whole (beings sometimes wrongly called 'the' SZIIZS) while hating as much as adoring each other.</p>
+                    </div>
+                    
+                    <h4 data-en="The Four Artist-Kings/Queens (Tetrarchs)" data-fr="Les Quatre Rois/Reines-Artistes (Tétrarques)">The Four Artist-Kings/Queens (Tetrarchs)</h4>
+                    <div class="tetrarchs-grid">
+                        <div class="genre-card">
+                            <h5><strong>iôHôi</strong> - The Struck (Perfuming)</h5>
+                            <p data-en="<strong>Domain:</strong> Whirling (Electromagnetism)<br/><strong>Actions:</strong> Hôi (assembles Riliôh into Rilhôi - causes attraction) / iôH (loosens knots, disperses Riliôh - causes repulsion)<br/><strong>Rilical Family:</strong> Aèmrils (Whirling Forms/Airs)" data-fr="<strong>Domaine:</strong> Tournoiement (Électromagnétisme)<br/><strong>Actions:</strong> Hôi (assemble les Riliôh en Rilhôi - cause l'attraction) / iôH (délie les nœuds, disperse les Riliôh - cause la répulsion)<br/><strong>Famille Rilique:</strong> Aèmrils (Formes Virevoltantes/Airs)"><strong>Domain:</strong> Whirling (Electromagnetism)<br/><strong>Actions:</strong> Hôi (assembles Riliôh into Rilhôi - causes attraction) / iôH (loosens knots, disperses Riliôh - causes repulsion)<br/><strong>Rilical Family:</strong> Aèmrils (Whirling Forms/Airs)</p>
+                        </div>
+                        <div class="genre-card">
+                            <h5><strong>sôIôs</strong> - The Waved (Honeying)</h5>
+                            <p data-en="<strong>Domain:</strong> Tension (Gravity)<br/><strong>Actions:</strong> Iôs (awakens Rilsôi into Riliôs - causes fall) / sôI (puts Riliôs to sleep into Rilsôi - causes elevation)<br/><strong>Rilical Family:</strong> Ormrils (Emotional Forms/Emotions)" data-fr="<strong>Domaine:</strong> Tension (Gravité)<br/><strong>Actions:</strong> Iôs (réveille les Rilsôi en Riliôs - cause la chute) / sôI (endort les Riliôs en Rilsôi - cause l'élévation)<br/><strong>Famille Rilique:</strong> Ormrils (Formes Émouvantes/Émotions)"><strong>Domain:</strong> Tension (Gravity)<br/><strong>Actions:</strong> Iôs (awakens Rilsôi into Riliôs - causes fall) / sôI (puts Riliôs to sleep into Rilsôi - causes elevation)<br/><strong>Rilical Family:</strong> Ormrils (Emotional Forms/Emotions)</p>
+                        </div>
+                        <div class="genre-card">
+                            <h5><strong>môSôm</strong> - The Collapsed (Flourishing)</h5>
+                            <p data-en="<strong>Domain:</strong> Alignment (Light)<br/><strong>Actions:</strong> Sôm (aligns Rilmôs into Rilsôm - causes appearance) / môS (hides Rilsôm into Rilmôs - causes disappearance)<br/><strong>Rilical Family:</strong> Esthrils (Manifesting Forms/Phenomena)" data-fr="<strong>Domaine:</strong> Alignement (Lumière)<br/><strong>Actions:</strong> Sôm (aligne les Rilmôs en Rilsôm - cause l'apparition) / môS (cache les Rilsôm en Rilmôs - cause la disparition)<br/><strong>Famille Rilique:</strong> Esthrils (Formes Manifestantes/Phénomènes)"><strong>Domain:</strong> Alignment (Light)<br/><strong>Actions:</strong> Sôm (aligns Rilmôs into Rilsôm - causes appearance) / môS (hides Rilsôm into Rilmôs - causes disappearance)<br/><strong>Rilical Family:</strong> Esthrils (Manifesting Forms/Phenomena)</p>
+                        </div>
+                        <div class="genre-card">
+                            <h5><strong>hôMôh</strong> - The Embraced (Freezing)</h5>
+                            <p data-en="<strong>Domain:</strong> Torsion (Transmutation)<br/><strong>Actions:</strong> Môh (embraces Rilhôm into Rilmôh - causes change) / hôM (freezes Rilmôh into Rilhôm - causes persistence)<br/><strong>Rilical Family:</strong> Stadrils (Freezing Forms/Solids)" data-fr="<strong>Domaine:</strong> Torsion (Transmutation)<br/><strong>Actions:</strong> Môh (embrase les Rilhôm en Rilmôh - cause le changement) / hôM (fige les Rilmôh en Rilhôm - cause la persistance)<br/><strong>Famille Rilique:</strong> Stadrils (Formes Figeantes/Solides)"><strong>Domain:</strong> Torsion (Transmutation)<br/><strong>Actions:</strong> Môh (embraces Rilhôm into Rilmôh - causes change) / hôM (freezes Rilmôh into Rilhôm - causes persistence)<br/><strong>Rilical Family:</strong> Stadrils (Freezing Forms/Solids)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Peoples Section -->
+            <div class="lore-section" id="peoples">
+                <h3 data-en="Peoples & Races" data-fr="Peuples & Races">Peoples & Races</h3>
+                <div class="peoples-gallery" data-lang-key="peoples-content">
+                    <h4 data-en="10 Unique Peoples" data-fr="10 Peuples Uniques">10 Unique Peoples</h4>
+                    <p data-en="Each People has their own <strong>morality</strong> (driving them insane from you), <strong>cultures</strong> (struggling against each other), and unique racial <strong>traits</strong> (distinguishing them from others)." data-fr="Chaque Peuple a sa propre <strong>moralité</strong> (qui les rend fous de vous), ses <strong>cultures</strong> (luttant les unes contre les autres), et des <strong>traits</strong> raciaux uniques (les distinguant des autres).">Each People has their own <strong>morality</strong> (driving them insane from you), <strong>cultures</strong> (struggling against each other), and unique racial <strong>traits</strong> (distinguishing them from others).</p>
+                    
+                    <div class="genre-card">
+                        <h5 data-en="Aristois" data-fr="Aristois">Aristois</h5>
+                        <p data-en="<strong>Morality:</strong> Trèpharchie ('Sovereign Growth')<br/><strong>Attributes:</strong> FOR+, EMP+, VIG+<br/><strong>Description:</strong> Sovereign warriors with a strong sense of hierarchy and growth." data-fr="<strong>Moralité:</strong> Trèpharchie ('Croissance Souveraine')<br/><strong>Attributs:</strong> FOR+, EMP+, VIG+<br/><strong>Description:</strong> Guerriers souverains avec un fort sens de la hiérarchie et de la croissance."><strong>Morality:</strong> Trèpharchie ('Sovereign Growth')<br/><strong>Attributes:</strong> FOR+, EMP+, VIG+<br/><strong>Description:</strong> Sovereign warriors with a strong sense of hierarchy and growth.</p>
+                    </div>
+                    
+                    <div class="genre-card">
+                        <h5 data-en="Griscribes" data-fr="Griscribes">Griscribes</h5>
+                        <p data-en="<strong>Morality:</strong> Mignusophie ('Nested Wisdom')<br/><strong>Attributes:</strong> VOL+, CRÉ+, DEX+<br/><strong>Description:</strong> Nested sages who value interconnected knowledge and wisdom." data-fr="<strong>Moralité:</strong> Mignusophie ('Sagesse Imbriquée')<br/><strong>Attributs:</strong> VOL+, CRÉ+, DEX+<br/><strong>Description:</strong> Sages imbriqués qui valorisent le savoir et la sagesse interconnectés."><strong>Morality:</strong> Mignusophie ('Nested Wisdom')<br/><strong>Attributes:</strong> VOL+, CRÉ+, DEX+<br/><strong>Description:</strong> Nested sages who value interconnected knowledge and wisdom.</p>
+                    </div>
+                    
+                    <div class="genre-card">
+                        <h5 data-en="Slaadéens" data-fr="Slaadéens">Slaadéens</h5>
+                        <p data-en="<strong>Morality:</strong> Thrasonirie ('Dreaming Audacity')<br/><strong>Attributes:</strong> EMP+, DEX+<br/><strong>Description:</strong> Bold artists with a life expectancy ranging from 2 to 115 years." data-fr="<strong>Moralité:</strong> Thrasonirie ('Audace Rêveuse')<br/><strong>Attributs:</strong> EMP+, DEX+<br/><strong>Description:</strong> Artistes audacieux avec une espérance de vie variant de 2 à 115 ans."><strong>Morality:</strong> Thrasonirie ('Dreaming Audacity')<br/><strong>Attributes:</strong> EMP+, DEX+<br/><strong>Description:</strong> Bold artists with a life expectancy ranging from 2 to 115 years.</p>
+                    </div>
+                    
+                    <div class="genre-card">
+                        <h5 data-en="Tchalkchaïs" data-fr="Tchalkchaïs">Tchalkchaïs</h5>
+                        <p data-en="<strong>Morality:</strong> Chalchaphélie ('Sacrificial Altruism')<br/><strong>Attributes:</strong> FOR+, EMP+, VOL+, VIG+<br/><strong>Description:</strong> Sacrificial altruists who believe in giving everything for the greater good." data-fr="<strong>Moralité:</strong> Chalchaphélie ('Altruisme Sacrificiel')<br/><strong>Attributs:</strong> FOR+, EMP+, VOL+, VIG+<br/><strong>Description:</strong> Altruistes sacrificiels qui croient en donner tout pour le bien commun."><strong>Morality:</strong> Chalchaphélie ('Sacrificial Altruism')<br/><strong>Attributes:</strong> FOR+, EMP+, VOL+, VIG+<br/><strong>Description:</strong> Sacrificial altruists who believe in giving everything for the greater good.</p>
+                    </div>
+                    
+                    <p class="peoples-note" data-en="<em>And 6 more unique Peoples, each with distinct cultures, moralities, and traits waiting to be discovered...</em>" data-fr="<em>Et 6 autres Peuples uniques, chacun avec des cultures, moralités et traits distincts à découvrir...</em>"><em>And 6 more unique Peoples, each with distinct cultures, moralities, and traits waiting to be discovered...</em></p>
+                </div>
+            </div>
+            
+            <!-- World Context Section -->
+            <div class="lore-section" id="world-context">
+                <h3 data-en="World Context" data-fr="Contexte du Monde">World Context</h3>
+                <div class="lore-content" data-lang-key="world-content">
+                    <!-- Content will be populated via JavaScript -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- Rules Tab -->
+        <section id="rules" class="tab-content" data-lang-key="rules">
+            <div class="tab-header">
+                <h2 data-en="Ruleset" data-fr="Système de Règles">Ruleset</h2>
+                <p class="tab-intro" data-en="Discover the free-forming system where failure becomes progression" data-fr="Découvrez le système libre-formant où l'échec devient progression">Discover the free-forming system where failure becomes progression</p>
+            </div>
+            
+            <!-- Character Sheet Button -->
+            <div class="character-sheet-trigger" style="text-align: center; margin: 2rem 0;">
+                <button id="open-character-sheet" class="cta-button" style="font-size: 1.2rem; padding: 1rem 2rem;">
+                    <span data-en="Open Character Sheet" data-fr="Ouvrir la Feuille de Personnage">Open Character Sheet</span>
+                </button>
+            </div>
+            
+            <!-- System Overview -->
+            <div class="rules-section" id="system-overview">
+                <h3 data-en="System Overview" data-fr="Vue d'Ensemble du Système">System Overview</h3>
+                <div class="rules-content" data-lang-key="system-content">
+                    <h4 data-en="Core Concept" data-fr="Concept Central">Core Concept</h4>
+                    <p data-en="In <strong>Des Récits Discordants</strong>, each failure brings you closer to mastery. Your Sufferings (Wounds, Fatigue, Madness, etc.) are not punishments, but narrative engines. At 10+ Sufferings, you enter Rage. At 15+, Unconsciousness. But each Suffering also teaches you something." data-fr="Dans <strong>Des Récits Discordants</strong>, chaque échec vous rapproche de la maîtrise. Vos Souffrances (Blessures, Fatigues, Folies, etc.) ne sont pas des punitions, mais des moteurs narratifs. À 10+ Souffrances, vous entrez en Rage. À 15+, Évanouissement. Mais chaque Souffrance vous apprend aussi quelque chose.">In <strong>Des Récits Discordants</strong>, each failure brings you closer to mastery. Your Sufferings (Wounds, Fatigue, Madness, etc.) are not punishments, but narrative engines. At 10+ Sufferings, you enter Rage. At 15+, Unconsciousness. But each Suffering also teaches you something.</p>
+                    
+                    <h4 data-en="The Dice (dD)" data-fr="Les Dés (dD)">The Dice (dD)</h4>
+                    <p data-en="<strong>Discordant Dice (dD):</strong> 3-sided dice: <code>+</code>, <code>-</code>, <code>0</code><br/><strong>Result of a roll:</strong> Number of <code>+</code> minus the number of <code>-</code><br/><strong>Example:</strong> <code>++-0-</code> = 2 - 1 = <strong>+1</strong>" data-fr="<strong>Dés Discordants (dD):</strong> Dés à 3 faces : <code>+</code>, <code>-</code>, <code>0</code><br/><strong>Résultat d'un jet:</strong> Nombre de <code>+</code> moins le nombre de <code>-</code><br/><strong>Exemple:</strong> <code>++-0-</code> = 2 - 1 = <strong>+1</strong>"><strong>Discordant Dice (dD):</strong> 3-sided dice: <code>+</code>, <code>-</code>, <code>0</code><br/><strong>Result of a roll:</strong> Number of <code>+</code> minus the number of <code>-</code><br/><strong>Example:</strong> <code>++-0-</code> = 2 - 1 = <strong>+1</strong></p>
+                    
+                    <h4 data-en="The 8 Attributes" data-fr="Les 8 Attributs">The 8 Attributes</h4>
+                    <p data-en="Force (FOR), Agility (AGI), Dexterity (DEX), Vigor (VIG), Empathy (EMP), Perception (PER), Creativity (CRÉ), Willpower (VOL)" data-fr="Force (FOR), Agilité (AGI), Dextérité (DEX), Vigueur (VIG), Empathie (EMP), Perception (PER), Créativité (CRÉ), Volonté (VOL)">Force (FOR), Agility (AGI), Dexterity (DEX), Vigor (VIG), Empathy (EMP), Perception (PER), Creativity (CRÉ), Willpower (VOL)</p>
+                    
+                    <h4 data-en="The 8 Types of Conflicts (Gameplay)" data-fr="Les 8 Types de Conflits (Gameplay)">The 8 Types of Conflicts (Gameplay)</h4>
+                    <p data-en="The system proposes <strong>8 types of gameplay</strong> directly linked to the 8 Aptitudes, replacing the traditional combat/stealth/social division with a more nuanced approach:" data-fr="Le système propose <strong>8 types de gameplay</strong> directement liés aux 8 Aptitudes, remplaçant la division traditionnelle combat/stealth/social par une approche plus nuancée :">The system proposes <strong>8 types of gameplay</strong> directly linked to the 8 Aptitudes, replacing the traditional combat/stealth/social division with a more nuanced approach:</p>
+                    <ul>
+                        <li data-en="<strong>Battle</strong> (Power) : Direct and violent confrontation" data-fr="<strong>Bataille</strong> (Puissance) : Confrontation directe et violente"><strong>Battle</strong> (Power) : Direct and violent confrontation</li>
+                        <li data-en="<strong>Infiltration</strong> (Ease) : Avoidance and concealment" data-fr="<strong>Infiltration</strong> (Aisance) : Évitement et dissimulation"><strong>Infiltration</strong> (Ease) : Avoidance and concealment</li>
+                        <li data-en="<strong>Craft</strong> (Precision) : Cunning and technical manipulation" data-fr="<strong>Artisanat</strong> (Précision) : Ruse et manipulation technique"><strong>Craft</strong> (Precision) : Cunning and technical manipulation</li>
+                        <li data-en="<strong>Feat</strong> (Athletics) : Physical exploit and endurance" data-fr="<strong>Prouesse</strong> (Athlétisme) : Exploit physique et endurance"><strong>Feat</strong> (Athletics) : Physical exploit and endurance</li>
+                        <li data-en="<strong>Corruption</strong> (Charisma) : Social manipulation and corruption" data-fr="<strong>Corrompre</strong> (Charisme) : Manipulation sociale et corruption"><strong>Corruption</strong> (Charisma) : Social manipulation and corruption</li>
+                        <li data-en="<strong>Enigma</strong> (Reflection) : Resolution through thought and creativity" data-fr="<strong>Énigme</strong> (Réflexion) : Résolution par la pensée et la créativité"><strong>Enigma</strong> (Reflection) : Resolution through thought and creativity</li>
+                        <li data-en="<strong>Investigation</strong> (Detection) : Investigation and discovery of secrets" data-fr="<strong>Enquête</strong> (Détection) : Investigation et découverte de secrets"><strong>Investigation</strong> (Detection) : Investigation and discovery of secrets</li>
+                        <li data-en="<strong>Debate</strong> (Domination) : Persuasion through will and argumentation" data-fr="<strong>Débat</strong> (Domination) : Persuasion par la volonté et l'argumentation"><strong>Debate</strong> (Domination) : Persuasion through will and argumentation</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Character Creation -->
+            <div class="rules-section" id="character-creation">
+                <h3 data-en="Character Creation" data-fr="Création de Personnage">Character Creation</h3>
+                <div class="rules-content" data-lang-key="creation-content">
+                    <h4 data-en="Ultra-Quick Creation (5 minutes)" data-fr="Création Ultra-Rapide (5 minutes)">Ultra-Quick Creation (5 minutes)</h4>
+                    
+                    <div class="genre-card">
+                        <h5 data-en="1. Choose a People" data-fr="1. Choisir un Peuple">1. Choose a People</h5>
+                        <ul>
+                            <li data-en="<strong>Aristois</strong> : Sovereign warriors (FOR+, EMP+)" data-fr="<strong>Aristois</strong> : Guerriers souverains (FOR+, EMP+)"><strong>Aristois</strong> : Sovereign warriors (FOR+, EMP+)</li>
+                            <li data-en="<strong>Griscribes</strong> : Nested sages (VOL+, CRÉ+)" data-fr="<strong>Griscribes</strong> : Sages imbriqués (VOL+, CRÉ+)"><strong>Griscribes</strong> : Nested sages (VOL+, CRÉ+)</li>
+                            <li data-en="<strong>Slaadéens</strong> : Bold artists (EMP+, DEX+)" data-fr="<strong>Slaadéens</strong> : Artistes audacieux (EMP+, DEX+)"><strong>Slaadéens</strong> : Bold artists (EMP+, DEX+)</li>
+                            <li data-en="<strong>Tchalkchaïs</strong> : Sacrificial altruists (FOR+, EMP+, VOL+, VIG+)" data-fr="<strong>Tchalkchaïs</strong> : Altruistes sacrificiels (FOR+, EMP+, VOL+, VIG+)"><strong>Tchalkchaïs</strong> : Sacrificial altruists (FOR+, EMP+, VOL+, VIG+)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="genre-card">
+                        <h5 data-en="2. Base Attributes" data-fr="2. Attributs de Base">2. Base Attributes</h5>
+                        <p data-en="Each People has base Attributes. Add +2, +1, 0, 0, 0, 0, -1, -2 wherever you want." data-fr="Chaque Peuple a des Attributs de base. Ajoutez +2, +1, 0, 0, 0, 0, -1, -2 où vous voulez.">Each People has base Attributes. Add +2, +1, 0, 0, 0, 0, -1, -2 wherever you want.</p>
+                    </div>
+                    
+                    <div class="genre-card">
+                        <h5 data-en="3. One Skill at +3D" data-fr="3. Une Compétence à +3D">3. One Skill at +3D</h5>
+                        <p data-en="Choose a Skill related to your People and give it +3 Dice." data-fr="Choisissez une Compétence liée à votre Peuple et donnez-lui +3 Dés.">Choose a Skill related to your People and give it +3 Dice.</p>
+                    </div>
+                    
+                    <div class="genre-card">
+                        <h5 data-en="4. A Symbol" data-fr="4. Un Symbole">4. A Symbol</h5>
+                        <p data-en="Your highest Attribute determines your Symbol (destiny/passion). It gives 3 Skills with 3 Eternal Marks each." data-fr="Votre Attribut le plus élevé détermine votre Symbole (destinée/passion). Il donne 3 Compétences avec 3 Marques Éternelles chacune.">Your highest Attribute determines your Symbol (destiny/passion). It gives 3 Skills with 3 Eternal Marks each.</p>
+                    </div>
+                    
+                    <div class="genre-card">
+                        <h5 data-en="5. A Value" data-fr="5. Une Valeur">5. A Value</h5>
+                        <p data-en="Choose a Value related to your People (Morality) with +6 Dice." data-fr="Choisissez une Valeur liée à votre Peuple (Moralité) avec +6 Dés.">Choose a Value related to your People (Morality) with +6 Dice.</p>
+                    </div>
+                    
+                    <div class="genre-card">
+                        <h5 data-en="6. That's All!" data-fr="6. C'est Tout !">6. That's All!</h5>
+                        <p data-en="You have a playable character. The rest is discovered through play." data-fr="Vous avez un personnage jouable. Le reste se découvre en jouant.">You have a playable character. The rest is discovered through play.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Combat System -->
+            <div class="rules-section" id="combat">
+                <h3 data-en="Combat System" data-fr="Système de Combat">Combat System</h3>
+                <div class="rules-content" data-lang-key="combat-content">
+                    <h4 data-en="Real-Time Combat" data-fr="Combat en Temps Réel">Real-Time Combat</h4>
+                    <p data-en="Combat happens in <strong>real-time</strong>, not in turns. The system uses <strong>Clins</strong> (1/3 of a second) as the basic time unit for combat actions." data-fr="Le combat se déroule en <strong>temps réel</strong>, pas en tours. Le système utilise les <strong>Clins</strong> (1/3 de seconde) comme unité de temps de base pour les actions de combat.">Combat happens in <strong>real-time</strong>, not in turns. The system uses <strong>Clins</strong> (1/3 of a second) as the basic time unit for combat actions.</p>
+                    
+                    <h4 data-en="Alert Clins" data-fr="Clins d'Alerte">Alert Clins</h4>
+                    <p data-en="Alert Clins determine who can act proactively. Higher Alert Clins allow characters to react first and take initiative." data-fr="Les Clins d'Alerte déterminent qui peut agir de manière proactive. Des Clins d'Alerte plus élevés permettent aux personnages de réagir en premier et de prendre l'initiative.">Alert Clins determine who can act proactively. Higher Alert Clins allow characters to react first and take initiative.</p>
+                    
+                    <h4 data-en="Proactions & Reactions" data-fr="Proactions & Réactions">Proactions & Reactions</h4>
+                    <ul>
+                        <li data-en="<strong>Proactions</strong> : Offensive actions (attack, move)" data-fr="<strong>Proactions</strong> : Actions offensives (attaquer, déplacer)"><strong>Proactions</strong> : Offensive actions (attack, move)</li>
+                        <li data-en="<strong>Reactions</strong> : Block, Parry, Dodge (at the last Clin of the attack)" data-fr="<strong>Réactions</strong> : Bloquer, Parer, Esquiver (au dernier Clin de l'attaque)"><strong>Reactions</strong> : Block, Parry, Dodge (at the last Clin of the attack)</li>
+                    </ul>
+                    
+                    <h4 data-en="Shock Level" data-fr="Niv d'Ébranlement">Shock Level</h4>
+                    <p data-en="Accumulated through Reactions, reduces your capabilities. High Shock Levels can stun or incapacitate characters." data-fr="Accumulé par les Réactions, réduit vos capacités. Des Niveaux d'Ébranlement élevés peuvent étourdir ou incapaciter les personnages.">Accumulated through Reactions, reduces your capabilities. High Shock Levels can stun or incapacitate characters.</p>
+                </div>
+            </div>
+            
+            <!-- Magic System -->
+            <div class="rules-section" id="magic">
+                <h3 data-en="Magic System (Rilie)" data-fr="Système de Magie (Rilie)">Magic System (Rilie)</h3>
+                <div class="rules-content" data-lang-key="magic-content">
+                    <h4 data-en="The Rilie (Magic)" data-fr="La Rilie (Magie)">The Rilie (Magic)</h4>
+                    <p data-en="Magic is born from the interaction with the <strong>Rils</strong> (fundamental forms of the world), orchestrated by 4 cosmic forces:" data-fr="La magie naît de l'interaction avec les <strong>Rils</strong> (formes fondamentales du monde), orchestrées par 4 forces cosmiques :">Magic is born from the interaction with the <strong>Rils</strong> (fundamental forms of the world), orchestrated by 4 cosmic forces:</p>
+                    <ul>
+                        <li data-en="<strong>iôHôi</strong> : Whirling (Electromagnetism)" data-fr="<strong>iôHôi</strong> : Tournoiement (Électromagnétisme)"><strong>iôHôi</strong> : Whirling (Electromagnetism)</li>
+                        <li data-en="<strong>sôIôs</strong> : Tension (Gravity)" data-fr="<strong>sôIôs</strong> : Tension (Gravité)"><strong>sôIôs</strong> : Tension (Gravity)</li>
+                        <li data-en="<strong>môSôm</strong> : Alignment (Light)" data-fr="<strong>môSôm</strong> : Alignement (Lumière)"><strong>môSôm</strong> : Alignment (Light)</li>
+                        <li data-en="<strong>hôMôh</strong> : Torsion (Transmutation)" data-fr="<strong>hôMôh</strong> : Torsion (Transmutation)"><strong>hôMôh</strong> : Torsion (Transmutation)</li>
+                    </ul>
+                    
+                    <h4 data-en="Rilical Honor" data-fr="Honoration Rilique">Rilical Honor</h4>
+                    <p data-en="Ritual actions to interact with the Rils. There are no listed spells - magic emerges from unique interactions with the fundamental forces of the world, linked to your Symbol and your Values." data-fr="Actions rituelles pour interagir avec les Rils. Il n'y a pas de sorts listés - la magie émerge d'interactions uniques avec les forces fondamentales du monde, liées à votre Symbole et à vos Valeurs.">Ritual actions to interact with the Rils. There are no listed spells - magic emerges from unique interactions with the fundamental forces of the world, linked to your Symbol and your Values.</p>
+                    
+                    <h4 data-en="The Sufferings System" data-fr="Le Système des Souffrances">The Sufferings System</h4>
+                    <p data-en="The magic (Rilie) emerges from the emotions of a goddess eternally tormented by 4 cosmic forces. Your Values heal your Madness. Your Traits heal your Grudges. Your personality is not cosmetic, it is mechanical." data-fr="La magie (Rilie) naît des émotions d'une déesse éternellement torturée par 4 forces cosmiques. Vos Valeurs guérissent vos Folies. Vos Traits guérissent vos Rancœurs. Votre personnalité n'est pas cosmétique, elle est mécanique.">The magic (Rilie) emerges from the emotions of a goddess eternally tormented by 4 cosmic forces. Your Values heal your Madness. Your Traits heal your Grudges. Your personality is not cosmetic, it is mechanical.</p>
+                    <p data-en="<strong>8 Sufferings:</strong> Wounds, Fatigue, Bonds, Deprivations, Addictions, Illnesses, Madness, Grudges" data-fr="<strong>8 Souffrances:</strong> Blessures, Fatigues, Entraves, Disettes, Addictions, Maladies, Folies, Rancœurs"><strong>8 Sufferings:</strong> Wounds, Fatigue, Bonds, Deprivations, Addictions, Illnesses, Madness, Grudges</p>
+                    <p data-en="<strong>Thresholds:</strong> 10+ total Sufferings = Rage / 15+ = Unconsciousness / 21+ = Defeated (Coma/Madness)" data-fr="<strong>Seuils:</strong> 10+ Souffrances totales = Rage / 15+ = Évanouissement / 21+ = Vaincu (Coma/Folie)"><strong>Thresholds:</strong> 10+ total Sufferings = Rage / 15+ = Unconsciousness / 21+ = Defeated (Coma/Madness)</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- About Tab -->
+        <section id="about" class="tab-content" data-lang-key="about">
+            <div class="tab-header">
+                <h2 data-en="Genre & Inspirations" data-fr="Genre & Inspirations">Genre & Inspirations</h2>
+            </div>
+            
+            <!-- Genre Definitions -->
+            <div class="about-section" id="genres">
+                <h3 data-en="A New Genre for an Old World" data-fr="Un Nouveau Genre pour un Ancien Monde">A New Genre for an Old World</h3>
+                <p class="genres-intro" data-en="The Discording Tales pretends to be <strong>unclassifiable</strong> (yet), aiming at creating a <strong>new name</strong> for itself. Here below are those existing genres, put under the light of TDT's worldlore and ruleset." data-fr="The Discording Tales prétend être <strong>inclassable</strong> (encore), visant à créer un <strong>nouveau nom</strong> pour lui-même. Voici ci-dessous ces genres existants, mis sous la lumière du worldlore et des règles de TDT.">The Discording Tales pretends to be <strong>unclassifiable</strong> (yet), aiming at creating a <strong>new name</strong> for itself. Here below are those existing genres, put under the light of TDT's worldlore and ruleset.</p>
+                <div class="genres-grid" data-lang-key="genres-content">
+                    <div class="genre-card">
+                        <h4 data-en="(New) Weird" data-fr="(Nouveau) Weird">(New) Weird</h4>
+                        <p data-en="In the Weird, creation unfolds from a rich blend of genres and details, with reality's complexity serving as a foundation. Here, traditional foes like ghosts and vampires are <strong>radically reinterpreted</strong> to be reborn and once again embody the uncanny and the unknown." data-fr="Dans le Weird, la création se déploie à partir d'un mélange riche de genres et de détails, la complexité de la réalité servant de fondation. Ici, les ennemis traditionnels comme les fantômes et les vampires sont <strong>radicalement réinterprétés</strong> pour renaître et incarner à nouveau l'étrange et l'inconnu.">In the Weird, creation unfolds from a rich blend of genres and details, with reality's complexity serving as a foundation. Here, traditional foes like ghosts and vampires are <strong>radically reinterpreted</strong> to be reborn and once again embody the uncanny and the unknown.</p>
+                        <p class="genre-example" data-en="<em>Ex: Dishonored, Dark Sun, Arx Fatalis</em>" data-fr="<em>Ex: Dishonored, Dark Sun, Arx Fatalis</em>"><em>Ex: Dishonored, Dark Sun, Arx Fatalis</em></p>
+                    </div>
+                    <div class="genre-card">
+                        <h4 data-en="Baroque" data-fr="Baroque">Baroque</h4>
+                        <p data-en="The Baroque bursts with vivid colors and intricate details, merging architectural grandeur and animistic vibrancy. It's a world where every expression and landscape is <strong>amplified</strong>, draped in rich, <strong>exaggerated</strong> beauty, capturing a <strong>dynamic</strong> essence that both captivates and transcends." data-fr="Le Baroque explose de couleurs vives et de détails complexes, fusionnant la grandeur architecturale et la vitalité animiste. C'est un monde où chaque expression et paysage est <strong>amplifié</strong>, drapé d'une beauté riche et <strong>exagérée</strong>, capturant une essence <strong>dynamique</strong> qui captive et transcende.">The Baroque bursts with vivid colors and intricate details, merging architectural grandeur and animistic vibrancy. It's a world where every expression and landscape is <strong>amplified</strong>, draped in rich, <strong>exaggerated</strong> beauty, capturing a <strong>dynamic</strong> essence that both captivates and transcends.</p>
+                        <p class="genre-example" data-en="<em>Ex: Caravaggio, Star Wars, Dark Crystal</em>" data-fr="<em>Ex: Caravage, Star Wars, Dark Crystal</em>"><em>Ex: Caravaggio, Star Wars, Dark Crystal</em></p>
+                    </div>
+                    <div class="genre-card">
+                        <h4 data-en="Mystical" data-fr="Mystique">Mystical</h4>
+                        <p data-en="From the Mystical, the mundane is divine, and nature is magical. Ordinary actions intersect with supernatural forces. Vision quests and deeds influence truth, <strong>blurring lines between the mundane and celestial</strong>, making the common, extraordinary." data-fr="Dans le Mystique, le banal est divin, et la nature est magique. Les actions ordinaires croisent les forces surnaturelles. Les quêtes de vision et les actes influencent la vérité, <strong>brouillant les lignes entre le banal et le céleste</strong>, rendant le commun, extraordinaire.">From the Mystical, the mundane is divine, and nature is magical. Ordinary actions intersect with supernatural forces. Vision quests and deeds influence truth, <strong>blurring lines between the mundane and celestial</strong>, making the common, extraordinary.</p>
+                        <p class="genre-example" data-en="<em>Ex: TES III : Morrowind, Animisms, Zelda (Ocarina of Time & Majora's Mask)</em>" data-fr="<em>Ex: TES III : Morrowind, Animismes, Zelda (Ocarina of Time & Majora's Mask)</em>"><em>Ex: TES III : Morrowind, Animisms, Zelda (Ocarina of Time & Majora's Mask)</em></p>
+                    </div>
+                    <div class="genre-card genre-card-full">
+                        <h4 data-en="Ethno-Science-Fantasy" data-fr="Ethno-Science-Fantasy">Ethno-Science-Fantasy</h4>
+                        <p data-en="The symphony of exoticism where poetry, darkness and humor are intermingled. A voyage in an unknown and bizarre world, its images and ideas showing, describing and evoking what to see, wear, taste and smell. Teeming with strange customs and costumes, anatomies, or even morals, which may sometime be odious, dangerous or even ridiculous… But yet always ungraspable, being foreign to us all. Actually there, <strong>everyone seemingly 'comes from elsewhere'</strong>." data-fr="La symphonie de l'exotisme où la poésie, l'obscurité et l'humour sont entremêlés. Un voyage dans un monde inconnu et bizarre, ses images et idées montrant, décrivant et évoquant ce qu'il faut voir, porter, goûter et sentir. Grouillant de coutumes et costumes étranges, anatomies, voire moralités, qui peuvent parfois être odieuses, dangereuses ou même ridicules… Mais toujours insaisissables, étant étrangères à nous tous. En fait, <strong>tout le monde semble 'venir d'ailleurs'</strong>.">The symphony of exoticism where poetry, darkness and humor are intermingled. A voyage in an unknown and bizarre world, its images and ideas showing, describing and evoking what to see, wear, taste and smell. Teeming with strange customs and costumes, anatomies, or even morals, which may sometime be odious, dangerous or even ridiculous… But yet always ungraspable, being foreign to us all. Actually there, <strong>everyone seemingly 'comes from elsewhere'</strong>.</p>
+                        <p class="genre-example" data-en="<em>Ex: J. Vance's 'Planet of Adventure', Talislanta TTRPG, Tatooine's cantina</em>" data-fr="<em>Ex: 'Planet of Adventure' de J. Vance, Talislanta TTRPG, la cantina de Tatooine</em>"><em>Ex: J. Vance's 'Planet of Adventure', Talislanta TTRPG, Tatooine's cantina</em></p>
+                    </div>
+                    <div class="genre-card">
+                        <h4 data-en="Eutechnical" data-fr="Eutechnique">Eutechnical</h4>
+                        <p data-en="A traditional future where Technology harmonizes and <strong>strengthens minds and bodies without fostering dependence</strong>, instead equaling to the physical improvement of life itself (Eu-…). Here one may as well find a healthy Biopunk setting, where animals are technology itself, whether naturally, or by training or breeding." data-fr="Un futur traditionnel où la Technologie harmonise et <strong>renforce les esprits et les corps sans favoriser la dépendance</strong>, équivalant plutôt à l'amélioration physique de la vie elle-même (Eu-…). Ici on peut aussi trouver un cadre Biopunk sain, où les animaux sont la technologie elle-même, que ce soit naturellement, par entraînement ou par élevage.">A traditional future where Technology harmonizes and <strong>strengthens minds and bodies without fostering dependence</strong>, instead equaling to the physical improvement of life itself (Eu-…). Here one may as well find a healthy Biopunk setting, where animals are technology itself, whether naturally, or by training or breeding.</p>
+                        <p class="genre-example" data-en="<em>Ex: Astrolabes, Final Fantasy IX' mistpunk, Anti-terrorist bees or the Skekis' carriage.</em>" data-fr="<em>Ex: Astrolabes, le mistpunk de Final Fantasy IX, les abeilles anti-terroristes ou le carrosse des Skekis.</em>"><em>Ex: Astrolabes, Final Fantasy IX' mistpunk, Anti-terrorist bees or the Skekis' carriage.</em></p>
+                    </div>
+                    <div class="genre-card">
+                        <h4 data-en="Life-affirming" data-fr="Affirmation de la Vie">Life-affirming</h4>
+                        <p data-en="As a tragedy where life is beautiful despite everything, Life-affirmation champions creation and strength, endorsing a resounding 'yes' to life. Life-denial instead resists this, signaling 'no' to vitality and 'yes' to passivity. A narrative realm <strong>where suffering itself is celebrated</strong>, as the breeding ground of and for the triumphant." data-fr="Comme une tragédie où la vie est belle malgré tout, l'Affirmation de la vie défend la création et la force, approuvant un retentissant 'oui' à la vie. Le Déni de la vie résiste plutôt à cela, signalant 'non' à la vitalité et 'oui' à la passivité. Un royaume narratif <strong>où la souffrance elle-même est célébrée</strong>, comme le terreau des triomphants.">As a tragedy where life is beautiful despite everything, Life-affirmation champions creation and strength, endorsing a resounding 'yes' to life. Life-denial instead resists this, signaling 'no' to vitality and 'yes' to passivity. A narrative realm <strong>where suffering itself is celebrated</strong>, as the breeding ground of and for the triumphant.</p>
+                        <p class="genre-example" data-en="<em>Ex: F. Nietzsche's 'Thus spoke Zarathustra', Monster Hunter, Ghibli movies (somewhat)</em>" data-fr="<em>Ex: 'Ainsi parlait Zarathoustra' de F. Nietzsche, Monster Hunter, les films Ghibli (quelque peu)</em>"><em>Ex: F. Nietzsche's 'Thus spoke Zarathustra', Monster Hunter, Ghibli movies (somewhat)</em></p>
+                    </div>
+                    <div class="genre-card">
+                        <h4 data-en="Pre-auroric" data-fr="Pré-aurorique">Pre-auroric</h4>
+                        <p data-en="&quot;Where and when the Dreams Flourish&quot;… the Pre-auroric times do not mourn lost glories (<em>as in mythopoetic elegies</em>) nor tread through dystopia (<em>as in post-apocalypses</em>): They instead herald <strong>the imminent bloom and dawn of (a) Golden Age(s)</strong>, where the prehistoric dream of civilization. It's a euphorigenic canvas where wishes are sown, soon to burgeon into reality, lending to visions of a fresh era of glory, prosperity and imagination, just about to awaken." data-fr="&quot;Où et quand les Rêves Fleurissent&quot;… les temps Pré-auroriques ne pleurent pas les gloires perdues (<em>comme dans les élégies mythopoétiques</em>) ni ne marchent à travers la dystopie (<em>comme dans les post-apocalypses</em>): Ils annoncent plutôt <strong>la floraison imminente et l'aube d'un(e) Âge(s) d'Or</strong>, où le rêve préhistorique de la civilisation. C'est une toile euphorique où les souhaits sont semés, bientôt à bourgeonner en réalité, prêtant à des visions d'une ère fraîche de gloire, prospérité et imagination, sur le point de s'éveiller.">"Where and when the Dreams Flourish"… the Pre-auroric times do not mourn lost glories (<em>as in mythopoetic elegies</em>) nor tread through dystopia (<em>as in post-apocalypses</em>): They instead herald <strong>the imminent bloom and dawn of (a) Golden Age(s)</strong>, where the prehistoric dream of civilization. It's a euphorigenic canvas where wishes are sown, soon to burgeon into reality, lending to visions of a fresh era of glory, prosperity and imagination, just about to awaken.</p>
+                        <p class="genre-example" data-en="<em>Ex: The Discording Tales, Ancient mythical realms, The Renaissance</em>" data-fr="<em>Ex: The Discording Tales, les royaumes mythiques antiques, la Renaissance</em>"><em>Ex: The Discording Tales, Ancient mythical realms, The Renaissance</em></p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Inspirations -->
+            <div class="about-section" id="inspirations">
+                <h3 data-en="Themes & Inspirations" data-fr="Thèmes & Inspirations">Themes & Inspirations</h3>
+                <p class="inspirations-intro" data-en="This is an archive of what could be remembered of the research on the lands and rules of The Discording Tales." data-fr="Ceci est une archive de ce qui pourrait être rappelé de la recherche sur les terres et les règles de The Discording Tales.">This is an archive of what could be remembered of the research on the lands and rules of The Discording Tales.</p>
+                
+                <div class="inspirations-content" data-lang-key="inspirations-content">
+                    <h4 data-en="Tabletop RPGs" data-fr="Jeux de Rôle sur Table">Tabletop RPGs</h4>
+                    <div class="inspirations-table-wrapper">
+                        <table class="inspirations-table">
+                            <thead>
+                                <tr>
+                                    <th data-en="Game" data-fr="Jeu">Game</th>
+                                    <th data-en="Inspiration" data-fr="Inspiration">Inspiration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>Advanced Dungeons & Dragons</strong></td><td><em>Reworking TTRPG concepts (XP, HP, Time & Open table gameplay)</em></td></tr>
+                                <tr><td><strong>Ars Magica</strong></td><td><em>"Free-forming" Magic System</em></td></tr>
+                                <tr><td><strong>Blades in the Dark</strong></td><td><em>Factions: Tier, Status & Countdown clocks for goals</em></td></tr>
+                                <tr><td><strong>Burning Wheel</strong></td><td><em>Experience system through Failures & Successes</em></td></tr>
+                                <tr><td><strong>Call of Cthulhu 7e</strong></td><td><em>Madness system</em></td></tr>
+                                <tr><td><strong>Forbidden Lands</strong></td><td><em>Resource types, Crafts, Stronghold system</em></td></tr>
+                                <tr><td><strong>Mage: The Ascension</strong></td><td><em>Mechanic/worldbuilding of Consensus reality and Magic paradox</em></td></tr>
+                                <tr><td><strong>Mythras</strong></td><td><em>Formatting: Cultures. Engagement & Pro/Re-Actions rules, Passions</em></td></tr>
+                                <tr><td><strong>Ryuutama</strong></td><td><em>Evolving & Playing GM, Gamifying Metagaming, Travelling system</em></td></tr>
+                                <tr><td><strong>Talislanta</strong></td><td><em>Creating a Coherent & Evocating setting, Class archetypes</em></td></tr>
+                                <tr><td><strong>Ultraviolet Grasslands</strong></td><td><em>Caravans, Localities, Worldbuilding through rules</em></td></tr>
+                                <tr><td><strong>World of Darkness</strong></td><td><em>4 pairs of 8 Attributes, Attribute system, Morality system</em></td></tr>
+                                <tr><td colspan="2" class="table-note" data-en="<em>And many more inspiring tabletop RPGs that shaped The Discording Tales...</em>" data-fr="<em>Et bien d'autres jeux de rôle sur table inspirants qui ont façonné The Discording Tales...</em>"><em>And many more inspiring tabletop RPGs that shaped The Discording Tales...</em></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <h4 data-en="Key Books & Sources" data-fr="Livres & Sources Clés">Key Books & Sources</h4>
+                    <div class="sources-grid">
+                        <div class="genre-card">
+                            <h5 data-en="Philosophy & Ethics" data-fr="Philosophie & Éthique">Philosophy & Ethics</h5>
+                            <ul>
+                                <li data-en="Friedrich Nietzsche: 'Thus Spoke Zarathustra', 'Beyond Good & Evil', 'The Will to Power'" data-fr="Friedrich Nietzsche : 'Ainsi parlait Zarathoustra', 'Par-delà le bien et le mal', 'La Volonté de puissance'">Friedrich Nietzsche: 'Thus Spoke Zarathustra', 'Beyond Good & Evil', 'The Will to Power'</li>
+                                <li data-en="Oswald Spengler: 'The Decline of the West'" data-fr="Oswald Spengler : 'Le Déclin de l'Occident'">Oswald Spengler: 'The Decline of the West'</li>
+                                <li data-en="Ludwig Klages: 'Biocentric Metaphysics'" data-fr="Ludwig Klages : 'Métaphysique biocentrique'">Ludwig Klages: 'Biocentric Metaphysics'</li>
+                            </ul>
+                        </div>
+                        <div class="genre-card">
+                            <h5 data-en="Mythology & Religion" data-fr="Mythologie & Religion">Mythology & Religion</h5>
+                            <ul>
+                                <li data-en="Hesiod: 'Theogony', 'Works and Days'" data-fr="Hésiode : 'Théogonie', 'Les Travaux et les Jours'">Hesiod: 'Theogony', 'Works and Days'</li>
+                                <li data-en="The Religions of Ancient Egypt and Babylonia" data-fr="Les Religions de l'Égypte et de Babylone antiques">The Religions of Ancient Egypt and Babylonia</li>
+                                <li data-en="W.K.G Guthrie: 'Orpheus and Greek Religion'" data-fr="W.K.G Guthrie : 'Orphée et la Religion grecque'">W.K.G Guthrie: 'Orpheus and Greek Religion'</li>
+                            </ul>
+                        </div>
+                        <div class="genre-card">
+                            <h5 data-en="Culture & Anthropology" data-fr="Culture & Anthropologie">Culture & Anthropology</h5>
+                            <ul>
+                                <li data-en="Edward Tylor: 'Primitive Cultures'" data-fr="Edward Tylor : 'Cultures primitives'">Edward Tylor: 'Primitive Cultures'</li>
+                                <li data-en="Eftychia Stavrianopoulou: 'Ritual and Communication in the Graeco-Roman World'" data-fr="Eftychia Stavrianopoulou : 'Rituel et Communication dans le Monde gréco-romain'">Eftychia Stavrianopoulou: 'Ritual and Communication in the Graeco-Roman World'</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-content">
+            <p data-en="THE DISCORDING TALES – A Weird Ethno-Science-Fantasy Gameworld" data-fr="THE DISCORDING TALES – Un Monde de Jeu Weird Ethno-Science-Fantasy">THE DISCORDING TALES – A Weird Ethno-Science-Fantasy Gameworld</p>
+            <div class="social-links">
+                <a href="https://twitter.com/DiscordingTales" target="_blank" rel="noopener noreferrer" aria-label="Twitter">Twitter</a>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Character Sheet React Root -->
+    <div id="character-sheet-root"></div>
+    
+    <!-- Scripts -->
+    <!-- WebGL Shader System - Must load before interactive.js -->
+    <script src="js/shaders.js" type="text/javascript"></script>
+    <script src="js/dtd-interactive.js" type="text/javascript"></script>
+    <!-- React Character Sheet Bundle (built with Vite) -->
+    <script src="dist/character-sheet.js"></script>
+</body>
+</html>
+

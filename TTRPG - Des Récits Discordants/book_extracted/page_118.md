@@ -1,0 +1,814 @@
+# Page 118
+
+*Source: publication-118.html*
+
+---
+
+**229**
+
+## Sacrifices & Réciprocités Riliques
+
+
+**Rils**
+
+
+**Aèmrils**
+
+
+**Hygrils**
+
+
+**Stadrils**
+
+
+**Physrils**
+
+
+**Zoosrils**
+
+
+**Esthrils**
+
+
+**Noûsrils**
+
+
+**Ormrils**
+
+
+**Rils**
+
+
+**Formes**
+
+Les formes virevoltantes, tous les airs, la chaleur et le froid.
+
+Les formes ondoyantes, tous les liquides.
+
+Les formes figées et inertes, tous les minéraux et solides.
+
+Les formes croissantes en auto- nomie, tous les végétaux et fungi.
+
+Les formes se mouvant d'elles- mêmes, tous les animaux.
+
+Les formes manifestantes, les propriétés mêmes des choses.
+
+Les formes imaginantes, les croyances, moralités, habitudes.
+
+Les formes émouvantes, les émotions, mémoires, consciences.
+
+
+**Formes**
+
+# MAUX
+
+
+**Blessures**
+
+
+**Entraves**
+
+
+**Fatigues**
+
+
+**Disettes**
+
+
+**Addictions**
+
+
+**Maladies**
+
+
+**Folies**
+
+
+**Rancoeurs**
+
+
+**Refroidissent l'énergie et la chaleur du corps**
+
+Assèchent profondément le corps jusqu’à le pétrifier
+
+
+**Calcifient les voies du corps tel un fardeau**
+
+Parasitent les organes digestifs et énergiques du corps
+
+Sapent les éléments permettant l’interaction avec autrui
+
+Sapent les propriétés des éléments restaurant le corps
+
+
+**Sapent les associations mentales entre les choses**
+
+
+**Sapent les éléments internes liés à la motivation**
+
+
+**Équilibre**
+
+Interagir avec les rils aériens utilise les airs du pratiquant. Cela se traduit par ses respira- tions s’affaiblissant de mémoires l’émouvant, ou en une toux sèche plus ou moins grave.
+
+On communique avec un ril ondoyant avec comme résultat ses propres liquides, internes ou portés sur soi en des récipients, qui s’évaporent ou se solidifient petit à petit.
+
+Une relation avec un ril minéral se termine par la solidité de la personne, ou de ses possessions inertes se liquéfiant ou se végé- talisant (devenant autonome et photosynthétique) petit à petit.
+
+Une interaction avec un ril végétal, engendre la minéralisa- tion ou mycélisation (les rendant parasites et dégradateurs tels des champignons et lichens) des végétaux à sa portée.
+
+Suite aux relations avec un ril animalier, une personne verra son corps se végétaliser (devenir indépendant et photosynthé- tique), ou encore devenir tels des mirages excitant les sens.
+
+Un rite en compagnie d’un ril idéique transforme les percep- tions, les effets sensoriels de la personne ou de ses possessions en des formes cancéreuses, ou en des idées folles le tourmentant.
+
+Une prière auprès d’un ril moral rends perceptibles ses idées les plus profondes, ou les cristal- lisent en des mémoires puissante occupant toute sa pensée à défaut des autres.
+
+D’une expérience de ril émotif, ses mémoires, émotions et sa conscience deviennent des idées folles forçant à agir pour elles, ou alors s’évaporant à travers l’air de votre souffle.
+
+
+**Équilibre**
+
+
+**Niveaux de Ril**
+
+
+**Soupir, Courant d'Air**
+
+
+**Gouttelette**
+
+
+**Poussière, Particule**
+
+
+**Graines, Feuille, Tige**
+
+
+**Organisme très simple**
+
+
+**Goût, Olfaction**
+
+
+**Mot**
+
+
+**Suggestion**
+
+
+**Niveaux de Ril**
+
+
+**Souffle**
+
+
+**Humidité, Ruisseau**
+
+
+**T erre, Sable, Argile, Glace**
+
+
+**Fleur, Herbe, Produit Végétal**
+
+
+**Produit Animal**
+
+
+**Interne (hormonal, etc)**
+
+
+**Métaphore, Connexion**
+
+
+**Moment, Lien, Interpréta- tion**
+
+
+**Brise**
+
+
+**Flots de Rivière**
+
+
+**Roche, Verre**
+
+
+**Mousses, Éponges, Coraux**
+
+
+**Cadavre, Corps**
+
+
+**Vision, Audition**
+
+
+**Connaissance**
+
+
+**Mémoire, Valeur**
+
+
+**Vent**
+
+
+**Flots de Source, Fleuve**
+
+
+**Métal**
+
+
+**Plante, Champignon, Bois Vivant, Racines**
+
+
+**Attribut Physique, Foetus**
+
+Électr.Humid.Magnét.
+
+
+**Compréhension**
+
+
+**Attribut Mental, Émotion, Moralité**
+
+
+**Tempête**
+
+
+**Flots de Geyser**
+
+
+**Métal Précieux**
+
+
+**Buisson, Arbuste**
+
+
+**Créature, Animal, Huma- noïde vivant(e)**
+
+
+**Tactilité**
+
+
+**Découverte**
+
+
+**État Émotionnel, Conscience, Motivations**
+
+
+**Tornade**
+
+
+**Torrent, Eau Artificielle**
+
+
+**Pierre Précieuse**
+
+
+**Arbre**
+
+
+**Créature et celles en elle**
+
+
+**Synesthésie**
+
+
+**Abstraction, Créativité, Idée**
+
+
+**Ancêtre, Ascendant, Ril, Volonté**
+
+
+**Victime (via NdV) (A répéter sinon offensé)**
+
+Sacrifier un NdV égal à UN ( E ) Grain (-3N) || ...Baie ou 1pO (-2N) || ...Fruit ou 1eO (-1N) || ...Poisson ou 1cO (+0N) || ...Volaille ou 3cO (+1N) || …Porcelet ou 10cO (+2N) || …Mouton ou 30cO (+3N) || …Taureau ou 100cO (+4N) || …Esclave ou 300cO (+5N) || …Homme libre ou 1’000cO (+6N) || …3’000cO (+7N)
+
+
+**Victime (via NdV) (A répéter sinon offensé)**
+
+...Volatile, tel un Air en la faisant Brûler, s'Envoler, Planer ou s'Éva- porer
+
+...Fluide, tel un Liquide en la Noyant, la faisant Couler, l'Im- mergeant ou en la Fondant
+
+...Inerte, tel un Solide en l'Enseve- lissant, la Solidifiant, la Gelant ou en la Sculptant
+
+...Croissante, tel un Terreau, une Graine ou un Arbre en la Broyant et l'Épandant, en la Semant, ou en la Plantant
+
+...Mouvante, tel un Animal ou la faire Lécher, Mordre, Digérer par un animal, ou en Habiller, Adorner, Équiper un animal
+
+...Fascinante, tel un Phénomène, en l’Animant et la Révélant en la Chantant, la Parfumant, la Couvrant de textiles ou en l’As- saisonnant
+
+...Intrigante telle une Idée, en la plaçant artistiquement tel un Trésor ou Artéfact à Observer, à Découvrir ou à Contempler
+
+...Mémorable telle une Émotion en la Fêtant en Pleurant, en Riant ou en s’Exaltant avant de l’Aban- donner et l’Oublier
+
+Offrande (Taille + Quantité) (Jusqu’à la prochaine Matinée)
+
+Quantité (par dizaines) = UN ( E ) Plis (-5N) || ...Pointe (-4N) || ... Pincée (-3N) || ...Ongle (-2N) || ...Phalange (-1N) || ...Doigt (+0N) || …Main (+1N) || …Bras (+2N) || …1 Entité (+3N) || …10 Entité (+4N) || …100 Entité (+5N)
+
+Taille (par dizaines) = UN ( E ) Poudre (-5N) || ...Grain (-4N) || ...Fiole (-3N) || ...Sachet (-2N) || ...Bourse (-1N) || … Sac (+0N) || … Coffre . (+1N) || … Charrette (+2N) || … Caravane (+3N) || …Grenier (+4N) || …Entrepôt (+5N)
+
+
+**Offrande (via NdA) (Jusqu’à la prochaine Matinée)**
+
+
+**Brûler et évaporer X Combustibles**
+
+
+**Fondre et verser X Liquides contenus**
+
+
+**Former et empiler X Matière en solides**
+
+
+**Planter ou faire croître X Végétaux**
+
+
+**Nourrir ou s’occuper d’ X Animaux**
+
+
+**Propager autour de soi X Sensations**
+
+
+**Placer selon une idée X Objets**
+
+
+**Fêter un fait, dépensant X Ressources**
+
+Quel qu'en soit le matériau, bien que le bois et tout ce qui brûle aisément demandera moins de moyens afin d’y parvenir
+
+Ces liquides qui sont en bouteille ou bloqués tel qu'en barrages, immobiles tel que gelés ou les métaux à fondre, etc…
+
+Ces matières friables telles que des ruines ou objets brisés, ou encore celles liquides tel que les eaux ou l’argile, etc...
+
+Ou échanger X par le Nombre et la Taille du végétal où…
+
+
+**+ 5N = …10’000 Graines = 10 Plantes = 1 Buisson**
+
+Ou échanger X par le Nombre et la Taille de l’animal où…
+
++ 5N = …10’000 de Taille Infime = 10 de Taille P = 1 de Taille M
+
+Via des parfums, faire porter des textiles, créer de la musique ou chanter, cuisiner des plats aux goûts forts, etc...
+
+Afin de créer des trésors, de rendre le monde plus intrigant, mystérieux, et, ou artistique. Qu'il ait plus de sens et d'intérêt
+
+Via des vivres ou un coût de préparation, ou alors pendant X NdT où…
+
++ 0, 1, 2, 3 = …1 Instant, Heure, Veillée, Matinée
+
+
+**Serment (via NdT) (Tant que respectés)**
+
+Durant UN ( E ) Instant (+0N) || ...Heure (+1N) || ...Veillée (+2N) || ...Matinée (+3N) || ...Jour (+4N) || …Pentaine (+5N) || …Héliorée (+6N) || …Saison (+7N) || …Cycle (+8N) || …Soleil (+9N) || …Lune (+10N)
+
+
+**Serment (via NdT) (Tant que respectés)**
+
+Toujours maintenir sur soi une même flamme constam- ment allumée ( oxygénée )
+
+Toujours être mouillé par un liquide ( externe à vos propres secrétions )
+
+Toujours toucher le sol dur ou ses excroissances ( roche, etc. ) de l’un de vos membres
+
+Toujours faire croître ( porté ) sur vous un même végétal sans qu’il ne meurt
+
+Toujours être à la charge et prendre soin d’un être non - sevré ou blessé
+
+Toujours générer une trace perceptible en exagérant ou efforçant toutes vos actions
+
+Toujours pouvoir fournir la réponse que vous êtes censé connaître ( notez l’essentiel )
+
+Toujours prendre sur vous la responsabilité ( et les coûts en incombant ) de vos alliés
+
+Évitez tout contact direct avec les airs ( abritez - vous, ne bloquer pas l’air, etc. )
+
+Évitez tout contact direct avec les liquides ( buvez, mais sans satisfaire la soif )
+
+Évitez tout contact direct avec le sol ou les minéraux ( murs, armure de métal, etc. )
+
+Évitez tout contact direct les végétaux ( carnivore, ne pas porter de textiles, etc. )
+
+Évitez tout contact direct les animaux ( végétarien, ne pas porter de cuir, etc. )
+
+Évitez l’utilisation d’un de vos organes sensoriels ( yeux, oreilles, nez, etc. )
+
+Évitez de transmettre toute information ( communiquez par énigme, ou un seul mot )
+
+Évitez d’être punit ou de payer pour vos actions et leurs conséquences
+
+
+**230**
+
+# IMMERSION
+
+# ESSENTIEL
+
+# EVEIL
+
+# VIE
+
+# SURVIE
+
+# POSSESSIONS
+
+# VOYAGE
+
+# COMBAT
+
+# RILIE
+
+# INITIATION
+
+# IAÔDUNE Ï
+
+## Sacrifices & Réciprocités Riliques
+
+
+**Rils**
+
+
+**Aèmrils**
+
+
+**Hygrils**
+
+
+**Stadrils**
+
+
+**Physrils**
+
+
+**Zoosrils**
+
+
+**Esthrils**
+
+
+**Noûsrils**
+
+
+**Ormrils**
+
+
+**Rils**
+
+
+**Formes**
+
+Les formes virevoltantes, tous les airs, la chaleur et le froid.
+
+Les formes ondoyantes, tous les liquides.
+
+Les formes figées et inertes, tous les minéraux et solides.
+
+Les formes croissantes en auto- nomie, tous les végétaux et fungi.
+
+Les formes se mouvant d'elles- mêmes, tous les animaux.
+
+Les formes manifestantes, les propriétés mêmes des choses.
+
+Les formes imaginantes, les croyances, moralités, habitudes.
+
+Les formes émouvantes, les émotions, mémoires, consciences.
+
+
+**Formes**
+
+# MAUX
+
+
+**Blessures**
+
+
+**Entraves**
+
+
+**Fatigues**
+
+
+**Disettes**
+
+
+**Addictions**
+
+
+**Maladies**
+
+
+**Folies**
+
+
+**Rancoeurs**
+
+
+**Refroidissent l'énergie et la chaleur du corps**
+
+Assèchent profondément le corps jusqu’à le pétrifier
+
+
+**Calcifient les voies du corps tel un fardeau**
+
+Parasitent les organes digestifs et énergiques du corps
+
+Sapent les éléments permettant l’interaction avec autrui
+
+Sapent les propriétés des éléments restaurant le corps
+
+
+**Sapent les associations mentales entre les choses**
+
+
+**Sapent les éléments internes liés à la motivation**
+
+
+**Équilibre**
+
+Interagir avec les rils aériens utilise les airs du pratiquant. Cela se traduit par ses respira- tions s’affaiblissant de mémoires l’émouvant, ou en une toux sèche plus ou moins grave.
+
+On communique avec un ril ondoyant avec comme résultat ses propres liquides, internes ou portés sur soi en des récipients, qui s’évaporent ou se solidifient petit à petit.
+
+Une relation avec un ril minéral se termine par la solidité de la personne, ou de ses possessions inertes se liquéfiant ou se végé- talisant (devenant autonome et photosynthétique) petit à petit.
+
+Une interaction avec un ril végétal, engendre la minéralisa- tion ou mycélisation (les rendant parasites et dégradateurs tels des champignons et lichens) des végétaux à sa portée.
+
+Suite aux relations avec un ril animalier, une personne verra son corps se végétaliser (devenir indépendant et photosynthé- tique), ou encore devenir tels des mirages excitant les sens.
+
+Un rite en compagnie d’un ril idéique transforme les percep- tions, les effets sensoriels de la personne ou de ses possessions en des formes cancéreuses, ou en des idées folles le tourmentant.
+
+Une prière auprès d’un ril moral rends perceptibles ses idées les plus profondes, ou les cristal- lisent en des mémoires puissante occupant toute sa pensée à défaut des autres.
+
+D’une expérience de ril émotif, ses mémoires, émotions et sa conscience deviennent des idées folles forçant à agir pour elles, ou alors s’évaporant à travers l’air de votre souffle.
+
+
+**Équilibre**
+
+
+**Niveaux de Ril**
+
+
+**Soupir, Courant d'Air**
+
+
+**Gouttelette**
+
+
+**Poussière, Particule**
+
+
+**Graines, Feuille, Tige**
+
+
+**Organisme très simple**
+
+
+**Goût, Olfaction**
+
+
+**Mot**
+
+
+**Suggestion**
+
+
+**Niveaux de Ril**
+
+
+**Souffle**
+
+
+**Humidité, Ruisseau**
+
+
+**T erre, Sable, Argile, Glace**
+
+
+**Fleur, Herbe, Produit Végétal**
+
+
+**Produit Animal**
+
+
+**Interne (hormonal, etc)**
+
+
+**Métaphore, Connexion**
+
+
+**Moment, Lien, Interpréta- tion**
+
+
+**Brise**
+
+
+**Flots de Rivière**
+
+
+**Roche, Verre**
+
+
+**Mousses, Éponges, Coraux**
+
+
+**Cadavre, Corps**
+
+
+**Vision, Audition**
+
+
+**Connaissance**
+
+
+**Mémoire, Valeur**
+
+
+**Vent**
+
+
+**Flots de Source, Fleuve**
+
+
+**Métal**
+
+
+**Plante, Champignon, Bois Vivant, Racines**
+
+
+**Attribut Physique, Foetus**
+
+Électr.Humid.Magnét.
+
+
+**Compréhension**
+
+
+**Attribut Mental, Émotion, Moralité**
+
+
+**Tempête**
+
+
+**Flots de Geyser**
+
+
+**Métal Précieux**
+
+
+**Buisson, Arbuste**
+
+
+**Créature, Animal, Huma- noïde vivant(e)**
+
+
+**Tactilité**
+
+
+**Découverte**
+
+
+**État Émotionnel, Conscience, Motivations**
+
+
+**Tornade**
+
+
+**Torrent, Eau Artificielle**
+
+
+**Pierre Précieuse**
+
+
+**Arbre**
+
+
+**Créature et celles en elle**
+
+
+**Synesthésie**
+
+
+**Abstraction, Créativité, Idée**
+
+
+**Ancêtre, Ascendant, Ril, Volonté**
+
+
+**Victime (via NdV) (A répéter sinon offensé)**
+
+Sacrifier un NdV égal à UN ( E ) Grain (-3N) || ...Baie ou 1pO (-2N) || ...Fruit ou 1eO (-1N) || ...Poisson ou 1cO (+0N) || ...Volaille ou 3cO (+1N) || …Porcelet ou 10cO (+2N) || …Mouton ou 30cO (+3N) || …Taureau ou 100cO (+4N) || …Esclave ou 300cO (+5N) || …Homme libre ou 1’000cO (+6N) || …3’000cO (+7N)
+
+
+**Victime (via NdV) (A répéter sinon offensé)**
+
+...Volatile, tel un Air en la faisant Brûler, s'Envoler, Planer ou s'Éva- porer
+
+...Fluide, tel un Liquide en la Noyant, la faisant Couler, l'Im- mergeant ou en la Fondant
+
+...Inerte, tel un Solide en l'Enseve- lissant, la Solidifiant, la Gelant ou en la Sculptant
+
+...Croissante, tel un Terreau, une Graine ou un Arbre en la Broyant et l'Épandant, en la Semant, ou en la Plantant
+
+...Mouvante, tel un Animal ou la faire Lécher, Mordre, Digérer par un animal, ou en Habiller, Adorner, Équiper un animal
+
+...Fascinante, tel un Phénomène, en l’Animant et la Révélant en la Chantant, la Parfumant, la Couvrant de textiles ou en l’As- saisonnant
+
+...Intrigante telle une Idée, en la plaçant artistiquement tel un Trésor ou Artéfact à Observer, à Découvrir ou à Contempler
+
+...Mémorable telle une Émotion en la Fêtant en Pleurant, en Riant ou en s’Exaltant avant de l’Aban- donner et l’Oublier
+
+Offrande (Taille + Quantité) (Jusqu’à la prochaine Matinée)
+
+Quantité (par dizaines) = UN ( E ) Plis (-5N) || ...Pointe (-4N) || ... Pincée (-3N) || ...Ongle (-2N) || ...Phalange (-1N) || ...Doigt (+0N) || …Main (+1N) || …Bras (+2N) || …1 Entité (+3N) || …10 Entité (+4N) || …100 Entité (+5N)
+
+Taille (par dizaines) = UN ( E ) Poudre (-5N) || ...Grain (-4N) || ...Fiole (-3N) || ...Sachet (-2N) || ...Bourse (-1N) || … Sac (+0N) || … Coffre . (+1N) || … Charrette (+2N) || … Caravane (+3N) || …Grenier (+4N) || …Entrepôt (+5N)
+
+
+**Offrande (via NdA) (Jusqu’à la prochaine Matinée)**
+
+
+**Brûler et évaporer X Combustibles**
+
+
+**Fondre et verser X Liquides contenus**
+
+
+**Former et empiler X Matière en solides**
+
+
+**Planter ou faire croître X Végétaux**
+
+
+**Nourrir ou s’occuper d’ X Animaux**
+
+
+**Propager autour de soi X Sensations**
+
+
+**Placer selon une idée X Objets**
+
+
+**Fêter un fait, dépensant X Ressources**
+
+Quel qu'en soit le matériau, bien que le bois et tout ce qui brûle aisément demandera moins de moyens afin d’y parvenir
+
+Ces liquides qui sont en bouteille ou bloqués tel qu'en barrages, immobiles tel que gelés ou les métaux à fondre, etc…
+
+Ces matières friables telles que des ruines ou objets brisés, ou encore celles liquides tel que les eaux ou l’argile, etc...
+
+Ou échanger X par le Nombre et la Taille du végétal où…
+
+
+**+ 5N = …10’000 Graines = 10 Plantes = 1 Buisson**
+
+Ou échanger X par le Nombre et la Taille de l’animal où…
+
++ 5N = …10’000 de Taille Infime = 10 de Taille P = 1 de Taille M
+
+Via des parfums, faire porter des textiles, créer de la musique ou chanter, cuisiner des plats aux goûts forts, etc...
+
+Afin de créer des trésors, de rendre le monde plus intrigant, mystérieux, et, ou artistique. Qu'il ait plus de sens et d'intérêt
+
+Via des vivres ou un coût de préparation, ou alors pendant X NdT où…
+
++ 0, 1, 2, 3 = …1 Instant, Heure, Veillée, Matinée
+
+
+**Serment (via NdT) (Tant que respectés)**
+
+Durant UN ( E ) Instant (+0N) || ...Heure (+1N) || ...Veillée (+2N) || ...Matinée (+3N) || ...Jour (+4N) || …Pentaine (+5N) || …Héliorée (+6N) || …Saison (+7N) || …Cycle (+8N) || …Soleil (+9N) || …Lune (+10N)
+
+
+**Serment (via NdT) (Tant que respectés)**
+
+Toujours maintenir sur soi une même flamme constam- ment allumée ( oxygénée )
+
+Toujours être mouillé par un liquide ( externe à vos propres secrétions )
+
+Toujours toucher le sol dur ou ses excroissances ( roche, etc. ) de l’un de vos membres
+
+Toujours faire croître ( porté ) sur vous un même végétal sans qu’il ne meurt
+
+Toujours être à la charge et prendre soin d’un être non - sevré ou blessé
+
+Toujours générer une trace perceptible en exagérant ou efforçant toutes vos actions
+
+Toujours pouvoir fournir la réponse que vous êtes censé connaître ( notez l’essentiel )
+
+Toujours prendre sur vous la responsabilité ( et les coûts en incombant ) de vos alliés
+
+Évitez tout contact direct avec les airs ( abritez - vous, ne bloquer pas l’air, etc. )
+
+Évitez tout contact direct avec les liquides ( buvez, mais sans satisfaire la soif )
+
+Évitez tout contact direct avec le sol ou les minéraux ( murs, armure de métal, etc. )
+
+Évitez tout contact direct les végétaux ( carnivore, ne pas porter de textiles, etc. )
+
+Évitez tout contact direct les animaux ( végétarien, ne pas porter de cuir, etc. )
+
+Évitez l’utilisation d’un de vos organes sensoriels ( yeux, oreilles, nez, etc. )
+
+Évitez de transmettre toute information ( communiquez par énigme, ou un seul mot )
+
+Évitez d’être punit ou de payer pour vos actions et leurs conséquences

@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar styling for editor */
+.overflow-x-auto::-webkit-scrollbar,
+.overflow-y-auto::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-track,
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: #1F2937;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb,
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background: #4B5563;
+  border-radius: 3px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb:hover,
+.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background: #6B7280;
+}
+
+@layer base {
+  /* Only apply box-sizing reset globally */
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Character sheet specific styles - scoped to the modal */
+  #character-sheet-root {
+    font-family: 'Quintessential', cursive, serif;
+  }
+  
+  /* Prevent body scroll when character sheet is open */
+  body.character-sheet-open {
+    overflow: hidden;
+  }
+
+  /* Custom scrollbar for character sheet */
+  .character-sheet-content::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .character-sheet-content::-webkit-scrollbar-track {
+    background: #d4c4a8;
+    border-radius: 4px;
+  }
+
+  .character-sheet-content::-webkit-scrollbar-thumb {
+    background: #674B1B;
+    border-radius: 4px;
+    border: 1px solid #ceb68d;
+  }
+
+  .character-sheet-content::-webkit-scrollbar-thumb:hover {
+    background: #643030;
+  }
+
+  /* Hide default number input spinners */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+  }
+  
+  input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+
+  /* Pulse glow animation for full progress bars (marks at 100%) - Solar white to turquoise */
+  @keyframes pulse-glow {
+    0%, 100% {
+      filter: 
+        drop-shadow(0 0 2px #ffffff)
+        drop-shadow(0 0 4px #ffffff99)
+        drop-shadow(0 0 6px #517c78)
+        drop-shadow(0 0 8px #517c78cc);
+    }
+    50% {
+      filter: 
+        drop-shadow(0 0 4px #ffffff)
+        drop-shadow(0 0 6px #ffffffdd)
+        drop-shadow(0 0 8px #517c78)
+        drop-shadow(0 0 12px #517c78ff);
+    }
+  }
+
+  /* Blink animation for realization click */
+  @keyframes realization-blink {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    25% {
+      opacity: 0.3;
+      transform: scale(1.05);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+    75% {
+      opacity: 0.5;
+      transform: scale(1.05);
+    }
+  }
+
+  /* Pulsating animation for realization - Cream/solar tones */
+  @keyframes realization-pulse {
+    0%, 100% {
+      box-shadow: 
+        0 0 8px #ffebc6,
+        0 0 12px #f5e6d3,
+        0 0 16px #e8d5b7,
+        0 0 20px #d4c4a8,
+        inset 0 0 20px rgba(255, 235, 198, 0.3);
+      transform: scale(1);
+    }
+    50% {
+      box-shadow: 
+        0 0 16px #fff8e7,
+        0 0 24px #ffebc6,
+        0 0 32px #f5e6d3,
+        0 0 40px #e8d5b7,
+        inset 0 0 30px rgba(255, 235, 198, 0.5);
+      transform: scale(1.02);
+    }
+  }
+
+  .progress-bar-container-pulse {
+    position: relative;
+    overflow: visible !important;
+    z-index: 1;
+  }
+
+  .progress-bar-fill-pulse {
+    animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .progress-bar-realizing {
+    animation: realization-blink 0.4s ease-in-out, realization-pulse 1s ease-in-out infinite;
+  }
+
+  /* Pulse animation for reveal competence button */
+  @keyframes reveal-pulse {
+    0%, 100% {
+      text-shadow: 
+        0 0 8px #ffebc6,
+        0 0 12px #f5e6d3,
+        0 0 16px #e8d5b7;
+    }
+    50% {
+      text-shadow: 
+        0 0 16px #fff8e7,
+        0 0 24px #ffebc6,
+        0 0 32px #f5e6d3,
+        0 0 40px #e8d5b7;
+    }
+  }
+}
+

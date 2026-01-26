@@ -1,0 +1,321 @@
+# Page 112
+
+*Source: publication-112.html*
+
+---
+
+## Modules, Moyens & Membres par Caste
+
+
+**NdG 1 (ÉQUIPE environ 3 membres)**
+
+
+**NdG 3 (COMPAGNIE 10 à 30 membres)**
+
+
+**NdG 5 (GUILDE de 100 à 300 membres)**
+
+
+**NdG 7 (ORDRE de 1’000 à 3’000 membres)**
+
+
+**( G )uerriers - ( Autorité)**
+
+
+**Champions**
+
+Équipe de Champions : maîtres d’arts martiaux guidés par un ancien champion, armés d’équipement léger dans petit dojo. But : prouver leur adresse et gagner l’admiration des mécènes.
+
+Compagnie de Champions : 10 - 30 compétiteurs sous un grand maître, entraînés dans une arène de bois, maniant armes d’en- traînement, échelles d’agilité et tatamis. But : briller aux joutes et attirer les bienfaiteurs.
+
+Guilde de Champions : école martiale hiérarchisée (président, professeurs de style, sergents-instructeurs, disciples), dotée de vestiaires, ring couvert et arsenal d’acier. But : former des champions pour les festivals régionaux.
+
+Ordre de Champions : académie royale regroupant maîtres et élèves, avec gradins, vestiaires et arsenal officiel. But : orga- niser des tournois publics pour renforcer le prestige seigneurial.
+
+
+**Mercenaires**
+
+Équipe de Mercenaires : quelques de vétérans en quête de contrats, bretteurs et éclaireurs, munis d’épée courte, d’arc léger et d’un registre de missions. But : proposer leurs services contre rémunération.
+
+Compagnie de Mercenaires : 10 - 30 soldats de fortune sous un capitaine et un lieutenant (épéistes, arbalétriers, éclaireurs), équipés de cottes de mailles légères, éperons et bourses de contrats. But : accomplir missions d’escorte et d’espionnage.
+
+Guilde de Mercenaires : confrérie régionale (colonel, capitaines, sous-officiers, troupes), camp fortifié avec balistes portatives et cahier de missions. But : négocier chartes et protéger le commerce.
+
+Ordre de Mercenaires : force privée de 1 000 - 3 000 soldats de fortune, régiment interrégional avec conseil d’officiers, fortins, écuries et arsenal (bombardes, couleuvrines). But : maintenir la paix et exécuter des contrats de haut vol.
+
+
+**Soldats**
+
+Équipe de Soldats : un sergent-gardien, un huissier et un porte-étendard, épées, boucliers et sceau officiel. But : sécuriser un point sensible et faire respecter la loi locale.
+
+Compagnie de Soldats : 10 - 30 miliciens et gendarmes sous un lieutenant, armés de lances, hallebardes et fers de police, soutenus par un chirurgien itinérant. But : tenir un poste défensif et assurer l’ordre.
+
+Guilde de Soldats : bataillon de 100 - 300 hommes (capitaines, lieutenants, sergents, miliciens), casernes temporaires avec remparts, forge et prison de campagne. But : contrôler un terri- toire, juger les délinquants et maintenir la paix.
+
+Ordre de Soldats : régiment de 1 000 - 3 000 soldats (colonel, majors, état-major), casernes, hôpital militaire, tribunal, écuries et arsenal permanent. But : défendre la province, administrer la justice et coordonner les opérations militaires.
+
+
+**( R )ôdeurs - ( Emprise)**
+
+
+**Vagabonds**
+
+Équipe de Vagabonds : exilés bardés de haillons, poignard et sac de fortune, réunis dans un coin sombre d’échoppe abandonnée. But : mendier et récolter informations.
+
+Compagnie de Vagabonds : 10 - 30 marginaux dirigés par un « roi des mendiants », équipés de plis secrets, tuyaux urbains et poignards dissimulés, dans un repaire souterrain. But : voler et extorquer la population.
+
+Guilde de Vagabonds : confrérie de 100 - 300 sans-logis, guidée par un conseil d’anciens, maîtres du déguisement et de la fila- ture, exploitant cachettes urbaines. But : orchestrer filières clandestines et maintenir leur réseau.
+
+Ordre de Vagabonds : fédération lâche de 1 000 - 3 000 déclassés, sous un triumvirat informel, disposant de safe-houses et d’un réseau de guetteurs. But : négocier subsides et exercer pression sur les autorités.
+
+
+**Survivalistes**
+
+Équipe de Survivalistes : chasseurs-cueilleurs équipés de lances, arcs rudimentaires et paniers, basés dans une cabane forestière. But : fournir viande et plantes sauvages pour le troc.
+
+Compagnie de Survivalistes : 10 - 30 trappeurs dirigés par un chef, possédant pièges, arcs composites, chiens d’arrêt et cabanes lacustres. But : récolter fourrures de valeur pour le marché.
+
+Guilde de Survivalistes : communauté de 100 - 300 clanistes sous un conseil tribal, maîtrisant forge légère, peaux tannées et totémes, installée dans un village sylvestre. But : gérer durablement la faune et le troc communautaire.
+
+Ordre de Survivalistes : fédération de 1 000 - 3 000 chasseurs-cueil- leurs sous un grand chef et chamans, dotée de postes de chasse et sanctuaires forestiers. But : collecter tributs et défendre leur territoire.
+
+
+**Dissidents**
+
+Équipe de Dissidents : voleurs et assassins armés de dagues et capuches sombres, opérant depuis une planque dans un quartier mal famé. But : frapper discrètement et impunément.
+
+Compagnie de Dissidents : 10 - 30 brigands coordonnés par un meneur, équipés de sabres, arbalètes légères et repaires dans des granges abandonnées. But : rançonner diligences et semer la terreur.
+
+Guilde de Dissidents : clan de 100 - 300 hors-la-loi structuré en cellules (lieutenants, exécuteurs, receleurs), utilisant repaires forestiers et fausses identités. But : orchestrer braquages à grande échelle et maintenir la discipline.
+
+Ordre de Dissidents : organisation criminelle de 1 000 - 3 000 membres régie par un conseil masqué, possédant fortins urbains, réseau de corruptions et relais d’espions. But : contrôler le crime régional et imposer leur loi.
+
+
+**( A )rtisans - ( Propriété)**
+
+
+**Fournisseurs**
+
+Équipe de Fournisseurs : transformateurs munis d’un brasero, récipients et outils sommaires, opérant dans une halle de cuisson. But : produire viandes fumées, breuvages concentrés et alliages de base.
+
+Compagnie de Fournisseurs : 10 - 30 distributeurs coordonnés par un maître de four et un conservateur, exploitant fours, foudres, tonneaux et balances dans un chais. But : livrer stocks cuits et coulés aux communautés.
+
+Guilde de Fournisseurs : organisée en fourneaux, chais et ateliers de fusion, avec fournil central, cuves de fermentation et entrepôt. But : ravitailler la cité en denrées et métaux.
+
+Ordre de Fournisseurs : confrérie de 1 000 - 3 000 fournisseurs, dirigée par un conseil de maîtres de cuisson, cuvage et coulée, exploitant cuisines d’enceinte, fonderies et entrepôts souterrains. But : approvisionner le royaume.
+
+
+**Fabricants**
+
+Équipe de Fabricants : un tailleur de pierre et un forgeron-bri- coleur, établi pliable, burins et moules. But : concevoir outils simples, charpentes légères ou ornements sur mesure.
+
+Compagnie de Fabricants : 10 - 30 artisans (charpentiers, maçons, forgerons) sous un contremaître, avec enclumes, échafaudages portables et chariots. But : ériger ponts de bois, bâtir murets et fabriquer pièces ouvragées.
+
+Guilde de Fabricants : complexe de 100 - 300 créateurs-as- sembleurs (ébénistes, maçons, architectes de chantier), ateliers spécialisés, grues à chaîne et presses rudimentaires. But : réaliser bâtiments, fortifications et ouvrages d’art.
+
+Ordre de Fabricants : corporation de 1 000 - 3 000 artisans (architectes, ingénieurs civils, maîtres maçons), fonderies, char- penteries, chantiers permanents et logis ouvriers. But : conduire grands travaux publics et seigneuriaux.
+
+
+**Ingénieurs**
+
+Équipe d’Ingénieurs : esprits ingénieux dans un réduit secret, établi, fioles et papiers griffonnés à portée de main. But : décou- vrir mécanismes et remèdes inédits.
+
+Compagnie d’Ingénieurs : 10 - 30 pionniers menés par un érudit- chef, disposant d’un laboratoire avec alambics, maquettes et croquis. But : concevoir prototypes et remèdes pour mécènes.
+
+Guilde d’Ingénieurs : académie de 100 - 300 innovateurs dans une tour de recherche, avec recteur, maîtres de labo et aspirants, dotée de salles d’expérimentation, observatoire et forges de précision. But : transformer idées en inventions applicables.
+
+Ordre d’Ingénieurs : institut de 1 000 - 3 000 inventeurs piloté par un conseil savant, possédant campus d’ateliers, laboratoires alchimiques et bancs d’essai. But : breveter et diffuser innova- tions à l’échelle régionale.
+
+
+**( O )uvriers - ( Nature)**
+
+
+**Extracteurs**
+
+Équipe d’Extracteurs : coupeurs-miniers guidés par un vieux maître, armés d’haches, pioches et hottes de cuir, opérant sur un site d’extraction. But : extraire charbon et minerai pour le troc.
+
+Compagnie d’Extracteurs : 10 - 30 charbonniers et bûcherons sous un contremaître, maniant fours, scies et treuils au sein d’un camp de rondins. But : fournir charbon et grumes aux forges locales.
+
+Guilde de Extracteurs : confrérie de 100 - 300 mineurs en jurande, pilotée par un sergent des galeries et un maître-forgeron, exploitant puits, wagonnets et forges, avec halle de stockage. But : approvisionner le seigneur en ressources.
+
+Ordre de Extracteurs : association de 1 000 - 3 000 ouvriers et artisans sous conseil de maîtres, utilisant rails, drainage et complexes de forges, implantés autour d’un complexe minier. But : dominer le commerce régional des métaux.
+
+
+**Transporteurs**
+
+Équipe de Transporteurs : deux porteurs, chariot rudimentaire, cordages et bâche, basés dans un dépôt. But : acheminer vivres et matériel en petite quantité.
+
+Compagnie de Transporteurs : 10 - 30 conducteurs de charrette, pourvoyeurs de fourrage et logistique, dirigés par un maître de convoi. But : garantir un approvisionnement fiable entre points clés.
+
+Guilde de Transporteurs : réseau de relais terrestres et entrepôts, flottes de charrettes et attelages, ateliers de réparation et dépôts. But : soutenir le commerce et les transports régionaux.
+
+Ordre de Transporteurs : structure logistique d’envergure, relais fortifiés, écuries, garages à charrettes et entrepôts permanents, pilotée par un conseil de supervision. But : soutenir les opérations commerciales et militaires.
+
+
+**Producteurs**
+
+Équipe de Producteurs : famille de paysans-éleveurs munie de faucilles, ruches et enclos, travaillant une petite parcelle. But : produire miel et lait pour échanger.
+
+Compagnie de Producteurs : 10 - 30 cultivateurs, bergers et apiculteurs sous un aîné, exploitant charrue, faux et ruches à cadres autour d’un étang. But : fournir blé, laine et miel au marché local.
+
+Guilde de Producteurs : ensemble de villages dirigé par prévôt des récoltes et maître du bétail, avec charrues à bœufs, moulin à eau et ruchers en coteau. But : approvisionner la cité voisine en denrées.
+
+Ordre de Producteurs : domaine seigneurial de 1 000 - 3 000 serfs et métayers encadrés par un intendant, disposant de pres- soirs, moulin à vent et greniers. But : exporter céréales, laine et miel vers la capitale.
+
+## Modules, Moyens & Membres par Caste
+
+
+**NdG 1 (ÉQUIPE environ 3 membres)**
+
+
+**NdG 3 (COMPAGNIE 10 à 30 membres)**
+
+
+**NdG 5 (GUILDE de 100 à 300 membres)**
+
+
+**NdG 7 (ORDRE de 1’000 à 3’000 membres)**
+
+
+**( G )uerriers - ( Autorité)**
+
+
+**Champions**
+
+Équipe de Champions : maîtres d’arts martiaux guidés par un ancien champion, armés d’équipement léger dans petit dojo. But : prouver leur adresse et gagner l’admiration des mécènes.
+
+Compagnie de Champions : 10 - 30 compétiteurs sous un grand maître, entraînés dans une arène de bois, maniant armes d’en- traînement, échelles d’agilité et tatamis. But : briller aux joutes et attirer les bienfaiteurs.
+
+Guilde de Champions : école martiale hiérarchisée (président, professeurs de style, sergents-instructeurs, disciples), dotée de vestiaires, ring couvert et arsenal d’acier. But : former des champions pour les festivals régionaux.
+
+Ordre de Champions : académie royale regroupant maîtres et élèves, avec gradins, vestiaires et arsenal officiel. But : orga- niser des tournois publics pour renforcer le prestige seigneurial.
+
+
+**Mercenaires**
+
+Équipe de Mercenaires : quelques de vétérans en quête de contrats, bretteurs et éclaireurs, munis d’épée courte, d’arc léger et d’un registre de missions. But : proposer leurs services contre rémunération.
+
+Compagnie de Mercenaires : 10 - 30 soldats de fortune sous un capitaine et un lieutenant (épéistes, arbalétriers, éclaireurs), équipés de cottes de mailles légères, éperons et bourses de contrats. But : accomplir missions d’escorte et d’espionnage.
+
+Guilde de Mercenaires : confrérie régionale (colonel, capitaines, sous-officiers, troupes), camp fortifié avec balistes portatives et cahier de missions. But : négocier chartes et protéger le commerce.
+
+Ordre de Mercenaires : force privée de 1 000 - 3 000 soldats de fortune, régiment interrégional avec conseil d’officiers, fortins, écuries et arsenal (bombardes, couleuvrines). But : maintenir la paix et exécuter des contrats de haut vol.
+
+
+**Soldats**
+
+Équipe de Soldats : un sergent-gardien, un huissier et un porte-étendard, épées, boucliers et sceau officiel. But : sécuriser un point sensible et faire respecter la loi locale.
+
+Compagnie de Soldats : 10 - 30 miliciens et gendarmes sous un lieutenant, armés de lances, hallebardes et fers de police, soutenus par un chirurgien itinérant. But : tenir un poste défensif et assurer l’ordre.
+
+Guilde de Soldats : bataillon de 100 - 300 hommes (capitaines, lieutenants, sergents, miliciens), casernes temporaires avec remparts, forge et prison de campagne. But : contrôler un terri- toire, juger les délinquants et maintenir la paix.
+
+Ordre de Soldats : régiment de 1 000 - 3 000 soldats (colonel, majors, état-major), casernes, hôpital militaire, tribunal, écuries et arsenal permanent. But : défendre la province, administrer la justice et coordonner les opérations militaires.
+
+
+**( R )ôdeurs - ( Emprise)**
+
+
+**Vagabonds**
+
+Équipe de Vagabonds : exilés bardés de haillons, poignard et sac de fortune, réunis dans un coin sombre d’échoppe abandonnée. But : mendier et récolter informations.
+
+Compagnie de Vagabonds : 10 - 30 marginaux dirigés par un « roi des mendiants », équipés de plis secrets, tuyaux urbains et poignards dissimulés, dans un repaire souterrain. But : voler et extorquer la population.
+
+Guilde de Vagabonds : confrérie de 100 - 300 sans-logis, guidée par un conseil d’anciens, maîtres du déguisement et de la fila- ture, exploitant cachettes urbaines. But : orchestrer filières clandestines et maintenir leur réseau.
+
+Ordre de Vagabonds : fédération lâche de 1 000 - 3 000 déclassés, sous un triumvirat informel, disposant de safe-houses et d’un réseau de guetteurs. But : négocier subsides et exercer pression sur les autorités.
+
+
+**Survivalistes**
+
+Équipe de Survivalistes : chasseurs-cueilleurs équipés de lances, arcs rudimentaires et paniers, basés dans une cabane forestière. But : fournir viande et plantes sauvages pour le troc.
+
+Compagnie de Survivalistes : 10 - 30 trappeurs dirigés par un chef, possédant pièges, arcs composites, chiens d’arrêt et cabanes lacustres. But : récolter fourrures de valeur pour le marché.
+
+Guilde de Survivalistes : communauté de 100 - 300 clanistes sous un conseil tribal, maîtrisant forge légère, peaux tannées et totémes, installée dans un village sylvestre. But : gérer durablement la faune et le troc communautaire.
+
+Ordre de Survivalistes : fédération de 1 000 - 3 000 chasseurs-cueil- leurs sous un grand chef et chamans, dotée de postes de chasse et sanctuaires forestiers. But : collecter tributs et défendre leur territoire.
+
+
+**Dissidents**
+
+Équipe de Dissidents : voleurs et assassins armés de dagues et capuches sombres, opérant depuis une planque dans un quartier mal famé. But : frapper discrètement et impunément.
+
+Compagnie de Dissidents : 10 - 30 brigands coordonnés par un meneur, équipés de sabres, arbalètes légères et repaires dans des granges abandonnées. But : rançonner diligences et semer la terreur.
+
+Guilde de Dissidents : clan de 100 - 300 hors-la-loi structuré en cellules (lieutenants, exécuteurs, receleurs), utilisant repaires forestiers et fausses identités. But : orchestrer braquages à grande échelle et maintenir la discipline.
+
+Ordre de Dissidents : organisation criminelle de 1 000 - 3 000 membres régie par un conseil masqué, possédant fortins urbains, réseau de corruptions et relais d’espions. But : contrôler le crime régional et imposer leur loi.
+
+
+**( A )rtisans - ( Propriété)**
+
+
+**Fournisseurs**
+
+Équipe de Fournisseurs : transformateurs munis d’un brasero, récipients et outils sommaires, opérant dans une halle de cuisson. But : produire viandes fumées, breuvages concentrés et alliages de base.
+
+Compagnie de Fournisseurs : 10 - 30 distributeurs coordonnés par un maître de four et un conservateur, exploitant fours, foudres, tonneaux et balances dans un chais. But : livrer stocks cuits et coulés aux communautés.
+
+Guilde de Fournisseurs : organisée en fourneaux, chais et ateliers de fusion, avec fournil central, cuves de fermentation et entrepôt. But : ravitailler la cité en denrées et métaux.
+
+Ordre de Fournisseurs : confrérie de 1 000 - 3 000 fournisseurs, dirigée par un conseil de maîtres de cuisson, cuvage et coulée, exploitant cuisines d’enceinte, fonderies et entrepôts souterrains. But : approvisionner le royaume.
+
+
+**Fabricants**
+
+Équipe de Fabricants : un tailleur de pierre et un forgeron-bri- coleur, établi pliable, burins et moules. But : concevoir outils simples, charpentes légères ou ornements sur mesure.
+
+Compagnie de Fabricants : 10 - 30 artisans (charpentiers, maçons, forgerons) sous un contremaître, avec enclumes, échafaudages portables et chariots. But : ériger ponts de bois, bâtir murets et fabriquer pièces ouvragées.
+
+Guilde de Fabricants : complexe de 100 - 300 créateurs-as- sembleurs (ébénistes, maçons, architectes de chantier), ateliers spécialisés, grues à chaîne et presses rudimentaires. But : réaliser bâtiments, fortifications et ouvrages d’art.
+
+Ordre de Fabricants : corporation de 1 000 - 3 000 artisans (architectes, ingénieurs civils, maîtres maçons), fonderies, char- penteries, chantiers permanents et logis ouvriers. But : conduire grands travaux publics et seigneuriaux.
+
+
+**Ingénieurs**
+
+Équipe d’Ingénieurs : esprits ingénieux dans un réduit secret, établi, fioles et papiers griffonnés à portée de main. But : décou- vrir mécanismes et remèdes inédits.
+
+Compagnie d’Ingénieurs : 10 - 30 pionniers menés par un érudit- chef, disposant d’un laboratoire avec alambics, maquettes et croquis. But : concevoir prototypes et remèdes pour mécènes.
+
+Guilde d’Ingénieurs : académie de 100 - 300 innovateurs dans une tour de recherche, avec recteur, maîtres de labo et aspirants, dotée de salles d’expérimentation, observatoire et forges de précision. But : transformer idées en inventions applicables.
+
+Ordre d’Ingénieurs : institut de 1 000 - 3 000 inventeurs piloté par un conseil savant, possédant campus d’ateliers, laboratoires alchimiques et bancs d’essai. But : breveter et diffuser innova- tions à l’échelle régionale.
+
+
+**( O )uvriers - ( Nature)**
+
+
+**Extracteurs**
+
+Équipe d’Extracteurs : coupeurs-miniers guidés par un vieux maître, armés d’haches, pioches et hottes de cuir, opérant sur un site d’extraction. But : extraire charbon et minerai pour le troc.
+
+Compagnie d’Extracteurs : 10 - 30 charbonniers et bûcherons sous un contremaître, maniant fours, scies et treuils au sein d’un camp de rondins. But : fournir charbon et grumes aux forges locales.
+
+Guilde de Extracteurs : confrérie de 100 - 300 mineurs en jurande, pilotée par un sergent des galeries et un maître-forgeron, exploitant puits, wagonnets et forges, avec halle de stockage. But : approvisionner le seigneur en ressources.
+
+Ordre de Extracteurs : association de 1 000 - 3 000 ouvriers et artisans sous conseil de maîtres, utilisant rails, drainage et complexes de forges, implantés autour d’un complexe minier. But : dominer le commerce régional des métaux.
+
+
+**Transporteurs**
+
+Équipe de Transporteurs : deux porteurs, chariot rudimentaire, cordages et bâche, basés dans un dépôt. But : acheminer vivres et matériel en petite quantité.
+
+Compagnie de Transporteurs : 10 - 30 conducteurs de charrette, pourvoyeurs de fourrage et logistique, dirigés par un maître de convoi. But : garantir un approvisionnement fiable entre points clés.
+
+Guilde de Transporteurs : réseau de relais terrestres et entrepôts, flottes de charrettes et attelages, ateliers de réparation et dépôts. But : soutenir le commerce et les transports régionaux.
+
+Ordre de Transporteurs : structure logistique d’envergure, relais fortifiés, écuries, garages à charrettes et entrepôts permanents, pilotée par un conseil de supervision. But : soutenir les opérations commerciales et militaires.
+
+
+**Producteurs**
+
+Équipe de Producteurs : famille de paysans-éleveurs munie de faucilles, ruches et enclos, travaillant une petite parcelle. But : produire miel et lait pour échanger.
+
+Compagnie de Producteurs : 10 - 30 cultivateurs, bergers et apiculteurs sous un aîné, exploitant charrue, faux et ruches à cadres autour d’un étang. But : fournir blé, laine et miel au marché local.
+
+Guilde de Producteurs : ensemble de villages dirigé par prévôt des récoltes et maître du bétail, avec charrues à bœufs, moulin à eau et ruchers en coteau. But : approvisionner la cité voisine en denrées.
+
+Ordre de Producteurs : domaine seigneurial de 1 000 - 3 000 serfs et métayers encadrés par un intendant, disposant de pres- soirs, moulin à vent et greniers. But : exporter céréales, laine et miel vers la capitale.

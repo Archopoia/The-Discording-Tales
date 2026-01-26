@@ -1,0 +1,1152 @@
+/* ========================================
+   PORTFOLIO STYLES
+   Portfolio Grid and Project Cards
+   ======================================== */
+
+/* Header Subtitle */
+.header-subtitle {
+    font-size: 1rem;
+    color: var(--text-dark);
+    text-align: center;
+    margin: 0.5rem 0 0 0;
+    font-style: italic;
+    opacity: 0.8;
+}
+
+/* Category Headers */
+.category-header {
+    text-align: center;
+    margin: 2rem 0 2.5rem 0;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, var(--parchment-bg) 0%, var(--hover-bg) 100%);
+    border: 2px solid var(--gold-glow);
+    border-radius: 15px;
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 2px var(--gold-glow),
+        0 4px 8px rgba(0, 0, 0, 0.2),
+        inset 0 0 0 1px var(--border-tan);
+}
+
+.category-header h3 {
+    font-family: 'Quintessential', cursive;
+    color: var(--text-dark);
+    font-size: 1.8rem;
+    margin: 0 0 0.5rem 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.category-desc {
+    font-size: 1.05rem;
+    color: var(--red-theme);
+    font-weight: 600;
+    margin: 0;
+    font-style: italic;
+}
+
+/* Portfolio Sections */
+.portfolio-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.portfolio-category h3 {
+    font-family: 'Cinzel', serif;
+    color: var(--red-theme);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--gold);
+}
+
+/* Project Grid */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.project-card h4 {
+    font-family: 'Cinzel', serif;
+    color: var(--red-theme);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.project-type {
+    background: var(--red-theme);
+    color: var(--text-cream);
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin: 0.5rem 0;
+    padding: 0.3rem 0.8rem;
+    border-radius: 12px;
+    display: inline-block;
+    border: 2px solid var(--border-dark);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.project-description {
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.project-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.project-link {
+    color: var(--text-cream);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--border-dark);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--red-theme);
+    cursor: pointer;
+}
+
+.project-link:hover {
+    background: var(--hover-bg);
+    color: var(--text-dark);
+    transform: translateY(-2px);
+}
+
+/* Hero Card - Full Width Feature */
+/* Featured Hero Cards */
+.project-card.hero-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    /* Uses unified .card-hero class from base.css */
+}
+
+.project-media {
+    position: relative;
+    overflow: visible;
+    z-index: 5;
+}
+
+.project-card.hero-card .project-media {
+    display: flex;
+    align-items: center;
+}
+
+.project-card.hero-card .project-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.project-card.hero-card h4 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.project-card.hero-card .project-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+/* Project Ribbons */
+.project-ribbon {
+    position: absolute;
+    top: 15px;
+    right: -10px;
+    background: var(--red-theme);
+    color: var(--text-cream);
+    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border: 2px solid var(--border-dark);
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        -4px 0 8px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    transform: rotate(3deg);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Ribbon as link */
+a.project-ribbon {
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+a.project-ribbon:hover {
+    transform: rotate(3deg) scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4),
+        -4px 0 12px rgba(0, 0, 0, 0.3);
+}
+
+a.project-ribbon.ribbon-gold:hover {
+    box-shadow: 0 6px 16px rgba(255, 215, 0, 0.5),
+        -4px 0 12px rgba(255, 215, 0, 0.3);
+}
+
+.project-ribbon::before {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-top: 8px solid var(--ink-brown);
+}
+
+.ribbon-gold {
+    background: linear-gradient(135deg, var(--gold-glow), var(--orange-theme));
+    color: var(--text-dark);
+}
+
+.ribbon-green {
+    background: var(--green-theme);
+}
+
+.ribbon-blue {
+    background: var(--teal-theme);
+}
+
+.ribbon-current {
+    background: linear-gradient(135deg, var(--gold-glow) 0%, #b8860b 100%);
+    color: var(--text-dark);
+    font-weight: 700;
+}
+
+/* Hero Cards Container - 2 Column Layout */
+.hero-cards-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Featured Grid - 3 Column Layout */
+.featured-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-flow: row;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+/* Ensure visual order: WorkHub, POYA, Worldmap, KALEVIPOEG */
+.featured-grid > .project-card:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.featured-grid > .project-card:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.featured-grid > .project-card:nth-child(3) {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+.featured-grid > .project-card:nth-child(4) {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+/* Project Meta Tags */
+.project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 1rem 0;
+}
+
+.meta-tag {
+    background: var(--parchment-aged);
+    color: var(--text-dark);
+    padding: 0.4rem 0.8rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    border: 2px solid var(--border-tan);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.meta-tag i {
+    color: var(--red-theme);
+}
+
+/* Tech Tags */
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.tech-tag {
+    background: var(--teal-theme);
+    color: var(--text-cream);
+    padding: 0.35rem 0.7rem;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    border: 2px solid var(--border-dark);
+    font-weight: 600;
+    transition: all var(--transition-speed);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.tech-tag:hover {
+    background: var(--green-theme);
+    transform: translateY(-2px);
+    box-shadow:
+        0 0 10px 3px var(--gold-glow),
+        0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Primary and Secondary Button Variants */
+.project-link.primary {
+    background: var(--red-theme);
+    color: var(--text-cream);
+}
+
+.project-link.secondary {
+    background: var(--parchment-aged);
+    color: var(--text-dark);
+    border-color: var(--border-tan);
+}
+
+.project-link.secondary:hover {
+    background: var(--hover-bg);
+    color: var(--text-dark);
+}
+
+/* Project Videos */
+.project-video {
+    margin-top: 1rem;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid var(--border-tan);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.project-video-player {
+    width: 100%;
+    height: 200px;
+    display: block;
+    background: var(--parchment-dark);
+    border: none;
+    object-fit: cover;
+}
+
+/* Game Thumbnail Styles */
+.game-thumbnail {
+    margin: 1rem 0;
+    border: 2px solid var(--gold-glow);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 2px var(--gold-glow),
+        0px 0px 10px 1px #421212 inset,
+        0 4px 8px rgba(0, 0, 0, 0.2);
+    background: var(--hover-bg);
+    transition: all var(--transition-speed) ease;
+}
+
+.game-thumbnail:hover {
+    transform: scale(1.05);
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 3px var(--gold-glow),
+        0 0 0 4px var(--red-theme),
+        0 0 15px 8px var(--gold-glow),
+        0px 0px 10px 1px var(--focus-glow) inset;
+}
+
+.game-thumbnail img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: all var(--transition-speed) ease;
+}
+
+.game-thumbnail img:hover {
+    filter: brightness(1.1);
+}
+
+/* Video and PDF Preview Styles */
+.project-preview,
+.work-preview {
+    margin: 1rem 0;
+    border: 2px solid var(--border-dark);
+    border-radius: 10%;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px 1px #421212 inset;
+    background: var(--hover-bg);
+}
+
+.project-video,
+.pdf-preview {
+    width: 100%;
+    height: 200px;
+    border: none;
+    background: var(--hover-bg);
+}
+
+.project-video {
+    object-fit: cover;
+}
+
+.pdf-preview {
+    background: var(--hover-bg);
+}
+
+/* Crystal Chronicles card styling */
+/* Uses unified .card class from base.css */
+
+/* Crystal Chronicles button styling */
+.project-link,
+.social-link {
+    background: var(--red-theme);
+    border: 3px solid var(--border-dark);
+    border-radius: 10%;
+    color: var(--text-cream);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+    position: relative;
+    box-shadow: 0px 0px 10px 1px #421212 inset;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.project-link:hover,
+.social-link:hover {
+    background: var(--hover-bg);
+    transform: scale(1.1, 1.1);
+    box-shadow:
+        0 0 15px 8px var(--gold-glow),
+        0 0 30px 15px #72522f75,
+        0px 0px 10px 1px var(--focus-glow) inset;
+    z-index: 999;
+}
+
+/* Full Screen Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: var(--hover-bg);
+    border: 5px solid var(--border-dark);
+    border-radius: 10px;
+    box-shadow:
+        0 0 30px rgba(0, 0, 0, 0.5),
+        inset 0 0 0 3px var(--border-tan);
+    width: 95vw;
+    max-width: 95vw;
+    max-height: 95vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.modal-header {
+    background: var(--red-theme-alpha);
+    color: var(--text-cream);
+    padding: 1rem;
+    border-bottom: 3px solid var(--border-dark);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    font-family: 'Quintessential', cursive;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-shadow:
+        0 1px black,
+        0 2px rgb(19, 19, 19),
+        0 3px rgb(30, 30, 30);
+}
+
+.modal-close {
+    background: var(--red-theme);
+    border: 2px solid var(--gold-glow);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--text-cream);
+    transition: all var(--transition-speed) ease;
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 2px var(--gold-glow),
+        0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.modal-close:hover {
+    background: var(--hover-bg);
+    transform: scale(1.1);
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 3px var(--gold-glow),
+        0 0 0 4px var(--red-theme),
+        0 0 10px 5px var(--gold-glow),
+        0px 0px 10px 1px var(--focus-glow) inset;
+}
+
+.modal-body {
+    padding: 0;
+    max-height: calc(95vh - 80px);
+    overflow: auto;
+}
+
+.modal-video {
+    width: 100%;
+    height: calc(95vh - 80px);
+    border: none;
+}
+
+.modal-pdf {
+    width: 100%;
+    height: calc(95vh - 80px);
+    border: none;
+    background: var(--hover-bg);
+}
+
+/* Portfolio Stacked Galleries */
+.portfolio-gallery {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    perspective: 1000px;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+    overflow: visible;
+    z-index: 10;
+}
+
+/* Add subtle visual cue on gallery hover */
+.portfolio-gallery::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, rgba(139, 115, 85, 0.08) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.portfolio-gallery:hover::before {
+    opacity: 1;
+}
+
+.portfolio-gallery-item {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-radius: 0px;
+    overflow: visible;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.3s ease,
+                background 0.3s ease;
+    box-shadow: none;
+    z-index: 1;
+    will-change: transform;
+    outline: none !important;
+    cursor: pointer;
+    pointer-events: auto !important;
+}
+
+/* Add subtle backdrop on individual hover for better visibility */
+.portfolio-gallery:hover .portfolio-gallery-item:hover {
+    background: rgba(239, 235, 225, 0.12);
+    box-shadow: 0 0 15px rgba(139, 115, 85, 0.2);
+}
+
+.portfolio-gallery-item:focus {
+    outline: none !important;
+}
+
+.portfolio-gallery-item img,
+.portfolio-gallery-video {
+    width: auto;
+    height: auto;
+    /* Balanced constraints: wider max-width to give landscape images more presence */
+    max-width: 350px;
+    max-height: 200px;
+    object-fit: contain;
+    display: block;
+    transition: none;
+}
+
+.portfolio-gallery-video {
+    pointer-events: none;
+}
+
+/* Stack positioning - each item slightly offset upward */
+/* Z-index: center items on top, edges progressively behind */
+.portfolio-gallery-item:nth-child(1) {
+    z-index: 1;
+    transform: translate(-50%, -50%) rotate(-3deg) translateY(-56px);
+}
+.portfolio-gallery-item:nth-child(2) {
+    z-index: 2;
+    transform: translate(-50%, -50%) rotate(2deg) translateY(-48px);
+}
+.portfolio-gallery-item:nth-child(3) {
+    z-index: 3;
+    transform: translate(-50%, -50%) rotate(-2deg) translateY(-40px);
+}
+.portfolio-gallery-item:nth-child(4) {
+    z-index: 4;
+    transform: translate(-50%, -50%) rotate(3deg) translateY(-32px);
+}
+.portfolio-gallery-item:nth-child(5) {
+    z-index: 5;
+    transform: translate(-50%, -50%) rotate(-2deg) translateY(-24px);
+}
+.portfolio-gallery-item:nth-child(6) {
+    z-index: 4;
+    transform: translate(-50%, -50%) rotate(2deg) translateY(-16px);
+}
+.portfolio-gallery-item:nth-child(7) {
+    z-index: 3;
+    transform: translate(-50%, -50%) rotate(-3deg) translateY(-8px);
+}
+.portfolio-gallery-item:nth-child(8) {
+    z-index: 2;
+    transform: translate(-50%, -50%) rotate(2deg) translateY(0px);
+}
+
+/* Hover - fan out symmetrically around center - center items have higher z-index */
+/* 2-item gallery - symmetrical */
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(2):last-child):hover .portfolio-gallery-item:nth-child(1) {
+    transform: translate(-50%, -50%) translateX(-80px) rotate(-5deg) scale(0.95);
+    z-index: 15;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(2):last-child):hover .portfolio-gallery-item:nth-child(2) {
+    transform: translate(-50%, -50%) translateX(80px) rotate(5deg) scale(0.95);
+    z-index: 15;
+}
+
+/* 3-item gallery - symmetrical */
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(3):last-child):hover .portfolio-gallery-item:nth-child(1) {
+    transform: translate(-50%, -50%) translateX(-140px) rotate(-8deg) scale(0.95);
+    z-index: 15;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(3):last-child):hover .portfolio-gallery-item:nth-child(2) {
+    transform: translate(-50%, -50%) translateX(0px) rotate(0deg) scale(1);
+    z-index: 25;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(3):last-child):hover .portfolio-gallery-item:nth-child(3) {
+    transform: translate(-50%, -50%) translateX(140px) rotate(8deg) scale(0.95);
+    z-index: 15;
+}
+
+/* 4-item gallery - symmetrical (no center item) */
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(4):last-child):hover .portfolio-gallery-item:nth-child(1) {
+    transform: translate(-50%, -50%) translateX(-180px) rotate(-8deg) scale(0.95);
+    z-index: 15;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(4):last-child):hover .portfolio-gallery-item:nth-child(2) {
+    transform: translate(-50%, -50%) translateX(-60px) rotate(-3deg) scale(0.95);
+    z-index: 22;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(4):last-child):hover .portfolio-gallery-item:nth-child(3) {
+    transform: translate(-50%, -50%) translateX(60px) rotate(3deg) scale(0.95);
+    z-index: 22;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(4):last-child):hover .portfolio-gallery-item:nth-child(4) {
+    transform: translate(-50%, -50%) translateX(180px) rotate(8deg) scale(0.95);
+    z-index: 15;
+}
+
+/* 5-item gallery - symmetrical with center */
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(5):last-child):hover .portfolio-gallery-item:nth-child(1) {
+    transform: translate(-50%, -50%) translateX(-220px) rotate(-10deg) scale(0.95);
+    z-index: 15;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(5):last-child):hover .portfolio-gallery-item:nth-child(2) {
+    transform: translate(-50%, -50%) translateX(-110px) rotate(-5deg) scale(0.95);
+    z-index: 20;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(5):last-child):hover .portfolio-gallery-item:nth-child(3) {
+    transform: translate(-50%, -50%) translateX(0px) rotate(0deg) scale(1);
+    z-index: 25;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(5):last-child):hover .portfolio-gallery-item:nth-child(4) {
+    transform: translate(-50%, -50%) translateX(110px) rotate(5deg) scale(0.95);
+    z-index: 20;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(5):last-child):hover .portfolio-gallery-item:nth-child(5) {
+    transform: translate(-50%, -50%) translateX(220px) rotate(10deg) scale(0.95);
+    z-index: 15;
+}
+
+/* 6-item gallery - symmetrical (no center) */
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(6):last-child):hover .portfolio-gallery-item:nth-child(1) {
+    transform: translate(-50%, -50%) translateX(-250px) rotate(-10deg) scale(0.95);
+    z-index: 15;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(6):last-child):hover .portfolio-gallery-item:nth-child(2) {
+    transform: translate(-50%, -50%) translateX(-150px) rotate(-6deg) scale(0.95);
+    z-index: 18;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(6):last-child):hover .portfolio-gallery-item:nth-child(3) {
+    transform: translate(-50%, -50%) translateX(-50px) rotate(-2deg) scale(0.95);
+    z-index: 22;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(6):last-child):hover .portfolio-gallery-item:nth-child(4) {
+    transform: translate(-50%, -50%) translateX(50px) rotate(2deg) scale(0.95);
+    z-index: 22;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(6):last-child):hover .portfolio-gallery-item:nth-child(5) {
+    transform: translate(-50%, -50%) translateX(150px) rotate(6deg) scale(0.95);
+    z-index: 18;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(6):last-child):hover .portfolio-gallery-item:nth-child(6) {
+    transform: translate(-50%, -50%) translateX(250px) rotate(10deg) scale(0.95);
+    z-index: 15;
+}
+
+/* 7-item gallery - symmetrical with center */
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(7):last-child):hover .portfolio-gallery-item:nth-child(1) {
+    transform: translate(-50%, -50%) translateX(-270px) rotate(-12deg) scale(0.95);
+    z-index: 15;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(7):last-child):hover .portfolio-gallery-item:nth-child(2) {
+    transform: translate(-50%, -50%) translateX(-180px) rotate(-8deg) scale(0.95);
+    z-index: 18;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(7):last-child):hover .portfolio-gallery-item:nth-child(3) {
+    transform: translate(-50%, -50%) translateX(-90px) rotate(-4deg) scale(0.95);
+    z-index: 21;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(7):last-child):hover .portfolio-gallery-item:nth-child(4) {
+    transform: translate(-50%, -50%) translateX(0px) rotate(0deg) scale(1);
+    z-index: 25;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(7):last-child):hover .portfolio-gallery-item:nth-child(5) {
+    transform: translate(-50%, -50%) translateX(90px) rotate(4deg) scale(0.95);
+    z-index: 21;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(7):last-child):hover .portfolio-gallery-item:nth-child(6) {
+    transform: translate(-50%, -50%) translateX(180px) rotate(8deg) scale(0.95);
+    z-index: 18;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(7):last-child):hover .portfolio-gallery-item:nth-child(7) {
+    transform: translate(-50%, -50%) translateX(270px) rotate(12deg) scale(0.95);
+    z-index: 15;
+}
+
+/* 8-item gallery - symmetrical (no center) */
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(8):last-child):hover .portfolio-gallery-item:nth-child(1) {
+    transform: translate(-50%, -50%) translateX(-280px) rotate(-12deg) scale(0.95);
+    z-index: 15;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(8):last-child):hover .portfolio-gallery-item:nth-child(2) {
+    transform: translate(-50%, -50%) translateX(-200px) rotate(-9deg) scale(0.95);
+    z-index: 17;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(8):last-child):hover .portfolio-gallery-item:nth-child(3) {
+    transform: translate(-50%, -50%) translateX(-120px) rotate(-6deg) scale(0.95);
+    z-index: 20;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(8):last-child):hover .portfolio-gallery-item:nth-child(4) {
+    transform: translate(-50%, -50%) translateX(-40px) rotate(-2deg) scale(0.95);
+    z-index: 23;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(8):last-child):hover .portfolio-gallery-item:nth-child(5) {
+    transform: translate(-50%, -50%) translateX(40px) rotate(2deg) scale(0.95);
+    z-index: 23;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(8):last-child):hover .portfolio-gallery-item:nth-child(6) {
+    transform: translate(-50%, -50%) translateX(120px) rotate(6deg) scale(0.95);
+    z-index: 20;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(8):last-child):hover .portfolio-gallery-item:nth-child(7) {
+    transform: translate(-50%, -50%) translateX(200px) rotate(9deg) scale(0.95);
+    z-index: 17;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(8):last-child):hover .portfolio-gallery-item:nth-child(8) {
+    transform: translate(-50%, -50%) translateX(280px) rotate(12deg) scale(0.95);
+    z-index: 15;
+}
+
+/* Individual item hover - enlarge in place based on gallery size */
+/* 2-item gallery hover */
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(2):last-child):hover .portfolio-gallery-item:nth-child(1):hover {
+    transform: translate(-50%, -50%) translateX(-80px) rotate(-5deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(2):last-child):hover .portfolio-gallery-item:nth-child(2):hover {
+    transform: translate(-50%, -50%) translateX(80px) rotate(5deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+
+/* 3-item gallery hover */
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(3):last-child):hover .portfolio-gallery-item:nth-child(1):hover {
+    transform: translate(-50%, -50%) translateX(-140px) rotate(-8deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(3):last-child):hover .portfolio-gallery-item:nth-child(2):hover {
+    transform: translate(-50%, -50%) translateX(0px) rotate(0deg) scale(1.15) !important;
+    z-index: 100 !important;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(3):last-child):hover .portfolio-gallery-item:nth-child(3):hover {
+    transform: translate(-50%, -50%) translateX(140px) rotate(8deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+
+/* 4-item gallery hover */
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(4):last-child):hover .portfolio-gallery-item:nth-child(1):hover {
+    transform: translate(-50%, -50%) translateX(-180px) rotate(-8deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(4):last-child):hover .portfolio-gallery-item:nth-child(2):hover {
+    transform: translate(-50%, -50%) translateX(-60px) rotate(-3deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(4):last-child):hover .portfolio-gallery-item:nth-child(3):hover {
+    transform: translate(-50%, -50%) translateX(60px) rotate(3deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(4):last-child):hover .portfolio-gallery-item:nth-child(4):hover {
+    transform: translate(-50%, -50%) translateX(180px) rotate(8deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+
+/* 5-item gallery hover */
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(5):last-child):hover .portfolio-gallery-item:nth-child(1):hover {
+    transform: translate(-50%, -50%) translateX(-220px) rotate(-10deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(5):last-child):hover .portfolio-gallery-item:nth-child(2):hover {
+    transform: translate(-50%, -50%) translateX(-110px) rotate(-5deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(5):last-child):hover .portfolio-gallery-item:nth-child(3):hover {
+    transform: translate(-50%, -50%) translateX(0px) rotate(0deg) scale(1.15) !important;
+    z-index: 100 !important;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(5):last-child):hover .portfolio-gallery-item:nth-child(4):hover {
+    transform: translate(-50%, -50%) translateX(110px) rotate(5deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(5):last-child):hover .portfolio-gallery-item:nth-child(5):hover {
+    transform: translate(-50%, -50%) translateX(220px) rotate(10deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+
+/* 6-item gallery hover */
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(6):last-child):hover .portfolio-gallery-item:nth-child(1):hover {
+    transform: translate(-50%, -50%) translateX(-250px) rotate(-10deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(6):last-child):hover .portfolio-gallery-item:nth-child(2):hover {
+    transform: translate(-50%, -50%) translateX(-150px) rotate(-6deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(6):last-child):hover .portfolio-gallery-item:nth-child(3):hover {
+    transform: translate(-50%, -50%) translateX(-50px) rotate(-2deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(6):last-child):hover .portfolio-gallery-item:nth-child(4):hover {
+    transform: translate(-50%, -50%) translateX(50px) rotate(2deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(6):last-child):hover .portfolio-gallery-item:nth-child(5):hover {
+    transform: translate(-50%, -50%) translateX(150px) rotate(6deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(6):last-child):hover .portfolio-gallery-item:nth-child(6):hover {
+    transform: translate(-50%, -50%) translateX(250px) rotate(10deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+
+/* 7-item gallery hover */
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(7):last-child):hover .portfolio-gallery-item:nth-child(1):hover {
+    transform: translate(-50%, -50%) translateX(-270px) rotate(-12deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(7):last-child):hover .portfolio-gallery-item:nth-child(2):hover {
+    transform: translate(-50%, -50%) translateX(-180px) rotate(-8deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(7):last-child):hover .portfolio-gallery-item:nth-child(3):hover {
+    transform: translate(-50%, -50%) translateX(-90px) rotate(-4deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(7):last-child):hover .portfolio-gallery-item:nth-child(4):hover {
+    transform: translate(-50%, -50%) translateX(0px) rotate(0deg) scale(1.15) !important;
+    z-index: 100 !important;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(7):last-child):hover .portfolio-gallery-item:nth-child(5):hover {
+    transform: translate(-50%, -50%) translateX(90px) rotate(4deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(7):last-child):hover .portfolio-gallery-item:nth-child(6):hover {
+    transform: translate(-50%, -50%) translateX(180px) rotate(8deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(7):last-child):hover .portfolio-gallery-item:nth-child(7):hover {
+    transform: translate(-50%, -50%) translateX(270px) rotate(12deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+
+/* 8-item gallery hover */
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(8):last-child):hover .portfolio-gallery-item:nth-child(1):hover {
+    transform: translate(-50%, -50%) translateX(-280px) rotate(-12deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(8):last-child):hover .portfolio-gallery-item:nth-child(2):hover {
+    transform: translate(-50%, -50%) translateX(-200px) rotate(-9deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(8):last-child):hover .portfolio-gallery-item:nth-child(3):hover {
+    transform: translate(-50%, -50%) translateX(-120px) rotate(-6deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(8):last-child):hover .portfolio-gallery-item:nth-child(4):hover {
+    transform: translate(-50%, -50%) translateX(-40px) rotate(-2deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(8):last-child):hover .portfolio-gallery-item:nth-child(5):hover {
+    transform: translate(-50%, -50%) translateX(40px) rotate(2deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(8):last-child):hover .portfolio-gallery-item:nth-child(6):hover {
+    transform: translate(-50%, -50%) translateX(120px) rotate(6deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(8):last-child):hover .portfolio-gallery-item:nth-child(7):hover {
+    transform: translate(-50%, -50%) translateX(200px) rotate(9deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.portfolio-gallery:has(.portfolio-gallery-item:nth-child(8):last-child):hover .portfolio-gallery-item:nth-child(8):hover {
+    transform: translate(-50%, -50%) translateX(280px) rotate(12deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+
+/* No glow or border on hover for Design galleries (transparent PNGs) */
+.portfolio-gallery:hover .portfolio-gallery-item:hover {
+    box-shadow: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+}
+
+.portfolio-gallery-item:hover img,
+.portfolio-gallery-item:hover .portfolio-gallery-video {
+    transform: none;
+}
+
+/* Mobile and touch-friendly behavior for portfolio galleries */
+@media (max-width: 768px) {
+    .portfolio-gallery {
+        height: 200px;
+    }
+
+    .portfolio-gallery-item {
+        min-height: 150px;
+        cursor: pointer;
+        pointer-events: none; /* Disable individual item clicks on mobile */
+        touch-action: none; /* Disable touch gestures on mobile */
+        transition: none !important; /* Disable all transitions on mobile */
+        animation: none !important; /* Disable all animations on mobile */
+    }
+
+    /* Disable ALL hover effects on mobile to prevent horizontal accordion */
+    .portfolio-gallery:hover .portfolio-gallery-item {
+        transform: none !important;
+    }
+
+    .portfolio-gallery:hover::before {
+        opacity: 0 !important;
+    }
+
+    /* Disable ALL hover effects on mobile - comprehensive */
+    .portfolio-gallery:hover .portfolio-gallery-item:hover {
+        transform: none !important;
+        background: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Disable ALL individual item hover effects on mobile */
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(2):last-child):hover .portfolio-gallery-item:nth-child(1):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(2):last-child):hover .portfolio-gallery-item:nth-child(2):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(3):last-child):hover .portfolio-gallery-item:nth-child(1):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(3):last-child):hover .portfolio-gallery-item:nth-child(2):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(3):last-child):hover .portfolio-gallery-item:nth-child(3):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(4):last-child):hover .portfolio-gallery-item:nth-child(1):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(4):last-child):hover .portfolio-gallery-item:nth-child(2):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(4):last-child):hover .portfolio-gallery-item:nth-child(3):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(4):last-child):hover .portfolio-gallery-item:nth-child(4):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(5):last-child):hover .portfolio-gallery-item:nth-child(1):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(5):last-child):hover .portfolio-gallery-item:nth-child(2):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(5):last-child):hover .portfolio-gallery-item:nth-child(3):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(5):last-child):hover .portfolio-gallery-item:nth-child(4):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(5):last-child):hover .portfolio-gallery-item:nth-child(5):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(6):last-child):hover .portfolio-gallery-item:nth-child(1):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(6):last-child):hover .portfolio-gallery-item:nth-child(2):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(6):last-child):hover .portfolio-gallery-item:nth-child(3):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(6):last-child):hover .portfolio-gallery-item:nth-child(4):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(6):last-child):hover .portfolio-gallery-item:nth-child(5):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(6):last-child):hover .portfolio-gallery-item:nth-child(6):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(7):last-child):hover .portfolio-gallery-item:nth-child(1):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(7):last-child):hover .portfolio-gallery-item:nth-child(2):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(7):last-child):hover .portfolio-gallery-item:nth-child(3):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(7):last-child):hover .portfolio-gallery-item:nth-child(4):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(7):last-child):hover .portfolio-gallery-item:nth-child(5):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(7):last-child):hover .portfolio-gallery-item:nth-child(6):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(7):last-child):hover .portfolio-gallery-item:nth-child(7):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(8):last-child):hover .portfolio-gallery-item:nth-child(1):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(8):last-child):hover .portfolio-gallery-item:nth-child(2):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(8):last-child):hover .portfolio-gallery-item:nth-child(3):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(8):last-child):hover .portfolio-gallery-item:nth-child(4):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(8):last-child):hover .portfolio-gallery-item:nth-child(5):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(8):last-child):hover .portfolio-gallery-item:nth-child(6):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(8):last-child):hover .portfolio-gallery-item:nth-child(7):hover,
+    .portfolio-gallery:has(.portfolio-gallery-item:nth-child(8):last-child):hover .portfolio-gallery-item:nth-child(8):hover {
+        transform: none !important;
+        background: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Disable scroll-active effects on mobile */
+    .portfolio-gallery.scroll-active .portfolio-gallery-item {
+        transform: none !important;
+    }
+
+    /* On mobile, show all items fanned out by default for better interaction */
+    .portfolio-gallery.mobile-active .portfolio-gallery-item:nth-child(1) {
+        transform: translate(-50%, -50%) translateX(-100px) rotate(-8deg) scale(0.9) !important;
+        z-index: 7;
+        transition: none !important;
+        animation: none !important;
+    }
+    .portfolio-gallery.mobile-active .portfolio-gallery-item:nth-child(2) {
+        transform: translate(-50%, -50%) translateX(-60px) rotate(-5deg) scale(0.9) !important;
+        z-index: 6;
+        transition: none !important;
+        animation: none !important;
+    }
+    .portfolio-gallery.mobile-active .portfolio-gallery-item:nth-child(3) {
+        transform: translate(-50%, -50%) translateX(-30px) rotate(-2deg) scale(0.9) !important;
+        z-index: 5;
+        transition: none !important;
+        animation: none !important;
+    }
+    .portfolio-gallery.mobile-active .portfolio-gallery-item:nth-child(4) {
+        transform: translate(-50%, -50%) translateX(0px) rotate(0deg) scale(1) !important;
+        z-index: 8;
+        transition: none !important;
+        animation: none !important;
+    }
+    .portfolio-gallery.mobile-active .portfolio-gallery-item:nth-child(5) {
+        transform: translate(-50%, -50%) translateX(30px) rotate(2deg) scale(0.9) !important;
+        z-index: 5;
+        transition: none !important;
+        animation: none !important;
+    }
+    .portfolio-gallery.mobile-active .portfolio-gallery-item:nth-child(6) {
+        transform: translate(-50%, -50%) translateX(60px) rotate(5deg) scale(0.9) !important;
+        z-index: 6;
+        transition: none !important;
+        animation: none !important;
+    }
+    .portfolio-gallery.mobile-active .portfolio-gallery-item:nth-child(7) {
+        transform: translate(-50%, -50%) translateX(100px) rotate(8deg) scale(0.9) !important;
+        z-index: 7;
+        transition: none !important;
+        animation: none !important;
+    }
+    .portfolio-gallery.mobile-active .portfolio-gallery-item:nth-child(8) {
+        transform: translate(-50%, -50%) translateX(120px) rotate(10deg) scale(0.9) !important;
+        z-index: 7;
+        transition: none !important;
+        animation: none !important;
+    }
+
+    /* Individual item selection on mobile */
+    .portfolio-gallery.mobile-active .portfolio-gallery-item.selected {
+        transform: translate(-50%, -50%) translateX(0px) rotate(0deg) scale(1.1) !important;
+        z-index: 100;
+    }
+}
+
+/* Scroll navigation states for portfolio galleries */
+.portfolio-gallery.scroll-active .portfolio-gallery-item:nth-child(1) {
+    transform: translate(-50%, -50%) translateX(-200px) rotate(-8deg) scale(0.95);
+    z-index: 20;
+}
+.portfolio-gallery.scroll-active .portfolio-gallery-item:nth-child(2) {
+    transform: translate(-50%, -50%) translateX(-120px) rotate(-5deg) scale(0.95);
+    z-index: 20;
+}
+.portfolio-gallery.scroll-active .portfolio-gallery-item:nth-child(3) {
+    transform: translate(-50%, -50%) translateX(-60px) rotate(-2deg) scale(0.95);
+    z-index: 20;
+}
+.portfolio-gallery.scroll-active .portfolio-gallery-item:nth-child(4) {
+    transform: translate(-50%, -50%) translateX(0px) rotate(0deg) scale(1);
+    z-index: 20;
+}
+.portfolio-gallery.scroll-active .portfolio-gallery-item:nth-child(5) {
+    transform: translate(-50%, -50%) translateX(60px) rotate(2deg) scale(0.95);
+    z-index: 20;
+}
+.portfolio-gallery.scroll-active .portfolio-gallery-item:nth-child(6) {
+    transform: translate(-50%, -50%) translateX(120px) rotate(5deg) scale(0.95);
+    z-index: 20;
+}
+.portfolio-gallery.scroll-active .portfolio-gallery-item:nth-child(7) {
+    transform: translate(-50%, -50%) translateX(200px) rotate(8deg) scale(0.95);
+    z-index: 20;
+}
+.portfolio-gallery.scroll-active .portfolio-gallery-item:nth-child(8) {
+    transform: translate(-50%, -50%) translateX(240px) rotate(10deg) scale(0.95);
+    z-index: 20;
+}

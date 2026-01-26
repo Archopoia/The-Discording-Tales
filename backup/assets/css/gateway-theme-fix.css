@@ -1,0 +1,213 @@
+
+/* Gateway Theme Layout Fixes */
+
+/* Ensure proper site container */
+.site {
+    max-width: 100%;
+    margin: 0;
+}
+
+/* Header background */
+.header-bg {
+    position: relative;
+    width: 100%;
+    min-height: 300px;
+}
+
+/* Site branding centering */
+.site-branding {
+    text-align: center;
+    padding: 2em 1em;
+}
+
+.site-title {
+    margin: 0.5em 0;
+    font-size: 2.5em;
+}
+
+.site-description {
+    margin: 0.5em 0;
+}
+
+/* Navigation tabs styling */
+.main-navigation {
+    width: 100%;
+    background-color: #5c1d1d;
+}
+
+.menu-main-tabs-container {
+    display: block;
+    text-align: center;
+}
+
+.main-navigation .menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.main-navigation .menu li {
+    margin: 0;
+    padding: 0;
+}
+
+.main-navigation .menu a {
+    display: block;
+    padding: 1em 1.5em;
+    color: #A3A3A3;
+    text-decoration: none;
+}
+
+.main-navigation .menu .current-menu-item > a,
+.main-navigation .menu .current_page_item > a {
+    color: #A0FDDA;
+}
+
+/* Content area */
+.site-content {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.content-area {
+    width: 100%;
+    max-width: 100%;
+}
+
+.entry-content {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Image sizing */
+.entry-content img,
+.wp-block-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Center aligned content */
+.has-text-align-center {
+    text-align: center !important;
+}
+
+/* Column layouts */
+.wp-block-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+}
+
+@media (min-width: 782px) {
+    .wp-block-columns {
+        flex-wrap: nowrap;
+    }
+}
+
+.wp-block-column {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Slideshow container - proper sizing and overflow */
+.wp-block-jetpack-slideshow_container.swiper-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+    min-height: 400px;
+}
+
+/* Ensure slideshow block has proper width */
+.wp-block-jetpack-slideshow {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Slideshow wrapper - let Swiper control this */
+.wp-block-jetpack-slideshow_swiper-wrapper.swiper-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+/* Slideshow slides - proper sizing */
+.wp-block-jetpack-slideshow_slide.swiper-slide {
+    width: 100%;
+    flex-shrink: 0;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wp-block-jetpack-slideshow_slide figure {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Slideshow images - full width and proper sizing */
+.wp-block-jetpack-slideshow_slide img,
+.wp-block-jetpack-slideshow img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
+    object-fit: contain;
+}
+
+/* Show first slide before Swiper initializes */
+.wp-block-jetpack-slideshow_container.swiper-container:not(.swiper-initialized) .wp-block-jetpack-slideshow_slide {
+    display: none;
+}
+
+.wp-block-jetpack-slideshow_container.swiper-container:not(.swiper-initialized) .wp-block-jetpack-slideshow_slide:first-child {
+    display: flex;
+}
+
+/* Ensure proper container height based on content */
+.wp-block-jetpack-slideshow_container.swiper-container.swiper-initialized {
+    height: auto;
+}
+
+/* Navigation buttons styling */
+.wp-block-jetpack-slideshow_button-prev,
+.wp-block-jetpack-slideshow_button-next {
+    z-index: 10;
+    cursor: pointer;
+}
+
+.wp-block-jetpack-slideshow_button-pause {
+    z-index: 10;
+    cursor: pointer;
+}
+
+/* Pagination styling */
+.wp-block-jetpack-slideshow_pagination {
+    z-index: 10;
+}
+
+/* Ensure proper spacing */
+.wp-block-group {
+    margin: 1.5em 0;
+}
+
+/* Fix for wide/full width blocks */
+.alignwide {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.alignfull {
+    max-width: 100%;
+    width: 100%;
+}
