@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { CharacterSheetManager } from '@/game/character/CharacterSheetManager';
-import { Attribute, getAttributeName } from '@/game/character/data/AttributeData';
+import { getAttributeName } from '@/game/character/data/AttributeData';
 import { getAptitudeAttributes } from '@/game/character/data/AptitudeData';
 import { Competence, getCompetenceName, getCompetenceAction } from '@/game/character/data/CompetenceData';
 import { getActionLinkedAttribute, getActionAptitude } from '@/game/character/data/ActionData';
@@ -32,19 +32,6 @@ export interface SimEvent {
 const POOL_ATTRIBUTE_POINTS = 18;
 const MIN_REVEAL = 3;
 const MAX_REVEAL = 5;
-
-const REVEAL_OPTIONS: Competence[] = [
-  Competence.GRIMPE,
-  Competence.LUTTE,
-  Competence.VISION,
-  Competence.NEGOCIATION,
-  Competence.INVESTIGATION,
-  Competence.FLUIDITE,
-  Competence.ARTISANAT,
-  Competence.COMMANDEMENT,
-  Competence.ESQUIVE,
-  Competence.DEBROUILLARDISE,
-];
 
 const CHALLENGES: { description: string; suggested?: Competence; nivEpreuve?: number }[] = [
   { description: 'Escalader le mur', suggested: Competence.GRIMPE, nivEpreuve: 2 },
@@ -76,10 +63,17 @@ function getRollParams(
   };
 }
 
+export type StepActionPayload =
+  | { step: 'attributes' | 'reveal'; label: string; onClick: () => void; disabled: boolean }
+  | null;
+
 interface SimulationEventLogProps {
   manager: CharacterSheetManager;
   updateSheet: () => void;
   onHighlight?: (id: string | null, tooltip?: string) => void;
+  onStepAction?: (action: StepActionPayload) => void;
+  /** Pass when in creation so step-action disabled updates when user edits on sheet */
+  creationStateDeps?: { attrSum: number; revealedCount: number };
 }
 
 export type EventColumn = 'top' | 'competences' | 'progression' | 'souffrance';
@@ -138,18 +132,19 @@ function eventStyle(type: SimEventType): string {
   }
 }
 
+const CREATE_ATTR_TOOLTIP = "Répartissez jusqu'à 18 points entre les 8 attributs (chaque case = +1).";
+const CREATE_REVEAL_TOOLTIP = "Choisissez de 3 à 5 compétences à révéler en cliquant sur « Révéler … ? » sur la feuille.";
+
 export default function SimulationEventLog({
   manager,
   updateSheet,
   onHighlight,
+  onStepAction,
+  creationStateDeps,
 }: SimulationEventLogProps) {
   const [events, setEvents] = useState<SimEvent[]>([]);
   const [mode, setMode] = useState<'idle' | 'creating' | 'running'>('idle');
   const [createStep, setCreateStep] = useState<'attributes' | 'reveal'>('attributes');
-  const [attrPoints, setAttrPoints] = useState<Record<Attribute, number>>(() =>
-    Object.values(Attribute).reduce((a, k) => ({ ...a, [k]: 0 }), {} as Record<Attribute, number>)
-  );
-  const [revealSelected, setRevealSelected] = useState<Set<Competence>>(new Set());
   const [awaitingSkillChoice, setAwaitingSkillChoice] = useState(false);
   const [runningChallengeIdx, setRunningChallengeIdx] = useState(0);
   const topScrollRef = useRef<HTMLDivElement | null>(null);
@@ -176,6 +171,62 @@ export default function SimulationEventLog({
     return () => cancelAnimationFrame(id);
   }, [events]);
 
+  const confirmRevealAndStart = () => {
+    const revealed = Object.values(Competence).filter((c) => manager.getState().competences[c]?.isRevealed);
+    if (revealed.length < MIN_REVEAL || revealed.length > MAX_REVEAL) return;
+    const names = revealed.map(getCompetenceName).join(', ');
+    push('info', `Compétences révélées : ${names}. Seules ces compétences peuvent gagner des marques.`);
+    saveCachedCharacter(manager.getState());
+    setMode('running');
+    setCreateStep('attributes');
+    setRunningChallengeIdx(0);
+    runChallenge(0);
+    onHighlight?.(null);
+    onStepAction?.(null);
+  };
+
+  const validateAndGoToReveal = () => {
+    push('info', 'Attributs validés.');
+    setCreateStep('reveal');
+    onHighlight?.('create-reveal', CREATE_REVEAL_TOOLTIP);
+    onStepAction?.({
+      step: 'reveal',
+      label: 'Lancer avec ces compétences',
+      onClick: confirmRevealAndStart,
+      disabled: (() => {
+        const n = Object.values(Competence).filter((c) => manager.getState().competences[c]?.isRevealed).length;
+        return n < MIN_REVEAL || n > MAX_REVEAL;
+      })(),
+    });
+  };
+
+  useEffect(() => {
+    if (mode !== 'creating') {
+      onStepAction?.(null);
+      return;
+    }
+    const attrSum = creationStateDeps?.attrSum ?? Object.values(manager.getState().attributes).reduce((s, n) => s + n, 0);
+    const revealedCount = creationStateDeps?.revealedCount ?? Object.values(Competence).filter((c) => manager.getState().competences[c]?.isRevealed).length;
+
+    if (createStep === 'attributes') {
+      onHighlight?.('create-attributes', CREATE_ATTR_TOOLTIP);
+      onStepAction?.({
+        step: 'attributes',
+        label: 'Valider les attributs',
+        onClick: validateAndGoToReveal,
+        disabled: attrSum > POOL_ATTRIBUTE_POINTS,
+      });
+    } else {
+      onHighlight?.('create-reveal', CREATE_REVEAL_TOOLTIP);
+      onStepAction?.({
+        step: 'reveal',
+        label: 'Lancer avec ces compétences',
+        onClick: confirmRevealAndStart,
+        disabled: revealedCount < MIN_REVEAL || revealedCount > MAX_REVEAL,
+      });
+    }
+  }, [mode, createStep, creationStateDeps?.attrSum, creationStateDeps?.revealedCount]);
+
   const startSimulation = () => {
     const cached = loadCachedCharacter();
     if (cached) {
@@ -185,46 +236,13 @@ export default function SimulationEventLog({
       setMode('running');
       setRunningChallengeIdx(0);
       runChallenge(0);
+      onStepAction?.(null);
     } else {
       setMode('creating');
       setCreateStep('attributes');
       setEvents([]);
-      push('info', 'Créez votre personnage : répartissez les points d’attributs, puis révéelez 3 à 5 compétences.');
+      push('info', 'Créez votre personnage : répartissez les points sur la feuille, puis validez dans la zone mise en surbrillance.');
     }
-  };
-
-  const applyCreateAttributes = () => {
-    Object.entries(attrPoints).forEach(([k, v]) => {
-      manager.setAttribute(k as Attribute, v);
-    });
-    updateSheet();
-    push('info', `Attributs définis (${Object.values(attrPoints).join(', ')})`);
-    setCreateStep('reveal');
-    onHighlight?.(null);
-  };
-
-  const toggleReveal = (comp: Competence) => {
-    setRevealSelected((prev) => {
-      const next = new Set(prev);
-      if (next.has(comp)) next.delete(comp);
-      else if (next.size < MAX_REVEAL) next.add(comp);
-      return next;
-    });
-  };
-
-  const finishCreate = () => {
-    if (revealSelected.size < MIN_REVEAL || revealSelected.size > MAX_REVEAL) return;
-    revealSelected.forEach((comp) => manager.revealCompetence(comp));
-    updateSheet();
-    const names = [...revealSelected].map(getCompetenceName).join(', ');
-    push('info', `Compétences révélées : ${names}. Seules ces compétences peuvent gagner des marques.`);
-    saveCachedCharacter(manager.getState());
-    setMode('running');
-    setCreateStep('attributes');
-    setRevealSelected(new Set());
-    setRunningChallengeIdx(0);
-    runChallenge(0);
-    onHighlight?.(null);
   };
 
   const runChallenge = (idx: number) => {
@@ -312,11 +330,10 @@ export default function SimulationEventLog({
     setEvents([]);
     setMode('creating');
     setCreateStep('attributes');
-    setAttrPoints(Object.values(Attribute).reduce((a, k) => ({ ...a, [k]: 0 }), {} as Record<Attribute, number>));
-    setRevealSelected(new Set());
     setAwaitingSkillChoice(false);
     setRunningChallengeIdx(0);
     onHighlight?.(null);
+    onStepAction?.(null);
   };
 
   const isChoosingSkill = mode === 'running' && awaitingSkillChoice;
@@ -350,26 +367,6 @@ export default function SimulationEventLog({
               Démarrer la simulation
             </button>
           )}
-          {mode === 'creating' && createStep === 'attributes' && (
-            <button
-              type="button"
-              onClick={applyCreateAttributes}
-              disabled={Object.values(attrPoints).reduce((s, n) => s + n, 0) > POOL_ATTRIBUTE_POINTS}
-              className="px-3 py-1.5 bg-amber-700 text-text-cream border-2 border-border-dark rounded font-semibold text-sm hover:bg-amber-600 disabled:opacity-50"
-            >
-              Valider les attributs
-            </button>
-          )}
-          {mode === 'creating' && createStep === 'reveal' && (
-            <button
-              type="button"
-              onClick={finishCreate}
-              disabled={revealSelected.size < MIN_REVEAL || revealSelected.size > MAX_REVEAL}
-              className="px-3 py-1.5 bg-amber-700 text-text-cream border-2 border-border-dark rounded font-semibold text-sm hover:bg-amber-600 disabled:opacity-50"
-            >
-              Révéler {revealSelected.size} compétence(s) et lancer
-            </button>
-          )}
           {mode === 'running' && !isChoosingSkill && (
             <button
               type="button"
@@ -389,60 +386,12 @@ export default function SimulationEventLog({
         </div>
       </div>
 
-      {mode === 'creating' && createStep === 'attributes' && (
-        <div className="p-3 border-b border-border-dark bg-black/20">
-          <p className="text-xs text-text-cream mb-2">
-            Répartissez jusqu’à {POOL_ATTRIBUTE_POINTS} points entre les 8 attributs (chaque case = +1).
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {(Object.values(Attribute) as Attribute[]).map((attr) => (
-              <label key={attr} className="flex items-center gap-1 text-xs text-text-cream">
-                <span className="w-16">{getAttributeName(attr)}</span>
-                <input
-                  type="number"
-                  min={0}
-                  max={10}
-                  value={attrPoints[attr]}
-                  onChange={(e) =>
-                    setAttrPoints((prev) => ({
-                      ...prev,
-                      [attr]: Math.max(0, Math.min(10, parseInt(e.target.value, 10) || 0)),
-                    }))
-                  }
-                  className="w-12 bg-parchment-dark border border-border-dark rounded px-1 text-center text-text-dark"
-                />
-              </label>
-            ))}
-          </div>
-          <p className="text-xs text-amber-200/90 mt-1">
-            Total : {Object.values(attrPoints).reduce((s, n) => s + n, 0)} / {POOL_ATTRIBUTE_POINTS}
-          </p>
-        </div>
-      )}
-
-      {mode === 'creating' && createStep === 'reveal' && (
-        <div className="p-3 border-b border-border-dark bg-black/20">
-          <p className="text-xs text-text-cream mb-2">
-            Choisissez de {MIN_REVEAL} à {MAX_REVEAL} compétences à révéler. Seules les compétences révélées pourront gagner des marques.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {REVEAL_OPTIONS.map((comp) => (
-              <button
-                key={comp}
-                type="button"
-                onClick={() => toggleReveal(comp)}
-                className={`px-2 py-1 rounded text-xs border-2 font-semibold transition-colors ${
-                  revealSelected.has(comp)
-                    ? 'bg-amber-700 border-amber-500 text-text-cream'
-                    : 'bg-parchment-dark border-border-dark text-text-dark hover:border-amber-600'
-                }`}
-              >
-                {getCompetenceName(comp)}
-              </button>
-            ))}
-          </div>
-          <p className="text-xs text-amber-200/90 mt-1">
-            Sélectionnées : {revealSelected.size} / {MAX_REVEAL}
+      {mode === 'creating' && (
+        <div className="p-2 border-b border-border-dark bg-amber-950/40">
+          <p className="text-xs text-amber-100">
+            {createStep === 'attributes'
+              ? `Répartissez jusqu'à ${POOL_ATTRIBUTE_POINTS} points dans les attributs sur la feuille, puis validez dans la zone mise en surbrillance.`
+              : `Choisissez de ${MIN_REVEAL} à ${MAX_REVEAL} compétences à révéler sur la feuille, puis lancez.`}
           </p>
         </div>
       )}

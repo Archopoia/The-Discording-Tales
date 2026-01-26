@@ -14,7 +14,7 @@ import DegreeInput from './ui/DegreeInput';
 import ProgressBar from './ui/ProgressBar';
 import ExpandableSection from './ui/ExpandableSection';
 import Tooltip from './ui/Tooltip';
-import SimulationEventLog from './SimulationEventLog';
+import SimulationEventLog, { type StepActionPayload } from './SimulationEventLog';
 
 interface CharacterSheetProps {
   isOpen: boolean;
@@ -63,9 +63,12 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
   const [hoveredRevealCompetence, setHoveredRevealCompetence] = useState<Competence | null>(null);
   const [simHighlightId, setSimHighlightId] = useState<string | null>(null);
   const [simTooltip, setSimTooltip] = useState<string | null>(null);
+  const [stepAction, setStepAction] = useState<StepActionPayload>(null);
   const masteryButtonRefs = useRef<Map<Competence, HTMLButtonElement>>(new Map());
   const overlayRef = useRef<HTMLDivElement>(null);
   const scrollPositionRef = useRef(0);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const attributesSectionRef = useRef<HTMLElement>(null);
 
   // Update dropdown position on scroll/resize and close on outside click
   useEffect(() => {
@@ -182,6 +185,20 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
       overlay.removeEventListener('keydown', handleKeyDown);
     };
   }, [isOpen, onClose]);
+
+  // Tutorial creation: expand all actions when in reveal step
+  useEffect(() => {
+    if (simHighlightId === 'create-reveal') {
+      setExpandedActions(new Set(Object.values(Action)));
+    }
+  }, [simHighlightId]);
+
+  // Tutorial creation: scroll target into view
+  useEffect(() => {
+    if (simHighlightId === 'create-attributes' || simHighlightId === 'create-reveal') {
+      attributesSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, [simHighlightId]);
 
   if (!isOpen) return null;
 
@@ -314,7 +331,38 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
         </div>
 
         {/* Content - Scrollable */}
-        <div className="character-sheet-content flex-1 overflow-y-auto overflow-x-visible p-8 relative z-10" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
+        <div
+          ref={contentRef}
+          className="character-sheet-content flex-1 overflow-y-auto overflow-x-visible p-8 relative z-10"
+          style={{ paddingTop: '2rem', paddingBottom: '2rem', isolation: 'isolate' }}
+        >
+
+          {/* Tutorial: dark overlay at z-100; spotlight section at z-110; floating panel at z-120 so it stays on top */}
+          {(simHighlightId === 'create-attributes' || simHighlightId === 'create-reveal') && (
+            <>
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{ zIndex: 100, background: 'rgba(0,0,0,0.65)' }}
+                aria-hidden
+              />
+              <div
+                className="absolute bottom-6 left-1/2 -translate-x-1/2 min-w-[280px] max-w-[90%] z-[120] rounded-lg border-2 border-amber-500/80 p-4 shadow-xl"
+                style={{ background: 'linear-gradient(180deg, rgba(40,28,18,0.98) 0%, rgba(30,22,14,0.99) 100%)', boxShadow: '0 0 0 1px #ceb68d, 0 8px 24px rgba(0,0,0,0.5)' }}
+              >
+                <p className="text-sm text-amber-100 mb-3 font-medieval">{simTooltip ?? ''}</p>
+                {stepAction && (
+                  <button
+                    type="button"
+                    onClick={stepAction.onClick}
+                    disabled={stepAction.disabled}
+                    className="w-full py-2 px-4 bg-amber-700 hover:bg-amber-600 disabled:opacity-50 disabled:cursor-not-allowed text-text-cream font-semibold border-2 border-border-dark rounded transition-colors"
+                  >
+                    {stepAction.label}
+                  </button>
+                )}
+              </div>
+            </>
+          )}
 
           {/* Simulation event log – above all columns */}
           <SimulationEventLog
@@ -324,10 +372,19 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
               setSimHighlightId(id);
               setSimTooltip(tooltip ?? null);
             }}
+            onStepAction={setStepAction}
+            creationStateDeps={{
+              attrSum: Object.values(state.attributes).reduce((s, n) => s + n, 0),
+              revealedCount: Object.values(Competence).filter((c) => state.competences[c]?.isRevealed).length,
+            }}
           />
 
-          {/* Aptitudes Section - 8 Columns Side by Side */}
-          <section className="mt-8 relative flex gap-4 items-start">
+          {/* Aptitudes Section - 8 Columns Side by Side (tutorial target; z-[110] so it draws above the overlay at z-100) */}
+          <section
+            ref={attributesSectionRef}
+            data-sim-highlight={simHighlightId === 'create-attributes' ? 'create-attributes' : simHighlightId === 'create-reveal' ? 'create-reveal' : undefined}
+            className={`mt-8 relative flex gap-4 items-start transition-all ${simHighlightId === 'create-attributes' || simHighlightId === 'create-reveal' ? 'z-[110] tutorial-spotlight-target' : ''}`}
+          >
             <div className="flex gap-0 flex-1 items-start" style={{ minWidth: 0 }}>
                 {Object.values(Aptitude).map((aptitude) => {
                 const [atb1, atb2, atb3] = getAptitudeAttributes(aptitude);

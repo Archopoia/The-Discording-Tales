@@ -164,5 +164,21 @@
         0 0 40px #e8d5b7;
     }
   }
+
+  /* Tutorial creation spotlight target: glow and ring */
+  @keyframes tutorial-glow {
+    0%, 100% {
+      box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.7), 0 0 20px rgba(251, 191, 36, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 4px rgba(251, 191, 36, 0.9), 0 0 28px rgba(251, 191, 36, 0.6);
+    }
+  }
+
+  .tutorial-spotlight-target {
+    position: relative;
+    animation: tutorial-glow 2s ease-in-out infinite;
+    border-radius: 8px;
+  }
 }
 
