@@ -358,7 +358,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
         </div>
 
         {/* Event log – fixed at top, does not scroll with sheet */}
-        <div className="shrink-0 overflow-hidden border-b border-border-dark relative">
+        <div className="shrink-0 overflow-hidden relative">
           <SimulationEventLog
             manager={manager}
             updateSheet={updateState}
