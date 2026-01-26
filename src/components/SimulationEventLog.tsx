@@ -453,12 +453,13 @@ export default function SimulationEventLog({
         className="p-2 font-mono text-xs space-y-2"
         style={{ background: 'rgba(0,0,0,0.35)', minHeight: '100px' }}
       >
-        {/* Ligne du haut : personnage chargé, Défi, etc. — une entrée par ligne, défilement vertical */}
+        {/* Ligne du haut : personnage chargé, Défi, etc. — une seule ligne, dernier événement uniquement */}
         {(() => {
           const topEvents = events
             .map((ev, i) => ({ ev, i }))
             .filter(({ ev }) => getEventColumn(ev.type) === 'top');
-          if (topEvents.length === 0) return null;
+          const latestOnly = topEvents.length ? [topEvents[topEvents.length - 1]] : [];
+          if (latestOnly.length === 0) return null;
           return (
             <div
               className="rounded border border-border-dark overflow-hidden shrink-0 flex flex-col"
@@ -466,12 +467,12 @@ export default function SimulationEventLog({
             >
               <div
                 ref={topScrollRef}
-                className="max-h-28 overflow-y-auto p-1.5 space-y-1 min-h-0"
+                className="h-7 overflow-hidden flex items-center px-1.5 min-h-0"
               >
-                {topEvents.map(({ ev, i }) => (
-                  <div key={i} className={eventStyle(ev.type)} style={{ whiteSpace: 'pre-line' }}>
-                    <span className="text-gray-500 mr-1.5">#{ev.step ?? i + 1}</span>
-                    {ev.text}
+                {latestOnly.map(({ ev, i }) => (
+                  <div key={i} className={`${eventStyle(ev.type)} flex items-center gap-1.5 min-w-0 w-full`} title={ev.text}>
+                    <span className="text-gray-500 shrink-0">#{ev.step ?? i + 1}</span>
+                    <span className="truncate min-w-0">{ev.text}</span>
                   </div>
                 ))}
               </div>
