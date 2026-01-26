@@ -3,11 +3,13 @@
 import { useState, useRef, useEffect } from 'react';
 import { CharacterSheetManager } from '@/game/character/CharacterSheetManager';
 import { Attribute, getAttributeName } from '@/game/character/data/AttributeData';
+import { getAptitudeAttributes } from '@/game/character/data/AptitudeData';
 import { Competence, getCompetenceName, getCompetenceAction } from '@/game/character/data/CompetenceData';
-import { getActionLinkedAttribute } from '@/game/character/data/ActionData';
-import { Souffrance, getSouffranceName, getResistanceCompetenceName } from '@/game/character/data/SouffranceData';
+import { getActionLinkedAttribute, getActionAptitude } from '@/game/character/data/ActionData';
+import { Souffrance, getSouffranceName, getResistanceCompetenceName, getSouffranceAttribute } from '@/game/character/data/SouffranceData';
 import { loadCachedCharacter, saveCachedCharacter } from '@/lib/simulationStorage';
 import { MARKS_TO_EPROUVER } from '@/game/character/CharacterSheetManager';
+import { rollCompetenceCheck, type CompetenceRollParams } from '@/game/dice/CompetenceRoll';
 
 export type SimEventType =
   | 'challenge'
@@ -44,13 +46,35 @@ const REVEAL_OPTIONS: Competence[] = [
   Competence.DEBROUILLARDISE,
 ];
 
-const CHALLENGES: { description: string; suggested?: Competence }[] = [
-  { description: 'Escalader le mur', suggested: Competence.GRIMPE },
-  { description: 'Convaincre le garde', suggested: Competence.NEGOCIATION },
-  { description: 'Fouiller la pièce', suggested: Competence.INVESTIGATION },
-  { description: 'Esquiver l’attaque', suggested: Competence.ESQUIVE },
-  { description: 'Réparer le mécanisme', suggested: Competence.DEBROUILLARDISE },
+const CHALLENGES: { description: string; suggested?: Competence; nivEpreuve?: number }[] = [
+  { description: 'Escalader le mur', suggested: Competence.GRIMPE, nivEpreuve: 2 },
+  { description: 'Convaincre le garde', suggested: Competence.NEGOCIATION, nivEpreuve: 0 },
+  { description: 'Fouiller la pièce', suggested: Competence.INVESTIGATION, nivEpreuve: 1 },
+  { description: 'Esquiver l’attaque', suggested: Competence.ESQUIVE, nivEpreuve: 0 },
+  { description: 'Réparer le mécanisme', suggested: Competence.DEBROUILLARDISE, nivEpreuve: 1 },
 ];
+
+function getRollParams(
+  manager: CharacterSheetManager,
+  comp: Competence,
+  nivEpreuve: number
+): CompetenceRollParams {
+  const action = getCompetenceAction(comp);
+  const aptitude = getActionAptitude(action);
+  const [atb1] = getAptitudeAttributes(aptitude);
+  const soufLinked = (Object.values(Souffrance) as Souffrance[]).find((s) => getSouffranceAttribute(s) === atb1);
+  const dsNegative = soufLinked != null ? Math.max(0, Math.floor(manager.getSouffrance(soufLinked).degreeCount)) : 0;
+  const state = manager.getState();
+  const compData = state.competences[comp];
+  const masteryDegrees = compData?.masteries?.reduce((s, m) => s + m.degreeCount, 0) ?? 0;
+  return {
+    nivAptitude: manager.getAptitudeLevel(aptitude),
+    compDegrees: manager.getCompetenceDegree(comp),
+    masteryDegrees,
+    dsNegative,
+    nivEpreuve,
+  };
+}
 
 interface SimulationEventLogProps {
   manager: CharacterSheetManager;
@@ -180,14 +204,14 @@ export default function SimulationEventLog({
     setAwaitingSkillChoice(false);
     push('choice', `Compétence utilisée : ${getCompetenceName(comp)}`);
     onHighlight?.(`competence-${comp}`, 'Les marques et Réaliser se mettent à jour ici.');
-    const critFail = Math.random() < 0.15;
-    const marks = critFail ? 5 : 1;
+    const challenge = CHALLENGES[runningChallengeIdx % CHALLENGES.length];
+    const nivEpreuve = challenge?.nivEpreuve ?? 0;
+    const rollParams = getRollParams(manager, comp, nivEpreuve);
+    const rollResult = rollCompetenceCheck(rollParams);
+    const marks = rollResult.criticalFailure ? 5 : rollResult.success || rollResult.criticalSuccess ? 0 : 1;
     for (let i = 0; i < marks; i++) manager.addCompetenceMark(comp);
     updateSheet();
-    push(
-      'resolve',
-      critFail ? `Échec critique → +${marks} Marques ${getCompetenceName(comp)}` : `Échec → +1 Marque ${getCompetenceName(comp)}`
-    );
+    push('resolve', `[${getCompetenceName(comp)}] ${rollResult.summary}`);
     push('xp', `Marques : ${manager.getTotalMarks(comp)}/${MARKS_TO_EPROUVER} pour ${getCompetenceName(comp)}`);
     if (manager.isCompetenceEprouvee(comp)) {
       const action = getCompetenceAction(comp);
