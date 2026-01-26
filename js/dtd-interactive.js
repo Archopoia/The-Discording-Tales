@@ -145,6 +145,10 @@
 
     function setLanguage(lang) {
         state.currentLang = lang;
+        document.documentElement.lang = lang;
+        try {
+            window.dispatchEvent(new CustomEvent('tdt-lang-changed', { detail: lang }));
+        } catch (e) {}
 
         // Update button states
         elements.langButtons.forEach(btn => {

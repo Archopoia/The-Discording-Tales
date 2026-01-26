@@ -11,7 +11,8 @@ interface ProgressBarProps {
   level?: number;
   isFull?: boolean; // When marks reach 100% (100 marks for video game), show pulsing/shining effect
   onClick?: () => void; // Click handler for realization
-  showRealizeLabel?: boolean; // Show "RÉALISER" instead of level name when full
+  showRealizeLabel?: boolean; // Show realizeLabel (or "RÉALISER") instead of level name when full
+  realizeLabel?: string; // Translated "RÉALISER" / "REALIZE" when using i18n
 }
 
 /**
@@ -26,7 +27,8 @@ export default function ProgressBar({
   label,
   isFull = false, // When marks reach 100% (100 marks for video game), show pulsing/shining effect
   onClick,
-  showRealizeLabel = false, // Show "RÉALISER" instead of level name when full
+  showRealizeLabel = false,
+  realizeLabel = 'RÉALISER',
 }: ProgressBarProps) {
   const [isRealizing, setIsRealizing] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -41,7 +43,7 @@ export default function ProgressBar({
   // On hover (if not at 100%), show percentage instead of level name
   const displayLabel = isHovered && !isFull
     ? `${percentageRounded}%`
-    : (showRealizeLabel && isFull ? 'RÉALISER' : (label || ''));
+    : (showRealizeLabel && isFull ? realizeLabel : (label || ''));
   const isClickable = isFull && onClick;
   
   // Reset realizing state when value changes (after realization clears marks)

@@ -3,13 +3,24 @@
 import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { CharacterSheetManager, MARKS_TO_EPROUVER } from '@/game/character/CharacterSheetManager';
-import { Attribute, getAttributeName, getAttributeAbbreviation } from '@/game/character/data/AttributeData';
-import { Aptitude, getAptitudeName, getAptitudeAttributes } from '@/game/character/data/AptitudeData';
-import { Action, getActionName, getActionAptitude, getActionLinkedAttribute } from '@/game/character/data/ActionData';
-import { Competence, getCompetenceName, getCompetenceAction } from '@/game/character/data/CompetenceData';
-import { Souffrance, getSouffranceAttribute, getResistanceCompetenceName } from '@/game/character/data/SouffranceData';
+import { Attribute } from '@/game/character/data/AttributeData';
+import { Aptitude, getAptitudeAttributes } from '@/game/character/data/AptitudeData';
+import { Action, getActionAptitude, getActionLinkedAttribute } from '@/game/character/data/ActionData';
+import { Competence, getCompetenceAction } from '@/game/character/data/CompetenceData';
+import { Souffrance, getSouffranceAttribute } from '@/game/character/data/SouffranceData';
 import { getMasteries } from '@/game/character/data/MasteryRegistry';
-import { getLevelName } from '@/lib/utils';
+import {
+  useCharacterSheetLang,
+  t,
+  tParam,
+  getAttributeName,
+  getAttributeAbbreviation,
+  getAptitudeName,
+  getActionName,
+  getCompetenceName,
+  getResistanceCompetenceName,
+  getLevelName,
+} from '@/lib/characterSheetI18n';
 import DegreeInput from './ui/DegreeInput';
 import ProgressBar from './ui/ProgressBar';
 import ExpandableSection from './ui/ExpandableSection';
@@ -45,6 +56,7 @@ function useCharacterSheet(manager: CharacterSheetManager) {
 }
 
 export default function CharacterSheet({ isOpen, onClose, manager: externalManager, godMode = false }: CharacterSheetProps) {
+  const lang = useCharacterSheetLang();
   const [internalManager] = useState(() => new CharacterSheetManager());
   const manager = externalManager || internalManager;
   const { state, updateState } = useCharacterSheet(manager);
@@ -354,7 +366,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
             <h2 id="character-sheet-title" className="font-medieval text-3xl font-bold text-text-cream relative z-10 tracking-wide" style={{
               textShadow: '0 1px black, 0 2px rgb(19, 19, 19), 0 3px rgb(30, 30, 30), 0 4px rgb(50, 50, 50), 0 5px rgb(70, 70, 70), 0 6px #555'
             }}>
-              Feuille de Personnage
+              {t('sheetTitle', lang)}
             </h2>
             {godMode && (
               <span className="font-medieval text-sm font-bold text-yellow-400 relative z-10 px-2 py-1 border border-yellow-400 rounded animate-pulse" style={{
@@ -372,7 +384,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
             onMouseEnter={(e) => { e.currentTarget.style.boxShadow = FERMER_STYLE.boxShadowHover; }}
             onMouseLeave={(e) => { e.currentTarget.style.boxShadow = FERMER_STYLE.boxShadow; }}
           >
-            Fermer
+            {t('close', lang)}
           </button>
         </div>
 
@@ -385,6 +397,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
           >
             <div className="relative">
               <SimulationEventLog
+                lang={lang}
                 manager={manager}
                 updateSheet={updateState}
                 onHighlight={(id, tooltip) => {
@@ -447,17 +460,17 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                 <p className="text-sm mb-3 font-medieval" style={{ color: '#eefaf9' }}>{simTooltip ?? ''}</p>
                 {simHighlightId === 'create-attributes' && (
                   <p className="text-sm mb-2 font-medieval font-semibold" style={{ color: '#e8f8f7' }}>
-                    Total : {attrSum} / {POOL_ATTRIBUTE_POINTS} points
+                    {tParam('totalPoints', lang, attrSum, POOL_ATTRIBUTE_POINTS)}
                   </p>
                 )}
                 {simHighlightId === 'create-reveal' && (
                   <p className="text-sm mb-2 font-medieval font-semibold" style={{ color: '#e8f8f7' }}>
-                    Compétences révélées : {revealedCount} / {MAX_REVEAL} (min {MIN_REVEAL})
+                    {tParam('competencesRevealed', lang, revealedCount, MAX_REVEAL, MIN_REVEAL)}
                   </p>
                 )}
                 {simHighlightId === 'create-dice' && (
                   <p className="text-sm mb-2 font-medieval font-semibold" style={{ color: '#e8f8f7' }}>
-                    Dés répartis : {diceSum} / {POOL_DICE}
+                    {tParam('diceDistributed', lang, diceSum, POOL_DICE)}
                   </p>
                 )}
                 {stepAction && (
@@ -483,7 +496,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                       className="w-full px-4 py-2 font-medieval text-sm border-2 border-border-dark rounded transition-all duration-300 hover:bg-parchment-dark/80 text-text-cream"
                       style={{ background: 'transparent', boxShadow: '0 1px 3px rgba(0,0,0,0.2)' }}
                     >
-                      Réinitialiser cette étape
+                      {t('resetThisStep', lang)}
                     </button>
                   </div>
                 )}
@@ -629,7 +642,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                         >
                           <div className="flex justify-between items-center">
                             <div className="font-medieval text-xs font-bold text-red-theme uppercase tracking-wide">
-                              {getAptitudeName(aptitude)}
+                              {getAptitudeName(aptitude, lang)}
                             </div>
                             <div className="font-medieval text-2xl font-bold text-text-dark" style={{ textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)' }}>
                               {level >= 0 ? '+' : ''}{level}
@@ -653,7 +666,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                         />
                         {/* Attribute name in full caps */}
                         <label className="font-medieval text-xs font-bold text-red-theme uppercase tracking-wide">
-                          {getAttributeName(atb1).toUpperCase()}
+                          {getAttributeName(atb1, lang).toUpperCase()}
                         </label>
                       </div>
 
@@ -667,7 +680,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                         >
                           {hoveredAttribute?.aptitude === aptitude && hoveredAttribute?.attributeIndex === 0
                             ? `[6/10] ${Math.floor(state.attributes[atb1] * 6 / 10)}`
-                            : getAttributeAbbreviation(atb1).toUpperCase()}
+                            : getAttributeAbbreviation(atb1, lang).toUpperCase()}
                         </div>
                         
                         {/* Attribute 2 - Aaa format (title case) */}
@@ -678,7 +691,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                         >
                           {hoveredAttribute?.aptitude === aptitude && hoveredAttribute?.attributeIndex === 1
                             ? `[3/10] ${Math.floor(state.attributes[atb2] * 3 / 10)}`
-                            : getAttributeAbbreviation(atb2).charAt(0).toUpperCase() + getAttributeAbbreviation(atb2).slice(1).toLowerCase()}
+                            : getAttributeAbbreviation(atb2, lang).charAt(0).toUpperCase() + getAttributeAbbreviation(atb2, lang).slice(1).toLowerCase()}
                         </div>
                         
                         {/* Attribute 3 - aaa format (lowercase) */}
@@ -689,7 +702,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                         >
                           {hoveredAttribute?.aptitude === aptitude && hoveredAttribute?.attributeIndex === 2
                             ? `[1/10] ${Math.floor(state.attributes[atb3] * 1 / 10)}`
-                            : getAttributeAbbreviation(atb3).toLowerCase()}
+                            : getAttributeAbbreviation(atb3, lang).toLowerCase()}
                         </div>
                       </div>
                     </div>
@@ -736,7 +749,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                                   disabled={!godMode && simHighlightId !== 'create-dice'}
                                   className={simHighlightId === 'create-dice' ? 'tutorial-input-highlight' : ''}
                                 />
-                                <span>{getResistanceCompetenceName(souf)}</span>
+                                <span>{getResistanceCompetenceName(souf, lang)}</span>
                               </div>
                               <div className={`grid grid-cols-[1rem_1fr] items-center gap-1 ${isEprouvee ? 'overflow-visible' : ''}`} style={isEprouvee ? { overflow: 'visible' } : {}}>
                                 <span className="text-xs font-medieval font-semibold text-text-cream whitespace-nowrap">N{resistanceLevel}</span>
@@ -744,10 +757,11 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                                   value={totalMarks} 
                                   max={Math.max(1, requiredResistanceMarks)} 
                                   height="sm" 
-                                  label={getLevelName(resistanceLevel)} 
+                                  label={getLevelName(resistanceLevel, lang)} 
                                   level={resistanceLevel}
                                   isFull={isEprouvee}
                                   showRealizeLabel={isEprouvee}
+                                  realizeLabel={t('realize', lang)}
                                   onClick={() => {
                                     if (isEprouvee) {
                                       manager.realizeSouffrance(souf);
@@ -815,7 +829,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                                 onToggle={() => toggleAction(action)}
                                 title={
                                   <div className="flex items-center w-full" style={{ gap: 0, margin: 0, padding: 0 }}>
-                                    <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', marginRight: 'auto' }}>{getActionName(action).toUpperCase()}</span>
+                                    <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', marginRight: 'auto' }}>{getActionName(action, lang).toUpperCase()}</span>
                                     <div style={{ position: 'relative', flexShrink: 0, marginLeft: 0 }}>
                                       {/* DegreeInput showing total compétence levels - always in layout to maintain height */}
                                       <div
@@ -851,7 +865,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                                           transform: 'translateY(-50%)',
                                         }}
                                       >
-                                        [{getAttributeAbbreviation(linkedAttr)}]
+                                        [{getAttributeAbbreviation(linkedAttr, lang)}]
                                       </span>
                                     </div>
                                   </div>
@@ -881,7 +895,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                                           revealCompetence(comp);
                                         }}
                                         disabled={simHighlightId === 'create-reveal' && revealedCount >= MAX_REVEAL}
-                                        title={simHighlightId === 'create-reveal' && revealedCount >= MAX_REVEAL ? `Maximum ${MAX_REVEAL} compétences révélées` : undefined}
+                                        title={simHighlightId === 'create-reveal' && revealedCount >= MAX_REVEAL ? tParam('maxCompetencesRevealed', lang, MAX_REVEAL) : undefined}
                                         onMouseEnter={() => setHoveredRevealCompetence(comp)}
                                         onMouseLeave={() => setHoveredRevealCompetence(null)}
                                         className="font-medieval text-xs font-semibold transition-all duration-300 cursor-pointer relative bg-transparent border-none p-0 m-0 w-full flex items-center disabled:opacity-60 disabled:cursor-not-allowed"
@@ -898,7 +912,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                                           marginLeft: 'auto',
                                           marginRight: hoveredRevealCompetence === comp ? 'auto' : '0',
                                         }}>
-                                          {hoveredRevealCompetence === comp ? `Révéler ${getCompetenceName(comp)} ?` : getCompetenceName(comp)}
+                                          {hoveredRevealCompetence === comp ? tParam('revealQuestion', lang, getCompetenceName(comp, lang)) : getCompetenceName(comp, lang)}
                                         </span>
                                       </button>
                                     ) : (
@@ -930,7 +944,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                                                     className={simHighlightId === 'create-dice' && compData.isRevealed ? 'tutorial-input-highlight' : ''}
                                                   />
                                                 </div>
-                                                <span className="text-xs">{getCompetenceName(comp)}</span>
+                                                <span className="text-xs">{getCompetenceName(comp, lang)}</span>
                                               </div>
                                             }
                                             headerFooter={
@@ -940,10 +954,11 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                                                   value={totalMarks} 
                                                   max={Math.max(1, MARKS_TO_EPROUVER - (compData.eternalMarks ?? 0))} 
                                                   height="sm" 
-                                                  label={getLevelName(level)} 
+                                                  label={getLevelName(level, lang)} 
                                                   level={level}
                                                   isFull={isEprouvee}
                                                   showRealizeLabel={isEprouvee}
+                                                  realizeLabel={t('realize', lang)}
                                                   onClick={() => {
                                                     if (isEprouvee) {
                                                       manager.realizeCompetence(comp);
@@ -994,10 +1009,10 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                                                           }
                                                         }}
                                                       >
-                                                        Apprendre Maîtrise
+                                                        {t('learnMastery', lang)}
                                                       </span>
                                                     ) : (
-                                                      <span className="text-text-secondary italic text-xs">Toutes connues</span>
+                                                      <span className="text-text-secondary italic text-xs">{t('allKnown', lang)}</span>
                                                     )}
                                                     <button
                                                       ref={(el) => {
@@ -1048,7 +1063,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                                                           <span className="text-text-secondary text-xs">{mastery.degreeCount}°</span>
                                                           {canUpgrade && (
                                                             <Tooltip
-                                                              content="Upgrade (+1 point)"
+                                                              content={t('masteryUpgrade', lang)}
                                                               position="top"
                                                               delay={200}
                                                             >
@@ -1133,8 +1148,8 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                                                     ) : (
                                                       <div className="px-2 py-2 text-xs text-text-secondary italic">
                                                         {availableMasteries.length === 0 
-                                                          ? 'Aucune maîtrise disponible' 
-                                                          : 'Toutes les maîtrises sont débloquées'}
+                                                          ? t('noMasteryAvailable', lang) 
+                                                          : t('allMasteriesUnlocked', lang)}
                                                       </div>
                                                     )}
                                                   </div>,
@@ -1177,10 +1192,10 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                                                               }
                                                             }}
                                                           >
-                                                            Apprendre Maîtrise
+                                                            {t('learnMastery', lang)}
                                                           </span>
                                                         ) : (
-                                                          <span className="text-text-secondary italic">Toutes connues</span>
+                                                          <span className="text-text-secondary italic">{t('allKnown', lang)}</span>
                                                         )}
                                                         <button
                                                           ref={(el) => {
@@ -1215,7 +1230,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                                                         </button>
                                                       </>
                                                     ) : (
-                                                      <span className="text-text-secondary italic">Aucune maîtrise</span>
+                                                      <span className="text-text-secondary italic">{t('noMastery', lang)}</span>
                                                     )}
                                                   </div>
                                                 );
@@ -1258,7 +1273,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                           style={{ width: '100%', minWidth: 0 }}
                         >
                           <div className="font-medieval text-xs font-bold uppercase tracking-wide text-center" style={{ color: '#ffebc6', width: '100%', minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                            {getAptitudeName(aptitude)}
+                            {getAptitudeName(aptitude, lang)}
                           </div>
                         </div>
                         {/* Back content - you can add anything here */}

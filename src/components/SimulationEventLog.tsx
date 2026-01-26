@@ -2,14 +2,23 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { CharacterSheetManager } from '@/game/character/CharacterSheetManager';
-import { getAttributeName } from '@/game/character/data/AttributeData';
 import { getAptitudeAttributes } from '@/game/character/data/AptitudeData';
-import { Competence, getCompetenceName, getCompetenceAction } from '@/game/character/data/CompetenceData';
-import { getActionLinkedAttribute, getActionAptitude } from '@/game/character/data/ActionData';
-import { Souffrance, getSouffranceName, getResistanceCompetenceName, getSouffranceAttribute } from '@/game/character/data/SouffranceData';
+import { Competence, getCompetenceAction } from '@/game/character/data/CompetenceData';
+import { getActionAptitude } from '@/game/character/data/ActionData';
+import { Souffrance, getSouffranceAttribute } from '@/game/character/data/SouffranceData';
 import { loadCachedCharacter, saveCachedCharacter, clearCachedCharacter } from '@/lib/simulationStorage';
 import { MARKS_TO_EPROUVER } from '@/game/character/CharacterSheetManager';
 import { rollCompetenceCheck, type CompetenceRollParams } from '@/game/dice/CompetenceRoll';
+import type { CharacterSheetLang } from '@/lib/characterSheetI18n';
+import {
+  t,
+  tParam,
+  getAttributeName,
+  getCompetenceName,
+  getSouffranceName,
+  getResistanceCompetenceName,
+} from '@/lib/characterSheetI18n';
+import { getActionLinkedAttribute } from '@/game/character/data/ActionData';
 
 export type SimEventType =
   | 'challenge'
@@ -34,12 +43,13 @@ export const MIN_REVEAL = 3;
 export const MAX_REVEAL = 5;
 export const POOL_DICE = 10;
 
-const CHALLENGES: { description: string; suggested?: Competence; nivEpreuve?: number }[] = [
-  { description: 'Escalader le mur', suggested: Competence.GRIMPE, nivEpreuve: 2 },
-  { description: 'Convaincre le garde', suggested: Competence.NEGOCIATION, nivEpreuve: 0 },
-  { description: 'Fouiller la pièce', suggested: Competence.INVESTIGATION, nivEpreuve: 1 },
-  { description: 'Esquiver l’attaque', suggested: Competence.ESQUIVE, nivEpreuve: 0 },
-  { description: 'Réparer le mécanisme', suggested: Competence.DEBROUILLARDISE, nivEpreuve: 1 },
+const CHALLENGE_KEYS = ['challengeClimb', 'challengeConvince', 'challengeSearch', 'challengeDodge', 'challengeRepair'] as const;
+const CHALLENGES: { descriptionKey: (typeof CHALLENGE_KEYS)[number]; suggested?: Competence; nivEpreuve?: number }[] = [
+  { descriptionKey: 'challengeClimb', suggested: Competence.GRIMPE, nivEpreuve: 2 },
+  { descriptionKey: 'challengeConvince', suggested: Competence.NEGOCIATION, nivEpreuve: 0 },
+  { descriptionKey: 'challengeSearch', suggested: Competence.INVESTIGATION, nivEpreuve: 1 },
+  { descriptionKey: 'challengeDodge', suggested: Competence.ESQUIVE, nivEpreuve: 0 },
+  { descriptionKey: 'challengeRepair', suggested: Competence.DEBROUILLARDISE, nivEpreuve: 1 },
 ];
 
 function getRollParams(
@@ -69,6 +79,7 @@ export type StepActionPayload =
   | null;
 
 interface SimulationEventLogProps {
+  lang: CharacterSheetLang;
   manager: CharacterSheetManager;
   updateSheet: () => void;
   onHighlight?: (id: string | null, tooltip?: string) => void;
@@ -102,11 +113,9 @@ function getEventColumn(type: SimEventType): EventColumn {
   }
 }
 
-const COLUMN_LABELS: Record<Exclude<EventColumn, 'top'>, string> = {
-  competences: 'Compétences',
-  progression: 'Progression',
-  souffrance: 'Souffrance / Résistance',
-};
+function getColumnLabel(col: Exclude<EventColumn, 'top'>, lang: CharacterSheetLang): string {
+  return col === 'competences' ? t('columnCompetences', lang) : col === 'progression' ? t('columnProgression', lang) : t('columnSouffrance', lang);
+}
 
 function eventStyle(type: SimEventType): string {
   const base = 'font-mono text-xs py-0.5 px-1 rounded border-l-2 ';
@@ -135,11 +144,8 @@ function eventStyle(type: SimEventType): string {
   }
 }
 
-const CREATE_ATTR_TOOLTIP = "Répartissez jusqu'à 18 points entre les 8 attributs (chaque case = +1).";
-const CREATE_REVEAL_TOOLTIP = "Choisissez de 3 à 5 compétences à révéler en cliquant sur « Révéler … ? » sur la feuille.";
-const CREATE_DICE_TOOLTIP = `Répartissez exactement ${POOL_DICE} dés dans les compétences révélées et/ou les compétences de résistance (R[…]), puis lancez.`;
-
 export default function SimulationEventLog({
+  lang,
   manager,
   updateSheet,
   onHighlight,
@@ -179,13 +185,13 @@ export default function SimulationEventLog({
   const confirmRevealAndGoToDice = () => {
     const revealed = Object.values(Competence).filter((c) => manager.getState().competences[c]?.isRevealed);
     if (revealed.length < MIN_REVEAL || revealed.length > MAX_REVEAL) return;
-    const names = revealed.map(getCompetenceName).join(', ');
-    push('info', `Compétences révélées : ${names}. Répartissez ${POOL_DICE} dés entre elles.`);
+    const names = revealed.map((c) => getCompetenceName(c, lang)).join(', ');
+    push('info', tParam('revealedListRepartir', lang, names, POOL_DICE));
     setCreateStep('dice');
-    onHighlight?.('create-dice', CREATE_DICE_TOOLTIP);
+    onHighlight?.('create-dice', tParam('createDiceTooltip', lang, POOL_DICE));
     onStepAction?.({
       step: 'dice',
-      label: 'Lancer la simulation',
+      label: t('launchSimulation', lang),
       onClick: confirmDiceAndStart,
       disabled: (() => {
         const diceSum = creationStateDeps?.diceSum ?? Object.values(Competence)
@@ -204,7 +210,7 @@ export default function SimulationEventLog({
         .reduce((s, c) => s + (state.competences[c]?.degreeCount ?? 0), 0) +
       Object.values(Souffrance).reduce((s, souf) => s + (state.souffrances[souf]?.resistanceDegreeCount ?? 0), 0);
     if (diceSum !== POOL_DICE) return;
-    push('info', `${POOL_DICE} dés répartis. Démarrage.`);
+    push('info', tParam('diceRepartisStart', lang, POOL_DICE));
     onCreationComplete?.();
     saveCachedCharacter(manager.getState());
     setMode('running');
@@ -216,12 +222,12 @@ export default function SimulationEventLog({
   };
 
   const validateAndGoToReveal = () => {
-    push('info', 'Attributs validés.');
+    push('info', t('attributesValidated', lang));
     setCreateStep('reveal');
-    onHighlight?.('create-reveal', CREATE_REVEAL_TOOLTIP);
+    onHighlight?.('create-reveal', t('createRevealTooltip', lang));
     onStepAction?.({
       step: 'reveal',
-      label: 'Répartir les dés',
+      label: t('distributeDice', lang),
       onClick: confirmRevealAndGoToDice,
       disabled: (() => {
         const n = Object.values(Competence).filter((c) => manager.getState().competences[c]?.isRevealed).length;
@@ -246,38 +252,38 @@ export default function SimulationEventLog({
     );
 
     if (createStep === 'attributes') {
-      onHighlight?.('create-attributes', CREATE_ATTR_TOOLTIP);
+      onHighlight?.('create-attributes', t('createAttrTooltip', lang));
       onStepAction?.({
         step: 'attributes',
-        label: 'Valider',
+        label: t('validate', lang),
         onClick: validateAndGoToReveal,
         disabled: attrSum > POOL_ATTRIBUTE_POINTS,
       });
     } else if (createStep === 'reveal') {
-      onHighlight?.('create-reveal', CREATE_REVEAL_TOOLTIP);
+      onHighlight?.('create-reveal', t('createRevealTooltip', lang));
       onStepAction?.({
         step: 'reveal',
-        label: 'Répartir les dés',
+        label: t('distributeDice', lang),
         onClick: confirmRevealAndGoToDice,
         disabled: revealedCount < MIN_REVEAL || revealedCount > MAX_REVEAL,
       });
     } else {
-      onHighlight?.('create-dice', CREATE_DICE_TOOLTIP);
+      onHighlight?.('create-dice', tParam('createDiceTooltip', lang, POOL_DICE));
       onStepAction?.({
         step: 'dice',
-        label: 'Lancer la simulation',
+        label: t('launchSimulation', lang),
         onClick: confirmDiceAndStart,
         disabled: diceSum !== POOL_DICE,
       });
     }
-  }, [mode, createStep, creationStateDeps?.attrSum, creationStateDeps?.revealedCount, creationStateDeps?.diceSum]);
+  }, [mode, createStep, creationStateDeps?.attrSum, creationStateDeps?.revealedCount, creationStateDeps?.diceSum, lang]);
 
   const startSimulation = () => {
     const cached = loadCachedCharacter();
     if (cached) {
       manager.loadState(cached);
       updateSheet();
-      push('info', 'Personnage chargé depuis la session.');
+      push('info', t('characterLoaded', lang));
       setMode('running');
       setRunningChallengeIdx(0);
       runChallenge(0);
@@ -286,20 +292,20 @@ export default function SimulationEventLog({
       setMode('creating');
       setCreateStep('attributes');
       setEvents([]);
-      push('info', 'Créez votre personnage : répartissez les points sur la feuille, puis validez dans la zone mise en surbrillance.');
+      push('info', t('createCharacterIntro', lang));
     }
   };
 
   const runChallenge = (idx: number) => {
     const c = CHALLENGES[idx % CHALLENGES.length];
     const nivStr = (c.nivEpreuve ?? 0) >= 0 ? `+${c.nivEpreuve ?? 0}` : `${c.nivEpreuve ?? 0}`;
-    push('challenge', `Défi : ${c.description} — Niv d'épreuve : ${nivStr}`);
+    push('challenge', tParam('challengeLine', lang, t(c.descriptionKey, lang), nivStr));
     onHighlight?.(null);
     const revealed = Object.values(Competence).filter(
       (comp) => manager.getState().competences[comp]?.isRevealed
     );
     if (revealed.length === 0) {
-      push('info', 'Aucune compétence révélée — termine d’abord la création.');
+      push('info', t('noCompetenceRevealed', lang));
       return;
     }
     setAwaitingSkillChoice(true);
@@ -309,8 +315,8 @@ export default function SimulationEventLog({
   const onChooseSkill = (comp: Competence) => {
     if (!awaitingSkillChoice) return;
     setAwaitingSkillChoice(false);
-    push('choice', `Compétence utilisée : ${getCompetenceName(comp)}`);
-    onHighlight?.(`competence-${comp}`, 'Les marques et Réaliser se mettent à jour ici.');
+    push('choice', tParam('competenceUsed', lang, getCompetenceName(comp, lang)));
+    onHighlight?.(`competence-${comp}`, t('marksTooltip', lang));
     const challenge = CHALLENGES[runningChallengeIdx % CHALLENGES.length];
     const nivEpreuve = challenge?.nivEpreuve ?? 0;
     const rollParams = getRollParams(manager, comp, nivEpreuve);
@@ -318,7 +324,7 @@ export default function SimulationEventLog({
     const marks = rollResult.criticalFailure ? 5 : rollResult.success || rollResult.criticalSuccess ? 0 : 1;
     for (let i = 0; i < marks; i++) manager.addCompetenceMark(comp);
     updateSheet();
-    const compName = getCompetenceName(comp);
+    const compName = getCompetenceName(comp, lang);
     const parts = rollResult.summary.split(/\.\s+/);
     const jetPart = parts[0] ?? rollResult.summary;
     const comparisonPart = parts[1];
@@ -326,16 +332,16 @@ export default function SimulationEventLog({
       ? `[${compName}] ${jetPart}.\n${comparisonPart}`
       : `[${compName}] ${rollResult.summary}`;
     push('resolve', resolveText);
-    push('xp', `Marques : ${manager.getTotalMarks(comp)}/${MARKS_TO_EPROUVER} — ${compName}`);
+    push('xp', tParam('marksLine', lang, manager.getTotalMarks(comp), MARKS_TO_EPROUVER, compName));
     if (manager.isCompetenceEprouvee(comp)) {
       const action = getCompetenceAction(comp);
       const linkedAttr = getActionLinkedAttribute(action);
       manager.realizeCompetence(comp);
       updateSheet();
-      push('realize', `Éprouvé : ${getCompetenceName(comp)} +1 degré, marques réinitialisées.`);
-      push('degree', `+1 ${getAttributeName(linkedAttr)}`);
+      push('realize', tParam('eprouveDegree', lang, getCompetenceName(comp, lang)));
+      push('degree', tParam('degreeAttr', lang, getAttributeName(linkedAttr, lang)));
       const mt = manager.getMasteryPoints(comp);
-      if (mt > 0) push('mastery', `+${mt} MT (point(s) de maîtrise) pour ${getCompetenceName(comp)}`);
+      if (mt > 0) push('mastery', tParam('masteryPoints', lang, mt, getCompetenceName(comp, lang)));
     }
     applySouffranceAndResistance();
   };
@@ -345,19 +351,19 @@ export default function SimulationEventLog({
     const ds = 2;
     manager.addSouffranceDegree(souf, ds);
     updateSheet();
-    push('souffrance', `Vous subissez ${ds} DS ${getSouffranceName(souf)}.`);
-    onHighlight?.(`souffrance-${souf}`, 'Les DS s’accumulent ici ; à 10+ Rage, 15+ Évanouissement.');
+    push('souffrance', tParam('youSuffer', lang, ds, getSouffranceName(souf, lang)));
+    onHighlight?.(`souffrance-${souf}`, t('dsAccumulate', lang));
     const resistFail = Math.random() < 0.5;
     if (resistFail) {
       manager.addSouffranceMark(souf);
       updateSheet();
-      push('resistance', `${getResistanceCompetenceName(souf)} échec → +1 Marque résistance.`);
-      onHighlight?.(`resistance-${souf}`, 'La compétence de Résistance gagne des marques à l’échec.');
+      push('resistance', tParam('resistanceFail', lang, getResistanceCompetenceName(souf, lang)));
+      onHighlight?.(`resistance-${souf}`, t('resistanceMarks', lang));
     }
     if (manager.isSouffranceEprouvee(souf)) {
       manager.realizeSouffrance(souf);
       updateSheet();
-      push('realize', `Éprouvé : ${getResistanceCompetenceName(souf)} +1 degré de résistance.`);
+      push('realize', tParam('eprouveResistance', lang, getResistanceCompetenceName(souf, lang)));
     }
     onHighlight?.(null);
   };
@@ -399,7 +405,7 @@ export default function SimulationEventLog({
         style={{ background: 'rgba(100,48,48,0.4)', boxShadow: 'inset 0 0 0 1px #ceb68d' }}
       >
         <span className="text-sm font-bold text-text-cream" style={{ textShadow: '0 1px 2px #000' }}>
-          Journal de simulation
+          {t('simLogTitle', lang)}
         </span>
         <div className="flex items-center gap-2 flex-wrap">
           {mode === 'idle' && (
@@ -409,7 +415,7 @@ export default function SimulationEventLog({
               className="px-3 py-1.5 bg-red-theme text-text-cream border-2 border-border-dark rounded font-semibold text-sm hover:bg-amber-800 transition-colors"
               style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.3)' }}
             >
-              Démarrer
+              {t('start', lang)}
             </button>
           )}
           {mode === 'running' && !isChoosingSkill && (
@@ -418,7 +424,7 @@ export default function SimulationEventLog({
               onClick={nextChallenge}
               className="px-3 py-1.5 bg-red-theme text-text-cream border-2 border-border-dark rounded font-semibold text-sm hover:bg-amber-800"
             >
-              Suivant
+              {t('next', lang)}
             </button>
           )}
           <button
@@ -426,7 +432,7 @@ export default function SimulationEventLog({
             onClick={resetAndNewCharacter}
             className="px-3 py-1.5 bg-stone-600 text-text-cream border-2 border-border-dark rounded font-semibold text-sm hover:bg-stone-500 transition-colors"
           >
-            Réinitialiser
+            {t('reset', lang)}
           </button>
         </div>
       </div>
@@ -481,7 +487,7 @@ export default function SimulationEventLog({
                     background: 'rgba(0,0,0,0.4)',
                   }}
                 >
-                  {COLUMN_LABELS[col]}
+                  {getColumnLabel(col, lang)}
                 </div>
                 <div
                   ref={(el) => {
@@ -507,7 +513,7 @@ export default function SimulationEventLog({
         {/* Quelle compétence utiliser ? — en dessous des trois colonnes */}
         {mode === 'running' && isChoosingSkill && (
           <div className="p-3 rounded border border-border-dark bg-black/20 shrink-0">
-            <p className="text-xs text-text-cream mb-2">Quelle compétence utiliser ?</p>
+            <p className="text-xs text-text-cream mb-2">{t('whichCompetence', lang)}</p>
             <div className="flex flex-wrap gap-2">
               {revealedList.map((comp) => (
                 <button
@@ -516,7 +522,7 @@ export default function SimulationEventLog({
                   onClick={() => onChooseSkill(comp)}
                   className="px-3 py-1.5 bg-emerald-800 border-2 border-emerald-600 text-text-cream rounded text-xs font-semibold hover:bg-emerald-700"
                 >
-                  {getCompetenceName(comp)}
+                  {getCompetenceName(comp, lang)}
                 </button>
               ))}
             </div>
