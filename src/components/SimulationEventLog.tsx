@@ -185,7 +185,7 @@ export default function SimulationEventLog({
     onHighlight?.('create-dice', CREATE_DICE_TOOLTIP);
     onStepAction?.({
       step: 'dice',
-      label: 'Lancer',
+      label: 'Lancer la simulation',
       onClick: confirmDiceAndStart,
       disabled: (() => {
         const diceSum = creationStateDeps?.diceSum ?? Object.values(Competence)
@@ -221,7 +221,7 @@ export default function SimulationEventLog({
     onHighlight?.('create-reveal', CREATE_REVEAL_TOOLTIP);
     onStepAction?.({
       step: 'reveal',
-      label: 'Valider et répartir les 10 dés',
+      label: 'Répartir les dés',
       onClick: confirmRevealAndGoToDice,
       disabled: (() => {
         const n = Object.values(Competence).filter((c) => manager.getState().competences[c]?.isRevealed).length;
@@ -249,7 +249,7 @@ export default function SimulationEventLog({
       onHighlight?.('create-attributes', CREATE_ATTR_TOOLTIP);
       onStepAction?.({
         step: 'attributes',
-        label: 'Valider les attributs',
+        label: 'Valider',
         onClick: validateAndGoToReveal,
         disabled: attrSum > POOL_ATTRIBUTE_POINTS,
       });
@@ -257,7 +257,7 @@ export default function SimulationEventLog({
       onHighlight?.('create-reveal', CREATE_REVEAL_TOOLTIP);
       onStepAction?.({
         step: 'reveal',
-        label: 'Valider et répartir les 10 dés',
+        label: 'Répartir les dés',
         onClick: confirmRevealAndGoToDice,
         disabled: revealedCount < MIN_REVEAL || revealedCount > MAX_REVEAL,
       });
@@ -265,7 +265,7 @@ export default function SimulationEventLog({
       onHighlight?.('create-dice', CREATE_DICE_TOOLTIP);
       onStepAction?.({
         step: 'dice',
-        label: 'Lancer',
+        label: 'Lancer la simulation',
         onClick: confirmDiceAndStart,
         disabled: diceSum !== POOL_DICE,
       });
@@ -399,7 +399,7 @@ export default function SimulationEventLog({
         style={{ background: 'rgba(100,48,48,0.4)', boxShadow: 'inset 0 0 0 1px #ceb68d' }}
       >
         <span className="text-sm font-bold text-text-cream" style={{ textShadow: '0 1px 2px #000' }}>
-          Journal de simulation — Contexte / Défi en haut, puis Compétences | Progression | Souffrance / Résistance
+          Journal de simulation
         </span>
         <div className="flex items-center gap-2 flex-wrap">
           {mode === 'idle' && (
@@ -409,7 +409,7 @@ export default function SimulationEventLog({
               className="px-3 py-1.5 bg-red-theme text-text-cream border-2 border-border-dark rounded font-semibold text-sm hover:bg-amber-800 transition-colors"
               style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.3)' }}
             >
-              Démarrer la simulation
+              Démarrer
             </button>
           )}
           {mode === 'running' && !isChoosingSkill && (
@@ -418,7 +418,7 @@ export default function SimulationEventLog({
               onClick={nextChallenge}
               className="px-3 py-1.5 bg-red-theme text-text-cream border-2 border-border-dark rounded font-semibold text-sm hover:bg-amber-800"
             >
-              Défi suivant
+              Suivant
             </button>
           )}
           <button
@@ -426,22 +426,10 @@ export default function SimulationEventLog({
             onClick={resetAndNewCharacter}
             className="px-3 py-1.5 bg-stone-600 text-text-cream border-2 border-border-dark rounded font-semibold text-sm hover:bg-stone-500 transition-colors"
           >
-            Réinitialiser et nouveau personnage
+            Réinitialiser
           </button>
         </div>
       </div>
-
-      {mode === 'creating' && (
-        <div className="p-2 border-b border-border-dark" style={{ backgroundColor: 'rgba(143, 201, 196, 0.28)' }}>
-          <p className="text-xs" style={{ color: '#e8f8f7' }}>
-            {createStep === 'attributes'
-              ? `Répartissez jusqu'à ${POOL_ATTRIBUTE_POINTS} points dans les attributs sur la feuille, puis validez dans la zone mise en surbrillance.`
-              : createStep === 'reveal'
-                ? `Choisissez de ${MIN_REVEAL} à ${MAX_REVEAL} compétences à révéler sur la feuille, puis validez pour répartir les dés.`
-                : `Répartissez exactement ${POOL_DICE} dés entre compétences révélées et/ou résistances (R[…]), puis lancez.`}
-          </p>
-        </div>
-      )}
 
       {mode === 'running' && isChoosingSkill && (
         <div className="p-3 border-b border-border-dark bg-black/20">
@@ -533,14 +521,6 @@ export default function SimulationEventLog({
           })}
         </div>
       </div>
-      {events.length === 0 && mode === 'idle' && (
-        <div
-          className="px-3 py-2 text-center text-gray-400 italic text-xs border-t border-border-dark"
-          style={{ background: 'rgba(0,0,0,0.2)' }}
-        >
-          Cliquez sur « Démarrer la simulation » : contexte et défis en haut, puis Compétences, Progression, Souffrance / Résistance en colonnes.
-        </div>
-      )}
     </div>
   );
 }
