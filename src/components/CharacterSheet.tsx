@@ -64,6 +64,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
   const [simHighlightId, setSimHighlightId] = useState<string | null>(null);
   const [simTooltip, setSimTooltip] = useState<string | null>(null);
   const [stepAction, setStepAction] = useState<StepActionPayload>(null);
+  const [tutorialOverlayHeight, setTutorialOverlayHeight] = useState(0);
   const masteryButtonRefs = useRef<Map<Competence, HTMLButtonElement>>(new Map());
   const overlayRef = useRef<HTMLDivElement>(null);
   const scrollPositionRef = useRef(0);
@@ -198,6 +199,18 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
     if (simHighlightId === 'create-attributes' || simHighlightId === 'create-reveal') {
       attributesSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
+  }, [simHighlightId]);
+
+  // Tutorial overlay: match content scroll height so it covers area above/below the aptitudes section (section uses z-110 and stays on top)
+  useEffect(() => {
+    if (simHighlightId !== 'create-attributes' && simHighlightId !== 'create-reveal') return;
+    const el = contentRef.current;
+    if (!el) return;
+    const sync = () => setTutorialOverlayHeight(el.scrollHeight);
+    sync();
+    const ro = new ResizeObserver(sync);
+    ro.observe(el);
+    return () => ro.disconnect();
   }, [simHighlightId]);
 
   if (!isOpen) return null;
@@ -345,17 +358,20 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
           className="character-sheet-content flex-1 overflow-y-auto overflow-x-visible p-8 relative z-10"
           style={{ paddingTop: '2rem', paddingBottom: '2rem', isolation: 'isolate' }}
         >
-
-          {/* Tutorial: dark overlay at z-100; spotlight section at z-110; floating panel at z-120 so it stays on top */}
+          {/* Tutorial: overlay inside content so aptitudes section (z-110) can sit above it; overlay height = full scroll so top/bottom dimmed */}
           {(simHighlightId === 'create-attributes' || simHighlightId === 'create-reveal') && (
             <>
               <div
-                className="absolute inset-0 pointer-events-none"
-                style={{ zIndex: 100, background: 'rgba(0,0,0,0.65)' }}
+                className="absolute left-0 right-0 top-0 pointer-events-none"
+                style={{
+                  zIndex: 100,
+                  background: 'rgba(0,0,0,0.65)',
+                  height: tutorialOverlayHeight,
+                }}
                 aria-hidden
               />
               <div
-                className="absolute bottom-6 left-1/2 -translate-x-1/2 min-w-[280px] max-w-[90%] z-[120] rounded-lg border-2 p-4 shadow-xl"
+                className="absolute bottom-6 left-1/2 -translate-x-1/2 min-w-[280px] max-w-[90%] z-[120] rounded-lg border-2 p-4 shadow-xl pointer-events-auto"
                 style={{ borderColor: 'rgba(143, 201, 196, 0.85)', background: 'linear-gradient(180deg, rgba(40,28,18,0.98) 0%, rgba(30,22,14,0.99) 100%)', boxShadow: '0 0 0 1px rgba(168,221,217,0.5), 0 8px 24px rgba(0,0,0,0.5)' }}
               >
                 <p className="text-sm mb-3 font-medieval" style={{ color: '#eefaf9' }}>{simTooltip ?? ''}</p>
