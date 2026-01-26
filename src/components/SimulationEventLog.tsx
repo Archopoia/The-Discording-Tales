@@ -7,7 +7,7 @@ import { getAptitudeAttributes } from '@/game/character/data/AptitudeData';
 import { Competence, getCompetenceName, getCompetenceAction } from '@/game/character/data/CompetenceData';
 import { getActionLinkedAttribute, getActionAptitude } from '@/game/character/data/ActionData';
 import { Souffrance, getSouffranceName, getResistanceCompetenceName, getSouffranceAttribute } from '@/game/character/data/SouffranceData';
-import { loadCachedCharacter, saveCachedCharacter } from '@/lib/simulationStorage';
+import { loadCachedCharacter, saveCachedCharacter, clearCachedCharacter } from '@/lib/simulationStorage';
 import { MARKS_TO_EPROUVER } from '@/game/character/CharacterSheetManager';
 import { rollCompetenceCheck, type CompetenceRollParams } from '@/game/dice/CompetenceRoll';
 
@@ -82,15 +82,16 @@ interface SimulationEventLogProps {
   onHighlight?: (id: string | null, tooltip?: string) => void;
 }
 
-export type EventColumn = 'epreuve' | 'progression' | 'souffrance';
+export type EventColumn = 'top' | 'competences' | 'progression' | 'souffrance';
 
 function getEventColumn(type: SimEventType): EventColumn {
   switch (type) {
     case 'challenge':
+    case 'info':
+      return 'top';
     case 'choice':
     case 'resolve':
-    case 'info':
-      return 'epreuve';
+      return 'competences';
     case 'xp':
     case 'realize':
     case 'degree':
@@ -100,14 +101,14 @@ function getEventColumn(type: SimEventType): EventColumn {
     case 'resistance':
       return 'souffrance';
     default:
-      return 'epreuve';
+      return 'top';
   }
 }
 
-const COLUMN_LABELS: Record<EventColumn, string> = {
-  epreuve: 'Épreuves & jets',
-  progression: 'Progression (XP, marques, réaliser)',
-  souffrance: 'Souffrance & résistance',
+const COLUMN_LABELS: Record<Exclude<EventColumn, 'top'>, string> = {
+  competences: 'Compétences',
+  progression: 'Progression',
+  souffrance: 'Souffrance / Résistance',
 };
 
 function eventStyle(type: SimEventType): string {
@@ -151,14 +152,28 @@ export default function SimulationEventLog({
   const [revealSelected, setRevealSelected] = useState<Set<Competence>>(new Set());
   const [awaitingSkillChoice, setAwaitingSkillChoice] = useState(false);
   const [runningChallengeIdx, setRunningChallengeIdx] = useState(0);
-  const logEndRef = useRef<HTMLDivElement>(null);
+  const topScrollRef = useRef<HTMLDivElement | null>(null);
+  const scrollColRefs = useRef<Record<string, HTMLDivElement | null>>({
+    competences: null,
+    progression: null,
+    souffrance: null,
+  });
 
   const push = (type: SimEventType, text: string, step?: number) => {
     setEvents((prev) => [...prev, { type, text, step: step ?? prev.length + 1 }]);
   };
 
   useEffect(() => {
-    logEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    const scrollToBottom = (el: HTMLDivElement | null) => {
+      if (el) el.scrollTop = el.scrollHeight;
+    };
+    const id = requestAnimationFrame(() => {
+      scrollToBottom(topScrollRef.current);
+      (['competences', 'progression', 'souffrance'] as const).forEach((col) => {
+        scrollToBottom(scrollColRefs.current[col]);
+      });
+    });
+    return () => cancelAnimationFrame(id);
   }, [events]);
 
   const startSimulation = () => {
@@ -289,6 +304,21 @@ export default function SimulationEventLog({
     runChallenge(next);
   };
 
+  const resetAndNewCharacter = () => {
+    clearCachedCharacter();
+    const fresh = new CharacterSheetManager();
+    manager.loadState(fresh.getState());
+    updateSheet();
+    setEvents([]);
+    setMode('creating');
+    setCreateStep('attributes');
+    setAttrPoints(Object.values(Attribute).reduce((a, k) => ({ ...a, [k]: 0 }), {} as Record<Attribute, number>));
+    setRevealSelected(new Set());
+    setAwaitingSkillChoice(false);
+    setRunningChallengeIdx(0);
+    onHighlight?.(null);
+  };
+
   const isChoosingSkill = mode === 'running' && awaitingSkillChoice;
   const revealedList = Object.values(Competence).filter(
     (c) => manager.getState().competences[c]?.isRevealed
@@ -307,9 +337,9 @@ export default function SimulationEventLog({
         style={{ background: 'rgba(100,48,48,0.4)', boxShadow: 'inset 0 0 0 1px #ceb68d' }}
       >
         <span className="text-sm font-bold text-text-cream" style={{ textShadow: '0 1px 2px #000' }}>
-          Journal de simulation — Épreuves (Niv d&apos;épreuve) | Progression (marques, réaliser) | Souffrance & résistance
+          Journal de simulation — Contexte / Défi en haut, puis Compétences | Progression | Souffrance / Résistance
         </span>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
           {mode === 'idle' && (
             <button
               type="button"
@@ -349,6 +379,13 @@ export default function SimulationEventLog({
               Défi suivant
             </button>
           )}
+          <button
+            type="button"
+            onClick={resetAndNewCharacter}
+            className="px-3 py-1.5 bg-stone-600 text-text-cream border-2 border-border-dark rounded font-semibold text-sm hover:bg-stone-500 transition-colors"
+          >
+            Réinitialiser et nouveau personnage
+          </button>
         </div>
       </div>
 
@@ -429,33 +466,25 @@ export default function SimulationEventLog({
       )}
 
       <div
-        className="grid grid-cols-1 md:grid-cols-3 gap-2 p-2 font-mono text-xs"
+        className="p-2 font-mono text-xs space-y-2"
         style={{ background: 'rgba(0,0,0,0.35)', minHeight: '100px' }}
       >
-        {(['epreuve', 'progression', 'souffrance'] as const).map((col) => {
-          const colEvents = events
+        {/* Ligne du haut : personnage chargé, Défi, etc. — une entrée par ligne, défilement vertical */}
+        {(() => {
+          const topEvents = events
             .map((ev, i) => ({ ev, i }))
-            .filter(({ ev }) => getEventColumn(ev.type) === col);
+            .filter(({ ev }) => getEventColumn(ev.type) === 'top');
+          if (topEvents.length === 0) return null;
           return (
             <div
-              key={col}
-              className="flex flex-col rounded border border-border-dark overflow-hidden"
-              style={{ background: 'rgba(0,0,0,0.25)', minWidth: 0 }}
+              className="rounded border border-border-dark overflow-hidden shrink-0 flex flex-col"
+              style={{ background: 'rgba(0,0,0,0.2)' }}
             >
               <div
-                className="px-2 py-1 text-[10px] font-bold uppercase tracking-wide shrink-0 border-b border-border-dark"
-                style={{
-                  color: col === 'epreuve' ? '#fcd34d' : col === 'progression' ? '#67e8f9' : '#f9a8d4',
-                  background: 'rgba(0,0,0,0.4)',
-                }}
+                ref={topScrollRef}
+                className="max-h-28 overflow-y-auto p-1.5 space-y-1 min-h-0"
               >
-                {COLUMN_LABELS[col]}
-              </div>
-              <div className="max-h-32 overflow-y-auto p-1.5 space-y-1 flex-1 min-h-0">
-                {colEvents.length === 0 && (
-                  <div className="text-gray-500 italic text-[10px] py-1">—</div>
-                )}
-                {colEvents.map(({ ev, i }) => (
+                {topEvents.map(({ ev, i }) => (
                   <div key={i} className={eventStyle(ev.type)} style={{ whiteSpace: 'pre-line' }}>
                     <span className="text-gray-500 mr-1.5">#{ev.step ?? i + 1}</span>
                     {ev.text}
@@ -464,17 +493,58 @@ export default function SimulationEventLog({
               </div>
             </div>
           );
-        })}
+        })()}
+
+        {/* Trois colonnes : Compétences, Progression, Souffrance / Résistance */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+          {(['competences', 'progression', 'souffrance'] as const).map((col) => {
+            const colEvents = events
+              .map((ev, i) => ({ ev, i }))
+              .filter(({ ev }) => getEventColumn(ev.type) === col);
+            return (
+              <div
+                key={col}
+                className="flex flex-col rounded border border-border-dark overflow-hidden"
+                style={{ background: 'rgba(0,0,0,0.25)', minWidth: 0 }}
+              >
+                <div
+                  className="px-2 py-1 text-[10px] font-bold uppercase tracking-wide shrink-0 border-b border-border-dark"
+                  style={{
+                    color: col === 'competences' ? '#fcd34d' : col === 'progression' ? '#67e8f9' : '#f9a8d4',
+                    background: 'rgba(0,0,0,0.4)',
+                  }}
+                >
+                  {COLUMN_LABELS[col]}
+                </div>
+                <div
+                  ref={(el) => {
+                    scrollColRefs.current[col] = el;
+                  }}
+                  className="max-h-32 overflow-y-auto p-1.5 space-y-1 flex-1 min-h-0"
+                >
+                  {colEvents.length === 0 && (
+                    <div className="text-gray-500 italic text-[10px] py-1">—</div>
+                  )}
+                  {colEvents.map(({ ev, i }) => (
+                    <div key={i} className={eventStyle(ev.type)} style={{ whiteSpace: 'pre-line' }}>
+                      <span className="text-gray-500 mr-1.5">#{ev.step ?? i + 1}</span>
+                      {ev.text}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
       {events.length === 0 && mode === 'idle' && (
         <div
           className="px-3 py-2 text-center text-gray-400 italic text-xs border-t border-border-dark"
           style={{ background: 'rgba(0,0,0,0.2)' }}
         >
-          Cliquez sur « Démarrer la simulation » pour voir les épreuves, la progression (XP, marques, réaliser) et la souffrance & résistance.
+          Cliquez sur « Démarrer la simulation » : contexte et défis en haut, puis Compétences, Progression, Souffrance / Résistance en colonnes.
         </div>
       )}
-      <div ref={logEndRef} />
     </div>
   );
 }

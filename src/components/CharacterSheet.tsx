@@ -64,6 +64,8 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
   const [simHighlightId, setSimHighlightId] = useState<string | null>(null);
   const [simTooltip, setSimTooltip] = useState<string | null>(null);
   const masteryButtonRefs = useRef<Map<Competence, HTMLButtonElement>>(new Map());
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const scrollPositionRef = useRef(0);
 
   // Update dropdown position on scroll/resize and close on outside click
   useEffect(() => {
@@ -106,30 +108,79 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
     };
   }, [masterySelectionOpen, masteryDropdownPosition]);
 
-  // Prevent body scroll when character sheet is open
+  // Lock background: prevent scroll and interaction when character sheet is open
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add('character-sheet-open');
+      scrollPositionRef.current = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollPositionRef.current}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.width = '100%';
     } else {
       document.body.classList.remove('character-sheet-open');
+      const restore = scrollPositionRef.current;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = '';
+      window.scrollTo(0, restore);
     }
     return () => {
       document.body.classList.remove('character-sheet-open');
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = '';
+      window.scrollTo(0, scrollPositionRef.current);
     };
   }, [isOpen]);
 
-  // Handle keyboard shortcut (C key) to close
+  // Auto-focus the modal and trap focus inside when open
   useEffect(() => {
     if (!isOpen) return;
-    
-    const handleKeyPress = (e: KeyboardEvent) => {
+    const overlay = overlayRef.current;
+    if (!overlay) return;
+
+    const focusOverlay = () => overlay.focus();
+    const raf = requestAnimationFrame(focusOverlay);
+
+    const FOCUSABLE = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+    const getFocusables = () => Array.from(overlay.querySelectorAll<HTMLElement>(FOCUSABLE));
+
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'c' || e.key === 'C') {
         onClose();
+        return;
       }
+      if (e.key !== 'Tab') return;
+      const focusables = getFocusables();
+      if (focusables.length === 0) return;
+      const current = document.activeElement as HTMLElement;
+      const idx = focusables.indexOf(current);
+      if (idx === -1 && !e.shiftKey) {
+        e.preventDefault();
+        focusables[0].focus();
+        return;
+      }
+      if (idx === -1 && e.shiftKey) {
+        e.preventDefault();
+        focusables[focusables.length - 1].focus();
+        return;
+      }
+      const next = e.shiftKey ? (idx <= 0 ? focusables.length - 1 : idx - 1) : (idx >= focusables.length - 1 ? 0 : idx + 1);
+      e.preventDefault();
+      focusables[next].focus();
     };
-    
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
+
+    overlay.addEventListener('keydown', handleKeyDown);
+    return () => {
+      cancelAnimationFrame(raf);
+      overlay.removeEventListener('keydown', handleKeyDown);
+    };
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
@@ -177,7 +228,15 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm animate-fade-in">
+    <div
+      ref={overlayRef}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="character-sheet-title"
+      tabIndex={-1}
+      className="fixed inset-0 z-[10001] flex items-center justify-center overflow-hidden p-4 bg-black/85 backdrop-blur-sm animate-fade-in"
+      onWheel={(e) => e.stopPropagation()}
+    >
       <div 
         className="w-full max-w-[95vw] h-[95vh] max-h-[95vh] flex flex-col rounded-lg border-4 border-border-dark shadow-2xl animate-swing-in overflow-hidden"
         style={{
@@ -223,7 +282,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
             }}
           />
           <div className="flex items-center gap-4">
-            <h2 className="font-medieval text-3xl font-bold text-text-cream relative z-10 tracking-wide" style={{
+            <h2 id="character-sheet-title" className="font-medieval text-3xl font-bold text-text-cream relative z-10 tracking-wide" style={{
               textShadow: '0 1px black, 0 2px rgb(19, 19, 19), 0 3px rgb(30, 30, 30), 0 4px rgb(50, 50, 50), 0 5px rgb(70, 70, 70), 0 6px #555'
             }}>
               Feuille de Personnage

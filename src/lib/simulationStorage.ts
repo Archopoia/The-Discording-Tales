@@ -28,3 +28,14 @@ export function saveCachedCharacter(state: CharacterSheetState): void {
     // Ignore quota or storage errors
   }
 }
+
+/**
+ * Clear the cached character from sessionStorage (e.g. when resetting to create a new character).
+ */
+export function clearCachedCharacter(): void {
+  try {
+    sessionStorage.removeItem(SIMULATION_CACHE_KEY);
+  } catch {
+    // Ignore storage errors
+  }
+}
