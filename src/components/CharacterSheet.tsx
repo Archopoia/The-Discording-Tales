@@ -403,7 +403,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
                 aria-hidden
               />
               <div
-                className="absolute bottom-6 left-1/2 -translate-x-1/2 min-w-[280px] max-w-[90%] z-[120] rounded-lg border-2 p-4 shadow-xl pointer-events-auto"
+                className="absolute top-6 left-1/2 -translate-x-1/2 min-w-[280px] max-w-[90%] z-[120] rounded-lg border-2 p-4 shadow-xl pointer-events-auto"
                 style={{ borderColor: 'rgba(143, 201, 196, 0.85)', background: 'linear-gradient(180deg, rgba(40,28,18,0.98) 0%, rgba(30,22,14,0.99) 100%)', boxShadow: '0 0 0 1px rgba(168,221,217,0.5), 0 8px 24px rgba(0,0,0,0.5)' }}
               >
                 <p className="text-sm mb-3 font-medieval" style={{ color: '#eefaf9' }}>{simTooltip ?? ''}</p>
