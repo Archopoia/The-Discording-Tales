@@ -149,7 +149,7 @@
         if (showInput) updateCreationInputDisabled();
     }
 
-    /** Disable chat input and Send button while creationMode; enable when creation is done. */
+    /** Disable chat input and Send button while creationMode; enable when creation is done. Toggle visual disabled class on the input area. */
     function updateCreationInputDisabled() {
         var input = document.getElementById('gm-chat-input');
         var sendBtn = document.getElementById('gm-chat-send');
@@ -157,6 +157,11 @@
         if (sendBtn) sendBtn.disabled = creationMode;
         var hintEl = document.getElementById('gm-creation-unlock-hint');
         if (hintEl) hintEl.style.display = creationMode ? 'block' : 'none';
+        var hasEl = document.getElementById('gm-chat-has-character');
+        if (hasEl) {
+            if (creationMode) hasEl.classList.add('gm-chat-input--creation-disabled');
+            else hasEl.classList.remove('gm-chat-input--creation-disabled');
+        }
     }
 
     /** Show hint above input when in creation mode and last assistant message has no choice/input buttons. (Hidden during hardcoded creation—no LLM to ask for buttons.) */
@@ -1013,6 +1018,13 @@
         }
 
         window.addEventListener('drd-character-created', function () {
+            var isFr = getLang() === 'fr';
+            var readyMsg = isFr
+                ? "Votre personnage est prêt. Vous pouvez maintenant discuter avec l'Éveilleur et lancer la simulation."
+                : "Your character is ready. You can now chat with the Éveilleur and start the simulation.";
+            messages.push({ role: 'assistant', content: readyMsg });
+            saveMessages();
+            renderMessages(container);
             creationMode = false;
             updateInputVisibility();
         });

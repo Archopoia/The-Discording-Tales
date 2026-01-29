@@ -1669,6 +1669,17 @@ img {
     opacity: 0.6;
     cursor: not-allowed;
 }
+
+/* Visually disabled state during character creation (prompt locked) */
+.gm-chat-has-character.gm-chat-input--creation-disabled .gm-chat-input-row {
+    opacity: 0.55;
+    pointer-events: none;
+}
+.gm-chat-has-character.gm-chat-input--creation-disabled .gm-chat-input-row input,
+.gm-chat-has-character.gm-chat-input--creation-disabled .gm-chat-input-row button {
+    cursor: not-allowed;
+    background: rgba(0, 0, 0, 0.2);
+}
 .gm-chat-messages .status {
     color: var(--tdt-beige-light);
     font-style: italic;
