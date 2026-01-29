@@ -12,7 +12,47 @@
     })();
     const CHAT_STORAGE_KEY = 'drd_gm_chat_messages';
     const CHAR_STORAGE_KEY = 'drd_simulation_character';
+    const CHARACTER_INFO_KEY = 'drd_character_info';
     const MARKS_TO_EPROUVER = 10;
+
+    /** Peuples by origin (for hardcoded creation script). */
+    var PEUPLES_BY_ORIGIN = {
+        'Yômmes': ['Aristois', 'Griscribes', 'Navillis', 'Méridiens'],
+        'Yôrres': ['Hauts Ylfes', 'Ylfes pâles', 'Ylfes des lacs', 'Iqqars'],
+        'Bêstres': ['Slaadéens', 'Tchalkchaïs']
+    };
+
+    /** Get hardcoded creation step content. stepIndex 0=origin, 1=peuple (pass origin), 2=name, 3=hand-off. */
+    function getCreationScriptStep(stepIndex, lang, origin) {
+        var isFr = lang === 'fr';
+        if (stepIndex === 0) {
+            var prompt0 = isFr ? "Choisissez l'Origine de votre personnage :" : "Choose your character's Origin:";
+            return prompt0 + "\n[Choice id=origin] " + prompt0 + "\n[Option Yômmes]\n[Option Yôrres]\n[Option Bêstres]";
+        }
+        if (stepIndex === 1 && origin) {
+            var options = PEUPLES_BY_ORIGIN[origin] || [];
+            var prompt1 = isFr ? "Choisissez le Peuple parmi les " + origin + " :" : "Choose your People among " + origin + ":";
+            var optionLines = options.map(function (o) { return "[Option " + o + "]"; }).join("\n");
+            return prompt1 + "\n[Choice id=peuple] " + prompt1 + "\n" + optionLines;
+        }
+        if (stepIndex === 2) {
+            var prompt2 = isFr ? "Quel est le nom de votre personnage ? (Optionnel, vous pouvez répondre « aucun » pour passer.)" : "What is your character's name? (Optional; you can reply \"none\" to skip.)";
+            return "[Input id=name] " + prompt2;
+        }
+        if (stepIndex === 3) {
+            return isFr
+                ? "Le reste de votre personnage (18 points d'attributs, 3 à 5 compétences à révéler, 10 dés à répartir) se fait sur la feuille de personnage ci-dessous. Complétez les étapes là, puis vous pourrez discuter avec l'Éveilleur."
+                : "The rest of your character (18 attribute points, 3 to 5 competences to reveal, 10 dice to assign) is to be done on the character sheet below. Complete the steps there; then you can chat with the Éveilleur.";
+        }
+        return '';
+    }
+
+    /** Save narrative (origin, peuple, name) to sessionStorage. */
+    function saveCharacterInfoToStorage(info) {
+        try {
+            sessionStorage.setItem(CHARACTER_INFO_KEY, JSON.stringify(info));
+        } catch (e) {}
+    }
 
     var ALL_ATTRIBUTE_KEYS = ['FOR', 'AGI', 'DEX', 'VIG', 'EMP', 'PER', 'CRE', 'VOL'];
     var ALL_APTITUDE_KEYS = ['PUISSANCE', 'AISANCE', 'PRECISION', 'ATHLETISME', 'CHARISME', 'DETECTION', 'REFLEXION', 'DOMINATION'];
@@ -80,12 +120,22 @@
         }
     }
 
-    /** True if a character exists in sessionStorage (non-empty state with attributes). */
+    /** True if a character exists in sessionStorage (non-empty: has attribute points or revealed competences or dice assigned). */
     function hasCharacter() {
         var snap = getCharacterSnapshot();
         if (!snap || typeof snap !== 'object') return false;
         var attrs = snap.attributes;
-        return attrs && typeof attrs === 'object' && Object.keys(attrs).length > 0;
+        if (!attrs || typeof attrs !== 'object') return false;
+        var attrSum = 0;
+        for (var k in attrs) { if (Object.prototype.hasOwnProperty.call(attrs, k)) attrSum += Number(attrs[k]) || 0; }
+        var comps = snap.competences;
+        if (comps && typeof comps === 'object') {
+            for (var c in comps) {
+                if (Object.prototype.hasOwnProperty.call(comps, c) && comps[c] && comps[c].isRevealed) return true;
+                if (Object.prototype.hasOwnProperty.call(comps, c) && comps[c] && (comps[c].degreeCount || 0) > 0) return true;
+            }
+        }
+        return attrSum > 0;
     }
 
     /** Show "Create a character" when no character and not in creation mode; else show checkbox + input row. */
@@ -96,9 +146,20 @@
         var showInput = hasCharacter() || creationMode;
         noEl.style.display = showInput ? 'none' : 'block';
         hasEl.style.display = showInput ? 'block' : 'none';
+        if (showInput) updateCreationInputDisabled();
     }
 
-    /** Show hint above input when in creation mode and last assistant message has no choice/input buttons. */
+    /** Disable chat input and Send button while creationMode; enable when creation is done. */
+    function updateCreationInputDisabled() {
+        var input = document.getElementById('gm-chat-input');
+        var sendBtn = document.getElementById('gm-chat-send');
+        if (input) input.disabled = creationMode;
+        if (sendBtn) sendBtn.disabled = creationMode;
+        var hintEl = document.getElementById('gm-creation-unlock-hint');
+        if (hintEl) hintEl.style.display = creationMode ? 'block' : 'none';
+    }
+
+    /** Show hint above input when in creation mode and last assistant message has no choice/input buttons. (Hidden during hardcoded creation—no LLM to ask for buttons.) */
     function updateCreationNoButtonsHint() {
         var hintEl = document.getElementById('gm-creation-no-buttons-hint');
         if (!hintEl) return;
@@ -106,21 +167,7 @@
             hintEl.style.display = 'none';
             return;
         }
-        var lastAssistant = messages.filter(function (m) { return m.role === 'assistant'; }).pop();
-        if (!lastAssistant) {
-            hintEl.style.display = 'none';
-            return;
-        }
-        var blocks = parseCreationBlocks(lastAssistant.content);
-        var hasButtons = (blocks.choice && blocks.choice.options.length > 0) || blocks.input;
-        if (hasButtons) {
-            hintEl.style.display = 'none';
-            return;
-        }
-        hintEl.style.display = 'block';
-        hintEl.textContent = getLang() === 'fr'
-            ? "Pas de boutons ? Tapez « donne-moi les boutons » pour que le guide renvoie les options."
-            : "No buttons? Type 'give me the buttons' to get the options again.";
+        hintEl.style.display = 'none';
     }
 
     /** Parse GM reply for "Roll [X] vs Niv Y"; set pendingRoll and return it. */
@@ -761,6 +808,19 @@
             saveMessages();
             parseReplyForRollRequest(reply);
             rollFormatHint = !pendingRoll && rollMentionedButNotParseable(reply);
+            if (creationMode && messages.length >= 2) {
+                var userMsg = messages[messages.length - 2];
+                var prevAssistant = messages.length >= 3 ? messages[messages.length - 3].content : '';
+                if (userMsg.role === 'user' && prevAssistant) {
+                    var prevBlocks = parseCreationBlocks(prevAssistant);
+                    var field = (prevBlocks.choice && prevBlocks.choice.id) ? prevBlocks.choice.id : (prevBlocks.input && prevBlocks.input.id) ? prevBlocks.input.id : null;
+                    if (field && (field === 'origine' || field === 'peuple' || field === 'name')) {
+                        try {
+                            window.dispatchEvent(new CustomEvent('drd-narrative-from-chat', { detail: { field: field === 'origine' ? 'origin' : field, value: String(userMsg.content || '').trim() } }));
+                        } catch (e) {}
+                    }
+                }
+            }
             renderMessages(container);
             if (typeof updatePendingRollHint === 'function' && input && hintEl) updatePendingRollHint(input, hintEl);
             if (creationMode && parseCreationBlocks(reply).complete) {
@@ -913,6 +973,13 @@
             noButtonsHint.setAttribute('aria-live', 'polite');
             noButtonsHint.style.display = 'none';
             if (hasCharEl) hasCharEl.insertBefore(noButtonsHint, hasCharEl.firstChild);
+            var unlockHint = document.createElement('div');
+            unlockHint.id = 'gm-creation-unlock-hint';
+            unlockHint.className = 'gm-creation-unlock-hint';
+            unlockHint.setAttribute('aria-live', 'polite');
+            unlockHint.style.display = 'none';
+            unlockHint.textContent = getLang() === 'fr' ? 'Complétez la création du personnage ci-dessous pour débloquer le chat.' : 'Complete character creation below to unlock the chat.';
+            if (hasCharEl) hasCharEl.insertBefore(unlockHint, hasCharEl.firstChild);
             var liveRegion = document.createElement('div');
             liveRegion.id = 'gm-roll-result-announce';
             liveRegion.setAttribute('aria-live', 'polite');
@@ -938,12 +1005,70 @@
                 creationMode = true;
                 updateInputVisibility();
                 messages = [];
+                var firstStepContent = getCreationScriptStep(0, getLang(), null);
+                messages.push({ role: 'assistant', content: firstStepContent });
                 saveMessages();
                 renderMessages(container);
-                var firstMsg = getLang() === 'fr' ? 'Je veux créer un personnage.' : 'I want to create a character.';
-                sendMessage(container, input, sendBtn, useChar, hintEl, firstMsg);
             });
         }
+
+        window.addEventListener('drd-character-created', function () {
+            creationMode = false;
+            updateInputVisibility();
+        });
+
+        function notifyCreationStepFromSheet(step, payload) {
+            var s = (typeof step === 'string') ? step : (step && step.detail && step.detail.step) ? step.detail.step : '';
+            if (s === 'attributes' || s === 'reveal' || s === 'dice') {
+                return;
+            }
+            var data = payload || (step && step.detail && step.detail.payload) ? (step.detail && step.detail.payload) : null;
+            if (typeof step === 'object' && step && step.detail) { data = step.detail.payload || data; }
+            var isFr = getLang() === 'fr';
+            var msg = '';
+            if (s === 'attributes') {
+                if (data && data.attributes && typeof data.attributes === 'object') {
+                    var parts = [];
+                    ALL_ATTRIBUTE_KEYS.forEach(function (k) {
+                        var v = data.attributes[k];
+                        if (v !== undefined && v !== null) parts.push(k + ' ' + Number(v));
+                    });
+                    msg = parts.length ? (isFr ? "J'ai réparti mes 18 points : " + parts.join(', ') + '.' : "I've assigned my 18 points: " + parts.join(', ') + '.') : '';
+                }
+                if (!msg) msg = isFr ? "J'ai réparti mes 18 points d'attributs dans la feuille de personnage." : "I've assigned my 18 attribute points in the character sheet.";
+            } else if (s === 'reveal') {
+                if (data && Array.isArray(data.revealed) && data.revealed.length > 0) {
+                    msg = isFr ? "J'ai révélé les compétences : " + data.revealed.join(', ') + "." : "I've revealed the competences: " + data.revealed.join(', ') + ".";
+                } else {
+                    msg = isFr ? "J'ai révélé 3 à 5 compétences dans la feuille de personnage." : "I've revealed 3 to 5 competences in the character sheet.";
+                }
+            } else if (s === 'dice') {
+                if (data && data.degrees && typeof data.degrees === 'object') {
+                    var degParts = [];
+                    for (var ck in data.degrees) { if (Object.prototype.hasOwnProperty.call(data.degrees, ck)) { var dv = data.degrees[ck]; if (dv) degParts.push(ck + ' ' + Number(dv)); } }
+                    if (degParts.length) msg = isFr ? "J'ai réparti mes 10 dés : " + degParts.join(', ') + "." : "I've assigned my 10 dice: " + degParts.join(', ') + ".";
+                }
+                if (!msg) msg = isFr ? "J'ai réparti mes 10 dés dans la feuille de personnage et je suis prêt à lancer la simulation." : "I've assigned my 10 dice in the character sheet and I'm ready to launch the simulation.";
+            } else if (s === 'origin' && data && data.value) {
+                msg = isFr ? "Mon origine : " + String(data.value) + "." : "I choose " + String(data.value) + " as my origin.";
+            } else if (s === 'peuple' && data && data.value) {
+                msg = isFr ? "Mon peuple : " + String(data.value) + "." : "I choose " + String(data.value) + " as my people.";
+            } else if (s === 'name' && data && data.value) {
+                var nameVal = String(data.value).trim();
+                msg = nameVal ? (isFr ? "Le nom de mon personnage : " + nameVal + "." : "My character's name: " + nameVal + ".") : (isFr ? "Je ne donne pas de nom pour l'instant." : "I'll skip the name for now.");
+            }
+            if (msg && container && input) {
+                creationMode = true;
+                updateInputVisibility();
+                sendMessage(container, input, sendBtn, useChar, hintEl, msg);
+            }
+        }
+        window.drdNotifyCreationStepFromSheet = notifyCreationStepFromSheet;
+        window.addEventListener('drd-creation-step-from-sheet', function (ev) {
+            var step = (ev && ev.detail && ev.detail.step) ? ev.detail.step : '';
+            var payload = (ev && ev.detail && ev.detail.payload) ? ev.detail.payload : null;
+            if (step) notifyCreationStepFromSheet(step, payload);
+        });
 
         if (sendBtn) sendBtn.addEventListener('click', submit);
         if (input) {
@@ -970,7 +1095,19 @@
                 var optionBtn = e.target && e.target.closest && e.target.closest('.gm-creation-option-btn');
                 if (optionBtn && creationMode) {
                     var option = optionBtn.getAttribute('data-option');
-                    if (option) sendMessage(container, input, sendBtn, useChar, hintEl, option);
+                    if (!option) return;
+                    var lastAssistant = messages.filter(function (m) { return m.role === 'assistant'; }).pop();
+                    if (!lastAssistant) return;
+                    var blocks = parseCreationBlocks(lastAssistant.content);
+                    var choiceId = blocks.choice && blocks.choice.id ? blocks.choice.id : null;
+                    messages.push({ role: 'user', content: option });
+                    if (choiceId === 'origin') {
+                        messages.push({ role: 'assistant', content: getCreationScriptStep(1, getLang(), option) });
+                    } else if (choiceId === 'peuple') {
+                        messages.push({ role: 'assistant', content: getCreationScriptStep(2, getLang(), null) });
+                    }
+                    saveMessages();
+                    renderMessages(container);
                     return;
                 }
                 var inputSubBtn = e.target && e.target.closest && e.target.closest('.gm-creation-input-submit');
@@ -978,7 +1115,23 @@
                     var block = inputSubBtn.closest('.gm-creation-block');
                     var field = block ? block.querySelector('.gm-creation-input-field') : null;
                     var val = field ? field.value.trim() : '';
-                    if (val) sendMessage(container, input, sendBtn, useChar, hintEl, val);
+                    var nameVal = (val === '' || /^(none|aucun)$/i.test(val)) ? '' : val;
+                    messages.push({ role: 'user', content: nameVal || (getLang() === 'fr' ? 'Aucun' : 'None') });
+                    var originFromMsg = messages.length >= 2 && messages[1].role === 'user' ? messages[1].content : '';
+                    var peupleFromMsg = messages.length >= 4 && messages[3].role === 'user' ? messages[3].content : '';
+                    saveCharacterInfoToStorage({ origin: originFromMsg, peuple: peupleFromMsg, name: nameVal });
+                    messages.push({ role: 'assistant', content: getCreationScriptStep(3, getLang(), null) });
+                    var defaultState = buildCharacterSheetState('{}');
+                    if (defaultState) {
+                        try {
+                            sessionStorage.setItem(CHAR_STORAGE_KEY, JSON.stringify(defaultState));
+                        } catch (e) {}
+                        try {
+                            window.dispatchEvent(new CustomEvent('drd-creation-started'));
+                        } catch (e2) {}
+                    }
+                    saveMessages();
+                    renderMessages(container);
                     return;
                 }
             });

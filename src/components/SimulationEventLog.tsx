@@ -5,7 +5,7 @@ import { CharacterSheetManager } from '@/game/character/CharacterSheetManager';
 import { Competence, getCompetenceAction } from '@/game/character/data/CompetenceData';
 import { getActionLinkedAttribute } from '@/game/character/data/ActionData';
 import { Souffrance } from '@/game/character/data/SouffranceData';
-import { loadCachedCharacter, saveCachedCharacter, clearCachedCharacter } from '@/lib/simulationStorage';
+import { loadCachedCharacter, saveCachedCharacter, clearCachedCharacter, loadCharacterInfo, saveCharacterInfo } from '@/lib/simulationStorage';
 import { MARKS_TO_EPROUVER } from '@/game/character/CharacterSheetManager';
 import { rollCompetenceCheck } from '@/game/dice/CompetenceRoll';
 import { getRollParams } from '@/game/dice/rollParams';
@@ -51,9 +51,18 @@ const CHALLENGES: { descriptionKey: (typeof CHALLENGE_KEYS)[number]; suggested?:
   { descriptionKey: 'challengeRepair', suggested: Competence.DEBROUILLARDISE, nivEpreuve: 1 },
 ];
 
+export type CreateStepType = 'origin' | 'peuple' | 'name' | 'attributes' | 'reveal' | 'dice';
+
 export type StepActionPayload =
   | { step: 'attributes' | 'reveal' | 'dice'; label: string; onClick: () => void; disabled: boolean }
   | null;
+
+const ORIGINS = ['Yômmes', 'Yôrres', 'Bêstres'] as const;
+const PEUPLES_BY_ORIGIN: Record<string, readonly string[]> = {
+  Yômmes: ['Aristois', 'Griscribes', 'Navillis', 'Méridiens'],
+  Yôrres: ['Hauts Ylfes', 'Ylfes pâles', 'Ylfes des lacs', 'Iqqars'],
+  Bêstres: ['Slaadéens', 'Tchalkchaïs'],
+};
 
 interface SimulationEventLogProps {
   lang: CharacterSheetLang;
@@ -132,7 +141,10 @@ export default function SimulationEventLog({
 }: SimulationEventLogProps) {
   const [events, setEvents] = useState<SimEvent[]>([]);
   const [mode, setMode] = useState<'idle' | 'creating' | 'running'>('idle');
-  const [createStep, setCreateStep] = useState<'attributes' | 'reveal' | 'dice'>('attributes');
+  const [createStep, setCreateStep] = useState<CreateStepType>('origin');
+  const [narrativeOrigin, setNarrativeOrigin] = useState('');
+  const [narrativePeuple, setNarrativePeuple] = useState('');
+  const [narrativeName, setNarrativeName] = useState('');
   const [awaitingSkillChoice, setAwaitingSkillChoice] = useState(false);
   const [runningChallengeIdx, setRunningChallengeIdx] = useState(0);
   const topScrollRef = useRef<HTMLDivElement | null>(null);
@@ -159,11 +171,76 @@ export default function SimulationEventLog({
     return () => cancelAnimationFrame(id);
   }, [events]);
 
+  // When the user selects an option in the chat (origin, peuple, name), update narrative state and storage
+  useEffect(() => {
+    const handler = (ev: Event) => {
+      const e = ev as CustomEvent<{ field: string; value: string }>;
+      const field = e.detail?.field;
+      const value = e.detail?.value ?? '';
+      if (field === 'origin') {
+        setNarrativeOrigin(value);
+        saveCharacterInfo({ ...loadCharacterInfo(), origin: value });
+      } else if (field === 'peuple') {
+        setNarrativePeuple(value);
+        saveCharacterInfo({ ...loadCharacterInfo(), peuple: value });
+      } else if (field === 'name') {
+        setNarrativeName(value);
+        saveCharacterInfo({ ...loadCharacterInfo(), name: value });
+      }
+    };
+    window.addEventListener('drd-narrative-from-chat', handler);
+    return () => window.removeEventListener('drd-narrative-from-chat', handler);
+  }, []);
+
+  // When creation is started from the Play-tab chat ("Create a character"), sync: load cached state. If narrative (origin/peuple/name) already in storage, skip to attributes.
+  useEffect(() => {
+    const handler = () => {
+      const cached = loadCachedCharacter();
+      if (cached) {
+        manager.loadState(cached);
+        updateSheet();
+        setMode('creating');
+        const info = loadCharacterInfo();
+        if (info) {
+          setNarrativeOrigin(info.origin ?? '');
+          setNarrativePeuple(info.peuple ?? '');
+          setNarrativeName(info.name ?? '');
+        } else {
+          setNarrativeOrigin('');
+          setNarrativePeuple('');
+          setNarrativeName('');
+        }
+        if (info?.origin) {
+          setCreateStep('attributes');
+        } else {
+          setCreateStep('origin');
+          onHighlight?.(null);
+          onStepAction?.(null);
+        }
+        setEvents([]);
+        setAwaitingSkillChoice(false);
+        setRunningChallengeIdx(0);
+        push('info', t('createCharacterIntro', lang));
+      }
+    };
+    window.addEventListener('drd-creation-started', handler);
+    return () => window.removeEventListener('drd-creation-started', handler);
+  }, [manager, updateSheet, lang]);
+
   const confirmRevealAndGoToDice = () => {
     const revealed = Object.values(Competence).filter((c) => manager.getState().competences[c]?.isRevealed);
     if (revealed.length < MIN_REVEAL || revealed.length > MAX_REVEAL) return;
     const names = revealed.map((c) => getCompetenceName(c, lang)).join(', ');
     push('info', tParam('revealedListRepartir', lang, names, POOL_DICE));
+    const stateReveal = manager.getState();
+    saveCachedCharacter(stateReveal);
+    try {
+      const revealedKeys = revealed.map((c) => c as string);
+      const payload = { revealed: revealedKeys };
+      window.dispatchEvent(new CustomEvent('drd-creation-step-from-sheet', { detail: { step: 'reveal', payload } }));
+    } catch {
+      // ignore
+    }
     setCreateStep('dice');
     onHighlight?.('create-dice', tParam('createDiceTooltip', lang, POOL_DICE));
     onStepAction?.({
@@ -188,8 +265,26 @@ export default function SimulationEventLog({
       Object.values(Souffrance).reduce((s, souf) => s + (state.souffrances[souf]?.resistanceDegreeCount ?? 0), 0);
     if (diceSum !== POOL_DICE) return;
     push('info', tParam('diceRepartisStart', lang, POOL_DICE));
+    try {
+      const degrees: Record<string, number> = {};
+      Object.values(Competence).forEach((c) => {
+        const comp = state.competences[c];
+        if (comp?.isRevealed && (comp.degreeCount ?? 0) > 0) {
+          degrees[c as string] = comp.degreeCount;
+        }
+      });
+      const payload = { degrees };
+      window.dispatchEvent(new CustomEvent('drd-creation-step-from-sheet', { detail: { step: 'dice', payload } }));
+    } catch {
+      // ignore
+    }
     onCreationComplete?.();
     saveCachedCharacter(manager.getState());
+    try {
+      window.dispatchEvent(new CustomEvent('drd-character-created'));
+    } catch {
+      // ignore
+    }
     setMode('running');
     setCreateStep('attributes');
     setRunningChallengeIdx(0);
@@ -200,6 +295,14 @@ export default function SimulationEventLog({
 
   const validateAndGoToReveal = () => {
     push('info', t('attributesValidated', lang));
+    const state = manager.getState();
+    saveCachedCharacter(state);
+    try {
+      const payload = { attributes: state.attributes };
+      window.dispatchEvent(new CustomEvent('drd-creation-step-from-sheet', { detail: { step: 'attributes', payload } }));
+    } catch {
+      // ignore
+    }
     setCreateStep('reveal');
     onHighlight?.('create-reveal', t('createRevealTooltip', lang));
     onStepAction?.({
@@ -215,6 +318,10 @@ export default function SimulationEventLog({
 
   useEffect(() => {
     if (mode !== 'creating') {
+      onStepAction?.(null);
+      return;
+    }
+    if (createStep === 'origin' || createStep === 'peuple' || createStep === 'name') {
       onStepAction?.(null);
       return;
     }
@@ -267,10 +374,56 @@ export default function SimulationEventLog({
       onStepAction?.(null);
     } else {
       setMode('creating');
-      setCreateStep('attributes');
+      setCreateStep('origin');
+      const info = loadCharacterInfo();
+      if (info) {
+        setNarrativeOrigin(info.origin ?? '');
+        setNarrativePeuple(info.peuple ?? '');
+        setNarrativeName(info.name ?? '');
+      } else {
+        setNarrativeOrigin('');
+        setNarrativePeuple('');
+        setNarrativeName('');
+      }
       setEvents([]);
       push('info', t('createCharacterIntro', lang));
     }
+  };
+
+  const confirmOriginAndGoToPeuple = () => {
+    if (!narrativeOrigin) return;
+    saveCharacterInfo({ origin: narrativeOrigin });
+    try {
+      window.dispatchEvent(new CustomEvent('drd-creation-step-from-sheet', { detail: { step: 'origin', payload: { value: narrativeOrigin } } }));
+    } catch {
+      // ignore
+    }
+    setCreateStep('peuple');
+    setNarrativePeuple('');
+  };
+
+  const confirmPeupleAndGoToName = () => {
+    if (!narrativePeuple) return;
+    const info = loadCharacterInfo() ?? {};
+    saveCharacterInfo({ ...info, peuple: narrativePeuple });
+    try {
+      window.dispatchEvent(new CustomEvent('drd-creation-step-from-sheet', { detail: { step: 'peuple', payload: { value: narrativePeuple } } }));
+    } catch {
+      // ignore
+    }
+    setCreateStep('name');
+  };
+
+  const confirmNameAndGoToAttributes = () => {
+    const info = loadCharacterInfo() ?? {};
+    saveCharacterInfo({ ...info, name: narrativeName.trim() || undefined });
+    try {
+      window.dispatchEvent(new CustomEvent('drd-creation-step-from-sheet', { detail: { step: 'name', payload: { value: narrativeName.trim() } } }));
+    } catch {
+      // ignore
+    }
+    setCreateStep('attributes');
+    onHighlight?.('create-attributes', t('createAttrTooltip', lang));
   };
 
   const runChallenge = (idx: number) => {
@@ -358,7 +511,10 @@ export default function SimulationEventLog({
     updateSheet();
     setEvents([]);
     setMode('creating');
-    setCreateStep('attributes');
+    setCreateStep('origin');
+    setNarrativeOrigin('');
+    setNarrativePeuple('');
+    setNarrativeName('');
     setAwaitingSkillChoice(false);
     setRunningChallengeIdx(0);
     onHighlight?.(null);
@@ -414,6 +570,80 @@ export default function SimulationEventLog({
           </button>
         </div>
       </div>
+
+      {/* Narrative steps (origin, peuple, name) when in creating mode */}
+      {mode === 'creating' && (createStep === 'origin' || createStep === 'peuple' || createStep === 'name') && (
+        <div
+          className="px-3 py-2 border-b border-border-dark flex flex-wrap items-center gap-2"
+          style={{ background: 'rgba(0,0,0,0.25)' }}
+        >
+          {createStep === 'origin' && (
+            <>
+              <label className="text-text-cream text-sm font-semibold shrink-0">{t('chooseOrigin', lang)}</label>
+              <select
+                value={narrativeOrigin}
+                onChange={(e) => setNarrativeOrigin(e.target.value)}
+                className="px-2 py-1 rounded border border-border-dark bg-black/30 text-text-cream text-sm min-w-[140px]"
+              >
+                <option value="">—</option>
+                {ORIGINS.map((o) => (
+                  <option key={o} value={o}>{o}</option>
+                ))}
+              </select>
+              <button
+                type="button"
+                onClick={confirmOriginAndGoToPeuple}
+                disabled={!narrativeOrigin}
+                className="px-3 py-1.5 bg-red-theme text-text-cream border-2 border-border-dark rounded font-semibold text-sm disabled:opacity-50 disabled:cursor-not-allowed hover:bg-amber-800"
+              >
+                {t('nextStep', lang)}
+              </button>
+            </>
+          )}
+          {createStep === 'peuple' && (
+            <>
+              <label className="text-text-cream text-sm font-semibold shrink-0">{t('choosePeuple', lang)}</label>
+              <select
+                value={narrativePeuple}
+                onChange={(e) => setNarrativePeuple(e.target.value)}
+                className="px-2 py-1 rounded border border-border-dark bg-black/30 text-text-cream text-sm min-w-[160px]"
+              >
+                <option value="">—</option>
+                {(PEUPLES_BY_ORIGIN[narrativeOrigin] ?? []).map((p) => (
+                  <option key={p} value={p}>{p}</option>
+                ))}
+              </select>
+              <button
+                type="button"
+                onClick={confirmPeupleAndGoToName}
+                disabled={!narrativePeuple}
+                className="px-3 py-1.5 bg-red-theme text-text-cream border-2 border-border-dark rounded font-semibold text-sm disabled:opacity-50 disabled:cursor-not-allowed hover:bg-amber-800"
+              >
+                {t('nextStep', lang)}
+              </button>
+            </>
+          )}
+          {createStep === 'name' && (
+            <>
+              <label className="text-text-cream text-sm font-semibold shrink-0">{t('characterNameLabel', lang)}</label>
+              <input
+                type="text"
+                value={narrativeName}
+                onChange={(e) => setNarrativeName(e.target.value)}
+                placeholder={lang === 'fr' ? 'Optionnel' : 'Optional'}
+                className="px-2 py-1 rounded border border-border-dark bg-black/30 text-text-cream text-sm min-w-[120px]"
+              />
+              <button
+                type="button"
+                onClick={confirmNameAndGoToAttributes}
+                className="px-3 py-1.5 bg-red-theme text-text-cream border-2 border-border-dark rounded font-semibold text-sm hover:bg-amber-800"
+              >
+                {t('nextStep', lang)}
+              </button>
+            </>
+          )}
+        </div>
+      )}
 
       <div
         className="p-2 font-mono text-xs space-y-2"

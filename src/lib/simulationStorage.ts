@@ -39,3 +39,30 @@ export function clearCachedCharacter(): void {
     // Ignore storage errors
   }
 }
+
+/** Narrative creation info (origin, peuple, name) synced with chat. */
+export interface CharacterInfo {
+  origin?: string;
+  peuple?: string;
+  name?: string;
+}
+
+export const CHARACTER_INFO_KEY = 'drd_character_info';
+
+export function loadCharacterInfo(): CharacterInfo | null {
+  try {
+    const raw = sessionStorage.getItem(CHARACTER_INFO_KEY);
+    if (!raw) return null;
+    return JSON.parse(raw) as CharacterInfo;
+  } catch {
+    return null;
+  }
+}
+
+export function saveCharacterInfo(info: CharacterInfo): void {
+  try {
+    sessionStorage.setItem(CHARACTER_INFO_KEY, JSON.stringify(info));
+  } catch {
+    // Ignore
+  }
+}
