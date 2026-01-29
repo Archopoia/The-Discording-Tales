@@ -1,142 +1,123 @@
-# Création de Personnage - Des Récits Discordants
+# Création de Personnage (Révélation) - Des Récits Discordants
 
-## Processus de Création
+Réf. livre : pages 21 (3 étapes), 49-54 (A Caractéristiques, B Attributs, C Récits, Castes, Récits), 51 (Héritages & Métissages), 90+ (Remémoration Créatrice, Symbole, Éducation, Expression, Valeurs, Titres, Langues, Richesses).  
+CSV : Tirage_des_Caractéristiques, Attributs_d'Origine_Peuple_&_Race, Caractéristiques_des_Peuples, Raisons_d'Éveil_du_Personnage, Attaches_de_Récit, Niv_Atb_Coût_en_Degrés_Coût_Total.
 
-### Méthode 1 : Amnésique (Recommandée pour débutants)
-- Personnage créé progressivement pendant les premières sessions
-- 10 Dés Éduqués + 10 Dés Exprimés
-- 1 Symbole, 1 Moralité, 1 Socialité, 1 Titre
-- 10 Niv de Langues, 1000 cO
+## Vue d’ensemble
 
-### Méthode 2 : Complète (Avancée)
-- Personnage entièrement créé avant la première session
-- Tous les aspects déterminés
+La **Révélation** d’un personnage comporte **3 étapes fondamentales** :
+- **A) Caractéristiques** (p. 91) : Origine, Peuple, Race, Sexe, et éventuellement Variation (Âge, Sexe, Gras, Stature, Taille).
+- **B) Individuation** (p. 97) : Variation des Attributs par rapport à la norme Peuple/Race/Sexe.
+- **C) Récit** (p. 99) : Raison d’Éveil, Caste, Récit, optionnellement Attache et Héritage.
 
-## Étapes de Création
+Après ces 3 étapes, deux options :
+- **Remémoration Créatrice** (p. 113) : révélation différée et simplifiée en jeu (amnésies, récupération de mémoire sur 8 aspects : expérience, intégrité, société, etc.).
+- **Révélation complète** avant la première séance : Symbole, Éducation, Expression, Valeurs, Traits, Titres, Langues, Richesses (voir sections dédiées dans le livre et 04_Experience_Progression, 13_Valeurs_Traits, 11_Possessions_Equipement).
 
-### A) Caractéristiques (Origine, Peuple, Race)
+---
 
-#### 1. Origine
-- **Yômmes** : Humanoïdes standards
-- **Yôrres** : Elfes et similaires
-- **Bêstres** : Créatures diverses
+## A) Tirage des Caractéristiques (p. 91)
 
-#### 2. Peuple
-Choisir parmi les Peuples de l'Origine :
-- **Yômmes** : Aristois, Griscribes, Navillis, Méridiens
-- **Yôrres** : Hauts Ylfes, Ylfes pâles, Ylfes des lacs, Iqqars
-- **Bêstres** : Slaadéens, Tchalkchaïs
+### 1. Choix (ou tirage) Origine, Peuple, Race, Sexe
+- **Origines** : Yômmes, Yôrres, Bêstres.
+- **Peuples** : selon l’Origine (ex. Yômmes : Aristois, Griscribes, Navillis, Méridiens ; Yôrres : Hauts Ylfes, Ylfes pâles, Ylfes des lacs, Iqqars ; Bêstres : Slaadéens, Tchalkchaïs).
+- **Race** : une race au sein du Peuple (ex. Aristois : Monte-Foudres, Fleuris, Des Souffles, Ambrés).
+- **Sexe** : Homme (♂), Femme (♀), ou Intersexe selon les règles du Peuple.
 
-#### 3. Race
-Choisir une Race au sein du Peuple choisi
+Les **Attributs de base** viennent des tableaux **Attributs d’Origine, Peuple & Race** (livre p. 50 et suiv., CSV Attributs_d'Origine_Peuple_&_Race) : on applique les modificateurs du Peuple (par sexe), puis de la Race. Ex. Homme Aristois Monte-Foudres : FOR 0, AGI -1, DEX -1, VIG -1, EMP 0, PER +1, CRÉ 0, VOL +2.
 
-#### 4. Sexe
-- **Masculin** : Modificateurs spécifiques
-- **Féminin** : Modificateurs spécifiques
-- **Autre** : Traits uniques
+On part d’un personnage **Jeune** (20-30 années « normales » du Peuple) et aux **Caractéristiques normales** du Peuple (Taille, Stature, Gras, Dimorphisme — voir CSV Caractéristiques_des_Peuples).
 
-#### 5. Caractéristiques Physiques
-Tirer 10dD pour :
-- **Âge** : Détermine l'étape de vie
-- **Sexe** : Si non choisi
-- **Gras** : Corpulence
-- **Stature** : Largeur/épaisseur
-- **Taille** : Hauteur
+### 2. Variation des Caractéristiques (optionnel)
+Pour s’écarter de la norme : **5 jets de 10 dD** (sans garder 5 dés) donnant des **Niv** pour :
+1. **Âge** (Catégorie d’âge : Enfance, Adolescence, Jeunesse, Adulte, Maturité, Vieillesse, Ancienneté, Vénérable — CSV Tirage_des_Caractéristiques).
+2. **Sexe** (si non choisi ; spectre Intersexe selon Peuple).
+3. **Gras** (corpulence).
+4. **Stature** (largeur/épaisseur).
+5. **Taille** (hauteur).
 
-Chaque caractéristique modifie les Attributs de base
+Résultat 0 = norme du Peuple pour cette caractéristique. Chaque Niv obtenu modifie les Attributs selon les tableaux du livre (ex. Maturité +1 Âge → -1 FOR, AGI, DEX, VIG, +1 EMP, -1 PER, -1 CRÉ, +1 VOL ; Stature large +1 → +1 FOR, -1 AGI, -1 EMP, +1 VOL).  
+On peut aussi tirer au hasard le **Peuple** (puis 1d6 pour la Race), puis lancer 10dD pour Âge, Sexe, Gras, Stature, Taille.
 
-### B) Individuation
+(Livre p. 49-50 ; CSV Tirage_des_Caractéristiques.)
 
-#### Variation des Attributs
-3 méthodes :
-1. **Réaliste** : 8dD/2, garder les 5 plus hauts/bas
-2. **Équilibré** : Total des attributs = 0
-3. **Contrôlé** : 10dD*2 ou 20dD à dépenser en degrés
+---
 
-#### Attributs Extrêmes
-- **+5 ou plus** : EXTRÊME, aspect spécial
-- **-6 ou moins** : Fatal
+## B) Tirage des Attributs (Individuation) (p. 97)
 
-#### Pénalité Grégaire
-- Peuples grégaires : Pénalité basée sur Niv de Gouvernance
+On part des Attributs issus de A (Peuple, Race, Sexe, et éventuellement Âge/Gras/Stature/Taille). **Trois façons** de diversifier (à convenir avec le Révélateur) :
 
-### C) Récit
+### 1. Variabilité réaliste
+- **8 jets de 10dD/2** ; ajouter chaque résultat à un Attribut (dans l’ordre tiré ou au choix). Donne des écarts réalistes, peu d’extrêmes.
 
-#### Détermination du Récit
-- Attribut le plus élevé → Caste raciale
-- Caste → 18 Récits possibles
-- Choisir ou tirer un Récit
+### 2. Variabilité équilibrée
+- **Total des 8 Attributs = 0** (ou autre score commun au groupe fixé par le Révélateur). Chaque joueur ajuste ses Niv d’Attributs (soustraire/ajouter) pour égaliser ce total.
 
-#### Variation des Récits
-- Tirer 10dD/2 pour varier l'attribut de base
-- Choisir directement si désiré
+### 3. Variabilité contrôlée
+- **20dD** (ou 10dD×2) donnent des **Degrés** à dépenser pour modifier les Attributs selon le tableau **Niv Atb / Coût en Degrés / Coût Total** (livre, CSV Niv_Atb_Coût_en_Degrés_Coût_Total). Liberté maximale.
 
-#### Attaches de Récit
-- Motivations/burdens liés au Récit et sous-caste
-- 3 par sous-caste (alignement -, 0, +)
+**Alternative sans dés** : garder les Niv actuels et appliquer **+2, +1, 0, 0, 0, 0, -1, -2** (à répartir : +2 et -2 sur deux Attributs, +1 et -1 sur deux autres, quatre à 0).
 
-### D) Héritages
+**Peuples grégaires** : malus de base **-8 N** d’Attributs par Niv de Gouvernance (ex. -8 N = +1 NdG pour 2-3 membres, -16 N = +2 NdG pour 4-10 membres).
 
-#### Types d'Héritages
-- **Physiques (-)** : Traits corporels, traumatismes physiques
-- **Mentaux (0)** : Traits psychologiques
-- **Sociaux (+)** : Traits sociaux, origines particulières
+**Finalisation** : multiplier chaque Niv d’Attribut par **×10** et inscrire sur la feuille.
 
-#### Détermination
-- Tirer selon la catégorie
-- Chaque héritage modifie les attributs et confère des effets uniques
+### Attributs extrêmes
+- **±5 Niv** (et au-delà) par rapport à la norme du Peuple = Attribut **EXTRÊME** (aspects particuliers).
+- **-6 Niv** (et au-delà) = **fatal** (refaire le tirage ou changer de décision). (Livre p. 52.)
 
-## Ressources Initiales
+---
 
-### Dés Éduqués (10)
-- 3 Compétences Populaires : +1D chacune
-- 2 Compétences Raciales : +2D chacune
-- 1 Compétence Familiale : +3D
+## C) Tirage des Récits (p. 99)
 
-### Dés Exprimés (10)
-- Dépenser selon les intérêts du personnage
-- Typiquement : 3+2+1 dans Symbolique, 2+1 dans Fascinante, 1 dans Intéressante
+### 1. Raison d’Éveil du Personnage
+- **5dD + 1d6** (ou choix) pour déterminer **pourquoi** le personnage quitte son vécu / part à l’aventure.  
+- Table **Raisons d’Éveil** (livre p. 53, CSV Raisons_d'Éveil_du_Personnage) : ex. 0 = S’enfuir d’une pression économique, Pour faire de l’argent, Livraison, Escorte, S’enfuir d’une famille, Rechercher un climat sain ; +1/-1 = Maintien des routes, Ouvrir un commerce, etc. ; jusqu’à +5/-5 = Création de routes, Sauvetage, Conversion, etc.
 
-### Symbole
-- Déterminé par l'Aptitude la plus élevée
-- 3 Actions Symboliques (3 Marques Éternelles)
-- 2 Actions Fascinantes (2 Marques Éternelles)
-- 1 Action Intéressante (1 Marque Éternelle)
+### 2. Caste et Récit
+- Prendre l’**Attribut le plus élevé** → détermine la **Caste** (les 8 Castes sont liées aux 8 Attributs : Guerriers-FOR, Rôdeurs-AGI, Artisans-DEX, etc.).
+- La **Caste** donne accès à **18 Récits** (3 sous-castes × 6 récits). **d3** = sous-caste (ex. (-) Champions, (0) Mercenaires, (+) Soldats pour Guerriers) ; **d6** = Récit concret (ex. Artiste martial, Garde personnel aguerri, Garde bien placé, …).
+- **Variation des Récits** : **10dD/2** pour éventuellement prendre une autre Caste que celle de l’Attribut le plus élevé (Attribut le plus élevé = 0 au résultat ; résultat positif = +X Attributs vers la droite/horaire, négatif = -X vers la gauche/anti-horaire).
+- On peut prendre la **Caste Éduquée** (liée à la Compétence Familiale, p. 239) ou la **Caste Explorée** (liée aux Compétences déjà révélées/réalisées, p. 243).
 
-### Valeurs
-- **Moralité** : +6D (héritée du Peuple)
-- **Motivation** : +3D (envers Gens ou Choses)
-- **Personnalité** : +1D (liée à l'Aptitude)
+### 3. Effet du Récit
+- Le **Récit double les Dés de CT** dans toute situation s’y collant particulièrement. Si le personnage a 0 Dé dans la compétence concernée, ajouter **+1 Dé** au jet. (Livre p. 53.)
 
-### Traits
-- **Socialité** : +6D (Enfance → Sexe → Vieillesse)
-- **Disposition** : +3D (envers Peuples/Castes)
-- **Passion** : +1D (objet de passion)
+### 4. Attache de Récit (optionnel)
+- Tirer ou choisir une **Attache** liée au Récit (sous-caste et alignement -, 0, +) pour ancrer le passé et la situation présente. CSV Attaches_de_Récit (ex. Guerriers : Champions/Mercenaires/Soldats avec phrases d’attache).
 
-### Titre
-- Niv de Gouvernance : Jet de Distinction
-- Dés d'Influence : Jet de 5dD + modificateurs
-- 1 Relation initiale
+### 5. Héritage (optionnel)
+- **5dD**. Si le résultat est **±3, ±4 ou ±5** : lancer **3dD** pour le type d’Héritage (physique, mental, social, etc.), puis **5dD** pour la valeur **X** (intensité). Inscrire le nom de l’Héritage et le résultat X ; **totaliser** tous les Attributs après Peuple, Race, Sexe, Individuation et Héritage. (Livre p. 53.)
 
-### Langues
-- Langue du Peuple : Parlé Exercé, Écrit Essentiel, Signé Enfantin
-- +4 Degrés pour une autre langue (fin d'Adolescence)
-- +2 Degrés par Niv de Créativité
+---
 
-### Richesses
-- **1000 cO** pour un Jeune issu d'une Tribu/Compagnie
-- Épargne = 25% de la Richesse Totale
-- Salaire Saisonnier : 12.5 cO (4 cO épargnés)
+## Héritages & Métissages (p. 51)
 
-## Métissages
+- **Entre Origines** (Yômmes, Yôrres, Bêstres) : **impossible** (reproduction entre elles impossible).
+- **Même Peuple, Races différentes** (ex. entre Monte-Foudres, Fleuris, Des Souffles, Ambrés) : **souvent possible** ; résultats variables (vigoureux à souffreteux) ; enfant reçoit au hasard un des deux bonus raciaux (+1|+1) et un des deux malus (-1|-1) des parents.
+- **Même Origine, Peuples différents** :  
+  - **Yômmes** (Aristois, Griscribes, Navillis, Méridiens) : enfant avec **traits du peuple maternel** (Attributs, Taille, Stature, Gras, Dimorphisme) et quelques traits d’apparence du père ; conceptions très rares, réputées infertiles, mal vues.  
+  - **Yôrres** (Hauts Ylfes, Ylfes pâles, Ylfes des lacs) : **lignée paternelle** (Attributs, Taille, Stature, Gras, Dimorphisme), mère transmet quelques traits d’apparence ; un peu plus fréquent, parfois fertiles, toujours très mal vus.  
+- **Bêstres** : si divers qu’aucun croisement établi ou enfantement viable/fertile.  
+- **Iqqars** : isolés, ne se reproduisent qu’entre eux.
 
-### Règles
-- **Entre Origines** : Impossible
-- **Même Peuple, Races différentes** : Souvent possible, résultats variés
-- **Même Origine, Peuples différents** : Rare, souvent infertile, socialement mal vu
-- **Bêstres/Iqqars** : Trop divers ou isolés
+---
 
-### Héritage
-- **Yômmes** : Traits maternels
-- **Yôrres** : Traits paternels
+## Après les 3 étapes : Remémoration Créatrice ou Révélation complète
 
+### Remémoration Créatrice (p. 113)
+- Révélation **différée** en jeu : le personnage a des « amnésies » dont il récupère la mémoire sur **8 aspects** au fil des séances :  
+  - **A)** Expérience de la vie (compétences apprises),  
+  - **B)** Intégrité (valeurs et traits),  
+  - **C)** Société (possessions, richesses).  
+- Règles d’amnésie et de récupération détaillées dans le livre (première séance : Symbole, Dés Éduqués/Exprimés, Marques gratuites, etc.).
+
+### Révélation complète (avant première séance)
+- **Symbole** (p. 235) : nature, essence, destin, passions.  
+- **Éducation** (A, p. 239) : Compétence Familiale (+3 Dés), Compétences Éduquées (Marques Éternelles).  
+- **Expression** (A, p. 243) : Dés Exprimés, répartition dans Aptitude Symbolique (3 Actions), Fascinante (2 Actions), Intéressante (1 Action).  
+- **Valeurs** (B, p. 247) : Moralité, Motivation, Personnalité.  
+- **Traits** (B, p. 257) : Socialité, Disposition, Passion.  
+- **Titres** (C, p. 265), **Langues** (C, p. 263), **Richesses** (C, p. 265).
+
+Voir **04_Experience_Progression**, **13_Valeurs_Traits**, **11_Possessions_Equipement** pour le détail des tableaux et coûts.

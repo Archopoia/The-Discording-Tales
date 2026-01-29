@@ -1263,12 +1263,15 @@ img {
 .play-flip-container {
     flex: 1;
     min-width: 0;
+    min-height: 60vh;
     perspective: 1200px;
+    overflow: hidden;
 }
 .play-flip-inner {
     position: relative;
     width: 100%;
-    min-height: 320px;
+    height: 100%;
+    min-height: 60vh;
     transform-style: preserve-3d;
     transition: transform 0.6s ease;
 }
@@ -1285,6 +1288,12 @@ img {
 }
 .play-flip-face-front {
     transform: rotateY(0deg);
+    padding-bottom: 1.5rem;
+    box-sizing: border-box;
+}
+.play-flip-face-front .gm-chat-wrapper {
+    height: 100%;
+    min-height: 0;
 }
 .play-flip-face-back {
     transform: rotateY(180deg);
@@ -1360,8 +1369,8 @@ img {
 }
 .gm-chat-messages {
     flex: 1;
-    min-height: 240px;
-    max-height: 50vh;
+    min-height: 120px;
+    max-height: min(50vh, calc(60vh - 220px));
     overflow-y: auto;
     padding: var(--spacing-sm);
     background: rgba(0, 0, 0, 0.25);
@@ -1498,6 +1507,7 @@ img {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    flex-shrink: 0;
 }
 .gm-chat-checkbox-label {
     display: inline-flex;
@@ -2067,7 +2077,8 @@ img {
     text-align: center;
     margin-top: var(--spacing-lg);
     position: relative;
-    z-index: 2;
+    z-index: 10;
+    flex-shrink: 0;
 }
 
 .footer-content {

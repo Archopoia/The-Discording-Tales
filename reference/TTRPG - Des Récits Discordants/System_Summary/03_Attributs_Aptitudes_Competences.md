@@ -1,9 +1,28 @@
 # Attributs, Aptitudes et Compétences
 
+Réf. livre : pages 16-19 (Attributs, Aptitudes, Dés CT/MT, Potentiels, Tenter d'agir), 63+ (Révélation, Maîtrises, Découvertes).  
+CSV : (8)_Aptitudes_(24)_Actions_&_(72)_Compétences, Attributs_Apt_+3_+2_+1, Cercle_Initial_*, Découvertes_des_72_Compétences, Tableau_des_Découvertes_d'Attribut.
+
 ## Les 8 Attributs
 
+Chaque Attribut est noté entre -50 et +50 (×10 sur la feuille) ; 00 = humanoïde moyen.  
+**Lien Aptitudes** (chaque Aptitude est la somme de 3 Attributs) — CSV Attributs_Apt_+3_+2_+1 :
+
+| Attribut | Apt +3 (principal) | Apt +2 | Apt +1 |
+|----------|---------------------|--------|--------|
+| FOR      | Puissance           | Athlétisme | Domination |
+| AGI      | Aisance             | Puissance  | Athlétisme |
+| DEX      | Précision           | Aisance   | Puissance  |
+| VIG      | Athlétisme          | Domination | Aisance   |
+| EMP      | Charisme            | Réflexion  | Détection  |
+| PER      | Détection           | Précision  | Charisme   |
+| CRÉ      | Réflexion           | Détection  | Précision  |
+| VOL      | Domination          | Charisme   | Réflexion  |
+
+**Niv d'Aptitude** : on n'utilise que l'**unité** (1er chiffre significatif) : total ÷ 10 (ex. -37 → -3). En cas d'égalité, la décimale de l'ATB lié au groupe de la Compétence peut départager. (Livre p. 16.)
+
 ### Force (FOR) & Autorité
-- **Aptitude** : Puissance
+- **Aptitude principale** : Puissance (+3)
 - **Actions** : Frapper, Neutraliser, Tirer
 - **Compétences** : [Armé], [Désarmé], [Improvisé], [Lutte], [Bottes], [Ruses], [Bandé], [Propulsé], [Jeté]
 
@@ -79,7 +98,7 @@ Chaque Aptitude est également liée à un **Type de Conflit/Gameplay** qui repr
 - **Acculturer** : [Jeux], [Médecine], [Pastoralisme]
 - **Acclimater** : [Ingénierie], [Géographie], [Agronomie]
 
-### Domination (VOL)
+### Domination (VOL) — Livre p. 18, CSV (8) Aptitudes
 - **Discipliner** : [Commandement], [Intimidation], [Obstinance]
 - **Endurer** : [Gloutonnerie], [Beuverie], [Entrailles]
 - **Dompter** : [Apprivoisement], [Obéissance], [Dressage]
@@ -137,6 +156,16 @@ Chaque Compétence a des **Maîtrises** (Spécialités) qui sont des sous-compé
 - **[Gloutonnerie]** : Capacité/Contrôle d'As/Ins/Expiration, Aspiration continue
 - **[Apprivoisement]** : Caresse, Apaisement, Friandise, Main tendue, Lire par le regard
 
+## Jet d'action et Potentiels d'Action
+
+- **Jet** : 5dD (Chance) + Dés de Potentiel (optionnel) + Dés de Compétence ; garder les 5 plus hauts (ou 5 plus bas si total Dés négatif), puis ajouter le Niv. (Livre p. 17.)
+- **Potentiels d'Action** : Chaque Niv de CT donne autant de Dés de Potentiel dépensables en plus des Dés de la CT. Coût pour dépenser du Potentiel d’une autre CT :
+  - **1 Dé** par Dé sur une CT de **même Action** (ex. [Armé] → [Désarmé]).
+  - **2 Dés** par Dé sur une CT de **même Aptitude** (ex. Puissance [Armé] → [Lutte]).
+  - **3 Dés** par Dé sur une CT du **même ATB principal** (ex. FOR : Puissance → Athlétisme [Port]).
+  - **4 Dés** par Dé sur une CT **sans lien** (sauf Maître qui peut en établir un).
+- Récupération : 1 Potentiel entier récupéré par Nuitée/Matinée/Soirée de Repos par Jour (livre p. 149).
+
 ## Système de Compétences
 
 ### Niveaux de Compétence
@@ -147,9 +176,12 @@ Chaque Compétence a des **Maîtrises** (Spécialités) qui sont des sous-compé
 - **N4** (10 à 14 Dés) : Expert (compétence inconsciente, la bonne intuition)
 - **N5** (15 Dés et plus) : Maître (l'atteinte maximum de votre propre potentiel)
 
-### Dés de Compétence
-- Chaque Compétence a des Dés supplémentaires
-- Gagnés via l'Éducation, l'Expression, les Réalisations
+### Dés de Compétence (CT)
+- Chaque Compétence a des Dés supplémentaires (inscrits dans sa « coupelle »).
+- Gagnés via l'Éducation, l'Expression, les Réalisations (Marques → Éprouver → +1 Dé).
+
+### Dés de Maîtrise (MT)
+- Avant le jet, déclarer **X Dés de MT en PRÉCAUTION** (plutôt que de les lancer) pour **annuler X Échecs** potentiels, **au-delà du premier Échec seulement**. (Livre p. 17.)
 
 ### Marques Éternelles
 - Réduisent le nombre de Marques nécessaires pour Éprouver
