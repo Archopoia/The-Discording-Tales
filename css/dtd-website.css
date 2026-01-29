@@ -1271,7 +1271,7 @@ img {
     position: relative;
     width: 100%;
     height: 100%;
-    min-height: 60vh;
+    min-height: 120vh;
     transform-style: preserve-3d;
     transition: transform 0.6s ease;
 }
@@ -1294,6 +1294,8 @@ img {
 .play-flip-face-front .gm-chat-wrapper {
     height: 100%;
     min-height: 0;
+    max-width: none;
+    width: 100%;
 }
 .play-flip-face-back {
     transform: rotateY(180deg);
@@ -1369,8 +1371,8 @@ img {
 }
 .gm-chat-messages {
     flex: 1;
-    min-height: 120px;
-    max-height: min(50vh, calc(60vh - 220px));
+    min-height: 90px;
+    max-height: min(75vh, calc(90vh - 220px));
     overflow-y: auto;
     padding: var(--spacing-sm);
     background: rgba(0, 0, 0, 0.25);

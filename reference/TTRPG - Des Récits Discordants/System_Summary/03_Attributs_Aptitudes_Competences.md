@@ -22,7 +22,7 @@ Chaque Attribut est noté entre -50 et +50 (×10 sur la feuille) ; 00 = humanoï
 **Niv d'Aptitude** : on n'utilise que l'**unité** (1er chiffre significatif) : total ÷ 10 (ex. -37 → -3). En cas d'égalité, la décimale de l'ATB lié au groupe de la Compétence peut départager. (Livre p. 16.)
 
 ### Force (FOR) & Autorité
-- **Aptitude principale** : Puissance (+3)
+- **Aptitude** : Puissance
 - **Actions** : Frapper, Neutraliser, Tirer
 - **Compétences** : [Armé], [Désarmé], [Improvisé], [Lutte], [Bottes], [Ruses], [Bandé], [Propulsé], [Jeté]
 

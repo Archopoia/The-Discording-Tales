@@ -1,5 +1,9 @@
 # Valeurs et Traits
 
+*Sources : Livre p. 129, 136 ; CSV : Tableau_des_Valeurs_de_Moralité, Tableau_des_Valeurs_de_Motivation_*, Tableau_des_Valeurs_de_Personnalité, Tableau_des_Socialités, Tableau_des_Dispositions, Motivation_des_Individus, Castes_&_Niv_des_Valeurs.*
+
+---
+
 ## Valeurs
 
 ### Concept

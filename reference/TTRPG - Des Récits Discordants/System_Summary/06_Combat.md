@@ -1,8 +1,11 @@
-# Système de Combat
+# Système de Combat - Des Récits Discordants
+
+Réf. livre : pages 161+ (Combattre, Ordre d'action, Clins, Types d'actions, Facteurs d'action), 67-71 (Combat, Proactions, Réactions, Niv d'Ébranlement).  
+CSV : Clins_d'Action_au_Combat, Types_d'Action_au_Combat, Potentiels_d'Action_au_Combat, Cercle_Initial_* (Mouvement, Perception, Préservation), Localisation_*, Manœuvres_*, Frappes_*, Face_d'arme_*, ARMES_DE_MÊLÉS_*, Armes_* (Poing, Pommeau, Manche, Hast, etc.), Matelassage_*.
 
 ## Vue d'Ensemble
 
-Le système de combat fait partie d'un système plus large de **8 Types de Conflits**, chacun lié à une Aptitude. Ce document se concentre sur les règles de **Bataille** (Puissance), mais les autres types de conflits (Infiltration, Artisanat, Prouesse, Corrompre, Énigme, Enquête, Débat) suivent des mécaniques similaires adaptées à leur nature spécifique. Voir `03_Attributs_Aptitudes_Competences.md` pour une description complète des 8 Types de Conflits.
+Le système de combat fait partie d'un système plus large de **8 Types de Conflits**, chacun lié à une Aptitude. Ce document se concentre sur les règles de **Bataille** (Puissance), mais les autres types de conflits (Infiltration, Artisanat, Prouesse, Corrompre, Énigme, Enquête, Débat) suivent des mécaniques similaires adaptées à leur nature spécifique. Voir `03_Attributs_Aptitudes_Competences.md` et `01_Systeme_General.md` pour les 8 Types de Conflits.
 
 ## Concepts Fondamentaux
 
@@ -30,16 +33,24 @@ Le système de combat fait partie d'un système plus large de **8 Types de Confl
 2. **Alerté détermine** qui peut Proagir
 3. **Proactions accumulent** des Réactions simultanées → Niv d'Ébranlement
 
-## Proactions
+## Proactions (livre p. 161+)
+
+Les **Proactions** correspondent aux actions nécessitant plusieurs **Clins d'affilée** (ex. Recharger, Charger ou Décharger une Attaque). Toute Proaction dure un nombre de Clins déterminé (souvent lié à l'inertie de l'arme) ; il faut déclarer et noter à quel Clin elle se réalisera (ex. Proagir au Clin -2 d'une action de 4 Clins → elle se réalise au Clin -6).
+
+### Étapes principales
+- **Recharger** : Prendre une munition (carquois) ou l'arme (fourreau) → la mettre en main → encocher si arme à distance.
+- **Attaque** : Charger l'arme (bander la corde d'un arc/arbalète, ou votre bras pour javelot/mêlée) puis décharger ; au **dernier Clin** on déclenche le **jet d'Attaque** de l'arme pour déterminer le résultat (dégâts, Succès à dépenser pour localisation/manœuvres, etc.).
+
+### Règles
+- Vous pouvez **cumuler** des Réactions **simultanément** au cours d'une même Proaction ; elles s'accumulent en **Niv d'Ébranlement** (négatifs) sur les jets ou totaux liés.
+- **Plusieurs Proactions en même temps** : limité par le nombre de membres (ex. ambidextrie). Déclarer les Clins pour chaque Proaction. Les **Niv d'Ébranlement** accumulés par Mouvements et Réactions sont **multipliés** par le nombre de Proactions simultanées (ex. entre Clin 1 et 4 avec 3 Proactions → ×3 ; après Clin 6 → ×1). Si aucun Niv d'Ébranlement, la seconde Proaction en ajoute 1. Si **cibles différentes** par Proaction, multiplier encore par le nombre de cibles (×2 pour 2 cibles, etc.).
+- **Armes à distance** : Clins d'Attaque = armement seulement (le tir est instantané). **Armes de mêlée et de jet** : moitié des Clins = armement du bras, moitié = décharge de la frappe.
 
 ### Types de Proactions
-- **Attaquer** : Frapper, Tirer
-- **Déplacer** : Se déplacer
-- **Manipuler** : Utiliser un objet
-- **Parler** : Communication
-
-### Coûts en Clins
-- Voir tableau "Clins d'Action au Combat"
+- **Attaquer** : Frapper, Tirer (coût en Clins selon arme — CSV Clins_d'Action_au_Combat).
+- **Déplacer** : Se déplacer (coût en Clins).
+- **Manipuler** : Utiliser un objet.
+- **Parler** : Communication.
 
 ## Réactions
 
@@ -60,10 +71,11 @@ Le système de combat fait partie d'un système plus large de **8 Types de Confl
 - Peut inclure mouvement/récupération
 - Coût : Niv d'Ébranlement
 
-### Niv d'Ébranlement
-- Accumulé par les Réactions
-- Réduit les capacités d'action
-- Se récupère progressivement
+### Niv d'Ébranlement (livre p. 161+)
+- **Accumulé** par les Réactions (Bloquer, Parer, Esquiver, Mouvements) pendant les Clins.
+- **Se soustrait** à tout jet effectué lors du Clin concerné (chaque Clin d'une Proaction s'écoule à travers des Réactions qui s'accumulent en Niv d'Ébranlement).
+- **Multiplié** par le nombre de Proactions simultanées et par le nombre de cibles visées (voir Proactions).
+- Se récupère progressivement (détails selon le livre).
 
 ## Mouvements
 
