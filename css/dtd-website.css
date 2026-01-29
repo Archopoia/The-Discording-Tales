@@ -1385,6 +1385,11 @@ img {
     cursor: pointer;
 }
 .gm-chat-checkbox-label input { margin: 0; }
+.gm-pending-roll-hint {
+    font-size: 0.9rem;
+    color: var(--tdt-mint);
+    padding: 0.4rem 0;
+}
 .gm-chat-input-row {
     display: flex;
     gap: 0.5rem;

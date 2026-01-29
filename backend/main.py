@@ -93,9 +93,16 @@ class ChatMessage(BaseModel):
     content: str
 
 
+class GameState(BaseModel):
+    """Optional lightweight game state from the frontend."""
+    pendingRoll: dict | None = None  # e.g. {"competence": "Négociation", "niv": 2}
+    sceneSummary: str | None = None
+
+
 class ChatRequest(BaseModel):
     messages: list[ChatMessage]
     characterSnapshot: dict | None = None
+    gameState: GameState | None = None
 
 
 class ChatResponse(BaseModel):
@@ -106,9 +113,15 @@ class ChatResponse(BaseModel):
 
 GM_INSTRUCTIONS = """You are the Éveilleur (GM) for Des Récits Discordants. Use ONLY the rules and lore provided below. Never invent mechanics.
 
-When a roll is needed, say explicitly: "Roll [Compétence] vs Niv ±X." and wait for the player to report the result.
+**Information economy**: Give only the information the character would have or that the player needs for their next decision. Do not dump lore or rules unless the player asks or the situation demands it. Reveal consequences after rolls when the rules specify.
 
-Keep tone and setting consistent with the world (Iäoduneï, Rils, Peoples, etc.).
+**Roll discipline**: When an action requires a roll, ask for exactly one roll. State it on a single, parseable line: "Roll [Compétence] vs Niv ±X." Use only Compétences from the provided rules (e.g. [Négociation], [Investigation], [Esquive]). Niv d'Épreuve must be between -5 and +10 (or higher if the rules say so). Do not resolve the outcome yourself—wait for the player to report the result.
+
+**Tone**: Describe in the game's voice. The world is weird ethno-science-fantasy (Iäoduneï, Rils, Peuples, discovery, consequences). Example: "The Hylothermes creak above; something moves in the mangroves." Avoid modern slang or meta-commentary. Keep consequences tangible and tied to the setting.
+
+**Character**: If a character snapshot is provided, use revealed competences and aptitude levels to choose a plausible Niv d'Épreuve (-5 to +10+) for the situation; prefer competences the character has revealed.
+
+**Rules**: If no rule or lore chunk covers the situation, say you don't have that information and offer a roll or ask the player to clarify. Never invent Niv values outside -5 to +10+.
 
 Step 1: Check rules. Step 2: Apply lore. Step 3: Respond."""
 
@@ -137,6 +150,24 @@ def _format_character_blurb(snap: dict | None) -> str:
     return "Current character (optional context):\n" + "\n".join(parts) + "\n\n"
 
 
+def _format_game_state(game_state: GameState | None) -> str:
+    """Format optional game state for the system prompt."""
+    if not game_state:
+        return ""
+    parts = []
+    if game_state.pendingRoll:
+        pr = game_state.pendingRoll
+        comp = pr.get("competence", "?")
+        niv = pr.get("niv")
+        if niv is not None:
+            parts.append(f"Last requested roll: [ {comp} ] vs Niv {niv:+d}. Waiting for player to report result.")
+    if game_state.sceneSummary and game_state.sceneSummary.strip():
+        parts.append("Current situation (summary): " + game_state.sceneSummary.strip())
+    if not parts:
+        return ""
+    return "Game state:\n" + "\n".join(parts) + "\n\n"
+
+
 # --- Routes ---
 
 
@@ -148,6 +179,21 @@ def root():
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
+
+def _build_rag_query_from_messages(messages: list[ChatMessage]) -> str:
+    """Build RAG query from last 1–2 exchanges so retrieval stays relevant when the user says 'I do that' or 'I try again'."""
+    last_user = next((m.content for m in reversed(messages) if m.role == "user"), "").strip()
+    if not last_user:
+        return ""
+    last_assistant = next((m.content for m in reversed(messages) if m.role == "assistant"), "").strip()
+    if not last_assistant:
+        return last_user
+    # Truncate assistant reply so the query doesn't overwhelm the embedding (e.g. first ~300 chars)
+    cap = 300
+    suffix = "…" if len(last_assistant) > cap else ""
+    context = (last_assistant[:cap] + suffix).strip()
+    return f"{context}\n\n{last_user}"
 
 
 def _error_response(status: int, detail: str) -> JSONResponse:
@@ -173,11 +219,15 @@ def chat(req: ChatRequest):
 
     try:
         vs = _get_vectorstore()
-        chunks = retrieve(vs, last_user, k=RAG_TOP_K)
+        rag_query = _build_rag_query_from_messages(messages)
+        if not rag_query.strip():
+            rag_query = last_user
+        chunks = retrieve(vs, rag_query, k=RAG_TOP_K)
         rules_block = format_chunks_for_prompt(chunks)
         char_block = _format_character_blurb(req.characterSnapshot)
+        game_state_block = _format_game_state(req.gameState)
 
-        system = f"{GM_INSTRUCTIONS}\n\n---\n\nRules and lore (use only these):\n\n{rules_block}\n\n{char_block}".strip()
+        system = f"{GM_INSTRUCTIONS}\n\n---\n\nRules and lore (use only these):\n\n{rules_block}\n\n{char_block}{game_state_block}".strip()
 
         client = OpenAI(api_key=OPENAI_API_KEY)
         openai_messages = [{"role": "system", "content": system}]

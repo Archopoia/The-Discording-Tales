@@ -1,5 +1,5 @@
 /**
- * GM Chat (Play tab): fetch /chat, optional characterSnapshot, persist messages in sessionStorage.
+ * GM Chat (Play tab): fetch /chat, optional characterSnapshot, gameState; parse roll requests; persist messages in sessionStorage.
  */
 (function () {
     'use strict';
@@ -8,7 +8,12 @@
     const CHAT_STORAGE_KEY = 'drd_gm_chat_messages';
     const CHAR_STORAGE_KEY = 'drd_simulation_character';
 
+    /** Regex: "Roll [Compétence] vs Niv ±X" (parseable line from GM). */
+    const ROLL_REQUEST_RE = /Roll\s*\[\s*([^\]]+)\s*\]\s*vs\s*Niv\s*([+-]?\d+)/i;
+
     let messages = [];
+    /** Last roll requested by GM: { competence: string, niv: number } or null. Cleared when user sends a message. */
+    let pendingRoll = null;
 
     function loadMessages() {
         try {
@@ -17,6 +22,8 @@
         } catch {
             messages = [];
         }
+        var lastAssistant = messages.filter(function (m) { return m.role === 'assistant'; }).pop();
+        if (lastAssistant) parseReplyForRollRequest(lastAssistant.content);
     }
 
     function saveMessages() {
@@ -32,6 +39,27 @@
         } catch {
             return null;
         }
+    }
+
+    /** Parse GM reply for "Roll [X] vs Niv Y"; set pendingRoll and return it. */
+    function parseReplyForRollRequest(reply) {
+        if (!reply || typeof reply !== 'string') { pendingRoll = null; return null; }
+        var m = reply.match(ROLL_REQUEST_RE);
+        if (m) {
+            pendingRoll = { competence: m[1].trim(), niv: parseInt(m[2], 10) };
+            return pendingRoll;
+        }
+        pendingRoll = null;
+        return null;
+    }
+
+    /** Build gameState for API: pendingRoll (cleared after send) and optional sceneSummary. */
+    function getGameState() {
+        if (!pendingRoll && !window.drd_gm_sceneSummary) return null;
+        return {
+            pendingRoll: pendingRoll || null,
+            sceneSummary: (typeof window.drd_gm_sceneSummary === 'string' && window.drd_gm_sceneSummary.trim()) ? window.drd_gm_sceneSummary.trim() : null
+        };
     }
 
     function getLang() {
@@ -86,6 +114,21 @@
         container.scrollTop = container.scrollHeight;
     }
 
+    function updatePendingRollHint(input, hintEl) {
+        if (!hintEl || !input) return;
+        var lang = getLang();
+        if (pendingRoll) {
+            var nivStr = pendingRoll.niv >= 0 ? '+' + pendingRoll.niv : String(pendingRoll.niv);
+            hintEl.textContent = (lang === 'fr' ? 'Jet demandé : [' : 'Roll requested: [') + pendingRoll.competence + '] vs Niv ' + nivStr + (lang === 'fr' ? '. Lancez dans la feuille de personnage ci-dessous, puis rapportez le résultat ici.' : '. Roll in the character sheet below, then report the result here.');
+            hintEl.style.display = 'block';
+            input.placeholder = lang === 'fr' ? 'Résultat du jet ou votre action…' : 'Report roll result or your action…';
+        } else {
+            hintEl.style.display = 'none';
+            hintEl.textContent = '';
+            input.placeholder = lang === 'fr' ? 'Votre action ou résultat de jet…' : 'Your action or roll result…';
+        }
+    }
+
     function setError(container, err) {
         if (!container) return;
         var existing = container.querySelector('.error');
@@ -102,7 +145,7 @@
         if (el) el.remove();
     }
 
-    function sendMessage(container, input, sendBtn, useCharCheckbox) {
+    function sendMessage(container, input, sendBtn, useCharCheckbox, hintEl) {
         var text = (input && input.value) ? input.value.trim() : '';
         if (!text) return;
 
@@ -120,6 +163,9 @@
             messages: messages.map(function (m) { return { role: m.role, content: m.content }; })
         };
         if (snapshot) body.characterSnapshot = snapshot;
+        var gameState = getGameState();
+        if (gameState) body.gameState = gameState;
+        pendingRoll = null;
 
         fetch(GM_API_URL + '/chat', {
             method: 'POST',
@@ -139,7 +185,9 @@
                 var reply = (data && data.reply) ? data.reply : '';
                 messages.push({ role: 'assistant', content: reply });
                 saveMessages();
+                parseReplyForRollRequest(reply);
                 renderMessages(container);
+                if (typeof updatePendingRollHint === 'function' && input && hintEl) updatePendingRollHint(input, hintEl);
             })
             .catch(function (e) {
                 setError(container, 'Error: ' + (e.message || String(e)));
@@ -157,12 +205,23 @@
         var input = document.getElementById('gm-chat-input');
         var sendBtn = document.getElementById('gm-chat-send');
         var useChar = document.getElementById('gm-use-character');
+        var inputWrap = input ? input.closest('.gm-chat-input-wrap') : null;
+        var hintEl = null;
+        if (inputWrap) {
+            hintEl = document.createElement('div');
+            hintEl.className = 'gm-pending-roll-hint';
+            hintEl.setAttribute('aria-live', 'polite');
+            hintEl.style.display = 'none';
+            var row = inputWrap.querySelector('.gm-chat-input-row');
+            inputWrap.insertBefore(hintEl, row);
+        }
 
         loadMessages();
         renderMessages(container);
+        updatePendingRollHint(input, hintEl);
 
         function submit() {
-            sendMessage(container, input, sendBtn, useChar);
+            sendMessage(container, input, sendBtn, useChar, hintEl);
         }
 
         if (sendBtn) sendBtn.addEventListener('click', submit);

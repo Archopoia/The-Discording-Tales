@@ -26,6 +26,7 @@ import ProgressBar from './ui/ProgressBar';
 import ExpandableSection from './ui/ExpandableSection';
 import Tooltip from './ui/Tooltip';
 import SimulationEventLog, { type StepActionPayload, POOL_ATTRIBUTE_POINTS, MIN_REVEAL, MAX_REVEAL, POOL_DICE } from './SimulationEventLog';
+import { saveCachedCharacter } from '@/lib/simulationStorage';
 
 /** Shared style for Fermer and tutorial confirmation buttons – same look and hover glow */
 const FERMER_STYLE = {
@@ -375,7 +376,10 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
           </div>
           {!embedded && onClose && (
             <button
-              onClick={onClose}
+              onClick={() => {
+                saveCachedCharacter(manager.getState());
+                onClose();
+              }}
               className={FERMER_STYLE.className}
               style={{ boxShadow: FERMER_STYLE.boxShadow }}
               onMouseEnter={(e) => { e.currentTarget.style.boxShadow = FERMER_STYLE.boxShadowHover; }}

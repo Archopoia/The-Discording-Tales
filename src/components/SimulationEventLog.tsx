@@ -346,6 +346,7 @@ export default function SimulationEventLog({
       if (mt > 0) push('mastery', tParam('masteryPoints', lang, mt, getCompetenceName(comp, lang)));
     }
     applySouffranceAndResistance();
+    saveCachedCharacter(manager.getState());
   };
 
   const applySouffranceAndResistance = () => {
