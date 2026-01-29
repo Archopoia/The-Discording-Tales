@@ -221,6 +221,32 @@
         var lang = getLang();
         var youLabel = lang === 'fr' ? 'Toi' : 'You';
         var gmLabel = lang === 'fr' ? 'Éveilleur' : 'GM';
+        // When only streaming content changes, update the streaming bubble in place (no full re-render) so words appear smoothly.
+        if (typeof streamingContent === 'string') {
+            var existingStream = container.querySelector('.gm-msg-streaming');
+            if (existingStream) {
+                var streamBody = existingStream.querySelector('.gm-chat-body');
+                if (streamBody) {
+                    var html = markdownToHtml(streamingContent);
+                    if (html != null) {
+                        html = injectInlineRollButtons(html);
+                        streamBody.innerHTML = html;
+                    } else {
+                        streamBody.textContent = streamingContent;
+                    }
+                    var cursor = streamBody.querySelector('.gm-stream-cursor');
+                    if (!cursor) {
+                        cursor = document.createElement('span');
+                        cursor.className = 'gm-stream-cursor';
+                        cursor.setAttribute('aria-hidden', 'true');
+                        cursor.textContent = '\u200B';
+                        streamBody.appendChild(cursor);
+                    }
+                }
+                container.scrollTop = container.scrollHeight;
+                return;
+            }
+        }
         container.innerHTML = '';
         var idx = 0;
         messages.forEach(function (m) {
