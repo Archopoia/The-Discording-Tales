@@ -30,7 +30,7 @@ import DegreeInput from './ui/DegreeInput';
 import ProgressBar from './ui/ProgressBar';
 import ExpandableSection from './ui/ExpandableSection';
 import Tooltip from './ui/Tooltip';
-import SimulationEventLog, { type StepActionPayload, POOL_ATTRIBUTE_POINTS, MIN_REVEAL, MAX_REVEAL, POOL_DICE } from './SimulationEventLog';
+import SimulationEventLog, { type StepActionPayload, ATTRIBUTE_SPREAD_SHEET, attributesMatchSpread, MIN_REVEAL, MAX_REVEAL, POOL_DICE } from './SimulationEventLog';
 import { saveCachedCharacter } from '@/lib/simulationStorage';
 
 /** Payload for drd-roll-result custom event (Play-tab dice resolution). */
@@ -194,6 +194,9 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
   // When a character is created via the Play-tab chatbot, load from sessionStorage and refresh the sheet
   useEffect(() => {
     const handler = () => {
+      setSimHighlightId(null);
+      setSimTooltip(null);
+      setStepAction(null);
       const cached = loadCachedCharacter();
       if (cached) {
         manager.loadState(cached);
@@ -419,24 +422,49 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
 
   if (!embedded && !isOpen) return null;
 
-  const attrSum = Object.values(state.attributes).reduce((s, n) => s + n, 0);
+  const attributesValid = attributesMatchSpread(state.attributes);
   const revealedCount = Object.values(Competence).filter((c) => state.competences[c]?.isRevealed).length;
-  const diceSum =
-    Object.values(Competence)
-      .filter((c) => state.competences[c]?.isRevealed)
-      .reduce((s, c) => s + (state.competences[c]?.degreeCount ?? 0), 0) +
-    Object.values(Souffrance).reduce((s, souf) => s + (state.souffrances[souf]?.resistanceDegreeCount ?? 0), 0);
+  const diceSum = Object.values(Competence)
+    .filter((c) => state.competences[c]?.isRevealed)
+    .reduce((s, c) => s + (state.competences[c]?.degreeCount ?? 0), 0);
 
+  const [creationAttributeAssignments, setCreationAttributeAssignments] = useState<Partial<Record<Attribute, number>>>(() => ({}));
+
+  useEffect(() => {
+    if (simHighlightId === 'create-attributes' && attributesMatchSpread(state.attributes)) {
+      setCreationAttributeAssignments({ ...state.attributes });
+    } else if (simHighlightId !== 'create-attributes') {
+      setCreationAttributeAssignments({});
+    }
+  }, [simHighlightId]);
+
+  const getAvailableSpreadPool = (): number[] => {
+    const assigned = Object.values(creationAttributeAssignments).filter((v): v is number => v != null);
+    const pool: number[] = [...ATTRIBUTE_SPREAD_SHEET];
+    for (const v of assigned) {
+      const idx = pool.indexOf(v);
+      if (idx >= 0) pool.splice(idx, 1);
+    }
+    return pool;
+  };
+
+  const handleCreationAttributeAssign = (attr: Attribute, value: number | null) => {
+    if (value === null) {
+      manager.setAttribute(attr, 0);
+      const next = { ...creationAttributeAssignments };
+      delete next[attr];
+      setCreationAttributeAssignments(next);
+    } else {
+      manager.setAttribute(attr, value);
+      setCreationAttributeAssignments((prev) => ({ ...prev, [attr]: value }));
+    }
+    updateState();
+  };
 
   const handleAttributeChange = (attr: Attribute, value: number) => {
     if (simHighlightId === 'create-reveal' || simHighlightId === 'create-dice') return;
-    let valueToSet = value;
-    if (simHighlightId === 'create-attributes') {
-      const othersSum = attrSum - (state.attributes[attr] ?? 0);
-      const maxForAttr = Math.max(-50, POOL_ATTRIBUTE_POINTS - othersSum);
-      valueToSet = Math.min(50, Math.max(-50, Math.min(value, maxForAttr)));
-    }
-    manager.setAttribute(attr, valueToSet);
+    if (simHighlightId === 'create-attributes') return;
+    manager.setAttribute(attr, Math.max(-50, Math.min(50, value)));
     updateState();
   };
 
@@ -471,6 +499,7 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
   const resetCreationStep = (step: 'attributes' | 'reveal' | 'dice') => {
     if (step === 'attributes') {
       Object.values(Attribute).forEach((attr) => manager.setAttribute(attr, 0));
+      setCreationAttributeAssignments({});
     } else if (step === 'reveal') {
       Object.values(Competence).forEach((c) => manager.unrevealCompetence(c));
     } else {
@@ -583,7 +612,7 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
             }}
             onStepAction={setStepAction}
             creationStateDeps={{
-              attrSum,
+              attributesValid,
               revealedCount,
               diceSum,
             }}
@@ -627,7 +656,7 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
                 <p className="text-sm mb-3 font-medieval" style={{ color: '#eefaf9' }}>{simTooltip ?? ''}</p>
                 {simHighlightId === 'create-attributes' && (
                   <p className="text-sm mb-2 font-medieval font-semibold" style={{ color: '#e8f8f7' }}>
-                    {tParam('totalPoints', lang, attrSum, POOL_ATTRIBUTE_POINTS)}
+                    {t('createAttrSpreadTooltip', lang)}
                   </p>
                 )}
                 {simHighlightId === 'create-reveal' && (
@@ -821,16 +850,39 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
                     <div className="flex gap-4 mb-3 pb-3 border-b-2 border-border-dark relative z-10" style={{ backgroundColor: 'transparent' }}>
                       {/* Left Column - Main Attribute with Input */}
                       <div className="flex flex-col items-start gap-2">
-                        {/* Input box above the name */}
-                        <DegreeInput
-                          value={state.attributes[atb1]}
-                          onChange={(value) => handleAttributeChange(atb1, value)}
-                          min={-50}
-                          max={simHighlightId === 'create-attributes' ? Math.min(50, POOL_ATTRIBUTE_POINTS - attrSum + (state.attributes[atb1] ?? 0)) : 50}
-                          size="md"
-                          disabled={simHighlightId === 'create-reveal' || simHighlightId === 'create-dice'}
-                          className={simHighlightId === 'create-attributes' ? 'tutorial-input-highlight' : ''}
-                        />
+                        {simHighlightId === 'create-attributes' ? (
+                          <select
+                            value={creationAttributeAssignments[atb1] ?? ''}
+                            onChange={(e) => {
+                              const v = e.target.value;
+                              handleCreationAttributeAssign(atb1, v === '' ? null : Number(v));
+                            }}
+                            className={`font-medieval text-base border-2 border-border-dark rounded px-2 py-2 bg-parchment-dark text-text-dark min-w-[4rem] ${simHighlightId === 'create-attributes' ? 'tutorial-input-highlight' : ''}`}
+                            aria-label={getAttributeName(atb1, lang)}
+                          >
+                            <option value="">—</option>
+                            {(() => {
+                              const current = creationAttributeAssignments[atb1] ?? null;
+                              const pool = getAvailableSpreadPool();
+                              const options = current != null ? [current, ...pool] : [...pool];
+                              const sorted = [...new Set(options)].sort((a, b) => b - a);
+                              return sorted.map((v) => (
+                                <option key={v} value={v}>
+                                  {v >= 0 ? `+${v / 10}` : v / 10}
+                                </option>
+                              ));
+                            })()}
+                          </select>
+                        ) : (
+                          <DegreeInput
+                            value={state.attributes[atb1]}
+                            onChange={(value) => handleAttributeChange(atb1, value)}
+                            min={-50}
+                            max={50}
+                            size="md"
+                            disabled={simHighlightId === 'create-reveal' || simHighlightId === 'create-dice'}
+                          />
+                        )}
                         {/* Attribute name in full caps */}
                         <label className="font-medieval text-xs font-bold text-red-theme uppercase tracking-wide">
                           {getAttributeName(atb1, lang).toUpperCase()}
@@ -901,20 +953,16 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
                                 <DegreeInput
                                   value={resistanceDegreeCount}
                                   onChange={(value) => {
-                                    if (godMode || simHighlightId === 'create-dice') {
-                                      const isDiceStep = simHighlightId === 'create-dice';
-                                      const capped = isDiceStep
-                                        ? Math.min(POOL_DICE - (diceSum - resistanceDegreeCount), Math.max(0, value))
-                                        : value;
-                                      manager.setResistanceDegreeCount(souf, capped);
+                                    if (godMode) {
+                                      manager.setResistanceDegreeCount(souf, value);
                                       updateState();
                                     }
                                   }}
                                   min={0}
-                                  max={simHighlightId === 'create-dice' ? Math.max(0, POOL_DICE - diceSum + resistanceDegreeCount) : undefined}
+                                  max={undefined}
                                   size="sm"
-                                  disabled={!godMode && simHighlightId !== 'create-dice'}
-                                  className={simHighlightId === 'create-dice' ? 'tutorial-input-highlight' : ''}
+                                  disabled={!godMode}
+                                  className=""
                                 />
                                 <span>{getResistanceCompetenceName(souf, lang)}</span>
                               </div>

@@ -2,16 +2,25 @@
 
 import { useState, useEffect } from 'react';
 import { CharacterSheetManager } from '@/game/character/CharacterSheetManager';
+import { Attribute } from '@/game/character/data/AttributeData';
 import { Competence } from '@/game/character/data/CompetenceData';
-import { Souffrance } from '@/game/character/data/SouffranceData';
 import { loadCachedCharacter, saveCachedCharacter, loadCharacterInfo, saveCharacterInfo } from '@/lib/simulationStorage';
 import type { CharacterSheetLang } from '@/lib/characterSheetI18n';
 import { t, tParam } from '@/lib/characterSheetI18n';
 
-export const POOL_ATTRIBUTE_POINTS = 18;
+/** Book "sans dés": exactly one of +2,+1,0,0,0,0,-1,-2 per attribute (×10 on sheet). Sum = 0. */
+export const ATTRIBUTE_SPREAD_SHEET = [20, 10, 0, 0, 0, 0, -10, -20] as const;
+
 export const MIN_REVEAL = 3;
 export const MAX_REVEAL = 5;
 export const POOL_DICE = 10;
+
+/** True if the 8 attribute values (sheet scale) are exactly the spread multiset. */
+export function attributesMatchSpread(attributes: Record<Attribute, number>): boolean {
+  const vals = Object.values(attributes).sort((a, b) => a - b);
+  const want = [...ATTRIBUTE_SPREAD_SHEET].sort((a, b) => a - b);
+  return vals.length === 8 && vals.every((v, i) => v === want[i]);
+}
 
 export type CreateStepType = 'origin' | 'peuple' | 'name' | 'attributes' | 'reveal' | 'dice';
 
@@ -25,7 +34,7 @@ interface SimulationEventLogProps {
   updateSheet: () => void;
   onHighlight?: (id: string | null, tooltip?: string) => void;
   onStepAction?: (action: StepActionPayload) => void;
-  creationStateDeps?: { attrSum: number; revealedCount: number; diceSum?: number };
+  creationStateDeps?: { attributesValid?: boolean; revealedCount: number; diceSum?: number };
   onCreationComplete?: () => void;
 }
 
@@ -102,12 +111,14 @@ export default function SimulationEventLog({
 
   const confirmDiceAndStart = () => {
     const state = manager.getState();
-    const diceSum =
-      Object.values(Competence)
-        .filter((c) => state.competences[c]?.isRevealed)
-        .reduce((s, c) => s + (state.competences[c]?.degreeCount ?? 0), 0) +
-      Object.values(Souffrance).reduce((s, souf) => s + (state.souffrances[souf]?.resistanceDegreeCount ?? 0), 0);
+    const diceSum = Object.values(Competence)
+      .filter((c) => state.competences[c]?.isRevealed)
+      .reduce((s, c) => s + (state.competences[c]?.degreeCount ?? 0), 0);
     if (diceSum !== POOL_DICE) return;
+    onHighlight?.(null);
+    onStepAction?.(null);
+    setMode('running');
+    setCreateStep('attributes');
     try {
       const degrees: Record<string, number> = {};
       Object.values(Competence).forEach((c) => {
@@ -128,10 +139,6 @@ export default function SimulationEventLog({
     } catch {
       // ignore
     }
-    setMode('running');
-    setCreateStep('attributes');
-    onHighlight?.(null);
-    onStepAction?.(null);
   };
 
   const validateAndGoToReveal = () => {
@@ -192,15 +199,13 @@ export default function SimulationEventLog({
       onStepAction?.(null);
       return;
     }
-    const attrSum = creationStateDeps?.attrSum ?? Object.values(manager.getState().attributes).reduce((s, n) => s + n, 0);
+    const attrs = manager.getState().attributes;
+    const attributesValid = creationStateDeps?.attributesValid ?? attributesMatchSpread(attrs);
     const revealedCount = creationStateDeps?.revealedCount ?? Object.values(Competence).filter((c) => manager.getState().competences[c]?.isRevealed).length;
     const state = manager.getState();
-    const diceSum = creationStateDeps?.diceSum ?? (
-      Object.values(Competence)
-        .filter((c) => state.competences[c]?.isRevealed)
-        .reduce((s, c) => s + (state.competences[c]?.degreeCount ?? 0), 0) +
-      Object.values(Souffrance).reduce((s, souf) => s + (state.souffrances[souf]?.resistanceDegreeCount ?? 0), 0)
-    );
+    const diceSum = creationStateDeps?.diceSum ?? Object.values(Competence)
+      .filter((c) => state.competences[c]?.isRevealed)
+      .reduce((s, c) => s + (state.competences[c]?.degreeCount ?? 0), 0);
 
     if (createStep === 'attributes') {
       onHighlight?.('create-attributes', t('createAttrTooltip', lang));
@@ -208,7 +213,7 @@ export default function SimulationEventLog({
         step: 'attributes',
         label: t('validate', lang),
         onClick: validateAndGoToReveal,
-        disabled: attrSum > POOL_ATTRIBUTE_POINTS,
+        disabled: !attributesValid,
       });
     } else if (createStep === 'reveal') {
       onHighlight?.('create-reveal', t('createRevealTooltip', lang));
@@ -227,7 +232,7 @@ export default function SimulationEventLog({
         disabled: diceSum !== POOL_DICE,
       });
     }
-  }, [mode, createStep, creationStateDeps?.attrSum, creationStateDeps?.revealedCount, creationStateDeps?.diceSum, lang, onHighlight, onStepAction]);
+  }, [mode, createStep, creationStateDeps?.attributesValid, creationStateDeps?.revealedCount, creationStateDeps?.diceSum, lang, onHighlight, onStepAction]);
 
   // When in creating mode but still on origin/peuple/name, show hint only (choices are made in the chat)
   if (mode !== 'creating' || !(createStep === 'origin' || createStep === 'peuple' || createStep === 'name')) {

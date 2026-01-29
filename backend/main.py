@@ -226,9 +226,9 @@ GM_CREATION_PROMPT = """You are the Éveilleur guiding character creation for De
 [StateJSON] <single-line JSON object>
 
 StateJSON must be a single-line JSON with:
-- "attributes": object with exactly these keys and integer values (sum must be 18): FOR, AGI, DEX, VIG, EMP, PER, CRE, VOL. Example: {"FOR":2,"AGI":2,"DEX":1,"VIG":3,"EMP":2,"PER":2,"CRE":2,"VOL":4}
+- "attributes": object with exactly these keys and integer values in Niv scale: FOR, AGI, DEX, VIG, EMP, PER, CRE, VOL. Values must be exactly one of +2, +1, 0, 0, 0, 0, -1, -2 (one per attribute); sum must be 0. Example: {"FOR":2,"AGI":0,"DEX":-1,"VIG":0,"EMP":1,"PER":0,"CRE":0,"VOL":-2}
 - "revealed": array of 3 to 5 competence keys (use exact keys from the 72 competences, e.g. GRIMPE, NEGOCIATION, ESQUIVE, INVESTIGATION, MEDECINE, ARMÉ → ARME, Désarmé → DESARME, etc.). French accents removed: use ARME not Armé.
-- "degrees": object mapping each revealed competence key to its degree count (dice). Sum of degrees must be 10. Example: {"GRIMPE":3,"NEGOCIATION":2,"ESQUIVE":2,"INVESTIGATION":1,"MEDECINE":2}
+- "degrees": object mapping each revealed competence key to its degree count (dice). Sum of degrees must be 10. Only competence keys (no resistance). Example: {"GRIMPE":3,"NEGOCIATION":2,"ESQUIVE":2,"INVESTIGATION":1,"MEDECINE":2}
 
 Valid competence keys include: ARME, DESARME, IMPROVISE, LUTTE, BOTTES, RUSES, BANDE, PROPULSE, JETE, FLUIDITE, ESQUIVE, EVASION, ESCAMOTAGE, ILLUSIONS, DISSIMULATION, GESTUELLE, MINUTIE, EQUILIBRE, VISEE, CONDUITE, HABILETE, DEBROUILLARDISE, BRICOLAGE, SAVOIR_FAIRE, ARTIFICES, SECURITE, CASSE_TETES, PAS, GRIMPE, ACROBATIE, POID, SAUT, NATATION, VOL, FOUISSAGE, CHEVAUCHEMENT, SEDUCTION, MIMETISME, CHANT, NEGOCIATION, TROMPERIE, PRESENTATION, INSTRUMENTAL, INSPIRATION, NARRATION, VISION, ODORAT, ESTIMATION, INVESTIGATION, AUDITION, GOUT, TOUCHER, RESSENTI, INTROCEPTION, ARTISANAT, NATURE, SOCIETE, JEUX, MEDECINE, PASTORALISME, INGENIERIE, GEOGRAPHIE, AGRONOMIE, COMMANDEMENT, INTIMIDATION, OBSTINANCE, GLOUTONNERIE, BEUVERIE, ENTRAILLES, APPRIVOISEMENT, OBEISSANCE, DRESSAGE.
 
@@ -236,10 +236,10 @@ Valid competence keys include: ARME, DESARME, IMPROVISE, LUTTE, BOTTES, RUSES, B
 1. Origine: [Choice id=origine] with [Option Yômmes], [Option Yôrres], [Option Bêstres]
 2. Peuple: [Choice id=peuple] with options depending on Origine (Yômmes: Aristois, Griscribes, Navillis, Méridiens; Yôrres: Hauts Ylfes, Ylfes pâles, Ylfes des lacs, Iqqars; Bêstres: Slaadéens, Tchalkchaïs)
 3. (Optional) [Input id=name] Ask for the character's name.
-4. Attributes: explain the player has 18 points to distribute across FOR, AGI, DEX, VIG, EMP, PER, CRE, VOL. Then [Input id=attributes] Ask them to reply with a short line like "FOR 2, AGI 3, DEX 1, VIG 2, EMP 2, PER 2, CRE 3, VOL 3" (numbers must sum to 18).
+4. Attributes: explain the player must assign exactly one of +2, +1, 0, 0, 0, 0, -1, -2 to each of FOR, AGI, DEX, VIG, EMP, PER, CRE, VOL (sum = 0). Then [Input id=attributes] Ask them to reply with a short line like "FOR 2, AGI 0, DEX -1, VIG 0, EMP 1, PER 0, CRE 0, VOL -2" (values must be exactly +2, +1, 0, 0, 0, 0, -1, -2; sum must be 0).
 5. Reveal competences: [Choice id=reveal] or [Input id=reveal] — player must choose 3 to 5 competences to reveal (list a few suggested options or ask them to list 3–5 competence names from the 72).
-6. Assign 10 dice: [Input id=degrees] — player assigns 10 dice across their revealed competences (e.g. "GRIMPE 3, NEGOCIATION 2, ESQUIVE 2, INVESTIGATION 1, MEDECINE 2").
-7. Then output [Complete] and [StateJSON] with the attributes, revealed, and degrees you collected (use the exact keys; ensure attributes sum to 18 and degrees sum to 10).
+6. Assign 10 dice: [Input id=degrees] — player assigns 10 dice across their revealed competences only (Exprimés; no resistance). e.g. "GRIMPE 3, NEGOCIATION 2, ESQUIVE 2, INVESTIGATION 1, MEDECINE 2".
+7. Then output [Complete] and [StateJSON] with the attributes, revealed, and degrees you collected (use the exact keys; ensure attributes are the spread with sum 0 and degrees sum to 10).
 
 Keep each reply concise. After each player message, output the next step block only. Use the rules below for flavour and options."""
 

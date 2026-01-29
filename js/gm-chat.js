@@ -284,7 +284,8 @@
         var attributes = {};
         ALL_ATTRIBUTE_KEYS.forEach(function (k) {
             var v = attrs[k];
-            attributes[k] = Math.max(-50, Math.min(50, typeof v === 'number' ? v : 0));
+            var niv = typeof v === 'number' ? v : 0;
+            attributes[k] = Math.max(-50, Math.min(50, niv * 10));
         });
         var aptitudeLevels = computeAptitudeLevels(attributes);
         var competences = {};
@@ -1211,11 +1212,11 @@
                     var parts = [];
                     ALL_ATTRIBUTE_KEYS.forEach(function (k) {
                         var v = data.attributes[k];
-                        if (v !== undefined && v !== null) parts.push(k + ' ' + Number(v));
+                        if (v !== undefined && v !== null) parts.push(k + ' ' + (Number(v) / 10));
                     });
-                    msg = parts.length ? (isFr ? "J'ai réparti mes 18 points : " + parts.join(', ') + '.' : "I've assigned my 18 points: " + parts.join(', ') + '.') : '';
+                    msg = parts.length ? (isFr ? "J'ai réparti +2, +1, 0, 0, 0, 0, -1, -2 : " + parts.join(', ') + '.' : "I've assigned +2, +1, 0, 0, 0, 0, -1, -2: " + parts.join(', ') + '.') : '';
                 }
-                if (!msg) msg = isFr ? "J'ai réparti mes 18 points d'attributs dans la feuille de personnage." : "I've assigned my 18 attribute points in the character sheet.";
+                if (!msg) msg = isFr ? "J'ai réparti +2, +1, 0, 0, 0, 0, -1, -2 sur les 8 attributs dans la feuille." : "I've assigned +2, +1, 0, 0, 0, 0, -1, -2 to the 8 attributes in the sheet.";
             } else if (s === 'reveal') {
                 if (data && Array.isArray(data.revealed) && data.revealed.length > 0) {
                     msg = isFr ? "J'ai révélé les compétences : " + data.revealed.join(', ') + "." : "I've revealed the competences: " + data.revealed.join(', ') + ".";
