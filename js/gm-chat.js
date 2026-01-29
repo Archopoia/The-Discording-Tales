@@ -58,7 +58,26 @@
     var ALL_APTITUDE_KEYS = ['PUISSANCE', 'AISANCE', 'PRECISION', 'ATHLETISME', 'CHARISME', 'DETECTION', 'REFLEXION', 'DOMINATION'];
     var APTITUDE_ATTR = { PUISSANCE: ['FOR', 'AGI', 'DEX'], AISANCE: ['AGI', 'DEX', 'VIG'], PRECISION: ['DEX', 'PER', 'CRE'], ATHLETISME: ['VIG', 'FOR', 'AGI'], CHARISME: ['EMP', 'VOL', 'PER'], DETECTION: ['PER', 'CRE', 'EMP'], REFLEXION: ['CRE', 'EMP', 'VOL'], DOMINATION: ['VOL', 'VIG', 'FOR'] };
     var ALL_COMPETENCE_KEYS = ['ARME','DESARME','IMPROVISE','LUTTE','BOTTES','RUSES','BANDE','PROPULSE','JETE','FLUIDITE','ESQUIVE','EVASION','ESCAMOTAGE','ILLUSIONS','DISSIMULATION','GESTUELLE','MINUTIE','EQUILIBRE','VISEE','CONDUITE','HABILETE','DEBROUILLARDISE','BRICOLAGE','SAVOIR_FAIRE','ARTIFICES','SECURITE','CASSE_TETES','PAS','GRIMPE','ACROBATIE','POID','SAUT','NATATION','VOL','FOUISSAGE','CHEVAUCHEMENT','SEDUCTION','MIMETISME','CHANT','NEGOCIATION','TROMPERIE','PRESENTATION','INSTRUMENTAL','INSPIRATION','NARRATION','VISION','ESTIMATION','TOUCHER','INVESTIGATION','GOUT','RESSENTI','ODORAT','AUDITION','INTEROCEPTION','ARTISANAT','MEDECINE','INGENIERIE','JEUX','SOCIETE','GEOGRAPHIE','NATURE','PASTORALISME','AGRONOMIE','COMMANDEMENT','OBEISSANCE','OBSTINANCE','GLOUTONNERIE','BEUVERIE','ENTRAILLES','INTIMIDATION','APPRIVOISEMENT','DRESSAGE'];
+    /** Competence key -> Aptitude key (for Niv from aptitude level). */
+    var COMPETENCE_TO_APTITUDE = { ARME:'PUISSANCE',DESARME:'PUISSANCE',IMPROVISE:'PUISSANCE',LUTTE:'PUISSANCE',BOTTES:'PUISSANCE',RUSES:'PUISSANCE',BANDE:'PUISSANCE',PROPULSE:'PUISSANCE',JETE:'PUISSANCE',FLUIDITE:'AISANCE',ESQUIVE:'AISANCE',EVASION:'AISANCE',ESCAMOTAGE:'AISANCE',ILLUSIONS:'AISANCE',DISSIMULATION:'AISANCE',GESTUELLE:'AISANCE',MINUTIE:'AISANCE',EQUILIBRE:'AISANCE',VISEE:'PRECISION',CONDUITE:'PRECISION',HABILETE:'PRECISION',DEBROUILLARDISE:'PRECISION',BRICOLAGE:'PRECISION',SAVOIR_FAIRE:'PRECISION',ARTIFICES:'PRECISION',SECURITE:'PRECISION',CASSE_TETES:'PRECISION',PAS:'ATHLETISME',GRIMPE:'ATHLETISME',ACROBATIE:'ATHLETISME',POID:'ATHLETISME',SAUT:'ATHLETISME',NATATION:'ATHLETISME',VOL:'ATHLETISME',FOUISSAGE:'ATHLETISME',CHEVAUCHEMENT:'ATHLETISME',SEDUCTION:'CHARISME',MIMETISME:'CHARISME',CHANT:'CHARISME',NEGOCIATION:'CHARISME',TROMPERIE:'CHARISME',PRESENTATION:'CHARISME',INSTRUMENTAL:'CHARISME',INSPIRATION:'CHARISME',NARRATION:'CHARISME',VISION:'DETECTION',ESTIMATION:'DETECTION',TOUCHER:'DETECTION',INVESTIGATION:'DETECTION',GOUT:'DETECTION',RESSENTI:'DETECTION',ODORAT:'DETECTION',AUDITION:'DETECTION',INTEROCEPTION:'DETECTION',ARTISANAT:'REFLEXION',MEDECINE:'REFLEXION',INGENIERIE:'REFLEXION',JEUX:'REFLEXION',SOCIETE:'REFLEXION',GEOGRAPHIE:'REFLEXION',NATURE:'REFLEXION',PASTORALISME:'REFLEXION',AGRONOMIE:'REFLEXION',COMMANDEMENT:'DOMINATION',OBEISSANCE:'DOMINATION',OBSTINANCE:'DOMINATION',GLOUTONNERIE:'DOMINATION',BEUVERIE:'DOMINATION',ENTRAILLES:'DOMINATION',INTIMIDATION:'DOMINATION',APPRIVOISEMENT:'DOMINATION',DRESSAGE:'DOMINATION' };
     var ALL_SOUFFRANCE_KEYS = ['BLESSURES', 'FATIGUES', 'ENTRAVES', 'DISETTES', 'ADDICTIONS', 'MALADIES', 'FOLIES', 'RANCOEURS'];
+
+    /** Get Niv (aptitude level) for a competence from cached character. */
+    function getNivForCompetence(compKey) {
+        var snap = getCharacterSnapshot();
+        if (!snap || !snap.attributes) return 0;
+        var apt = COMPETENCE_TO_APTITUDE[compKey];
+        if (!apt) return 0;
+        var levels = computeAptitudeLevels(snap.attributes);
+        return typeof levels[apt] === 'number' ? levels[apt] : 0;
+    }
+
+    /** Get dice count (degreeCount) for a competence from cached character. */
+    function getDiceCountForCompetence(compKey) {
+        var snap = getCharacterSnapshot();
+        if (!snap || !snap.competences || !snap.competences[compKey]) return 0;
+        return Math.max(0, Math.floor(Number(snap.competences[compKey].degreeCount) || 0));
+    }
 
     /** Regex: "Roll [Compétence] vs Niv ±X" (parseable line from GM). */
     const ROLL_REQUEST_RE = /Roll\s*\[\s*([^\]]+)\s*\]\s*vs\s*Niv\s*([+-]?\d+)/i;
@@ -1049,12 +1068,16 @@
                 opt.textContent = key;
                 testRollSelect.appendChild(opt);
             });
-            var testRollNiv = document.createElement('input');
-            testRollNiv.type = 'number';
-            testRollNiv.className = 'gm-chat-test-roll-niv';
-            testRollNiv.value = '0';
-            testRollNiv.setAttribute('aria-label', getLang() === 'fr' ? 'Niv épreuve' : 'Niv');
-            testRollNiv.style.width = '3rem';
+            var testRollDiceSpan = document.createElement('span');
+            testRollDiceSpan.className = 'gm-chat-test-roll-dice';
+            testRollDiceSpan.setAttribute('aria-live', 'polite');
+            function updateTestRollDiceDisplay() {
+                var comp = testRollSelect.value;
+                var n = getDiceCountForCompetence(comp);
+                testRollDiceSpan.textContent = getLang() === 'fr' ? n + ' dés' : n + ' dice';
+            }
+            testRollSelect.addEventListener('change', updateTestRollDiceDisplay);
+            updateTestRollDiceDisplay();
             var testRollBtn = document.createElement('button');
             testRollBtn.type = 'button';
             testRollBtn.className = 'gm-chat-test-roll-btn gm-chat-send-style';
@@ -1062,8 +1085,7 @@
             testRollBtn.addEventListener('click', function () {
                 if (testRollInProgress) return;
                 var comp = testRollSelect.value;
-                var niv = parseInt(testRollNiv.value, 10);
-                if (isNaN(niv)) niv = 0;
+                var niv = getNivForCompetence(comp);
                 var drdPerformRoll = typeof window.drdPerformRoll === 'function' ? window.drdPerformRoll : null;
                 if (!drdPerformRoll) {
                     messages.push({ role: 'assistant', content: (getLang() === 'fr' ? 'Feuille de personnage non chargée. Créez un personnage d\'abord.' : 'Character sheet not loaded. Create a character first.') });
@@ -1076,7 +1098,7 @@
             });
             testRollWrap.appendChild(testRollLabel);
             testRollWrap.appendChild(testRollSelect);
-            testRollWrap.appendChild(testRollNiv);
+            testRollWrap.appendChild(testRollDiceSpan);
             testRollWrap.appendChild(testRollBtn);
             if (hasCharEl && row) hasCharEl.insertBefore(testRollWrap, row);
             else if (hasCharEl) hasCharEl.appendChild(testRollWrap);
@@ -1130,24 +1152,26 @@
             var d = ev.detail;
             var lang = getLang();
             var isFr = lang === 'fr';
-            var msg = '';
             if (d.error === 'no_character') {
-                msg = isFr ? "Aucun personnage chargé. Créez un personnage dans la feuille ci-dessous." : "No character loaded. Create a character in the sheet below.";
+                var errMsg = isFr ? "Aucun personnage chargé. Créez un personnage dans la feuille ci-dessous." : "No character loaded. Create a character in the sheet below.";
+                messages.push({ role: 'assistant', content: errMsg });
             } else if (d.error === 'unknown_competence') {
-                msg = isFr ? "Compétence introuvable." : "Unknown competence.";
+                var errMsg2 = isFr ? "Compétence introuvable." : "Unknown competence.";
+                messages.push({ role: 'assistant', content: errMsg2 });
             } else {
                 var outcome = d.criticalSuccess ? (isFr ? 'succès critique' : 'critical success') : d.success ? (isFr ? 'succès' : 'success') : d.criticalFailure ? (isFr ? 'échec critique' : 'critical failure') : (isFr ? 'échec' : 'failure');
                 var nivStr = d.nivEpreuve >= 0 ? '+' + d.nivEpreuve : String(d.nivEpreuve);
                 var resultStr = d.result >= 0 ? '+' + d.result : String(d.result);
-                msg = (isFr ? '**Jet test :** ' : '**Test roll:** ') + (d.competenceLabel || '') + ' → ' + resultStr + ' vs Niv ' + nivStr + ' → ' + outcome + '.';
-                if (d.diceBreakdown && typeof d.diceBreakdown === 'string') msg += '\n\n' + d.diceBreakdown;
+                var content = 'Rolled ' + (d.competenceLabel || '') + ': ' + resultStr + ' vs Niv ' + nivStr + ', ' + outcome + '.';
+                if (d.diceBreakdown && typeof d.diceBreakdown === 'string') content += '\n' + d.diceBreakdown;
                 if (d.feedbackLines && Array.isArray(d.feedbackLines) && d.feedbackLines.length > 0) {
-                    msg += '\n\n' + (isFr ? 'Progression / Souffrance :' : 'Progression / Souffrance:') + '\n' + d.feedbackLines.join('\n');
+                    content += '\n' + d.feedbackLines.join('\n');
                 }
+                messages.push({ role: 'user', content: content });
             }
-            messages.push({ role: 'assistant', content: msg });
             saveMessages();
             renderMessages(container);
+            if (typeof updateTestRollDiceDisplay === 'function') updateTestRollDiceDisplay();
         });
 
         function notifyCreationStepFromSheet(step, payload) {

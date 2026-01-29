@@ -1725,13 +1725,10 @@ img {
     font-size: 0.875rem;
     max-width: 12rem;
 }
-.gm-chat-test-roll-niv {
-    padding: 0.35rem 0.5rem;
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid var(--tdt-beige-warm);
-    border-radius: 4px;
-    color: var(--tdt-cream);
+.gm-chat-test-roll-dice {
     font-size: 0.875rem;
+    color: var(--tdt-beige-light);
+    font-weight: 600;
 }
 /* Same styling as Send button (.gm-chat-input-row button) */
 .gm-chat-test-roll-btn.gm-chat-send-style,
