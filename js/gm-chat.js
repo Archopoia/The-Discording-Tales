@@ -1019,7 +1019,7 @@
             unlockHint.className = 'gm-creation-unlock-hint';
             unlockHint.setAttribute('aria-live', 'polite');
             unlockHint.style.display = 'none';
-            unlockHint.textContent = getLang() === 'fr' ? 'Complétez la création du personnage ci-dessous pour débloquer le chat.' : 'Complete character creation below to unlock the chat.';
+            unlockHint.textContent = getLang() === 'fr' ? 'Complétez la création du personnage ci-dessous pour débloquer le tchat.' : 'Complete character creation below to unlock the chat.';
             if (hasCharEl) hasCharEl.insertBefore(unlockHint, hasCharEl.firstChild);
             var modeWrap = document.createElement('div');
             modeWrap.className = 'gm-chat-mode-switch';
@@ -1030,7 +1030,7 @@
             radioApi.name = 'gm-chat-mode';
             radioApi.value = 'api';
             radioApi.checked = !useTestMode;
-            radioApi.setAttribute('aria-label', getLang() === 'fr' ? 'Chat avec l\'Éveilleur (API)' : 'Chat with Éveilleur (API)');
+            radioApi.setAttribute('aria-label', getLang() === 'fr' ? 'Tchat avec l\'Éveilleur (API)' : 'Chat with Éveilleur (API)');
             var radioTest = document.createElement('input');
             radioTest.type = 'radio';
             radioTest.name = 'gm-chat-mode';
@@ -1041,7 +1041,7 @@
             modeLabelTest.className = 'gm-chat-mode-option';
             modeLabelTest.textContent = 'Tester le système';
             modeLabelApi.appendChild(radioApi);
-            modeLabelApi.appendChild(document.createTextNode(getLang() === 'fr' ? ' Chat (API)' : ' Chat (API)'));
+            modeLabelApi.appendChild(document.createTextNode(getLang() === 'fr' ? ' Tchat (API)' : ' Chat (API)'));
             modeLabelTest.insertBefore(radioTest, modeLabelTest.firstChild);
             modeWrap.appendChild(modeLabelApi);
             modeWrap.appendChild(modeLabelTest);

@@ -86,7 +86,7 @@ const UI = {
     chooseOrigin: "Origine",
     choosePeuple: 'Peuple',
     characterNameLabel: 'Nom du personnage',
-    narrativeInChatHint: "Définissez l'origine, le peuple et le nom dans le chat ci-dessus.",
+    narrativeInChatHint: "Définissez l'origine, le peuple et le nom dans le tchat ci-dessus.",
     nextStep: 'Suivant',
     challengeLine: (desc: string, niv: string) => `Défi : ${desc} — Niv d'épreuve : ${niv}`,
     noCompetenceRevealed: "Aucune compétence révélée — termine d'abord la création.",
