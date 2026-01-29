@@ -171,7 +171,45 @@
             }
         });
 
+        // Update aria-label from data-aria-label-en / data-aria-label-fr
+        document.querySelectorAll('[data-aria-label-en][data-aria-label-fr]').forEach(element => {
+            const label = element.getAttribute(`data-aria-label-${lang}`);
+            if (label) element.setAttribute('aria-label', label);
+        });
+
+        // Update title from data-title-en / data-title-fr
+        document.querySelectorAll('[data-title-en][data-title-fr]').forEach(element => {
+            const title = element.getAttribute(`data-title-${lang}`);
+            if (title) element.setAttribute('title', title);
+        });
+
+        // Update placeholder from data-placeholder-en / data-placeholder-fr (for inputs that use these instead of data-en/data-fr)
+        document.querySelectorAll('[data-placeholder-en][data-placeholder-fr]').forEach(element => {
+            const placeholder = element.getAttribute(`data-placeholder-${lang}`);
+            if (placeholder) element.setAttribute('placeholder', placeholder);
+        });
+
+        // Update img alt from data-alt-en / data-alt-fr
+        document.querySelectorAll('[data-alt-en][data-alt-fr]').forEach(element => {
+            const alt = element.getAttribute(`data-alt-${lang}`);
+            if (alt) element.setAttribute('alt', alt);
+        });
+
+        // Update carousel aria-labels (carousel is built in JS, so update after lang change)
+        updateCarouselAriaLabels(lang);
     }
+
+    function updateCarouselAriaLabels(lang) {
+        if (!elements.carousel) return;
+        const prevBtn = elements.carousel.querySelector('.carousel-prev');
+        const nextBtn = elements.carousel.querySelector('.carousel-next');
+        const prevLabel = lang === 'fr' ? 'Image précédente' : 'Previous image';
+        const nextLabel = lang === 'fr' ? 'Image suivante' : 'Next image';
+        if (prevBtn) prevBtn.setAttribute('aria-label', prevLabel);
+        if (nextBtn) nextBtn.setAttribute('aria-label', nextLabel);
+        const indicators = elements.carousel.querySelectorAll('.carousel-indicators button');
+        const goToLabel = lang === 'fr' ? 'Aller à la diapositive ' : 'Go to slide ';
+        indicators.forEach((btn, index) => btn.setAttribute('aria-label', goToLabel + (index + 1)));
 
     // ========================================
     // Image Carousel
@@ -213,6 +251,11 @@
         
         if (prevBtn) prevBtn.addEventListener('click', () => previousSlide());
         if (nextBtn) nextBtn.addEventListener('click', () => nextSlide());
+
+        // Set carousel aria-labels to current language
+        if (typeof updateCarouselAriaLabels === 'function') {
+            updateCarouselAriaLabels(state.currentLang);
+        }
 
         // Auto-play carousel
         startCarousel();

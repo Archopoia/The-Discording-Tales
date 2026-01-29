@@ -23,7 +23,7 @@
 </head>
 <body>
     <!-- Skip to content link for accessibility -->
-    <a class="skip-link screen-reader-text" href="#main-content">Skip to content</a>
+    <a class="skip-link screen-reader-text" href="#main-content" data-en="Skip to content" data-fr="Aller au contenu">Skip to content</a>
     
     <!-- WebGL Background Canvas for Procedural Textures -->
     <!-- This canvas renders marble texture using shaders -->
@@ -35,22 +35,22 @@
         <canvas id="header-gold-canvas" class="webgl-header-canvas" aria-hidden="true"></canvas>
         <div class="header-bg decorated-container">
             <div class="site-branding">
-                <a class="site-logo-link" href="#landing" aria-label="Home">
-                    <img alt="The Discording Tales Symbol" class="site-logo" src="assets/images/symbolpur.png" height="300" width="300"/>
+                <a class="site-logo-link" href="#landing" data-aria-label-en="Home" data-aria-label-fr="Accueil" aria-label="Home">
+                    <img alt="The Discording Tales Symbol" class="site-logo" src="assets/images/symbolpur.png" height="300" width="300" data-alt-en="The Discording Tales Symbol" data-alt-fr="Le symbole des Récits Discordants"/>
                 </a>
-                <h1 class="site-title"><a href="#landing" rel="home">THE DISCORDING TALES</a></h1>
-                <h2 class="site-description">Under our steps awake those mysteries believed to be warring among the stars… A Weird Ethno-Science-Fantasy Gameworld</h2>
+                <h1 class="site-title"><a href="#landing" rel="home" data-en="THE DISCORDING TALES" data-fr="LES RÉCITS DISCORDANTS">THE DISCORDING TALES</a></h1>
+                <h2 class="site-description" data-en="Under our steps awake those mysteries believed to be warring among the stars… A Weird Ethno-Science-Fantasy Gameworld" data-fr="Sous nos pas s'éveillent ces mystères qu'on dit en guerre parmi les étoiles… Un monde de jeu weird ethno-science-fantasy">Under our steps awake those mysteries believed to be warring among the stars… A Weird Ethno-Science-Fantasy Gameworld</h2>
             </div>
         </div>
         
-        <nav class="main-navigation" id="site-navigation" role="navigation" aria-label="Main navigation">
-            <button aria-controls="primary-menu" aria-expanded="false" class="menu-toggle" id="menu-toggle">Menu</button>
+        <nav class="main-navigation" id="site-navigation" role="navigation" data-aria-label-en="Main navigation" data-aria-label-fr="Navigation principale" aria-label="Main navigation">
+            <button aria-controls="primary-menu" aria-expanded="false" class="menu-toggle" id="menu-toggle" data-en="Menu" data-fr="Menu">Menu</button>
             <ul class="menu" id="primary-menu">
-                <li class="menu-item"><a href="#landing" data-tab="landing" class="tab-link active">Home</a></li>
-                <li class="menu-item"><a href="#lore" data-tab="lore" class="tab-link">Worldlore</a></li>
-                <li class="menu-item"><a href="#rules" data-tab="rules" class="tab-link">Ruleset</a></li>
-                <li class="menu-item"><a href="#play" data-tab="play" class="tab-link">Play</a></li>
-                <li class="menu-item"><a href="#about" data-tab="about" class="tab-link">About</a></li>
+                <li class="menu-item"><a href="#landing" data-tab="landing" class="tab-link active" data-en="Home" data-fr="Accueil">Home</a></li>
+                <li class="menu-item"><a href="#lore" data-tab="lore" class="tab-link" data-en="Worldlore" data-fr="Lore du Monde">Worldlore</a></li>
+                <li class="menu-item"><a href="#rules" data-tab="rules" class="tab-link" data-en="Ruleset" data-fr="Système de Règles">Ruleset</a></li>
+                <li class="menu-item"><a href="#play" data-tab="play" class="tab-link" data-en="Play" data-fr="Jouer">Play</a></li>
+                <li class="menu-item"><a href="#about" data-tab="about" class="tab-link" data-en="About" data-fr="À propos">About</a></li>
             </ul>
             <div class="language-toggle">
                 <button id="lang-en" class="lang-btn active" data-lang="en">EN</button>
@@ -112,7 +112,7 @@
                     <h3 data-en="Join the Outpost to hear the latest rumors…" data-fr="Rejoignez l'Avant-poste pour entendre les dernières rumeurs…">Join the Outpost to hear the latest rumors…</h3>
                     <p class="newsletter-subtitle" data-en="Survive the next euphoric tidal wave!" data-fr="Survivez à la prochaine vague euphorique !">Survive the next euphoric tidal wave!</p>
                     <form class="newsletter-form" id="newsletter-form">
-                        <input type="email" id="newsletter-email" placeholder="thediscordingtales@gmail.com" required aria-label="Email address"/>
+                        <input type="email" id="newsletter-email" placeholder="thediscordingtales@gmail.com" required data-aria-label-en="Email address" data-aria-label-fr="Adresse e-mail" aria-label="Email address"/>
                         <button type="submit" data-en="Sit by the Fireplace (Subscribe – NO Spam)" data-fr="Asseyez-vous au Coin du Feu (Abonnez-vous – PAS de Spam)">Sit by the Fireplace (Subscribe – NO Spam)</button>
                     </form>
                 </div>
@@ -143,36 +143,36 @@
                     <h4 data-en="Ô, WÔM, HISM and the Cosmic Structure" data-fr="Ô, WÔM, HISM et la Structure Cosmique">Ô, WÔM, HISM and the Cosmic Structure</h4>
                     
                     <div class="genre-card">
-                        <h5><strong>Ô</strong> - The Ultimate Rildée</h5>
+                        <h5 data-en="<strong>Ô</strong> - The Ultimate Rildée" data-fr="<strong>Ô</strong> - L'ultime Rildée"><strong>Ô</strong> - The Ultimate Rildée</h5>
                         <p data-en="<strong>Ô</strong> (World/Location) is the ultimate Rildée, the rilical spirit forming all forms. She is eternally cradled between pain and relief." data-fr="<strong>Ô</strong> (Monde/Localisation) est l'ultime Rildée, l'esprit rilique formant toutes les formes. Elle est éternellement bercée entre douleur et soulagement."><strong>Ô</strong> (World/Location) is the ultimate Rildée, the rilical spirit forming all forms. She is eternally cradled between pain and relief.</p>
                     </div>
                     
                     <div class="genre-card">
-                        <h5><strong>WÔM</strong> - Time</h5>
+                        <h5 data-en="<strong>WÔM</strong> - Time" data-fr="<strong>WÔM</strong> - Temps"><strong>WÔM</strong> - Time</h5>
                         <p data-en="<strong>WÔM</strong> (Time/Count) is Ô's little siamese brother-sister, perched far away and reconciling all by their judgment establishing each one's wealth and designating how far each realm extends." data-fr="<strong>WÔM</strong> (Temps/Compte) est le petit frère-sœur siamois de Ô, perché au loin et les réconciliant tous par son jugement établissant les richesses de chacun et désignant jusqu'où les royaumes de chacun s'étendent."><strong>WÔM</strong> (Time/Count) is Ô's little siamese brother-sister, perched far away and reconciling all by their judgment establishing each one's wealth and designating how far each realm extends.</p>
                     </div>
                     
                     <div class="genre-card">
-                        <h5><strong>HISM</strong> - Forces</h5>
+                        <h5 data-en="<strong>HISM</strong> - Forces" data-fr="<strong>HISM</strong> - Forces"><strong>HISM</strong> - Forces</h5>
                         <p data-en="<strong>HISM</strong> (Forces/Actions-at-Distance/Magic) is the dance of the assembly of tetrarchs in couples so close that they form a single bicephalous whole (beings sometimes wrongly called 'the' SZIIZS) while hating as much as adoring each other." data-fr="<strong>HISM</strong> (Forces/Actions-à-Distance/Magie) est la danse de l'assemblée des tétrarques en couples si proches qu'ils ne font qu'un seul tout bicéphale (des êtres parfois nommés à tort « les » SZIIZS) bien que s'haïssant tout autant que s'adorant."><strong>HISM</strong> (Forces/Actions-at-Distance/Magic) is the dance of the assembly of tetrarchs in couples so close that they form a single bicephalous whole (beings sometimes wrongly called 'the' SZIIZS) while hating as much as adoring each other.</p>
                     </div>
                     
                     <h4 data-en="The Four Artist-Kings/Queens (Tetrarchs)" data-fr="Les Quatre Rois/Reines-Artistes (Tétrarques)">The Four Artist-Kings/Queens (Tetrarchs)</h4>
                     <div class="tetrarchs-grid">
                         <div class="genre-card">
-                            <h5><strong>iôHôi</strong> - The Struck (Perfuming)</h5>
+                            <h5 data-en="<strong>iôHôi</strong> - The Struck (Perfuming)" data-fr="<strong>iôHôi</strong> - Le Frappé (Parfum)"><strong>iôHôi</strong> - The Struck (Perfuming)</h5>
                             <p data-en="<strong>Domain:</strong> Whirling (Electromagnetism)<br/><strong>Actions:</strong> Hôi (assembles Riliôh into Rilhôi - causes attraction) / iôH (loosens knots, disperses Riliôh - causes repulsion)<br/><strong>Rilical Family:</strong> Aèmrils (Whirling Forms/Airs)" data-fr="<strong>Domaine:</strong> Tournoiement (Électromagnétisme)<br/><strong>Actions:</strong> Hôi (assemble les Riliôh en Rilhôi - cause l'attraction) / iôH (délie les nœuds, disperse les Riliôh - cause la répulsion)<br/><strong>Famille Rilique:</strong> Aèmrils (Formes Virevoltantes/Airs)"><strong>Domain:</strong> Whirling (Electromagnetism)<br/><strong>Actions:</strong> Hôi (assembles Riliôh into Rilhôi - causes attraction) / iôH (loosens knots, disperses Riliôh - causes repulsion)<br/><strong>Rilical Family:</strong> Aèmrils (Whirling Forms/Airs)</p>
                         </div>
                         <div class="genre-card">
-                            <h5><strong>sôIôs</strong> - The Waved (Honeying)</h5>
+                            <h5 data-en="<strong>sôIôs</strong> - The Waved (Honeying)" data-fr="<strong>sôIôs</strong> - L'Ondulé (Miel)"><strong>sôIôs</strong> - The Waved (Honeying)</h5>
                             <p data-en="<strong>Domain:</strong> Tension (Gravity)<br/><strong>Actions:</strong> Iôs (awakens Rilsôi into Riliôs - causes fall) / sôI (puts Riliôs to sleep into Rilsôi - causes elevation)<br/><strong>Rilical Family:</strong> Ormrils (Emotional Forms/Emotions)" data-fr="<strong>Domaine:</strong> Tension (Gravité)<br/><strong>Actions:</strong> Iôs (réveille les Rilsôi en Riliôs - cause la chute) / sôI (endort les Riliôs en Rilsôi - cause l'élévation)<br/><strong>Famille Rilique:</strong> Ormrils (Formes Émouvantes/Émotions)"><strong>Domain:</strong> Tension (Gravity)<br/><strong>Actions:</strong> Iôs (awakens Rilsôi into Riliôs - causes fall) / sôI (puts Riliôs to sleep into Rilsôi - causes elevation)<br/><strong>Rilical Family:</strong> Ormrils (Emotional Forms/Emotions)</p>
                         </div>
                         <div class="genre-card">
-                            <h5><strong>môSôm</strong> - The Collapsed (Flourishing)</h5>
+                            <h5 data-en="<strong>môSôm</strong> - The Collapsed (Flourishing)" data-fr="<strong>môSôm</strong> - L'Effondré (Florissant)"><strong>môSôm</strong> - The Collapsed (Flourishing)</h5>
                             <p data-en="<strong>Domain:</strong> Alignment (Light)<br/><strong>Actions:</strong> Sôm (aligns Rilmôs into Rilsôm - causes appearance) / môS (hides Rilsôm into Rilmôs - causes disappearance)<br/><strong>Rilical Family:</strong> Esthrils (Manifesting Forms/Phenomena)" data-fr="<strong>Domaine:</strong> Alignement (Lumière)<br/><strong>Actions:</strong> Sôm (aligne les Rilmôs en Rilsôm - cause l'apparition) / môS (cache les Rilsôm en Rilmôs - cause la disparition)<br/><strong>Famille Rilique:</strong> Esthrils (Formes Manifestantes/Phénomènes)"><strong>Domain:</strong> Alignment (Light)<br/><strong>Actions:</strong> Sôm (aligns Rilmôs into Rilsôm - causes appearance) / môS (hides Rilsôm into Rilmôs - causes disappearance)<br/><strong>Rilical Family:</strong> Esthrils (Manifesting Forms/Phenomena)</p>
                         </div>
                         <div class="genre-card">
-                            <h5><strong>hôMôh</strong> - The Embraced (Freezing)</h5>
+                            <h5 data-en="<strong>hôMôh</strong> - The Embraced (Freezing)" data-fr="<strong>hôMôh</strong> - L'Embrassé (Gel)"><strong>hôMôh</strong> - The Embraced (Freezing)</h5>
                             <p data-en="<strong>Domain:</strong> Torsion (Transmutation)<br/><strong>Actions:</strong> Môh (embraces Rilhôm into Rilmôh - causes change) / hôM (freezes Rilmôh into Rilhôm - causes persistence)<br/><strong>Rilical Family:</strong> Stadrils (Freezing Forms/Solids)" data-fr="<strong>Domaine:</strong> Torsion (Transmutation)<br/><strong>Actions:</strong> Môh (embrase les Rilhôm en Rilmôh - cause le changement) / hôM (fige les Rilmôh en Rilhôm - cause la persistance)<br/><strong>Famille Rilique:</strong> Stadrils (Formes Figeantes/Solides)"><strong>Domain:</strong> Torsion (Transmutation)<br/><strong>Actions:</strong> Môh (embraces Rilhôm into Rilmôh - causes change) / hôM (freezes Rilmôh into Rilhôm - causes persistence)<br/><strong>Rilical Family:</strong> Stadrils (Freezing Forms/Solids)</p>
                         </div>
                     </div>
@@ -367,7 +367,7 @@
                 <p class="tab-intro" data-en="Chat with the Éveilleur (GM). Roll in the Character Sheet, then report results here." data-fr="Discutez avec l'Éveilleur (MJ). Lancez les dés dans la Feuille de Personnage, puis rapportez les résultats ici.">Chat with the Éveilleur (GM). Roll in the Character Sheet, then report results here.</p>
             </div>
             <div class="play-flip-layout">
-                <div class="play-flip-buttons" role="group" aria-label="Chat or character sheet">
+                <div class="play-flip-buttons" role="group" data-aria-label-en="Chat or character sheet" data-aria-label-fr="Chat ou feuille de personnage" aria-label="Chat or character sheet">
                     <button type="button" id="play-flip-chat" class="play-flip-btn active" data-side="chat">
                         <span data-en="Chat" data-fr="Chat">Chat</span>
                     </button>
@@ -380,7 +380,7 @@
                         <div class="play-flip-face play-flip-face-front">
                             <div class="gm-chat-wrapper rules-section">
                                 <div class="gm-chat-toolbar">
-                                    <button type="button" id="gm-chat-clear" class="gm-chat-toolbar-btn gm-chat-clear-btn" aria-label="Clear chat" title="Clear chat">
+                                    <button type="button" id="gm-chat-clear" class="gm-chat-toolbar-btn gm-chat-clear-btn" data-aria-label-en="Clear chat" data-aria-label-fr="Effacer le chat" data-title-en="Clear chat" data-title-fr="Effacer le chat" aria-label="Clear chat" title="Clear chat">
                                         <svg class="gm-chat-icon-brush" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M20.71 4.63l-1.34-1.34c-.39-.39-1.02-.39-1.41 0L9 12.25 11.75 15l8.96-8.96c.39-.39.39-1.02 0-1.41zM7 14a3 3 0 0 0 3 3c.5 0 .97-.15 1.36-.41l-1.95-1.95-.41.41V14z"/></svg>
                                     </button>
                                 </div>
@@ -403,7 +403,7 @@
                                             </button>
                                         </div>
                                         <div class="gm-chat-input-row">
-                                            <input type="text" id="gm-chat-input" placeholder="Your action or roll result…" aria-label="Message to GM" autocomplete="off"/>
+                                            <input type="text" id="gm-chat-input" data-placeholder-en="Your action or roll result…" data-placeholder-fr="Votre action ou résultat de jet…" placeholder="Your action or roll result…" data-aria-label-en="Message to GM" data-aria-label-fr="Message au MJ" aria-label="Message to GM" autocomplete="off"/>
                                             <button type="button" id="gm-chat-send" data-en="Send" data-fr="Envoyer">Send</button>
                                         </div>
                                     </div>
@@ -427,7 +427,7 @@
             <!-- Genre Definitions -->
             <div class="about-section" id="genres">
                 <h3 data-en="A New Genre for an Old World" data-fr="Un Nouveau Genre pour un Ancien Monde">A New Genre for an Old World</h3>
-                <p class="genres-intro" data-en="The Discording Tales pretends to be <strong>unclassifiable</strong> (yet), aiming at creating a <strong>new name</strong> for itself. Here below are those existing genres, put under the light of TDT's worldlore and ruleset." data-fr="The Discording Tales prétend être <strong>inclassable</strong> (encore), visant à créer un <strong>nouveau nom</strong> pour lui-même. Voici ci-dessous ces genres existants, mis sous la lumière du worldlore et des règles de TDT.">The Discording Tales pretends to be <strong>unclassifiable</strong> (yet), aiming at creating a <strong>new name</strong> for itself. Here below are those existing genres, put under the light of TDT's worldlore and ruleset.</p>
+                <p class="genres-intro" data-en="The Discording Tales pretends to be <strong>unclassifiable</strong> (yet), aiming at creating a <strong>new name</strong> for itself. Here below are those existing genres, put under the light of TDT's worldlore and ruleset." data-fr="Les Récits Discordants prétend être <strong>inclassable</strong> (encore), visant à créer un <strong>nouveau nom</strong> pour lui-même. Voici ci-dessous ces genres existants, mis sous la lumière du worldlore et des règles de TDT.">The Discording Tales pretends to be <strong>unclassifiable</strong> (yet), aiming at creating a <strong>new name</strong> for itself. Here below are those existing genres, put under the light of TDT's worldlore and ruleset.</p>
                 <div class="genres-grid" data-lang-key="genres-content">
                     <div class="genre-card">
                         <h4 data-en="(New) Weird" data-fr="(Nouveau) Weird">(New) Weird</h4>
@@ -483,18 +483,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr><td><strong>Advanced Dungeons & Dragons</strong></td><td><em>Reworking TTRPG concepts (XP, HP, Time & Open table gameplay)</em></td></tr>
-                                <tr><td><strong>Ars Magica</strong></td><td><em>"Free-forming" Magic System</em></td></tr>
-                                <tr><td><strong>Blades in the Dark</strong></td><td><em>Factions: Tier, Status & Countdown clocks for goals</em></td></tr>
-                                <tr><td><strong>Burning Wheel</strong></td><td><em>Experience system through Failures & Successes</em></td></tr>
-                                <tr><td><strong>Call of Cthulhu 7e</strong></td><td><em>Madness system</em></td></tr>
-                                <tr><td><strong>Forbidden Lands</strong></td><td><em>Resource types, Crafts, Stronghold system</em></td></tr>
-                                <tr><td><strong>Mage: The Ascension</strong></td><td><em>Mechanic/worldbuilding of Consensus reality and Magic paradox</em></td></tr>
-                                <tr><td><strong>Mythras</strong></td><td><em>Formatting: Cultures. Engagement & Pro/Re-Actions rules, Passions</em></td></tr>
-                                <tr><td><strong>Ryuutama</strong></td><td><em>Evolving & Playing GM, Gamifying Metagaming, Travelling system</em></td></tr>
-                                <tr><td><strong>Talislanta</strong></td><td><em>Creating a Coherent & Evocating setting, Class archetypes</em></td></tr>
-                                <tr><td><strong>Ultraviolet Grasslands</strong></td><td><em>Caravans, Localities, Worldbuilding through rules</em></td></tr>
-                                <tr><td><strong>World of Darkness</strong></td><td><em>4 pairs of 8 Attributes, Attribute system, Morality system</em></td></tr>
+                                <tr><td><strong>Advanced Dungeons & Dragons</strong></td><td data-en="<em>Reworking TTRPG concepts (XP, HP, Time & Open table gameplay)</em>" data-fr="<em>Refonte des concepts JdR (XP, PV, Temps & partie à table ouverte)</em>"><em>Reworking TTRPG concepts (XP, HP, Time & Open table gameplay)</em></td></tr>
+                                <tr><td><strong>Ars Magica</strong></td><td data-en="<em>&quot;Free-forming&quot; Magic System</em>" data-fr="<em>Système de magie « libre-formant »</em>"><em>"Free-forming" Magic System</em></td></tr>
+                                <tr><td><strong>Blades in the Dark</strong></td><td data-en="<em>Factions: Tier, Status & Countdown clocks for goals</em>" data-fr="<em>Factions : Niveau, Statut & horloges pour objectifs</em>"><em>Factions: Tier, Status & Countdown clocks for goals</em></td></tr>
+                                <tr><td><strong>Burning Wheel</strong></td><td data-en="<em>Experience system through Failures & Successes</em>" data-fr="<em>Système d'expérience par échecs et succès</em>"><em>Experience system through Failures & Successes</em></td></tr>
+                                <tr><td><strong>Call of Cthulhu 7e</strong></td><td data-en="<em>Madness system</em>" data-fr="<em>Système de folie</em>"><em>Madness system</em></td></tr>
+                                <tr><td><strong>Forbidden Lands</strong></td><td data-en="<em>Resource types, Crafts, Stronghold system</em>" data-fr="<em>Types de ressources, Artisanat, Système de place forte</em>"><em>Resource types, Crafts, Stronghold system</em></td></tr>
+                                <tr><td><strong>Mage: The Ascension</strong></td><td data-en="<em>Mechanic/worldbuilding of Consensus reality and Magic paradox</em>" data-fr="<em>Mécanique/monde de la réalité de consensus et paradoxe magique</em>"><em>Mechanic/worldbuilding of Consensus reality and Magic paradox</em></td></tr>
+                                <tr><td><strong>Mythras</strong></td><td data-en="<em>Formatting: Cultures. Engagement & Pro/Re-Actions rules, Passions</em>" data-fr="<em>Format : Cultures. Règles d'engagement & Pro/Ré-actions, Passions</em>"><em>Formatting: Cultures. Engagement & Pro/Re-Actions rules, Passions</em></td></tr>
+                                <tr><td><strong>Ryuutama</strong></td><td data-en="<em>Evolving & Playing GM, Gamifying Metagaming, Travelling system</em>" data-fr="<em>MJ évolutif & joué, Gamification du métajeu, Système de voyage</em>"><em>Evolving & Playing GM, Gamifying Metagaming, Travelling system</em></td></tr>
+                                <tr><td><strong>Talislanta</strong></td><td data-en="<em>Creating a Coherent & Evocating setting, Class archetypes</em>" data-fr="<em>Création d'un cadre cohérent & évocateur, Archétypes de classe</em>"><em>Creating a Coherent & Evocating setting, Class archetypes</em></td></tr>
+                                <tr><td><strong>Ultraviolet Grasslands</strong></td><td data-en="<em>Caravans, Localities, Worldbuilding through rules</em>" data-fr="<em>Caravanes, Localités, Worldbuilding par les règles</em>"><em>Caravans, Localities, Worldbuilding through rules</em></td></tr>
+                                <tr><td><strong>World of Darkness</strong></td><td data-en="<em>4 pairs of 8 Attributes, Attribute system, Morality system</em>" data-fr="<em>4 paires de 8 Attributs, Système d'attributs, Système de moralité</em>"><em>4 pairs of 8 Attributes, Attribute system, Morality system</em></td></tr>
                                 <tr><td colspan="2" class="table-note" data-en="<em>And many more inspiring tabletop RPGs that shaped The Discording Tales...</em>" data-fr="<em>Et bien d'autres jeux de rôle sur table inspirants qui ont façonné The Discording Tales...</em>"><em>And many more inspiring tabletop RPGs that shaped The Discording Tales...</em></td></tr>
                             </tbody>
                         </table>
