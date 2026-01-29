@@ -15,8 +15,9 @@
     
     <!-- Theme Color -->
     <meta content="#5a1f1f" name="theme-color"/>
-    <!-- GM API (Play tab): set for production so visitors use your backend. Leave absent for localhost:8000. -->
-    <!-- <meta name="gm-api-url" content="https://api.yoursite.com"/> -->
+    <!-- GM API (Play tab): set for production so visitors/phones use your backend.
+         Without this, the site uses http://localhost:8000 — which only works on the machine running uvicorn; phones and other devices get ERR_CONNECTION_REFUSED. -->
+    <!-- <meta name="gm-api-url" content="https://your-deployed-api.example.com"/> -->
     
     <!-- Favicon -->
     <link href="assets/images/cropped-symbolpur.png" rel="icon" sizes="32x32"/>
