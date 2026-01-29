@@ -40,6 +40,18 @@
         } catch { return 'en'; }
     }
 
+    function markdownToHtml(text) {
+        if (typeof marked !== 'undefined' && typeof DOMPurify !== 'undefined') {
+            marked.setOptions({ gfm: true, breaks: true });
+            var raw = marked.parse(String(text || ''));
+            return DOMPurify.sanitize(raw, {
+                ALLOWED_TAGS: ['h1','h2','h3','h4','h5','h6','p','strong','em','b','i','u','ul','ol','li','table','thead','tbody','tr','th','td','blockquote','hr','br','code','pre','a','span','div'],
+                ALLOWED_ATTR: ['href','class','target','rel']
+            });
+        }
+        return null;
+    }
+
     function renderMessages(container, appendStatus) {
         if (!container) return;
         var lang = getLang();
@@ -54,13 +66,19 @@
             role.className = 'role';
             role.textContent = m.role === 'user' ? youLabel : gmLabel;
             var body = document.createElement('div');
-            body.textContent = m.content;
+            body.className = 'gm-chat-body' + (m.role === 'assistant' ? ' gm-chat-body--md' : '');
+            if (m.role === 'assistant') {
+                var html = markdownToHtml(m.content);
+                if (html != null) { body.innerHTML = html; } else { body.textContent = m.content; }
+            } else {
+                body.textContent = m.content;
+            }
             div.appendChild(role);
             div.appendChild(body);
             container.appendChild(div);
         });
         if (appendStatus && typeof appendStatus === 'string') {
-            const s = document.createElement('div');
+            var s = document.createElement('div');
             s.className = 'status';
             s.textContent = appendStatus;
             container.appendChild(s);
