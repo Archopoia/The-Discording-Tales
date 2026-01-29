@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { flushSync } from 'react-dom';
 import { CharacterSheetManager } from '@/game/character/CharacterSheetManager';
 import { Attribute } from '@/game/character/data/AttributeData';
 import { Competence } from '@/game/character/data/CompetenceData';
@@ -118,10 +119,13 @@ export default function SimulationEventLog({
         .reduce((s, c) => s + (state.competences[c]?.degreeCount ?? 0), 0) +
       Object.values(Souffrance).reduce((s, souf) => s + (state.souffrances[souf]?.resistanceDegreeCount ?? 0), 0);
     if (diceSum !== POOL_DICE) return;
+    // Apply mode/step first so this component's useEffect sees mode !== 'creating' and does not re-apply dice step (which would bring the popup back).
+    flushSync(() => {
+      setMode('running');
+      setCreateStep('attributes');
+    });
     onHighlight?.(null);
     onStepAction?.(null);
-    setMode('running');
-    setCreateStep('attributes');
     try {
       const degrees: Record<string, number> = {};
       Object.values(Competence).forEach((c) => {

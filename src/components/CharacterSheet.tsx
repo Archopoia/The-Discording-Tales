@@ -680,7 +680,12 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
                   <div className="flex flex-col gap-2">
                     <button
                       type="button"
-                      onClick={stepAction.onClick}
+                      onClick={() => {
+                        stepAction.onClick();
+                        setSimHighlightId(null);
+                        setSimTooltip(null);
+                        setStepAction(null);
+                      }}
                       disabled={stepAction.disabled}
                       className={`w-full ${FERMER_STYLE.className} disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:bg-red-theme disabled:hover:text-text-cream`}
                       style={{ boxShadow: FERMER_STYLE.boxShadow }}
