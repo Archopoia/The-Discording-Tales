@@ -1353,6 +1353,15 @@
                     }
                     saveMessages();
                     renderMessages(container);
+                    /* Auto-flip to character sheet for next step */
+                    var fc = document.getElementById('play-flip-container');
+                    var fChat = document.getElementById('play-flip-chat');
+                    var fSheet = document.getElementById('play-flip-sheet');
+                    if (fc && fChat && fSheet) {
+                        fc.classList.add('flipped');
+                        fSheet.classList.add('active');
+                        fChat.classList.remove('active');
+                    }
                     return;
                 }
             });

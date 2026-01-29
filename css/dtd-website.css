@@ -171,6 +171,78 @@ body {
     position: relative;
 }
 
+/* ========================================
+   Custom scrollbars (viewport + overflow areas)
+   ======================================== */
+/* Firefox */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--tdt-brown) var(--tdt-burgundy);
+}
+/* WebKit: viewport scrollbar */
+html::-webkit-scrollbar {
+    width: 10px;
+}
+html::-webkit-scrollbar-track {
+    background: var(--tdt-burgundy);
+}
+html::-webkit-scrollbar-thumb {
+    background: var(--tdt-brown);
+    border-radius: var(--radius-sm);
+    border: 2px solid var(--tdt-burgundy);
+}
+html::-webkit-scrollbar-thumb:hover {
+    background: var(--tdt-brown-light);
+}
+
+/* All scrollable areas (gm-chat, character sheet, tables, etc.) */
+.overflow-x-auto::-webkit-scrollbar,
+.overflow-y-auto::-webkit-scrollbar,
+.gm-chat-messages::-webkit-scrollbar,
+.gm-chat-messages pre::-webkit-scrollbar,
+.inspirations-table-wrapper::-webkit-scrollbar,
+.play-flip-face-back .play-character-sheet-root::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+}
+.overflow-x-auto::-webkit-scrollbar-track,
+.overflow-y-auto::-webkit-scrollbar-track,
+.gm-chat-messages::-webkit-scrollbar-track,
+.gm-chat-messages pre::-webkit-scrollbar-track,
+.inspirations-table-wrapper::-webkit-scrollbar-track,
+.play-flip-face-back .play-character-sheet-root::-webkit-scrollbar-track {
+    background: var(--tdt-burgundy);
+    border-radius: var(--radius-sm);
+}
+.overflow-x-auto::-webkit-scrollbar-thumb,
+.overflow-y-auto::-webkit-scrollbar-thumb,
+.gm-chat-messages::-webkit-scrollbar-thumb,
+.gm-chat-messages pre::-webkit-scrollbar-thumb,
+.inspirations-table-wrapper::-webkit-scrollbar-thumb,
+.play-flip-face-back .play-character-sheet-root::-webkit-scrollbar-thumb {
+    background: var(--tdt-brown);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--tdt-beige);
+}
+.overflow-x-auto::-webkit-scrollbar-thumb:hover,
+.overflow-y-auto::-webkit-scrollbar-thumb:hover,
+.gm-chat-messages::-webkit-scrollbar-thumb:hover,
+.gm-chat-messages pre::-webkit-scrollbar-thumb:hover,
+.inspirations-table-wrapper::-webkit-scrollbar-thumb:hover,
+.play-flip-face-back .play-character-sheet-root::-webkit-scrollbar-thumb:hover {
+    background: var(--tdt-brown-light);
+}
+/* Firefox: scrollable containers */
+.overflow-x-auto,
+.overflow-y-auto,
+.gm-chat-messages,
+.gm-chat-messages pre,
+.inspirations-table-wrapper,
+.play-flip-face-back .play-character-sheet-root {
+    scrollbar-width: thin;
+    scrollbar-color: var(--tdt-brown) var(--tdt-burgundy);
+}
+
 /* WebGL Background Canvas - Procedural marble texture */
 .webgl-bg-canvas {
     position: fixed;
