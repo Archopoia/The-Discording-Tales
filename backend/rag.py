@@ -35,6 +35,9 @@ def _default_faiss_path() -> Path:
     return Path(__file__).resolve().parent / "faiss_drd"
 
 
+_force_rebuild_done = False
+
+
 def load_and_chunk_mds(source_dir: Path) -> list[Document]:
     """Load all .md files under source_dir, split by ## sections. One chunk per section."""
     docs: list[Document] = []
@@ -71,7 +74,8 @@ def build_or_get_index(
     faiss_path: Path | None = None,
     embed_model: str = "text-embedding-3-small",
 ):
-    """Build FAISS index from MDs if missing, else load. Return FAISS vectorstore."""
+    """Build FAISS index from MDs if missing, else load. Return FAISS vectorstore.
+    Set RAG_FORCE_REBUILD=1 (or true/yes) to delete existing index and rebuild from source."""
     source_dir = source_dir or _default_source_dir()
     source_dir = Path(source_dir)
     if not source_dir.is_absolute():
@@ -84,6 +88,16 @@ def build_or_get_index(
     embeddings = OpenAIEmbeddings(model=embed_model)
     persist_dir = str(faiss_path)
     index_file = faiss_path / "index.faiss"
+
+    global _force_rebuild_done
+    if (
+        not _force_rebuild_done
+        and os.getenv("RAG_FORCE_REBUILD", "").strip().lower() in ("1", "true", "yes")
+        and faiss_path.exists()
+    ):
+        import shutil
+        shutil.rmtree(faiss_path, ignore_errors=True)
+        _force_rebuild_done = True
 
     if index_file.exists():
         return FAISS.load_local(
