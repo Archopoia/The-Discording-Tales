@@ -1276,790 +1276,1351 @@ Ce document indique **quand** demander quel jet (ou appliquer une règle sans je
 - **Jet** : Chaque joueur : Roll [Compétence] vs Niv +X ; modifier par le pool d'Ambiance ; succès si moyenne ≥ Niv.
 - **Réf.** : 09.
 
-## Groupe — Un seul tente l'action (Jet d'Audace)
-
-- **Quand** : Un individu « prend sur soi » et tente une action de groupe seul.
-- **Jet** : Roll [Compétence] vs Niv +X avec **-1 Niv par NdG sur son dos** (-1 N avec 2–3 gens, -2 N avec 4–10, etc.). Si contestataires : encore -1 Niv par NdG le contestant. Il gagne les Marques normales + X Marques par NdG pris sur lui.
-- **Réf.** : 09_Groupe_Ambiance ; Livre p.71.
-
-## Combat — Initiative / qui proagit
-
-- **Quand** : Déterminer qui peut agir de manière proactive (Clins d'Alerte).
-- **Jet** : Roll [Fluidité] (ou compétence appropriée) vs Niv.
-- **Réf.** : 06_Combat.
-
-## Combat — Attaque
-
-- **Quand** : Frapper, tirer, neutraliser.
-- **Jet** : Roll [Armé], [Désarmé], [Improvisé], [Lutte], [Bottes], [Ruses], [Bandé], [Propulsé], [Jeté] selon l'action — vs Niv +X.
-- **Réf.** : 06, 03.
-
-## Combat — Jet de Souffle (tous les -10 Clins)
-
-- **Quand** : À chaque -10 Clins en combat, tous font un Jet de Souffle (Domination [Endurer]).
-- **Jet** : Roll [Gloutonnerie] ou Roll [Beuverie] ou Roll [Entrailles] vs Niv +X — utiliser une **Compétence** (pas l'Aptitude [Endurer]). Le joueur choisit laquelle selon le contexte.
-- **Réf.** : Livre p.086 ; 06_Combat.
-
-## Combat — Réactions (Bloquer, Parer, Esquiver)
-
-- **Quand** : Défense contre une attaque.
-- **Jet** : Roll [Armé] (Parade) ou compétence de réaction selon les règles combat ; coût en Niv d'Ébranlement.
-- **Réf.** : 06.
-
-## Infiltration / Discrétion (stealth)
-
-- **Quand** : Passer inaperçu, voler sans être vu, se faufiler, filature, embuscade.
-- **Jet** : Roll [Dissimulation], Roll [Escamotage], ou Roll [Illusions] vs Niv +X selon l'action.
-- **Réf.** : 03 (Aisance → Infiltration).
-
-## Social (négociation, séduction, intimidation, commandement)
-
-- **Quand** : Négocier, séduire, intimider, commander, convaincre, débattre.
-- **Jet** : Roll [Négociation], [Séduction], [Intimidation], [Commandement], [Obéissance], [Obstinance], [Présentation], [Chant], [Inspiration], etc. vs Niv +X — selon l'approche.
-- **Réf.** : 03 (Charisme, Domination).
-
-## Artisanat / Cuisine
-
-- **Quand** : Création d'objets, préparation de repas, artisanat alimentaire.
-- **Jet** : Roll [Artisanat] vs Niv +X (Artisanat inclut Alimentaire, des Graisses, du Papier, des Plantes, du Textile, du Cuir, etc.).
-- **Réf.** : 03, 11_Possessions_Equipement.
-
-## Marché / trouver acheteur ou vendeur
-
-- **Quand** : Trouver un marché ou un partenaire commercial ; négocier un prix.
-- **Jet** : Roll [Géographie] (+/- NdT de recherche) pour trouver un marché ; Roll [Négociation] pour le prix / courtisanat.
-- **Réf.** : 10, 11 ; livre p.098.
-
-## Rage (10+ Souffrances totales)
-
-- **Quand** : Le total des 8 Souffrances atteint 10+ ; le personnage doit tester pour agir contre l'instinct.
-- **Jet** : Roll [Rage] vs Niv +X (X = Niv de Rage). Mécanique : 1d6 > Niv (succès si résultat > Niv). Inclure la ligne parseable.
-- **Réf.** : 05_Souffrances_Guérison.
-
-## Évanouissement (15+ Souffrances)
-
-- **Quand** : Le total des Souffrances atteint 15+ ; le personnage doit tester pour agir (sinon inconscient ou fou).
-- **Jet** : Roll [Évanouissement] vs Niv +X. Mécanique : 1d6 > Niv. Inclure la ligne parseable.
-- **Réf.** : 05.
-
-## Guérison quotidienne (Jet de Repos)
-
-- **Quand** : Fin de journée / repos ; déterminer combien de jours de souffrance sont guéris.
-- **Jet** : Roll [Repos] vs Niv +X. Mécanique : 5dD, somme vs Niv. Inclure la ligne parseable.
-- **Réf.** : 05.
-
-## Résistance aux Souffrances (DS)
-
-- **Quand** : Les règles disent que la résistance réduit les DS subis.
-- **Jet** : **Aucun**. La résistance est **toujours passive** : le Niv de la Compétence Résistante (Robustesse, Satiété, Rectitude, Immunité) plus Niv d'équipement absorbe les DS. Ne jamais demander de "Jet de Résistance".
-- **Réf.** : 05 ; livre p.72.
+## Groupe — Un seul 
+[... truncated ...]
 
 ---
 
-# File: 02_Creation_Personnage.md
+# Section: AllBookTables-csv
 
-# Création de Personnage (Révélation) - Des Récits Discordants
+### Table: (8)_Aptitudes,_(24)_Actions_&_(72)_Compétences.csv
 
-Réf. livre : pages 21 (3 étapes), 49-54 (A Caractéristiques, B Attributs, C Récits, Castes, Récits), 51 (Héritages & Métissages), 90+ (Remémoration Créatrice, Symbole, Éducation, Expression, Valeurs, Titres, Langues, Richesses).  
-CSV : Tirage_des_Caractéristiques, Attributs_d'Origine_Peuple_&_Race, Caractéristiques_des_Peuples, Raisons_d'Éveil_du_Personnage, Attaches_de_Récit, Niv_Atb_Coût_en_Degrés_Coût_Total.
+| "﻿(8) Aptitudes | (24) Actions & (72) Compétences" |  |  |  |  |  |  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1. Puissance (Fin d’Été {Saison}) |  |  |  | For +3 | ACTIONS |  |  | AGI +2 |  | [Compétences] | Maîtrises | DEX +1 |
+| Frapper | [Armé] | Arme de Poigne, d’Antipôle, de Parade, de Garde, Équilibrées, Flexibles |  |  | Neutraliser | [Lutte] | Saisie, Bousculade, Mise à Terre, Projection, Soumission |  | Tirer | [Bandé] | Encordage (mettre la corde), Surbandé, en Tirs Courbés, Tirs multiples |  |
+|  | [Désarmé] | Coup sans espace, Poings, Pieds, Coude, Genou, Corps |  |  |  | [Bottes] | Bloquer, Agrippement, Entravement, Désarmement, Prise d’arme, Retournement d’arme |  |  | [Propulsé] | Tirs Rapprochés, Tirs Longue Distance, Tirs Imprévisibles, Tirs sur 360 |  |
+|  | [Improvisé] | Arme à coupures, à pieds, rondes, de mains, de paume, de lien, Jet d’arme improvisée |  |  |  | [Ruses] | Enchaînement, Feinter, Contre, Hébétement, Essouffler, Battement, Destruction, Postures, Prises d’arme |  |  | [Jeté] | de Paume, à Manche, Rattrapage de jet, Jets multiples |  |
+| 2. Aisance (Début d’Automne) |  |  | Agi +3 |  |  |  | DEX +2 |  |  |  | VIG +1 |  |
+| Réagir | [Fluidité] | Réactivité, Spontanéité, Rythmique, Feinter, Contrer |  |  | Dérober | [Escamotage] | Espionnant, d’Objets portés, de Véhicules, de Créatures |  | Coordonner | [Gestuelle] | Danse, Posture (au combat), Pantomime, Rituelle, Athlétique, Improvisée |  |
+|  | [Esquive] | Repositionnante, en Roulade, Préparée, Instinctive |  |  |  | [Illusions] | Trichantes, Spectaculaires, de Diversion, de Disparition |  |  | [Minutie] | Délicatesse, Doigté, Impact, Impulsion |  |
+|  | [Évasion] | (Dés)Engagement, Faufilage, Déliement, Délivrement |  |  |  | [Dissimulation] | Se cacher, Cacher des Choses, Déplacement silencieux, Embuscades/Filatures |  |  | [Équilibre] | Stabilisant, en Sols difficiles, Funambule, Jonglage, Surchargé |  |
+| 3. Précision (Fin d’Automne) |  |  | Dex +3 |  |  |  | PER +2 |  |  |  | CRÉ +1 |  |
+| Manier | [Visée] | Mécanismes d’armement, Tir à longue distance, Tir de soutien, en Position difficile, Visée multiple |  |  | Façonner | [Débrouillardise] | Monte de camp, Orientation, Allumage/Extinction, Camouflage |  | Fignoler | [Artifices] | Amorçage, Désamorçage, Enfumants, Explosifs |  |
+|  | [Conduite] | Propulsion personnelle, Tirée par créatures, dans le Risque, la Terre, les Liquides, les Airs, le Vide, sur Terrain difficile, sur Pistes/Rails, sur Liquides (glisse) |  |  |  | [Bricolage] | Contrefaçon, Raccommodage, Amélioration, Improvisation |  |  | [Sécurité] | Dévérouillage, Verrouillage, Copie de serrure, Copie de Clef |  |
+|  | [Habileté] | Une main, Deux mains, Ambidextrie, Recharge/Réarmement, Munition en Main, Parade |  |  |  | [Savoir-Faire] | Alimentaire, des Graisses, du Papier, des Plantes, du Textile, du Cuir, du Verre, de la Construction, des Métaux, des Richesses, du Bois, de la Lutherie, des Arts plastiques, des Arts de dessein, de la Récolte |  |  | [Casse-Têtes] | Nœuds d’Attelage, de Saisine, de Coude, de Boucle, Épissure de corde, Casse-têtes, Craque-coffre, Puzzles |  |
+| 4. Athlétisme (Début d’Hiver) |  |  | Vig +3 |  |  |  | FOR +2 |  |  |  | AGI +1 |  |
+| Traverser | [Pas] | Ramper, Marcher, Courir, Charger, Pédaler |  |  | EfForcer | [Poid] | Tirer & Pousser, Soulever & Ouvrir, Porter, Lancer, Supporter (Équiper) |  | Manœuvrer | [Vol] | Planer, Piquer, Flotter, Poussée, ??? |  |
+|  | [Grimpe] | Montagnard, Glaciaire, Descendant, en Rappel, sur Créature |  |  |  | [Saut] | Sans élan, Précis, en Longueur, en Hauteur, de Paroi, à la Perche |  |  | [Acrobatie] | Aérienne, Sauts périlleux, Chuter, Contorsionniste |  |
+|  | [Natation] | Plongeant, Contre-courant, de Compétition, Flotter surplace, Secourisme, Bataille immergée |  |  |  | [Fouissage] | Viscosité & Liquides, Sables & Granulaires, Terres & Gravats, Roches & Solides |  |  | [Chevauchement] | Montée en selle, Déplacement monté, Manœuvres montées, Agissement monté |  |
+| 5. Charisme (Fin d’Hiver) |  |  | Emp +3 |  |  |  | VOL +2 |  |  |  | PER +1 |  |
+| Captiver | [Séduction] | Attirer, faire Émouvoir, faire Admirer, faire Reconnaître, Avoir une Faveur, Subvertir à la Déloyauté |  |  | ConvAINCRE | [Négociation] | Marchandage, Corrompre, Diplomatie, Débattre, Enchèrir, Renseignement |  | Interpréter | [Instrumental] | Attirer, faire Émouvoir, faire Admirer, faire Reconnaître, Avoir une Faveur, Subvertir à la Déloyauté |  |
+|  | [Mimétisme] | Sons naturels, Êtres sauvages, Accents & Dialectes, Mimique, Interprétation de rôle, Déguisement |  |  |  | [Tromperie] | Belles-paroles, Bobards, Distraire, Escroquer, Railleries, Troller |  |  | [Chant] | de Poitrine, de Tête/d’Appel, Diphonique, Improvisée, de Mélodie, en Chœur, Ventriloque, Sifflée |  |
+|  | [Présentation] | Première impression, Bienséance, Enseigner, Réseauter, Mode, Rumeurs |  |  |  | [Inspiration] | Apaiser, Captiver, Éduquer, Camaraderie, Festivité, Fanatisme |  |  | [Narration] | Fabuleuse & Poétique, Banalités, Ragots & Rumeurs, Propagande, Plaisanteries, Énigmes |  |
+| 6. Détection (Début de Cycle) |  |  | Per +3 |  |  |  | CRÉ +2 |  |  |  | EMP +1 |  |
+| Discerner | [Vision] | Précise & Distante, Écritures, Lecture sur lèvre, Langage corporel |  |  | Découvrir | [Investigation] | Fouille, Pistage, Autopsie, Décryptage, Profilage, Découverte, Prospective |  | Dépister | [Odorat] | Parfums mélangés, Airs sains & malsains, Pistage, Détection aveugle |  |
+|  | [Audition] | Écoute & Murmures, Sons naturels, Apprentissage du parlé, Écholocation |  |  |  | [Estimation] | Valeur des Objets, des Aptitudes, des Arts, de Contrebande, de Recélage, Fraude fiscale, Comptabilité, Administration |  |  | [Goût] | Du Salé/Acide/Sucré/Umami/Amer, Culinaires, Malaises, Secrétions |  |
+|  | [Toucher] | Textures, Températures, Lectures à froid, Reconnaissance aveugle |
+[... truncated ...]
 
-## Vue d’ensemble
+### Table: (G)uerriers_(M)oînes_(R)ôdeurs_(R)ôdeurs_(B)ardes_(M)ages_(S.csv
 
-La **Révélation** d’un personnage comporte **3 étapes fondamentales** :
-- **A) Caractéristiques** (p. 91) : Origine, Peuple, Race, Sexe, et éventuellement Variation (Âge, Sexe, Gras, Stature, Taille).
-- **B) Individuation** (p. 97) : Variation des Attributs par rapport à la norme Peuple/Race/Sexe.
-- **C) Récit** (p. 99) : Raison d’Éveil, Caste, Récit, optionnellement Attache et Héritage.
+| (G)uerriers | (M)oînes | (R)ôdeurs | (R)ôdeurs | (B)ardes | (M)ages | (S)orciers | Illuminés |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 
-Après ces 3 étapes, deux options :
-- **Remémoration Créatrice** (p. 113) : révélation différée et simplifiée en jeu (amnésies, récupération de mémoire sur 8 aspects : expérience, intégrité, société, etc.).
-- **Révélation complète** avant la première séance : Symbole, Éducation, Expression, Valeurs, Traits, Titres, Langues, Richesses (voir sections dédiées dans le livre et 04_Experience_Progression, 13_Valeurs_Traits, 11_Possessions_Equipement).
+### Table: +9_Un_Solstice_-_Un_Équinoxe_...de_”200”_Jours_(en_vrai_180).csv
+
+| +9 | Un Solstice - Un Équinoxe |
+| --- | --- |
+| ...de ”200” Jours (en vrai 180)" | Du plus haut au plus bas point du soleil au fil de l’année. Moitié d’année fêtant le départ/retour du Soleil. - Lié à chaque Solstice seulement, une grande fête. |
+
+### Table: -_NdT_Annuels,_liés_aux_ères_etaux_époques.csv
+
+| "- NdT Annuels | liés aux ères etaux époques" |  |
+| --- | --- | --- |
+| +10 | Un Soleil - Un Cycle solaire entier |  |
+| ...de 365 Jours ou 300 Jours de Labeur" | Le cycle solaire complet. Chaque Année, le Soleil et 8 Lunes se retrouvent. Divisée en 72 Pentaines \| 24 Héliorées \| 8 Saisons \| 4 Cycle \| 2 Solstices. |  |
+| - NdT Calendaires, liés aux cycles et rythmes de la nature |  |  |
+| +9 | Un Cycle - A\|Descendant, Dormant |  |
+| ...de 120 Jours ou 100J de Labeur" | Chaque trois Saisons forment un Cycle, révélant les évolutions des températures. “L’Ascendant” va frais printanier au pic chaud estival, puis “le Descendant” passe de cette chaleur au froid automnale alors que “le Dormant” traverse le gel hivernal jusqu’au retour doux du printemps. |  |
+| +8 | Une (S)aison - Début/Fin d’Été\|Etc... |  |
+| ...de 3 Héliorées (45J) ou 30J de Labeur" | Chaque trois Héliorées constituent une Saison (de 45-50 jours) révélant la nature en célébrant les équinoxes et solstices. On les nommes aussi “petit/grand” ou “début/fin” de printemps/été/automne/hiver (qui ensemble correspondent directement aux équinoxes et solstices). |  |
+| +7 | Un (H)éliorée - Un vague saisonnière |  |
+| ... de 3 Pentaines (15J) ou 10J de Labeur" | Une Héliorée est liée à différents cycles solaire et lunaires, et est aussi appelé quinzaine (car constitués de 15 jours). Ils reflètent les transitions d’une saison à l’autre, une Héliorée démontre telle une microsaison, un phénomène naturel y étant soudainement observable. |  |
+| +6 | Une (P)entaine - Un Festival |  |
+| ...de 5 Jours\|Fêtes (~3 Jours de Labeur)" | Un Festival dure 5 à 6 Fêtes (5-6 jours entiers) et correspond à une “semaine” de 5 à 6 jours, appelée aussi “pentaine”. 1. Enêmar, 2. Diêmar, 3. Triêmar, 4. Tessêmar, 5. Pentêmar, et parfois 6. Heliêmar. |  |
+| - NdT Journaliers, de la vie en société et des besoins de chacun |  |  |
+| +5 | Un (J)our - Une Fête |  |
+| ...de 3 Matin(ée)s de Labeur et 1 Nuitée" | Une Fête dure un jour entier, l’entiéreté englobant la matinée, la soirée  (la journée étant entre les deux) et la nuitée. |  |
+| +4 | Une (M)atinée - \|Soirée\|Nuitée |  |
+| ...de 3 Veillées\|Rituels (environ 8h)" | Un Festin dure moins de 8 heures, correspondant au quotidien à une des quatre parties d’un jour. On peut interchanger “3 matinées/soirées/nuitées”. Un Festin comporte 3 Rituels en général, trois séries d’activités |  |
+| +3 | Une Veillée - Un Rituel |  |
+| ... de 3 Moments\|Rites (environ 3h)" | Un Rituel dure 2-3 heures (2h30), et correspond à une série d’activités (de “Rites”), trois en général, ou alors en agissant sur le long terme (“Faire 2” lors d’une action). |  |
+| - NdT Étendus, des actions quotidiennes répétées ou faites sans tension |  |  |
+| +2 | Un e Heure- Un Rite |  |
+| ...de 3 Moments\|Sermons (environ 1h)" | Un Rite prend moins d’1 heure (45min), pour y faire une activité (plusieurs séries d’actions) tels que 3 Sermons. |  |
+| +1 | Un Moment - Un Sermon |  |
+| ...de 3 Instants\|Prières (environ 20min)" | Un Sermon prend un moment de moins de 20 minutes (15 minutes), pour y pouvant inclure 3 Prières, ou alors prendre un peu de temps pour une action (“Faire 1”). |  |
+| 0 | Un (I)nstant - Une Prière |  |
+| ...de 300 Clins et plus (1 à 15 min)" | Une Prière dure pendant un instant d’environ 5 minutes, et correspond à une action plus ou moins étendue où l’on y prendrait son temps (“Faire 0” ). |  |
+| -1 | Un Échange - Une Pensée |  |
+| ...de 100 Clins (30 secondes)" | Un Échange dure 30 secondes ou 100 Clins, telle une rixe ou une Action Étendue. |  |
+| -2 | Un e Salutation- Une Idée |  |
+| ...de 30 Clins (10 secondes)" | Une Salutation dure 10 secondes ou 30 Clins, telle une salutation ou une Action Complexe. |  |
+| - NdT Intenses, correspondant directement aux actions elles-mêmes et/ou liées aux réactions dans l'extrême. |  |  |
+| -3 | Une Respiration - Une Action Simple |  |
+| ...de 10 Clins (3 secondes)" | Un Respiration dure trois secondes (inspirant ou expirant) ou 10 Clins d’œils, telle un désir ou une Action simple. |  |
+| -4 | Un Souffle - Une Action Libre |  |
+| ...de 3 Clins\|Réactions (1 seconde)" | Un Souffle se fait en une seconde ou 3 Clins d’œils telle une Action libre ou un besoin |  |
+| -5 | Un (C)lin - Une Réaction |  |
+| ...de 1 “Tiers-de-seconde” (0.33 seconde)" | Un Clin (d’œil) est le temps de réaction humanoïde, l’instinct et les |  |
+| réflexes | et correspond à un “tiers-de-seconde”." |  |
+
+### Table: 0_Un_(I)nstant_-_Une_Prière_...de_100_Respirations_ou_5_Minu.csv
+
+| 0 | Un (I)nstant - Une Prière |
+| --- | --- |
+| ...de 100 Respirations ou 5 Minutes" | Une Prière dure pendant un instant d’environ 5 minutes et correspond à une série d’actions, ou alors à une action complexe où l’on y prendrait votre temps (“Faire 0” lors d’une action). |
+| -1 | Un Discours - Une Pensée |
+| ...de 30 Respirations ou 100 Secondes" | Un Discours dure 100 secondes, telle une rixe. |
+| -2 | Un Bavardage - Une Idée |
+| ...de 10 Respirations ou 30 Secondes" | Un Bavardage dure 30 secondes, telle une longue salutation. |
+| - NdT Intenses, correspondant directement aux actions elles-mêmes et/ou liées aux réactions dans l'extrême. |  |
+| -3 | Un  Échange  - Une Action Complexe |
+| ...de 3 Respirations ou 10 Secondes" | Un Échange dure 10 secondes, telle une salutation ou un désir. |
+| -4 | Une Respiration - Une Action Simple |
+| ...de 3 Souffles\|Secondes" | Un Respiration dure trois secondes (inspirant ou expirant), tel un besoin. |
+| -5 | Un Souffle - Une Action Libre |
+| ...de 3 Clins d’oeil ou 1 Seconde" | Un Souffle se fait en une seconde ou 3 Clins d’œils tel un instinct ou une réaction. |
+
+### Table: 0_Un_(I)nstant_-_Une_Prière_...de_10_à_100_Respirations_Une.csv
+
+| 0 | Un (I)nstant - Une Prière |
+| --- | --- |
+| ...de 10 à 100 Respirations" | Une Prière dure pendant un instant de 1, 3, 6, 10, 15 minutes, et correspond à une série d’actions, ou alors à une action complexe où l’on y prendrait votre temps (“Faire 0” lors d’une action). |
+| -1 | Un Bavardage - Une Pensée |
+| ...de 10 Respirations ou 100 Clins" | Un Bavardage dure 30 secondes ou 100 Clins, telle une rixe. |
+| -2 | Un  Échange  - Une Idée |
+| ...de 3 Respirations ou 30 Clins" | Un Échange dure 10 secondes ou 30 Clins, telle une salutation. |
+| - NdT Intenses, correspondant directement aux actions elles-mêmes et/ou liées aux réactions dans l'extrême. |  |
+| -3 | Une Respiration - Une Action Simple |
+| ...de 3 Souffles\|Secondes ou 10 Clins" | Un Respiration dure trois secondes (inspirant ou expirant) ou 10 Clins d’oeils, telle un désir ou une Action simple. |
+| -4 | Un Souffle - Une Action Libre |
+| ...de 3 Clins\|Réactions ou 1 Seconde" | Un Souffle se fait en une seconde ou 3 Clins d’œils telle une Action libre ou un besoin |
+| -5 | Un (C)lin - Une Réaction |
+| ...de 1 “Tiers-de-seconde”" | Un Clin (d’œil) est le temps de réaction humanoïde, l’instinct et les |
+| réflexes | et correspond à un “tiers-de-seconde”." |
+
+### Table: 2dD_(D3)_Société_Paysage_PNIs_Accroches_(D3)_Curiosités.csv
+
+| 2dD |  | (D3) Société | Paysage | PNIs | Accroches | (D3) Curiosités |
+| --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |  |
+| - |  |  |  |  |  |  |
+| " | - |  |  |  |  |  |
+| " | Architectures | Aux objets brillants et étincelants suspendus aux branches d’arbres ou aux formations rocheuses, telles des offrandes à une entité probablement inconnue mais toujours respectée, par intrigue ou par peur | Un vieux zoionnier couvert de pâte visqueuse, persuadé que se noyer dans ses zoions offrira l’extase éternelle. | Deux récolteurs à zoions argumentent sur les très anciennes bornes délimitant leur territoire | Banque à zoions, conservés et catégorisés. Les plus vieilles colonies se formant en des symboles inconnus |  |
+|  |  | Longs convois de chariots pyramidaux, faits de bois miroitant de milles couleurs et tissus, tirés par des B'Dyorlyrs désailées |  |  |  |  |
+|  | 0 |  |  |  |  |  |
+| " | Vêtements | Recouvert de tissus récemment accrochés et teints de milles et unes couleurs, flottant d’une petite brise et liés à la petite faction locale, possiblement lié à un deuil oublié de tous (aux traces emmurées) | Tunnelier, tolère toutes insultes tant qu’on lui graisse les tentacules de sucreries. | Un haut-père Yulien accumule une dangereuse quantité de zoions dans sa caravane particulière | Comptoir de d‘échanges de zoions, ayant remplacées les tavernes sans laisser de raisons particulières à cela |  |
+|  |  | Il n'y aurait pas de vêtements plus colorés et harmonieux que ceux d'Yul, qui en firent un art recherché. Ils tapissent tout de tapis |  |  |  |  |
+|  | + |  |  |  |  |  |
+| " | Apparences | Exploité récemment pour ses ressources communes et banales (bois, pierres, etc…) avec quelques restes d’outils abandonnés et inutilisables, ayant recouvert des passages oubliés et plus jamais empruntés | Vagabond boursouflé par la pâte à zoion, collectionne les zones les plus explosives et sucrées. | Un exilé se dit être une expérience de Yul. Personne n’en parle. Il souhaite faire triompher sa vérité | Cimeterre préhistorique d’où croissent des zoions uniques à ce lieu, formant des silhouettes minuscules |  |
+|  |  | Certains manquent de doigts, d'autres sont brûlés récemment voir en profondeur. Les chariots sont tirés sur des rails voire parois |  |  |  |  |
+|  |  |  |  |  |  |  |
+| 0 |  |  |  |  |  |  |
+| " | - |  |  |  |  |  |
+| " | Phénomènes | Percé de çà et là minuscules sources thermales, créant de petits ruisseaux très chaud et bucoliques, d’où de jolies mousses poussent sur des restes bien cachés d’ancienne bataille ayant marqué les parois | Fille aux cheveux-banderoles, fuit tout maître, sème des miroirs volés dans chaque recoin obscur. | Un prêtre informe que les zoions sont des rils à part entière, et leur exploitation mènera à la ruine d’Yul | Habitants locaux dévastés par les zoions, des fous ou illuminés creusant la terre  en des trous, sans s’arrêter |  |
+|  |  | Des odeurs épicées, sucrées, salées, de l'enfumage et des reflets de miroirs aveuglants de çà et là. Parfois des explosions et réponses énervées et hurlées |  |  |  |  |
+|  | 0 |  |  |  |  |  |
+| " | Salutations | Aux quelques arbres ou plantes réussissant à pousser ici des trouées du soleil, et survivants aux vents tordus y soufflant, qui semblerait leur donner des formes humanoïdes, parfois tristes ou alors joyeuses | Jeune prodige alchimiste, vend son propre sang enrichi aux caves, exhibant ses cicatrices éclatantes. | Certains ouvriers deviennent fou au travail et l’un d’entre eux les guident vers les profondeurs d’Yul | Parfumerie à zoions dont l’odeur fait voir apparaître des nuages au sol qui guiderait vers les profondeurs |  |
+|  |  | On salut d'un geste trinquant, symbolique ou réel, souvent en riant. On rencontrera les B'dyorlyrs dégageant les voies d'éboulis |  |  |  |  |
+|  | + |  |  |  |  |  |
+| " | Accueils | Chanté d’animalcules minuscules et virevoltants, d’une mélodie vibrante et comme aquatique, symbolisant leur amour ou alors la lutte pour leur territoire, faisant résonner voire vivre l’eau environnante | Ingénieur chef des gazoducs, martyrise ses ouvriers pour que les caves restent humides et suprêmes. | Les zoions semblent de moins en moins produire,  se cristallisant en des choses brilliantes mais friables | Étang à zoions, d’eau verdoyante et de plantes grimpantes sur des fossils de créatures colossales |  |
+|  |  | On restreint les étrangers aux habitations d'accueil, les éloignant de ce qui touche aux zoions, dont les lieux d'exploitations sont gardés |  |  |  |  |
+|  |  |  |  |  |  |  |
+| + |  |  |  |  |  |  |
+| " | - |  |  |  |  |  |
+| " | Activités | Parsemé de vieux restes solides et presque indéterminable d’un vieux et long nomachome aux drapeaux de symboles totalement inconnus, et dont sont sa structure semble être “née” des parois ou du sol | Mère-couturière Yulienne, tisse des tentures parfumées pour chaque naissance, chaque décès, chaque disparition suspecte. | Les Yuliens on besoin de viande, comme si les bêtes peuplant ces terres les évitent | Vieux tunnels à zoions plutôt délabrés, loin des regards, se dirigeant dans les profondeurs famée de richesses |  |
+|  |  | Galeries et marchés arrangeant et échangeant teintures, solvants et autres produits réactifs au traitement des métaux, des alcools, etc… |  |  |  |  |
+|  | 0 |  |  |  |  |  |
+| " | Plaisirs | Traversé de ruines d’anciennes exploitations de zoions écroulées en plutôt ensevelie, et dont la technologie semble différente, non-locale, mais surtout inconnue et délabrée, voir pétrifiée | Ancien mineur muté, sent l’explosion imminente avant tout le monde, mais exige toujours un tribut. | De nouvelles voies sont ouvertes et de nouvelles opportunités attire les ambitions des Yuliens | Caisses non-marquées, probablement d’anciennes contrebandes de zoions, empilées sans êtres utilisées |  |
+|  |  | Mets des cavernes (ipslithes et faune locale) colorés, augmentés à travers les z
+[... truncated ...]
+
+### Table: 5dD_Situation_Lorsqu'ils_se_réveillent,_et_Suite_à_quoi.csv
+
+| 5dD | Situation |  |
+| --- | --- | --- |
+| Lorsqu'ils se réveillent | et Suite à quoi" |  |
+| -5 | Mort des personnages - Ils ne se réveillent pas. |  |
+| (Voir les mécanismes de résurrection)" |  |  |
+| -4 | En prison locale/citadine afin d’être exécutés. |  |
+| Emprisonnés par des cannibales/rophanes ou mangeurs d’humanoïdes. |  |  |
+| Se réveillant comme esclave sur un marché." |  |  |
+| -3 | En direction d’un marché d’esclaves. |  |
+| Préparés pour être “sacrifiés” (ordalie | religion | etc.) par un clan." |
+| -2 | Emprisonnés par des bandits environnant. |  |
+| Se réveillant dans une prison locale ou citadine." |  |  |
+| -1 | Tirés dans un(e) terrier/cave/antre de prédateurs locaux. |  |
+| Tirés dans un(e) campement/cave d’un(e) clan/tribu/etc… se méfiant de vous." |  |  |
+| 0 | Se réveillant, tombés dans un trou/piège - et étant probablement coincés. |  |
+| Et/ou se réveillant en survivant à la suite d’un(e) noyade/chute/accident/etc…" |  |  |
+| +1 | Laissés pour mort là où ils perdirent connaissance avant de s’en réveiller. |  |
+| Réveillés de leurs hallucinations | au milieu de nulle part." |  |
+| +2 | Sauvés par un personnage inconnu, qui s’éclipse à leur réveil. |  |
+| Sauvés par un ermite/moine/voyageurs/aventuriers/etc… en leur campement." |  |  |
+| +3 | Sauvés par un animal bénévole en son terrier, ou protégés par lui. |  |
+| Sauvés par une caravane/des gens s’étant battus pour les sauver." |  |  |
+| +4 | Retrouvés et ramenés en société/à l’auberge/à l’hôpital/au campement/ par des chasseurs/fermiers/pêcheurs/missionnaires/marins/côcher/etc… avant de repartir. |  |
+| +5 | Amenés et soignés en société/à l’auberge/à l’hôpital/au campement/etc… le plus proche par une armée/troupe/caravane/etc… |  |
+
+### Table: ARMES_DE_MÊLÉS_(IRT_=_[I]nertie_💥;_ATQ_=_[A]ttaque;_GRD_=_[.csv
+
+| "ARMES DE MÊLÉS |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| (IRT = [I]nertie \| 💥; ATQ = [A]ttaque; GRD = [G]arde; MNV = [M]anoeuvre; PRT = [P]ortée \| 📐; DRT = [D]urabilité \| 💎)" |  |  |  |  |  |  |  |  |  |  |  |  |  |
+|  | LONGUEUR d’Arme |  |  |  |  |  |  |  |  |  |  |  |  |
+| (+IRT/ATQ/[GRD ou PRT] & -MNV)" |  |  |  | STRUCTURE d’Arme |  |  |  |  |  |  |  |  |  |
+| ( +MNV & -ATQ)" |  |  |  |  | ÉQUILIBRE d’Arme |  |  |  |  |  |  |  |  |
+| ( +IRT )" |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| +0 |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| ...0.5" | Peaume |  |  |  |  |  |  |  |  |  |  |  |  |
+| (Couteau | Bouclier | Gourdin)" |  |  |  | Empoignée |  |  |  |  |  |  |  |
+| (Dague | Épée | Ceste | Bouclier)" |  |  |  |  | Pommeau |  |  |  |  |  |
+| (Bouclier | Dague | Épée | Espadon | Fouet)" |  |  |  |  |  |  |  |  |  |
+| +1 |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| ...1.5" | Bras |  |  |  |  |  |  |  |  |  |  |  |  |
+| (Épée | Marteau | Hache)" |  |  |  | Emmanchée |  |  |  |  |  |  |  |
+| (Lance | Marteau | Hallebarde)" |  |  |  |  | Centre |  |  |  |  |  |  |
+| (Bâton | Lance | Double-lame)" |  |  |  |  |  |  |  |  |  |  |  |
+| +2 |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| ...2.5" | Corps |  |  |  |  |  |  |  |  |  |  |  |  |
+| (Lance | Espadon | Hallebarde)" |  |  |  | Enliée |  |  |  |  |  |  |  |
+| (Fouet | Chaîne | Fléau)" |  |  |  |  | Tête |  |  |  |  |  |  |
+| (Hache | Masse | Hallebarde)" |  |  |  |  |  |  |  |  |  |  |  |
+|  | - Une Longueur de 0 commence à +5 MNV |  |  |  |  |  |  |  |  |  |  |  |  |
+| - Ajoutez +1 GRD aux Tailles intermédiaires telles que 0.5 (ex: dague) | 1.5 (ex: claymore) et 2.5 (ex: colossabre) et +1 PRT aux Tailles entières (1 | 2 | 3 | etc...) |  |  |  |  |  |  |  |  |  |
+| - Pour chaque Taille au-delà de 3 ou plus: +1 à la PRT seulement" |  |  |  | Empoignée lorsque la majorité du corps de l’arme est dangereuse (telle qu’une lame) |  |  |  |  |  |  |  |  |  |
+| Emmanchée lorsque seule la tête de l’arme est dangereuse (tel qu’une hallebarde) |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| Enliée quant seul le bout de l’arme (attachée par une corde | chaîne | etc.) est menaçant | ,,,,, | Pommeau lorsque l’arme n’a pas de hampe ou de tête (autre qu’une pointe d’épée) |  |  |  |  |  |  |  |  |  |
+| Centre jusqu’à une hampe et tête légère (pointe de lance) ou équidistant (boucliers) |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| Tête dès qu’elle a une tête lourde (haches | marteaux | fléaux | pics | etc…)" |  |  |  |  |  |  |  |  |  |
+| La Portée d’une arme est aussi égale à son Encombrement (0P =  0.01 Sacs, 0.5P = 0.5 Sacs, 1P = 1 Sac, 1.5P = 1.5 Sacs, 2P = 2 Sacs, etc.) |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| Une Structure d’arme Emmanchée réduit son Encombrement de 0.5 Sacs (1.5P = 1 Sac) et lorsqu’Enliée  de 1 Sac ET tout +X Portée n’est pas comptée" |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| FaceS |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| (Ses côtés (latéraux et frontal) infligeant les dégâts ⚔)" |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| Applati |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| ( CTD++ )" |  | Arrondi |  |  |  |  |  |  |  |  |  |  |  |
+| ( CTD )" | Évasé |  |  |  |  |  |  |  |  |  |  |  |  |
+| ( CTD )" | Hachoir |  |  |  |  |  |  |  |  |  |  |  |  |
+| ( TRC++ )" | Tailloir |  |  |  |  |  |  |  |  |  |  |  |  |
+| ( TRC+ )" | Lame |  |  |  |  |  |  |  |  |  |  |  |  |
+| ( TRC )" |  | Fil |  |  |  |  |  |  |  |  |  |  |  |
+| ( TRC- )" | Fer |  |  |  |  |  |  |  |  |  |  |  |  |
+| ( TRC-- )" |  | Bec |  |  |  |  |  |  |  |  |  |  |  |
+| ( PRF )" | Estoc |  |  |  |  |  |  |  |  |  |  |  |  |
+| ( PRF- )" | Pointe |  |  |  |  |  |  |  |  |  |  |  |  |
+| ( PRF-- )" |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| Marteau |  | Massue | Masse | Hache | Machette | Couteau |  | Épée | Lance |  | Piolet | Rapière | Flèche |
+| Les Armes de pommeau (épées, dagues, etc.) ont d’habitude, deux Faces tranchantes (TRC-) et une Face perforante (PRF), mêlées en un tout |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| TRAITS |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| (Optionnels | les trois premières pouvant s’ajouter plusieurs fois)" |  |  |  |  |  |  |  |  |  |  |  |  |
+|  | MULTITÊTES |  |  |  |  |  |  |  |  |  |  |  |  |
+| ( +X IRT ou -1 Durabilité )" |  |  |  | GARDES |  |  |  |  |  |  |  |  |  |
+| (  +IRT & +GRD )" |  |  |  |
+[... truncated ...]
 
 ---
 
-## A) Tirage des Caractéristiques (p. 91)
-
-### 1. Choix (ou tirage) Origine, Peuple, Race, Sexe
-- **Origines** : Yômmes, Yôrres, Bêstres.
-- **Peuples** : selon l’Origine (ex. Yômmes : Aristois, Griscribes, Navillis, Méridiens ; Yôrres : Hauts Ylfes, Ylfes pâles, Ylfes des lacs, Iqqars ; Bêstres : Slaadéens, Tchalkchaïs).
-- **Race** : une race au sein du Peuple (ex. Aristois : Monte-Foudres, Fleuris, Des Souffles, Ambrés).
-- **Sexe** : Homme (♂), Femme (♀), ou Intersexe selon les règles du Peuple.
-
-Les **Attributs de base** viennent des tableaux **Attributs d’Origine, Peuple & Race** (livre p. 50 et suiv., CSV Attributs_d'Origine_Peuple_&_Race) : on applique les modificateurs du Peuple (par sexe), puis de la Race. Ex. Homme Aristois Monte-Foudres : FOR 0, AGI -1, DEX -1, VIG -1, EMP 0, PER +1, CRÉ 0, VOL +2.
-
-On part d’un personnage **Jeune** (20-30 années « normales » du Peuple) et aux **Caractéristiques normales** du Peuple (Taille, Stature, Gras, Dimorphisme — voir CSV Caractéristiques_des_Peuples).
-
-### 2. Variation des Caractéristiques (optionnel)
-Pour s’écarter de la norme : **5 jets de 10 dD** (sans garder 5 dés) donnant des **Niv** pour :
-1. **Âge** (Catégorie d’âge : Enfance, Adolescence, Jeunesse, Adulte, Maturité, Vieillesse, Ancienneté, Vénérable — CSV Tirage_des_Caractéristiques).
-2. **Sexe** (si non choisi ; spectre Intersexe selon Peuple).
-3. **Gras** (corpulence).
-4. **Stature** (largeur/épaisseur).
-5. **Taille** (hauteur).
-
-Résultat 0 = norme du Peuple pour cette caractéristique. Chaque Niv obtenu modifie les Attributs selon les tableaux du livre (ex. Maturité +1 Âge → -1 FOR, AGI, DEX, VIG, +1 EMP, -1 PER, -1 CRÉ, +1 VOL ; Stature large +1 → +1 FOR, -1 AGI, -1 EMP, +1 VOL).  
-On peut aussi tirer au hasard le **Peuple** (puis 1d6 pour la Race), puis lancer 10dD pour Âge, Sexe, Gras, Stature, Taille.
-
-(Livre p. 49-50 ; CSV Tirage_des_Caractéristiques.)
+# Section: AllBookPages (excerpts)
 
 ---
 
-## B) Tirage des Attributs (Individuation) (p. 97)
+# page_001.md
 
-On part des Attributs issus de A (Peuple, Race, Sexe, et éventuellement Âge/Gras/Stature/Taille). **Trois façons** de diversifier (à convenir avec le Révélateur) :
+# Page 1
 
-### 1. Variabilité réaliste
-- **8 jets de 10dD/2** ; ajouter chaque résultat à un Attribut (dans l’ordre tiré ou au choix). Donne des écarts réalistes, peu d’extrêmes.
-
-### 2. Variabilité équilibrée
-- **Total des 8 Attributs = 0** (ou autre score commun au groupe fixé par le Révélateur). Chaque joueur ajuste ses Niv d’Attributs (soustraire/ajouter) pour égaliser ce total.
-
-### 3. Variabilité contrôlée
-- **20dD** (ou 10dD×2) donnent des **Degrés** à dépenser pour modifier les Attributs selon le tableau **Niv Atb / Coût en Degrés / Coût Total** (livre, CSV Niv_Atb_Coût_en_Degrés_Coût_Total). Liberté maximale.
-
-**Alternative sans dés** : garder les Niv actuels et appliquer **+2, +1, 0, 0, 0, 0, -1, -2** (à répartir : +2 et -2 sur deux Attributs, +1 et -1 sur deux autres, quatre à 0).
-
-**Peuples grégaires** : malus de base **-8 N** d’Attributs par Niv de Gouvernance (ex. -8 N = +1 NdG pour 2-3 membres, -16 N = +2 NdG pour 4-10 membres).
-
-**Finalisation** : multiplier chaque Niv d’Attribut par **×10** et inscrire sur la feuille.
-
-### Attributs extrêmes
-- **±5 Niv** (et au-delà) par rapport à la norme du Peuple = Attribut **EXTRÊME** (aspects particuliers).
-- **-6 Niv** (et au-delà) = **fatal** (refaire le tirage ou changer de décision). (Livre p. 52.)
+*Source: publication-1.html*
 
 ---
 
-## C) Tirage des Récits (p. 99)
+# EVEIL
 
-### 1. Raison d’Éveil du Personnage
-- **5dD + 1d6** (ou choix) pour déterminer **pourquoi** le personnage quitte son vécu / part à l’aventure.  
-- Table **Raisons d’Éveil** (livre p. 53, CSV Raisons_d'Éveil_du_Personnage) : ex. 0 = S’enfuir d’une pression économique, Pour faire de l’argent, Livraison, Escorte, S’enfuir d’une famille, Rechercher un climat sain ; +1/-1 = Maintien des routes, Ouvrir un commerce, etc. ; jusqu’à +5/-5 = Création de routes, Sauvetage, Conversion, etc.
 
-### 2. Caste et Récit
-- Prendre l’**Attribut le plus élevé** → détermine la **Caste** (les 8 Castes sont liées aux 8 Attributs : Guerriers-FOR, Rôdeurs-AGI, Artisans-DEX, etc.).
-- La **Caste** donne accès à **18 Récits** (3 sous-castes × 6 récits). **d3** = sous-caste (ex. (-) Champions, (0) Mercenaires, (+) Soldats pour Guerriers) ; **d6** = Récit concret (ex. Artiste martial, Garde personnel aguerri, Garde bien placé, …).
-- **Variation des Récits** : **10dD/2** pour éventuellement prendre une autre Caste que celle de l’Attribut le plus élevé (Attribut le plus élevé = 0 au résultat ; résultat positif = +X Attributs vers la droite/horaire, négatif = -X vers la gauche/anti-horaire).
-- On peut prendre la **Caste Éduquée** (liée à la Compétence Familiale, p. 239) ou la **Caste Explorée** (liée aux Compétences déjà révélées/réalisées, p. 243).
+*** ) Révélation d’un Personnage . . . . . . 35**
 
-### 3. Effet du Récit
-- Le **Récit double les Dés de CT** dans toute situation s’y collant particulièrement. Si le personnage a 0 Dé dans la compétence concernée, ajouter **+1 Dé** au jet. (Livre p. 53.)
 
-### 4. Attache de Récit (optionnel)
-- Tirer ou choisir une **Attache** liée au Récit (sous-caste et alignement -, 0, +) pour ancrer le passé et la situation présente. CSV Attaches_de_Récit (ex. Guerriers : Champions/Mercenaires/Soldats avec phrases d’attache).
+**Yômmes . . . . . . . . . . . . . . . . . . . 39**
 
-### 5. Héritage (optionnel)
-- **5dD**. Si le résultat est **±3, ±4 ou ±5** : lancer **3dD** pour le type d’Héritage (physique, mental, social, etc.), puis **5dD** pour la valeur **X** (intensité). Inscrire le nom de l’Héritage et le résultat X ; **totaliser** tous les Attributs après Peuple, Race, Sexe, Individuation et Héritage. (Livre p. 53.)
+
+**Les 4 Abondances de Hsæwâl et de Samianâ**
+
+
+**Le Temple d’Yekkwuî et d’Âpsebjum**
+
+
+**Peuples Aristois ( Ajoroï ) 43**
+
+
+**Peuples Griscribes ( Kh’Ruld ) 47**
+
+
+**Peuples Navillis ( Naïzmir ) 51**
+
+
+**Peuples Méridiens ( C’Turos ) 55**
+
+Ylfes . . . . . . . . . . . . . . . . . . . . . . 59
+
+
+**Les 8 Festivals de Währos et d’Hwëthioz**
+
+
+**Peuples Hauts Ylfes ( Hypsyôrre ) 63**
+
+
+**Peuples Ylfes pâles ( Albyôrre ) 67**
+
+
+**Peuples Ylfes des lacs ( Limnyôrre ) 71**
+
+
+**Peuples Iqqars ( Ersylriss ) 75**
+
+
+**Bêstres . . . . . . . . . . . . . . . . . . . 79**
+
+
+**Les 12 Artéfacts de Tëhkswen et de Minzhijë**
+
+
+**Peuples Slaadéens ( Sdlaoads ) 83**
+
+
+**Peuples Tchalkchaïs ( Tchalk - t’chaï ) 87**
+
+
+**- A) Tirage des Caractéristiques 91**
+
+
+**Variation des Caractéristiques**
+
+
+**Attributs d’Origine, Peuple & Race**
+
+
+**Caractéristiques des Peuples**
+
+
+**Tirage des Caractéristiques**
+
+
+**Attributs des Caractéristiques**
+
+
+**Héritages & Métissages**
+
+
+**- B) Tirage des Attributs 97**
+
+
+**Variation des Attributs**
+
+
+**Attributs & Aptitudes Extrêmes**
+
+
+**- C) Tirage des Récits 99**
+
+
+**Variation des Récits**
+
+
+**Raisons d’Éveil du Personnage**
+
+
+*** ) Remémoration Créatrice . . . . . . . . . 113**
+
+
+**Les 10 Dés Éduqués & 10 Dés Exprimés**
+
+
+**Le Symbole**
+
+
+**L’Évolution & L’Expérience**
+
+
+**Dés d’Élan Vital/Morbide**
+
+
+**Valeurs de Moralité, Motivation & Person- nalité**
+
+
+**Traits de Socialité, Disposition & Passion**
+
+
+**Titres, Pouvoir & Charismes**
+
+# IMMERSION
+
+
+**L’Ancestral comme Défi . . . . . . . . . . 3**
+
+
+**1 ) Des Territoires extrêmes 5**
+
+
+**2 ) Des Créatures exagérées 7**
+
+
+**3 ) Des Sociétés excentrées 8**
+
+
+**Techno - Traditionnalisme . . . . . . . . . 9**
+
+
+**1 ) La richesse des Valeurs 9**
+
+
+**2 ) L’utilité des Outils 11**
+
+
+**3 ) Le transfert des Savoirs 12**
+
+
+**Religiosités Animathéistes . . . . . . . . 13**
+
+
+**1 ) Sanctuaires & Trésors 13**
+
+
+**2 ) Croyances & Moralités 15**
+
+
+**3 ) Cosmologie & Cosmogonie 16**
+
+
+**Les Mots et leur Sens**
+
+
+**D’où viennent nos Rildées-astrales ?**
+
+# ESSENTIEL
+
+
+**Révélateurs & Éveilleurs . . . . . . . . . 19**
+
+
+**Rôles des Éveilleurs 19**
+
+
+**Pouvoirs & Abandon**
+
+
+**Tableau des Rôles, Devoirs & Pouvoirs**
+
+
+**Explorer . . . . . . . . . . . . . . . . . . . 21**
+
+
+**Ruines Aïars & l’Irriliation 21**
+
+Évaluer . . . . . . . . . . . . . . . . . . . . 23
+
+
+**1 ) La Chance au Jet de Dés 23**
+
+
+**2 ) ( N )iveaux d’Échelle 23**
+
+
+**3 ) ( D )egrés de Fiabilité 24**
+
+Valoriser . . . . . . . . . . . . . . . . . . . 25
+
+
+**1 ) Niv d’Attribut ( ATB ) 25**
+
+
+**1 ) Niv d’Aptitude ( APT ) 26**
+
+
+**2 ) Dés de Compétence ( CT ) 27**
+
+
+**Potentiels d’Action**
+
+
+**2 ) Dés de Maîtrise ( MT ) 28**
+
+
+**3 ) Tenter d’Agir 28**
+
+
+**(8) Aptitudes, (24) Actions & (72) Compétences**
+
+
+**Retenter l’Épreuve**
+
+Tenter ( Jet de Dé ) . . . . . . . . . . . . . . 31
+
+
+**1 ) ( S )uccès & ( E )checs 32**
+
+
+**2 ) Astragale ( Échecs & Succès Critiques ) 33**
+
+
+**Langues, Écritures & Signes**
+
+
+**Richesse, Équipement & Bric-à-brac**
+
+# VIE
+
+Évoluer . . . . . . . . . . . . . . . . . . . . 119
+
+
+**1 ) Révélation de Compétence 119**
+
+
+**2 ) ( M )arques d’Expérience 120**
+
+
+**3 ) Réalisation de Compétence 121**
+
+
+**Gagner un Niveau d’Attribut**
+
+
+**Gagner un Niveau de Compétence**
+
+
+**Gagner un Degré de Compétence**
+
+
+**Tableau des Découvertes d’Attribut**
+
+
+**Découvertes des 72 Compétences**
+
+
+**Prolonger 129**
+
+
+**1 ) Agir à travers le Temps 131**
+
+
+**Jet Précisé**
+
+
+**2 ) Temps Éveillés & Assoupis 132**
+
+
+**3 ) ( L )abeurs & Buts Inspirés 133**
+
+
+**Surmenage**
+
+
+**But Inspiré**
+
+
+**Autres Types de Jet 135**
+
+
+**Jet d’Ambiance**
+
+
+**Jet de Groupe**
+
+
+**Ambiance**
+
+
+**Jet d’Audace**
+
+
+**Jet Risqué**
+
+
+**Jet Sacrifié**
+
+# SURVIE
+
+Résister . . . . . . . . . . . . . . . . . . . . 137
+
+
+**Souffrances: Maux et Besoins 137**
+
+
+**Souffrances Déclenchées**
+
+Souffrir . . . . . . . . . . . . . . . . . . . . 139
+
+
+**1 ) Dés de Souffrance ( DS ) 139**
+
+
+**Niveaux de Souffrance**
+
+
+**Niv d’Épreuve des 8 Souffrances**
+
+
+**2 ) Rage & Évanouissement 145**
+
+
+**Perte de Connaissance**
+
+
+**3 ) Être Vaincu ou Mourir 146**
+
+
+**Situation de Défaite**
+
+
+**Défaitisme & Espoir**
+
+
+**Perdre ses Affaires**
+
+Guérir . . . . . . . . . . . . . . . . . . . . . 149
+
+
+**Soutiens**
+
+
+**Traitements**
+
+
+**Restaurations**
 
 ---
 
-## Héritages & Métissages (p. 51)
+# page_002.md
 
-- **Entre Origines** (Yômmes, Yôrres, Bêstres) : **impossible** (reproduction entre elles impossible).
-- **Même Peuple, Races différentes** (ex. entre Monte-Foudres, Fleuris, Des Souffles, Ambrés) : **souvent possible** ; résultats variables (vigoureux à souffreteux) ; enfant reçoit au hasard un des deux bonus raciaux (+1|+1) et un des deux malus (-1|-1) des parents.
-- **Même Origine, Peuples différents** :  
-  - **Yômmes** (Aristois, Griscribes, Navillis, Méridiens) : enfant avec **traits du peuple maternel** (Attributs, Taille, Stature, Gras, Dimorphisme) et quelques traits d’apparence du père ; conceptions très rares, réputées infertiles, mal vues.  
-  - **Yôrres** (Hauts Ylfes, Ylfes pâles, Ylfes des lacs) : **lignée paternelle** (Attributs, Taille, Stature, Gras, Dimorphisme), mère transmet quelques traits d’apparence ; un peu plus fréquent, parfois fertiles, toujours très mal vus.  
-- **Bêstres** : si divers qu’aucun croisement établi ou enfantement viable/fertile.  
-- **Iqqars** : isolés, ne se reproduisent qu’entre eux.
+# Page 2
+
+*Source: publication-2.html*
 
 ---
 
-## Après les 3 étapes : Remémoration Créatrice ou Révélation complète
+**Surveiller sa Harde**
 
-### Remémoration Créatrice (p. 113)
-- Révélation **différée** en jeu : le personnage a des « amnésies » dont il récupère la mémoire sur **8 aspects** au fil des séances :  
-  - **A)** Expérience de la vie (compétences apprises),  
-  - **B)** Intégrité (valeurs et traits),  
-  - **C)** Société (possessions, richesses).  
-- Règles d’amnésie et de récupération détaillées dans le livre (première séance : Symbole, Dés Éduqués/Exprimés, Marques gratuites, etc.).
 
-### Révélation complète (avant première séance)
-- **Symbole** (p. 235) : nature, essence, destin, passions.  
-- **Éducation** (A, p. 239) : Compétence Familiale (+3 Dés), Compétences Éduquées (Marques Éternelles).  
-- **Expression** (A, p. 243) : Dés Exprimés, répartition dans Aptitude Symbolique (3 Actions), Fascinante (2 Actions), Intéressante (1 Action).  
-- **Valeurs** (B, p. 247) : Moralité, Motivation, Personnalité.  
-- **Traits** (B, p. 257) : Socialité, Disposition, Passion.  
-- **Titres** (C, p. 265), **Langues** (C, p. 263), **Richesses** (C, p. 265).
+**Facteurs Pastoraux**
 
-Voir **04_Experience_Progression**, **13_Valeurs_Traits**, **11_Possessions_Equipement** pour le détail des tableaux et coûts.
+
+**B) Voyage Errant 180**
+
+
+**Outrepasser . . . . . . . . . . . . . . . . . 181**
+
+# POSSESSIONS
+
+Prospérer . . . . . . . . . . . . . . . . . . . 183
+
+
+**1 ) Devises monétaires 184**
+
+
+**Cordon d’( O )r**
+
+
+**( L )uciopel**
+
+
+**( B )ovare**
+
+
+**Délits**
+
+
+**Mutilations**
+
+
+**Facteurs de Peine**
+
+
+**Crimes & Punitions 186**
+
+
+**2 ) Qualité, Rareté & Utilité 187**
+
+
+**Niv de (Q)ualité , (R)areté , & (U)tilité**
+
+
+**La Valorisation des Valeurs**
+
+
+**3 ) Marché & Marchandage 189**
+
+
+**Étude de Marché & Marchandage**
+
+
+**Castes & Niv des Valeurs**
+
+
+**Niv d’Abondance**
+
+
+**Transporter . . . . . . . . . . . . . . . . . 193**
+
+
+**1 ) Niveaux de Port 193**
+
+
+**Tirer, Charretter & Surcharger**
+
+
+**2 ) Niveaux d’Encombrement 194**
+
+
+**Encombrement Relatif**
+
+Équiper . . . . . . . . . . . . . . . . . . . . 195
+
+
+**1 ) Armes 195**
+
+
+**2 ) Armures 196**
+
+
+**3 ) Outils 197**
+
+
+**Durabilité & Réparation 197**
+
+
+**Armes de Poing**
+
+
+**Armes de Pommeau**
+
+
+**Armes de Manche**
+
+
+**Armes d‘Hast**
+
+
+**Armes Flexibles**
+
+
+**Armes de Lancer**
+
+
+**Munitions**
+
+
+**Armes de Jet**
+
+
+**Armes de Tir**
+
+
+**Matelassage**
+
+
+**Carapaçonnage**
+
+
+**Blindage**
+
+
+**Matériaux**
+
+
+**Contenants**
+
+
+**Outils**
+
+
+**Éclairages**
+
+
+**Services**
+
+
+**Guérir sur le Temps**
+
+
+**Niv de Traitements des 8 Souffrances**
+
+
+**Traitements par Motivation (Gens)**
+
+
+**Traitements par Motivation (Choses)**
+
+
+**Traitements par Personalité (exemples)**
+
+# COMBAT
+
+
+**Combattre . . . . . . . . . . . . . . . . . . 161**
+
+
+**1 ) Ordre d’Action 161**
+
+
+**Clins de Temps**
+
+
+**Clins d’Alerte**
+
+
+**Prendre l’Initiative**
+
+
+**2 ) Types d’Actions 162**
+
+
+**( Pro )Actions**
+
+
+**Réactions**
+
+
+**Types d’Action au Combat**
+
+
+**Clins d’Action au Combat**
+
+
+**3 ) Facteurs d’Action 165**
+
+
+**Niveaux d’Ébranlement**
+
+
+**Potentiels**
+
+
+**Récupération**
+
+
+**Potentiels d’Action au Combat**
+
+
+**4 ) Succès d’Action 167**
+
+
+**Batailles et Combats Groupés 169**
+
+Vaincre . . . . . . . . . . . . . . . . . . . . 169
+
+# VOYAGE
+
+Rencontrer . . . . . . . . . . . . . . . . . . 171
+
+
+**1 ) Les 4 Jets Fondamentaux 171**
+
+
+**Quand ? ( Rencontre )**
+
+
+**Quoi ? ( Milieu ) & Qui ? ( Entités )**
+
+
+**Combien ? ( Difficulté )**
+
+
+**2 ) Les 4 Jets Diversifiants 172**
+
+
+**Distance ( d’Où ? )**
+
+
+**Situation ( Lorsque ? )**
+
+
+**Attitude ( Comment ? )**
+
+
+**Symbolisme ( Pourquoi ? )**
+
+
+**Tableau des Rencontres**
+
+
+**Climat des Saisons**
+
+
+**Conditions de Milieu 177**
+
+
+**Habituation aux Conditions**
+
+
+**A) Voyage Pastoral 178**
+
+
+**Prendre les Rennes**
+
+
+**Qualité de la Harde**
+
+
+**Comparses**
+
+
+**Animalcules**
+
+
+**Logements**
+
+
+**Montures**
+
+
+**Véhicules**
+
+
+**Nourritures**
+
+
+**Boissons**
+
+# FOYERS
+
+Bâtir . . . . . . . . . . . . . . . . . . . . . . 211
+
+Régir . . . . . . . . . . . . . . . . . . . . . 212
+
+
+**Gestion**
+
+
+**Logistique**
+
+
+**Force**
+
+Exploiter . . . . . . . . . . . . . . . . . . . 213
+
+
+**Jet de Groupe & Modules 216**
+
+
+**Modules, Moyens & Membres par Caste**
+
+# RILIE
+
+Honorer un Ril . . . . . . . . . . . . . . . . 221
+
+
+**1 ) Degrés Riliques ( Dés / D ) 222**
+
+
+**2 ) Niveaux Riliques ( Niv / N ) 223**
+
+
+**Harmonie Rilique**
+
+
+**Serments Riliques**
+
+
+**Sacrifice : Victime**
+
+
+**Sacrifice : Offrandes**
+
+
+**3 ) Jets d’Honoration Rilique 225**
+
+
+**Effets Rilique**
+
+
+**Cercles Riliques**
+
+
+**Consécration Rilique . . . . . . . . . . . . 227**
+
+
+**Cercles de Fréquence**
+
+
+**Sacrifices & Réciprocités Riliques**
+
+
+**Honorations Riliques Hôi, Iôs, Sôm, Môi**
+
+
+**Facteurs d’Affinités Riliques**
+
+
+**Facteurs de Cercles Riliques**
+
+
+**WÔM, HISM et Ô**
+
+
+**Les Rils et SIWÔMIZ**
+
+
+**L’Erreur des SIÔIZ et ZIMWIS**
+
+
+**iôHôi, sôIôs, môSôm, hôMôh et la Magie**
+
+
+**Les fils d’Éo et d’oÀ tressant la corde d’ÉoÀ**
+
+
+**Le Corps et le Cœur des Ril-cendrées**
+
+
+**Les 8 Ordres Riliques animant tout**
+
+
+**La Vie et la Mort**
+
+
+**La Rilie et le Fantastique**
+
+
+**Pourquoi les choses s’Attirent et se Repoussent**
+
+
+**Pourquoi les choses Tombent et s’Élèvent**
+
+
+**Pourquoi les choses Apparaissent et Disparaissent**
+
+
+**Pourquoi les choses Changent et Persistent**
+
+# INITIATION
+
+
+**Création Avancée . . . . . . . . . . . . . . 239**
+
+
+**- Tirage du Symbole 239**
+
+
+**Variation des Symboles**
+
+
+**Tableau des Symboles Calendaires**
+
+
+**- A) Tirage de l’Éducation 243**
+
+
+**Variabilité de l’Éducation**
+
+
+**Variation des Compétences Éduquées**
+
+
+**Compétences Sociétales, Populaires & Raciales**
+
+
+**Variation des Compétences Éduquées**
+
+
+**Années & Dés Exprimés par Âge**
+
+
+**- A) Tirage de l’Expression 247**
+
+
+**Variabilité de l’Expression**
+
+
+**Années & Dés par Âge**
+
+
+**- B) Tirage des Valeurs 249**
+
+
+**Motivation des Individus**
+
+
+**Moralité**
+
+
+**Moralité des Peuples**
+
+
+**Motivation**
+
+
+**Tableau des Valeurs de Moralité**
+
+
+**Tableau des Valeurs de Motivation (Gens)**
+
+
+**Tableau des Valeurs de Motivation (Choses)**
+
+
+**Tableau des Valeurs de Personnalité**
+
+
+**- B) Tirage des Traits 261**
+
+
+**Variation des Traits**
+
+
+**Niveaux d’Étrangetés CUlturelles & Tempo- relles**
+
+
+**Tableau des Socialités**
+
+
+**Tableau des Dispositions**
+
+
+**- C) Tirage des Titres 265**
+
+
+**Variation des Titres**
+
+
+**- C) Tirage des Langues 267**
+
+
+**Variation des Langues**
+
+
+**Apprendre sur le Tas**
 
 ---
 
-# File: 12_Peuples_Races.md
+# page_003.md
 
-# Peuples et Races
+# Page 3
 
-*Sources : Livre p. 23–32, 34–48, 49 ; CSV : Caractéristiques_des_Peuples, Dispositions_des_Peuples, Moralité_des_Peuples, Modules_Moyens_&_Membres_par_Caste, Castes_*, (G)uerriers_*, Aristois_*, etc.*
-
----
-
-## 1. Origines et Peuples
-
-### 1.1 Les trois Origines
-
-- **Yômmes** (Humanoïdes) : 4 Peuples – Aristois, Griscribes, Navillis, Méridiens. Nomades anarchistes à leur façon ; agriculture, horticulture, pastoralisme ; tribus, chefferies ou états. Langues : Eskandois, Nzaïlrim, Uatru, Kuhkcherd (Livre p. 23).
-- **Yôrres** (Elfes et similaires) : 4 Peuples – Hauts Ylfes, Ylfes pâles, Ylfes des lacs, Iqqars. Longévité, souvent liés à la nature (Livre p. 34–42).
-- **Bêstres** (Créatures diverses) : 2 Peuples – Slaadéens, Tchalkchaïs. Très variés, souvent spécialisés (Livre p. 44–48).
-
-### 1.2 Noms alternatifs (livre)
-
-Le livre utilise parfois des graphies alternatives (ex. Noscyadril pour Aristois, Ajoroï, Kh’Ruld, etc.) ; les noms ci‑dessous sont ceux des CSVs et du résumé standard.
+*Source: publication-3.html*
 
 ---
 
-## 2. Caractéristiques physiques (CSV : Caractéristiques_des_Peuples)
+**Familles Linguistiques**
 
-*Référence : CSV Caractéristiques_des_Peuples.*
 
-| Peuple | (T)aille | (S)tature ♂/♀ | (G)ras ♂/♀ | Dimorphisme |
-|--------|----------|----------------|------------|-------------|
-| **Aristois** | Petite (-1) | Équilibrée (0) / Svelte (-1) | Corpulent (+2) / Égalisée (0) | (+1) Typique |
-| **Griscribes** | Petite (-1) | Massive (+2) / Large (+1) | Égalisé (+0) | (+1) Typique |
-| **Navillis** | Petite (-1) | Svelte (-1) / Filiforme (-2) | Replet (+1) | (+2) Grand |
-| **Méridiens** | Petite (-1) | Équilibrée (0) | Mince (-1) | (+1) Typique |
-| **Hauts Ylfes** | Moyenne | Équilibrée (0) / Svelte (-1) | Égalisé (+0) / Replète (+1) | (+1) Typique |
-| **Ylfes pâles** | Petite (-1) | Svelte (-1) | Grêles (-2) | (0) Réduit |
-| **Ylfes des lacs** | Moyenne | Large (+1) / Équilibrée (0) | Mince (-1) | (+1) Typique |
-| **Iqqars** | Moyenne | Svelte (-1) | Mince (-1) / Replète (+1) | (0) Réduit |
-| **Slaadéens** | Moyenne | Massive (+2) / Massive (+2) | Replet (+1) | (0) Réduit |
-| **Tchalkchaïs** | Grande (+1) | Svelte (-1) / Filiforme (-2) | Grêle (-2) / Mince (-1) | (+1) Typique |
+**- C) Tirage des Richesses 269**
 
-Taille / Stature / Gras modifient certains Attributs (voir règles de création). **Corps Allongé (Yômmes)** : Stature d’une catégorie inférieure pour passer dans des entrées de toute sorte (Livre p. 23).
 
----
+**Variation des Richesses**
 
-## 3. Moralité des Peuples (CSV : Moralité_des_Peuples)
 
-*Référence : CSV Moralité_des_Peuples.*
+**Facteurs d’Épargne Totale & Annuelle**
 
-| Peuple | Moralité | Traduction |
-|--------|----------|------------|
-| Aristois | Trèpharchie | « Croissance Souveraine » |
-| Griscribes | Mignusophie | « Sagesse Imbriquée » |
-| Navillis | Olbôphélie | « Félicité Dévouée » |
-| Méridiens | Etéathlie | « Authenticité Compétitrice » |
-| Hauts Ylfes | Edapoèsie | « Compétence Créative » |
-| Ylfes pâles | Hiéragogie | « Direction Sacrée » |
-| Ylfes des lacs | Mellophrônie | « Volition Ingénieuse » |
-| Iqqars | Égonexie | « Intimisme Extrinsèque » |
-| Slaadéens | Thrasonirie | « Audace Rêveuse » |
-| Tchalkchaïs | Echothysie | « Altruisme Sacrificiel » |
 
-La Moralité est inconsciente et héritée ; elle décrit comportements, pourquoi les convaincre ou les soigner (Souffrances de Folie ou Rancœurs). On ne peut avoir de Valeurs de Moralité d’un autre Peuple que celui dont on descend (Livre p. 129).
+**Ces Signes qui nous Guident**
 
----
 
-## 4. Dispositions et Compétences (CSV : Dispositions_des_Peuples)
+**Ce qui est Construit et ce qui Nous construit**
 
-*Référence : CSV Dispositions_des_Peuples.*
+# PAYS: IAODUNEI
 
-Pour chaque Peuple, les **Castes** (et donc les compétences **Sociétales**, **Populaires**, **Raciales**) sont définies par Peuple et Race.
 
-- **Sociétales (3)** : communes à tout le Peuple (ex. Aristois : Charisme, Réflexion, Domination ou Détection).
-- **Populaires (1)** : liées au Peuple (+1D à la création) (ex. Aristois : Réflexion).
-- **Raciales (1)** : liées à la Race (+2D à la création) (ex. Aristois : FOR | DEX | VIG | CRÉ).
+**Localité: Mangroves d’Hylothermes . . 273**
 
-Le CSV ne remplit que partiellement tous les Peuples ; voir aussi **Castes_***, **(G)uerriers_***, **Aristois_***, etc. pour le détail des Castes et compétences par Peuple/Race.
 
----
+**Lieu : Atouts de Dla’Adur 274**
 
-## 5. Yômmes (détail)
 
-- **Aristois** : Moralité Trèpharchie. Races (ex.) : Monte-Foudres, Fleuris, Des Souffles, Ambrés. Attributs typiques FOR+, EMP+, VIG+ (voir livre/CSV). **Socialité Yômme** : +1 Niv aux jets de Groupe. **Sacrifice collectif** : tout Yômme rencontré peut être convaincu de se sacrifier pour les siens (jusque dans la mort) contre une Épreuve de Niv +3 au moins (plutôt que +5). **Nomadisme Yômme** : +1 Niv aux jets liés aux voyages (Livre p. 23).
-- **Griscribes** : Mignusophie. Races (ex.) : Arboricoles, Saute-Brumes, Limnicoles, D'Eau. DEX+, CRÉ+, AGI+ (voir livre/CSV).
-- **Navillis** : Olbôphélie. Races (ex.) : Carmin, Pétricole, Perce-Vague. VIG+, VOL+, EMP+.
-- **Méridiens** : Etéathlie. Races (ex.) : Sylvains, Des Monts, Marche-Rêves. DEX+, VOL+, FOR+.
+**Conflits d’Iäoduneï . . . . . . . . . . . . 275**
+
+
+**Types de Conflits 275**
+
+
+**De Factions**
+
+
+**Économiques**
+
+
+**Culturels**
+
+
+**Religieux**
+
+
+**Glossaire des Mangroves d’Hylothermes**
+
+
+**Yul**
+
+
+**Yul**
+
+# AWAKENING
+
+
+*** ) Revealing a Character . . . . . . . . . . 283**
 
 ---
 
-## 6. Yôrres (détail)
+# page_004.md
 
-- **Hauts Ylfes** : Edapoèsie. Races (ex.) : De Lunes, Des Plaines. FOR+, CRÉ+, EMP+.
-- **Ylfes pâles** : Hiéragogie. DEX+, CRÉ+, EMP+.
-- **Ylfes des lacs** : Mellophrônie. Races (ex.) : Mâche-Troncs, Danse-Feuilles, Troglodytes. VOL+, FOR+, CRÉ+.
-- **Iqqars** : Égonexie. Races (ex.) : Hauts, Bas. FOR+, CRÉ+, AGI+.
+# Page 4
 
----
-
-## 7. Bêstres (détail)
-
-- **Slaadéens** : Thrasonirie. Races (ex.) : Sydru-kal, Wijriol, Hlabayan, Felichrem, Iossolam (ou graphies proches). EMP+, DEX+. Espérance de vie très variable (2–115 ans). CSV Années_&_Dés_par_Âge.
-- **Tchalkchaïs** : Echothysie. Races (ex.) : Elesihin, Ordol, Îohadam, Nuôtarjoy, Ikrayad. FOR+, EMP+, VOL+, VIG+. Espérance de vie courte (10–27 ans).
+*Source: publication-4.html*
 
 ---
 
-## 8. Relations inter-Peuples (Disposition)
+Vivre ainsi et dès lors,
 
-- **Calcul de Disposition** : moyenne des différences d’Attributs, -Niv de Parenté, +/- 1 selon Empathie du Peuple, +3 si Humanoïde ; modificateurs (passé, événements).
-- **Niveaux** : Harmonie +5, Ami +3, Allié +4, Confiant +2, Accueil +1, Neutre 0, Méfiant -1, Hostile -2, Ennemi -3, Rival -4.
-- **Tableau des Dispositions** : voir CSV **Tableau_des_Dispositions** (si présent) ou livre pour la matrice Peuple ↔ Peuple.
+C’est d’être un Exalté, chancelant de la luxuriance des hurlées de la vie…
 
----
+C’est d’être exprimé à travers les lois,
 
-## 9. Métissages
+Des plus Intensifiantes et Complexifiantes desquelles l’un puisse s’exulter
 
-- **Entre Origines** (Yômme × Yôrre × Bêstre) : en général impossible ou très rare.
-- **Même Peuple, Races différentes** : souvent possible.
-- **Même Origine, Peuples différents** : rare, souvent infertile.
-- **Bêstres / Iqqars** : trop divers ou isolés pour généraliser.
-- **Héritage** : Yômmes traits maternels ; Yôrres traits paternels (Livre p. 49, 02_Creation_Personnage).
 
----
+**Ainsi sont les recits**
 
-## 10. Castes et compétences
 
-- Chaque Peuple a des **Castes** (ex. Guerriers, Moines, Rôdeurs, Bardes, Mages, etc.) avec Niv d’Attributs typiques. Voir **Castes_&_Niv_des_Valeurs**, **Modules_Moyens_&_Membres_par_Caste**, **(G)uerriers_***, **Aristois_***, etc.
-- **Compétences Sociétales** : 3 communes au Peuple. **Compétences Populaires** : 1 par Peuple (+1D création). **Compétences Raciales** : 1 par Race (+2D création).
+**de ces instants**
 
----
+Rêvez aux voyages de ces perspectives et destinations,
 
-*Voir aussi : 02_Creation_Personnage (caractéristiques, tirage, Héritages), LORE_02_Origines_Peuples, LORE_03_Peuples_Detail, GUIDE_MJ_Peuples.*
+Car de l’abondance de leurs déplacements disparates,
 
----
+S’effacent les traces désorientant.
 
-# File: 14_Monde_Iaodunei.md
+Rêvez aux véhémences de cette richesse et vitalité,
 
-# Monde – Iäoduneï
+Car dans la discordance de ces récits,
 
-*Sources : Livre p. 9–10, 23, 140–144 ; cohérent avec 12_Peuples_Races et LORE.*
 
-**Orthographe livre** : **Iäoduneï** (Pays d’Iäoduneï, région aux dunes enneigées, eaux brûlantes, montagnes centrales). Parfois « Iâodunaï » en variante.
+**Il n'y a que l'Extrême !**
 
----
 
-## Région de Jeu
+**Dans la TERRE se trouve l’Exubérance…**
 
-### Iäoduneï
-- **Population** : ~200'000 sur 232'000 km²
-- **Localité principale** : Mangroves d'Hylothermes
-- **Caractéristiques** : Dunes enneigées, eaux brûlantes, montagnes centrales
 
-### Lieux Importants
-- **Dla'Adur** : Plus grand peuplement Nomachome
-- **Lumioleï** : Second lieu majeur
-- **Monts Ajolum** : Montagnes centrales
-- **Déserts Soufflés** : Région désertique
-- **Grands Lacs Thermaux** : Tuhial, Eos, Daghol
+**Un immortel brasier de passions et potentiels**
 
-## Factions Principales
 
-### Slaadéens
-- **N'la-Fatch** : Haute-Famille artistique (Felichrem, Iossolam)
-- **Souk'mans** : Infiltration discrète ("Oigothyriser")
-- **Braisois** : Sédentaires, culte Heptahalie
+**sous les jubilations et euphories**
 
-### Autres Factions
-- **Rophanes** : Microcité-états
-- **Daïnumes Aristois** : Communautés variées
-- **Aïozhan & Zoluzhan Gomb** : Syndicats
-- **Ennakleis** : Illégalité
-- **Jademarche** : Causes impopulaires
+de blizzards Folkloriques et raz - de - marée Technologiques ...
 
-## Conflits
 
-### Économiques
-- **Chasseurs-cueilleurs** (Slaadéens) vs **Pastoralisme** (Aristois) vs **Agriculture** (Ylfes des lacs)
+**Des recits Discordants**
 
-### Culturels
-- **Nomades** vs **Sédentaires / Semi-sédentaires** (ex. Slaadéens : majorité nomade en opposition à semi-sédentaire ; Méridiens, Aristois, Navillis plutôt nomades ; Ylfes des lacs semi-sédentaires) (Livre p. 141).
-- **Techno-traditionalisme** : les Motivations opposent l’ordre des **Gens** (société, coutumes) et des **Choses** (nature, technologie) ; le setting mêle traditions et techniques (Livre p. 9–10, 129).
 
-### Religieux
-- **Heptahalie** vs **Oratoire Kaïaste** vs **Nomê Aristois** vs **Hahalumullio Ylfe**
+**Briller, Illumine et Enluminé!**
 
-## Glossaire - Mangroves d'Hylothermes
 
-### Général
-- **Nomachome** : Caravane-villages nomades
-- **Hylotherme** : Arbres mangroviens aux feuilles carmines
+**L’Immémoré, l’Invisible, et l’Inexplicable…**
 
-### Faune
-- **B'dyiorlyr** : Créature ailée fouisseuse
-- **Arvadoy** : Bétail géant à queue préhensile
-- **Luicéphale** : Créatures lumineuses pour lanternes
-- **Ipslithes** : Vers-cristaux souterrains
-- **Zoion** : Organismes microscopiques
+Magie nait Image: Animée, Manifeste, Imaginable.
 
-### Matériaux
-- **Driliz** : Alliage Éore+Avathon (vert viride)
-- **Chraméon** : Alliage Éore+Pseudiris (solaire/rosé)
-- **Éore** : Métal bleu de nuit
-- **Avathon** : Poussière bleu-roi
-- **Pseudiris** : Animalcule minéral liquide
-- **Pittlithe** : Charbon aqueux brillant
-- **Faéine** : Plante-métal dorée
-- **Bryocarte** : Papier algueux
+Cet univers exprime des Âges d’or s’opposant dans leurs extrêmes, sublimés positivement via une catégorisation novatrice de valeurs, motivations, alignements, reconstruisant l’univers Des Récits Discordants avec des combinaisons rares, mais harmonisées.
 
-### Produits
-- **Mycolithe** : Roche champignonneuse comestible
-- **Cloche-fruit** : Fruits des hylothermes
-- **Fythymel** : Miel-algue thermal
-- **Bryophloï** : Écorce-mousseuse
+- Tout vise à être cohérent et captivant, esthétique et logique.
+- Les contradictions dévoilent des interprétations riches, déchiffrant le créateur des significations prolifiques et de celui aux antithèses vides.
+- Les règles dévoilent de nouvelles manières d’explorer la matrice de la réalité, le conflit incarnant la suprême lutte pour la vie et la révélation de soi.
+- L’optimisation est valorisée pour tout but, favorisant l’affrontement avec la difficulté et l’appréhension audacieuse des erreurs, qui sont récompensées.
+- Les calculs restent simples, évoluant de manière cohé- rente, de + 10 à - 10 , avec une seule règle de progression à comprendre passant par 1 - > 3 - > 6 - > 10 - > 15 .
+- Le système de dés façonne des statistiques ajustées via une courbe en cloche de - 5 à + 5 , permettant la précision ou l’exactitude du hasard jeté.
+- Les “ campagnes ” Des Récits Discordants sont ultimement guidé vers la “Table Ouverte Éternelle”, une série continue de jeux de rôle dans un monde créé par le ou les “ Révélateur ”( s ), unissant chaque aventure en une entité cohérente s’autocréant des conflits des joueurs, les “ Éveilleurs ” des personnages.
 
-## Yul - Exemple de Lieu
+## 2) Comment y parvenir ?
 
-### Description
-- **Type** : Chefferie Nomade NdG 6 (~1000 habitants)
-- **Peuple** : Slaadéens
-- **Faction** : N'la-Fatch (Ouvriers)
-- **Atout** : Caves aux Zoions (5dD)
-- **Localisation** : Presqu'entièrement sous terre, pieds des monts Ajolum
+Propager un nouvel univers d’inspirations “ autres ”, afin de nous propulser ailleurs, avec ses propres principes, concepts, esthé- tiques et visions du monde, partageant un nouveau réservoir d’inspirations futures.
 
-### Système de Rencontres
-- Table de terrain (-5 à +5)
-- Factions rencontrées selon le résultat
-- Opportunités et dangers variables
+- Un livre afin d’atteindre le sens d’un univers étranger et exotique, en évitant les conventions standards pour obtenir un sentiment d’altérité global, tout en contenant un récit réussi…
+Créer un imaginaire et des règles qui par son interactivité accessible et augmentée nous incitera à la plus haute liberté et haute exploration de la matrice de la réalité sous toutes ses formes, quelles soient physiques, mentales, sociales... ou morales.
+
+- Révéler des roues s’autopropulsant, révéler les “ Créateurs ”...
+- Ceux qui cherchent délibérément à affronter et à briser les frontières considérées comme inattaquables., à élargir le domaine de l’expérience humaine, et cela à travers un chemin affirmant la vie, la puissance et la volonté - le Mouvement.
+
+## 1) Pourquoi ce livre ?
+
+Un livre, afin d’y révéler et faire briller les possibilités cachées de la réalité - sa “ fantaisie ” - et ainsi de la rendre elle - même fantastique. - Par son accessibilité pensée afin de révéler petit - petit et à travers l’investissement de soi, les possi- bilités d’interactions avec toute chose, être ou idées - c’est à dire de révéler leur sens cachés par notre ignorance, incompétence, insouciance, innocence et insécurité.
+
+- Pour que de l’expérimentation en cet univers et ses règles, cela en inspire les joueurs à s’éveiller du pourquoi des sens cachés en chaque chose les entourant, n’attendant qu’à êtres découverts et jouit par la pratique, la connaissance et le courage... Afin qu’ils agissent, en vrai, au dehors, donnant au monde plus d’interprétations pertinentes à travers une multitude de sens florissants de vie et de force de vie, c’est - à - dire plus d’interactivités les motivants à la volonté d’agir en puissance.
+
+- ...
+- ...
+- ...
+- ...
+- ...
+- ...
+- ...
+- ...
+- ...
+
+# : CRÉDITS :
 
 ---
 
-# File: LORE_01_Cosmogonie_Divinites.md
+# page_005.md
 
-# Cosmogonie et Divinités – Des Récits Discordants
+# Page 5
 
-*Sources : Livre p. 10–12, 23–24, 34, 44, 120–122 ; CSV : Honorations_Riliques_*, Sacrifices_*. Terminologie du livre : « HISM », « Ril-cendrée », « Rildée-astrale », etc.*
+*Source: publication-5.html*
 
 ---
 
-## La Cosmologie Fondamentale
+Écoutez - moi, car j’écris pour évoquer un univers aussi cohérent et tangible que le nôtre, mais imprégné de l’Autre, un monde où la parole germe, où les récits s’entrelacent dans la verdoyance du réalisme étrange. Ici, les mots poussent, prolifèrent et périssent dans le cycle organique de la vie narrative, la phytoglossie. Voici ainsi les QUATRES PRINCIPES de cette écriture:
 
-### L'Univers Concave (Cytocosmisme)
-La grande majorité des cultures croient vivre dans un **univers concave** (Cytocosmisme) - un univers creux où l'espace et tout le reste s'engouffre au sein d'une sphère de roche. Le "sol" sous les pieds de tous serait probablement incessant.
+- L’Aliénation : Ce qui captive et intrigue a plus de chances de correspondre à la vérité que l’ordi- naire et l’ennuyeux. Ainsi ce texte tel qu’il est aujourd’hui écrit contient des vérités canoniques, mais qui ne se révéleront comme telles qu’au travers des regards les plus intéressé de ses lecteurs les plus vivants, qui au fil des générations l’épureront de ses faussetés en un incontestable canon.
+- Le Perspectivisme : Les philosophies ne sont pas des absolus mais des erreurs poétiques, enrichissant le monde d’une profusion de significations issues de multiples perspectives. Ce sont leurs besoins qui interprètent le monde, leurs pulsions et leurs Pour et Contre. Chaque pulsion de chacun et chaque peuple est une sorte de désir de régner, chacune a sa perspective qu’elle voudrait obliger toutes les autres pulsions à accepter comme norme.
+- La Mythalèthie : La croyance façonne la vérité, l’acte de persuasion devenant la réalité, chaque point de vue transformant le monde à sa manière. Ainsi, chaque récit est engendré par un auteur, et cet auteur par un autre, et ainsi de suite, dans un cycle de création sans fin. La coexistence de ces visions parfois opposées n’est pas une négation de leur vérité mais plutôt sa confirmation, dévoilant la réalité sous des angles variés en nourrissant la compréhension du monde par ses conflits.
+- La Calléthéie : Une symphonie harmonisant le plus de sens exrpimé en un minimum de mots mais tout en les décorants de métaphores complexes et de vocabulaire ostentatoire, bien que toujours fondamentalement vraie si on cherche la vérité en eux, malgré la complexité de leur compréhension.
+Au cœur Des Récits Discordants, le chaos règne entre les Âges d’or de chacun s’opposant dans leur expression extrême, tissant une toile complexe de perspectives et d’actions entrelacées cherchant à l’ordonner de leur vision. Les étrangers, trompés par des informations biaisées et trahis par des agents dissidents, se trouvent plongés dans un labyrinthe narratif aux idées se contredisant.
 
-- Les observations semblent corroborer cette concavité à travers une supposition impossible à réfuter ou prouver - que les cordes de lumière seraient courbes.
-- Certains réalisèrent qu'il serait possible, si leurs sens les tromperaient et avec quelques calculs, d'inverser totalement cette vision de l'univers.
-- Par cette éventualité troublante, un symbole de **croix courbées et chirales** se retrouve de par le monde et les cultures.
+- Les rois d’antan, aux vies éphémères et aux statures modestes, aspiraient à transcender leurs propres limites pour honorer leurs héritiers à venir, et ainsi devenir presque divins - ils cherchaient à devenir eux - mêmes des ancêtres dignes d’être vénérés - tout comme nous façon- nons aujourd’hui notre descendance.
+- Les racines de nos ancêtres plongent dans une mosaïque de peuples, entremêlés et raffinés au fil des ères pour donner naissance à notre essence, puri- fiée tel des nobles pur - sang.
+- Les valeurs qui nous guident aujourd’hui sont forgées dans les feux des assimilations, des absorp- tions et des éliminations, gravées par les innombrables vies qui nous ont précédés.
+- À chaque nouvelle géné- ration, nous évoluons pour incarner au mieux les sommets de nos missions, plutôt que de sombrer dans les contradic- tions qui ont jadis tourmenté nos ancêtres, où les vertus d’un s’opposaient éternellement à celles d’un autre.
 
-### Concept Clé : Continuité Infinie
-Il y a de nombreuses façons d'expliquer leur monde, mais tous ou presque n'ont **pas le concept d'une création d'un point zéro**, mais plutôt d'une **continuité infinie de leur univers**, toujours en mouvement et sans aucun départ.
+# IMMERSION
 
-### Les Cordes Tressées
-L'un des concepts clé est qu'il est coutume d'expliquer le monde, ses phénomènes invisibles (voir riliques pour certains), comme étant tous **interconnectés de Cordes tressées de deux fils** et se nouant en chaque élément, intangibles et invisibles de leurs sens.
+Illustration d’une “évolution” arborée des peuple Yômmes (par ex), du nombreux, petits et chaotiques indiscernables, à de multiples mais plus rares diver- gences spécifiées en des types particuliers (Méridiens, aristois, etc.). Une “purification”. S’inspirer de l’image des “ancêtres” spirituels germaniques.
 
-**Ultimement, l'univers tout entier ne serait qu'issu d'une unique et même corde continue**, tressée sur elle-même dans votre immensité, et dont les nœuds en sont les Rils.
+- Les habitants de ce monde, pourraient - ils percevoir leurs ancêtres et leurs descendants comme des noeuds d’un même fil vital : une source d’inspiration ardente et de défis à surmonter pour les premiers, et une promesse exigeante à accomplir pour les seconds ?
+- Plutôt que de s’abandonner à une révérence figée ou à une haine injuste pour les actes passés aujourd’hui mal jugés, ne pourraient - ils voir dans cette corde vivante une force qui les appelle à se dépasser, honorant à la fois l’héritage reçu et l’avenir à bâtir ?
+- Car honorer les morts, c’est leur donner tort par nos victoires futures, en prouvant que leur flamme, loin de s’éteindre, s’élève encore plus haut dans nos mains, et brûlera plus intensément encore dans celles de nos descendants.
 
-## Ô, WÔM, HISM et la Structure Cosmique
+---
 
-### Ô - L'Ultime Rildée
-**Ô** (Monde/Localisation) est l'ultime Rildée, l'esprit rilique formant toutes les formes. Elle est éternellement bercée entre douleur et soulagement.
+# page_006.md
 
-### WÔM - Le Temps
-**WÔM** (Temps/Compte) est le petit frère-sœur siamois de Ô, perché au loin et les réconciliant tous par son jugement établissant les richesses de chacun et désignant jusqu'où les royaumes de chacun s'étendent.
+# Page 6
 
-### HISM - Les Forces
-**HISM** (Forces/Actions-à-Distance/Magie) est la danse de l'assemblée des tétrarques en couples si proches qu'ils ne font qu'un seul tout bicéphale (des êtres parfois nommés à tort « les » SZIIZS) bien que s'haïssant tout autant que s'adorant.
+*Source: publication-6.html*
 
-### Les Enfants d'Ô
-- **Wo-d'Ô** : Les filles d'Ô, dansant leur ronde avec elle et au loin, qui de leur jeune naïveté enjouée s'empressent alors de lâcher une de leur main de lumière afin de pointer et nommer les fruits de Siwômiz.
-- **Om-d'Ô** : Les fils d'Ô, se balançant avec elle et par ici, qui de leur vieille sagesse prédicatrice étendent une de leur main d'ombre afin d'amasser ces fruits chutant près d'eux.
+---
 
-## Les Quatre Rois/Reines-Artistes (Tétrarques)
+Au sein du récit des ères, résonne le murmure du passé où la rigueur glaciale actuelle fut précédée d’âges brûlants et de gels paralysants, submergeant jadis les terres sous des flots océaniques, ne laissant qu’îlots montagneux et impactant toute forme de vie. Des ères de gel ultérieures engendrèrent d’immenses étendues glacées, fondant ensuite des grands incendies, pour enfin laisser place au refroidissement actuel, une danse harmonieuse des extrêmes révélant les clans distingués des masses, qui elles autrement s’étalent partout sans pouvoir y survivre, s’affa- ment par leur nombre et s’infectent dans leur promiscuité voir se corrompent dans le partage. Aujourd’hui...
 
-### iôHôi - Le Foudroyé (Parfumant)
-**Domaine** : Tournoiement (Électromagnétisme)
+- Iäoduneï , la brûlée de méandres de sources thermales turquoisées perçants les dunes neiges soufflées du tranchant blizzard y abreuvant leurs brousses écar- lates, s’engouffre dans Dümavel érigeant ses hauts plateaux, montagnes et rivières fleuris toujours balayés par les tous les vents.
+- Les collines bleuies d’ Agvalsis survivant à ses steppes carnées se mêlent aux forêts - jungles froides, humides, givrées mais surtout luxu- riantes de la mer tourmentée d’ Hatrohaj .
+- Les glaciales baies de Dalvvar’Aad creusées et perforées de leurs vents mordants, les marécages et mangroves blanches embrumés et noyés de Mevyriil et les côtes luisantes aux agressives falaises escarpées d ’Êadryllir enrichissent le paysage des souffrances révélatrices qu’elles engendrent.
+- Ondusiöl elle, valse ses collines aux couleurs saisonnières, suivies des forêts soufflées et des lacs enfeuillés de Bruysséliand , percées par ses piliers ouatés de nuages cachant leurs hauts pics.
+- Enfin, les déserts brûlants et glacials d ’Adriuhn , abritent un fleuve solitaire aux marais résilient, aux inondations à la fois torturantes et sauveuses.
 
-**Actions** :
-- **Hôi** : Assemble les Riliôh en Rilhôi (masse) - cause l'attraction
-- **iôH** : Délie les nœuds, disperse les Riliôh - cause la répulsion
+## 1) Des Territoires extrêmes
 
-**Famille Rilique** : Aèmrils (Formes Virevoltantes/Airs)
 
-**Rildées-Astrales** : Währos (Force/Réussite/Guerre/Intrépidité)
+**Sommes-nous à l’intérieur ou à l’extérieur ?**
 
-### sôIôs - L'Ondoyé (Miellisant)
-**Domaine** : Tension (Gravité)
+Nos sens nous indique que nous engouffrons le ciel. Dans l’infinité de nos sols résideraient encore biens plus de mystères et de passés.
 
-**Actions** :
-- **Iôs** : Réveille les Rilsôi en Riliôs (mouvance) - cause la chute
-- **sôI** : Endort les Riliôs en Rilsôi (immobilité) - cause l'élévation
+---
 
-**Famille Rilique** : Ormrils (Formes Émouvantes/Émotions)
+# page_007.md
 
-**Rildées-Astrales** : Hwëthioz (Volonté/Pouvoir/Sortilège/Dignité)
+# Page 7
 
-### môSôm - L'Éboulée (Florissante)
-**Domaine** : Alignement (Lumière)
+*Source: publication-7.html*
 
-**Actions** :
-- **Sôm** : Aligne les Rilmôs en Rilsôm (visibilité) - cause l'apparition
-- **môS** : Cache les Rilsôm en Rilmôs (invisibilité) - cause la disparition
+---
 
-**Famille Rilique** : Esthrils (Formes Manifestantes/Phénomènes)
+Ces contrées abritent créatures, grandes et minuscules, certaines arborant jusqu’à 55 membres, nageant dans le sol comme l’eau, ou foulant les airs avec légèreté. Elles sont fuies, chas- sées, élevées, traites et tondues entre elles - mêmes et par d’autres à travers différentes préda- tions, parasitismes, coopérations et symbioses.
 
-**Rildées-Astrales** : Tëhkswen (Dextérité/Exploration/Artifice/Intégrité) et Minzhijë (Perspicacité/Assurance/Foi/Impartialité)
-
-### hôMôh - L'Embrasée (Givrante)
-**Domaine** : Torsion (Transmutation)
-
-**Actions** :
-- **Môh** : Embrase les Rilhôm en Rilmôh (mixtion) - cause le changement
-- **hôM** : Fige les Rilmôh en Rilhôm (pureté) - cause la persistance
-
-**Famille Rilique** : Stadrils (Formes Figeantes/Solides)
-
-**Rildées-Astrales** : Hsæwâl et Samianâ (pour les Yômmes)
-
-## Éo, oÀ et ÉoÀ
-
-### Éo (Électrisé)
-**Premier fils** de Ô, larmes de ravissement. Les premiers d'Éo s'écoulent en une étreinte enchanteresse tissant le **Corps (Membrane)** de chaque Ril-cendrée.
-
-### oÀ (Magnétisée)
-**Première fille** de Ô, éclats de douleur. Les seconds d'oÀ tombent en un tourbillon émotionnel animant le **Cœur (Noyau)** de chaque Ril-cendrée.
-
-### ÉoÀ (Enluminée/Énergisée)
-**Corde unificatrice** tressée des deux brins Éo et oÀ. Elle tisse la toile liant toutes les richesses et les biens d'Ô les unes avec les autres.
-
-**Ô trouve sa joie dans la douleur** (oÀ) et **son malheur dans le plaisir** (Éo).
-
-## Les Rildées-Astrales (8 Lunes WYTHSMÂH)
-
-### Währos
-**Attributs** : Force, Réussite, Guerre, Intrépidité
-**Origine** : Né de iôHôi dans l'éclat embrumé de ses éclairs irisés
-**Pouvoir** : Maîtrise des Aèmrils (Formes Virevoltantes/Airs)
-
-### Hwëthioz
-**Attributs** : Volonté, Pouvoir, Sortilège, Dignité
-**Origine** : Né de iôHôi, s'enveloppant de sa vénérable et souveraine volonté
-**Pouvoir** : Contrôle des Ormrils (Formes Émouvantes/Émotions)
-
-### Tëhkswen
-**Attributs** : Dextérité, Exploration, Artifice, Intégrité
-**Origine** : Né de môSôm, héritant de son adroite ruse
-**Pouvoir** : Se dérobe aux Stadrils (Formes Figeantes/Solides)
-
-### Minzhijë
-**Attributs** : Perspicacité, Assurance, Foi, Impartialité
-**Origine** : Né de môSôm, portant sa vieille et diligente perspicacité
-**Pouvoir** : Recherche des Esthrils (Formes Manifestantes/Phénomènes)
-
-### Hsæwâl
-**Attributs** : Vigueur, Tolérance, Plaisir, Fidélité
-**Origine** : Née de hôMôh lorsque ses plus ardentes et étincelantes flammes brûlèrent sa plus froide et mortifère étreinte, sépara d'Hael deux Rildées-astrales. Elle hérita de sa vigoureuse et adulte constitution.
-**Pouvoir** : Festoyait d'une famine insatiable sur ses juteuses et sucrées Physrils (Formes Croissantes/Végétaux) causée de ses récoltes calcinées par Môh lorsqu'embrasé.
-**Famille Rilique** : Physrils (Formes Croissantes/Végétaux)
-**Cycle** : 
-- Après chaque 18ème Crépuscule, Hsæwâl la quatrième se rassasie enfin de sa disette avant que sa prochaine récolte n'en brûle encore.
-- Après chaque 24ème Aube, Samianâ la cinquième calme ses bêtes à la traite pour s'abreuver de son addiction, avant de succomber aux arcanes du sevrage imminent.
-
-### Samianâ
-**Attributs** : Empathie, Générosité, Poésie, Pitié
-**Origine** : Née de hôMôh, s'enrichissant de son empathie mature et inspirée.
-**Pouvoir** : Dépendante de ses troupeaux de Zoosrils (Formes Mouvantes (d'elles-mêmes)/Animaux), se soumettait aux pâturages glacés de Môh lorsque frigorifiée.
-**Famille Rilique** : Zoosrils (Formes Mouvantes/Animaux)
-**Cycle** : Après chaque 25ème Aube (5 Pentaines), Samianâ la cinquième, se rassasie de ses troupeaux avant que la faim ne la dévore à nouveau.
-
-### Yekkwuî
-**Attributs** : Agilité, Liberté, Survie, Impétuosité
-**Origine** : Née de sôIôs, de ses plus purs et remués flots emportèrent ses plus onctueux et captivants miels au sein d'Hael. Elle revêt l'indomptable agilité de sa puérilité.
-**Pouvoir** : Irriguait des plus pures et soignantes eaux ses Hygrils (Formes Ondoyantes/Liquides) - se fatiguant et vidant de sa sueur par ses efforts contre les courants paternels.
-**Famille Rilique** : Hygrils (Formes Ondoyantes/Liquides)
-**Cycle** : Après chaque 10ème Crépuscule (2 Pentaines), Yekkwuî la seconde, dérobe de sa petitesse l'eau des ruisseaux salvateurs d'Hael, avant d'en être emporté à nouveau des plus grands flots la fatiguant et vidant à nouveau.
-
-### Âpsebjum
-**Attributs** : Créativité, Fondation, Rite, Sincérité
-**Origine** : Né de sôIôs, porteur de son ancienne créativité imprégnant toute œuvre.
-**Pouvoir** : Fabriquait de ses visions sa folie des Noûsrils (Formes Imaginantes/Idées), ces pensées tentatrices inspirées de l'onctueux miel maternel.
-**Famille Rilique** : Noûsrils (Formes Imaginantes/Idées)
-**Cycle** : Après chaque 36ème Aube, Âpsebjum le septième, retravaille ses œuvres d'art qu'il fit naître en Hael, ses éclats de génie le ravivant jusqu'à ce qu'il en trouve les failles et imperfections, le torturant à nouveau de ses démences.
-
-### Le Temple d'Yekkwuî et d'Âpsebjum (ÛRDHWAUDÂM)
-**Nom** : "Construit en Hauteur"
-**Construction** : Premier temple lors de l'Héliorée de Fânéime
-**Fonction** : Libère tout être de leurs fardeaux lorsqu'accédant à ses tunnels ressortant de partout, ou lorsque songeant à son architecture imaginable par chacun, voir même en le rencontrant car se mouvant de lui-même jusqu'à tous - en chaque cas délivrant des impossibilités d'Hael.
-**Description** : Arche aux septante-deux tours, nourrie de sources d'eau en ses jardins souterrains, atteint les plus hautes lunes en sa taille, et sépare le précieux du dangereux et commun.
-**Serment** : Les profiteurs d'Iôs - les quatre géants armés et huit nains outillés - prêtèrent serment de sa conquête sous les yeux morts et avides de leur armée d'enterrés innombrables (Urks ?).
-
-## Les Dûwasaï Harlbhus (8 Grandes Fées Saisonnières)
-
-Nés de la bataille entre Währos et Hwëthioz, fracassés sur Hael par iôHôi. Chacun se recherche toujours sur leur propre voie d'ombre ou de lumière.
-
-### Jhalaï (Chaleur/Solstice d'Été)
-Le brûlé chassant ses proies en sa joyeuse arène, tuant en carnage toutes les bêtes, prédateurs et proies du monde hurlant leur fuite en un bal sanglant.
-
-### Withlaï (Givre/Automne)
-La brouillardeuse s'engraissant de ses récoltes tributaires, extorquant et s'emparant des fortunes et pauvretés de chacun qu'elle pavane en sa parure luxueuse.
-
-### Plusûd (Gel/Équinoxe d'Automne)
-Le tempêtueux hibernant après son banquet moissonné, s'engorgeant des allaitements et engloutissant le bétail de son immense tablée suppliée par tous.
-
-### Nayûd (Neige/Hiver)
-L'enneigée migrant en survivant de ses mémoires, arpentant les terres mordues qu'elle ravive par ses mouvances aux cœurs chamboulés de ses passés mélancoliques.
-
-### Haolûd (Froid/Solstice d'Hiver)
-Le congelé affamé de ses sacrifices marquants l'année, pillant les plus morbides de leurs dernières vies faméliques qu'il offre en élan vital aux plus vifs et fougueux.
-
-### Dauwûd (Fonte/Cycle)
-La refroidie réveillant ses familles renaissantes, sonnant les glas du trépas et flottant les drapeaux de ses conquérants au-delà de ses marrées abandonnées.
-
-### Wlastaï (Pluie/Équinoxe de Cycle)
-L'inondé fécondant ses santés ancestrales, saillissant les sols, s'ébranlant de ses droits et engrossant terres, fleures et bêtes de sa cendre éternisante.
-
-### Ahssaï (Récolte/Été)
-La florissante engendrant son plaisant spectacle, délivrant ses races et héritiers en sa symphonie de naissances fédérées par leurs couleurs et refrains.
-
-**Cycle** : 
-- Après chaque 5ème Crépuscule (Pentaine), Währos revient s'approprier assez d'air vital qu'il transmit, avant d'entamer un autre combat le blessant.
-- Après chaque 45ème Aube (Saison), Hwëthioz le dernier, brise son ressenti, révélant son ordre une fois à tous, avant que chacun ne retourne à ses tourments, laissant Hwëthioz seul, privé d'oreilles à sa bouche.
-
-## Les Pauk Peytsk (4 Lutins Nourriciers des Yômmes)
-
-Nés du spectacle prospère d'Ahssaï, les Pauk Peytsk (Lutins Nourriciers) embrassaient avec orgueil et frivolité les plaisirs de la vie. Nourris des laits abondants issus des naissances les plus incestueuses, symboles d'une pureté originelle, ils parcouraient le monde en guidant et semant, peuples, délices et bienfaits. Leur voyage incessant suggère qu'ils sont peut-être les véritables Hryôhpéens errants d'où descendront les Yômmes, illuminant Hael de leur présence joyeuse (mais il faudrait alors en expliquer les Izkyôrres).
-
-**Origine** : Surgissant par Môh des méandres d'un tourbillonnement tout comme Hael, Hsæwâl et Samianâ émergèrent côte à côte avec elle. Avant de la quitter, Hsæwâl sema ses robustes graines d'herbes, de fleurs et de baies dans les peaux d'or des troupeaux de Samianâ réconfortant par leur luisance, qu'elle offrit à Hael afin de la couvrir pour que tous marchent sans faim ni troubles, guidés par les quatre Rildées-majeures tutélaires qui en naquirent, ces PAUK PEYTSK ("Lutins" Nourriciers) des localités qui aident tous au travail sans jamais fatiguer, bien que se piétinant d'habitude les uns sur les autres tout comme les Yômmes de nos temps.
-
-**Création des Yômmes** : Une aube, ils furent inspirés de la plus harmonieuse symphonie des Siôiz de l'HISM les guidant hors de leur typique discordance par leurs intérêts divergents. Hôgmadz en cueilli et tria les plus vigoureuses semences d'Hael au-delà des champs de Hôghemn, qui lui les sema et cultiva dans les terres les plus fertiles d'Hael encloses des territoires de Mêmhwal, qui lui traqua et captura les plus vigoureuses bêtes d'Hael loin des fraîches pâtures de Mêmmelg, qui les nourris et éleva grâce aux labeurs de tous ses frères afin d'en faire naître les Yômmes eux-mêmes, avant de les laisser paître là où ils le désirèrent.
-
-### Mêmmelg (Pastoralisme)
-**Action** : Trait en Soliarque ses puissantes bêtes et tond en Naîstreï son majestueux bétail, bien qu'il soit bien souvent repoussé par Shdrazd car pâturant sur ses terres.
-**Rôle** : Au puissant bétail, aurait dorloté les Yômmes.
-
-### Mêmhwal (Chasse & Pêche)
-**Action** : Chasse en Albaîme les vigoureux mastodontes, et pêche en Frimeï ceux remontant fièrement les eaux.
-**Rôle** : Aux vigoureuses proies, aurait créé les Bêstres (chasses et cueillettes).
-
-### Hôghemn (Agriculture)
-**Action** : Irrigue en Esveildor son grâcieux champs d'orge par ingéniosité, et sème ses graines en Auneï.
-**Rôle** : Aux grâcieux champs, aurait fait pousser les Yôrres.
-
-### Hôgmadz (Cueillette)
-**Action** : Collecte en Luisarie ses baies secrètes, et récolte en Fâneï ses miels inaccessibles.
-**Rôle** : Aux précieux fruits, aurait aussi créé les Bêstres.
-
-**Note** : Les sociétés actuelles de ces origines en sont si divergentes qu'il en est burlesque de les croire.
-
-## Les Kweryas Gjuaj (4 Géants d'Armes des Bêstres)
-
-Nés du squelette de Tëhkswen empêtré sur Hael, façonnant les quatre Rildées-majeures terrestres. Ils s'armèrent aussi afin de fermer et garder tout ce qui est précieux tel que s'en chargent les Bêstres de nos jours.
-
-### Saksag
-**Outil** : Poil-Couperet
-**Action** : Taillant en Ardarie toutes les plages et toutes les peaux
-**Pouvoir** : Dessine et efface de ses 72 yeux les murs des pays de chaque être
-**Création** : Les Bêstres animaliers (animaux) - dessinés sur les plages à travers un seul de ses uniques yeux
-
-### Tulsug
-**Outil** : Canine-Pic
-**Action** : Percant en Aunarie toutes les fosses et toutes les carapaces
-**Pouvoir** : Étudie et sent par ses 24 narines traînantes au sol, les failles des remparts
-**Création** : Les Bêstres sauvages (créatures/monstres) - découverts grâce aux percées de ses canines
-
-### Hegseg
-**Outil** : Ongle-Tranchoir
-**Action** : Incisant en Frimarie toutes les falaises et tous les os
-**Pouvoir** : Classe, lie et sépare de son ouïe mercantile de ses 8 longues oreilles aplaties
-**Création** : Les Bêstres primitifs - naquirent lorsque Hegseg faisait résonner ses ongles
-
-### Asmund
-**Outil** : Front-Pierre
-**Action** : Écrasant en Naîstredor toutes les vallées et tous les crânes
-**Pouvoir** : Aplati du toucher des 4 massifs pouces et indexes les ruines des murailles anciennes
-**Création** : Les Bêstres inspirés (Slaadéens, Tchalkchaïs) - façonnés de glaise de ses doigts experts
-
-**Note** : On raconte qu'Asmund, Hegseg, Tulsug et Saksag vivent toujours (mais où ?), et qu'ils façonnent encore de nouveaux Bêstres ici et là.
-
-## Les Herwâs Thars (8 Nains d'Outils des Aïars)
-
-Nés des graines et poussières fertiles éparpillées par Minzhijë, donnant tous les goûts, parfums, mélodies, couleurs, textiles et autres phénomènes. Les Herwâs Thars (Nains d'Outils) après les avoir ressentis, se révoltèrent de ces épreuves qu'offra Hael.
-
-### Shdrazd
-**Outil** : Éclateur
-**Action** : Brise les dents rocheuses dans les tréfonds de la bouche rocailleuse d'Hael
-**Lieu** : Soliarque
-
-### Hmarlib
-**Outil** : Palan
-**Action** : Puise les entrailles brillantes des tripes enflammées d'Hael
-**Lieu** : Ardostel
-
-### Warwuag
-**Outil** : Roue
-**Action** : Façonne les sangs glaiseux aux abords de la peau moite d'Hael
-**Lieu** : Lunésie
-
-### Zhahzugodaïz
-**Outil** : Rampe
-**Action** : Monte au plus haut des épaules imprenables du corps incessant d'Hael
-**Lieu** : Névarie
-
-### Pfaftukotaïs
-**Outil** : Treuil
-**Action** : Arrache les poils durs des pores feuillus d'Hael
-**Lieu** : Lunéarque
-
-### Pompoak
-**Outil** : Balance
-**Action** : Pèse les œufs favorisés qui pendent des plus fragiles parties d'Hael
-**Lieu** : Frimastel
-
-### Nrutnap
-**Outil** : Pignon
-**Action** : Montre le squelette charpenté sous le corps décharné d'Hael
-**Lieu** : Solésie
-
-### Shtrult
-**Outil** : Tarière
-**Action** : Creuse les organes aimés protégés de l'armure d'os d'Hael
-**Lieu** : Mûrssarie
-
-**Cycle** : 
-- Après chaque 15ème Crépuscule (Héliorée), l'immense Tëhkswen le troisième, se rapièce des montagnes avant que la foudre ne l'éclate à nouveau.
-- Après chaque 30ème Aube (2 Héliorées / 6 Pentaines), Minzhijë la sixième, troque un des remèdes cachés d'Hael, lequel l'en soigna l'un de ses sens perdus, mais hélas, en plongea un autre d'une autre maladie.
-
-**Note** : Les Aïars nous parlent des Herwâs Thars comme des étrangers gigantesques (alors que pourtant nommés comme étant des nains). Ils disent que chacun d'entre eux vécu toute leur vie dans les différents trous du monde et que c'est là où résideraient encore leurs Artéfacts.
-
-## Les Premiers Êtres
-
-### Les Aryôhpéens (Êtres de Lumière)
-Les premiers êtres à fouler Hael, descendants directs des Dûwasaï Harlbhus. Ils vénéraient avec une hubris démesurée les quatre Maîtres Zimwis de l'HISM dans l'arène flamboyante de Jhalaï. Leur fierté infinie reflétait la grandeur de leur essence, et dans leur colère nécessaire, ils purifièrent les balbutiements imparfaits des premières sociétés, chassant l'imperfection dans un éclat mémorable. Ce carnage sacré forgea un monde nouveau, illuminé par leur puissance encore inoubliable.
-
-### Les Hryôhpéens
-À la même époque, les Aryôhpéens ayant siégé au tribunal majestueux de Withlaï, les illustres Hryôhpéens trônants, accumulaient avec un matérialisme avare les trésors étincelants de Hael. Leur harcèlement éclairé protégeait les richesses des mains indignes, et en excluant ceux qui ne les méritaient point, ils établirent les premières castes nobles.
-
-**Divisions** :
-- **Hylsyôrres** : Descendants glorieux de tous les Yôrres, élevant la société vers des sommets de qualité et de distinction
-- **Hydryôrres** : Ceux qui voyagèrent par les eaux
-- **Izkyôrres** : Hryôhpéens "errants" guidés par Nayûd, transformés peut-être par hôMôh
-
-### Les Humorres
-Nés sur le lit de fleurs enchantées de Wlastaï, ceux que l'on nommait autrefois les Humorres idolâtraient leur roi unique, issu des métissages les plus infidèles et les plus bestiaux. Leur dévotion sincère les mena à s'isoler, créant leur société aux milles têtes autrefois riche en diversité, avant d'en décliner jusqu'à en disparaître eux-aussi. Il est possible qu'ils aient simplement « changé », devenant peut-être les Bêstres.
-
-### Les Aïars
-Les Yômmes qui ne seraient parti ni lors de la première migration des Erréors, ni lors de la seconde des Escandirs, seraient considérés comme les ancêtres de tous les Yômmes, et appelés en raison de cela les Aïars, mais ils auraient disparu au fil des âges.
-
-**Note** : Les Aïars nous parlent des Herwâs Thars comme des étrangers gigantesques, néanmoins ils disent que chacun d'entre eux vécu toute leur vie dans les différents trous du monde et que c'est là où résideraient encore leurs Artéfacts.
-
-## Siwômiz - La Forêt Illuminée
-
-**Siwômiz** (Existence/Vérité) est la forêt illuminée de tous les Rils. Wôm en ses trois yeux serpentins attirés de ces figures luminescentes, situent chacune de ces choses brillées par Ô avant de tomber sur elles - les proies de sa curiosité - et de les avaler. De chacun de ses rejets ensemencés et chatoyants, en bourgeonne et croisse l'un des arbres marqués d'écorce blanche de la forêt illuminée de Siwômiz, elle aux feuillages irisés et dont les branches nouées fleurissent ses fruits - les RILS (Êtres).
-
-### Les Siôiz et Zimwis
-- **Siôiz** (Objet/Image/Rêve) : 72 féconds, sans-terre et aux formes hallucinées d'où fleurirent Hôi-Iôs-Sôm-Môh
-- **Zimwis** (Lieu/Concept/Notion) : 72 subtiles, sans-tête et aux biens libérés d'où pourrirent iôH-sôI-môS-hôM
-
-Les Siôiz et Zimwis ne croissent qu'en s'habillant ou qu'en éblouissant de la radiance des arbres de Siwômiz. Au grand jamais les Siôiz et Zimwis ne sont telle que sa forêt vivante, et jamais les premiers ni les secondes ne portent ses révérés fruits.
-
-## Hael et Féos
-
-### Hael
-Le sol, la terre, le monde physique. Les premiers êtres naquirent chacun en auprès des merveilles de chaque Dûwasaï Harlbhus, avant qu'ils s'éloignent d'Hael (soit en ses profondeurs ou alors les airs de Féos).
-
-### Féos
-Le ciel, l'air, l'espace au-dessus. Währos et Hwëthioz furent séparés l'un de l'autre à travers un éclair jusqu'à ce qu'il les fracasse sur Hael, les plus loin de l'un et de l'autre dans l'obscurité de Féos.
-
-## Les 8 Ordres Riliques
-
-1. **Rils-cendrées** : Solitaires, formes de base (atomes/esprits). Le plus souvent solitaires sur une de leurs nombreuses voies d'ÉoÀ dans tout Ô. Elles deviennent alors les différentes formes ou Rils du monde - les êtres, les objets, etc.
-
-2. **Rils-moindres** : Familles pures (roches, liquides, airs). Parfois les Rils-cendrées se rassemblent en famille pures plus ou moins blotties les unes contre les autres alors en différents RILS-MOINDRES de roches, liquides et airs parfaits.
-
-3. **Rils** : Mélanges distincts (minéraux, huiles, parfums). Rarement, elles se mélangent ensemble en des RILS entièrement distincts de chacune de leurs origines comme en certains minéraux, huiles et parfums. Ainsi et dès lors, et si se déplaçant contre leur chemin de moindre résistance, les Ril-cendrées se guident en les Rils des pucerons, des buissons, des bétails et de nous-même.
-
-4. **Rildées** : Formes tutélaires (forêts, océans, mouvements d'étoiles). Quand les Rils se lient de liens pourtant invisibles, tels qu'en des forêts, des océans voir des mouvements d'étoiles entier, les Rils sont si puissants mais aussi difficiles à saisir qu'ils en deviennent des RILDÉES. Les Rildées sont des formes tutélaires des forêts, des lacs voir capable de faire se mouvoir des régions ou des cités entières d'un simple hochement de tête comme les Aïars le faisait (et le font peut-être encore).
-
-5. **Rildées-majeures** : Régissent montagnes, océans, déserts, royaumes. Similairement, régissent par leurs formes (et sont parfois directement) les montagnes, les océans, les déserts ou encore les royaumes et les sociétés, tels que les huit hryôhpéens Dûwasaï Harlbhus des Yôrres, les quatre lutins Pauk Peystk des Yômmes, ou encore les douze géants Kweryas Gjuaj des Bêstres et nains Herwâs Thars (des Aïars ?).
-
-6. **Rildées-astrales** : Ordonnent rythmes, valeurs, saisons, concepts. Ont des formes ordonnant (ou chamboulant en désastres) les rythmes et les valeurs elles-mêmes, les saisons, voir l'idée de la royauté elle-même, telles que le sol Hael et le cieul Féos eux-mêmes, ou les huit Lunes WYTHSMÂH (Währos, Yekkwuî, Tëhkswen, Hsaewâl, Samianâ, Minzhijë, Âpsebjum et Hwëthioz), voir encore les sept étoiles vagabondantes.
-
-7. **Tétraques de l'HISM** : Manipulent chaque Ril-cendrée. D'un extrême les tétr
+- Certains sont en cocons suspendus ou en navigent les ruis- seaux… Les graines d’autres se gonflent en bulles et flotte
 
 [... rules truncated for context limit ...]
