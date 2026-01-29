@@ -27,13 +27,13 @@
         var isFr = lang === 'fr';
         if (stepIndex === 0) {
             var prompt0 = isFr ? "Choisissez l'Origine de votre personnage :" : "Choose your character's Origin:";
-            return prompt0 + "\n[Choice id=origin] " + prompt0 + "\n[Option Yômmes]\n[Option Yôrres]\n[Option Bêstres]";
+            return "[Choice id=origin] " + prompt0 + "\n[Option Yômmes]\n[Option Yôrres]\n[Option Bêstres]";
         }
         if (stepIndex === 1 && origin) {
             var options = PEUPLES_BY_ORIGIN[origin] || [];
             var prompt1 = isFr ? "Choisissez le Peuple parmi les " + origin + " :" : "Choose your People among " + origin + ":";
             var optionLines = options.map(function (o) { return "[Option " + o + "]"; }).join("\n");
-            return prompt1 + "\n[Choice id=peuple] " + prompt1 + "\n" + optionLines;
+            return "[Choice id=peuple] " + prompt1 + "\n" + optionLines;
         }
         if (stepIndex === 2) {
             var prompt2 = isFr ? "Quel est le nom de votre personnage ? (Optionnel, vous pouvez répondre « aucun » pour passer.)" : "What is your character's name? (Optional; you can reply \"none\" to skip.)";
