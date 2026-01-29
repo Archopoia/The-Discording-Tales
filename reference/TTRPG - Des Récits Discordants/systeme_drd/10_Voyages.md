@@ -47,9 +47,14 @@
 - **Lieux** : Villages, sanctuaires, ruines
 
 ### Table de Rencontres
-- Jet selon le temps/terrain
-- Résultat détermine le type
-- L'Éveilleur adapte au contexte
+- Fréquence selon le temps de voyage et le terrain ; l'Éveilleur peut utiliser une table ou un jet selon le contexte.
+- Résultat détermine le type de rencontre (faune, personnages, événements, lieux).
+- L'Éveilleur adapte au contexte.
+
+## Milieux et Conditions (traversée)
+
+- **Règle** (livre p.102) : Les Niv d'Outil "absorbent" les Niv d'une Condition (froid, chaleur, obscurité, etc.). S'il reste des Niv de Conditions non absorbés : jet avec Dés d'Outil ET d'Habituation vs Épreuve = Niv de Temps voyagé + Niv de Conditions. Résistance aux DS passive (Niv) — pas de jet de résistance.
+- Voir 16_GM_Quand_Lancer_Jets pour le détail.
 
 ## Terrain
 
@@ -72,10 +77,11 @@
 - **[Estimation]** : Évaluer distances/directions
 - **[Vision]** : Repérer repères
 
-### Perte de Chemin
-- Jet de Navigation requis
-- Échec = Perdu
-- Temps perdu, rencontres possibles
+### Jet de Navigation / Perte de Chemin
+- **Quand** : Orientation, risque de se perdre en voyage.
+- **Jet requis** : Roll [Géographie] ou Roll [Estimation] ou Roll [Vision] vs Niv +X (ex. Roll [Géographie] vs Niv +2).
+- **Échec** : Perdu, temps perdu, rencontres possibles.
+- Voir aussi 16_GM_Quand_Lancer_Jets.
 
 ## Provisions
 

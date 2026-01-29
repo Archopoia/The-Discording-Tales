@@ -41,7 +41,8 @@ If Ollama is not installed or not running, you’ll get a connection error; star
 
 - Auto-detected: under `reference/` we look for a folder whose name contains `TTRPG` and has a `systeme_drd` subfolder (handles encoding variants like "Récits" vs "Rcits").
 - Ensure that path exists and contains `.md` files. The index is built on first `/chat` (or when missing).
-- Optional: set `FAISS_PATH` (default `./faiss_drd`) and `RAG_SOURCE_DIR` in `.env` to override; we currently use auto-detection for the source dir.
+- **Rebuild index after adding or changing any `.md` in `systeme_drd`**: delete the `backend/faiss_drd` folder (or whatever `FAISS_PATH` points to); the index will be rebuilt on the next `/chat`.
+- Optional: set `FAISS_PATH` (default `./faiss_drd`), `RAG_TOP_K` (default 8), and `RAG_SOURCE_DIR` in `.env` to override; we currently use auto-detection for the source dir.
 
 ## Run
 

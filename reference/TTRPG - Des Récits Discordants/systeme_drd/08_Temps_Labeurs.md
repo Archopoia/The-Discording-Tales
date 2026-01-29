@@ -34,7 +34,7 @@
 ### Définition
 - **Labeur** : 8 heures de travail par jour
 - Activité productive ou d'entraînement
-- Jet de Compétence appropriée
+- **Jet requis** : Roll [Compétence] appropriée vs Niv +X — ex. Roll [Artisanat] vs Niv +1 pour une journée de craft, Roll [Médecine] vs Niv +0 pour soins, Roll [Géographie] pour recherche. Toujours utiliser une des 72 Compétences dans les crochets.
 
 ### Résultats
 
