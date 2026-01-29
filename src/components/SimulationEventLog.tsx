@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { CharacterSheetManager } from '@/game/character/CharacterSheetManager';
 import { Attribute } from '@/game/character/data/AttributeData';
 import { Competence } from '@/game/character/data/CompetenceData';
+import { Souffrance } from '@/game/character/data/SouffranceData';
 import { loadCachedCharacter, saveCachedCharacter, loadCharacterInfo, saveCharacterInfo } from '@/lib/simulationStorage';
 import type { CharacterSheetLang } from '@/lib/characterSheetI18n';
 import { t, tParam } from '@/lib/characterSheetI18n';
@@ -111,9 +112,11 @@ export default function SimulationEventLog({
 
   const confirmDiceAndStart = () => {
     const state = manager.getState();
-    const diceSum = Object.values(Competence)
-      .filter((c) => state.competences[c]?.isRevealed)
-      .reduce((s, c) => s + (state.competences[c]?.degreeCount ?? 0), 0);
+    const diceSum =
+      Object.values(Competence)
+        .filter((c) => state.competences[c]?.isRevealed)
+        .reduce((s, c) => s + (state.competences[c]?.degreeCount ?? 0), 0) +
+      Object.values(Souffrance).reduce((s, souf) => s + (state.souffrances[souf]?.resistanceDegreeCount ?? 0), 0);
     if (diceSum !== POOL_DICE) return;
     onHighlight?.(null);
     onStepAction?.(null);
@@ -182,10 +185,13 @@ export default function SimulationEventLog({
       label: t('launchSimulation', lang),
       onClick: confirmDiceAndStart,
       disabled: (() => {
-        const diceSum = creationStateDeps?.diceSum ?? Object.values(Competence)
-          .filter((c) => manager.getState().competences[c]?.isRevealed)
-          .reduce((s, c) => s + (manager.getState().competences[c]?.degreeCount ?? 0), 0);
-        return diceSum !== POOL_DICE;
+        const st = manager.getState();
+        const sum =
+          Object.values(Competence)
+            .filter((c) => st.competences[c]?.isRevealed)
+            .reduce((s, c) => s + (st.competences[c]?.degreeCount ?? 0), 0) +
+          Object.values(Souffrance).reduce((s, souf) => s + (st.souffrances[souf]?.resistanceDegreeCount ?? 0), 0);
+        return sum !== POOL_DICE;
       })(),
     });
   };
@@ -203,9 +209,12 @@ export default function SimulationEventLog({
     const attributesValid = creationStateDeps?.attributesValid ?? attributesMatchSpread(attrs);
     const revealedCount = creationStateDeps?.revealedCount ?? Object.values(Competence).filter((c) => manager.getState().competences[c]?.isRevealed).length;
     const state = manager.getState();
-    const diceSum = creationStateDeps?.diceSum ?? Object.values(Competence)
-      .filter((c) => state.competences[c]?.isRevealed)
-      .reduce((s, c) => s + (state.competences[c]?.degreeCount ?? 0), 0);
+    const diceSum = creationStateDeps?.diceSum ?? (
+      Object.values(Competence)
+        .filter((c) => state.competences[c]?.isRevealed)
+        .reduce((s, c) => s + (state.competences[c]?.degreeCount ?? 0), 0) +
+      Object.values(Souffrance).reduce((s, souf) => s + (state.souffrances[souf]?.resistanceDegreeCount ?? 0), 0)
+    );
 
     if (createStep === 'attributes') {
       onHighlight?.('create-attributes', t('createAttrTooltip', lang));

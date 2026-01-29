@@ -239,7 +239,12 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
       const lang = getCharacterSheetLang();
       const params = getRollParams(manager, comp, opts.niv, lang);
       const rollResult = rollCompetenceCheck(params);
-      const marksGained = rollResult.criticalFailure ? 5 : rollResult.success || rollResult.criticalSuccess ? 0 : 1;
+      const failureAmountForMarks = Math.max(0, opts.niv - rollResult.result);
+      const marksGained = rollResult.criticalFailure
+        ? 5
+        : rollResult.success || rollResult.criticalSuccess
+          ? 0
+          : Math.max(1, failureAmountForMarks);
       for (let i = 0; i < marksGained; i++) manager.addCompetenceMark(comp);
       updateState();
       const feedbackLines: string[] = [];
@@ -260,8 +265,8 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
         if (masteryPoints > 0) feedbackLines.push(tParam('masteryPoints', lang, masteryPoints, compName));
       }
 
-      // Souffrance: only on failure. DS = failure amount (niv − result). Souffrance tied to aptitude (e.g. Puissance → Blessures, Domination → Rancoeurs).
-      // Resistance absorbs DS equal to its level; actual DS applied; resistance gains 1 mark per actual DS.
+      // Souffrance: only on failure. Failures = (niv épreuve − result); DS = failures − niv résistance.
+      // e.g. roll -1 vs trial niv +7 → 8 failures (8 marks in rolled competence); niv 5 résistance → 3 DS (8−5), resistance gets 3 marks.
       const isFailure = !rollResult.success && !rollResult.criticalSuccess;
       if (isFailure) {
         const failureAmount = Math.max(0, opts.niv - rollResult.result);
@@ -424,9 +429,11 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
 
   const attributesValid = attributesMatchSpread(state.attributes);
   const revealedCount = Object.values(Competence).filter((c) => state.competences[c]?.isRevealed).length;
-  const diceSum = Object.values(Competence)
-    .filter((c) => state.competences[c]?.isRevealed)
-    .reduce((s, c) => s + (state.competences[c]?.degreeCount ?? 0), 0);
+  const diceSum =
+    Object.values(Competence)
+      .filter((c) => state.competences[c]?.isRevealed)
+      .reduce((s, c) => s + (state.competences[c]?.degreeCount ?? 0), 0) +
+    Object.values(Souffrance).reduce((s, souf) => s + (state.souffrances[souf]?.resistanceDegreeCount ?? 0), 0);
 
   const [creationAttributeAssignments, setCreationAttributeAssignments] = useState<Partial<Record<Attribute, number>>>(() => ({}));
 
@@ -953,16 +960,20 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
                                 <DegreeInput
                                   value={resistanceDegreeCount}
                                   onChange={(value) => {
-                                    if (godMode) {
-                                      manager.setResistanceDegreeCount(souf, value);
+                                    if (godMode || simHighlightId === 'create-dice') {
+                                      const isDiceStep = simHighlightId === 'create-dice';
+                                      const capped = isDiceStep
+                                        ? Math.min(POOL_DICE - (diceSum - resistanceDegreeCount), Math.max(0, value))
+                                        : value;
+                                      manager.setResistanceDegreeCount(souf, capped);
                                       updateState();
                                     }
                                   }}
                                   min={0}
-                                  max={undefined}
+                                  max={simHighlightId === 'create-dice' ? Math.max(0, POOL_DICE - diceSum + resistanceDegreeCount) : undefined}
                                   size="sm"
-                                  disabled={!godMode}
-                                  className=""
+                                  disabled={!godMode && simHighlightId !== 'create-dice'}
+                                  className={simHighlightId === 'create-dice' ? 'tutorial-input-highlight' : ''}
                                 />
                                 <span>{getResistanceCompetenceName(souf, lang)}</span>
                               </div>
