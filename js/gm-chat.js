@@ -233,9 +233,17 @@
             var outcome = d.criticalSuccess ? (lang === 'fr' ? 'succès critique' : 'critical success') : d.success ? (lang === 'fr' ? 'succès' : 'success') : d.criticalFailure ? (lang === 'fr' ? 'échec critique' : 'critical failure') : (lang === 'fr' ? 'échec' : 'failure');
             var nivStr = d.nivEpreuve >= 0 ? '+' + d.nivEpreuve : String(d.nivEpreuve);
             var resultStr = d.result >= 0 ? '+' + d.result : String(d.result);
-            input.value = 'Rolled ' + d.competenceLabel + ': ' + resultStr + ' vs Niv ' + nivStr + ', ' + outcome + '.';
+            var prefill = 'Rolled ' + d.competenceLabel + ': ' + resultStr + ' vs Niv ' + nivStr + ', ' + outcome + '.';
+            if (d.feedbackLines && Array.isArray(d.feedbackLines) && d.feedbackLines.length > 0) {
+                prefill += '\n' + d.feedbackLines.join('\n');
+            }
+            input.value = prefill;
+            var liveParts = [(lang === 'fr' ? 'Résultat du jet : ' : 'Roll result: ') + outcome];
+            if (d.feedbackLines && d.feedbackLines.length > 0) {
+                liveParts.push(d.feedbackLines.join('. '));
+            }
             var liveEl = document.getElementById('gm-roll-result-announce');
-            if (liveEl) liveEl.textContent = (lang === 'fr' ? 'Résultat du jet : ' : 'Roll result: ') + outcome;
+            if (liveEl) liveEl.textContent = liveParts.join('. ');
             if (container) container.scrollTop = container.scrollHeight;
         }
 

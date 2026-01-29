@@ -144,6 +144,16 @@ def _format_character_blurb(snap: dict | None) -> str:
     revealed = [c for c, d in comp.items() if isinstance(d, dict) and d.get("isRevealed")]
     if revealed:
         parts.append("Revealed competences: " + ", ".join(revealed[:12]))
+    # Marks per revealed competence (XP progression toward éprouver)
+    marks_per = []
+    for c in revealed[:12]:
+        d = comp.get(c)
+        if isinstance(d, dict):
+            marks_arr = d.get("marks") or []
+            total = sum(1 for m in marks_arr if m)
+            marks_per.append(f"{c} {total}/10")
+    if marks_per:
+        parts.append("Marks (revealed): " + ", ".join(marks_per))
     souff = snap.get("souffrances") or {}
     ds = [(s, d.get("degreeCount", 0)) for s, d in souff.items() if isinstance(d, dict)]
     ds = [(s, n) for s, n in ds if n > 0]

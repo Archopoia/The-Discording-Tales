@@ -23,6 +23,7 @@ import {
   getActionName,
   getCompetenceName,
   getResistanceCompetenceName,
+  getSouffranceName,
   getLevelName,
 } from '@/lib/characterSheetI18n';
 import DegreeInput from './ui/DegreeInput';
@@ -45,6 +46,16 @@ export type DrdRollResultDetail =
       nivEpreuve: number;
       competenceLabel: string;
       competenceKey: string;
+      /** XP / marks: gained this roll, total now, cap per competence. */
+      marksGained: number;
+      totalMarks: number;
+      marksToEpreuve: number;
+      /** Competence réalisation (éprouvé): +1 degree, marks reset. */
+      realisationCompetence: boolean;
+      realisationLabel: string | null;
+      masteryPoints: number;
+      /** Souffrance / resistance: human-readable lines for player and GM. */
+      feedbackLines: string[];
     };
 
 /** Shared style for Fermer and tutorial confirmation buttons – same look and hover glow */
@@ -178,7 +189,7 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
     };
   }, []);
 
-  // Play-tab roll bridge: expose drdPerformRoll for gm-chat.js
+  // Play-tab roll bridge: expose drdPerformRoll for gm-chat.js (marks, souffrance, realisation)
   useEffect(() => {
     function performRoll(opts: { competence: string; niv: number }) {
       const cached = loadCachedCharacter();
@@ -196,11 +207,48 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
       const lang = getCharacterSheetLang();
       const params = getRollParams(manager, comp, opts.niv, lang);
       const rollResult = rollCompetenceCheck(params);
-      const marks = rollResult.criticalFailure ? 5 : rollResult.success || rollResult.criticalSuccess ? 0 : 1;
-      for (let i = 0; i < marks; i++) manager.addCompetenceMark(comp);
+      const marksGained = rollResult.criticalFailure ? 5 : rollResult.success || rollResult.criticalSuccess ? 0 : 1;
+      for (let i = 0; i < marksGained; i++) manager.addCompetenceMark(comp);
       updateState();
+      const feedbackLines: string[] = [];
+      const compName = getCompetenceName(comp, lang);
+      const totalMarksAfterRoll = manager.getTotalMarks(comp);
+      feedbackLines.push(tParam('marksLine', lang, totalMarksAfterRoll, MARKS_TO_EPROUVER, compName));
+
+      let realisationCompetence = false;
+      let realisationLabel: string | null = null;
+      let masteryPoints = 0;
+      if (manager.isCompetenceEprouvee(comp)) {
+        manager.realizeCompetence(comp);
+        updateState();
+        realisationCompetence = true;
+        realisationLabel = tParam('eprouveDegree', lang, compName);
+        feedbackLines.push(realisationLabel);
+        masteryPoints = manager.getMasteryPoints(comp);
+        if (masteryPoints > 0) feedbackLines.push(tParam('masteryPoints', lang, masteryPoints, compName));
+      }
+
+      // Souffrance: 2 DS BLESSURES + resistance check (mirrors SimulationEventLog)
+      const souf = Souffrance.BLESSURES;
+      const ds = 2;
+      manager.addSouffranceDegree(souf, ds);
+      updateState();
+      feedbackLines.push(tParam('youSuffer', lang, ds, getSouffranceName(souf, lang)));
+      const resistFail = Math.random() < 0.5;
+      if (resistFail) {
+        manager.addSouffranceMark(souf);
+        updateState();
+        feedbackLines.push(tParam('resistanceFail', lang, getResistanceCompetenceName(souf, lang)));
+      }
+      if (manager.isSouffranceEprouvee(souf)) {
+        manager.realizeSouffrance(souf);
+        updateState();
+        feedbackLines.push(tParam('eprouveResistance', lang, getResistanceCompetenceName(souf, lang)));
+      }
+
       saveCachedCharacter(manager.getState());
       const competenceLabel = COMPETENCE_NAMES[comp];
+      const totalMarksNow = manager.getTotalMarks(comp);
       window.dispatchEvent(
         new CustomEvent<DrdRollResultDetail>('drd-roll-result', {
           detail: {
@@ -212,6 +260,13 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
             nivEpreuve: opts.niv,
             competenceLabel,
             competenceKey: comp,
+            marksGained,
+            totalMarks: totalMarksNow,
+            marksToEpreuve: MARKS_TO_EPROUVER,
+            realisationCompetence,
+            realisationLabel,
+            masteryPoints,
+            feedbackLines,
           },
         })
       );
