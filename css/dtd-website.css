@@ -1395,17 +1395,25 @@ img {
     border-color: var(--tdt-mint);
     box-shadow: 0 0 0 2px rgba(160, 253, 218, 0.2);
 }
+/* Send button – same style as character sheet Fermer (Envoyer / Close) */
 .gm-chat-input-row button {
-    padding: 0.6rem 1.25rem;
-    background: linear-gradient(to bottom, var(--tdt-beige-warm), var(--tdt-burgundy-warm));
-    border: 1px solid var(--tdt-beige-light);
-    border-radius: var(--radius-sm);
-    color: var(--tdt-cream);
+    padding: 0.5rem 1rem;
+    background: #643030;
+    color: #F3E2A9;
+    border: 2px solid #674B1B;
+    border-radius: 4px;
+    font-family: 'Quintessential', cursive, serif;
     font-weight: 600;
+    font-size: 1rem;
     cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 0 0 1px #ffebc6;
 }
-.gm-chat-input-row button:hover {
-    filter: brightness(1.1);
+.gm-chat-input-row button:hover:not(:disabled) {
+    background: #fff6df;
+    color: #4d3000;
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px 5px #ffebc6, 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 .gm-chat-input-row button:disabled {
     opacity: 0.6;
