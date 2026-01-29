@@ -191,6 +191,19 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
     };
   }, []);
 
+  // When a character is created via the Play-tab chatbot, load from sessionStorage and refresh the sheet
+  useEffect(() => {
+    const handler = () => {
+      const cached = loadCachedCharacter();
+      if (cached) {
+        manager.loadState(cached);
+        updateState();
+      }
+    };
+    window.addEventListener('drd-character-created', handler);
+    return () => window.removeEventListener('drd-character-created', handler);
+  }, [manager, updateState]);
+
   // Play-tab roll bridge: expose drdPerformRoll for gm-chat.js (marks, souffrance, realisation)
   useEffect(() => {
     function performRoll(opts: { competence: string; niv: number }) {

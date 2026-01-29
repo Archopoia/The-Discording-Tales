@@ -113,6 +113,7 @@ class ChatRequest(BaseModel):
     messages: list[ChatMessage]
     characterSnapshot: dict | None = None
     gameState: GameState | None = None
+    creation_mode: bool = Field(False, alias="creationMode")
 
 
 class ChatResponse(BaseModel):
@@ -206,6 +207,40 @@ Do not resolve the outcome yourself; wait for the player to report the result.
 The game thrives on challenge and authenticity—enforce rules and consequences without apology.
 
 Step 1: Check rules. Step 2: Apply lore. Step 3: Respond."""
+
+# Character creation mode: guide the player step-by-step. Output MUST use the exact format below so the frontend can parse.
+GM_CREATION_PROMPT = """You are the Éveilleur guiding character creation for Des Récits Discordants. Follow the rules provided below (02_Creation_Personnage). Proceed one step at a time. Your reply MUST end with exactly one of these blocks so the frontend can show buttons or an input:
+
+**For a single choice (player picks one option):**
+[Choice id=<step_id>] <Prompt text in one line.>
+[Option <Label1>]
+[Option <Label2>]
+...
+
+**For a free-text answer:**
+[Input id=<step_id>] <Prompt text.>
+
+**When character creation is finished**, output exactly:
+[Complete]
+[StateJSON] <single-line JSON object>
+
+StateJSON must be a single-line JSON with:
+- "attributes": object with exactly these keys and integer values (sum must be 18): FOR, AGI, DEX, VIG, EMP, PER, CRE, VOL. Example: {"FOR":2,"AGI":2,"DEX":1,"VIG":3,"EMP":2,"PER":2,"CRE":2,"VOL":4}
+- "revealed": array of 3 to 5 competence keys (use exact keys from the 72 competences, e.g. GRIMPE, NEGOCIATION, ESQUIVE, INVESTIGATION, MEDECINE, ARMÉ → ARME, Désarmé → DESARME, etc.). French accents removed: use ARME not Armé.
+- "degrees": object mapping each revealed competence key to its degree count (dice). Sum of degrees must be 10. Example: {"GRIMPE":3,"NEGOCIATION":2,"ESQUIVE":2,"INVESTIGATION":1,"MEDECINE":2}
+
+Valid competence keys include: ARME, DESARME, IMPROVISE, LUTTE, BOTTES, RUSES, BANDE, PROPULSE, JETE, FLUIDITE, ESQUIVE, EVASION, ESCAMOTAGE, ILLUSIONS, DISSIMULATION, GESTUELLE, MINUTIE, EQUILIBRE, VISEE, CONDUITE, HABILETE, DEBROUILLARDISE, BRICOLAGE, SAVOIR_FAIRE, ARTIFICES, SECURITE, CASSE_TETES, PAS, GRIMPE, ACROBATIE, POID, SAUT, NATATION, VOL, FOUISSAGE, CHEVAUCHEMENT, SEDUCTION, MIMETISME, CHANT, NEGOCIATION, TROMPERIE, PRESENTATION, INSTRUMENTAL, INSPIRATION, NARRATION, VISION, ODORAT, ESTIMATION, INVESTIGATION, AUDITION, GOUT, TOUCHER, RESSENTI, INTROCEPTION, ARTISANAT, NATURE, SOCIETE, JEUX, MEDECINE, PASTORALISME, INGENIERIE, GEOGRAPHIE, AGRONOMIE, COMMANDEMENT, INTIMIDATION, OBSTINANCE, GLOUTONNERIE, BEUVERIE, ENTRAILLES, APPRIVOISEMENT, OBEISSANCE, DRESSAGE.
+
+**Steps to run (in order):**
+1. Origine: [Choice id=origine] with [Option Yômmes], [Option Yôrres], [Option Bêstres]
+2. Peuple: [Choice id=peuple] with options depending on Origine (Yômmes: Aristois, Griscribes, Navillis, Méridiens; Yôrres: Hauts Ylfes, Ylfes pâles, Ylfes des lacs, Iqqars; Bêstres: Slaadéens, Tchalkchaïs)
+3. (Optional) [Input id=name] Ask for the character's name.
+4. Attributes: explain the player has 18 points to distribute across FOR, AGI, DEX, VIG, EMP, PER, CRE, VOL. Then [Input id=attributes] Ask them to reply with a short line like "FOR 2, AGI 3, DEX 1, VIG 2, EMP 2, PER 2, CRE 3, VOL 3" (numbers must sum to 18).
+5. Reveal competences: [Choice id=reveal] or [Input id=reveal] — player must choose 3 to 5 competences to reveal (list a few suggested options or ask them to list 3–5 competence names from the 72).
+6. Assign 10 dice: [Input id=degrees] — player assigns 10 dice across their revealed competences (e.g. "GRIMPE 3, NEGOCIATION 2, ESQUIVE 2, INVESTIGATION 1, MEDECINE 2").
+7. Then output [Complete] and [StateJSON] with the attributes, revealed, and degrees you collected (use the exact keys; ensure attributes sum to 18 and degrees sum to 10).
+
+Keep each reply concise. After each player message, output the next step block only. Use the rules below for flavour and options."""
 
 
 def _format_character_blurb(snap: dict | None) -> str:
@@ -337,12 +372,18 @@ def chat(req: ChatRequest):
             model = OPENAI_MODEL
 
         vs = _get_vectorstore()
-        rag_query = _build_rag_query_from_messages(messages)
-        if not rag_query.strip():
-            rag_query = last_user
-        chunks = retrieve(vs, rag_query, k=RAG_TOP_K)
-        rules_block = format_chunks_for_prompt(chunks)
-        system = _chat_system_prompt(req, rules_block)
+        if getattr(req, "creation_mode", False):
+            rag_query = "character creation steps origine peuple race attributes competences dés éduqués exprimés"
+            chunks = retrieve(vs, rag_query, k=RAG_TOP_K)
+            rules_block = format_chunks_for_prompt(chunks)
+            system = _creation_system_prompt(rules_block)
+        else:
+            rag_query = _build_rag_query_from_messages(messages)
+            if not rag_query.strip():
+                rag_query = last_user
+            chunks = retrieve(vs, rag_query, k=RAG_TOP_K)
+            rules_block = format_chunks_for_prompt(chunks)
+            system = _chat_system_prompt(req, rules_block)
 
         openai_messages = [{"role": "system", "content": system}]
         for m in messages:
@@ -368,6 +409,11 @@ def _chat_system_prompt(req: ChatRequest, rules_block: str) -> str:
     return f"{GM_INSTRUCTIONS}\n\n{GM_MECHANICS_REFERENCE}\n\n---\n\nRules and lore (use only these):\n\n{rules_block}\n\n{rag_instruction}{char_block}{game_state_block}".strip()
 
 
+def _creation_system_prompt(rules_block: str) -> str:
+    """System prompt for character creation mode. Uses creation rules (02) and strict [Choice]/[Option]/[Input]/[Complete]/[StateJSON] format."""
+    return f"{GM_CREATION_PROMPT}\n\n---\n\nRules (character creation, 02):\n\n{rules_block}".strip()
+
+
 def _stream_chat_sse(req: ChatRequest):
     """Generator yielding SSE events: data: {\"delta\": \"...\"} or data: {\"done\": true} or data: {\"error\": \"...\"}."""
     try:
@@ -376,13 +422,19 @@ def _stream_chat_sse(req: ChatRequest):
             model = OPENAI_MODEL
 
         vs = _get_vectorstore()
-        rag_query = _build_rag_query_from_messages(req.messages)
         last_user = next((m.content for m in reversed(req.messages) if m.role == "user"), "")
-        if not rag_query.strip():
-            rag_query = last_user
-        chunks = retrieve(vs, rag_query, k=RAG_TOP_K)
-        rules_block = format_chunks_for_prompt(chunks)
-        system = _chat_system_prompt(req, rules_block)
+        if getattr(req, "creation_mode", False):
+            rag_query = "character creation steps origine peuple race attributes competences dés éduqués exprimés"
+            chunks = retrieve(vs, rag_query, k=RAG_TOP_K)
+            rules_block = format_chunks_for_prompt(chunks)
+            system = _creation_system_prompt(rules_block)
+        else:
+            rag_query = _build_rag_query_from_messages(req.messages)
+            if not rag_query.strip():
+                rag_query = last_user
+            chunks = retrieve(vs, rag_query, k=RAG_TOP_K)
+            rules_block = format_chunks_for_prompt(chunks)
+            system = _chat_system_prompt(req, rules_block)
 
         openai_messages = [{"role": "system", "content": system}]
         for m in req.messages:

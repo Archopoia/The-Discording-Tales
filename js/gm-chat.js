@@ -12,6 +12,13 @@
     })();
     const CHAT_STORAGE_KEY = 'drd_gm_chat_messages';
     const CHAR_STORAGE_KEY = 'drd_simulation_character';
+    const MARKS_TO_EPROUVER = 10;
+
+    var ALL_ATTRIBUTE_KEYS = ['FOR', 'AGI', 'DEX', 'VIG', 'EMP', 'PER', 'CRE', 'VOL'];
+    var ALL_APTITUDE_KEYS = ['PUISSANCE', 'AISANCE', 'PRECISION', 'ATHLETISME', 'CHARISME', 'DETECTION', 'REFLEXION', 'DOMINATION'];
+    var APTITUDE_ATTR = { PUISSANCE: ['FOR', 'AGI', 'DEX'], AISANCE: ['AGI', 'DEX', 'VIG'], PRECISION: ['DEX', 'PER', 'CRE'], ATHLETISME: ['VIG', 'FOR', 'AGI'], CHARISME: ['EMP', 'VOL', 'PER'], DETECTION: ['PER', 'CRE', 'EMP'], REFLEXION: ['CRE', 'EMP', 'VOL'], DOMINATION: ['VOL', 'VIG', 'FOR'] };
+    var ALL_COMPETENCE_KEYS = ['ARME','DESARME','IMPROVISE','LUTTE','BOTTES','RUSES','BANDE','PROPULSE','JETE','FLUIDITE','ESQUIVE','EVASION','ESCAMOTAGE','ILLUSIONS','DISSIMULATION','GESTUELLE','MINUTIE','EQUILIBRE','VISEE','CONDUITE','HABILETE','DEBROUILLARDISE','BRICOLAGE','SAVOIR_FAIRE','ARTIFICES','SECURITE','CASSE_TETES','PAS','GRIMPE','ACROBATIE','POID','SAUT','NATATION','VOL','FOUISSAGE','CHEVAUCHEMENT','SEDUCTION','MIMETISME','CHANT','NEGOCIATION','TROMPERIE','PRESENTATION','INSTRUMENTAL','INSPIRATION','NARRATION','VISION','ESTIMATION','TOUCHER','INVESTIGATION','GOUT','RESSENTI','ODORAT','AUDITION','INTEROCEPTION','ARTISANAT','MEDECINE','INGENIERIE','JEUX','SOCIETE','GEOGRAPHIE','NATURE','PASTORALISME','AGRONOMIE','COMMANDEMENT','OBEISSANCE','OBSTINANCE','GLOUTONNERIE','BEUVERIE','ENTRAILLES','INTIMIDATION','APPRIVOISEMENT','DRESSAGE'];
+    var ALL_SOUFFRANCE_KEYS = ['BLESSURES', 'FATIGUES', 'ENTRAVES', 'DISETTES', 'ADDICTIONS', 'MALADIES', 'FOLIES', 'RANCOEURS'];
 
     /** Regex: "Roll [Compétence] vs Niv ±X" (parseable line from GM). */
     const ROLL_REQUEST_RE = /Roll\s*\[\s*([^\]]+)\s*\]\s*vs\s*Niv\s*([+-]?\d+)/i;
@@ -39,6 +46,8 @@
     let pendingRoll = null;
     /** True when last GM message mentions a roll but format was not parseable (no Roll button). */
     let rollFormatHint = false;
+    /** True when user clicked "Create a character" and we're in the creation flow until [Complete]. */
+    let creationMode = false;
 
     function loadMessages() {
         try {
@@ -69,6 +78,49 @@
         } catch {
             return null;
         }
+    }
+
+    /** True if a character exists in sessionStorage (non-empty state with attributes). */
+    function hasCharacter() {
+        var snap = getCharacterSnapshot();
+        if (!snap || typeof snap !== 'object') return false;
+        var attrs = snap.attributes;
+        return attrs && typeof attrs === 'object' && Object.keys(attrs).length > 0;
+    }
+
+    /** Show "Create a character" when no character and not in creation mode; else show checkbox + input row. */
+    function updateInputVisibility() {
+        var noEl = document.getElementById('gm-chat-no-character');
+        var hasEl = document.getElementById('gm-chat-has-character');
+        if (!noEl || !hasEl) return;
+        var showInput = hasCharacter() || creationMode;
+        noEl.style.display = showInput ? 'none' : 'block';
+        hasEl.style.display = showInput ? 'block' : 'none';
+    }
+
+    /** Show hint above input when in creation mode and last assistant message has no choice/input buttons. */
+    function updateCreationNoButtonsHint() {
+        var hintEl = document.getElementById('gm-creation-no-buttons-hint');
+        if (!hintEl) return;
+        if (!creationMode) {
+            hintEl.style.display = 'none';
+            return;
+        }
+        var lastAssistant = messages.filter(function (m) { return m.role === 'assistant'; }).pop();
+        if (!lastAssistant) {
+            hintEl.style.display = 'none';
+            return;
+        }
+        var blocks = parseCreationBlocks(lastAssistant.content);
+        var hasButtons = (blocks.choice && blocks.choice.options.length > 0) || blocks.input;
+        if (hasButtons) {
+            hintEl.style.display = 'none';
+            return;
+        }
+        hintEl.style.display = 'block';
+        hintEl.textContent = getLang() === 'fr'
+            ? "Pas de boutons ? Tapez « donne-moi les boutons » pour que le guide renvoie les options."
+            : "No buttons? Type 'give me the buttons' to get the options again.";
     }
 
     /** Parse GM reply for "Roll [X] vs Niv Y"; set pendingRoll and return it. */
@@ -116,6 +168,155 @@
         var div = document.createElement('div');
         div.textContent = s;
         return div.innerHTML;
+    }
+
+    function contrib(value, divisor) {
+        var v = Number(value);
+        return v >= 0 ? Math.floor(v / divisor) : Math.ceil(v / divisor);
+    }
+
+    /** Build aptitude levels from attributes (same formula as CharacterSheetManager). */
+    function computeAptitudeLevels(attributes) {
+        var levels = {};
+        ALL_APTITUDE_KEYS.forEach(function (apt) {
+            var arr = APTITUDE_ATTR[apt];
+            if (!arr) { levels[apt] = 0; return; }
+            var a1 = Number(attributes[arr[0]]) || 0, a2 = Number(attributes[arr[1]]) || 0, a3 = Number(attributes[arr[2]]) || 0;
+            levels[apt] = contrib(a1, 10 / 6) + contrib(a2, 10 / 3) + contrib(a3, 10);
+        });
+        return levels;
+    }
+
+    /** Build full CharacterSheetState from StateJSON string (attributes, revealed, degrees). */
+    function buildCharacterSheetState(stateJsonStr) {
+        var data;
+        try {
+            data = JSON.parse(stateJsonStr);
+        } catch (e) {
+            return null;
+        }
+        var attrs = data.attributes || {};
+        var attributes = {};
+        ALL_ATTRIBUTE_KEYS.forEach(function (k) {
+            var v = attrs[k];
+            attributes[k] = Math.max(-50, Math.min(50, typeof v === 'number' ? v : 0));
+        });
+        var aptitudeLevels = computeAptitudeLevels(attributes);
+        var competences = {};
+        ALL_COMPETENCE_KEYS.forEach(function (k) {
+            competences[k] = {
+                degreeCount: 0,
+                isRevealed: false,
+                marks: new Array(MARKS_TO_EPROUVER).fill(false),
+                partialMarks: 0,
+                eternalMarks: 0,
+                eternalMarkIndices: [],
+                masteries: [],
+                masteryPoints: 0
+            };
+        });
+        var revealed = data.revealed || [];
+        var degrees = data.degrees || {};
+        revealed.forEach(function (k) {
+            if (competences[k]) competences[k].isRevealed = true;
+        });
+        Object.keys(degrees).forEach(function (k) {
+            if (competences[k]) competences[k].degreeCount = Math.max(0, Math.floor(Number(degrees[k]) || 0));
+        });
+        var souffrances = {};
+        ALL_SOUFFRANCE_KEYS.forEach(function (k) {
+            souffrances[k] = {
+                degreeCount: 0,
+                resistanceDegreeCount: 0,
+                marks: new Array(MARKS_TO_EPROUVER).fill(false),
+                eternalMarks: 0,
+                eternalMarkIndices: []
+            };
+        });
+        return { attributes: attributes, aptitudeLevels: aptitudeLevels, competences: competences, souffrances: souffrances, freeMarks: 0 };
+    }
+
+    /** On creation complete: save state, dispatch event, exit creation mode. */
+    function handleCreationComplete(reply) {
+        var blocks = parseCreationBlocks(reply);
+        if (!blocks.complete) return;
+        var stateJsonStr = blocks.stateJson;
+        var state = stateJsonStr ? buildCharacterSheetState(stateJsonStr) : null;
+        if (state) {
+            try {
+                sessionStorage.setItem(CHAR_STORAGE_KEY, JSON.stringify(state));
+            } catch (e) {}
+            try {
+                window.dispatchEvent(new CustomEvent('drd-character-created'));
+            } catch (e2) {}
+        }
+        creationMode = false;
+        updateInputVisibility();
+    }
+
+    /** Return display-only text for creation messages: strip [Choice], [Option], [Input], [Complete], [StateJSON] tags so only the prompt text is shown. */
+    function stripCreationTags(content) {
+        if (!content || typeof content !== 'string') return content || '';
+        var lines = content.split(/\r?\n/);
+        var out = [];
+        for (var i = 0; i < lines.length; i++) {
+            var line = lines[i];
+            var trimmed = line.trim();
+            var choiceMatch = trimmed.match(/^\[Choice\s+id=\S+\]\s*(.*)$/i);
+            if (choiceMatch) {
+                var prompt = choiceMatch[1].trim();
+                if (prompt) out.push(prompt);
+                continue;
+            }
+            if (/^\[Option\s+[^\]]+\]/i.test(trimmed)) continue;
+            var inputMatch = trimmed.match(/^\[Input\s+id=\S+\]\s*(.*)$/i);
+            if (inputMatch) {
+                var inputPrompt = inputMatch[1].trim();
+                if (inputPrompt) out.push(inputPrompt);
+                continue;
+            }
+            if (/^\[Complete\]/i.test(trimmed)) continue;
+            if (/^\[StateJSON\]/i.test(trimmed)) continue;
+            out.push(line);
+        }
+        return out.join('\n').trim();
+    }
+
+    /** Parse creation-mode blocks from assistant content. Returns { choice: { id, prompt, options }, input: { id, prompt }, complete, stateJson } (only one of choice/input set per message). */
+    function parseCreationBlocks(content) {
+        if (!content || typeof content !== 'string') return {};
+        var lines = content.split(/\r?\n/);
+        var out = { choice: null, input: null, complete: false, stateJson: null };
+        for (var i = 0; i < lines.length; i++) {
+            var line = lines[i].trim();
+            var choiceMatch = line.match(/^\[Choice\s+id=(\S+)\]\s*(.*)$/i);
+            if (choiceMatch) {
+                out.choice = { id: choiceMatch[1], prompt: choiceMatch[2].trim(), options: [] };
+                i++;
+                while (i < lines.length) {
+                    var optLine = lines[i].trim();
+                    var optMatch = optLine.match(/^\[Option\s+([^\]]+)\]/i);
+                    if (optMatch) {
+                        out.choice.options.push(optMatch[1].trim());
+                        i++;
+                    } else if (/^\[Choice\s/i.test(optLine) || /^\[Input\s/i.test(optLine) || /^\[Complete\]/i.test(optLine)) break;
+                    else i++;
+                }
+                continue;
+            }
+            var inputMatch = line.match(/^\[Input\s+id=(\S+)\]\s*(.*)$/i);
+            if (inputMatch) {
+                out.input = { id: inputMatch[1], prompt: inputMatch[2].trim() };
+                continue;
+            }
+            if (/^\[Complete\]/i.test(line)) {
+                out.complete = true;
+                var nextLine = lines[i + 1] && lines[i + 1].trim();
+                var stateMatch = nextLine && nextLine.match(/^\[StateJSON\]\s*(.+)$/i);
+                if (stateMatch) out.stateJson = stateMatch[1].trim();
+            }
+        }
+        return out;
     }
 
     /** Post-process assistant message HTML: turn "Roll [X] vs Niv Y" into styled inline + Roll button (scoped to that message). */
@@ -232,12 +433,13 @@
             if (existingStream) {
                 var streamBody = existingStream.querySelector('.gm-chat-body');
                 if (streamBody) {
-                    var html = markdownToHtml(streamingContent);
+                    var toShow = creationMode ? stripCreationTags(streamingContent) : streamingContent;
+                    var html = markdownToHtml(toShow);
                     if (html != null) {
                         html = injectInlineRollButtons(html);
                         streamBody.innerHTML = html;
                     } else {
-                        streamBody.textContent = streamingContent;
+                        streamBody.textContent = toShow;
                     }
                     var cursor = streamBody.querySelector('.gm-stream-cursor');
                     if (!cursor) {
@@ -264,12 +466,45 @@
             var body = document.createElement('div');
             body.className = 'gm-chat-body' + (m.role === 'assistant' ? ' gm-chat-body--md' : '');
             if (m.role === 'assistant') {
-                var html = markdownToHtml(m.content);
+                var bodyContent = creationMode ? stripCreationTags(m.content) : m.content;
+                var html = markdownToHtml(bodyContent);
                 if (html != null) {
                     html = injectInlineRollButtons(html);
                     body.innerHTML = html;
                 } else {
-                    body.textContent = m.content;
+                    body.textContent = bodyContent;
+                }
+                if (creationMode) {
+                    var blocks = parseCreationBlocks(m.content);
+                    if (blocks.choice && blocks.choice.options.length > 0) {
+                        var choiceWrap = document.createElement('div');
+                        choiceWrap.className = 'gm-creation-block gm-creation-options';
+                        blocks.choice.options.forEach(function (label) {
+                            var btn = document.createElement('button');
+                            btn.type = 'button';
+                            btn.className = 'gm-creation-option-btn';
+                            btn.setAttribute('data-option', label);
+                            btn.textContent = label;
+                            choiceWrap.appendChild(btn);
+                        });
+                        body.appendChild(choiceWrap);
+                    } else if (blocks.input) {
+                        var inputWrap = document.createElement('div');
+                        inputWrap.className = 'gm-creation-block gm-creation-input';
+                        var inp = document.createElement('input');
+                        inp.type = 'text';
+                        inp.className = 'gm-creation-input-field';
+                        inp.setAttribute('data-input-id', blocks.input.id);
+                        inp.placeholder = blocks.input.prompt || (getLang() === 'fr' ? 'Votre réponse…' : 'Your answer…');
+                        inp.setAttribute('aria-label', blocks.input.prompt || '');
+                        var subBtn = document.createElement('button');
+                        subBtn.type = 'button';
+                        subBtn.className = 'gm-creation-input-submit';
+                        subBtn.textContent = getLang() === 'fr' ? 'Envoyer' : 'Send';
+                        inputWrap.appendChild(inp);
+                        inputWrap.appendChild(subBtn);
+                        body.appendChild(inputWrap);
+                    }
                 }
             } else {
                 var userContent = m.content;
@@ -294,12 +529,13 @@
             streamRole.textContent = gmLabel;
             var streamBody = document.createElement('div');
             streamBody.className = 'gm-chat-body gm-chat-body--md';
-            var html = markdownToHtml(streamingContent);
+            var streamToShow = creationMode ? stripCreationTags(streamingContent) : streamingContent;
+            var html = markdownToHtml(streamToShow);
             if (html != null) {
                 html = injectInlineRollButtons(html);
                 streamBody.innerHTML = html;
             } else {
-                streamBody.textContent = streamingContent;
+                streamBody.textContent = streamToShow;
             }
             var cursor = document.createElement('span');
             cursor.className = 'gm-stream-cursor';
@@ -316,6 +552,7 @@
             s.textContent = appendStatus;
             container.appendChild(s);
         }
+        if (creationMode) updateCreationNoButtonsHint();
         container.scrollTop = container.scrollHeight;
     }
 
@@ -484,8 +721,8 @@
         if (el) el.remove();
     }
 
-    function sendMessage(container, input, sendBtn, useCharCheckbox, hintEl) {
-        var text = (input && input.value) ? input.value.trim() : '';
+    function sendMessage(container, input, sendBtn, useCharCheckbox, hintEl, optionalContent) {
+        var text = (optionalContent !== undefined && optionalContent !== null) ? String(optionalContent).trim() : ((input && input.value) ? input.value.trim() : '');
         if (!text) return;
 
         var useChar = useCharCheckbox && useCharCheckbox.checked;
@@ -506,6 +743,7 @@
         if (snapshot) body.characterSnapshot = snapshot;
         var gameState = getGameState();
         if (gameState) body.gameState = gameState;
+        if (creationMode) body.creationMode = true;
         pendingRoll = null;
         rollFormatHint = false;
 
@@ -525,6 +763,9 @@
             rollFormatHint = !pendingRoll && rollMentionedButNotParseable(reply);
             renderMessages(container);
             if (typeof updatePendingRollHint === 'function' && input && hintEl) updatePendingRollHint(input, hintEl);
+            if (creationMode && parseCreationBlocks(reply).complete) {
+                handleCreationComplete(reply);
+            }
         }
 
         function failReply(err) {
@@ -662,8 +903,16 @@
             });
             hintEl.appendChild(textPart);
             hintEl.appendChild(rollBtn);
+            var hasCharEl = inputWrap.querySelector('.gm-chat-has-character');
             var row = inputWrap.querySelector('.gm-chat-input-row');
-            inputWrap.insertBefore(hintEl, row);
+            if (hasCharEl && row) hasCharEl.insertBefore(hintEl, row);
+            else if (row) inputWrap.insertBefore(hintEl, row);
+            var noButtonsHint = document.createElement('div');
+            noButtonsHint.id = 'gm-creation-no-buttons-hint';
+            noButtonsHint.className = 'gm-creation-no-buttons-hint';
+            noButtonsHint.setAttribute('aria-live', 'polite');
+            noButtonsHint.style.display = 'none';
+            if (hasCharEl) hasCharEl.insertBefore(noButtonsHint, hasCharEl.firstChild);
             var liveRegion = document.createElement('div');
             liveRegion.id = 'gm-roll-result-announce';
             liveRegion.setAttribute('aria-live', 'polite');
@@ -676,9 +925,24 @@
         loadMessages();
         renderMessages(container);
         updatePendingRollHint(input, hintEl);
+        updateInputVisibility();
+        updateCreationNoButtonsHint();
 
         function submit() {
             sendMessage(container, input, sendBtn, useChar, hintEl);
+        }
+
+        var createBtn = document.getElementById('gm-chat-create-character');
+        if (createBtn) {
+            createBtn.addEventListener('click', function () {
+                creationMode = true;
+                updateInputVisibility();
+                messages = [];
+                saveMessages();
+                renderMessages(container);
+                var firstMsg = getLang() === 'fr' ? 'Je veux créer un personnage.' : 'I want to create a character.';
+                sendMessage(container, input, sendBtn, useChar, hintEl, firstMsg);
+            });
         }
 
         if (sendBtn) sendBtn.addEventListener('click', submit);
@@ -693,14 +957,30 @@
 
         if (container) {
             container.addEventListener('click', function (e) {
-                var btn = e.target && e.target.closest && e.target.closest('.gm-roll-inline-btn');
-                if (!btn) return;
-                var comp = btn.getAttribute('data-competence');
-                var nivStr = btn.getAttribute('data-niv');
-                var niv = parseInt(nivStr, 10);
-                if (!comp || isNaN(niv)) return;
-                pendingRoll = { competence: comp, niv: niv };
-                performPlayTabRoll(container, input, hintEl, sendBtn, useChar);
+                var rollBtn = e.target && e.target.closest && e.target.closest('.gm-roll-inline-btn');
+                if (rollBtn) {
+                    var comp = rollBtn.getAttribute('data-competence');
+                    var nivStr = rollBtn.getAttribute('data-niv');
+                    var niv = parseInt(nivStr, 10);
+                    if (!comp || isNaN(niv)) return;
+                    pendingRoll = { competence: comp, niv: niv };
+                    performPlayTabRoll(container, input, hintEl, sendBtn, useChar);
+                    return;
+                }
+                var optionBtn = e.target && e.target.closest && e.target.closest('.gm-creation-option-btn');
+                if (optionBtn && creationMode) {
+                    var option = optionBtn.getAttribute('data-option');
+                    if (option) sendMessage(container, input, sendBtn, useChar, hintEl, option);
+                    return;
+                }
+                var inputSubBtn = e.target && e.target.closest && e.target.closest('.gm-creation-input-submit');
+                if (inputSubBtn && creationMode) {
+                    var block = inputSubBtn.closest('.gm-creation-block');
+                    var field = block ? block.querySelector('.gm-creation-input-field') : null;
+                    var val = field ? field.value.trim() : '';
+                    if (val) sendMessage(container, input, sendBtn, useChar, hintEl, val);
+                    return;
+                }
             });
         }
     }

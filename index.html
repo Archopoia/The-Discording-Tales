@@ -358,13 +358,20 @@
             <div class="gm-chat-wrapper rules-section">
                 <div class="gm-chat-messages" id="gm-chat-messages" role="log" aria-live="polite"></div>
                 <div class="gm-chat-input-wrap">
-                    <label class="gm-chat-checkbox-label">
-                        <input type="checkbox" id="gm-use-character" aria-label="Use current character"/>
-                        <span data-en="Use current character" data-fr="Utiliser le personnage actuel">Use current character</span>
-                    </label>
-                    <div class="gm-chat-input-row">
-                        <input type="text" id="gm-chat-input" placeholder="Your action or roll result…" aria-label="Message to GM" autocomplete="off"/>
-                        <button type="button" id="gm-chat-send" data-en="Send" data-fr="Envoyer">Send</button>
+                    <div class="gm-chat-no-character" id="gm-chat-no-character" style="display: none;">
+                        <button type="button" id="gm-chat-create-character" class="cta-button gm-chat-create-character-btn">
+                            <span data-en="Create a character" data-fr="Créer un personnage">Create a character</span>
+                        </button>
+                    </div>
+                    <div class="gm-chat-has-character" id="gm-chat-has-character">
+                        <label class="gm-chat-checkbox-label">
+                            <input type="checkbox" id="gm-use-character" aria-label="Use current character"/>
+                            <span data-en="Use current character" data-fr="Utiliser le personnage actuel">Use current character</span>
+                        </label>
+                        <div class="gm-chat-input-row">
+                            <input type="text" id="gm-chat-input" placeholder="Your action or roll result…" aria-label="Message to GM" autocomplete="off"/>
+                            <button type="button" id="gm-chat-send" data-en="Send" data-fr="Envoyer">Send</button>
+                        </div>
                     </div>
                 </div>
             </div>

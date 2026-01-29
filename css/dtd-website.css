@@ -1424,6 +1424,13 @@ img {
     color: var(--tdt-beige-light);
 }
 
+.gm-creation-no-buttons-hint {
+    font-size: 0.9rem;
+    color: var(--tdt-mint);
+    padding: 0.4rem 0;
+    margin-bottom: 0.25rem;
+}
+
 /* Inline Roll request inside GM message: styled text + Roll button (scoped to that message) */
 .gm-chat-messages .msg.assistant .gm-roll-request-inline {
     display: inline-flex;
@@ -1459,6 +1466,79 @@ img {
     background: #fff6df;
     color: #4d3000;
     transform: translateY(-1px);
+}
+
+/* Character creation: option buttons and input (same look as roll / chat input) */
+.gm-chat-messages .msg.assistant .gm-creation-block.gm-creation-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.6rem;
+}
+.gm-chat-messages .msg.assistant .gm-creation-option-btn {
+    flex-shrink: 0;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.85rem;
+    background: #643030;
+    color: #F3E2A9;
+    border: 2px solid #674B1B;
+    border-radius: 4px;
+    font-family: 'Quintessential', cursive, serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 0 0 1px #ffebc6;
+}
+.gm-chat-messages .msg.assistant .gm-creation-option-btn:hover {
+    background: #fff6df;
+    color: #4d3000;
+    transform: translateY(-1px);
+    box-shadow: 0 0 15px 5px #ffebc6, 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.gm-chat-messages .msg.assistant .gm-creation-block.gm-creation-input {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.6rem;
+    align-items: center;
+}
+.gm-chat-messages .msg.assistant .gm-creation-input-field {
+    flex: 1;
+    min-width: 0;
+    padding: 0.6rem 0.75rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--tdt-beige-warm);
+    border-radius: var(--radius-sm);
+    color: var(--tdt-cream);
+    font-size: 1rem;
+    font-family: inherit;
+}
+.gm-chat-messages .msg.assistant .gm-creation-input-field::placeholder {
+    color: rgba(255, 235, 205, 0.5);
+}
+.gm-chat-messages .msg.assistant .gm-creation-input-field:focus {
+    outline: none;
+    border-color: var(--tdt-mint);
+    box-shadow: 0 0 0 2px rgba(160, 253, 218, 0.2);
+}
+.gm-chat-messages .msg.assistant .gm-creation-input-submit {
+    flex-shrink: 0;
+    padding: 0.5rem 1rem;
+    background: #643030;
+    color: #F3E2A9;
+    border: 2px solid #674B1B;
+    border-radius: 4px;
+    font-family: 'Quintessential', cursive, serif;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 0 0 1px #ffebc6;
+}
+.gm-chat-messages .msg.assistant .gm-creation-input-submit:hover {
+    background: #fff6df;
+    color: #4d3000;
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px 5px #ffebc6, 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* User message: formatted roll result (outcome + dice table + effects table) */
