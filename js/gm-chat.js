@@ -10,6 +10,12 @@
 
     /** Regex: "Roll [Compétence] vs Niv ±X" (parseable line from GM). */
     const ROLL_REQUEST_RE = /Roll\s*\[\s*([^\]]+)\s*\]\s*vs\s*Niv\s*([+-]?\d+)/i;
+    /** GM mentioned a roll but not in parseable format (e.g. "Roll Charisme vs Niv 4 - 2" without brackets). */
+    function rollMentionedButNotParseable(reply) {
+        if (!reply || typeof reply !== 'string') return false;
+        if (ROLL_REQUEST_RE.test(reply)) return false;
+        return /Roll\s/i.test(reply) && /Niv\s/i.test(reply);
+    }
 
     /** In-world phrases shown while waiting for the GM (streaming or not). */
     const THINKING_PHRASES_EN = [
@@ -26,6 +32,8 @@
     let messages = [];
     /** Last roll requested by GM: { competence: string, niv: number } or null. Cleared when user sends a message. */
     let pendingRoll = null;
+    /** True when last GM message mentions a roll but format was not parseable (no Roll button). */
+    let rollFormatHint = false;
 
     function loadMessages() {
         try {
@@ -35,7 +43,12 @@
             messages = [];
         }
         var lastAssistant = messages.filter(function (m) { return m.role === 'assistant'; }).pop();
-        if (lastAssistant) parseReplyForRollRequest(lastAssistant.content);
+        if (lastAssistant) {
+            parseReplyForRollRequest(lastAssistant.content);
+            rollFormatHint = !pendingRoll && rollMentionedButNotParseable(lastAssistant.content);
+        } else {
+            rollFormatHint = false;
+        }
     }
 
     function saveMessages() {
@@ -162,16 +175,72 @@
     function updatePendingRollHint(input, hintEl) {
         if (!hintEl || !input) return;
         var lang = getLang();
+        var textPart = hintEl.querySelector('.gm-pending-roll-hint-text');
+        var rollBtn = hintEl.querySelector('.gm-roll-btn');
         if (pendingRoll) {
             var nivStr = pendingRoll.niv >= 0 ? '+' + pendingRoll.niv : String(pendingRoll.niv);
-            hintEl.textContent = (lang === 'fr' ? 'Jet demandé : [' : 'Roll requested: [') + pendingRoll.competence + '] vs Niv ' + nivStr + (lang === 'fr' ? '. Lancez dans la feuille de personnage ci-dessous, puis rapportez le résultat ici.' : '. Roll in the character sheet below, then report the result here.');
+            var msg = (lang === 'fr' ? 'Jet demandé : [' : 'Roll requested: [') + pendingRoll.competence + '] vs Niv ' + nivStr + (lang === 'fr' ? '. ' : '. ');
+            if (textPart) textPart.textContent = msg;
             hintEl.style.display = 'block';
+            hintEl.classList.remove('gm-pending-roll-hint--format-only');
+            if (rollBtn) rollBtn.style.display = 'inline-block';
+            input.placeholder = lang === 'fr' ? 'Résultat du jet ou votre action…' : 'Report roll result or your action…';
+        } else if (rollFormatHint) {
+            var formatMsg = lang === 'fr'
+                ? 'Le MJ a demandé un jet mais pas au format reconnu. Demandez-lui d\'écrire exactement : Roll [Compétence] vs Niv +X (ex. Roll [Négociation] vs Niv +2). Ou tapez votre résultat ci-dessous.'
+                : 'The GM asked for a roll but not in the recognized format. Ask them to write exactly: Roll [Compétence] vs Niv +X (e.g. Roll [Négociation] vs Niv +2). Or type your result below.';
+            if (textPart) textPart.textContent = formatMsg;
+            hintEl.style.display = 'block';
+            hintEl.classList.add('gm-pending-roll-hint--format-only');
+            if (rollBtn) rollBtn.style.display = 'none';
             input.placeholder = lang === 'fr' ? 'Résultat du jet ou votre action…' : 'Report roll result or your action…';
         } else {
             hintEl.style.display = 'none';
-            hintEl.textContent = '';
+            if (textPart) textPart.textContent = '';
+            if (rollBtn) rollBtn.style.display = 'none';
             input.placeholder = lang === 'fr' ? 'Votre action ou résultat de jet…' : 'Your action or roll result…';
         }
+    }
+
+    function performPlayTabRoll(container, input, hintEl) {
+        if (!pendingRoll || !input) return;
+        var lang = getLang();
+        var drdPerformRoll = typeof window.drdPerformRoll === 'function' ? window.drdPerformRoll : null;
+        if (!drdPerformRoll) {
+            var msg = lang === 'fr' ? 'Ouvrez la feuille de personnage ci-dessous, lancez le jet, puis tapez le résultat ici.' : 'Open the character sheet below, roll there, then type the result here.';
+            input.placeholder = msg;
+            return;
+        }
+        var textPart = hintEl ? hintEl.querySelector('.gm-pending-roll-hint-text') : null;
+        var rollBtn = hintEl ? hintEl.querySelector('.gm-roll-btn') : null;
+        var rollingMsg = lang === 'fr' ? 'Jet en cours…' : 'Rolling…';
+        if (textPart) textPart.textContent = rollingMsg;
+        if (rollBtn) rollBtn.disabled = true;
+
+        function onResult(ev) {
+            window.removeEventListener('drd-roll-result', onResult);
+            if (rollBtn) rollBtn.disabled = false;
+            updatePendingRollHint(input, hintEl);
+            var d = ev.detail;
+            if (d.error === 'no_character') {
+                input.value = lang === 'fr' ? "Aucun personnage chargé. Créez-en un dans la feuille ci-dessous et cochez « Utiliser le personnage actuel »." : "No character loaded. Create one in the sheet below and use 'Use current character'.";
+                return;
+            }
+            if (d.error === 'unknown_competence') {
+                input.value = lang === 'fr' ? 'Compétence introuvable. Saisissez le résultat du jet manuellement.' : 'Could not find that competence. Type your roll result manually.';
+                return;
+            }
+            var outcome = d.criticalSuccess ? (lang === 'fr' ? 'succès critique' : 'critical success') : d.success ? (lang === 'fr' ? 'succès' : 'success') : d.criticalFailure ? (lang === 'fr' ? 'échec critique' : 'critical failure') : (lang === 'fr' ? 'échec' : 'failure');
+            var nivStr = d.nivEpreuve >= 0 ? '+' + d.nivEpreuve : String(d.nivEpreuve);
+            var resultStr = d.result >= 0 ? '+' + d.result : String(d.result);
+            input.value = 'Rolled ' + d.competenceLabel + ': ' + resultStr + ' vs Niv ' + nivStr + ', ' + outcome + '.';
+            var liveEl = document.getElementById('gm-roll-result-announce');
+            if (liveEl) liveEl.textContent = (lang === 'fr' ? 'Résultat du jet : ' : 'Roll result: ') + outcome;
+            if (container) container.scrollTop = container.scrollHeight;
+        }
+
+        window.addEventListener('drd-roll-result', onResult);
+        drdPerformRoll({ competence: pendingRoll.competence, niv: pendingRoll.niv });
     }
 
     function setError(container, err) {
@@ -213,6 +282,7 @@
         var gameState = getGameState();
         if (gameState) body.gameState = gameState;
         pendingRoll = null;
+        rollFormatHint = false;
 
         var thinkingInterval = setInterval(function () {
             renderMessages(container, getThinkingPhrase());
@@ -227,6 +297,7 @@
             messages.push({ role: 'assistant', content: reply });
             saveMessages();
             parseReplyForRollRequest(reply);
+            rollFormatHint = !pendingRoll && rollMentionedButNotParseable(reply);
             renderMessages(container);
             if (typeof updatePendingRollHint === 'function' && input && hintEl) updatePendingRollHint(input, hintEl);
         }
@@ -353,8 +424,28 @@
             hintEl.className = 'gm-pending-roll-hint';
             hintEl.setAttribute('aria-live', 'polite');
             hintEl.style.display = 'none';
+            var textPart = document.createElement('span');
+            textPart.className = 'gm-pending-roll-hint-text';
+            var rollBtn = document.createElement('button');
+            rollBtn.type = 'button';
+            rollBtn.className = 'gm-roll-btn';
+            rollBtn.setAttribute('aria-label', getLang() === 'fr' ? 'Lancer le jet demandé' : 'Roll the requested check');
+            rollBtn.textContent = getLang() === 'fr' ? 'Lancer le jet' : 'Roll';
+            rollBtn.style.display = 'none';
+            rollBtn.addEventListener('click', function () {
+                performPlayTabRoll(container, input, hintEl);
+            });
+            hintEl.appendChild(textPart);
+            hintEl.appendChild(rollBtn);
             var row = inputWrap.querySelector('.gm-chat-input-row');
             inputWrap.insertBefore(hintEl, row);
+            var liveRegion = document.createElement('div');
+            liveRegion.id = 'gm-roll-result-announce';
+            liveRegion.setAttribute('aria-live', 'polite');
+            liveRegion.setAttribute('aria-atomic', 'true');
+            liveRegion.className = 'screen-reader-text';
+            liveRegion.style.cssText = 'position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0';
+            inputWrap.appendChild(liveRegion);
         }
 
         loadMessages();

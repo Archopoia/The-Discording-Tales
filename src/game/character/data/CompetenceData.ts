@@ -203,6 +203,22 @@ export const COMPETENCE_NAMES: Record<Competence, string> = {
   [Competence.DRESSAGE]: '[Dressage]',
 };
 
+/**
+ * Resolve a label (e.g. "Négociation" or "[Négociation]") to a Competence enum value.
+ * Strips optional brackets and matches case-insensitively against COMPETENCE_NAMES.
+ */
+export function resolveCompetenceFromLabel(label: string): Competence | null {
+  const normalized = (label || '').trim().replace(/^\[|\]$/g, '');
+  if (!normalized) return null;
+  const lower = normalized.toLowerCase();
+  for (const c of Object.values(Competence)) {
+    const name = COMPETENCE_NAMES[c as Competence];
+    const nameWithoutBrackets = name.replace(/^\[|\]$/g, '').toLowerCase();
+    if (nameWithoutBrackets === lower) return c as Competence;
+  }
+  return null;
+}
+
 // Mapping: Each Competence belongs to an Action
 export const COMPETENCE_ACTION: Record<Competence, Action> = {
   // Puissance - Frapper

@@ -6,8 +6,12 @@ import { CharacterSheetManager, MARKS_TO_EPROUVER } from '@/game/character/Chara
 import { Attribute } from '@/game/character/data/AttributeData';
 import { Aptitude, getAptitudeAttributes } from '@/game/character/data/AptitudeData';
 import { Action, getActionAptitude, getActionLinkedAttribute } from '@/game/character/data/ActionData';
-import { Competence, getCompetenceAction } from '@/game/character/data/CompetenceData';
+import { Competence, getCompetenceAction, COMPETENCE_NAMES, resolveCompetenceFromLabel } from '@/game/character/data/CompetenceData';
 import { Souffrance, getSouffranceAttribute } from '@/game/character/data/SouffranceData';
+import { getRollParams } from '@/game/dice/rollParams';
+import { rollCompetenceCheck } from '@/game/dice/CompetenceRoll';
+import { loadCachedCharacter } from '@/lib/simulationStorage';
+import { getCharacterSheetLang } from '@/lib/characterSheetI18n';
 import { getMasteries } from '@/game/character/data/MasteryRegistry';
 import {
   useCharacterSheetLang,
@@ -27,6 +31,21 @@ import ExpandableSection from './ui/ExpandableSection';
 import Tooltip from './ui/Tooltip';
 import SimulationEventLog, { type StepActionPayload, POOL_ATTRIBUTE_POINTS, MIN_REVEAL, MAX_REVEAL, POOL_DICE } from './SimulationEventLog';
 import { saveCachedCharacter } from '@/lib/simulationStorage';
+
+/** Payload for drd-roll-result custom event (Play-tab dice resolution). */
+export type DrdRollResultDetail =
+  | { error: 'no_character' }
+  | { error: 'unknown_competence' }
+  | {
+      summary: string;
+      result: number;
+      success: boolean;
+      criticalFailure: boolean;
+      criticalSuccess: boolean;
+      nivEpreuve: number;
+      competenceLabel: string;
+      competenceKey: string;
+    };
 
 /** Shared style for Fermer and tutorial confirmation buttons – same look and hover glow */
 const FERMER_STYLE = {
@@ -84,6 +103,7 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
   const [hoveredRevealCompetence, setHoveredRevealCompetence] = useState<Competence | null>(null);
   const [simHighlightId, setSimHighlightId] = useState<string | null>(null);
   const [simTooltip, setSimTooltip] = useState<string | null>(null);
+  const [lastRolledCompetence, setLastRolledCompetence] = useState<Competence | null>(null);
   const [stepAction, setStepAction] = useState<StepActionPayload>(null);
   const [tutorialOverlayHeight, setTutorialOverlayHeight] = useState(0);
   const masteryButtonRefs = useRef<Map<Competence, HTMLButtonElement>>(new Map());
@@ -132,6 +152,75 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [masterySelectionOpen, masteryDropdownPosition]);
+
+  const lastRolledTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Listen for Play-tab roll result to briefly highlight the rolled competence row
+  useEffect(() => {
+    const handler = (ev: Event) => {
+      const detail = (ev as CustomEvent<DrdRollResultDetail>).detail;
+      if (detail && 'competenceKey' in detail && detail.competenceKey) {
+        const key = detail.competenceKey as Competence;
+        if (Object.values(Competence).includes(key)) {
+          if (lastRolledTimeoutRef.current) clearTimeout(lastRolledTimeoutRef.current);
+          setLastRolledCompetence(key);
+          lastRolledTimeoutRef.current = setTimeout(() => {
+            setLastRolledCompetence(null);
+            lastRolledTimeoutRef.current = null;
+          }, 2500);
+        }
+      }
+    };
+    window.addEventListener('drd-roll-result', handler);
+    return () => {
+      window.removeEventListener('drd-roll-result', handler);
+      if (lastRolledTimeoutRef.current) clearTimeout(lastRolledTimeoutRef.current);
+    };
+  }, []);
+
+  // Play-tab roll bridge: expose drdPerformRoll for gm-chat.js
+  useEffect(() => {
+    function performRoll(opts: { competence: string; niv: number }) {
+      const cached = loadCachedCharacter();
+      if (!cached) {
+        window.dispatchEvent(new CustomEvent<DrdRollResultDetail>('drd-roll-result', { detail: { error: 'no_character' } }));
+        return;
+      }
+      manager.loadState(cached);
+      updateState();
+      const comp = resolveCompetenceFromLabel(opts.competence);
+      if (comp == null) {
+        window.dispatchEvent(new CustomEvent<DrdRollResultDetail>('drd-roll-result', { detail: { error: 'unknown_competence' } }));
+        return;
+      }
+      const lang = getCharacterSheetLang();
+      const params = getRollParams(manager, comp, opts.niv, lang);
+      const rollResult = rollCompetenceCheck(params);
+      const marks = rollResult.criticalFailure ? 5 : rollResult.success || rollResult.criticalSuccess ? 0 : 1;
+      for (let i = 0; i < marks; i++) manager.addCompetenceMark(comp);
+      updateState();
+      saveCachedCharacter(manager.getState());
+      const competenceLabel = COMPETENCE_NAMES[comp];
+      window.dispatchEvent(
+        new CustomEvent<DrdRollResultDetail>('drd-roll-result', {
+          detail: {
+            summary: rollResult.summary,
+            result: rollResult.result,
+            success: rollResult.success,
+            criticalFailure: rollResult.criticalFailure,
+            criticalSuccess: rollResult.criticalSuccess,
+            nivEpreuve: opts.niv,
+            competenceLabel,
+            competenceKey: comp,
+          },
+        })
+      );
+    }
+    (window as unknown as { drdPerformRoll?: (opts: { competence: string; niv: number }) => void }).drdPerformRoll = performRoll;
+    return () => {
+      (window as unknown as { drdPerformRoll?: unknown }).drdPerformRoll = undefined;
+    };
+  }, [manager, updateState]);
 
   // Lock background: prevent scroll and interaction when character sheet is open (modal only)
   useEffect(() => {
@@ -886,7 +975,8 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
                                   <div
                                     key={comp}
                                     data-sim-highlight={`competence-${comp}`}
-                                    className={`text-xs relative rounded transition-all ${simHighlightId === `competence-${comp}` ? 'tutorial-ring' : ''} ${isRevealStepUnrevealed ? 'tutorial-reveal-highlight' : ''}`}
+                                    data-last-rolled={lastRolledCompetence === comp ? 'true' : undefined}
+                                    className={`text-xs relative rounded transition-all ${simHighlightId === `competence-${comp}` ? 'tutorial-ring' : ''} ${isRevealStepUnrevealed ? 'tutorial-reveal-highlight' : ''} ${lastRolledCompetence === comp ? 'gm-last-rolled' : ''}`}
                                     title={simHighlightId === `competence-${comp}` ? simTooltip ?? undefined : undefined}
                                   >
                                     {!compData.isRevealed ? (

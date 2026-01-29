@@ -2,13 +2,13 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { CharacterSheetManager } from '@/game/character/CharacterSheetManager';
-import { getAptitudeAttributes } from '@/game/character/data/AptitudeData';
 import { Competence, getCompetenceAction } from '@/game/character/data/CompetenceData';
-import { getActionAptitude } from '@/game/character/data/ActionData';
-import { Souffrance, getSouffranceAttribute } from '@/game/character/data/SouffranceData';
+import { getActionLinkedAttribute } from '@/game/character/data/ActionData';
+import { Souffrance } from '@/game/character/data/SouffranceData';
 import { loadCachedCharacter, saveCachedCharacter, clearCachedCharacter } from '@/lib/simulationStorage';
 import { MARKS_TO_EPROUVER } from '@/game/character/CharacterSheetManager';
-import { rollCompetenceCheck, type CompetenceRollParams } from '@/game/dice/CompetenceRoll';
+import { rollCompetenceCheck } from '@/game/dice/CompetenceRoll';
+import { getRollParams } from '@/game/dice/rollParams';
 import type { CharacterSheetLang } from '@/lib/characterSheetI18n';
 import {
   t,
@@ -18,7 +18,6 @@ import {
   getSouffranceName,
   getResistanceCompetenceName,
 } from '@/lib/characterSheetI18n';
-import { getActionLinkedAttribute } from '@/game/character/data/ActionData';
 
 export type SimEventType =
   | 'challenge'
@@ -51,30 +50,6 @@ const CHALLENGES: { descriptionKey: (typeof CHALLENGE_KEYS)[number]; suggested?:
   { descriptionKey: 'challengeDodge', suggested: Competence.ESQUIVE, nivEpreuve: 0 },
   { descriptionKey: 'challengeRepair', suggested: Competence.DEBROUILLARDISE, nivEpreuve: 1 },
 ];
-
-function getRollParams(
-  manager: CharacterSheetManager,
-  comp: Competence,
-  nivEpreuve: number,
-  lang: CharacterSheetLang
-): CompetenceRollParams {
-  const action = getCompetenceAction(comp);
-  const aptitude = getActionAptitude(action);
-  const [atb1] = getAptitudeAttributes(aptitude);
-  const soufLinked = (Object.values(Souffrance) as Souffrance[]).find((s) => getSouffranceAttribute(s) === atb1);
-  const dsNegative = soufLinked != null ? Math.max(0, Math.floor(manager.getSouffrance(soufLinked).degreeCount)) : 0;
-  const state = manager.getState();
-  const compData = state.competences[comp];
-  const masteryDegrees = compData?.masteries?.reduce((s, m) => s + m.degreeCount, 0) ?? 0;
-  return {
-    nivAptitude: manager.getAptitudeLevel(aptitude),
-    compDegrees: manager.getCompetenceDegree(comp),
-    masteryDegrees,
-    dsNegative,
-    nivEpreuve,
-    lang,
-  };
-}
 
 export type StepActionPayload =
   | { step: 'attributes' | 'reveal' | 'dice'; label: string; onClick: () => void; disabled: boolean }

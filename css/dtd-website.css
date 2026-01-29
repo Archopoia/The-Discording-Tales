@@ -1389,7 +1389,51 @@ img {
     font-size: 0.9rem;
     color: var(--tdt-mint);
     padding: 0.4rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
 }
+.gm-pending-roll-hint-text {
+    flex: 1;
+    min-width: 0;
+}
+.gm-pending-roll-hint .gm-roll-btn {
+    flex-shrink: 0;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.85rem;
+    background: #643030;
+    color: #F3E2A9;
+    border: 2px solid #674B1B;
+    border-radius: 4px;
+    font-family: 'Quintessential', cursive, serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.gm-pending-roll-hint .gm-roll-btn:hover:not(:disabled) {
+    background: #fff6df;
+    color: #4d3000;
+    transform: translateY(-1px);
+}
+.gm-pending-roll-hint .gm-roll-btn:disabled {
+    opacity: 0.7;
+    cursor: wait;
+}
+.gm-pending-roll-hint.gm-pending-roll-hint--format-only {
+    color: var(--tdt-beige-light);
+}
+
+/* Brief highlight on competence row after Play-tab roll */
+.gm-last-rolled {
+    animation: gm-last-rolled-pulse 2s ease-out;
+}
+@keyframes gm-last-rolled-pulse {
+    0% { box-shadow: 0 0 0 2px var(--tdt-mint); }
+    40% { box-shadow: 0 0 0 2px var(--tdt-mint); }
+    100% { box-shadow: none; }
+}
+
 .gm-chat-input-row {
     display: flex;
     gap: 0.5rem;
