@@ -114,6 +114,7 @@ class ChatRequest(BaseModel):
     characterSnapshot: dict | None = None
     gameState: GameState | None = None
     creation_mode: bool = Field(False, alias="creationMode")
+    rules_only: bool = Field(False, alias="rulesOnly")
 
 
 class ChatResponse(BaseModel):
@@ -295,6 +296,19 @@ def _format_game_state(game_state: GameState | None) -> str:
     return "Game state:\n" + "\n".join(parts) + "\n\n"
 
 
+def _format_rules_only_blurb(rules_only: bool) -> str:
+    """When rules_only: user has no character and is only asking about world/rules, not playing."""
+    if not rules_only:
+        return ""
+    return (
+        "**Context — rules-only / no character:** The user has no character and is not playing a game. "
+        "They are only asking about the world, the setting, or the rules (e.g. how something works, what exists in Des Récits Discordants). "
+        "Answer informatively from the rules and lore provided. Do not assume they have a character or are in a session. "
+        "Do not call for rolls (Roll [Compétence]) or treat their questions as in-fiction actions unless they explicitly say they want to play or perform an action - if so lead them to create a character first. "
+        "Keep responses focused on explanation and information.\n\n"
+    )
+
+
 # --- Routes ---
 
 
@@ -405,8 +419,9 @@ def _chat_system_prompt(req: ChatRequest, rules_block: str) -> str:
     """Build the system prompt used by both /chat and /chat/stream."""
     char_block = _format_character_blurb(req.characterSnapshot)
     game_state_block = _format_game_state(req.gameState)
+    rules_only_block = _format_rules_only_blurb(req.rules_only)
     rag_instruction = "Base your response solely on the retrieved rules and lore above. Do not add external facts or opinions.\n\n"
-    return f"{GM_INSTRUCTIONS}\n\n{GM_MECHANICS_REFERENCE}\n\n---\n\nRules and lore (use only these):\n\n{rules_block}\n\n{rag_instruction}{char_block}{game_state_block}".strip()
+    return f"{GM_INSTRUCTIONS}\n\n{GM_MECHANICS_REFERENCE}\n\n{rules_only_block}---\n\nRules and lore (use only these):\n\n{rules_block}\n\n{rag_instruction}{char_block}{game_state_block}".strip()
 
 
 def _creation_system_prompt(rules_block: str) -> str:

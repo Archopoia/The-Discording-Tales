@@ -591,6 +591,16 @@
                         body.appendChild(inputWrap);
                     }
                 }
+                if (m.noCharacterPrompt) {
+                    var promptWrap = document.createElement('div');
+                    promptWrap.className = 'gm-chat-no-character-prompt-actions';
+                    var createFromMsgBtn = document.createElement('button');
+                    createFromMsgBtn.type = 'button';
+                    createFromMsgBtn.className = 'gm-chat-create-from-msg-btn gm-chat-send-style';
+                    createFromMsgBtn.textContent = lang === 'fr' ? 'Créer un personnage' : 'Create a character';
+                    promptWrap.appendChild(createFromMsgBtn);
+                    body.appendChild(promptWrap);
+                }
             } else {
                 var userContent = m.content;
                 if (typeof userContent === 'string' && /^Rolled\s/i.test(userContent)) {
@@ -683,7 +693,7 @@
         return 1;
     }
 
-    function performPlayTabRoll(container, input, hintEl, sendBtn, useCharCheckbox) {
+    function performPlayTabRoll(container, input, hintEl, sendBtn, useCharCheckbox, onNoCharacter) {
         if (!pendingRoll || !input) return;
         var lang = getLang();
         var comp = pendingRoll.competence;
@@ -743,7 +753,11 @@
             if (d.error === 'no_character') {
                 if (rollBtn) rollBtn.disabled = false;
                 updatePendingRollHint(input, hintEl);
-                input.value = lang === 'fr' ? "Aucun personnage chargé. Créez-en un dans la feuille ci-dessous et cochez « Utiliser le personnage actuel »." : "No character loaded. Create one in the sheet below and use 'Use current character'.";
+                if (typeof onNoCharacter === 'function') {
+                    onNoCharacter();
+                } else {
+                    input.value = lang === 'fr' ? "Aucun personnage chargé. Créez-en un dans la feuille ci-dessous." : "No character loaded. Create one in the sheet below.";
+                }
                 return;
             }
             if (d.error === 'unknown_competence') {
@@ -818,6 +832,7 @@
         var gameState = getGameState();
         if (gameState) body.gameState = gameState;
         if (creationMode) body.creationMode = true;
+        if (!hasCharacter() && !creationMode && askWorldInputRevealed) body.rulesOnly = true;
         pendingRoll = null;
 
         var thinkingInterval = setInterval(function () {
@@ -983,7 +998,7 @@
             rollBtn.textContent = getLang() === 'fr' ? 'Lancer le jet' : 'Roll';
             rollBtn.style.display = 'none';
             rollBtn.addEventListener('click', function () {
-                performPlayTabRoll(container, input, hintEl, sendBtn, null);
+                performPlayTabRoll(container, input, hintEl, sendBtn, null, handleMainRollNoCharacter);
             });
             hintEl.appendChild(textPart);
             hintEl.appendChild(rollBtn);
@@ -1085,7 +1100,7 @@
                 var niv = getNivForCompetence(comp);
                 var drdPerformRoll = typeof window.drdPerformRoll === 'function' ? window.drdPerformRoll : null;
                 if (!drdPerformRoll) {
-                    messages.push({ role: 'assistant', content: (getLang() === 'fr' ? 'Feuille de personnage non chargée. Créez un personnage d\'abord.' : 'Character sheet not loaded. Create a character first.') });
+                    messages.push({ role: 'assistant', content: (getLang() === 'fr' ? 'Feuille de personnage non chargée. Créez un personnage d\'abord.' : 'Character sheet not loaded. Create a character first.'), noCharacterPrompt: true });
                     saveMessages();
                     renderMessages(container);
                     return;
@@ -1118,17 +1133,28 @@
             sendMessage(container, input, sendBtn, null, hintEl);
         }
 
+        function startCharacterCreation() {
+            creationMode = true;
+            updateInputVisibility();
+            messages = [];
+            var firstStepContent = getCreationScriptStep(0, getLang(), null);
+            messages.push({ role: 'assistant', content: firstStepContent });
+            saveMessages();
+            renderMessages(container);
+        }
+
+        function handleMainRollNoCharacter() {
+            var isFr = getLang() === 'fr';
+            var errMsg = isFr ? "Aucun personnage chargé. Créez un personnage dans la feuille ci-dessous." : "No character loaded. Create a character in the sheet below.";
+            messages.push({ role: 'assistant', content: errMsg, noCharacterPrompt: true });
+            saveMessages();
+            renderMessages(container);
+            if (container) container.scrollTop = container.scrollHeight;
+        }
+
         var createBtn = document.getElementById('gm-chat-create-character');
         if (createBtn) {
-            createBtn.addEventListener('click', function () {
-                creationMode = true;
-                updateInputVisibility();
-                messages = [];
-                var firstStepContent = getCreationScriptStep(0, getLang(), null);
-                messages.push({ role: 'assistant', content: firstStepContent });
-                saveMessages();
-                renderMessages(container);
-            });
+            createBtn.addEventListener('click', startCharacterCreation);
         }
 
         window.addEventListener('drd-character-created', function () {
@@ -1151,7 +1177,7 @@
             var isFr = lang === 'fr';
             if (d.error === 'no_character') {
                 var errMsg = isFr ? "Aucun personnage chargé. Créez un personnage dans la feuille ci-dessous." : "No character loaded. Create a character in the sheet below.";
-                messages.push({ role: 'assistant', content: errMsg });
+                messages.push({ role: 'assistant', content: errMsg, noCharacterPrompt: true });
             } else if (d.error === 'unknown_competence') {
                 var errMsg2 = isFr ? "Compétence introuvable." : "Unknown competence.";
                 messages.push({ role: 'assistant', content: errMsg2 });
@@ -1321,6 +1347,11 @@
 
         if (container) {
             container.addEventListener('click', function (e) {
+                var createFromMsgBtn = e.target && e.target.closest && e.target.closest('.gm-chat-create-from-msg-btn');
+                if (createFromMsgBtn) {
+                    startCharacterCreation();
+                    return;
+                }
                 var rollBtn = e.target && e.target.closest && e.target.closest('.gm-roll-inline-btn');
                 if (rollBtn) {
                     var comp = rollBtn.getAttribute('data-competence');
@@ -1328,7 +1359,7 @@
                     var niv = parseInt(nivStr, 10);
                     if (!comp || isNaN(niv)) return;
                     pendingRoll = { competence: comp, niv: niv };
-                    performPlayTabRoll(container, input, hintEl, sendBtn, null);
+                    performPlayTabRoll(container, input, hintEl, sendBtn, null, handleMainRollNoCharacter);
                     return;
                 }
                 var optionBtn = e.target && e.target.closest && e.target.closest('.gm-creation-option-btn');

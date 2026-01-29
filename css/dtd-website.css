@@ -1450,11 +1450,15 @@ img {
 }
 .gm-chat-no-character-buttons {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: stretch;
     gap: 0.75rem;
+    width: 100%;
 }
-.gm-chat-ask-world-btn {
+.gm-chat-no-character-btn {
+    flex: 1;
+    min-width: 0;
     padding: 0.5rem 0.75rem;
     font-size: 0.9rem;
     background: rgba(90, 31, 31, 0.5);
@@ -1463,8 +1467,9 @@ img {
     border-radius: 4px;
     cursor: pointer;
     transition: background 0.2s, color 0.2s, border-color 0.2s;
+    text-align: center;
 }
-.gm-chat-ask-world-btn:hover {
+.gm-chat-no-character-btn:hover {
     background: rgba(107, 40, 40, 0.8);
     color: var(--tdt-cream);
     border-color: var(--tdt-beige-warm);
@@ -1995,6 +2000,30 @@ img {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 0 0 1px #ffebc6;
 }
 .gm-chat-test-roll-btn:hover {
+    background: #fff6df;
+    color: #4d3000;
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px 5px #ffebc6, 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.gm-chat-no-character-prompt-actions {
+    margin-top: 0.75rem;
+}
+.gm-chat-create-from-msg-btn.gm-chat-send-style,
+.gm-chat-create-from-msg-btn {
+    padding: 0.5rem 1rem;
+    background: #643030;
+    color: #F3E2A9;
+    border: 2px solid #674B1B;
+    border-radius: 4px;
+    font-family: 'Quintessential', cursive, serif;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 0 0 1px #ffebc6;
+}
+.gm-chat-create-from-msg-btn:hover {
     background: #fff6df;
     color: #4d3000;
     transform: translateY(-2px);
