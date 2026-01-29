@@ -50,28 +50,23 @@ export interface CompetenceRollResult {
 }
 
 /**
- * Roll a competence check: 5 base + comp + mastery - DS, keep 5 (highest if pool>5, lowest if pool<=5).
+ * Roll a competence check: 5 base + positive (comp + mastery) + negative (DS) dice.
+ * Total dice = 5 + comp + mastery + DS (all rolled). Keep 5 highest if positive >= DS, else keep 5 lowest.
  * Result = Niv + sum(kept five). Success if result >= nivEpreuve.
  */
 export function rollCompetenceCheck(params: CompetenceRollParams): CompetenceRollResult {
   const { nivAptitude, compDegrees, masteryDegrees, dsNegative, nivEpreuve, lang = 'fr' } = params;
-  const positiveDice = 5 + compDegrees + masteryDegrees;
-  const poolSize = Math.max(1, positiveDice - Math.max(0, dsNegative));
+  const positiveCount = 5 + compDegrees + masteryDegrees;
+  const negativeCount = Math.max(0, dsNegative);
+  const poolSize = positiveCount + negativeCount;
 
-  let diceRolled: number[];
-  let diceKept: number[];
+  const diceRolled = Array.from({ length: poolSize }, () => rollFateDie());
+  const keepHighest = positiveCount >= negativeCount;
+  const diceKept = keepHighest
+    ? [...diceRolled].sort((a, b) => b - a).slice(0, KEEP_COUNT)
+    : [...diceRolled].sort((a, b) => a - b).slice(0, KEEP_COUNT);
 
-  if (poolSize > KEEP_COUNT) {
-    diceRolled = Array.from({ length: poolSize }, () => rollFateDie());
-    diceKept = [...diceRolled]
-      .sort((a, b) => b - a)
-      .slice(0, KEEP_COUNT);
-  } else {
-    diceRolled = Array.from({ length: KEEP_COUNT }, () => rollFateDie());
-    diceKept = [...diceRolled].sort((a, b) => a - b);
-  }
-
-  const sumKept = diceKept.reduce((s, d) => s + d, 0);
+  const sumKept = diceKept.reduce<number>((s, d) => s + d, 0);
   const result = nivAptitude + sumKept;
   const success = result >= nivEpreuve;
   const criticalFailure = diceKept.length === KEEP_COUNT && diceKept.every((d) => d === -1);
@@ -105,8 +100,8 @@ export function rollCompetenceCheck(params: CompetenceRollParams): CompetenceRol
   const compLabel = isEn ? 'comp' : 'comp';
   const masteryLabel = isEn ? 'mastery' : 'maîtrise';
   const poolLine = isEn
-    ? `Pool: 5 ${baseLabel} + ${compDegrees} ${compLabel} + ${masteryDegrees} ${masteryLabel} − ${dsNegative} DS = ${poolSize} dD`
-    : `Pool : 5 ${baseLabel} + ${compDegrees} ${compLabel} + ${masteryDegrees} ${masteryLabel} − ${dsNegative} DS = ${poolSize} dD`;
+    ? `Pool: 5 ${baseLabel} + ${compDegrees} ${compLabel} + ${masteryDegrees} ${masteryLabel} − ${negativeCount} DS = ${poolSize} dD`
+    : `Pool : 5 ${baseLabel} + ${compDegrees} ${compLabel} + ${masteryDegrees} ${masteryLabel} − ${negativeCount} DS = ${poolSize} dD`;
   const rolledLabel = isEn ? 'Rolled' : 'Jet';
   const sumLabel = isEn ? 'sum' : 'somme';
   const diceBreakdown =
