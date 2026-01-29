@@ -1,0 +1,91 @@
+﻿CLIN,(A)lhöl,(B)ahwöl,(C)idmun,(D)ignun
+1,"Proaction 
+(1/5 Clins) Attaque à l’arc
+
++ Marcher (1 Case/Clin, (-1 NE)","Proaction 
+(1 Clin) Dégainer l’épée
+
++ Marcher (1 Case/Clin, -1 NE)","Surpris (-2 NE)
+Dague déjà dégainée",Surpris (-5 NE)
+2,"(2/5)  
+
++ Marcher (-1 NE)","Proaction 
+(1/3 Clins) Attaque à l’épée
+
++ Marcher (-1 NE)",Surpris (-1 NE),Surpris (-4 NE)
+3,"(3/5) 
+
+Car étant au 3ème Clin de Marche, il se met désormais à Courir 
+(2 Cases/Clin, -2NE)","(2/3)
+
++ Marcher (-1 NE)","Peut proagir, mais dois d’abord s’approcher
+
+Marche 1 Case (-1 NE)",Surpris (-3 NE)
+4,"(4/5) 
+
++ Courir (-2 NE)","(3/3) -> Jet d’Attaque 
+À l’épée tout en s’arrêtant (o NE), il dépense un succès pour faire un coup traversant attaquant aussi D par la même Attaque","Proaction
+(1/2) Attaque à la dague  
+
+Réaction 
+(Esquive) à l’attaque de B (-1 NE) en Marchant (-1 NE)
+
+Utilise 1 Dé de potentiel d’Aisance [Coordoner] pour ne pas compter le NE de l’Esquive au jet.
+
+Il réussit l’esquive avec 2 succès et se déplace donc aussi 2 cases","Réaction 
+(Parade)  (à -2NE car encore Surpris pendant 2 Clins) contre l’Attaque (sournoise et traversante) de B. 
+
+Avec 2 Succès, il réduit de 2 Clins sa prochaine Proaction"
+5,"(5/5) Jet d’Attaque 
+À l’arc en courant (avec -2NE au jet) avec +2 aux Dégâts car Courant dans la même direction que l’attaque 
+
+Réaction 
+(Blocage) à l’attaque de C (-1 NE). 
+= -3NE à ses deux jets.","Proaction 
+(1/3 Clins) Attaque à l’épée
+
++ Marcher (-1 NE)","(2 /2) -> Jet d’Attaque 
+À la dague sur A en Courant (2 Cases/Clin, car ayant au 3ème Clin de Marche => -2NE au jet, +2 Dégâts) dans la même direction que l’attaque","N’est plus Surpris car ayant  fait une Réaction au Clin précédent. 
+
+Proaction
+(1/5 Clins -2 Clins => 1/3 Clins) Attaque à l’espadon"
+6,"Proaction 
+Recharger l’arc avec une flèche déjà en main (1/3 Clins) en ralentissant sa Course en Marche (-1 NE)
+","(2/3)
+
++ Marcher (-1 NE)","1ère Proaction 
+(1/2) Attaque à la dague  
+
+2ème Proaction 
+(1/2) Attaque à désarmée,  doublant les NE.
+
+Ralentit afin de Marcher (-1 NE x2)","(2/3)
+"
+7+,"(2/3) 
+
++ Ralentit sa Marche pour s’arrêter (0 NE)
+
+Réaction 
+Esquive ET Pare les deux attaques de C
+
+= -2NE à ses deux jets","(3/3) -> Jet d’Attaque 
+À l’épée sur D en courant (avec -2NE ) avec +2 aux Dégâts car Courant dans la même direction que l’attaque
+
+Réaction
+Parer l’Attaque de D
+
+= -3 NE à ses deux jets","(2/2) -> Jet d’Attaque 
+à la dague sur A
+
+(2/2) -> Jet d’Attaque 
+à désarmée sur A
+
+Ralentit afin de Marcher (0 NE)
+
+Vu qu’il fait 2 Proactions simultanées bien que n’ayant aucun NE, la seconde lui entraîne -1 NE.","(3/3) -> Jet d’Attaque 
+À l’espadon sur B 
+
+Réaction
+Bloquer l’Attaque de B
+
+= -1 NE à ses deux jets"

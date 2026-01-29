@@ -1,0 +1,37 @@
+﻿Outils,"Prix
+⚖","ERT
+🧱",Description & Effets
+Cane / Béquille,1 eO,1,"Un bâton utilisé par les blessés, les plus faibles ou lorsque très chargé afin d’aider à la marche.
++1 Niv de Port en l’utilisant, et +1 Niv de Port en plus si ayant une Force de -5 à -1 par rapport à son Peuple."
+Bâton de montagne,1,1,"Une canne, souvent ajustable aidant à garder pied lorsqu’escaladant les hauteurs.
++3 Dés vs TER+"
+Bâton de glacier,2,1,"Une canne utile pour creuser à travers la neige ayant une pointe renforcée afin de briser la glace.
++3 Dés vs TER- & FLU+"
+Oreiller,1,1,+1 Dés vs TER+ par unité pour l’individu dormant sur un terrain inconfortable.
+Literie,1X,1+X,"Polaires, couvertures, etc… afin de rendre le sommeil plus confortable pour une personne.
++1+X Dés vs TER+ & TEM- lorsqu’on y dort."
+Sac de couchage,5,1,+3 Dés vs TER+  & TEM-. Un petit lit déroulable adapté à une seule personne
+Tente,10X,2,"A construire afin de protéger X personnes des éléments simples (pluie ou soleil léger, etc… +3 Dés lors du repos)"
+Tente polaire,25X,3,Une tente pour X personnes mais qui protège du froid. +6 Dés vs TEM- au travers de la nuitée.
+Bain portable,50,3,-1N Fatigues (Traitement). Une baignoire de planches à assembler soutenant un tissu imperméable.
+Pierre à écoulement,1,0,"+3 Dés vs TEM- pendant 1 Heure. A usage unique, afin de réchauffer un bain."
+Bougie anti-insectes,1,0,"Combustible malodorant repoussant les vermines et insectes. +1 Dé vs Insectes, cumulables"
+﻿Éclairages,"Prix
+⚖","ERT
+🧱",Description & Effets
+Torche,1 eO,0.5,Flambeau éclairant 3 Cases (Durabilité). Enfume l’endroit (X Étouffements X NdT brûlante + NdG d’espace).
+Huile de balume,1,0/h,Lumière jaune-blanche sur 10 Cases (Durabilité) par Litre (1 Sac par 10L) crépitant continuellement comme d’une berceuse. S’endormir auprès d’elle force à dormir 1 Matinée en plus.
+Lampe à bougie,2,0,"Jaune vacillant sur 3 Cases (Durabilité). Sûre et de bon marché, une chance sur 6 de s’éteindre en cas de chute ou grands vents."
+Lampe à animalcule,3,0,Lumière de phare bleue-verte sur 3 Cases (Durabilité). Fiable et peut être empoisonnée par de l’ammoniac afin de x3 ses Cases de lumière avant d’en mourir car divisant ses résultats aux jet de Durabilité de moitié.
+Lampe à luminole,4,1,"Etrange bleu pulsatif sur 9 Cases (Durabilité), d’un rythme alternatif se mélangeant et s’activant, telle une horloge à eau d’un liquide qui ne s’allume QUE lorsque proche de sang ou de fèces."
+Lampe Ylfe à rayons,5,0,"Rouge terne très lumineux pour une vision thermique à 9 Cases (Durabilité), mais /3 car à peine éclairant le spectre visible. Des rayons de cire noire remplis d’éléments odorants bizarres. Traditionnels, un étranger n’en porte jamais, sauf s’il vola un Ylfe."
+Lampe à carbure,5,1,Flame blanche lumineuse et douce sur 12 Cases (Durabilité). Relâche un dépôt toxique (N1 Maladie) par Jour.
+Lampe de lunelait,25,1,Lumière de lune sur 14 Cases (Durabilité) encastrée dans une prison-aquarium de plomb. Lait vivant et extrêmement dangereux d’une bête. Peut être utilisée comme une masse d’arm (mêmes valeurs de combat).
+Calumiare,10,0,Une sorte de calmar entassé pulse d’une façon régulière de 9 Cases (Durabilité) en fonction de la situation à l’extérieur de la lampe. Il clignote sauvagement pendant les combats. En tapant sur le côté de la lampe il l’attaque la lumière devient directionnelle. Il tente de s’échapper. Se “répare” en étant nourrit (carnivore).
+Canniblume,2,1,Les ventres de ces poissons brillent d’un rouge foncé de 1 Case par poissson (Durabilité) lorsqu’ils chassent (tournant en cycle sans fin). Ils se cannibaliseront au rythme de 1 fois par Heure s’ils ne sont pas nourris.
+Mollume,3,0,Petits mollusques luisants sur 3 Cases (Durabilité) pouvant être mangé (1 Vivre) mais rendant le corps et toutes ses émissions brillant(e)s de Durabilité pendant un Jour.
+Mollemue,5,0,"Créature molle, de fourrure soyeuse, sans yeux et d’une bioluminescente blanche-bleue lorsque maltraitée. Sacrifier 1 de sa Durabilité pour produire 3 Cases de lumière, récupérant +X par NdT en sanglotant toute la durée. À 0, elle meurt de douleur et tristesse après 5 minutes."
+Mycolume,5,0,"Beaucoup de variétés, toutes avec la même luisance verte, douce et constante sur 6 Cases (Durabilité). Si le bocal est  endommagé, elle colonisera toute blessure ouverte du porteur, qui brilleront elles-aussi."
+Carcalume,3,1,Une sorte de torche puante faîte de parasites luminescentes sur 5 Cases (Durabilité) se développant sur une carcasse effilochée et retournée.
+Carablume,5,0,"Vert iridescent sur 4 Cases (Durabilité) d’un large insecte endormit qui lorsqu’éveillé étends ses ailes, bourdonne puissamment s’envolant jusqu’à la fin de ses chaînes, alors 2 fois plus lumineux. Les ailes brillent d’un or scintillant. Doit être nourris."
+Papillume,10,1,"Un crâne rempli d’une sorte de papillons ophtovores, créant d’abord d’une lumière rubilescente, puis arc-en-ciel et enfin d’un bleu profond sur 12 Cases (Durabilité) pouvant provoquer une dépression (N1 Folies)."

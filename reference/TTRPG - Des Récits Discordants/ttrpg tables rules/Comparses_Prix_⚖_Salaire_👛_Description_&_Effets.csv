@@ -1,0 +1,31 @@
+﻿﻿Comparses,"Prix
+⚖","Salaire
+👛",Description & Effets
+Ouvriers,,,"Extrayant des ressources, produisant des objets, construisant des édifices. "
+"Né-esclave, Taureau",100,?,"Typiquement N0 d’Expertise. Parfois payé d’un salaire, parfois non. Mais un esclave peut aussi avoir une haute expertise est être bien payé ou sa vie du moins valoir très cher (parfois plus qu’un noble)."
+"Maçon, Charpentier",250,1,Typiquement N1 d’Expertise
+"Mineur, Tanneur",500,2,Typiquement N2 d’Expertise
+Artisan,750,3,Typiquement N3 d’Expertise
+Serviteurs,,,"Servant autrui, aidant ceux dans leur charge, soutenant leur employeur"
+"Porteur, Porte-lanterne, Manutentionnaire",250,1,Typiquement N1 d’Expertise. Toutes les servitudes considérées comme hors-castes ou de basse classe sociale.
+"Boulanger, Brasseur, Gouvernante, Jardinier",500,2,Typiquement N2 d’Expertise
+"Cuisinier, Conducteur",750,3,Typiquement N3 d’Expertise
+Chambellan,1000,4,Typiquement N4 d’Expertise
+Experts,,,"Ouvriers ou Serviteurs particulièrement efficace en leurs travail, ou ayant une valeur très relative par rapport à leur réputation, leur rareté, ou leurs traits."
+"Navigateur, Ingénieur, Forgeron, Bijoutier, Archer, Etc...",1000,4,"Ayant au moins une Expertise de N4, ils sont capable de produire la normalité de leur métier avec rigueur et sans faute. Ayant en général au moins une dizaine d’année d’expérience, ils peuvent aussi conseiller sur leur sujet en question si nécessaire."
+Tuteur,X*250,1-5,"En fonction de leur Niv d’Expertise, qu’ils savent enseigner à quiconque jusqu’à leur Niv actuel."
+Gladiateur,,2-10,"En fonction de leur Niv d’Expertise ET de leur succès au fil de leurs épreuves, voir de leur réputation."
+Concubine,,1-50,"En fonction de leur Niv d’Expertise ET de leur beauté, et de leur rareté en leurs traits. "
+Courtisane,,25-100,"En fonction de leur Niv d’Expertise ET de leur beauté, de leur réputation et de leur rareté en leurs traits."
+﻿Animalcules,"Prix
+⚖",,Description & Effets
+Luicéphale,1 pour 10,,"Minuscules créature d'essaim à ailes, coquille et trompe, hyperactives ou paresseuses par instants, luisante de jade-turquoise. Apprivoisée comme lumière lorsque mise en lanterne, récoltée pour ses phéromones. Typiquement par dizaine dans une lanterne."
+Ipslithes,1 pour 100,,Vers-cristaux luisant à cocons rocheux souterrains se réveillant en masse par instant. En manger une centaine compte comme 1 Vivre.
+Zoion,1 pour 1000,,"Minuscule organisme nécessaire à la récolte de pittlithe (plus rapide et meilleur qualité), mais aussi comme traitements d'autres matériaux voir comme ""épices"". Croît sous différents milieux (pression, chaleur, etc.)."
+﻿Logements,"Prix 
+(⚖ par Jour)",,Description & Effets
+Chalet/Hutte/Etc…,1 pO,,Lieux parfois personnels et/ou aménagés pour une nuit
+Petit Magasin/Taverne,1 eO,,Lieux habituellement fait pour boire et peut-être manger
+Auberge,1 cO,,"Lieux fait pour boire, manger et dormir"
+Manutention d’un Animal de taille P/M/G/É/C,"1pO | 1eO | 1cO
+2cO | 5cO",,S’occuper d’un animal en lui procurant tout le nécessaire.

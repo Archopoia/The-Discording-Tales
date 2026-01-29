@@ -1,0 +1,27 @@
+﻿﻿Tirage des Caractéristiques,,,,,,,,,,,,
+"Peuple 
+(sur 0, le choisir)",,(Â)ge,,,Sexe (♂|♀),,,,(G)ras|(S)tature|(T)aille,,,
+,,,,,,,,,[Jet] = Niv de G|S|T ,,,
+,,[Jet] = Catégorie d'Âge ou de Sexe = Niv d'Âge ou de Sexe,,,,,,,,,,
+-10 à -5 = ,Tchalkchaï,"[ -10 ]
+[ -6 ]
+[ -3 ]","Enfance
+(3 étapes)","-5 Â
+-4 Â
+-3 Â",,[-10 | 9],Intersexe,0 | 0,[-10 | 9],-5 G,-2 S,-1 T
+-4 =,Iqqar,,,,,"(Au lieu de prendre 0|0, on peut mélanger les bonus de ♂ & ♀ tant que le total est égal à 0)",,,[-8 | 7],-4 G,,
+-3 =,Ylfe des lacs,[ -2 ],Adolescence,-2 Â,,,,,[-6],-3 G,-1 S,
+-2 =,Ylfe pâles,[ -1 ],Jeunesse,-1 Â,,[-8 à -1] ,Femme,+1 ♀,[-5],-2 G,,
+,,,,,,,,,[-4],-1 G,,
+-1 =,Haut Ylfe,[ 0 à +1 ],Adulte, 0 Â,,,,,"[-3 à +3]
+Égal au Niv normal de Gras ou Stature ou Taille de votre Peuple",,,
++1 =,Aristois,[ +2 | +3 ] ,Maturité,+1 Â,,[0 à +8] ,Homme,+1 ♂,,,,
++2 =,Navillis,[ +4 | +5 ] ,Vieillesse,+2 Â,,,,,[+4],+1 G,,
+,,,,,,,,,[+5],+2 G,+1 S,
++3 =,Méridien,[ +6 | +7 | +8 ] ,Ancienneté,+3 Â,,[+9 | 10],Intersexe,0 | 0,[+6],+3 G,,
++4 =,Griscribe,"[ +9 ]
+[ +10 ] ","Vénérable
+(2 étapes)","+4 Â
++5 Â",,"(Au lieu de prendre 0|0, on peut mélanger les bonus de ♂ & ♀ tant que le total est égal à 0)",,,[+7 | 8],+4 G ,+2 S,
++5 à +10 =,Slaadéen,,,,,,,,[+9 | 10],+5 G,,+1 T
+,,,,,,,,,,,,

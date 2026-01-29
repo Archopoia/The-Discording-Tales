@@ -1,0 +1,12 @@
+﻿Face d’arme & Dégâts causé,,,
+-5,CTD,5/5 Contondant,
+-4,,4/5 CTD,1/5 TRC
+-3,,3/5 CTD,2/5 TRC
+-2,TRC,2/5 CTD,3/5 TRC
+-1,,1/5 CTD,4/5 TRC
+0,,5/5 TRANCHANT,
++1,,1/5 PRF,4/5 TRC
++2,,2/5 PRF,3/5 TRC
++3,PRF,3/5 PRF,2/5 TRC
++4,,4/5 PRF,1/5 TRC
++5,,5/5 PERFORANT,

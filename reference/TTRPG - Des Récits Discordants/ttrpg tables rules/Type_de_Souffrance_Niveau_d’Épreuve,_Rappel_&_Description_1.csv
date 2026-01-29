@@ -1,0 +1,60 @@
+﻿Type de Souffrance,"Niveau d’Épreuve, Rappel & Description"
+"Blessures
+(FOR)
+Fractures
+Saignements
+Brûlures","Niv d'Épreuve = Échecs d'APT, Niv de Saignement & Niv de Chute"
+,"Rappel = A chaque Temps INVERSE au Niv de Saignement (d’une Épreuve de même Niv).
+On se blesse en chutant de Niv * 1m (Taille G) | 2m (Taille M) | 3m (Taille P).
+On pourra stopper toute hémorragie (panser/cautériser/coudre/etc… contre votre Niv de Saignement."
+"Fatigues
+(AGI)
+Exténuements
+Sommeil
+Noyades","Niv d'Épreuve = Échecs d'APT, Niv d'Encombrement, Labeurs & Nuits Blanches"
+,"Rappel = A chaque Temps INVERSE au Niv d’Encombrement (à +2 Niv d’Encombrement, surchargé, on se teste à chaque NdT -2 | Heure consécutif).
+Si on s’essouffle en bataille, on peut se restaurer de X DÉ / Niv de Clins."
+"Entraves
+(DEX)
+Dislocations
+Déchirures
+Froids","Niv d'Épreuve = Échecs d'APT, Niv de Température & NdT sans se laver (superficiel) "
+,"Rappel = A chaque Temps INVERSE au Niv de température SI les Niv de vêtements ne pallient pas le Niv de température (à +3 Niv de température, une canicule par exemple, on se teste à chaque NdT-3 | Instant consécutif), ou à chaque Niv de NdT sans se laver.
++1 Niv par couche d’armure (au-dessus de une) ou Niv d’Encombrement portée."
+"Disettes
+(VIG)
+Faims
+Soifs
+Chauds","Niv d'Épreuve = Échecs d'APT, NdT sans Manger & Jours sans Boire"
+,"Rappel = SI l’on a faim et/ou soif (quand le Niv d’Épreuve est plus grand que VIG) ET que l’on voit un aliment et/ou boisson “potentiel”.
+Plus la faim et/ou soif est grande plus la définition de ce qui est considéré comme étant une “vivre” s’étend (voir les adjectifs des niveaux d’épreuves pour se donner une idée)."
+"Addictions
+(EMP)
+Ivresses
+Attachements
+Irriliations","Niv d'Épreuve = Échecs d'APT, NdT de Monté, Niv addictif de la drogue"
+,"Rappel = A chaque ressenti des effets du sevrage. Le NdT de la Montée | Sevrage d’une drogue = +5 | +10 - NdT de Durée des effets (si la Durée des effets est d’1 Heure, NdT+1, sa montée sera de NdT+4, 1 Jour, et son sevrage, sera à tester chaque NdT+9, chaque Soleil).
+Lorsque l’on est rappelé de l’envie (à travers les mentions, la vision du produit, une idée étant liée, etc…) et d’un Niv d’Épreuve égal au Niv de ses Addictions actuelles. (Re)prendre une drogue recommencera le NdT du Rappel."
+"Maladies
+(PER)
+Poisons
+Parasites
+Irradiations","Niv d'Épreuve = Échecs d'APT, Niv d'Infection & Blessures non-pansées"
+,"Rappel = A la fin du NdT d’incubation (donnée).
+Chaque Niv de blessures non-pansées risque de s’infecter après 1 Jour, d’un Niv d’Épreuve à surmonter équivalent (Blessure à 3N = Maladie à 3N).
+Chaque Niv de poison inflige 1D6 Souffrances (parfois dans différentes Souffrances)."
+"Folies
+(CRÉ)
+Peurs
+Obsessions
+Apesenteurs","Niv d'Épreuve = Échecs d'APT, Niv Situations terrifiantes & Bouleversements"
+,"Rappel = (Re)vivre un souvenir (lieu, personne, objet, etc.) liée à ses Séquelles Physiques d’un Niv d’Épreuve égal au Niv de Séquelle + Niv de situation choquante.
+SI égalisant l’Épreuve, on Cherchera un Abri (pouvant être un lieu, une personne, un objet réconfortant, etc...).
+SI échouant l’Épreuve, on s’Enfuira, et à 5 Échecs, on se Rendra."
+"Rancoeurs
+(VOL)
+Injustices
+Envies
+Pressions","Niv d'Épreuve = Échecs d'APT, Niv Situations enrageantes & Punitions"
+,"Rappel = (Re)vivre un souvenir (lieu, personne, objet, etc.) liée à ses Séquelles Psychiques d’un Niv d’Épreuve égale au Niv de Séquelle + Niv de situation frustrante.
+Mêmes conséquences que celles des “SI” des Folies (juste au-dessus)."

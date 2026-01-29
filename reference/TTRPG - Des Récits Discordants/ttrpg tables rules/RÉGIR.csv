@@ -1,0 +1,23 @@
+﻿RÉGIR,,
+Gestion,,
+Logements,Entretien,Qualité
+"1 Bâtiment (NdG 1) par Comparse
+(1 Bâtiment pour 3 Travailleurs)","Labeurs (Saison) = BâtimentxQualité/2
+Salaire (Jour) = 0.5 cO + Expertise/2","+X Dés au Jet de Groupe du Module
+(Solidité, Conservation, Charge, Étages)"
+-1N au jet d’Ambiance par NdG non-logée,"Jour | Pentaine | Héliorée | Saison | ... 
+x1 | x3 | x10 | x30 | x...",La Qualité du Module limite la Qualité maximum de ses productions
+Logistique,,
+Entreposage,Charge,Transport
+1000 Sacs entreposable dans 1 Bâtiment,Sacs à porter pour déplacer le Bâtiment,Nombre de Sacs portables par Comparse
+Ajouter les Sacs entreposés dans la Charge du Module (si mobile)," +100 Sacs de Charge par Bâtiment
+/5 | /10 si il Glisse | Roule","Être | Monture | Bétail = 3S | 10S | 30S
+x5 | x10 si ils Tirent | Charrettent"
+Force,,
+Ambiance,Labeurs,Bataille
+"Jet d’Ambiance VS NdG du Foyer
+-1 Dé d’Ambiance par Jet de Groupe","1 Labeur par Comparse par Jour
+Se consomme lors de tout jet de Groupe","NdG du Foyer = Niv de Bataille
+Expertises & Qualité = Dés de Bataille"
++X Dés d’Ambiance (direct) par X NdT de Salaires avancés (à tous),"5 Marques d’Échec = +1 Dé d’Expertise
+Règles d’Intérêt & Frustration (p.)",Voir la (p.) sur les règles des Batailles et Combats Groupés

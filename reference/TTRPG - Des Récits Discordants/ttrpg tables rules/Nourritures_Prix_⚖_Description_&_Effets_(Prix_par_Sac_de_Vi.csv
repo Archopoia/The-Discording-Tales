@@ -1,0 +1,37 @@
+﻿﻿Nourritures,"Prix
+⚖","Description & Effets
+(Prix par Sac de Vivre de taille M)"
+Viande de Nuhrsaï,0.1,Chair habituellement bleuie et chitineuse (Blessures -1|D6)
+Viande de Beoad,0.3,"Sucrée et extrêmement molle, chair tannique recouverte d’une peau de chitine vermeille (Blessures -2|D6)"
+Viande d’Arvadoy,1 ,Croquante et salée aux fibres incandescentes libérant une chaleur vivace en bouche (Blessures -3|D6)
+Ipsphère,0.1,"Larves se regroupant et roulant dans les tunnels, formants une croute croustillante autour d’elles (Fatigues -1|D6)"
+Avgourion,1,"Œuf-tétard laineux d’Yaol-Daol (Blessures -1|D6, Entraves -2|D6)"
+Sélénacorne,0.1,"Graine nacrée au cœur moelleux, huile fluide lubrifie chaque articulation (Entraves -1|D6)"
+Hépiseux,1,"Coque violette craquante, sucs fumés détendent muscles et tendons (Entraves -2|D6)"
+Flocons d’Échoïde,0.1,Minces paillettes qui fondent au contact de l’estomac (Fatigues -1|D6)
+Grain d’Argyrine,0.3,"Petit grain argenté, libère lentement ses fécules pour un effort long (Fatigues -2|D6)"
+Céréuléen,1,"Poudre céréalée bleutée éclatante, tonifiant (Fatigues -3|D6)"
+Pois Perliki,0.1,Pois translucides aux sucs gélatineux qui rassasient sans alourdir (Disettes -1|D6)
+Lunetelle,0.3,"Graine en demi-lune, fibres tendues (Disettes -2|D6)"
+Corxave,1,"Pois corallien à relief spongieux, absorbe l’acidité interne (Disettes -3|D6)"
+Radiclelée,0.1,Racine barbelée aux sucs luminescents (Maladies -1|D6)
+Filumopal,0.3,Filament opalin gorgé de sels vitaux (Maladies -2|D6)
+Oribulbe,1,Bulbe métallique à la chair dure (Maladies -3|D6)
+Gloméra,0.1,Baie sphérique irisée au jus pétillant (Folies -1|D6)
+Éthéréchine,0.3,Fruit cristallin aux sucs volatils tels des spores (Folies -2|D6)
+Névroblume,1,Capsule aux nervures luminescentes (Folies -3|D6)
+Bryophyte,0.1,Écorce champignonnière à la texture de chaire et l’humidité rafraîchissante (Rancœurs  -1|D6)
+Lichefer,0.3,Tapis lichénique aux veines pourpres (Rancœurs  -2|D6)
+Cocorille,1,Vers parasitaire issus des plus profondes coraux thermaux (Rancœurs  -1|D6)
+Phythyon,1,Algue-miel thermale (Addictions -3|D6)
+Phyllisyor,3,Feuilles d’eau-crystalline métallique soufflée (Maladies -5|D6)
+﻿Boissons,"Prix
+⚖","Description & Effets
+(Prix par Sac de Vivre de taille M)"
+Hoydo,0.1,"Eau turquoisée typique de ces terres. Venant d’une source, des pluies ou des glaciers, voir des océans."
+Udorise,100,"Eau métallique aux couleurs d’arc-en-ciel récoltée de rares pluies (Addictions -1|D6, Folies -3D6, Rancœurs -3|D6)"
+Mucsucre,0.1,Glucchymuc caudal des Beoads. Récolté en massant et essorant leurs tentacules pollinisées (Addictions -1|D6)
+Malatyre,0.3,"Intermédiaire entre beurre et lait issus d’Arvadoy, translucide aux essences salées (Fatigues -1|D6, Addictions -1|D6)"
+Melhygre,3,"Miellat cristallin de Nuhrsaï, transformé similairement à de la bière (Addictions -1|D6, Rancoeurs-1|D6)"
+Troille-vonge,1,"Vers triangulaires, broyés intérieurement, dont l’on boit les organes (Disettes -3|D6)"
+Lipeirie,10,"Grasse-sauce d’organes de luicéphales (Fatigues -2|D6, Addictions -3|D6)"

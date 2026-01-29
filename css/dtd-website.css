@@ -1680,6 +1680,51 @@ img {
     cursor: not-allowed;
     background: rgba(0, 0, 0, 0.2);
 }
+
+/* Test competence (no API) – in chat when sheet is available */
+.gm-chat-test-roll {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(206, 182, 141, 0.3);
+    margin-bottom: 0.25rem;
+}
+.gm-chat-test-roll-label {
+    font-size: 0.875rem;
+    color: var(--tdt-beige-light);
+}
+.gm-chat-test-roll-select {
+    padding: 0.35rem 0.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--tdt-beige-warm);
+    border-radius: 4px;
+    color: var(--tdt-cream);
+    font-size: 0.875rem;
+    max-width: 12rem;
+}
+.gm-chat-test-roll-niv {
+    padding: 0.35rem 0.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--tdt-beige-warm);
+    border-radius: 4px;
+    color: var(--tdt-cream);
+    font-size: 0.875rem;
+}
+.gm-chat-test-roll-btn {
+    padding: 0.35rem 0.75rem;
+    background: #643030;
+    color: #F3E2A9;
+    border: 2px solid #674B1B;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+.gm-chat-test-roll-btn:hover {
+    background: #7a4040;
+}
+
 .gm-chat-messages .status {
     color: var(--tdt-beige-light);
     font-style: italic;

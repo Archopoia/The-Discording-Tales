@@ -1,0 +1,34 @@
+﻿Aptitudes,Attributs 3/2/1,,(Groupes de) Compétences associées,,
+(Saisons),(Héliorées),,1ères Pentaines,2èmes Pentaines,3èmes Pentaines
+"COMbattre
+(Été)",1ère,For +3,[Armes de Corps],[Armes de Poigne],[Armes d'Antipôle]
+,2ème,Agi +2,[Armes de Garde],[Armes Équilibrées],[Armes Flexibles]
+,3ème,Dex +1,[Armes Jetées],[Armes Propulsées],[Armes Bandées]
+"DÉRober
+(Automne)",1ère,Agi +3,[Évasion] ,[Gestuelle],[Minutie]
+,2ème,Dex +2,[Esquive],[Dissimulation],[Escamotage]
+,3ème,Per +1,[Équilibre],[Fluidité],[Maniage]
+"ŒUvrer
+(Automne)",1ère,Dex +3,[Visée],[Conduite],[Illusions]
+,2ème,Cré +2,[Débrouillardise],[Bricolage],[Savoir-Faire]
+,3ème,Vol +1,[Artifices],[Sécurité],[Casse-Têtes]
+"FRAnchir
+(Hiver)",1ère,Vig +3,[Grimpe],[Natation],[Fouissage]
+,2ème,For +2,[Allure],[Port],[Saut]
+,3ème,Agi +1,[Vol],[Acrobatie],[Chevauchement]
+"INCiter
+(Hiver)",1ère,Emp +3,[Créativité],[Mimétisme],[Présentation]
+,2ème,Vol +2,[Négociation],[Tromperie],[Séduction]
+,3ème,Cré +1,[Instrumental],[Chant],[Narration]
+"DIScerner
+(Cycle)",1ère,Per +3,[Vision],[Audition],[Toucher]
+,2ème,Emp +2,[Investigation],[Estimation],[Ressenti]
+,3ème,Vig +1,[Odorat],[Goût],[Internes]
+"ÉLUcider
+(Cycle)",1ère,Cré +3,[Artisanat],[Médecine],[Ingénierie]
+,2ème,Per +2,[Nature],[Pastoralisme],[Agronomie]
+,3ème,Emp +1,[Jeux],[Histoire],[Géographie]
+"SURvivre
+(Été)",1ère,Vol +3,[Satiété],[Immunité],[Rectitude]
+,2ème,Vig +2,[Robustesse],[Absorption],[Entrailles]
+,3ème,For +1,[Apprivoisement],[Puissance],[Intimidation]

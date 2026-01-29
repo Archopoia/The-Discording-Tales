@@ -1,0 +1,50 @@
+﻿﻿Potentiels d’Action au Combat,,
+Puissance,Frapper,"+X Cibles traversées (attaque)
++5*X Dégâts réorientés (contondants)"
+,Neutraliser,"+X Blocages sans Niv d’Ébranlement
++X Niv de Gêne sur une Cible à portée"
+,Tirer,"+X Portée à distance
++5*X Dégâts réorientés (contondants)"
+Aisance,Réagir,"+X Esquives sans Niv d’Ébranlement
++X Niv d’Alerte (10->6->3->1 Dés de surprise)"
+,Dérober,"+X Taille d’objet volé lors d’un jet d’attaque
++X Niv de Ruses annulés ou causés"
+,Coordonner,"+X Proactions simultanées ou Quart de Tour sans Niv d’Ébranlement
+ -X Clins d’affilé d’une Proaction déclarée"
+Précision,Manier,"+X Parades sans Niv d’Ébranlement
++X Niv de Dés de visée sans prendre de Clins"
+,FAçONNER,"+X Attributs d’Arme, d’Outil ou de d’Armure annulés (outrepassés)
++X Niv de Destruction d’Arme, d’Outils ou d’Armure"
+,Fignoler,"+X Niv OU D6 de Localisation lors d’une Attaque
++X Niv de Bottes annulés ou causés"
+Athlétisme,Traverser,"+X Vitesses de Déplacement (marcher/courir/charger) sans Niv d’Ébranlement
++X transitions au Clin suivant entre deux vitesses de Déplacement"
+,EfForcer,"+X Sauts sans Niv d’Ébranlement
++X Niv de Lutte annulés ou causés"
+,Manœuvrer,"+X Déploiements sans Niv d’Ébranlement OU +X Cases déployables
++X Cases déplacées lors d’une Esquive"
+Charisme,Captiver,"+X Niv de Cibles neutres ou alliés venant à votre aide (jusqu’à recevoir X Souffrances)
++X Niv à tout jet d’autrui afin de directement vous aider, défendre ou sauver"
+,ConvAINCRE,"+X Niv de Cibles évitent de vous attaquer (sauf si vous leur infligez des Dégâts)
++X Niv de Cibles convaincues de viser un autre de leurs ennemis précisément (1 fois)"
+,Interpréter,"+X Dés d’Ambiance de votre groupe 
++X au Potentiel d’Action utilisé par 1 allié"
+Détection,Discerner,"+X pires Souffrances d’une cible révélés (type de Souffrance et Dés actuels)
+ -X Portée minimum en mêlée"
+,Découvrir,"+X Niv aux jets afin de stopper un conflit (en découvrant une partie des raisons)
++X Succès échangés entre une Attaque et une Manœuvre précédemment déclarée"
+,DÉPISTER,"+X Attaques prédites (révéler tous ses paramètres)  d’une cible, donnant +X Niv envers elle
++X Niv d’Ébranlement actuels d’une cible révélée"
+Réflexion,Concevoir,"+X pires Résistances d’une cible révélées
++X Souffrance infligés (pressant sur les failles)"
+,Acculturer,"+X Niv de dangers et d’aides sociétales aux alentours révélés (pièges, outils, etc.)
++X Tactiques d’une cible vivant en société, donnant +1 Niv (max) contre celles révélées"
+,Acclimater,"+X Niv de dangers et d’aides naturelles aux alentours révélés (terrain, airs, etc.)
++X Tactiques d’une cible non-sociétale, donnant +1 Niv (max) contre celles révélées"
+Domination,Discipliner,"+X Épreuves de Groupe entre alliés adjacents contre une cible (moyenne des attaques + NdG)
++X Niv contre tout Souffrance de Folie (encerclé, chef vaincu, peur, etc.)"
+,Endurer," -X au D6 pour surmonter votre Rage ET votre Inconscience
+ -X Souffrances reçus annulés complètement"
+,Dompter,"+X Souffrances de Folie lorsque vous infligez une Souffrance
++X Niv de Cibles cessant d’attaquer votre cible désignée"
+,,

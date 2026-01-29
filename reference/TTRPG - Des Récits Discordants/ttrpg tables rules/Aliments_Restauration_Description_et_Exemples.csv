@@ -1,0 +1,32 @@
+﻿Aliments,Restauration,Description et Exemples
+Viandes,Blessures,"Riche en substances nourrissantes qui reforgent le sang et les chairs, aidant les plaies à se refermer plus vite (Viandes, Poissons, Fruits‑de‑mer, etc...)."
+Noix,Entraves,"Huiles naturelles et éléments fortifiants lubrifient les jointures et assouplissent les membres raidis. (Noisettes, Amandes, Chataîgnes, etc...)."
+Céréales,Fatigues,"Substances féculentes qui remplissent l’estomac et procurent force durable pour soutenir l’effort prolongé (Blés, Riz, Avoines, etc...)."
+Pois,Disettes,"Protéines végétales et fibres rassasient l’estomac, préviennent l’affaiblissement et soutiennent la vigueur. (Pois, Lentilles, Fèves, etc...)."
+Laitages,Addictions,"Graisses et suc discret tempèrent le creux d’âme, calment les envies pressantes et stabilisent les appétits (Laits, Miels, Œufs, etc...)."
+Légumes,Maladies,"Sucs de racines et de feuilles, riches en sels et forces de la terre, fortifient l’organisme contre les maux (Feuilles, Algues, Bulbes, etc...)."
+Fruits,Folies,"Chair douce et juteuse, pleine de sucs protecteurs, garde l’esprit clair et prévient la confusion (Baies, Fruits à noyaux, Agrumes, etc...)."
+Champignons,Rancoeurs,"Corps terreux porteurs de forces apaisantes, dissipent l’ardeur de la colère et tempèrent les ressentiment (Lichènes, Moisissures, Coraux, etc...)."
+Préparation de l’Aliment,,
+Préparer,"Restaure +X|D6 d’une (autre) Souffrance contre X NdT de Préparation ou X Sachet (0.01S) par Portion préparée.
+Pour chaque +2|D6 ainsi gagnée, réduire de -1 la Qualité de l’Aliment.",
+Haché / Émincé,Blessures,"Favorise l’absorption rapide des sucs réparateurs, essentiels à la cicatrisation."
+Acidifié/Mariné,Entraves,"Le jus aigre détend les fibres, assouplit muscles et articulations raidis."
+Salé,Fatigues,"Le sel ranime les humeurs vitales et rétablit l’équilibre des sels corporels, ravigorant les membres."
+Séché / Fumé,Disettes,"En ôtant l’humidité, on concentre l’énergie nutritive, idéal pour subsister en temps de manque."
+Sucré,Addictions,Le miel et les sucres apaisent l’âme troublée et procurent un élan d’énergie rapide.
+Épicé,Maladies,"Les épices chauffent le corps, purgent les humeurs corrompues et soutiennent la résistance aux infections."
+Infusé,Folies,"L’eau tire les essences calmantes, dont les sucs apaisent l’esprit agité et tempèrent l’anxiété "
+Fermenté,Rancoeurs,La lente transformation crée des forces vivantes qui modèrent la colère et favorisent la réconciliation.
+Cuisine de l’Aliment,,
+Cuisiner,"+X Niv d’Épreuve au jet de Précision Fabrication] par Qualité de l’Aliment et par Aliments cuisinés simultanéments.
+Par Échec: -X à la Qualité des Aliments cuisinés.
+Par Succè: +X|D6 de Restauration de la Souffrance liée au type de cuisine effectuée lors du jet.",
+Grillé / Rôti,Blessures,"Concentre ses nutriments et durcit les fibres, renforçant muscles et chairs blessés."
+Sauté / Poêlé,Entraves,"Fixe ses sucs et reste souple, aidant les membres raidis à se délier"
+Frit,Fatigues,"S’imprègne d’un gras énergisant, offrant un regain rapide de vigueur"
+Poché / Vapeur,Disettes,"Hydrate et gonfle, chasse la faim en cas de manque, apaise le ventre."
+Crémé / Laité,Addictions,Adoucit et ressource le corps et les senses pour tempérer les envies.
+Bouilli / Mijoté,Maladies,"Extrait les vertus cachées, fortifie contre la maladie."
+Cru,Folies,"Tel quel, l’aliment garde ses vertus intactes et soutient la clarté de l’esprit - si il est frais et sein."
+Confit,Rancoeurs,La cuisson lente dans la graisse et la présentation elle-même rappelle une ambiance festive et joyeuse.

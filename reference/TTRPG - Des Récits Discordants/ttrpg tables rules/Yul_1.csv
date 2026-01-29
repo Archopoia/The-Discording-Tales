@@ -1,0 +1,55 @@
+﻿﻿Yul,,,,,,,
+"Hormis ses extérieurs rocailleux, la caravane d’Yul est située presqu’entièrement sous terre, au pieds des monts Ajolum à la limite des mangroves. Leurs tunnels sont gorgés d’une des plus hautes fertilité de zoions qu’ils élèvent et récoltent par alternance.",,,,,,,
+"CHEFFERIE 
+Nomade NdG 6 (environ 1’000 habitants)",,,"Slaadéens 
+Ouvriers de faction N’la-Fatch",,,"Atout
+Caves aux Zoions",
+5dD,(Quoi?) Terrain Local ,Factions rencontrées (Qui?) et leurs Opportunités (Combien ? = X),,,,,
+-5,"Passage Ancien intriguant
+(Passe Mortelle vers Baas Tar)
+Peut-être connecté aux Aïars, reliques inconnues, brisées. Peintures-sculptures en 3 dimensions s’accroissant de plus en plus, mais s’arrêtant brusquement à un trou béant, ayant une infime lumière en sa profondeur immense… 
+-4N VS Folies (tant qu’on y voit l’art)","(-) Rançonneurs enlevant les savants à zoions et marchands de teintures Yuliens, motivés par la valeur revendable de quiconque, leur préciosité ",,,"DISSIDENTS & COMMERÇANTS
+Épreuve à X afin de kidnapper une ou plusieurs personnes d’une Distinction totale équivalente",,
+-4,,"(0) Saboteurs sédentaires motivés par l’explosion elle-même, et contre la récolte des zoions",,,"DISSIDENTS & FABRICANTS
+Épreuve à X pouvant blesser (explosion) et infectant (zoions aériens d’une cave explosée)",,
+-3,"Galeries à zoions abandonnés, dérégulés, enfumés et à haute pression, pouvant exploser, pesant et peu respirables
+RES+3 || LUM-3 || PRE+3","(+) Voleurs de miroirs de cave à zoions, motivés par la richesse ou ce qui est beau selon on eux: ce qui miroite ou réfléchit",,,"VAGABONDS & FÊTARDS
+-X NdV de Richesses en cO, ou la moitié si cette richesse miroite (ressemble à un miroir)",,
+-2,"Passes très pentues et étroites dans des falaises au sein des cavernes, parfois s’écroulant et se bloquant d’éboulis
+TER+2 || TER-2","B’Dyiorlyrs glucophiles, prédateurs attirés par le sucré, motivés par leur faim et addiction",,,"FAUNE PRÉDATRICE
+-X NdA Vivres, ou la moitié si sucrées",,
+-1,"Couloirs troglodytiques, dans les cavernes, peu empruntées ni éclairées, parfois avec des échos de prédation
+LUM-1","Enfumeurs de cave, motivés par leur désir de se relaxer, particulièrement dans le chaud et l’humide, voir de s’intoxiquer par le manque d’air",,,"DISSIDENTS & INGENIEURS
+-X NdT perdus à devoir contourner les lieux enfumés, ou alors infligeant NdT+X Fatigues",,
+0,Tunnels au pied des montagnes plutôt empruntés et éclairés de miroirs ou d’entrées du soleil lorsque nécessaire.,"(-) 
+
+Factions Externes
+(jet dans le tableau lié)",,"(0) 
+(-) Croisement de 2 Terrains
+(0) rien
+(+) Petite Faune locale",,,"(+) 
+
+Sanctuaires locaux
+(jet dans le tableau lié)"
++1,"Pistes extérieures et rocailleuses, à la limite des mangroves, parfois proche d’un petit ruisseau, et aux échos de rigolades aimables. 
++1N VS Rancœurs",Ouvriers Yuliens affairés à la construction ou au maintien d’aqueducs d’humidification de caves à zoions et à l’approvisionnement en eau à tous.,,,"FOURNISSEURS & FABRICANTS
+X NdA d’Eau potable
++X Savoirs des Chemins de Yul",,
++2,"Chemin-tunnels paisibles, guidés de banderoles de tissus marqués, aux couleurs vivides, et bien parfumés
+ +3D VS Où?, +2N VS Folies","Artisans Yuliens de grands miroirs miniers, les plaçant dans les hauteurs et tunnels afin d’éclairer les caves à zoions et les passages.",,,"INGÉNIEURS & FABRICANTS 
+X NdA Miroirs décorés (2 cO/Sac)
++X Savoirs des Dangers naturels d’Yul",,
++3,"Voies caverneuses empruntées, luxuriantes de plantes luminescentes et à la température idéale
++6D VS Qui?, +3N VS Entraves","(-) Applicateurs et Récolteurs Yuliens de pâte à zoion visqueuse et sucrée, à étaler sur les parois de caves à zoions afin de les nourrir, avant de les moissonner ",,,"EXTRACTEURS & PRODUCTEURS
+X NdA Vivres sucrées et précieuses (pâte à zoion) (3 c0/Sac)
++X Savoirs des Prédateurs de Yul",,
++4,"Colonie Sublimée alléchante
+(Chemin Suspect vers Dla’Sathos)
+Caverne abandonnée des animaux l’ayant aménagée, parois couvertes d’un liquide cristallin qui se solidifie en stalagmites pointues au toucher. Celles l’étant déjà goûtent bon mais collent instantanément quiconque les touches. 
++4N VS Addictions (en buvant le liquide)","(0) Ingénieurs Yuliens planifiant, dirigeant et construisant les gazoducs chauffant/refroidissant les caves à zoions et saunas Yuliens",,,"FOURNISSEURS & SOUTIENS
++X Soins de Fatigues ou Disettes ou Maladies (potions à zoions)
++X Savoirs sur les Zoions",,
++5,,(+) Alchimistes-marchands Yuliens récoltant et transformant les zoions en différentes types qu’ils transportent afin de les vendre.,,,"CHERCHEURS & MARCHANDS
++X Soins dEntraves (saunas) 
++X Soins de Fatigues (climatisation)
++X Savoirs Ingénierique de Yul",,

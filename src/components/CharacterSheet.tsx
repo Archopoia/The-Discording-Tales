@@ -413,7 +413,6 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
       .reduce((s, c) => s + (state.competences[c]?.degreeCount ?? 0), 0) +
     Object.values(Souffrance).reduce((s, souf) => s + (state.souffrances[souf]?.resistanceDegreeCount ?? 0), 0);
 
-  const inCreation = simHighlightId === 'create-attributes' || simHighlightId === 'create-reveal' || simHighlightId === 'create-dice';
 
   const handleAttributeChange = (attr: Attribute, value: number) => {
     if (simHighlightId === 'create-reveal' || simHighlightId === 'create-dice') return;
@@ -558,48 +557,32 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
           )}
         </div>
 
-        {/* Event log – fades out during character creation, fades in when user clicks "Lancer la simulation" */}
-        <div
-          className={`grid shrink-0 overflow-hidden transition-[grid-template-rows] duration-300 ease-in-out ${inCreation ? 'grid-rows-[0fr]' : 'grid-rows-[1fr]'}`}
-        >
-          <div
-            className={`min-h-0 overflow-hidden transition-opacity duration-300 ease-in-out ${inCreation ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
-          >
-            <div className="relative">
-              <SimulationEventLog
-                lang={lang}
-                manager={manager}
-                updateSheet={updateState}
-                onHighlight={(id, tooltip) => {
-                  setSimHighlightId(id);
-                  setSimTooltip(tooltip ?? null);
-                }}
-                onStepAction={setStepAction}
-                creationStateDeps={{
-                  attrSum,
-                  revealedCount,
-                  diceSum,
-                }}
-                onCreationComplete={() => {
-                  const s = manager.getState();
-                  const withRevealed = new Set(
-                    Object.values(Action).filter((a) =>
-                      getCompetencesForAction(a).some((c) => s.competences[c]?.isRevealed)
-                    )
-                  );
-                  setExpandedActions(withRevealed);
-                }}
-              />
-              {/* Tutorial: dim the event log so overlay coverage is continuous from log down into sheet; pointer-events-none so buttons stay clickable */}
-              {(simHighlightId === 'create-attributes' || simHighlightId === 'create-reveal' || simHighlightId === 'create-dice') && (
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{ zIndex: 100, background: 'rgba(0,0,0,0.65)' }}
-                  aria-hidden
-                />
-              )}
-            </div>
-          </div>
+        {/* Creation narrative steps (origin, peuple, name) when not yet in storage – no journal */}
+        <div className="shrink-0">
+          <SimulationEventLog
+            lang={lang}
+            manager={manager}
+            updateSheet={updateState}
+            onHighlight={(id, tooltip) => {
+              setSimHighlightId(id);
+              setSimTooltip(tooltip ?? null);
+            }}
+            onStepAction={setStepAction}
+            creationStateDeps={{
+              attrSum,
+              revealedCount,
+              diceSum,
+            }}
+            onCreationComplete={() => {
+              const s = manager.getState();
+              const withRevealed = new Set(
+                Object.values(Action).filter((a) =>
+                  getCompetencesForAction(a).some((c) => s.competences[c]?.isRevealed)
+                )
+              );
+              setExpandedActions(withRevealed);
+            }}
+          />
         </div>
 
         {/* Content - Scrollable (sheet only; event log stays above) */}

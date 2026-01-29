@@ -1,0 +1,14 @@
+﻿"Manœuvres
+Plus on a de Succès, et plus on peut Manœuvrer l’ennemi",,
+Lutte (Manœuvres Désarmées),﻿Succès,Bottes (Manœuvres Armées)
+Saisir l’individu/Objet sur lui (reste à portée),+1...,Neutraliser l’arme (-1 Niv à tout ses attributs)
+Tirer ou Pousser l’individu d’1 Case,...+2...,Bloquer l'arme (arme entièrement inutilisable)
+Mise à Terre ou Grimper 1 Case sur l’individu,...+3...,Désarmer l’arme (tombant au sol à 1 Case)
+Projeter l’ennemi d’1 Case (Mise à Terre),...+4...,Prendre l’arme ennemie de ses mains
+Immobiliser totalement l’individu,...+5,Retourner l’arme (son jet d’attaque) contre lui
+Ruse (Manœuvres générales),,
+"(-X au Potentiel ennemi) Hébétement/Ruse 
+(-X au Jet de Souffle ennemi) Couper le Souffle
+(+X à son prochain jet d’Attaque) Feinter",+X," (-X Clins à 1 ennemi) Battement
+(-X Durabilité d’Arme ennemie) Destruction
+(-X au prochain jet ennemi) Contre"

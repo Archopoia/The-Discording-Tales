@@ -1,0 +1,16 @@
+﻿BÂTIR,,,
+"Modules d’Industries Transformantes
+(1 Labeur (1c0) + 1 Sac de Ressources contre 1 Sac Transformé PAR Comparse (Novice) PAR Module)",,,
+ Moulin +1 🝙,,Tisserand,Tannerie
+Grains -> Farine,,Textile -> Étoffe,Peau -> Textile(Cuir)
+ Brasserie +1 🝙 | | 🔥Pâtisserie,,🔥Taverne  +1 🝙,🔥Fonderie  +1 🝙
+Farine -> Alcool || Vivre,,Aliment -> Vivres,Minéral -> Métal
+"Modules d’Industries Fabricantes
+(1 Labeur (1c0) + 10 Sacs de Ressources contre 1 Sac Fabriqué PAR Comparse (Novice) PAR Module)",,,
+🔥Pâtisserie +1⬖ ,"Minéral (Argile/Calcaire/Sable…) -> Liant (Argile/Chaux/Ciment/Plâtre) 
+Minéral + Liant -> Pierre Taillée (par exemple)",,
+🔥Forge +1⬖ ,"1 Sac de Métal PAR Sac d’Encombrement de l’objet en Métal à fabriquer
+1 Labeur produit les 5cO du Prix d’un objet entièrement en Métal (sinon 2cO/1cO)",,
+🔥Tailleur +1🌲 ,"1 Étoffe ou 5/2/1 Peaux/Cuirs de Taille P/M/G PAR Sac d’Encombrement du Matelassage
+1 Labeur produit les 5cO du Prix d’un objet entièrement en Textile (sinon 2cO/1cO)",,
+Exemple: 1 Sac de ⬖ (Fer) contre 10 Sacs de 🝙 (Minéraux) et 100 Sacs de 🌲 (Bois),,,

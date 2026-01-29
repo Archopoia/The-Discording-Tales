@@ -1,0 +1,12 @@
+﻿,Cercle Initial de Perception/Cache...,,NIV,Qui,Quoi
+s ô I ô s,C1,De la Présence | l’Apparence | la Localisation,0,Un Ril Lié | Un Ril À nous | Un Ril venant De nous,"Présence de X chez le Ril
+Vigilance mentale de X"
+,C2,De la Propriété d’un Ril,+1,"Ril de la même Famille 
+Ril Inconnu | Traces du Ril Un Ril au sein d’Autres Rils","Niveaux du Ril
+Instincts de Survie du Ril"
+,C3,Communication avec un Ril (ou la brouiller),+2,Un Ril d’un Type Spécifique,"Intuition d’une Action ou
+Conséquence future du Ril"
+,+X,S’il ne peut pas être Ressenti par nos sens,+3,Un Ril Individu Spécifique,"Ce que le Ril Touche
+Son Entourage | Son État"
+,INITIAL + QUI + QUOI,,+4,,Ce que le Ril “Voit”
+,,,+5,,Ce qui est Connecté au Ril

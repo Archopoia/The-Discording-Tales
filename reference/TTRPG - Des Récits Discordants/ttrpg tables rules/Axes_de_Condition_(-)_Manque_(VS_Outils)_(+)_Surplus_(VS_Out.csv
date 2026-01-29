@@ -1,0 +1,17 @@
+﻿Axes de Condition,,(-) Manque (VS Outils),(+) Surplus (VS Outils)
+FLU,x,Embourbement,Emportement
+,,"VS Courant, Circulation","VS Abris, Coupe-flux"
+MOI,teur,Humidité,Aridité
+,,"VS Imperméabilité, Flottaison","VS Humidification, Capture"
+TER,rain,Glissements,Escarpements
+,,"VS Traction, Sécurisation","VS Adhérence, Soutien"
+TEM,pérature,Froids,Chaleurs
+,,"VS Couverture, Réchauffement","VS Ignifugation, Rafraîchissement"
+RES,piration,Étouffement,Soufflement
+,,"VS Inhalation, Ventilation","VS Filtration, Coupe-vent"
+RAD,iance,Irriliation,Irradiation
+,,"VS Réflectivité, Captation","VS Absorption, Blindage"
+LUM,inance,Obscurité,Luminosité
+,,"VS Éclairage, Amplification","VS Assombrissement, Diffusion"
+PRE,ssion,Apesanteur,Écrasement
+,,"VS Lestage, Attraction","VS Pressurisation, Solidité "

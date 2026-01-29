@@ -1,0 +1,39 @@
+﻿Armes (de...),,,
+Poing,"Armes portées sur les mains, doigts, ou les remplaçant, ou les mains nues. ",,"Ex: Gantelets, Anneaux-griffes, Boucliers, Pavois, etc."
+Pommeau,"Typiquement à lame, d'un centre de gravité situé plutôt vers sa base. ",,"Ex: Épées, Sabres, Rapières, Machettes, etc."
+Manche,"D'un poids au centre et équilibré, afin d'être au plus versatile. ",,"Ex: Bâtons, Lances, Canes, etc."
+Hast,"Typiquement à écrasement, ayant un centre d’équilibre vers leur bout.",,"Ex: Marteaux, Hallebardes, Haches, Piolets, etc."
+Flexible,"Toutes les armes à manche ou corps flexible (chaînes, lames souples, etc.). ",,"Ex: Fouets, Chaînes, Fléaux, etc."
+Lancer,Toutes les armes lancées directement de la main un fois relâchée. ,,"Ex: Javelots, Frondes, Dards de jet, Boomerangs, etc."
+Jet,Toutes les armes à distance au mécanisme armé à la main par force.,,"Ex: Arcs, Propulseurs, etc."
+Tir,Toutes les armes à distance utilisant un mécanisme de propulsion. ,,"Ex: Arbalètes, Sarbacane, Sulfarouelle etc."
+ArmURes,,,
+"Matelassage
+1ère Classe
+
+On peut les porter sur ou sous n’importe quelle Classe","Peaux (durables contre CTD)
+Les peaux sont habituellement séparées de la fourrure animale et se porte ou place sur toutes formes d’armures. On peut les bouillir pour les mouler solidifier, et les cémenter avec de la colle animale et roche, sable, ou poudre de métaux/verre.",,
+,"Textiles (durables contre PRF)
+Ce sont tout vêtement (gambisons, hoquetons, pourpoints, etc.) fait de couches (18 à 30) de lin, coton, laine, poils, papier, soie, roches fibreuses, etc… protégeant aussi les articulations en offrant une bonne absorption des dégâts. Portés seuls ou par-dessous ou dessus des armures de maille, écailles, laminaires, lamellaires brigandine, plate ou tout autres.",,
+"CARAPAçonnage
+2ème Classe
+
+On peut porter une seconde 2ème Classe sur une autre si celle au-dessous est dite “légère”.","Mailles (durables contre CTD)
+Faite d’anneaux de métal dont chaque quatrième est riveté (il existe d’autres variations pour d’autres utilisations). Très difficiles à produire et chères, en revanche les pièces de maille permettent une grande flexibilité ainsi qu’une protection des zones habituellement exposées. Elles peuvent aussi être portées en dessous ou dessous, ou encore en conjonction avec d’autres armures (Lamellaires, Plates, Etc…). La largeur des anneaux peut changer et constituent des maillages plus lourds et résistants.",,
+,"Écailles (durables contre TRC)
+Les pièces d’écailles sont similairement construites aux lamellaires, mais ici, les écailles animales ou de métal, pierres os, coquilles, graines, cuirs, etc. sont attachées à une pièce de support en cuir, plutôt que lacées entre elles directement.",,
+,"Brigandines (durables contre PRF)
+Renforcée à l’intérieur de feutre ou autre matériau, tel un matelassage, ainsi qu’avec des plaques de métal rivetées à une base de cuir extérieur, donnant un aspect typique d’habit clouté. Grossièrement, une combinaison similaire à du matelassage et de la laminaire.",,
+"BLINDAGE
+ 3ème Classe
+
+On peut porter une 3ème Classe SI la 2ème Classe au-dessous est dite “légère”","Laminaires ou “À bandes” (durables contre CTD)
+A ne pas confondre la sonorité avec les armures lamellaires, celles laminaires sont faîtes de bandes de métal, cuir, os, ivoire, chitine, bois, etc. horizontales (“lames”), efficaces et moins coûteuses que les lamellaires. Aussi utilisés pour les armures de montures.","Cuirs et Chitines Résinés (durables contre TRC)
+On place le matériau sur modèle afin de le former, puis les espaces de ses fibres sont imprégnées de résine (animale ou autre) chauffée, et d’autres matériaux (limaille de métal, poudre de verre, etc…) qui semble visuellement bouillir. En refroidissant, ce processus solidifie la forme désirée, et le rends très résistant en comparaison à du cuir normal. Les armures sont habituellement faîtes de 3 à 5 couches.",
+,"Lamellaires (durables contre PRF)
+Faites de pièces de métal (“lamelles”), cuir, corne, os, carapace, pierre, papier de soie, écorce, etc. lacées ensembles pour un résultat flexible et durable. Aussi utilisées pour les armures de montures.","Plates (durables contre TRC)
+Armures faites des plates de tout métal, et de multiples pièces habituellement constituant une armure complète du corps, généralement portée par-dessus tout autre protection. Plus elle est segmentée et plus elle permet de protéger chacune des parties du corps, et plus son prix augmente",
+"Accessoires
+4ème Classe","Vêtements (de Soie)
+Ces vêtements coûtent chers et n’offrent aucune protection s’ils ne sont pas matelassés, en revanche, contrairement aux autres habits où une blessure risque de s’infecter de par l’introduction des vêtements dans la plaie, la soie ici se déchire sans y pénétrer, et aussi sans besoin qu’on nettoie la plaie de celle-ci.","Semi-Armure, Protections singulières et Boucliers
+Des pièces d’armure faites de différents matériaux se portant comme accessoires (épaulières, genouillères, gorget, etc.) afin d’absorber les dégâts, abritant plusieurs parties du corps comme des boucliers (voir tout simplement en étant), tel que tout le dos, une épaule et la tête, etc.",

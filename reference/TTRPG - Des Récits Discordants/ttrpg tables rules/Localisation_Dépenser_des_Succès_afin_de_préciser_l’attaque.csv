@@ -1,0 +1,12 @@
+﻿"Localisation
+Dépenser des Succès afin de préciser l’attaque ",,,,,,
+Succès,1,2,3,4,5,6
++0,"Ne pas viser précisément un membre, toucher là où c’est possible (et d’une façon moins pénalisante pour la cible)",,,,,
++1,Dos,Bras (D),Jambe (G),Jambe (D),Bras (G),Torse
++2,Nuque,Poignet,Coude,Main,Aisselle,Pied
++3,Dos du Crâne,Tête,Tendon d'Achille,Aine,Oreille,Reins
++4,Mâchoire,Nez,Cou,Œil ,Tempe,Plexus
++5,"Un point précis, tel que le centre du front, une dent, un doigt, le nombril, etc… Multipliant les Dégâts d’1 Succès inférieur (x3 -> x2)",,,,,
++X,Ajoutez XD6 à votre jet de Localisation afin choisir parmis plusieurs dés au sein de la catégorie visée plutôt qu’un seul.,,,,,
+"SI : Bleu/Gauche | Vert/Centre | Jaune/Droite =  Multipliez les Dégâts Contondant | Tranchant | Perforant de l’arme par Dégâts dépensés.
+(Une arme à “-2” ayant donc 3 Dégâts tranchants par 5, occasionnant 4 Succès de Dégâts et visant à [+2] Succès l’Aine fera 3x4[x2] TRC)",,,,,,

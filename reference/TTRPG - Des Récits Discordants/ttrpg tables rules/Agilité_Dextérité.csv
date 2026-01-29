@@ -1,0 +1,58 @@
+﻿Agilité,Dextérité
+Fatigues,Conditions
+"Échecs d'Aptitudes liées,
+Encombrement, Labeurs,
+Nuits Blanches","Échecs d'Aptitudes liées
+Température subie
+NdT sans se Laver"
+Chaque NdT inverse du Niv d‘Encombrement,Chaque NdT inverse du  Niv de Température
+,
+"Porter +0 Facteur de Sacs sur 1 Matinée
+Porter jusqu’à la limite de ses Sacs (d’habitude 3S.)","Feu de camp, Courant d’air
+Habits grattant ou sales 
+Sol inconfortable
+1 Couche d’Armure équipée
+Ébranlement en Bataille"
++1 à 2 DS d'un coup n'infilgeant JAMAIS de Séquelles (même en les accumulant à un Niv de Souffrances supérieur),
+"Fatigue d’1 Nuit blanche
+Fatigue d’1 Labeur par Jour
+10 Clins d’efforts en Bataille
+Porter +1 ÉdS sur 1 Veillée
+1 Essoufflement (superficiel)","Été & Hiver (rappel 1x/Veillée
+Dans la boue/En Pente, 
+1 Jour sans se laver
++1 É. de Sacs portées
++1 C. d’Armure/Casque"
+"SI 2 Niv d'un coup = Séquelle Physique ou Psychique
+Passagère",
+"Après 2 Nuits blanches 
+Travailler 2 Labeurs/Jour
+Porter +3 ÉdS sur 1 Heure
+3 Essoufflements (superficiel)","Eté chaud & Hiver froid (1x/Heure) Bourrasques
+Nage à contre-courant, Trempé, 1 Pentaine sans se laver. "
+"SI 3 Niv d'un coup = Séquelle Physique  ou Psychique (Si +6 Souffrances d'un coup) 
+Durable",
+"Après 3 Nuits blanches
+Travailler 3 Labeurs/Jour
+Porter +6 ÉdS sur 1 Instant
+6 Essoufflements (superficiel)","Canicule & Hiver Glaçant (rappel 1xInstant), Vent frais
+Embourbé/boueux, 1 Héliorée sans se laver."
+,
+"Après 4 Nuits blanches
+Travailler 4 Labeurs/Jour
+Porter +10 ÉdS sur 6 Minutes
+10 Essoufflements (superficiel)","Désert Chaud & Froid (rappel 1x/6 minutes), Vent violent 
+Tourbe, 1 Saison sans se laver, Couvert d’entrailles."
+,
+"Après 5 Nuits blanches
+Travailler 5 Labeurs/Jour
+Porter +15 ÉdS sur 3 Minutes
+15 Essoufflements (superficiel)","Désert Cuisant & Polaire (rappel 1x/3 Minutes), Tempête
+Sables mouvants, 1 Cycle sans se laver"
+,
+"Après 6 Nuits blanches
+Travailler 6 Labeurs/jour
+Porter +20 ÉdS sur 1 Minute
+20 Essoufflements (superficiel)","Désert de Sel & Calotte glaciaire (rappel 1xMinute) Maelström, Tornade
+Paralysie, 1 Solstice sans se laver"
+,

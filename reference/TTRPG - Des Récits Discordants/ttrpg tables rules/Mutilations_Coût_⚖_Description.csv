@@ -1,0 +1,30 @@
+﻿﻿Mutilations,"Coût
+⚖",Description
+Doigt/dent arraché(e),10,"Arracher un index, un pouce, ou les incisives ou canines coûte deux fois plus (20)"
+Endommager un bétail,,"Briser sa corne, endommager sa queue, etc..."
+Membre tranché,30,"Mais restant encore partiellement attaché, pendante."
+Blesser un bétail,,"Blesser l’œil d’un bétail, la peau autour de son anneau nasal, ses mamelles, etc..."
+Membre arraché,100,"Entièrement séparé du corps. Arracher une main, un pied, etc."
+Organe arraché,300,"Entièrement séparé du corps. Arracher un œil, le nez, etc."
+Membre complet arraché,,Entièrement séparé du corps. Arracher un bras ou une jambe.
+Meurtre,1000,Transpercer un cœur innocent jusqu’à ce que son souffle ne soit plus. Le coût est multiplié par le statut (ci-dessous).
+﻿Facteurs de Peine,"Coût
+⚖",Description
+[Statut social] x Métier,"x 
+Expertise","Par exemple, le savoir‑faire d’un Orfèvre (artisan expert en métaux précieux) - même si esclave - le rend extrêmement précieux (x10, soit 10’000 en tant qu’esclave total)."
+[Statut social] x Femme,x2 à /2,En fonction de leurs qualité attractive.
+Hors-la-loi/foi / Monstre ,x0,"Aucune immunité ou reconnaissance d’égalité, par sa nature, sa culture ou l’exil. A braconner librement."
+Esclave total,x1,"Esclave public ou privé, traité comme un bien meuble, sans aucun droit personnel ni familial."
+Serf forcé,x2,"Attaché de force à un domaine d’autrui (ou d’un état), travaille sans salaire ni droits politiques."
+Serf dépendant,x2.5,"N’ayant aucune terre à lui, dépendant de père en fils d’un propriétaire, restreint en leurs droits."
+Esclave affranchi,x3,Ancien esclave aujourd’hui libéré en sa personne bien qu’encore soumis sous la protection d’un individu influent.
+Bâtard,x3.5,"Né hors mariage légal, reconnu libre mais sans droits politiques"
+Étranger,x4,"Résident étranger libre, mais sans droit au sein de la cité, ni de louer ou d’exploiter des terres ou biens publiques."
+Citoyen déchu,x4.5,"Citoyen privé de certains droits civiques (car condamné pour un crime), mais sans être exilé en hors-la-loi/foi."
+Citoyen libre,x5,"Ayant les pleins droits civiques, politiques (vote, propriété, justice), et militaire (pillage, esclavage, etc.)"
+Seigneur (aristocrates),x7.5,"Propriétaire terrien, rendant justice sur ses terres, perçoit des taxes et peut mobiliser des soldats."
+Compte (haut-aristocrate),x15,Grands vassaux directs du roi possédant de vastes fiefs.
+Prince,x30,"Membre de la famille royale, il détient de larges pouvoirs militaires, fiscaux et judiciaires, et hérite du titre"
+Roi,x100,Souverain suprême : il porte la couronne et gère le trésor. 
+Dette remboursée en Prison :,1/Jour,Le prix peut varier en fonction de la qualité du travail effectué en prison. Chaque jour passé rembourse la dette (coût) restant pour votre crime commis et jugé.
+S’affranchir de l’esclavage,Prix x3,"Il faudra d’abord établir la valeur de votre vie (achetée) en fonction de votre Niv d’Expertise (ce pour quoi vous fûtes acheté, les devoirs qui vous sont donnés), avant de trouver un moyen de la rembourser trois fois (en général)."

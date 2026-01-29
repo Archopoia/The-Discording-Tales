@@ -1,0 +1,7 @@
+﻿"Frappes
+L’orientation de l’Attaque en mêlée détermine la Face de l’arme utilisée, ses Dégâts et son Inertie au Clins",,
++1S) (F)rontale *,+2S) (L)atérale **,+3S) (G)lissement ***
+Inflige les Dégâts de l’arme,"Dégâts, +X Inertie de l’arme par X Cases d’écart entre vous et la cible",Inflige Dégâts OU Manœuvre (face d’arme)
+"Le type de frappe considérée comme base, infligeant juste les Dégâts de l’arme 1 fois.","Cause aussi +X Clins à la prochaine Proaction (ou Niv d’Ébranlement au Clin suivant si il n’y en a pas), récupérant le coup.","Si vous combinez un Glissement en plus d’une Frappe Frontale ou Latérale, refaite une attaque (le Glissement) au prochain Clin"
+"Glissement d’une Face Contondante | Tranchante | Perforante =...
+Manœuvre | Dégâts | Dégâts OU Manœuvre si les défenses sont pénétrées OU non",,

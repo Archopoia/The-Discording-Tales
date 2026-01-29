@@ -1,0 +1,16 @@
+﻿Niveaux,Résultat,Épreuve,Durée,Dégrés
+"-8, 9, 10N...",Catastrophique,Impossible à Rater,Instantanée,...
+"-6, +7N",Effroyable,Sauf Exception,Tout de Suite,"-20D, ..."
+-5N,Dramatique,Presque Garantit,Quasi Immédiat,-15D
+-4N,Périlleux,Ridiculement Aisée,Infiniment Rapide,-10D
+-3N,Très Nul,Très Facile,Très Courte,-6D
+-2N,Nul,Facile,Courte,-3D
+-1N,Plutôt Nul,Plutôt Facile,Plutôt Courte,-1D
+0N,Habituel,Normale/Risquée,Moyenne,0D
++1N,Plutôt Bon,Plutôt Difficile,Plutôt Lente,+1D
++2N,Bon,Difficile,Lente,+3D
++3N,Très Bon,Très Difficile,Très Lente,+6D
++4N,Exceptionnel,Ridiculement Dure,Infiniment Prolongée,+10D
++5N,Inouï,Presque Impossible,Quasi Interminable,+15D
+"+6, +7N",Fantastique,Né de l'Imaginaire,Chronophage,"+20D, ..."
+"+8 ,9 ,10N...",Légendaire,Issue des Légendes,N'arrivant Jamais,...

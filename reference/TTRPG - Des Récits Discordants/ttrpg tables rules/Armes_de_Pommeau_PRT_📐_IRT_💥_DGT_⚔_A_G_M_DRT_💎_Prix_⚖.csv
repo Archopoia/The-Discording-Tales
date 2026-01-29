@@ -1,0 +1,69 @@
+﻿﻿Armes de Pommeau,PRT 📐,IRT 💥,DGT ⚔,A,G,M,"DRT
+💎","Prix
+⚖"
+Dague,0.5,2,"T-
+P-",1,2,4,0,10
+" De parade 
+(rigide, à croches, +garde)",,3,"T-
+P-",2,3,5,-2,15
+" Serpe 
+(rigide, à croches)",,,"T
+P-",2,,5,-2,10
+" Poignard
+(affiné)",,1,P--,,,,-1,15
+" Sai 
+(affiné, à croches)",,1,P--,,,5,-2,5
+" Tanto
+(rigide, -garde)",,1,"T
+P",2,1,,-1,20
+" Haladie 
+(rigide, à deux lames, -garde)",,,"T-
+P-",2,1,,,25
+Épée,1,3,"T-
+P-",2,2,3,0,30
+"Machette
+(rigide, -garde)",,2,"T+
+T--",3,1,,-1,10
+" Macahuitl 
+(rigide, -garde)",,2,"T++
+T",3,1,,-1,15
+" Wakizashi 
+(rigide, -garde)",,2,"T
+P",3,1,,-1,45
+" Cinquedea 
+(lame élargie)",,4,"T
+P-",,,,+1,20
+Claymore,1.5,4,"T-
+P-",3,3,2,0,45
+Sabre,,,"T
+T--",,,,,30
+Fauchon,,,"T+
+T--",,,,,35
+"Serpe-hache
+(rigide, à croches)",,,"T
+P-",4,,3,-2,30
+" Makoto 
+(à croches x2)",,,"T-
+P-",,,4,-2,25
+" Rapière
+(affiné x2)",,2,P--,,,,-2,30
+" Jian 
+(-garde)",,3,"T-
+P-",,2,,,45
+" Katana 
+(rigide, -garde)",,3,"T
+P",4,1,,,45
+Espadon,2,5,"T-
+P-",4,3,1,0,70
+Cimeterre,,,"T+
+T--",,,,,60
+" Estoc
+(affiné)",,4,P--,,,,-1,65
+" Jian  longue
+(-garde)",,4,"T-
+P-",,2,,,70
+" Nodachi 
+(rigide, -garde)",,4,"T
+P",5,2,,-1,70
+Colossépée,2.5,6,"T+
+T--",5,4,0,0,150

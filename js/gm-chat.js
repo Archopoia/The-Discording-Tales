@@ -88,6 +88,8 @@
     let rollFormatHint = false;
     /** True when user clicked "Create a character" and we're in the creation flow until [Complete]. */
     let creationMode = false;
+    /** True when "Test competence" roll is in progress; result will be pushed as assistant message (no API). */
+    let testRollInProgress = false;
 
     function loadMessages() {
         try {
@@ -985,6 +987,52 @@
             unlockHint.style.display = 'none';
             unlockHint.textContent = getLang() === 'fr' ? 'Complétez la création du personnage ci-dessous pour débloquer le chat.' : 'Complete character creation below to unlock the chat.';
             if (hasCharEl) hasCharEl.insertBefore(unlockHint, hasCharEl.firstChild);
+            var testRollWrap = document.createElement('div');
+            testRollWrap.id = 'gm-chat-test-roll';
+            testRollWrap.className = 'gm-chat-test-roll';
+            var testRollLabel = document.createElement('span');
+            testRollLabel.className = 'gm-chat-test-roll-label';
+            testRollLabel.textContent = getLang() === 'fr' ? 'Tester une compétence (sans API) :' : 'Test a competence (no API):';
+            var testRollSelect = document.createElement('select');
+            testRollSelect.className = 'gm-chat-test-roll-select';
+            testRollSelect.setAttribute('aria-label', testRollLabel.textContent);
+            ALL_COMPETENCE_KEYS.forEach(function (key) {
+                var opt = document.createElement('option');
+                opt.value = key;
+                opt.textContent = key;
+                testRollSelect.appendChild(opt);
+            });
+            var testRollNiv = document.createElement('input');
+            testRollNiv.type = 'number';
+            testRollNiv.className = 'gm-chat-test-roll-niv';
+            testRollNiv.value = '0';
+            testRollNiv.setAttribute('aria-label', getLang() === 'fr' ? 'Niv épreuve' : 'Niv');
+            testRollNiv.style.width = '3rem';
+            var testRollBtn = document.createElement('button');
+            testRollBtn.type = 'button';
+            testRollBtn.className = 'gm-chat-test-roll-btn';
+            testRollBtn.textContent = getLang() === 'fr' ? 'Tester le jet' : 'Test roll';
+            testRollBtn.addEventListener('click', function () {
+                if (testRollInProgress) return;
+                var comp = testRollSelect.value;
+                var niv = parseInt(testRollNiv.value, 10);
+                if (isNaN(niv)) niv = 0;
+                var drdPerformRoll = typeof window.drdPerformRoll === 'function' ? window.drdPerformRoll : null;
+                if (!drdPerformRoll) {
+                    messages.push({ role: 'assistant', content: (getLang() === 'fr' ? 'Feuille de personnage non chargée. Créez un personnage d\'abord.' : 'Character sheet not loaded. Create a character first.') });
+                    saveMessages();
+                    renderMessages(container);
+                    return;
+                }
+                testRollInProgress = true;
+                drdPerformRoll({ competence: comp, niv: niv });
+            });
+            testRollWrap.appendChild(testRollLabel);
+            testRollWrap.appendChild(testRollSelect);
+            testRollWrap.appendChild(testRollNiv);
+            testRollWrap.appendChild(testRollBtn);
+            if (hasCharEl && row) hasCharEl.insertBefore(testRollWrap, row);
+            else if (hasCharEl) hasCharEl.appendChild(testRollWrap);
             var liveRegion = document.createElement('div');
             liveRegion.id = 'gm-roll-result-announce';
             liveRegion.setAttribute('aria-live', 'polite');
@@ -1027,6 +1075,32 @@
             renderMessages(container);
             creationMode = false;
             updateInputVisibility();
+        });
+
+        window.addEventListener('drd-roll-result', function (ev) {
+            if (!testRollInProgress) return;
+            testRollInProgress = false;
+            var d = ev.detail;
+            var lang = getLang();
+            var isFr = lang === 'fr';
+            var msg = '';
+            if (d.error === 'no_character') {
+                msg = isFr ? "Aucun personnage chargé. Créez un personnage dans la feuille ci-dessous." : "No character loaded. Create a character in the sheet below.";
+            } else if (d.error === 'unknown_competence') {
+                msg = isFr ? "Compétence introuvable." : "Unknown competence.";
+            } else {
+                var outcome = d.criticalSuccess ? (isFr ? 'succès critique' : 'critical success') : d.success ? (isFr ? 'succès' : 'success') : d.criticalFailure ? (isFr ? 'échec critique' : 'critical failure') : (isFr ? 'échec' : 'failure');
+                var nivStr = d.nivEpreuve >= 0 ? '+' + d.nivEpreuve : String(d.nivEpreuve);
+                var resultStr = d.result >= 0 ? '+' + d.result : String(d.result);
+                msg = (isFr ? '**Jet test :** ' : '**Test roll:** ') + (d.competenceLabel || '') + ' → ' + resultStr + ' vs Niv ' + nivStr + ' → ' + outcome + '.';
+                if (d.diceBreakdown && typeof d.diceBreakdown === 'string') msg += '\n\n' + d.diceBreakdown;
+                if (d.feedbackLines && Array.isArray(d.feedbackLines) && d.feedbackLines.length > 0) {
+                    msg += '\n\n' + (isFr ? 'Progression / Souffrance :' : 'Progression / Souffrance:') + '\n' + d.feedbackLines.join('\n');
+                }
+            }
+            messages.push({ role: 'assistant', content: msg });
+            saveMessages();
+            renderMessages(container);
         });
 
         function notifyCreationStepFromSheet(step, payload) {
