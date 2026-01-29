@@ -4,7 +4,12 @@
 (function () {
     'use strict';
 
-    const GM_API_URL = typeof window.GM_API_URL !== 'undefined' ? window.GM_API_URL : 'http://localhost:8000';
+    const GM_API_URL = (function () {
+        if (typeof window.GM_API_URL !== 'undefined' && window.GM_API_URL) return window.GM_API_URL;
+        var meta = document.querySelector('meta[name="gm-api-url"]');
+        if (meta && meta.getAttribute('content')) return meta.getAttribute('content').trim();
+        return 'http://localhost:8000';
+    })();
     const CHAT_STORAGE_KEY = 'drd_gm_chat_messages';
     const CHAR_STORAGE_KEY = 'drd_simulation_character';
 
@@ -344,9 +349,35 @@
         }
     }
 
+    /** Special rolls: 1d6 > Niv (Rage / Évanouissement per rules). competence name normalized lower. */
+    function isRageOrEvanouissementRoll(competence) {
+        if (!competence || typeof competence !== 'string') return false;
+        var c = competence.trim().toLowerCase().replace(/\s+/g, ' ');
+        return c === 'rage' || c === 'évanouissement' || c === 'evanouissement';
+    }
+
     function performPlayTabRoll(container, input, hintEl, sendBtn, useCharCheckbox) {
         if (!pendingRoll || !input) return;
         var lang = getLang();
+        var comp = pendingRoll.competence;
+        var niv = pendingRoll.niv;
+
+        if (isRageOrEvanouissementRoll(comp)) {
+            var d6 = Math.floor(Math.random() * 6) + 1;
+            var success = d6 > niv;
+            var label = comp.trim();
+            var prefill = (lang === 'fr')
+                ? 'Rolled ' + label + ': 1d6 = ' + d6 + ', ' + (success ? '>' + niv + ' → agir rationnellement.' : '≤' + niv + ' → instinct domine.')
+                : 'Rolled ' + label + ': 1d6 = ' + d6 + ', ' + (success ? '>' + niv + ' → act rationally.' : '≤' + niv + ' → instinct dominates.');
+            input.value = prefill;
+            var liveEl = document.getElementById('gm-roll-result-announce');
+            if (liveEl) liveEl.textContent = (lang === 'fr' ? 'Jet de ' : 'Roll ') + label + ': ' + d6 + ' — ' + (success ? (lang === 'fr' ? 'succès' : 'success') : (lang === 'fr' ? 'échec' : 'failure'));
+            if (container) container.scrollTop = container.scrollHeight;
+            sendMessage(container, input, sendBtn, useCharCheckbox, hintEl);
+            updatePendingRollHint(input, hintEl);
+            return;
+        }
+
         var drdPerformRoll = typeof window.drdPerformRoll === 'function' ? window.drdPerformRoll : null;
         if (!drdPerformRoll) {
             var msg = lang === 'fr' ? 'Ouvrez la feuille de personnage ci-dessous, lancez le jet, puis tapez le résultat ici.' : 'Open the character sheet below, roll there, then type the result here.';

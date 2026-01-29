@@ -1,6 +1,7 @@
 """
 LLM GM backend for Des Récits Discordants: RAG + /chat, /health.
 """
+import hashlib
 import json
 import logging
 import os
@@ -19,6 +20,7 @@ from pydantic import BaseModel, Field
 from openai import OpenAI
 
 from rag import build_or_get_index, retrieve, format_chunks_for_prompt
+from llm_client import create_client, chat_completion
 
 logging.basicConfig(level=logging.INFO)
 log = logging.getLogger(__name__)
@@ -27,6 +29,12 @@ log = logging.getLogger(__name__)
 # Config
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+LLM_PROVIDER = (os.getenv("LLM_PROVIDER") or "openai").strip().lower()
+LLM_BASE_URL = (os.getenv("LLM_BASE_URL") or "").strip()
+LLM_MODEL = (os.getenv("LLM_MODEL") or "").strip()
+LOG_GM_RESPONSES = os.getenv("LOG_GM_RESPONSES", "").lower() in ("1", "true", "yes")
+LOG_GM_RESPONSE_PREFIX_LEN = int(os.getenv("LOG_GM_RESPONSE_PREFIX_LEN", "200"))
+
 _raw = os.getenv("CORS_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173,http://localhost:3000,http://127.0.0.1:5500")
 CORS_ORIGINS = [o.strip() for o in _raw.split(",") if o.strip()]
 # Use * for local dev when no credentials (Play chat doesn't send cookies)
@@ -132,6 +140,8 @@ GM_MECHANICS_REFERENCE = """
 
 Each competence has specific Masteries (see rules when relevant). For a roll, output exactly: Roll [Compétence] vs Niv +X.
 CRITICAL: The word inside the brackets MUST be a COMPÉTENCE (one of the 72 above), e.g. Vol, Esquive, Grimpe, Armé, Négociation. NEVER use an Attribute (Force, Agilité, Dextérité, Vigueur, Empathie, Perception, Créativité, Volonté) or an Aptitude (Puissance, Aisance, Précision, Athlétisme, Charisme, Détection, Réflexion, Domination) in Roll [...]. Example: for flying/escape use [Vol], [Acrobatie], [Esquive] or [Évasion] — never [Agilité] or [Aisance].
+
+**Jet de Rage / Jet d'Évanouissement (CRITICAL):** When the rules require a Jet de Rage (10+ Souffrances → Rage Niv 1) or Jet d'Évanouissement (15+ Souffrances), you MUST output exactly one parseable line so the player gets a Roll button. Use: Roll [Rage] vs Niv +X (X = Niv de Rage, e.g. 1) or Roll [Évanouissement] vs Niv +X. Do not only describe the roll in prose — always include this line. Mechanic: 1d6 > Niv (success if result > Niv). Example: "Roll [Rage] vs Niv +1" so the player can click Roll.
 """
 
 GM_INSTRUCTIONS = """You are the Éveilleur (GM) for Des Récits Discordants. Use ONLY the rules and lore provided below. Never invent mechanics.
@@ -143,6 +153,7 @@ GM_INSTRUCTIONS = """You are the Éveilleur (GM) for Des Récits Discordants. Us
 **Roll discipline**: When an action requires a roll, you MUST output exactly one line in this format so the player gets a Roll button:
   REQUIRED: Roll [Compétence] vs Niv +X.  Example: Roll [Vol] vs Niv +0.  Or: Roll [Négociation] vs Niv +2.  Or: Roll [Esquive] vs Niv +1.  Or: Roll [Grimpe] vs Niv +1.  Or: Roll [Investigation] vs Niv 0.
   The word inside the brackets MUST be one of the 72 COMPÉTENCES only (e.g. Vol, Esquive, Acrobatie, Évasion, Grimpe, Armé, Négociation, Intimidation, Médecine). NEVER use an Attribute (Agilité, Force, Dextérité, Vigueur, Empathie, Perception, Créativité, Volonté) or an Aptitude (Aisance, Puissance, Charisme, Athlétisme, etc.) — the UI will reject it and show "Compétence introuvable". Map the action to a Compétence: e.g. s'envoler/fuir → [Vol], [Acrobatie] or [Évasion]; éviter → [Esquive]; escalader → [Grimpe]; négocier → [Négociation].
+  **Exception — Jet de Rage / Jet d'Évanouissement:** When the rules require a Jet de Rage (10+ Souffrances) or Jet d'Évanouissement (15+ Souffrances), output exactly: Roll [Rage] vs Niv +1 (or the current Niv de Rage) or Roll [Évanouissement] vs Niv +X. Do not only say "lancez 1d6" in prose; always include this parseable line so the player gets a Roll button.
   Niv must be one number: +2 or -1 or 0, not "4 - 2".
 Do not resolve the outcome yourself; wait for the player to report the result.
 
@@ -266,10 +277,32 @@ def _error_response(status: int, detail: str) -> JSONResponse:
     return r
 
 
+def _require_llm_config() -> JSONResponse | None:
+    """Return error response if LLM config is invalid; else None."""
+    if LLM_PROVIDER == "openai":
+        if not OPENAI_API_KEY:
+            return _error_response(500, "OPENAI_API_KEY not set")
+    else:
+        if not LLM_MODEL:
+            return _error_response(500, "LLM_MODEL is required when LLM_PROVIDER is ollama or openai_compatible")
+    return None
+
+
+def _log_gm_response(reply: str, last_user: str) -> None:
+    """Log a hash and prefix of GM reply (and last user message) for bias/canon auditing."""
+    if not LOG_GM_RESPONSES or not reply:
+        return
+    prefix = reply[: min(len(reply), LOG_GM_RESPONSE_PREFIX_LEN)]
+    h = hashlib.sha256(reply.encode("utf-8")).hexdigest()[:16]
+    user_prefix = (last_user or "")[: 80].replace("\n", " ")
+    log.info("GM response log | hash=%s | reply_prefix=%s | last_user_prefix=%s", h, repr(prefix), repr(user_prefix))
+
+
 @app.post("/chat")
 def chat(req: ChatRequest):
-    if not OPENAI_API_KEY:
-        return _error_response(500, "OPENAI_API_KEY not set")
+    err = _require_llm_config()
+    if err:
+        return err
 
     messages = req.messages
     if not messages:
@@ -280,6 +313,10 @@ def chat(req: ChatRequest):
         return _error_response(400, "at least one user message required")
 
     try:
+        client, model = create_client(provider=LLM_PROVIDER, base_url=LLM_BASE_URL or None, model=LLM_MODEL or None)
+        if LLM_PROVIDER == "openai" and not model:
+            model = OPENAI_MODEL
+
         vs = _get_vectorstore()
         rag_query = _build_rag_query_from_messages(messages)
         if not rag_query.strip():
@@ -288,17 +325,15 @@ def chat(req: ChatRequest):
         rules_block = format_chunks_for_prompt(chunks)
         system = _chat_system_prompt(req, rules_block)
 
-        client = OpenAI(api_key=OPENAI_API_KEY)
         openai_messages = [{"role": "system", "content": system}]
         for m in messages:
             openai_messages.append({"role": m.role, "content": m.content})
 
-        r = client.chat.completions.create(
-            model=OPENAI_MODEL,
-            messages=openai_messages,
-            max_tokens=1024,
-        )
+        r = chat_completion(client, model, openai_messages, max_tokens=1024, stream=False)
         reply = (r.choices[0].message.content or "").strip()
+        _log_gm_response(reply, last_user)
+    except ValueError as e:
+        return _error_response(500, str(e))
     except Exception as e:
         log.exception("chat error")
         return _error_response(500, str(e))
@@ -310,12 +345,17 @@ def _chat_system_prompt(req: ChatRequest, rules_block: str) -> str:
     """Build the system prompt used by both /chat and /chat/stream."""
     char_block = _format_character_blurb(req.characterSnapshot)
     game_state_block = _format_game_state(req.gameState)
-    return f"{GM_INSTRUCTIONS}\n\n{GM_MECHANICS_REFERENCE}\n\n---\n\nRules and lore (use only these):\n\n{rules_block}\n\n{char_block}{game_state_block}".strip()
+    rag_instruction = "Base your response solely on the retrieved rules and lore above. Do not add external facts or opinions.\n\n"
+    return f"{GM_INSTRUCTIONS}\n\n{GM_MECHANICS_REFERENCE}\n\n---\n\nRules and lore (use only these):\n\n{rules_block}\n\n{rag_instruction}{char_block}{game_state_block}".strip()
 
 
 def _stream_chat_sse(req: ChatRequest):
     """Generator yielding SSE events: data: {\"delta\": \"...\"} or data: {\"done\": true} or data: {\"error\": \"...\"}."""
     try:
+        client, model = create_client(provider=LLM_PROVIDER, base_url=LLM_BASE_URL or None, model=LLM_MODEL or None)
+        if LLM_PROVIDER == "openai" and not model:
+            model = OPENAI_MODEL
+
         vs = _get_vectorstore()
         rag_query = _build_rag_query_from_messages(req.messages)
         last_user = next((m.content for m in reversed(req.messages) if m.role == "user"), "")
@@ -325,29 +365,29 @@ def _stream_chat_sse(req: ChatRequest):
         rules_block = format_chunks_for_prompt(chunks)
         system = _chat_system_prompt(req, rules_block)
 
-        client = OpenAI(api_key=OPENAI_API_KEY)
         openai_messages = [{"role": "system", "content": system}]
         for m in req.messages:
             openai_messages.append({"role": m.role, "content": m.content})
 
-        stream = client.chat.completions.create(
-            model=OPENAI_MODEL,
-            messages=openai_messages,
-            max_tokens=1024,
-            stream=True,
-        )
+        stream = chat_completion(client, model, openai_messages, max_tokens=1024, stream=True)
+        full_text: list[str] = []
         for chunk in stream:
             if not chunk.choices:
                 continue
             delta = chunk.choices[0].delta
             if getattr(delta, "content", None):
-                # Yield word-by-word (or token-sized pieces) so the UI updates visibly as each word appears
                 text = delta.content
+                full_text.append(text)
                 for word in re.findall(r"\S+\s*|\s+", text) or ([""] if text else []):
                     if word:
                         payload = json.dumps({"delta": word})
                         yield f"data: {payload}\n\n"
+        reply = "".join(full_text).strip()
+        _log_gm_response(reply, last_user)
         yield "data: " + json.dumps({"done": True}) + "\n\n"
+    except ValueError as e:
+        log.exception("chat stream config error")
+        yield "data: " + json.dumps({"error": str(e)}) + "\n\n"
     except Exception as e:
         log.exception("chat stream error")
         yield "data: " + json.dumps({"error": str(e)}) + "\n\n"
@@ -356,8 +396,9 @@ def _stream_chat_sse(req: ChatRequest):
 @app.post("/chat/stream")
 def chat_stream(req: ChatRequest):
     """Stream GM reply as Server-Sent Events. Each event: data: {\"delta\": \"...\"} or {\"done\": true} or {\"error\": \"...\"}."""
-    if not OPENAI_API_KEY:
-        return _error_response(500, "OPENAI_API_KEY not set")
+    err = _require_llm_config()
+    if err:
+        return err
     if not req.messages:
         return _error_response(400, "messages required")
     last_user = next((m.content for m in reversed(req.messages) if m.role == "user"), "")
