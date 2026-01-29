@@ -1,4 +1,8 @@
-# Cosmogonie et Divinités - Des Récits Discordants
+# Cosmogonie et Divinités – Des Récits Discordants
+
+*Sources : Livre p. 10–12, 23–24, 34, 44, 120–122 ; CSV : Honorations_Riliques_*, Sacrifices_*. Terminologie du livre : « HISM », « Ril-cendrée », « Rildée-astrale », etc.*
+
+---
 
 ## La Cosmologie Fondamentale
 

@@ -1,6 +1,8 @@
-# Récits Mythiques des Peuples - Analyse Historique
+# Récits Mythiques et Historiques – Des Récits Discordants
 
-*Ce document présente une analyse historique et factuelle des récits mythiques de chaque peuple, rédigée du point de vue d'un explorateur-historien cherchant à comprendre les événements passés et leurs implications concrètes.*
+*Sources : Livre sections récits mythiques, festivals, artéfacts ; cohérent avec LORE_01 (8 Festivals Währos & Hwëthioz, 12 Artéfacts Tëhkswen & Minzhijë, 4 Abondances Hsæwâl & Samianâ), LORE_03. Récits et événements clés depuis le livre.*
+
+*Ce document présente une analyse historique et factuelle des récits mythiques de chaque peuple, rédigée du point de vue d'un explorateur-historien.*
 
 ---
 

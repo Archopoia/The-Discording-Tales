@@ -1,4 +1,8 @@
-# Peuples Détaillés - Des Récits Discordants
+# Peuples Détaillés – Des Récits Discordants
+
+*Sources : Livre p. 25–48 ; CSV : Caractéristiques_des_Peuples, Dispositions_des_Peuples, Moralité_des_Peuples, Slaadéens_Tchalkchaïs. Descriptions et noms depuis le livre (ex. Ajoroï / Noscyadril pour Aristois) ; pas de contenu inventé.*
+
+---
 
 ## Yômmes
 

@@ -1,4 +1,6 @@
-# Des Récits Discordants - Quick Start
+# Des Récits Discordants – Quick Start
+
+*Sources : résumés 01–14 et LORE ; terminologie conforme au livre (Révélateur, Éveilleur, Niv, dD).*
 
 ## Le Concept en 30 Secondes
 

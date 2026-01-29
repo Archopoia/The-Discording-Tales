@@ -1,5 +1,6 @@
-# Des Récits Discordants
-## Mini Livret d'Introduction - 10 Pages
+# Des Récits Discordants – Mini Livret d’Introduction (10 pages)
+
+*Sources : condensé des résumés 01_Systeme_General, 02_Creation_Personnage, 03_Attributs_Aptitudes_Competences, 05_Souffrances_Guérison, 09_Groupe_Ambiance et intro lore. Terminologie conforme au livre (Révélateur, Éveilleur, Niv, dD, etc.) ; pas de nouvelles règles.*
 
 ---
 

@@ -60,9 +60,9 @@ Ce document indique **quand** demander quel jet (ou appliquer une règle sans je
 
 ## Groupe — Un seul tente l'action (Jet d'Audace)
 
-- **Quand** : Un individu tente une action de groupe seul.
-- **Jet** : Roll [Compétence] vs Niv +X avec pénalité : -1 Dé par membre du groupe au-delà de 1.
-- **Réf.** : 09.
+- **Quand** : Un individu « prend sur soi » et tente une action de groupe seul.
+- **Jet** : Roll [Compétence] vs Niv +X avec **-1 Niv par NdG sur son dos** (-1 N avec 2–3 gens, -2 N avec 4–10, etc.). Si contestataires : encore -1 Niv par NdG le contestant. Il gagne les Marques normales + X Marques par NdG pris sur lui.
+- **Réf.** : 09_Groupe_Ambiance ; Livre p.71.
 
 ## Combat — Initiative / qui proagit
 

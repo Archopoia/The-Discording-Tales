@@ -1,4 +1,6 @@
-# Guide de Démarrage - Des Récits Discordants
+# Guide de Démarrage – Des Récits Discordants
+
+*Sources : résumés 01–14 et LORE ; exemples et pitch conformes au setting et aux règles (création, peuples, attributs, compétences).*
 
 ## Bienvenue !
 

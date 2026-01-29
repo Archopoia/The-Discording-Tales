@@ -1,4 +1,6 @@
-# Posts Prêts à Partager - Reddit
+# Posts Prêts à Partager – Reddit
+
+*Sources : résumés 01–14 et LORE ; terminologie livre (Éveilleur, Révélateur, Niv, dD, Ril-cendrée, HISM).*
 
 ## Post Type 1 : Introduction Générale
 

@@ -1263,7 +1263,7 @@ img {
 .play-flip-container {
     flex: 1;
     min-width: 0;
-    min-height: 60vh;
+    min-height: 80vh;
     perspective: 1200px;
     overflow: hidden;
 }
@@ -1271,7 +1271,7 @@ img {
     position: relative;
     width: 100%;
     height: 100%;
-    min-height: 120vh;
+    min-height: 80vh;
     transform-style: preserve-3d;
     transition: transform 0.6s ease;
 }
@@ -1305,9 +1305,14 @@ img {
 }
 .play-flip-face-back {
     transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
 }
 .play-flip-face-back .play-character-sheet-root {
     margin-top: 0;
+    flex: 1;
+    min-height: 0;
     height: 100%;
     overflow: auto;
 }

@@ -1,6 +1,6 @@
-# Guide du MJ - Les Peuples de Des Récits Discordants
+# Guide du MJ – Les Peuples de Des Récits Discordants
 
-*Guide pratique pour faire rencontrer et interagir avec les différents peuples*
+*Sources : Livre sections MJ/Éveilleur et peuples ; cohérent avec 12_Peuples_Races, LORE_02_Origines_Peuples, LORE_03_Peuples_Detail. Guide pratique pour faire rencontrer et interagir avec les différents peuples.*
 
 ---
 

@@ -1,4 +1,6 @@
-# Pitch - Des Récits Discordants (Versions Multiples)
+# Pitch – Des Récits Discordants (Versions Multiples)
+
+*Sources : résumés 01–14 et LORE ; livre pour tout pitch cité. Pitches conformes au setting et aux règles.*
 
 ## Version 1 Phrase (30 secondes)
 

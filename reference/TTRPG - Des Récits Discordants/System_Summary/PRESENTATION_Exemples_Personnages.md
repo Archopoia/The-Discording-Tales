@@ -1,4 +1,6 @@
-# Exemples de Personnages - Des Récits Discordants
+# Exemples de Personnages – Des Récits Discordants
+
+*Sources : règles de création (02, 03, 12), CSV (peuples, attributs, compétences). Exemples alignés avec les règles et les données des peuples.*
 
 ## Personnage 1 : Slaadéen Felichrem - Artiste Audacieux
 

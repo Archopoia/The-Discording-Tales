@@ -52,3 +52,16 @@
 - **12_Peuples**: Caractéristiques (Taille/Stature/Gras/Dimorphisme) from CSV; Dispositions table; correct names (Ajoroï, Kh'Ruld, etc.).
 - **LORE_01**: Spellings from book (HISM, Ril-cendrée); cycles and attributs for each Rildée-astrale.
 - **LORE_03**: Each peuple full description from book; no invented content.
+
+## Terminology (Phase 5.2 – cross-check)
+
+Les résumés utilisent la terminologie du livre de façon cohérente :
+- **Révélateur** (RV) : Maître de Jeu.
+- **Éveilleur** (EV) : Joueur.
+- **Personnage Inspiré** (PI) : personnage joué.
+- **Niv** : Niveau (d’Épreuve, de Temps, etc.).
+- **dD** : dés discordants (5dD pour Ambiance, etc.).
+- **NdT** : Niveau de Temps.
+- **DS** : Dés de Souffrance.
+- **Ril-cendrée** (avec trait d’union), **Rildée-astrale**, **HISM**, **Éo**, **oÀ**, **ÉoÀ**.
+- Références croisées internes : « voir 03_Attributs_Aptitudes_Competences », etc. Les numéros de page livre (ex. « Livre p. 137 ») sont indiqués dans les résumés où pertinent.

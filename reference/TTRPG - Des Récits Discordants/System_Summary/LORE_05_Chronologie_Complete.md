@@ -1,6 +1,6 @@
-# Chronologie Complète des Événements - Des Récits Discordants
+# Chronologie Complète – Des Récits Discordants
 
-*Chronique compilée par Aetheorn Ieuphemund Winsg'il Bel-gon, chroniqueur de la quatrième ère, dans un effort d'impartialité et de vérité historique.*
+*Sources : Livre (chronologie, ères, dates) ; CSV : Niveaux_d'Étrangetés_*, Tableau_des_Symboles_Calendaires, Âge_* si présents. Chronique compilée par Aetheorn Ieuphemund Winsg'il Bel-gon, chroniqueur de la quatrième ère.*
 
 ---
 

@@ -1,4 +1,8 @@
-# Origines des Peuples - Des Récits Discordants
+# Origines des Peuples – Des Récits Discordants
+
+*Sources : Livre p. 23–24, 34, 44–46 ; cohérent avec 12_Peuples_Races et LORE_01, LORE_03. Noms et attributions depuis le livre (Escandirs → Aristois & Griscribes ; Erréors → Méridiens & Navillis ; Aïars ancêtres des Yômmes).*
+
+---
 
 ## Les Premiers Êtres
 
