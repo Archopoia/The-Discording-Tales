@@ -834,6 +834,7 @@
         if (gameState) body.gameState = gameState;
         if (creationMode) body.creationMode = true;
         if (!hasCharacter() && !creationMode && askWorldInputRevealed) body.rulesOnly = true;
+        body.lang = getLang();
         pendingRoll = null;
 
         var thinkingInterval = setInterval(function () {

@@ -115,6 +115,7 @@ class ChatRequest(BaseModel):
     gameState: GameState | None = None
     creation_mode: bool = Field(False, alias="creationMode")
     rules_only: bool = Field(False, alias="rulesOnly")
+    lang: str | None = None  # "en" or "fr"; if set, GM replies in that language
 
 
 class ChatResponse(BaseModel):
@@ -390,7 +391,7 @@ def chat(req: ChatRequest):
             rag_query = "character creation steps origine peuple race attributes competences dés éduqués exprimés"
             chunks = retrieve(vs, rag_query, k=RAG_TOP_K)
             rules_block = format_chunks_for_prompt(chunks)
-            system = _creation_system_prompt(rules_block)
+            system = _creation_system_prompt(rules_block, getattr(req, "lang", None))
         else:
             rag_query = _build_rag_query_from_messages(messages)
             if not rag_query.strip():
@@ -421,12 +422,22 @@ def _chat_system_prompt(req: ChatRequest, rules_block: str) -> str:
     game_state_block = _format_game_state(req.gameState)
     rules_only_block = _format_rules_only_blurb(req.rules_only)
     rag_instruction = "Base your response solely on the retrieved rules and lore above. Do not add external facts or opinions.\n\n"
-    return f"{GM_INSTRUCTIONS}\n\n{GM_MECHANICS_REFERENCE}\n\n{rules_only_block}---\n\nRules and lore (use only these):\n\n{rules_block}\n\n{rag_instruction}{char_block}{game_state_block}".strip()
+    lang_instruction = ""
+    if req.lang and req.lang.lower() == "en":
+        lang_instruction = "**Language**: You MUST respond in English. All narrative, descriptions, and dialogue must be in English. Keep competence names in brackets in French (e.g. Roll [Grimpe]) as required by the UI.\n\n"
+    elif req.lang and req.lang.lower() == "fr":
+        lang_instruction = "**Langue** : Réponds en français. Tout le récit, les descriptions et les dialogues doivent être en français.\n\n"
+    return f"{lang_instruction}{GM_INSTRUCTIONS}\n\n{GM_MECHANICS_REFERENCE}\n\n{rules_only_block}---\n\nRules and lore (use only these):\n\n{rules_block}\n\n{rag_instruction}{char_block}{game_state_block}".strip()
 
 
-def _creation_system_prompt(rules_block: str) -> str:
+def _creation_system_prompt(rules_block: str, lang: str | None = None) -> str:
     """System prompt for character creation mode. Uses creation rules (02) and strict [Choice]/[Option]/[Input]/[Complete]/[StateJSON] format."""
-    return f"{GM_CREATION_PROMPT}\n\n---\n\nRules (character creation, 02):\n\n{rules_block}".strip()
+    lang_instruction = ""
+    if lang and lang.lower() == "en":
+        lang_instruction = "**Language**: You MUST respond in English. All text (choices, options, labels, narration) must be in English. Keep technical tags like [Choice], [Option], [Input], [Complete], [StateJSON] and competence names as in the rules.\n\n"
+    elif lang and lang.lower() == "fr":
+        lang_instruction = "**Langue** : Réponds en français. Tout le texte (choix, options, libellés, narration) doit être en français.\n\n"
+    return f"{lang_instruction}{GM_CREATION_PROMPT}\n\n---\n\nRules (character creation, 02):\n\n{rules_block}".strip()
 
 
 def _stream_chat_sse(req: ChatRequest):
@@ -442,7 +453,7 @@ def _stream_chat_sse(req: ChatRequest):
             rag_query = "character creation steps origine peuple race attributes competences dés éduqués exprimés"
             chunks = retrieve(vs, rag_query, k=RAG_TOP_K)
             rules_block = format_chunks_for_prompt(chunks)
-            system = _creation_system_prompt(rules_block)
+            system = _creation_system_prompt(rules_block, getattr(req, "lang", None))
         else:
             rag_query = _build_rag_query_from_messages(req.messages)
             if not rag_query.strip():
