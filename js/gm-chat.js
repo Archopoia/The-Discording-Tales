@@ -81,12 +81,6 @@
 
     /** Regex: "Roll [Compétence] vs Niv ±X" (parseable line from GM). */
     const ROLL_REQUEST_RE = /Roll\s*\[\s*([^\]]+)\s*\]\s*vs\s*Niv\s*([+-]?\d+)/i;
-    /** GM mentioned a roll but not in parseable format (e.g. "Roll Charisme vs Niv 4 - 2" without brackets). */
-    function rollMentionedButNotParseable(reply) {
-        if (!reply || typeof reply !== 'string') return false;
-        if (ROLL_REQUEST_RE.test(reply)) return false;
-        return /Roll\s/i.test(reply) && /Niv\s/i.test(reply);
-    }
 
     /** In-world phrases shown while waiting for the GM (streaming or not). */
     const THINKING_PHRASES_EN = [
@@ -103,10 +97,10 @@
     let messages = [];
     /** Last roll requested by GM: { competence: string, niv: number } or null. Cleared when user sends a message. */
     let pendingRoll = null;
-    /** True when last GM message mentions a roll but format was not parseable (no Roll button). */
-    let rollFormatHint = false;
     /** True when user clicked "Create a character" and we're in the creation flow until [Complete]. */
     let creationMode = false;
+    /** True when user clicked "Ask about the world or rules": show prompt input + mode switch with prefill, not sent yet. */
+    let askWorldInputRevealed = false;
     /** True when "Test competence" roll is in progress; result will be pushed as assistant message (no API). */
     let testRollInProgress = false;
     /** True = show "Tester le système" container instead of prompt (no API). */
@@ -122,9 +116,6 @@
         var lastAssistant = messages.filter(function (m) { return m.role === 'assistant'; }).pop();
         if (lastAssistant) {
             parseReplyForRollRequest(lastAssistant.content);
-            rollFormatHint = !pendingRoll && rollMentionedButNotParseable(lastAssistant.content);
-        } else {
-            rollFormatHint = false;
         }
     }
 
@@ -161,12 +152,12 @@
         return attrSum > 0;
     }
 
-    /** Show "Create a character" when no character and not in creation mode; else show has-character block. */
+    /** Show "Create a character" (and "Ask about world") when no character and not in creation mode and not ask-world; else show has-character block. */
     function updateInputVisibility() {
         var noEl = document.getElementById('gm-chat-no-character');
         var hasEl = document.getElementById('gm-chat-has-character');
         if (!noEl || !hasEl) return;
-        var showInput = hasCharacter() || creationMode;
+        var showInput = hasCharacter() || creationMode || askWorldInputRevealed;
         noEl.style.display = showInput ? 'none' : 'block';
         hasEl.style.display = showInput ? 'block' : 'none';
         if (showInput) {
@@ -175,17 +166,18 @@
         }
     }
 
-    /** Show mode switch (Chat API / Tester le système), test roll, input row, action buttons, and pending-roll hint only when a character exists. During creation they stay hidden. */
+    /** Show mode switch, test roll, input row when character exists or "Ask about world" was clicked. Action buttons only when character exists. */
     function updateChatTesterVisibility() {
         var hasChar = hasCharacter();
+        var showPromptInput = hasChar || askWorldInputRevealed;
         var modeWrap = document.querySelector('.gm-chat-mode-switch');
         var testRoll = document.getElementById('gm-chat-test-roll');
         var row = document.querySelector('.gm-chat-input-row');
         var actionBtns = document.querySelector('.gm-chat-action-buttons');
         var pendingHint = document.querySelector('.gm-pending-roll-hint');
-        if (modeWrap) modeWrap.style.display = hasChar ? 'flex' : 'none';
-        if (testRoll) testRoll.style.display = hasChar && useTestMode ? 'flex' : 'none';
-        if (row) row.style.display = hasChar && !useTestMode ? 'flex' : 'none';
+        if (modeWrap) modeWrap.style.display = showPromptInput ? 'flex' : 'none';
+        if (testRoll) testRoll.style.display = showPromptInput && useTestMode ? 'flex' : 'none';
+        if (row) row.style.display = showPromptInput && !useTestMode ? 'flex' : 'none';
         if (actionBtns) actionBtns.style.display = hasChar ? 'block' : 'none';
         if (pendingHint) pendingHint.style.display = hasChar ? '' : 'none';
     }
@@ -659,17 +651,7 @@
             var msg = (lang === 'fr' ? 'Jet demandé : [' : 'Roll requested: [') + pendingRoll.competence + '] vs Niv ' + nivStr + (lang === 'fr' ? '. ' : '. ');
             if (textPart) textPart.textContent = msg;
             hintEl.style.display = 'block';
-            hintEl.classList.remove('gm-pending-roll-hint--format-only');
             if (rollBtn) rollBtn.style.display = 'inline-block';
-            input.placeholder = lang === 'fr' ? 'Résultat du jet ou votre action…' : 'Report roll result or your action…';
-        } else if (rollFormatHint) {
-            var formatMsg = lang === 'fr'
-                ? 'Le MJ a demandé un jet mais pas au format reconnu. Demandez-lui d\'écrire exactement : Roll [Compétence] vs Niv +X (ex. Roll [Négociation] vs Niv +2). Ou tapez votre résultat ci-dessous.'
-                : 'The GM asked for a roll but not in the recognized format. Ask them to write exactly: Roll [Compétence] vs Niv +X (e.g. Roll [Négociation] vs Niv +2). Or type your result below.';
-            if (textPart) textPart.textContent = formatMsg;
-            hintEl.style.display = 'block';
-            hintEl.classList.add('gm-pending-roll-hint--format-only');
-            if (rollBtn) rollBtn.style.display = 'none';
             input.placeholder = lang === 'fr' ? 'Résultat du jet ou votre action…' : 'Report roll result or your action…';
         } else {
             hintEl.style.display = 'none';
@@ -837,7 +819,6 @@
         if (gameState) body.gameState = gameState;
         if (creationMode) body.creationMode = true;
         pendingRoll = null;
-        rollFormatHint = false;
 
         var thinkingInterval = setInterval(function () {
             renderMessages(container, getThinkingPhrase());
@@ -852,7 +833,6 @@
             messages.push({ role: 'assistant', content: reply });
             saveMessages();
             parseReplyForRollRequest(reply);
-            rollFormatHint = !pendingRoll && rollMentionedButNotParseable(reply);
             if (creationMode && messages.length >= 2) {
                 var userMsg = messages[messages.length - 2];
                 var prevAssistant = messages.length >= 3 ? messages[messages.length - 3].content : '';
@@ -1049,7 +1029,7 @@
             modeWrap.appendChild(modeLabelApi);
             modeWrap.appendChild(modeLabelTest);
             function updateModeVisibility() {
-                if (!hasCharacter()) return;
+                if (!hasCharacter() && !askWorldInputRevealed) return;
                 if (testRollWrap) testRollWrap.style.display = useTestMode ? 'flex' : 'none';
                 if (row) row.style.display = useTestMode ? 'none' : 'flex';
                 if (hintEl) hintEl.style.display = (useTestMode || !pendingRoll) ? 'none' : 'block';
@@ -1265,10 +1245,29 @@
                     updateInputVisibility();
                     updateCreationInputDisabled();
                 } else {
+                    askWorldInputRevealed = false;
                     messages = [];
                     saveMessages();
                     renderMessages(container);
+                    updateInputVisibility();
                 }
+            });
+        }
+
+        var askWorldBtn = document.getElementById('gm-chat-ask-world');
+        if (askWorldBtn) {
+            askWorldBtn.addEventListener('click', function () {
+                askWorldInputRevealed = true;
+                var input = document.getElementById('gm-chat-input');
+                if (input) {
+                    input.value = getLang() === 'fr'
+                        ? 'Parle-moi du monde et des règles des Récits Discordants.'
+                        : 'Tell me about the world and the rules of The Discording Tales.';
+                    input.disabled = false;
+                    input.focus();
+                }
+                updateInputVisibility();
+                updateChatTesterVisibility();
             });
         }
 

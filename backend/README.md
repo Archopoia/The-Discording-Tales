@@ -39,10 +39,9 @@ If Ollama is not installed or not running, you’ll get a connection error; star
 
 ## RAG source
 
-- Auto-detected: under `reference/` we look for a folder whose name contains `TTRPG` and has a `systeme_drd` subfolder (handles encoding variants like "Récits" vs "Rcits").
-- Ensure that path exists and contains `.md` files. The index is built on first `/chat` (or when missing).
-- **Rebuild index after adding or changing any `.md` in `systeme_drd`**: either (1) delete the `backend/faiss_drd` folder, or (2) set `RAG_FORCE_REBUILD=1` (or `true`/`yes`) in `.env` and restart the backend — the index will be rebuilt on the next `/chat` (one-time per process when using `RAG_FORCE_REBUILD`).
-- Optional: set `FAISS_PATH` (default `./faiss_drd`), `RAG_TOP_K` (default 8), `RAG_FORCE_REBUILD`, and `RAG_SOURCE_DIR` in `.env` to override; we currently use auto-detection for the source dir.
+- The index is built from **System_Summary**, **AllBookPages-FullBook**, and **AllBookTables-csv** under `reference/TTRPG_DRD` (or any `reference/` subdir whose name contains `TTRPG`, e.g. `TTRPG - Des Récits Discordants`). You can rename the folder to `TTRPG_DRD` for simpler paths.
+- **Rebuild index** after adding or changing any `.md` or `.csv` in those dirs: (1) delete the `backend/faiss_drd` folder, or (2) set `RAG_FORCE_REBUILD=1` (or `true`/`yes`) in `.env` and restart the backend — the index is rebuilt on the next `/chat` (one-time per process when using `RAG_FORCE_REBUILD`). You can also prebuild from project root: `python backend/build_rag_index.py` (requires `OPENAI_API_KEY` in `backend/.env`).
+- Optional: set `FAISS_PATH` (default `./faiss_drd`), `RAG_TOP_K` (default 8), `RAG_FORCE_REBUILD`, and `RAG_SOURCE_DIR` in `.env`. `RAG_SOURCE_DIR` is a **root** path that must contain the three subdirs `System_Summary`, `AllBookPages-FullBook`, and `AllBookTables-csv`; if unset, defaults are used.
 
 ## Run
 
@@ -93,7 +92,7 @@ So: **for a public website, run the backend (and Ollama) on a server**, and poin
    ```
    The script `gm-chat.js` reads this and uses it instead of `http://localhost:8000`. If you use a build step (e.g. Vite), you can inject this URL from an env var.
 4. **CORS:** On the server, set `CORS_ORIGINS` in `.env` to your website’s origin(s) (e.g. `https://yoursite.com`) and `CORS_WILDCARD=false`, so the browser allows requests from your domain.
-5. **RAG:** The server needs the `reference/.../systeme_drd` (and optionally `book_extracted`) files and `FAISS_PATH` so the backend can build/load the index. RAG embeddings still use `OPENAI_API_KEY` unless you switch to local embeddings.
+5. **RAG:** The server needs `reference/.../TTRPG` with **System_Summary**, **AllBookPages-FullBook**, and **AllBookTables-csv**, plus `FAISS_PATH`, so the backend can build/load the index. RAG embeddings still use `OPENAI_API_KEY` unless you switch to local embeddings.
 
 **Alternative:** If you don’t want to run Ollama on a server (e.g. no GPU, or you prefer not to maintain it), use **OpenAI** for the public site: set `LLM_PROVIDER=openai` and `OPENAI_API_KEY` on the server. Then deploy the backend anywhere (e.g. a serverless or small VPS) and point the frontend at it; no Ollama on the server.
 

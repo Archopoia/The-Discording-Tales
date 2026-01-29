@@ -1,34 +1,26 @@
 """
-RAG pipeline for Des Récits Discordants: load MDs, chunk by ##, embed, FAISS, retrieve.
+RAG pipeline for Des Récits Discordants: load MDs + CSVs from System_Summary,
+AllBookPages-FullBook, AllBookTables-csv; chunk, embed, FAISS, retrieve.
 Uses FAISS (no ChromaDB/onnxruntime) for compatibility with Python 3.14 and simpler install.
 """
 from pathlib import Path
-import re
 import os
+import sys
+
+# Ensure project root on path for tools.drd_sources
+_project_root = Path(__file__).resolve().parent.parent
+if str(_project_root) not in sys.path:
+    sys.path.insert(0, str(_project_root))
 
 from langchain_core.documents import Document
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
 
-
-def _project_root() -> Path:
-    return Path(__file__).resolve().parent.parent
-
-
-def _default_source_dir() -> Path:
-    """Locate systeme_drd via reference/.../systeme_drd; glob to handle encoding."""
-    ref = Path("reference")
-    for root in (_project_root(), _project_root().parent):
-        r = (root / ref).resolve()
-        if not r.is_dir():
-            continue
-        for sub in r.iterdir():
-            if not sub.is_dir() or "TTRPG" not in sub.name:
-                continue
-            systeme = sub / "systeme_drd"
-            if systeme.is_dir():
-                return systeme
-    return _project_root() / ref / "TTRPG - Des Récits Discordants" / "systeme_drd"
+from tools.drd_sources import (
+    default_source_dirs,
+    load_md_chunks,
+    load_csv_chunks,
+)
 
 
 def _default_faiss_path() -> Path:
@@ -37,49 +29,70 @@ def _default_faiss_path() -> Path:
 
 _force_rebuild_done = False
 
+# Skip navigation-only book pages when loading AllBookPages
+_BOOK_SKIP_NAMES = {"00_INDEX.md", "00_FULL_BOOK.md"}
 
-def load_and_chunk_mds(source_dir: Path) -> list[Document]:
-    """Load all .md files under source_dir, split by ## sections. One chunk per section."""
-    docs: list[Document] = []
-    source_dir = Path(source_dir)
-    if not source_dir.is_dir():
-        return docs
 
-    for fp in sorted(source_dir.glob("**/*.md")):
-        try:
-            text = fp.read_text(encoding="utf-8")
-        except Exception:
-            continue
-        name = fp.name
-        parts = re.split(r"(?=^##\s+)", text, flags=re.MULTILINE)
-        for part in parts:
-            part = part.strip()
-            if not part:
-                continue
-            section = "root"
-            m = re.match(r"^##\s+(.+?)(?:\n|$)", part)
-            if m:
-                section = m.group(1).strip()
-            docs.append(
+def _resolve_source_dirs():
+    """
+    Resolve (System_Summary, AllBookPages-FullBook, AllBookTables-csv).
+    If RAG_SOURCE_DIR is set, use it as root containing those three subdirs.
+    Otherwise use default_source_dirs() from tools.
+    If override root is used but none of the subdirs exist, fall back to defaults.
+    """
+    override = (os.getenv("RAG_SOURCE_DIR") or "").strip()
+    if override:
+        root = Path(override)
+        if not root.is_absolute():
+            root = (_project_root / root).resolve()
+        candidates = (
+            root / "System_Summary",
+            root / "AllBookPages-FullBook",
+            root / "AllBookTables-csv",
+        )
+        if any(p.is_dir() for p in candidates):
+            return candidates
+    return default_source_dirs()
+
+
+def _load_all_docs() -> list[Document]:
+    """Load chunks from System_Summary, AllBookPages, AllBookTables; return list of Documents."""
+    ss_dir, ab_dir, cv_dir = _resolve_source_dirs()
+    out: list[Document] = []
+
+    def add(chunks: list[dict]) -> None:
+        for c in chunks:
+            out.append(
                 Document(
-                    page_content=part,
-                    metadata={"source": name, "section": section},
+                    page_content=c["content"],
+                    metadata={"source": c["source"], "section": c["section"]},
                 )
             )
-    return docs
+
+    if ss_dir.is_dir():
+        chunks = load_md_chunks(ss_dir, chunk_by_h2=True, fallback_full_page=False)
+        add(chunks)
+    if ab_dir.is_dir():
+        chunks = load_md_chunks(
+            ab_dir,
+            chunk_by_h2=True,
+            fallback_full_page=True,
+            skip_names=_BOOK_SKIP_NAMES,
+        )
+        add(chunks)
+    if cv_dir.is_dir():
+        chunks = load_csv_chunks(cv_dir)
+        add(chunks)
+
+    return out
 
 
 def build_or_get_index(
-    source_dir: Path | None = None,
     faiss_path: Path | None = None,
     embed_model: str = "text-embedding-3-small",
 ):
-    """Build FAISS index from MDs if missing, else load. Return FAISS vectorstore.
-    Set RAG_FORCE_REBUILD=1 (or true/yes) to delete existing index and rebuild from source."""
-    source_dir = source_dir or _default_source_dir()
-    source_dir = Path(source_dir)
-    if not source_dir.is_absolute():
-        source_dir = (_project_root() / source_dir).resolve()
+    """Build FAISS index from System_Summary + AllBookPages + AllBookTables if missing, else load.
+    Set RAG_FORCE_REBUILD=1 (or true/yes) to delete existing index and rebuild."""
     raw_faiss = faiss_path or os.getenv("FAISS_PATH") or _default_faiss_path()
     faiss_path = Path(raw_faiss)
     if not faiss_path.is_absolute():
@@ -106,9 +119,12 @@ def build_or_get_index(
             allow_dangerous_deserialization=True,
         )
 
-    docs = load_and_chunk_mds(source_dir)
+    docs = _load_all_docs()
     if not docs:
-        raise FileNotFoundError(f"No .md chunks under {source_dir}")
+        raise FileNotFoundError(
+            "No chunks from System_Summary, AllBookPages-FullBook, or AllBookTables-csv. "
+            "Check RAG_SOURCE_DIR or reference/.../TTRPG folder."
+        )
     faiss_path.mkdir(parents=True, exist_ok=True)
     vs = FAISS.from_documents(docs, embeddings)
     vs.save_local(persist_dir)

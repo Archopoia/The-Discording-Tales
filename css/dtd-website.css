@@ -1448,6 +1448,27 @@ img {
 .gm-chat-toolbar-btn .gm-chat-icon-brush {
     display: block;
 }
+.gm-chat-no-character-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+}
+.gm-chat-ask-world-btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+    background: rgba(90, 31, 31, 0.5);
+    color: var(--tdt-beige-light);
+    border: 1px solid var(--tdt-beige);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.gm-chat-ask-world-btn:hover {
+    background: rgba(107, 40, 40, 0.8);
+    color: var(--tdt-cream);
+    border-color: var(--tdt-beige-warm);
+}
 .gm-chat-action-buttons {
     margin-bottom: 0.5rem;
 }
@@ -1650,9 +1671,6 @@ img {
 .gm-pending-roll-hint .gm-roll-btn:disabled {
     opacity: 0.7;
     cursor: wait;
-}
-.gm-pending-roll-hint.gm-pending-roll-hint--format-only {
-    color: var(--tdt-beige-light);
 }
 
 .gm-creation-no-buttons-hint {

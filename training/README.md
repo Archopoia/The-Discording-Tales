@@ -6,19 +6,19 @@ This directory holds scripts to prepare instruction/Q&A data from the Des Récit
 
 ### 1. Build corpus (rulebook chunks)
 
-From the project root:
+From the project root. By default we load **System_Summary**, **AllBookPages-FullBook**, and **AllBookTables-csv** (under `reference/TTRPG_DRD` or any `reference/` subdir whose name contains `TTRPG`):
 
 ```bash
 python training/load_corpus.py --out training/corpus.jsonl
 ```
 
-Optional: include the full book extracted pages:
+Optional overrides:
 
 ```bash
-python training/load_corpus.py --book-dir --out training/corpus.jsonl
+python training/load_corpus.py --system-summary-dir PATH --book-dir PATH --csv-dir PATH --out training/corpus.jsonl
 ```
 
-Output: `training/corpus.jsonl` — one JSON object per line: `{"source": "filename.md", "section": "Section title", "content": "..."}`.
+Output: `training/corpus.jsonl` — one JSON object per line: `{"source": "filename.md" or "filename.csv", "section": "Section title" or "table", "content": "..."}`. CSV files are included as markdown tables.
 
 ### 2. Generate Q&A dataset
 
@@ -47,7 +47,13 @@ Output format: JSONL where each line is a chat-style example for fine-tuning:
 {"messages": [{"role": "system", "content": "..."}, {"role": "user", "content": "..."}, {"role": "assistant", "content": "..."}]}
 ```
 
-**Combined dataset:** Use `training/train_combined.jsonl` for fine-tuning — it merges `train.jsonl` (instruction examples) and `debiasing.jsonl` (impartial GM on morally gray scenarios). Regenerate it after changing either file:
+**Combined dataset:** Use `training/train_combined.jsonl` for fine-tuning — it merges `train.jsonl` (instruction examples) and `debiasing.jsonl` (impartial GM on morally gray scenarios). Regenerate it after changing either file. Order of steps: `load_corpus` → `generate_qa_dataset` → merge to `train_combined.jsonl`.
+
+```bash
+python training/merge_combined.py
+```
+
+Or inline:
 
 ```bash
 python -c "
@@ -61,7 +67,7 @@ with open(p / 'train_combined.jsonl', 'w', encoding='utf-8') as out:
 "
 ```
 
-Target: 1,000–5,000 high-quality pairs (template mode gives ~287+287; use `--mode llm` for more).
+Target: 1,000–5,000 high-quality pairs (template mode varies with corpus size; use `--mode llm` for more).
 
 ## Phase 3: Fine-tuning (see below)
 
