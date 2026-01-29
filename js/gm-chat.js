@@ -161,7 +161,7 @@
         return attrSum > 0;
     }
 
-    /** Show "Create a character" when no character and not in creation mode; else show checkbox + input row. */
+    /** Show "Create a character" when no character and not in creation mode; else show has-character block. */
     function updateInputVisibility() {
         var noEl = document.getElementById('gm-chat-no-character');
         var hasEl = document.getElementById('gm-chat-has-character');
@@ -169,7 +169,25 @@
         var showInput = hasCharacter() || creationMode;
         noEl.style.display = showInput ? 'none' : 'block';
         hasEl.style.display = showInput ? 'block' : 'none';
-        if (showInput) updateCreationInputDisabled();
+        if (showInput) {
+            updateCreationInputDisabled();
+            updateChatTesterVisibility();
+        }
+    }
+
+    /** Show mode switch (Chat API / Tester le système), test roll, input row, action buttons, and pending-roll hint only when a character exists. During creation they stay hidden. */
+    function updateChatTesterVisibility() {
+        var hasChar = hasCharacter();
+        var modeWrap = document.querySelector('.gm-chat-mode-switch');
+        var testRoll = document.getElementById('gm-chat-test-roll');
+        var row = document.querySelector('.gm-chat-input-row');
+        var actionBtns = document.querySelector('.gm-chat-action-buttons');
+        var pendingHint = document.querySelector('.gm-pending-roll-hint');
+        if (modeWrap) modeWrap.style.display = hasChar ? 'flex' : 'none';
+        if (testRoll) testRoll.style.display = hasChar && useTestMode ? 'flex' : 'none';
+        if (row) row.style.display = hasChar && !useTestMode ? 'flex' : 'none';
+        if (actionBtns) actionBtns.style.display = hasChar ? 'block' : 'none';
+        if (pendingHint) pendingHint.style.display = hasChar ? '' : 'none';
     }
 
     /** Disable chat input and Send button while creationMode; enable when creation is done. Toggle visual disabled class on the input area. */
@@ -1031,6 +1049,7 @@
             modeWrap.appendChild(modeLabelApi);
             modeWrap.appendChild(modeLabelTest);
             function updateModeVisibility() {
+                if (!hasCharacter()) return;
                 if (testRollWrap) testRollWrap.style.display = useTestMode ? 'flex' : 'none';
                 if (row) row.style.display = useTestMode ? 'none' : 'flex';
                 if (hintEl) hintEl.style.display = (useTestMode || !pendingRoll) ? 'none' : 'block';
