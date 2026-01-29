@@ -55,6 +55,15 @@ function init(): void {
     })();
     return enginePromise;
   };
+
+  // Start loading the model as soon as the page loads so it's ready (or partly loaded) when the user opens Play.
+  // Uses requestIdleCallback to avoid blocking first paint; falls back to setTimeout(0).
+  const startPreload = () => window.getWebLLMEngine().catch(() => {});
+  if (typeof requestIdleCallback !== 'undefined') {
+    requestIdleCallback(startPreload, { timeout: 2000 });
+  } else {
+    setTimeout(startPreload, 0);
+  }
 }
 
 init();
