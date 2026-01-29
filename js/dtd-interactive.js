@@ -117,7 +117,7 @@
 
     function handleHashChange() {
         const hash = window.location.hash.substring(1);
-        const validTabs = ['landing', 'lore', 'rules', 'about'];
+        const validTabs = ['landing', 'lore', 'rules', 'play', 'about'];
         
         if (hash && validTabs.includes(hash)) {
             switchTab(hash);

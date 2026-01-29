@@ -8,7 +8,7 @@ dist/
 backup/
 
 # Reference materials (documentation, extracted book pages, etc.)
-reference/
+
 
 # Logs
 *.log
@@ -34,3 +34,8 @@ desktop.ini
 # Cache
 .cache/
 *.tsbuildinfo
+
+# Backend
+backend/faiss_drd/
+backend/.env
+backend/__pycache__/

@@ -1219,6 +1219,105 @@ img {
     color: var(--tdt-beige-warm);
 }
 
+/* GM Chat (Play tab) */
+.gm-chat-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    min-height: 320px;
+}
+.gm-chat-messages {
+    flex: 1;
+    min-height: 240px;
+    max-height: 50vh;
+    overflow-y: auto;
+    padding: var(--spacing-sm);
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: var(--radius-sm);
+    color: var(--tdt-cream);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+.gm-chat-messages .msg {
+    margin-bottom: var(--spacing-sm);
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-sm);
+}
+.gm-chat-messages .msg.user {
+    background: rgba(90, 31, 31, 0.5);
+    margin-left: 1.5rem;
+    border-left: 3px solid var(--tdt-beige-warm);
+}
+.gm-chat-messages .msg.assistant {
+    background: rgba(107, 40, 40, 0.4);
+    margin-right: 1.5rem;
+    border-left: 3px solid var(--tdt-mint);
+}
+.gm-chat-messages .msg .role {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin-bottom: 0.25rem;
+}
+.gm-chat-input-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.gm-chat-checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--tdt-cream);
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+.gm-chat-checkbox-label input { margin: 0; }
+.gm-chat-input-row {
+    display: flex;
+    gap: 0.5rem;
+}
+.gm-chat-input-row input {
+    flex: 1;
+    padding: 0.6rem 0.75rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--tdt-beige-warm);
+    border-radius: var(--radius-sm);
+    color: var(--tdt-cream);
+    font-size: 1rem;
+}
+.gm-chat-input-row input::placeholder { color: rgba(255, 235, 205, 0.5); }
+.gm-chat-input-row input:focus {
+    outline: none;
+    border-color: var(--tdt-mint);
+    box-shadow: 0 0 0 2px rgba(160, 253, 218, 0.2);
+}
+.gm-chat-input-row button {
+    padding: 0.6rem 1.25rem;
+    background: linear-gradient(to bottom, var(--tdt-beige-warm), var(--tdt-burgundy-warm));
+    border: 1px solid var(--tdt-beige-light);
+    border-radius: var(--radius-sm);
+    color: var(--tdt-cream);
+    font-weight: 600;
+    cursor: pointer;
+}
+.gm-chat-input-row button:hover {
+    filter: brightness(1.1);
+}
+.gm-chat-input-row button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+.gm-chat-messages .status {
+    color: var(--tdt-beige-light);
+    font-style: italic;
+    padding: 0.5rem;
+}
+.gm-chat-messages .error {
+    color: #e88;
+    padding: 0.5rem;
+}
+
 .rules-content ul {
     margin-left: var(--spacing-md);
     margin-bottom: var(--spacing-sm);
