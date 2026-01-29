@@ -1247,9 +1247,28 @@
         var clearBtn = document.getElementById('gm-chat-clear');
         if (clearBtn) {
             clearBtn.addEventListener('click', function () {
-                messages = [];
-                saveMessages();
-                renderMessages(container);
+                if (creationMode) {
+                    /* Erasing during character creation: clear character and restart creation so user is not stuck. */
+                    try {
+                        sessionStorage.removeItem(CHAR_STORAGE_KEY);
+                        sessionStorage.removeItem(CHARACTER_INFO_KEY);
+                    } catch (e) {}
+                    try {
+                        window.dispatchEvent(new CustomEvent('drd-clear-character'));
+                    } catch (e2) {}
+                    messages = [];
+                    creationMode = true;
+                    var firstStepContent = getCreationScriptStep(0, getLang(), null);
+                    messages.push({ role: 'assistant', content: firstStepContent });
+                    saveMessages();
+                    renderMessages(container);
+                    updateInputVisibility();
+                    updateCreationInputDisabled();
+                } else {
+                    messages = [];
+                    saveMessages();
+                    renderMessages(container);
+                }
             });
         }
 
