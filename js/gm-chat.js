@@ -800,8 +800,7 @@
         var text = (optionalContent !== undefined && optionalContent !== null) ? String(optionalContent).trim() : ((input && input.value) ? input.value.trim() : '');
         if (!text) return;
 
-        var useChar = useCharCheckbox && useCharCheckbox.checked;
-        var snapshot = useChar ? getCharacterSnapshot() : null;
+        var snapshot = hasCharacter() ? getCharacterSnapshot() : null;
 
         messages.push({ role: 'user', content: text });
         if (input) input.value = '';
@@ -970,7 +969,6 @@
         var container = document.getElementById('gm-chat-messages');
         var input = document.getElementById('gm-chat-input');
         var sendBtn = document.getElementById('gm-chat-send');
-        var useChar = document.getElementById('gm-use-character');
         var inputWrap = input ? input.closest('.gm-chat-input-wrap') : null;
         var hintEl = null;
         if (inputWrap) {
@@ -987,7 +985,7 @@
             rollBtn.textContent = getLang() === 'fr' ? 'Lancer le jet' : 'Roll';
             rollBtn.style.display = 'none';
             rollBtn.addEventListener('click', function () {
-                performPlayTabRoll(container, input, hintEl, sendBtn, useChar);
+                performPlayTabRoll(container, input, hintEl, sendBtn, null);
             });
             hintEl.appendChild(textPart);
             hintEl.appendChild(rollBtn);
@@ -1118,7 +1116,7 @@
         updateCreationNoButtonsHint();
 
         function submit() {
-            sendMessage(container, input, sendBtn, useChar, hintEl);
+            sendMessage(container, input, sendBtn, null, hintEl);
         }
 
         var createBtn = document.getElementById('gm-chat-create-character');
@@ -1217,7 +1215,7 @@
             if (msg && container && input) {
                 creationMode = true;
                 updateInputVisibility();
-                sendMessage(container, input, sendBtn, useChar, hintEl, msg);
+                sendMessage(container, input, sendBtn, null, hintEl, msg);
             }
         }
         window.drdNotifyCreationStepFromSheet = notifyCreationStepFromSheet;
@@ -1226,6 +1224,36 @@
             var payload = (ev && ev.detail && ev.detail.payload) ? ev.detail.payload : null;
             if (step) notifyCreationStepFromSheet(step, payload);
         });
+
+        var clearBtn = document.getElementById('gm-chat-clear');
+        if (clearBtn) {
+            clearBtn.addEventListener('click', function () {
+                messages = [];
+                saveMessages();
+                renderMessages(container);
+            });
+        }
+
+        var killCreateBtn = document.getElementById('gm-chat-kill-and-create');
+        if (killCreateBtn) {
+            killCreateBtn.addEventListener('click', function () {
+                try {
+                    sessionStorage.removeItem(CHAR_STORAGE_KEY);
+                    sessionStorage.removeItem(CHARACTER_INFO_KEY);
+                } catch (e) {}
+                try {
+                    window.dispatchEvent(new CustomEvent('drd-clear-character'));
+                } catch (e2) {}
+                messages = [];
+                creationMode = true;
+                var firstStepContent = getCreationScriptStep(0, getLang(), null);
+                messages.push({ role: 'assistant', content: firstStepContent });
+                saveMessages();
+                renderMessages(container);
+                updateInputVisibility();
+                updateCreationInputDisabled();
+            });
+        }
 
         if (sendBtn) sendBtn.addEventListener('click', submit);
         if (input) {
@@ -1246,7 +1274,7 @@
                     var niv = parseInt(nivStr, 10);
                     if (!comp || isNaN(niv)) return;
                     pendingRoll = { competence: comp, niv: niv };
-                    performPlayTabRoll(container, input, hintEl, sendBtn, useChar);
+                    performPlayTabRoll(container, input, hintEl, sendBtn, null);
                     return;
                 }
                 var optionBtn = e.target && e.target.closest && e.target.closest('.gm-creation-option-btn');

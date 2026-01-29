@@ -10,7 +10,7 @@ import { Competence, getCompetenceAction, COMPETENCE_NAMES, resolveCompetenceFro
 import { Souffrance, getSouffranceAttribute } from '@/game/character/data/SouffranceData';
 import { getRollParams, getSouffranceForCompetence } from '@/game/dice/rollParams';
 import { rollCompetenceCheck } from '@/game/dice/CompetenceRoll';
-import { loadCachedCharacter } from '@/lib/simulationStorage';
+import { loadCachedCharacter, clearCachedCharacter } from '@/lib/simulationStorage';
 import { getCharacterSheetLang } from '@/lib/characterSheetI18n';
 import { getMasteries } from '@/game/character/data/MasteryRegistry';
 import {
@@ -202,6 +202,17 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
     };
     window.addEventListener('drd-character-created', handler);
     return () => window.removeEventListener('drd-character-created', handler);
+  }, [manager, updateState]);
+
+  useEffect(() => {
+    const handler = () => {
+      clearCachedCharacter();
+      const fresh = new CharacterSheetManager();
+      manager.loadState(fresh.getState());
+      updateState();
+    };
+    window.addEventListener('drd-clear-character', handler);
+    return () => window.removeEventListener('drd-clear-character', handler);
   }, [manager, updateState]);
 
   // Play-tab roll bridge: expose drdPerformRoll for gm-chat.js (marks, souffrance, realisation)

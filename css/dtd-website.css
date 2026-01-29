@@ -1235,6 +1235,50 @@ img {
     gap: var(--spacing-md);
     min-height: 320px;
 }
+.gm-chat-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0;
+    border-bottom: 1px solid rgba(206, 182, 141, 0.25);
+}
+.gm-chat-toolbar-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.35rem;
+    background: transparent;
+    border: 1px solid rgba(206, 182, 141, 0.4);
+    border-radius: 4px;
+    color: var(--tdt-beige-light);
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+.gm-chat-toolbar-btn:hover {
+    background: rgba(206, 182, 141, 0.15);
+    color: var(--tdt-cream);
+    border-color: var(--tdt-beige-warm);
+}
+.gm-chat-toolbar-btn .gm-chat-icon-brush {
+    display: block;
+}
+.gm-chat-action-buttons {
+    margin-bottom: 0.5rem;
+}
+.gm-chat-kill-create-btn {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.8rem;
+    background: rgba(80, 30, 30, 0.6);
+    color: var(--tdt-beige-light);
+    border: 1px solid rgba(139, 69, 69, 0.6);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+.gm-chat-kill-create-btn:hover {
+    background: rgba(100, 40, 40, 0.9);
+    color: #f3e2a9;
+}
 .gm-chat-messages {
     flex: 1;
     min-height: 240px;

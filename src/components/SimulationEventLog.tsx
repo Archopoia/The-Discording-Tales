@@ -72,6 +72,21 @@ export default function SimulationEventLog({
     return () => window.removeEventListener('drd-narrative-from-chat', handler);
   }, []);
 
+  // When chat "Kill and create new" is clicked: reset creation state so sheet shows empty / origin step
+  useEffect(() => {
+    const handler = () => {
+      setMode('creating');
+      setCreateStep('origin');
+      setNarrativeOrigin('');
+      setNarrativePeuple('');
+      setNarrativeName('');
+      onHighlight?.(null);
+      onStepAction?.(null);
+    };
+    window.addEventListener('drd-clear-character', handler);
+    return () => window.removeEventListener('drd-clear-character', handler);
+  }, [onHighlight, onStepAction]);
+
   // When creation is started from the Play-tab chat ("Create a character"), sync: load cached state. If narrative already in storage, skip to attributes.
   useEffect(() => {
     const handler = () => {

@@ -356,6 +356,11 @@
                 <p class="tab-intro" data-en="Chat with the Éveilleur (GM). Roll in the Character Sheet, then report results here." data-fr="Discutez avec l'Éveilleur (MJ). Lancez les dés dans la Feuille de Personnage, puis rapportez les résultats ici.">Chat with the Éveilleur (GM). Roll in the Character Sheet, then report results here.</p>
             </div>
             <div class="gm-chat-wrapper rules-section">
+                <div class="gm-chat-toolbar">
+                    <button type="button" id="gm-chat-clear" class="gm-chat-toolbar-btn gm-chat-clear-btn" aria-label="Clear chat" title="Clear chat">
+                        <svg class="gm-chat-icon-brush" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M20.71 4.63l-1.34-1.34c-.39-.39-1.02-.39-1.41 0L9 12.25 11.75 15l8.96-8.96c.39-.39.39-1.02 0-1.41zM7 14a3 3 0 0 0 3 3c.5 0 .97-.15 1.36-.41l-1.95-1.95-.41.41V14z"/></svg>
+                    </button>
+                </div>
                 <div class="gm-chat-messages" id="gm-chat-messages" role="log" aria-live="polite"></div>
                 <div class="gm-chat-input-wrap">
                     <div class="gm-chat-no-character" id="gm-chat-no-character" style="display: none;">
@@ -364,10 +369,11 @@
                         </button>
                     </div>
                     <div class="gm-chat-has-character" id="gm-chat-has-character">
-                        <label class="gm-chat-checkbox-label">
-                            <input type="checkbox" id="gm-use-character" aria-label="Use current character"/>
-                            <span data-en="Use current character" data-fr="Utiliser le personnage actuel">Use current character</span>
-                        </label>
+                        <div class="gm-chat-action-buttons">
+                            <button type="button" id="gm-chat-kill-and-create" class="gm-chat-kill-create-btn">
+                                <span data-en="Kill this character and create a new one" data-fr="Supprimer ce personnage et en créer un nouveau">Kill this character and create a new one</span>
+                            </button>
+                        </div>
                         <div class="gm-chat-input-row">
                             <input type="text" id="gm-chat-input" placeholder="Your action or roll result…" aria-label="Message to GM" autocomplete="off"/>
                             <button type="button" id="gm-chat-send" data-en="Send" data-fr="Envoyer">Send</button>
