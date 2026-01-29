@@ -19,13 +19,6 @@ export type StepActionPayload =
   | { step: 'attributes' | 'reveal' | 'dice'; label: string; onClick: () => void; disabled: boolean }
   | null;
 
-const ORIGINS = ['Yômmes', 'Yôrres', 'Bêstres'] as const;
-const PEUPLES_BY_ORIGIN: Record<string, readonly string[]> = {
-  Yômmes: ['Aristois', 'Griscribes', 'Navillis', 'Méridiens'],
-  Yôrres: ['Hauts Ylfes', 'Ylfes pâles', 'Ylfes des lacs', 'Iqqars'],
-  Bêstres: ['Slaadéens', 'Tchalkchaïs'],
-};
-
 interface SimulationEventLogProps {
   lang: CharacterSheetLang;
   manager: CharacterSheetManager;
@@ -47,25 +40,22 @@ export default function SimulationEventLog({
 }: SimulationEventLogProps) {
   const [mode, setMode] = useState<'idle' | 'creating' | 'running'>('idle');
   const [createStep, setCreateStep] = useState<CreateStepType>('origin');
-  const [narrativeOrigin, setNarrativeOrigin] = useState('');
-  const [narrativePeuple, setNarrativePeuple] = useState('');
-  const [narrativeName, setNarrativeName] = useState('');
 
-  // When the user selects an option in the chat (origin, peuple, name), update narrative state and storage
+  // When the user selects origin/peuple/name in the chat, persist to storage and advance step (chat-only; no pickers in sheet)
   useEffect(() => {
     const handler = (ev: Event) => {
       const e = ev as CustomEvent<{ field: string; value: string }>;
       const field = e.detail?.field;
       const value = e.detail?.value ?? '';
       if (field === 'origin') {
-        setNarrativeOrigin(value);
         saveCharacterInfo({ ...loadCharacterInfo(), origin: value });
+        setCreateStep('peuple');
       } else if (field === 'peuple') {
-        setNarrativePeuple(value);
         saveCharacterInfo({ ...loadCharacterInfo(), peuple: value });
+        setCreateStep('name');
       } else if (field === 'name') {
-        setNarrativeName(value);
         saveCharacterInfo({ ...loadCharacterInfo(), name: value });
+        setCreateStep('attributes');
       }
     };
     window.addEventListener('drd-narrative-from-chat', handler);
@@ -77,9 +67,6 @@ export default function SimulationEventLog({
     const handler = () => {
       setMode('creating');
       setCreateStep('origin');
-      setNarrativeOrigin('');
-      setNarrativePeuple('');
-      setNarrativeName('');
       onHighlight?.(null);
       onStepAction?.(null);
     };
@@ -96,15 +83,6 @@ export default function SimulationEventLog({
         updateSheet();
         setMode('creating');
         const info = loadCharacterInfo();
-        if (info) {
-          setNarrativeOrigin(info.origin ?? '');
-          setNarrativePeuple(info.peuple ?? '');
-          setNarrativeName(info.name ?? '');
-        } else {
-          setNarrativeOrigin('');
-          setNarrativePeuple('');
-          setNarrativeName('');
-        }
         if (info?.origin) {
           setCreateStep('attributes');
         } else {
@@ -251,43 +229,7 @@ export default function SimulationEventLog({
     }
   }, [mode, createStep, creationStateDeps?.attrSum, creationStateDeps?.revealedCount, creationStateDeps?.diceSum, lang, onHighlight, onStepAction]);
 
-  const confirmOriginAndGoToPeuple = () => {
-    if (!narrativeOrigin) return;
-    saveCharacterInfo({ origin: narrativeOrigin });
-    try {
-      window.dispatchEvent(new CustomEvent('drd-creation-step-from-sheet', { detail: { step: 'origin', payload: { value: narrativeOrigin } } }));
-    } catch {
-      // ignore
-    }
-    setCreateStep('peuple');
-    setNarrativePeuple('');
-  };
-
-  const confirmPeupleAndGoToName = () => {
-    if (!narrativePeuple) return;
-    const info = loadCharacterInfo() ?? {};
-    saveCharacterInfo({ ...info, peuple: narrativePeuple });
-    try {
-      window.dispatchEvent(new CustomEvent('drd-creation-step-from-sheet', { detail: { step: 'peuple', payload: { value: narrativePeuple } } }));
-    } catch {
-      // ignore
-    }
-    setCreateStep('name');
-  };
-
-  const confirmNameAndGoToAttributes = () => {
-    const info = loadCharacterInfo() ?? {};
-    saveCharacterInfo({ ...info, name: narrativeName.trim() || undefined });
-    try {
-      window.dispatchEvent(new CustomEvent('drd-creation-step-from-sheet', { detail: { step: 'name', payload: { value: narrativeName.trim() } } }));
-    } catch {
-      // ignore
-    }
-    setCreateStep('attributes');
-    onHighlight?.('create-attributes', t('createAttrTooltip', lang));
-  };
-
-  // Only render narrative steps (origin, peuple, name) when in creating mode and on those steps
+  // When in creating mode but still on origin/peuple/name, show hint only (choices are made in the chat)
   if (mode !== 'creating' || !(createStep === 'origin' || createStep === 'peuple' || createStep === 'name')) {
     return null;
   }
@@ -297,71 +239,7 @@ export default function SimulationEventLog({
       className="px-3 py-2 border-b border-border-dark flex flex-wrap items-center gap-2 shrink-0"
       style={{ background: 'rgba(0,0,0,0.25)' }}
     >
-      {createStep === 'origin' && (
-        <>
-          <label className="text-text-cream text-sm font-semibold shrink-0">{t('chooseOrigin', lang)}</label>
-          <select
-            value={narrativeOrigin}
-            onChange={(e) => setNarrativeOrigin(e.target.value)}
-            className="px-2 py-1 rounded border border-border-dark bg-black/30 text-text-cream text-sm min-w-[140px]"
-          >
-            <option value="">—</option>
-            {ORIGINS.map((o) => (
-              <option key={o} value={o}>{o}</option>
-            ))}
-          </select>
-          <button
-            type="button"
-            onClick={confirmOriginAndGoToPeuple}
-            disabled={!narrativeOrigin}
-            className="px-3 py-1.5 bg-red-theme text-text-cream border-2 border-border-dark rounded font-semibold text-sm disabled:opacity-50 disabled:cursor-not-allowed hover:bg-amber-800"
-          >
-            {t('nextStep', lang)}
-          </button>
-        </>
-      )}
-      {createStep === 'peuple' && (
-        <>
-          <label className="text-text-cream text-sm font-semibold shrink-0">{t('choosePeuple', lang)}</label>
-          <select
-            value={narrativePeuple}
-            onChange={(e) => setNarrativePeuple(e.target.value)}
-            className="px-2 py-1 rounded border border-border-dark bg-black/30 text-text-cream text-sm min-w-[160px]"
-          >
-            <option value="">—</option>
-            {(PEUPLES_BY_ORIGIN[narrativeOrigin] ?? []).map((p) => (
-              <option key={p} value={p}>{p}</option>
-            ))}
-          </select>
-          <button
-            type="button"
-            onClick={confirmPeupleAndGoToName}
-            disabled={!narrativePeuple}
-            className="px-3 py-1.5 bg-red-theme text-text-cream border-2 border-border-dark rounded font-semibold text-sm disabled:opacity-50 disabled:cursor-not-allowed hover:bg-amber-800"
-          >
-            {t('nextStep', lang)}
-          </button>
-        </>
-      )}
-      {createStep === 'name' && (
-        <>
-          <label className="text-text-cream text-sm font-semibold shrink-0">{t('characterNameLabel', lang)}</label>
-          <input
-            type="text"
-            value={narrativeName}
-            onChange={(e) => setNarrativeName(e.target.value)}
-            placeholder={lang === 'fr' ? 'Optionnel' : 'Optional'}
-            className="px-2 py-1 rounded border border-border-dark bg-black/30 text-text-cream text-sm min-w-[120px]"
-          />
-          <button
-            type="button"
-            onClick={confirmNameAndGoToAttributes}
-            className="px-3 py-1.5 bg-red-theme text-text-cream border-2 border-border-dark rounded font-semibold text-sm hover:bg-amber-800"
-          >
-            {t('nextStep', lang)}
-          </button>
-        </>
-      )}
+      <span className="text-text-cream text-sm">{t('narrativeInChatHint', lang)}</span>
     </div>
   );
 }
