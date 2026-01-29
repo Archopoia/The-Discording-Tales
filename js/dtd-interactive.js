@@ -340,27 +340,17 @@
     }
 
     // ========================================
-    // Character Sheet Integration
+    // Go to Play (Character Sheet + GM Chat)
     // ========================================
     function initCharacterSheet() {
         const openButton = document.getElementById('open-character-sheet');
         if (openButton) {
             openButton.addEventListener('click', function() {
-                // Wait a bit for React to be ready, then open
-                setTimeout(function() {
-                    if (typeof window.openCharacterSheet === 'function') {
-                        window.openCharacterSheet();
-                    } else {
-                        // Retry after a longer delay if React isn't ready yet
-                        setTimeout(function() {
-                            if (typeof window.openCharacterSheet === 'function') {
-                                window.openCharacterSheet();
-                            } else {
-                                console.warn('Character sheet not ready yet');
-                            }
-                        }, 1000);
-                    }
-                }, 100);
+                var playLink = document.querySelector('[data-tab="play"]');
+                if (playLink) {
+                    playLink.click();
+                    if (history.pushState) history.pushState(null, null, '#play');
+                }
             });
         }
     }

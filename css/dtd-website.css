@@ -1219,6 +1219,15 @@ img {
     color: var(--tdt-beige-warm);
 }
 
+/* Play tab: Character Sheet below chat */
+.play-character-sheet-root {
+    margin-top: var(--spacing-lg);
+    width: 100%;
+}
+.play-character-sheet-embedded {
+    width: 100%;
+}
+
 /* GM Chat (Play tab) */
 .gm-chat-wrapper {
     display: flex;

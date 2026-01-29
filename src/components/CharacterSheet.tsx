@@ -35,10 +35,11 @@ const FERMER_STYLE = {
 } as const;
 
 interface CharacterSheetProps {
-  isOpen: boolean;
-  onClose: () => void;
-  manager?: CharacterSheetManager; // Optional: if provided, use this manager instead of creating a new one
-  godMode?: boolean; // God mode allows editing normally disabled fields
+  isOpen?: boolean;
+  onClose?: () => void;
+  embedded?: boolean; // Inline in Play tab below chat; no overlay, no open/close
+  manager?: CharacterSheetManager;
+  godMode?: boolean;
 }
 
 /**
@@ -55,7 +56,7 @@ function useCharacterSheet(manager: CharacterSheetManager) {
   return { state, updateState };
 }
 
-export default function CharacterSheet({ isOpen, onClose, manager: externalManager, godMode = false }: CharacterSheetProps) {
+export default function CharacterSheet({ isOpen = false, onClose, embedded = false, manager: externalManager, godMode = false }: CharacterSheetProps) {
   const lang = useCharacterSheetLang();
   const [internalManager] = useState(() => new CharacterSheetManager());
   const manager = externalManager || internalManager;
@@ -131,8 +132,9 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
     };
   }, [masterySelectionOpen, masteryDropdownPosition]);
 
-  // Lock background: prevent scroll and interaction when character sheet is open
+  // Lock background: prevent scroll and interaction when character sheet is open (modal only)
   useEffect(() => {
+    if (embedded) return;
     if (isOpen) {
       document.body.classList.add('character-sheet-open');
       scrollPositionRef.current = window.scrollY;
@@ -160,11 +162,11 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
       document.body.style.width = '';
       window.scrollTo(0, scrollPositionRef.current);
     };
-  }, [isOpen]);
+  }, [embedded, isOpen]);
 
-  // Auto-focus the modal and trap focus inside when open
+  // Auto-focus the modal and trap focus inside when open (modal only)
   useEffect(() => {
-    if (!isOpen) return;
+    if (embedded || !isOpen) return;
     const overlay = overlayRef.current;
     if (!overlay) return;
 
@@ -176,7 +178,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        onClose();
+        onClose?.();
         return;
       }
       if (e.key !== 'Tab') return;
@@ -204,7 +206,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
       cancelAnimationFrame(raf);
       overlay.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isOpen, onClose]);
+  }, [embedded, isOpen, onClose]);
 
   // Tutorial creation: expand all actions when in reveal step
   useEffect(() => {
@@ -232,7 +234,7 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
     return () => ro.disconnect();
   }, [simHighlightId]);
 
-  if (!isOpen) return null;
+  if (!embedded && !isOpen) return null;
 
   const attrSum = Object.values(state.attributes).reduce((s, n) => s + n, 0);
   const revealedCount = Object.values(Competence).filter((c) => state.competences[c]?.isRevealed).length;
@@ -308,18 +310,12 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
     return Object.values(Competence).filter((comp) => getCompetenceAction(comp) === action);
   };
 
-  return (
-    <div
-      ref={overlayRef}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="character-sheet-title"
-      tabIndex={-1}
-      className="fixed inset-0 z-[10001] flex items-center justify-center overflow-hidden p-4 bg-black/85 backdrop-blur-sm animate-fade-in"
-      onWheel={(e) => e.stopPropagation()}
-    >
-      <div 
-        className="w-full max-w-[95vw] h-[95vh] max-h-[95vh] flex flex-col rounded-lg border-4 border-border-dark shadow-2xl animate-swing-in overflow-hidden"
+  const cardClassName = embedded
+    ? 'w-full max-w-full min-h-[380px] max-h-[70vh] flex flex-col rounded-lg border-4 border-border-dark shadow-2xl overflow-hidden play-character-sheet-card'
+    : 'w-full max-w-[95vw] h-[95vh] max-h-[95vh] flex flex-col rounded-lg border-4 border-border-dark shadow-2xl overflow-hidden animate-swing-in';
+
+  const cardEl = (
+    <div className={cardClassName}
         style={{
           background: `
             radial-gradient(#6100001f 3px, transparent 4px),
@@ -377,15 +373,17 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
               </span>
             )}
           </div>
-          <button
-            onClick={onClose}
-            className={FERMER_STYLE.className}
-            style={{ boxShadow: FERMER_STYLE.boxShadow }}
-            onMouseEnter={(e) => { e.currentTarget.style.boxShadow = FERMER_STYLE.boxShadowHover; }}
-            onMouseLeave={(e) => { e.currentTarget.style.boxShadow = FERMER_STYLE.boxShadow; }}
-          >
-            {t('close', lang)}
-          </button>
+          {!embedded && onClose && (
+            <button
+              onClick={onClose}
+              className={FERMER_STYLE.className}
+              style={{ boxShadow: FERMER_STYLE.boxShadow }}
+              onMouseEnter={(e) => { e.currentTarget.style.boxShadow = FERMER_STYLE.boxShadowHover; }}
+              onMouseLeave={(e) => { e.currentTarget.style.boxShadow = FERMER_STYLE.boxShadow; }}
+            >
+              {t('close', lang)}
+            </button>
+          )}
         </div>
 
         {/* Event log – fades out during character creation, fades in when user clicks "Lancer la simulation" */}
@@ -1288,7 +1286,22 @@ export default function CharacterSheet({ isOpen, onClose, manager: externalManag
               </div>
           </section>
         </div>
-      </div>
+    </div>
+  );
+
+  return embedded ? (
+    <div className="play-character-sheet-embedded" role="region" aria-labelledby="character-sheet-title">{cardEl}</div>
+  ) : (
+    <div
+      ref={overlayRef}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="character-sheet-title"
+      tabIndex={-1}
+      className="fixed inset-0 z-[10001] flex items-center justify-center overflow-hidden p-4 bg-black/85 backdrop-blur-sm animate-fade-in"
+      onWheel={(e) => e.stopPropagation()}
+    >
+      {cardEl}
     </div>
   );
 }
