@@ -1219,10 +1219,89 @@ img {
     color: var(--tdt-beige-warm);
 }
 
-/* Play tab: Character Sheet below chat */
+/* Play tab: Flip layout (Chat | Sheet) with toggle buttons left */
+.play-flip-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: var(--spacing-md);
+    width: 100%;
+}
+.play-flip-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    padding-top: 0.25rem;
+}
+/* Toggle buttons – same style as Send button (.gm-chat-input-row button) */
+.play-flip-btn {
+    padding: 0.5rem 1rem;
+    background: #643030;
+    color: #F3E2A9;
+    border: 2px solid #674B1B;
+    border-radius: 4px;
+    font-family: 'Quintessential', cursive, serif;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 0 0 1px #ffebc6;
+    white-space: nowrap;
+}
+.play-flip-btn:hover {
+    background: #fff6df;
+    color: #4d3000;
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px 5px #ffebc6, 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.play-flip-btn.active {
+    background: #fff6df;
+    color: #4d3000;
+    box-shadow: 0 0 15px 5px #ffebc6, 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.play-flip-container {
+    flex: 1;
+    min-width: 0;
+    perspective: 1200px;
+}
+.play-flip-inner {
+    position: relative;
+    width: 100%;
+    min-height: 320px;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+}
+.play-flip-container.flipped .play-flip-inner {
+    transform: rotateY(180deg);
+}
+.play-flip-face {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+.play-flip-face-front {
+    transform: rotateY(0deg);
+}
+.play-flip-face-back {
+    transform: rotateY(180deg);
+}
+.play-flip-face-back .play-character-sheet-root {
+    margin-top: 0;
+    height: 100%;
+    overflow: auto;
+}
+
+/* Play tab: Character Sheet (inside flip back face) */
 .play-character-sheet-root {
     margin-top: var(--spacing-lg);
     width: 100%;
+}
+.play-flip-face-back .play-character-sheet-root {
+    margin-top: 0;
 }
 .play-character-sheet-embedded {
     width: 100%;

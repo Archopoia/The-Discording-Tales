@@ -1274,6 +1274,23 @@
             });
         }
 
+        /* Flip Chat / Sheet (Play tab) */
+        var flipContainer = document.getElementById('play-flip-container');
+        var flipChatBtn = document.getElementById('play-flip-chat');
+        var flipSheetBtn = document.getElementById('play-flip-sheet');
+        if (flipContainer && flipChatBtn && flipSheetBtn) {
+            flipChatBtn.addEventListener('click', function () {
+                flipContainer.classList.remove('flipped');
+                flipChatBtn.classList.add('active');
+                flipSheetBtn.classList.remove('active');
+            });
+            flipSheetBtn.addEventListener('click', function () {
+                flipContainer.classList.add('flipped');
+                flipSheetBtn.classList.add('active');
+                flipChatBtn.classList.remove('active');
+            });
+        }
+
         if (sendBtn) sendBtn.addEventListener('click', submit);
         if (input) {
             input.addEventListener('keydown', function (e) {

@@ -355,33 +355,51 @@
                 <h2 data-en="Play" data-fr="Jouer">Play</h2>
                 <p class="tab-intro" data-en="Chat with the Éveilleur (GM). Roll in the Character Sheet, then report results here." data-fr="Discutez avec l'Éveilleur (MJ). Lancez les dés dans la Feuille de Personnage, puis rapportez les résultats ici.">Chat with the Éveilleur (GM). Roll in the Character Sheet, then report results here.</p>
             </div>
-            <div class="gm-chat-wrapper rules-section">
-                <div class="gm-chat-toolbar">
-                    <button type="button" id="gm-chat-clear" class="gm-chat-toolbar-btn gm-chat-clear-btn" aria-label="Clear chat" title="Clear chat">
-                        <svg class="gm-chat-icon-brush" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M20.71 4.63l-1.34-1.34c-.39-.39-1.02-.39-1.41 0L9 12.25 11.75 15l8.96-8.96c.39-.39.39-1.02 0-1.41zM7 14a3 3 0 0 0 3 3c.5 0 .97-.15 1.36-.41l-1.95-1.95-.41.41V14z"/></svg>
+            <div class="play-flip-layout">
+                <div class="play-flip-buttons" role="group" aria-label="Chat or character sheet">
+                    <button type="button" id="play-flip-chat" class="play-flip-btn active" data-side="chat">
+                        <span data-en="Chat" data-fr="Chat">Chat</span>
+                    </button>
+                    <button type="button" id="play-flip-sheet" class="play-flip-btn" data-side="sheet">
+                        <span data-en="Sheet" data-fr="Feuille">Sheet</span>
                     </button>
                 </div>
-                <div class="gm-chat-messages" id="gm-chat-messages" role="log" aria-live="polite"></div>
-                <div class="gm-chat-input-wrap">
-                    <div class="gm-chat-no-character" id="gm-chat-no-character" style="display: none;">
-                        <button type="button" id="gm-chat-create-character" class="cta-button gm-chat-create-character-btn">
-                            <span data-en="Create a character" data-fr="Créer un personnage">Create a character</span>
-                        </button>
-                    </div>
-                    <div class="gm-chat-has-character" id="gm-chat-has-character">
-                        <div class="gm-chat-action-buttons">
-                            <button type="button" id="gm-chat-kill-and-create" class="gm-chat-kill-create-btn">
-                                <span data-en="Kill this character and create a new one" data-fr="Supprimer ce personnage et en créer un nouveau">Kill this character and create a new one</span>
-                            </button>
+                <div class="play-flip-container" id="play-flip-container">
+                    <div class="play-flip-inner">
+                        <div class="play-flip-face play-flip-face-front">
+                            <div class="gm-chat-wrapper rules-section">
+                                <div class="gm-chat-toolbar">
+                                    <button type="button" id="gm-chat-clear" class="gm-chat-toolbar-btn gm-chat-clear-btn" aria-label="Clear chat" title="Clear chat">
+                                        <svg class="gm-chat-icon-brush" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M20.71 4.63l-1.34-1.34c-.39-.39-1.02-.39-1.41 0L9 12.25 11.75 15l8.96-8.96c.39-.39.39-1.02 0-1.41zM7 14a3 3 0 0 0 3 3c.5 0 .97-.15 1.36-.41l-1.95-1.95-.41.41V14z"/></svg>
+                                    </button>
+                                </div>
+                                <div class="gm-chat-messages" id="gm-chat-messages" role="log" aria-live="polite"></div>
+                                <div class="gm-chat-input-wrap">
+                                    <div class="gm-chat-no-character" id="gm-chat-no-character" style="display: none;">
+                                        <button type="button" id="gm-chat-create-character" class="cta-button gm-chat-create-character-btn">
+                                            <span data-en="Create a character" data-fr="Créer un personnage">Create a character</span>
+                                        </button>
+                                    </div>
+                                    <div class="gm-chat-has-character" id="gm-chat-has-character">
+                                        <div class="gm-chat-action-buttons">
+                                            <button type="button" id="gm-chat-kill-and-create" class="gm-chat-kill-create-btn">
+                                                <span data-en="Kill this character and create a new one" data-fr="Supprimer ce personnage et en créer un nouveau">Kill this character and create a new one</span>
+                                            </button>
+                                        </div>
+                                        <div class="gm-chat-input-row">
+                                            <input type="text" id="gm-chat-input" placeholder="Your action or roll result…" aria-label="Message to GM" autocomplete="off"/>
+                                            <button type="button" id="gm-chat-send" data-en="Send" data-fr="Envoyer">Send</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="gm-chat-input-row">
-                            <input type="text" id="gm-chat-input" placeholder="Your action or roll result…" aria-label="Message to GM" autocomplete="off"/>
-                            <button type="button" id="gm-chat-send" data-en="Send" data-fr="Envoyer">Send</button>
+                        <div class="play-flip-face play-flip-face-back">
+                            <div id="character-sheet-root" class="play-character-sheet-root"></div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="character-sheet-root" class="play-character-sheet-root"></div>
         </section>
         
         <!-- About Tab -->
