@@ -1,6 +1,7 @@
 """
 LLM GM backend for Des Récits Discordants: RAG + /chat, /health.
 """
+import json
 import logging
 import os
 from pathlib import Path
@@ -12,7 +13,7 @@ load_dotenv(_load_env)
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse, RedirectResponse
+from fastapi.responses import JSONResponse, RedirectResponse, StreamingResponse
 from pydantic import BaseModel, Field
 from openai import OpenAI
 
@@ -224,10 +225,7 @@ def chat(req: ChatRequest):
             rag_query = last_user
         chunks = retrieve(vs, rag_query, k=RAG_TOP_K)
         rules_block = format_chunks_for_prompt(chunks)
-        char_block = _format_character_blurb(req.characterSnapshot)
-        game_state_block = _format_game_state(req.gameState)
-
-        system = f"{GM_INSTRUCTIONS}\n\n---\n\nRules and lore (use only these):\n\n{rules_block}\n\n{char_block}{game_state_block}".strip()
+        system = _chat_system_prompt(req, rules_block)
 
         client = OpenAI(api_key=OPENAI_API_KEY)
         openai_messages = [{"role": "system", "content": system}]
@@ -245,3 +243,69 @@ def chat(req: ChatRequest):
         return _error_response(500, str(e))
 
     return ChatResponse(reply=reply)
+
+
+def _chat_system_prompt(req: ChatRequest, rules_block: str) -> str:
+    """Build the system prompt used by both /chat and /chat/stream."""
+    char_block = _format_character_blurb(req.characterSnapshot)
+    game_state_block = _format_game_state(req.gameState)
+    return f"{GM_INSTRUCTIONS}\n\n---\n\nRules and lore (use only these):\n\n{rules_block}\n\n{char_block}{game_state_block}".strip()
+
+
+def _stream_chat_sse(req: ChatRequest):
+    """Generator yielding SSE events: data: {\"delta\": \"...\"} or data: {\"done\": true} or data: {\"error\": \"...\"}."""
+    try:
+        vs = _get_vectorstore()
+        rag_query = _build_rag_query_from_messages(req.messages)
+        last_user = next((m.content for m in reversed(req.messages) if m.role == "user"), "")
+        if not rag_query.strip():
+            rag_query = last_user
+        chunks = retrieve(vs, rag_query, k=RAG_TOP_K)
+        rules_block = format_chunks_for_prompt(chunks)
+        system = _chat_system_prompt(req, rules_block)
+
+        client = OpenAI(api_key=OPENAI_API_KEY)
+        openai_messages = [{"role": "system", "content": system}]
+        for m in req.messages:
+            openai_messages.append({"role": m.role, "content": m.content})
+
+        stream = client.chat.completions.create(
+            model=OPENAI_MODEL,
+            messages=openai_messages,
+            max_tokens=1024,
+            stream=True,
+        )
+        for chunk in stream:
+            if not chunk.choices:
+                continue
+            delta = chunk.choices[0].delta
+            if getattr(delta, "content", None):
+                payload = json.dumps({"delta": delta.content})
+                yield f"data: {payload}\n\n"
+        yield "data: " + json.dumps({"done": True}) + "\n\n"
+    except Exception as e:
+        log.exception("chat stream error")
+        yield "data: " + json.dumps({"error": str(e)}) + "\n\n"
+
+
+@app.post("/chat/stream")
+def chat_stream(req: ChatRequest):
+    """Stream GM reply as Server-Sent Events. Each event: data: {\"delta\": \"...\"} or {\"done\": true} or {\"error\": \"...\"}."""
+    if not OPENAI_API_KEY:
+        return _error_response(500, "OPENAI_API_KEY not set")
+    if not req.messages:
+        return _error_response(400, "messages required")
+    last_user = next((m.content for m in reversed(req.messages) if m.role == "user"), "")
+    if not last_user.strip():
+        return _error_response(400, "at least one user message required")
+
+    return StreamingResponse(
+        _stream_chat_sse(req),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "Connection": "keep-alive",
+            "X-Accel-Buffering": "no",
+            **_cors_headers(),
+        },
+    )

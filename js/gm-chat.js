@@ -11,6 +11,18 @@
     /** Regex: "Roll [Compétence] vs Niv ±X" (parseable line from GM). */
     const ROLL_REQUEST_RE = /Roll\s*\[\s*([^\]]+)\s*\]\s*vs\s*Niv\s*([+-]?\d+)/i;
 
+    /** In-world phrases shown while waiting for the GM (streaming or not). */
+    const THINKING_PHRASES_EN = [
+        'The Éveilleur weighs the threads…',
+        'Consulting the Rils…',
+        'The tale stirs…'
+    ];
+    const THINKING_PHRASES_FR = [
+        "L'Éveilleur pèse les fils…",
+        'Consultation des Rils…',
+        'Le récit s\'agite…'
+    ];
+
     let messages = [];
     /** Last roll requested by GM: { competence: string, niv: number } or null. Cleared when user sends a message. */
     let pendingRoll = null;
@@ -80,12 +92,24 @@
         return null;
     }
 
-    function renderMessages(container, appendStatus) {
+    /** Current thinking phrase index for rotation. */
+    var thinkingPhraseIndex = 0;
+
+    function getThinkingPhrase() {
+        var lang = getLang();
+        var arr = lang === 'fr' ? THINKING_PHRASES_FR : THINKING_PHRASES_EN;
+        var s = arr[thinkingPhraseIndex % arr.length];
+        thinkingPhraseIndex += 1;
+        return s;
+    }
+
+    function renderMessages(container, appendStatus, streamingContent) {
         if (!container) return;
         var lang = getLang();
         var youLabel = lang === 'fr' ? 'Toi' : 'You';
         var gmLabel = lang === 'fr' ? 'Éveilleur' : 'GM';
         container.innerHTML = '';
+        var idx = 0;
         messages.forEach(function (m) {
             var div = document.createElement('div');
             div.className = 'msg ' + m.role;
@@ -104,10 +128,31 @@
             div.appendChild(role);
             div.appendChild(body);
             container.appendChild(div);
+            idx += 1;
         });
+        if (typeof streamingContent === 'string' && streamingContent.length >= 0) {
+            var streamDiv = document.createElement('div');
+            streamDiv.className = 'msg assistant gm-msg-streaming';
+            streamDiv.setAttribute('role', 'article');
+            var streamRole = document.createElement('div');
+            streamRole.className = 'role';
+            streamRole.textContent = gmLabel;
+            var streamBody = document.createElement('div');
+            streamBody.className = 'gm-chat-body gm-chat-body--md';
+            var html = markdownToHtml(streamingContent);
+            if (html != null) streamBody.innerHTML = html; else streamBody.textContent = streamingContent;
+            var cursor = document.createElement('span');
+            cursor.className = 'gm-stream-cursor';
+            cursor.setAttribute('aria-hidden', 'true');
+            cursor.textContent = '\u200B';
+            streamBody.appendChild(cursor);
+            streamDiv.appendChild(streamRole);
+            streamDiv.appendChild(streamBody);
+            container.appendChild(streamDiv);
+        }
         if (appendStatus && typeof appendStatus === 'string') {
             var s = document.createElement('div');
-            s.className = 'status';
+            s.className = 'status gm-status-thinking';
             s.textContent = appendStatus;
             container.appendChild(s);
         }
@@ -155,7 +200,9 @@
         messages.push({ role: 'user', content: text });
         if (input) input.value = '';
         saveMessages();
-        renderMessages(container, '…');
+        thinkingPhraseIndex = 0;
+        var thinkingPhrase = getThinkingPhrase();
+        renderMessages(container, thinkingPhrase);
         clearError(container);
         if (sendBtn) sendBtn.disabled = true;
 
@@ -167,35 +214,129 @@
         if (gameState) body.gameState = gameState;
         pendingRoll = null;
 
-        fetch(GM_API_URL + '/chat', {
+        var thinkingInterval = setInterval(function () {
+            renderMessages(container, getThinkingPhrase());
+        }, 2200);
+
+        function stopThinking() {
+            clearInterval(thinkingInterval);
+        }
+
+        function finishReply(reply) {
+            stopThinking();
+            messages.push({ role: 'assistant', content: reply });
+            saveMessages();
+            parseReplyForRollRequest(reply);
+            renderMessages(container);
+            if (typeof updatePendingRollHint === 'function' && input && hintEl) updatePendingRollHint(input, hintEl);
+        }
+
+        function failReply(err) {
+            stopThinking();
+            setError(container, 'Error: ' + (err.message || String(err)));
+            messages.pop();
+            saveMessages();
+            renderMessages(container);
+        }
+
+        fetch(GM_API_URL + '/chat/stream', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
         })
             .then(function (r) {
                 if (!r.ok) {
-                    return r.json().catch(function () { return {}; }).then(function (j) {
-                        var d = j.detail;
-                        throw new Error(typeof d === 'string' ? d : (Array.isArray(d) ? d.map(function (x) { return x.msg || JSON.stringify(x); }).join('; ') : r.statusText));
+                    return r.text().then(function (t) {
+                        try {
+                            var j = JSON.parse(t);
+                            throw new Error(j.detail || r.statusText);
+                        } catch (e) {
+                            if (e instanceof Error && e.message !== undefined) throw e;
+                            throw new Error(r.statusText);
+                        }
                     });
                 }
-                return r.json();
+                if (!r.body) {
+                    throw new Error('No response body');
+                }
+                return r.body.getReader();
             })
-            .then(function (data) {
-                var reply = (data && data.reply) ? data.reply : '';
-                messages.push({ role: 'assistant', content: reply });
-                saveMessages();
-                parseReplyForRollRequest(reply);
-                renderMessages(container);
-                if (typeof updatePendingRollHint === 'function' && input && hintEl) updatePendingRollHint(input, hintEl);
+            .then(function (reader) {
+                var decoder = new TextDecoder();
+                var buffer = '';
+                var fullText = '';
+
+                function processChunk(chunk) {
+                    buffer += decoder.decode(chunk, { stream: true });
+                    var parts = buffer.split('\n\n');
+                    buffer = parts.pop() || '';
+                    for (var i = 0; i < parts.length; i++) {
+                        var line = parts[i].trim();
+                        if (line.indexOf('data: ') === 0) {
+                            var jsonStr = line.slice(5).trim();
+                            if (jsonStr === '[DONE]' || jsonStr === '') continue;
+                            try {
+                                var data = JSON.parse(jsonStr);
+                                if (data.error) {
+                                    throw new Error(data.error);
+                                }
+                                if (data.done) return true;
+                                if (data.delta) {
+                                    fullText += data.delta;
+                                    stopThinking();
+                                    renderMessages(container, null, fullText);
+                                }
+                            } catch (e) {
+                                if (e instanceof SyntaxError) continue;
+                                throw e;
+                            }
+                        }
+                    }
+                    return false;
+                }
+
+                function readNext() {
+                    return reader.read().then(function (result) {
+                        if (result.done) {
+                            finishReply(fullText.trim());
+                            return;
+                        }
+                        var done = processChunk(result.value);
+                        if (done) {
+                            finishReply(fullText.trim());
+                            return;
+                        }
+                        return readNext();
+                    });
+                }
+
+                return readNext();
             })
             .catch(function (e) {
-                setError(container, 'Error: ' + (e.message || String(e)));
-                messages.pop();
-                saveMessages();
-                renderMessages(container);
+                fetch(GM_API_URL + '/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                })
+                    .then(function (r) {
+                        if (!r.ok) {
+                            return r.json().catch(function () { return {}; }).then(function (j) {
+                                var d = j.detail;
+                                throw new Error(typeof d === 'string' ? d : (Array.isArray(d) ? d.map(function (x) { return x.msg || JSON.stringify(x); }).join('; ') : r.statusText));
+                            });
+                        }
+                        return r.json();
+                    })
+                    .then(function (data) {
+                        var reply = (data && data.reply) ? data.reply : '';
+                        finishReply(reply);
+                    })
+                    .catch(function (fallbackErr) {
+                        failReply(fallbackErr);
+                    });
             })
             .finally(function () {
+                stopThinking();
                 if (sendBtn) sendBtn.disabled = false;
             });
     }

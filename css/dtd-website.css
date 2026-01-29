@@ -1438,6 +1438,27 @@ img {
     font-style: italic;
     padding: 0.5rem;
 }
+.gm-chat-messages .status.gm-status-thinking {
+    color: var(--tdt-mint);
+    animation: gm-thinking-pulse 1.2s ease-in-out infinite;
+}
+@keyframes gm-thinking-pulse {
+    0%, 100% { opacity: 0.85; }
+    50% { opacity: 1; }
+}
+.gm-chat-messages .gm-msg-streaming .gm-stream-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: var(--tdt-mint);
+    margin-left: 1px;
+    vertical-align: text-bottom;
+    animation: gm-cursor-blink 0.8s step-end infinite;
+}
+@keyframes gm-cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
 .gm-chat-messages .error {
     color: #e88;
     padding: 0.5rem;
