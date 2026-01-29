@@ -214,7 +214,10 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
       }
       manager.loadState(cached);
       updateState();
-      const comp = resolveCompetenceFromLabel(opts.competence);
+      let comp = resolveCompetenceFromLabel(opts.competence);
+      if (comp == null && opts.competence && Object.values(Competence).includes(opts.competence as Competence)) {
+        comp = opts.competence as Competence;
+      }
       if (comp == null) {
         window.dispatchEvent(new CustomEvent<DrdRollResultDetail>('drd-roll-result', { detail: { error: 'unknown_competence' } }));
         return;

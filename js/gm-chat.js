@@ -90,6 +90,8 @@
     let creationMode = false;
     /** True when "Test competence" roll is in progress; result will be pushed as assistant message (no API). */
     let testRollInProgress = false;
+    /** True = show "Tester le système" container instead of prompt (no API). */
+    let useTestMode = false;
 
     function loadMessages() {
         try {
@@ -987,12 +989,57 @@
             unlockHint.style.display = 'none';
             unlockHint.textContent = getLang() === 'fr' ? 'Complétez la création du personnage ci-dessous pour débloquer le chat.' : 'Complete character creation below to unlock the chat.';
             if (hasCharEl) hasCharEl.insertBefore(unlockHint, hasCharEl.firstChild);
+            var modeWrap = document.createElement('div');
+            modeWrap.className = 'gm-chat-mode-switch';
+            var modeLabelApi = document.createElement('label');
+            modeLabelApi.className = 'gm-chat-mode-option';
+            var radioApi = document.createElement('input');
+            radioApi.type = 'radio';
+            radioApi.name = 'gm-chat-mode';
+            radioApi.value = 'api';
+            radioApi.checked = !useTestMode;
+            radioApi.setAttribute('aria-label', getLang() === 'fr' ? 'Chat avec l\'Éveilleur (API)' : 'Chat with Éveilleur (API)');
+            var radioTest = document.createElement('input');
+            radioTest.type = 'radio';
+            radioTest.name = 'gm-chat-mode';
+            radioTest.value = 'test';
+            radioTest.checked = useTestMode;
+            radioTest.setAttribute('aria-label', 'Tester le système');
+            var modeLabelTest = document.createElement('label');
+            modeLabelTest.className = 'gm-chat-mode-option';
+            modeLabelTest.textContent = 'Tester le système';
+            modeLabelApi.appendChild(radioApi);
+            modeLabelApi.appendChild(document.createTextNode(getLang() === 'fr' ? ' Chat (API)' : ' Chat (API)'));
+            modeLabelTest.insertBefore(radioTest, modeLabelTest.firstChild);
+            modeWrap.appendChild(modeLabelApi);
+            modeWrap.appendChild(modeLabelTest);
+            function updateModeVisibility() {
+                if (testRollWrap) testRollWrap.style.display = useTestMode ? 'flex' : 'none';
+                if (row) row.style.display = useTestMode ? 'none' : 'flex';
+                if (hintEl) hintEl.style.display = (useTestMode || !pendingRoll) ? 'none' : 'block';
+            }
+            radioApi.addEventListener('change', function () {
+                if (radioApi.checked) {
+                    useTestMode = false;
+                    updateModeVisibility();
+                    if (input && hintEl) updatePendingRollHint(input, hintEl);
+                }
+            });
+            radioTest.addEventListener('change', function () {
+                if (radioTest.checked) {
+                    useTestMode = true;
+                    updateModeVisibility();
+                }
+            });
+            if (hasCharEl && row) hasCharEl.insertBefore(modeWrap, row);
+            else if (hasCharEl) hasCharEl.appendChild(modeWrap);
             var testRollWrap = document.createElement('div');
             testRollWrap.id = 'gm-chat-test-roll';
             testRollWrap.className = 'gm-chat-test-roll';
+            testRollWrap.style.display = useTestMode ? 'flex' : 'none';
             var testRollLabel = document.createElement('span');
             testRollLabel.className = 'gm-chat-test-roll-label';
-            testRollLabel.textContent = getLang() === 'fr' ? 'Tester une compétence (sans API) :' : 'Test a competence (no API):';
+            testRollLabel.textContent = getLang() === 'fr' ? 'Compétence :' : 'Competence:';
             var testRollSelect = document.createElement('select');
             testRollSelect.className = 'gm-chat-test-roll-select';
             testRollSelect.setAttribute('aria-label', testRollLabel.textContent);
@@ -1010,7 +1057,7 @@
             testRollNiv.style.width = '3rem';
             var testRollBtn = document.createElement('button');
             testRollBtn.type = 'button';
-            testRollBtn.className = 'gm-chat-test-roll-btn';
+            testRollBtn.className = 'gm-chat-test-roll-btn gm-chat-send-style';
             testRollBtn.textContent = getLang() === 'fr' ? 'Tester le jet' : 'Test roll';
             testRollBtn.addEventListener('click', function () {
                 if (testRollInProgress) return;

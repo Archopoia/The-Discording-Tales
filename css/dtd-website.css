@@ -1681,7 +1681,28 @@ img {
     background: rgba(0, 0, 0, 0.2);
 }
 
-/* Test competence (no API) – in chat when sheet is available */
+/* Mode switch: Chat (API) | Tester le système */
+.gm-chat-mode-switch {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+    padding: 0.5rem 0;
+    margin-bottom: 0.25rem;
+}
+.gm-chat-mode-option {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.875rem;
+    color: var(--tdt-beige-light);
+    cursor: pointer;
+}
+.gm-chat-mode-option input[type="radio"] {
+    margin: 0;
+}
+
+/* Test competence – replaces prompt when "Tester le système" is selected */
 .gm-chat-test-roll {
     display: flex;
     flex-wrap: wrap;
@@ -1712,17 +1733,26 @@ img {
     color: var(--tdt-cream);
     font-size: 0.875rem;
 }
+/* Same styling as Send button (.gm-chat-input-row button) */
+.gm-chat-test-roll-btn.gm-chat-send-style,
 .gm-chat-test-roll-btn {
-    padding: 0.35rem 0.75rem;
+    padding: 0.5rem 1rem;
     background: #643030;
     color: #F3E2A9;
     border: 2px solid #674B1B;
     border-radius: 4px;
-    font-size: 0.875rem;
+    font-family: 'Quintessential', cursive, serif;
+    font-weight: 600;
+    font-size: 1rem;
     cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 0 0 1px #ffebc6;
 }
 .gm-chat-test-roll-btn:hover {
-    background: #7a4040;
+    background: #fff6df;
+    color: #4d3000;
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px 5px #ffebc6, 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .gm-chat-messages .status {
