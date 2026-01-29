@@ -27,6 +27,13 @@ export interface CompetenceRollParams {
   lang?: RollSummaryLang;
 }
 
+/** Format one dD face as +/0/- for display. */
+export function faceToSymbol(face: number): '+' | '0' | '-' {
+  if (face === 1) return '+';
+  if (face === 0) return '0';
+  return '-';
+}
+
 export interface CompetenceRollResult {
   result: number;
   success: boolean;
@@ -38,6 +45,8 @@ export interface CompetenceRollResult {
   nivEpreuve: number;
   poolSize: number;
   summary: string;
+  /** Full breakdown: pool formula, all dice +/0/-, kept 5, modifiers, result. */
+  diceBreakdown: string;
 }
 
 /**
@@ -90,6 +99,20 @@ export function rollCompetenceCheck(params: CompetenceRollParams): CompetenceRol
   const keptLabel = isEn ? 'kept' : 'gardés';
   const summary = `${rollLabel}: Niv ${fmt(nivAptitude)}, ${poolSize}dD → 5 ${keptLabel} [${keptStr}] = ${resultLabel} ${resultStr}. ${comparison}`;
 
+  const diceRolledSymbols = diceRolled.map(faceToSymbol).join(',');
+  const diceKeptSymbols = diceKept.map(faceToSymbol).join(',');
+  const baseLabel = isEn ? 'base' : 'base';
+  const compLabel = isEn ? 'comp' : 'comp';
+  const masteryLabel = isEn ? 'mastery' : 'maîtrise';
+  const poolLine = isEn
+    ? `Pool: 5 ${baseLabel} + ${compDegrees} ${compLabel} + ${masteryDegrees} ${masteryLabel} − ${dsNegative} DS = ${poolSize} dD`
+    : `Pool : 5 ${baseLabel} + ${compDegrees} ${compLabel} + ${masteryDegrees} ${masteryLabel} − ${dsNegative} DS = ${poolSize} dD`;
+  const rolledLabel = isEn ? 'Rolled' : 'Jet';
+  const sumLabel = isEn ? 'sum' : 'somme';
+  const diceBreakdown =
+    `${poolLine}\n` +
+    `${rolledLabel}: [${diceRolledSymbols}] → 5 ${keptLabel}: [${diceKeptSymbols}] → ${sumLabel} ${fmt(sumKept)}. Niv ${fmt(nivAptitude)} + ${fmt(sumKept)} = ${resultLabel} ${resultStr}`;
+
   return {
     result,
     success,
@@ -101,5 +124,6 @@ export function rollCompetenceCheck(params: CompetenceRollParams): CompetenceRol
     nivEpreuve,
     poolSize,
     summary,
+    diceBreakdown,
   };
 }

@@ -56,6 +56,8 @@ export type DrdRollResultDetail =
       masteryPoints: number;
       /** Souffrance / resistance: human-readable lines for player and GM. */
       feedbackLines: string[];
+      /** Full dice breakdown: pool, all dice +/0/-, kept 5, modifiers, result. */
+      diceBreakdown?: string;
     };
 
 /** Shared style for Fermer and tutorial confirmation buttons – same look and hover glow */
@@ -267,6 +269,7 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
             realisationLabel,
             masteryPoints,
             feedbackLines,
+            diceBreakdown: rollResult.diceBreakdown,
           },
         })
       );

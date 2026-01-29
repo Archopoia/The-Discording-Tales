@@ -202,7 +202,7 @@
         }
     }
 
-    function performPlayTabRoll(container, input, hintEl) {
+    function performPlayTabRoll(container, input, hintEl, sendBtn, useCharCheckbox) {
         if (!pendingRoll || !input) return;
         var lang = getLang();
         var drdPerformRoll = typeof window.drdPerformRoll === 'function' ? window.drdPerformRoll : null;
@@ -219,14 +219,16 @@
 
         function onResult(ev) {
             window.removeEventListener('drd-roll-result', onResult);
-            if (rollBtn) rollBtn.disabled = false;
-            updatePendingRollHint(input, hintEl);
             var d = ev.detail;
             if (d.error === 'no_character') {
+                if (rollBtn) rollBtn.disabled = false;
+                updatePendingRollHint(input, hintEl);
                 input.value = lang === 'fr' ? "Aucun personnage chargé. Créez-en un dans la feuille ci-dessous et cochez « Utiliser le personnage actuel »." : "No character loaded. Create one in the sheet below and use 'Use current character'.";
                 return;
             }
             if (d.error === 'unknown_competence') {
+                if (rollBtn) rollBtn.disabled = false;
+                updatePendingRollHint(input, hintEl);
                 input.value = lang === 'fr' ? 'Compétence introuvable. Saisissez le résultat du jet manuellement.' : 'Could not find that competence. Type your roll result manually.';
                 return;
             }
@@ -234,17 +236,24 @@
             var nivStr = d.nivEpreuve >= 0 ? '+' + d.nivEpreuve : String(d.nivEpreuve);
             var resultStr = d.result >= 0 ? '+' + d.result : String(d.result);
             var prefill = 'Rolled ' + d.competenceLabel + ': ' + resultStr + ' vs Niv ' + nivStr + ', ' + outcome + '.';
+            if (d.diceBreakdown && typeof d.diceBreakdown === 'string') {
+                prefill += '\n' + d.diceBreakdown;
+            }
             if (d.feedbackLines && Array.isArray(d.feedbackLines) && d.feedbackLines.length > 0) {
                 prefill += '\n' + d.feedbackLines.join('\n');
             }
             input.value = prefill;
             var liveParts = [(lang === 'fr' ? 'Résultat du jet : ' : 'Roll result: ') + outcome];
+            if (d.diceBreakdown) liveParts.push(d.diceBreakdown);
             if (d.feedbackLines && d.feedbackLines.length > 0) {
                 liveParts.push(d.feedbackLines.join('. '));
             }
             var liveEl = document.getElementById('gm-roll-result-announce');
             if (liveEl) liveEl.textContent = liveParts.join('. ');
             if (container) container.scrollTop = container.scrollHeight;
+            if (rollBtn) rollBtn.disabled = false;
+            sendMessage(container, input, sendBtn, useCharCheckbox, hintEl);
+            updatePendingRollHint(input, hintEl);
         }
 
         window.addEventListener('drd-roll-result', onResult);
@@ -441,7 +450,7 @@
             rollBtn.textContent = getLang() === 'fr' ? 'Lancer le jet' : 'Roll';
             rollBtn.style.display = 'none';
             rollBtn.addEventListener('click', function () {
-                performPlayTabRoll(container, input, hintEl);
+                performPlayTabRoll(container, input, hintEl, sendBtn, useChar);
             });
             hintEl.appendChild(textPart);
             hintEl.appendChild(rollBtn);
