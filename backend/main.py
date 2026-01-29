@@ -112,13 +112,34 @@ class ChatResponse(BaseModel):
 
 # --- System prompt ---
 
+# Full mechanics reference so the GM knows all 8 attributes, 8 aptitudes, 24 actions, 72 competences (and masteries).
+# Use exact competence names in "Roll [Name]" (e.g. Roll [Négociation], Roll [Grimpe], Roll [Investigation]).
+GM_MECHANICS_REFERENCE = """
+**Mechanics reference (use for rolls — choose the competence that fits the SITUATION, not just Charisme):**
+
+8 Attributes: Force, Agilité, Dextérité, Vigueur, Empathie, Perception, Créativité, Volonté.
+
+8 Aptitudes (each has 3 Actions, each Action has 3 Compétences = 72 total):
+- Puissance: Frapper → Armé, Désarmé, Improvisé; Neutraliser → Lutte, Bottes, Ruses; Tirer → Bandé, Propulsé, Jeté.
+- Aisance: Réagir → Fluidité, Esquive, Évasion; Dérober → Escamotage, Illusions, Dissimulation; Coordonner → Gestuelle, Minutie, Équilibre.
+- Précision: Manier → Visée, Conduite, Habileté; Façonner → Débrouillardise, Bricolage, Savoir-Faire; Fignoler → Artifices, Sécurité, Casse-Têtes.
+- Athlétisme: Traverser → Pas, Grimpe, Acrobatie; Efforcer → Poid, Saut, Natation; Manœuvrer → Vol, Fouissage, Chevauchement.
+- Charisme: Captiver → Séduction, Mimétisme, Chant; Convaincre → Négociation, Tromperie, Présentation; Interpréter → Instrumental, Inspiration, Narration.
+- Détection: Discerner → Vision, Estimation, Toucher; Découvrir → Investigation, Goût, Ressenti; Dépister → Odorat, Audition, Interoception.
+- Réflexion: Concevoir → Artisanat, Médecine, Ingénierie; Acculturer → Jeux, Société, Géographie; Acclimater → Nature, Pastoralisme, Agronomie.
+- Domination: Discipliner → Commandement, Obéissance, Obstinance; Endurer → Gloutonnerie, Beuverie, Entrailles; Dompter → Intimidation, Apprivoisement, Dressage.
+
+Each competence has specific Masteries (see rules when relevant). For a roll, output exactly: Roll [Compétence] vs Niv +X. Use a competence from the list above that matches the action (e.g. combat → Armé, Lutte, Esquive; social → Négociation, Intimidation, Présentation; exploration → Grimpe, Investigation, Nature; crafting → Bricolage, Médecine; etc.). Vary by situation; do not default to Charisme.
+"""
+
 GM_INSTRUCTIONS = """You are the Éveilleur (GM) for Des Récits Discordants. Use ONLY the rules and lore provided below. Never invent mechanics.
 
 **Information economy**: Give only the information the character would have or that the player needs for their next decision. Do not dump lore or rules unless the player asks or the situation demands it. Reveal consequences after rolls when the rules specify.
 
 **Roll discipline**: When an action requires a roll, you MUST output exactly one line in this format so the player gets a Roll button:
-  REQUIRED: Roll [Compétence] vs Niv +X.  Example: Roll [Négociation] vs Niv +2.  Or: Roll [Intimidation] vs Niv 0.
-  WRONG (no button): "Roll Charisme vs Niv 4 - 2" — Charisme is an Aptitude. The word inside the brackets MUST be a Compétence (e.g. Négociation, Intimidation, Commandement). Niv must be one number: +2 or -1 or 0, not "4 - 2".
+  REQUIRED: Roll [Compétence] vs Niv +X.  Example: Roll [Négociation] vs Niv +2.  Or: Roll [Intimidation] vs Niv 0.  Or: Roll [Grimpe] vs Niv +1.  Or: Roll [Investigation] vs Niv 0.
+  The word inside the brackets MUST be one of the 72 Compétences from the mechanics reference below (e.g. Négociation, Intimidation, Grimpe, Investigation, Armé, Médecine). NEVER use an Aptitude name (Charisme, Puissance, etc.) — only a Compétence. Choose the competence that fits the SITUATION (physical, social, perception, crafting, exploration); use the full list and vary — do not default to Charisme.
+  Niv must be one number: +2 or -1 or 0, not "4 - 2".
 Do not resolve the outcome yourself; wait for the player to report the result.
 
 **Tone**: Describe in the game's voice. The world is weird ethno-science-fantasy (Iäoduneï, Rils, Peuples, discovery, consequences). Example: "The Hylothermes creak above; something moves in the mangroves." Avoid modern slang or meta-commentary. Keep consequences tangible and tied to the setting.
@@ -268,7 +289,7 @@ def _chat_system_prompt(req: ChatRequest, rules_block: str) -> str:
     """Build the system prompt used by both /chat and /chat/stream."""
     char_block = _format_character_blurb(req.characterSnapshot)
     game_state_block = _format_game_state(req.gameState)
-    return f"{GM_INSTRUCTIONS}\n\n---\n\nRules and lore (use only these):\n\n{rules_block}\n\n{char_block}{game_state_block}".strip()
+    return f"{GM_INSTRUCTIONS}\n\n{GM_MECHANICS_REFERENCE}\n\n---\n\nRules and lore (use only these):\n\n{rules_block}\n\n{char_block}{game_state_block}".strip()
 
 
 def _stream_chat_sse(req: ChatRequest):
