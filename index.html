@@ -550,6 +550,9 @@
     <!-- Markdown + sanitizer for GM chat formatted replies -->
     <script src="https://cdn.jsdelivr.net/npm/marked@9.1.6/marked.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.9/dist/purify.min.js" crossorigin="anonymous"></script>
+    <!-- WebLLM: in-browser GM (load before gm-chat.js) -->
+    <script type="module" src="dist/play-webllm.js"></script>
+    <script src="js/gm-system-prompt.js" type="text/javascript"></script>
     <script src="js/gm-chat.js" type="text/javascript"></script>
     <!-- React Character Sheet Bundle (built with Vite) -->
     <script src="dist/character-sheet.js"></script>

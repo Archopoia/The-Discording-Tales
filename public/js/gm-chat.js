@@ -878,106 +878,181 @@
             renderMessages(container);
         }
 
-        fetch(GM_API_URL + '/chat/stream', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(body)
-        })
-            .then(function (r) {
-                if (!r.ok) {
-                    return r.text().then(function (t) {
-                        try {
-                            var j = JSON.parse(t);
-                            throw new Error(j.detail || r.statusText);
-                        } catch (e) {
-                            if (e instanceof Error && e.message !== undefined) throw e;
-                            throw new Error(r.statusText);
-                        }
-                    });
-                }
-                if (!r.body) {
-                    throw new Error('No response body');
-                }
-                return r.body.getReader();
-            })
-            .then(function (reader) {
-                var decoder = new TextDecoder();
-                var buffer = '';
-                var fullText = '';
+        function doneSending() {
+            stopThinking();
+            if (sendBtn) sendBtn.disabled = false;
+        }
 
-                function processChunk(chunk) {
-                    buffer += decoder.decode(chunk, { stream: true });
-                    var parts = buffer.split('\n\n');
-                    buffer = parts.pop() || '';
-                    for (var i = 0; i < parts.length; i++) {
-                        var line = parts[i].trim();
-                        if (line.indexOf('data: ') === 0) {
-                            var jsonStr = line.slice(5).trim();
-                            if (jsonStr === '[DONE]' || jsonStr === '') continue;
+        function runBackendChat() {
+            fetch(GM_API_URL + '/chat/stream', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body)
+            })
+                .then(function (r) {
+                    if (!r.ok) {
+                        return r.text().then(function (t) {
                             try {
-                                var data = JSON.parse(jsonStr);
-                                if (data.error) {
-                                    throw new Error(data.error);
-                                }
-                                if (data.done) return true;
-                                if (data.delta) {
-                                    fullText += data.delta;
-                                    stopThinking();
-                                    renderMessages(container, null, fullText);
-                                }
+                                var j = JSON.parse(t);
+                                throw new Error(j.detail || r.statusText);
                             } catch (e) {
-                                if (e instanceof SyntaxError) continue;
-                                throw e;
+                                if (e instanceof Error && e.message !== undefined) throw e;
+                                throw new Error(r.statusText);
+                            }
+                        });
+                    }
+                    if (!r.body) {
+                        throw new Error('No response body');
+                    }
+                    return r.body.getReader();
+                })
+                .then(function (reader) {
+                    var decoder = new TextDecoder();
+                    var buffer = '';
+                    var fullText = '';
+
+                    function processChunk(chunk) {
+                        buffer += decoder.decode(chunk, { stream: true });
+                        var parts = buffer.split('\n\n');
+                        buffer = parts.pop() || '';
+                        for (var i = 0; i < parts.length; i++) {
+                            var line = parts[i].trim();
+                            if (line.indexOf('data: ') === 0) {
+                                var jsonStr = line.slice(5).trim();
+                                if (jsonStr === '[DONE]' || jsonStr === '') continue;
+                                try {
+                                    var data = JSON.parse(jsonStr);
+                                    if (data.error) {
+                                        throw new Error(data.error);
+                                    }
+                                    if (data.done) return true;
+                                    if (data.delta) {
+                                        fullText += data.delta;
+                                        stopThinking();
+                                        renderMessages(container, null, fullText);
+                                    }
+                                } catch (e) {
+                                    if (e instanceof SyntaxError) continue;
+                                    throw e;
+                                }
                             }
                         }
+                        return false;
                     }
-                    return false;
-                }
 
-                function readNext() {
-                    return reader.read().then(function (result) {
-                        if (result.done) {
-                            finishReply(fullText.trim());
-                            return;
-                        }
-                        var done = processChunk(result.value);
-                        if (done) {
-                            finishReply(fullText.trim());
-                            return;
-                        }
-                        return readNext();
-                    });
-                }
+                    function readNext() {
+                        return reader.read().then(function (result) {
+                            if (result.done) {
+                                finishReply(fullText.trim());
+                                return;
+                            }
+                            var done = processChunk(result.value);
+                            if (done) {
+                                finishReply(fullText.trim());
+                                return;
+                            }
+                            return readNext();
+                        });
+                    }
 
-                return readNext();
-            })
-            .catch(function (e) {
-                fetch(GM_API_URL + '/chat', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(body)
+                    return readNext();
                 })
-                    .then(function (r) {
-                        if (!r.ok) {
-                            return r.json().catch(function () { return {}; }).then(function (j) {
-                                var d = j.detail;
-                                throw new Error(typeof d === 'string' ? d : (Array.isArray(d) ? d.map(function (x) { return x.msg || JSON.stringify(x); }).join('; ') : r.statusText));
-                            });
-                        }
-                        return r.json();
+                .catch(function (e) {
+                    fetch(GM_API_URL + '/chat', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(body)
                     })
-                    .then(function (data) {
-                        var reply = (data && data.reply) ? data.reply : '';
-                        finishReply(reply);
-                    })
-                    .catch(function (fallbackErr) {
-                        failReply(fallbackErr);
+                        .then(function (r) {
+                            if (!r.ok) {
+                                return r.json().catch(function () { return {}; }).then(function (j) {
+                                    var d = j.detail;
+                                    throw new Error(typeof d === 'string' ? d : (Array.isArray(d) ? d.map(function (x) { return x.msg || JSON.stringify(x); }).join('; ') : r.statusText));
+                                });
+                            }
+                            return r.json();
+                        })
+                        .then(function (data) {
+                            var reply = (data && data.reply) ? data.reply : '';
+                            finishReply(reply);
+                        })
+                        .catch(function (fallbackErr) {
+                            failReply(fallbackErr);
+                        });
+                })
+                .finally(doneSending);
+        }
+
+        if (typeof window.getWebLLMEngine === 'function' && window.GM_SYSTEM_PROMPT) {
+            var progressListener = function (ev) {
+                var p = (ev.detail && ev.detail.progress != null) ? Math.round(ev.detail.progress * 100) : 0;
+                renderMessages(container, (getLang() === 'fr' ? 'Chargement du modèle… ' : 'Loading GM model… ') + p + '%');
+            };
+            var skipDoneSending = false;
+            window.addEventListener('webllm-progress', progressListener);
+            window.getWebLLMEngine()
+                .then(function (engine) {
+                    window.removeEventListener('webllm-progress', progressListener);
+                    var systemPrompt = body.creationMode
+                        ? window.GM_SYSTEM_PROMPT.buildCreationSystemPrompt({ lang: body.lang })
+                        : window.GM_SYSTEM_PROMPT.buildChatSystemPrompt({
+                            characterSnapshot: body.characterSnapshot,
+                            gameState: body.gameState,
+                            rulesOnly: body.rulesOnly,
+                            lang: body.lang
+                        });
+                    var apiMessages = [{ role: 'system', content: systemPrompt }].concat(
+                        body.messages.map(function (m) { return { role: m.role, content: m.content }; })
+                    );
+                    return engine.chat.completions.create({
+                        messages: apiMessages,
+                        temperature: 1,
+                        stream: true,
+                        stream_options: { include_usage: true }
                     });
-            })
-            .finally(function () {
-                stopThinking();
-                if (sendBtn) sendBtn.disabled = false;
-            });
+                })
+                .then(function (stream) {
+                    var fullText = '';
+                    function readStream() {
+                        return stream.next().then(function (result) {
+                            if (result.done) {
+                                finishReply(fullText.trim());
+                                return;
+                            }
+                            var chunk = result.value;
+                            var delta = chunk.choices && chunk.choices[0] && chunk.choices[0].delta && chunk.choices[0].delta.content;
+                            if (delta) {
+                                fullText += delta;
+                                stopThinking();
+                                renderMessages(container, null, fullText);
+                            }
+                            return readStream();
+                        });
+                    }
+                    return readStream();
+                })
+                .catch(function (err) {
+                    window.removeEventListener('webllm-progress', progressListener);
+                    if (GM_API_URL) {
+                        skipDoneSending = true;
+                        runBackendChat();
+                    } else {
+                        failReply(err);
+                    }
+                })
+                .finally(function () {
+                    if (!skipDoneSending) doneSending();
+                });
+            return;
+        }
+
+        if (GM_API_URL) {
+            runBackendChat();
+            return;
+        }
+
+        failReply(new Error('GM requires WebLLM (WebGPU) or a configured backend. Use a WebGPU-capable browser (Chrome, Edge, Safari 17+) or set <meta name="gm-api-url" content="https://..."> for a backend.'));
+        doneSending();
     }
 
     function init() {

@@ -210,7 +210,7 @@
         const indicators = elements.carousel.querySelectorAll('.carousel-indicators button');
         const goToLabel = lang === 'fr' ? 'Aller à la diapositive ' : 'Go to slide ';
         indicators.forEach((btn, index) => btn.setAttribute('aria-label', goToLabel + (index + 1)));
-
+    }
     // ========================================
     // Image Carousel
     // ========================================
