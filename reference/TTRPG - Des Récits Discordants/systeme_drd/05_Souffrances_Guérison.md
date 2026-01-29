@@ -67,9 +67,9 @@ Chaque Souffrance a une Compétence Résistante :
 - **Folies** : [Rectitude]
 - **Rancœurs** : [Rectitude]
 
-### Jet de Résistance
-- Réduit les DS subis
-- Basé sur la Compétence Résistante + Attribut associé
+### Résistance passive (pas de jet)
+- La résistance est **toujours passive** : le **Niv** de la Compétence Résistante (plus Niv d'équipement lié) **absorbe** autant de DS (p. 72 : « Vous absorberez passivement un nombre de Souffrances égal à votre Niv de CT de Résistance liée au mal »).
+- Il n’y a **jamais** de « Jet de Résistance » : on n’effectue pas de jet pour résister ; on applique le Niv pour réduire les DS subis.
 
 ## Rage et Évanouissement
 

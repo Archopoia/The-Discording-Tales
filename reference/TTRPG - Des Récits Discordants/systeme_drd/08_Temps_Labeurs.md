@@ -59,8 +59,8 @@
 
 ### Concept
 - Effectuer plus d'un Labeur par jour
-- Risque de **Fatigue**
-- Jet de Résistance requis
+- Risque de **Fatigue** (DS Fatigues)
+- La résistance est **passive** : le Niv de la Compétence Résistante (ex. [Satiété] pour Fatigues) absorbe les DS ; pas de jet à lancer.
 
 ### Pénalités
 - Accumulation de Fatigues

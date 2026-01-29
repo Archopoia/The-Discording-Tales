@@ -356,6 +356,21 @@
         return c === 'rage' || c === 'évanouissement' || c === 'evanouissement';
     }
 
+    /** Special rolls: 5dD (Fate dice), result = sum vs Niv (Ambiance / Repos per rules). */
+    function isAmbianceOrReposRoll(competence) {
+        if (!competence || typeof competence !== 'string') return false;
+        var c = competence.trim().toLowerCase().replace(/\s+/g, ' ');
+        return c === 'ambiance' || c === 'repos';
+    }
+
+    /** One dD (Fate): 1-2 → -1, 3-4 → 0, 5-6 → +1 */
+    function rollFateDie() {
+        var r = Math.floor(Math.random() * 6) + 1;
+        if (r <= 2) return -1;
+        if (r <= 4) return 0;
+        return 1;
+    }
+
     function performPlayTabRoll(container, input, hintEl, sendBtn, useCharCheckbox) {
         if (!pendingRoll || !input) return;
         var lang = getLang();
@@ -372,6 +387,26 @@
             input.value = prefill;
             var liveEl = document.getElementById('gm-roll-result-announce');
             if (liveEl) liveEl.textContent = (lang === 'fr' ? 'Jet de ' : 'Roll ') + label + ': ' + d6 + ' — ' + (success ? (lang === 'fr' ? 'succès' : 'success') : (lang === 'fr' ? 'échec' : 'failure'));
+            if (container) container.scrollTop = container.scrollHeight;
+            sendMessage(container, input, sendBtn, useCharCheckbox, hintEl);
+            updatePendingRollHint(input, hintEl);
+            return;
+        }
+
+        if (isAmbianceOrReposRoll(comp)) {
+            var dice = [];
+            var i;
+            for (i = 0; i < 5; i++) dice.push(rollFateDie());
+            var sum = dice.reduce(function (a, b) { return a + b; }, 0);
+            var success5dD = sum >= niv;
+            var faceStr = dice.map(function (d) { return d === 1 ? '+' : (d === 0 ? '0' : '-'); }).join(',');
+            var label5 = comp.trim();
+            var prefill5 = (lang === 'fr')
+                ? 'Rolled ' + label5 + ': 5dD = [' + faceStr + '] → somme ' + (sum >= 0 ? '+' : '') + sum + ' vs Niv ' + niv + ', ' + (success5dD ? 'succès.' : 'échec.')
+                : 'Rolled ' + label5 + ': 5dD = [' + faceStr + '] → sum ' + (sum >= 0 ? '+' : '') + sum + ' vs Niv ' + niv + ', ' + (success5dD ? 'success.' : 'failure.');
+            input.value = prefill5;
+            var liveEl5 = document.getElementById('gm-roll-result-announce');
+            if (liveEl5) liveEl5.textContent = (lang === 'fr' ? 'Jet de ' : 'Roll ') + label5 + ': ' + sum + ' — ' + (success5dD ? (lang === 'fr' ? 'succès' : 'success') : (lang === 'fr' ? 'échec' : 'failure'));
             if (container) container.scrollTop = container.scrollHeight;
             sendMessage(container, input, sendBtn, useCharCheckbox, hintEl);
             updatePendingRollHint(input, hintEl);

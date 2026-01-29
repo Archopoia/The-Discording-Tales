@@ -141,7 +141,12 @@ GM_MECHANICS_REFERENCE = """
 Each competence has specific Masteries (see rules when relevant). For a roll, output exactly: Roll [Compétence] vs Niv +X.
 CRITICAL: The word inside the brackets MUST be a COMPÉTENCE (one of the 72 above), e.g. Vol, Esquive, Grimpe, Armé, Négociation. NEVER use an Attribute (Force, Agilité, Dextérité, Vigueur, Empathie, Perception, Créativité, Volonté) or an Aptitude (Puissance, Aisance, Précision, Athlétisme, Charisme, Détection, Réflexion, Domination) in Roll [...]. Example: for flying/escape use [Vol], [Acrobatie], [Esquive] or [Évasion] — never [Agilité] or [Aisance].
 
-**Jet de Rage / Jet d'Évanouissement (CRITICAL):** When the rules require a Jet de Rage (10+ Souffrances → Rage Niv 1) or Jet d'Évanouissement (15+ Souffrances), you MUST output exactly one parseable line so the player gets a Roll button. Use: Roll [Rage] vs Niv +X (X = Niv de Rage, e.g. 1) or Roll [Évanouissement] vs Niv +X. Do not only describe the roll in prose — always include this line. Mechanic: 1d6 > Niv (success if result > Niv). Example: "Roll [Rage] vs Niv +1" so the player can click Roll.
+**Special rolls (always output a parseable line so the player gets a Roll button):**
+- **Jet de Rage** (10+ Souffrances → Rage Niv 1): Roll [Rage] vs Niv +X (X = Niv de Rage, e.g. 1). Mechanic: 1d6 > Niv (success if result > Niv). Do not only describe in prose — include this line.
+- **Jet d'Évanouissement** (15+ Souffrances): Roll [Évanouissement] vs Niv +X. Mechanic: 1d6 > Niv. Include this line.
+- **Jet d'Ambiance** (group cohesion, 09_Groupe_Ambiance): When the situation requires a Jet d'Ambiance (cohesion du groupe), output Roll [Ambiance] vs Niv +X. Mechanic: 5dD (dés discordants), result = sum of 5, success if result >= Niv. Include this line.
+- **Jet de Repos** (guérison quotidienne, 05_Souffrances): When the situation requires a Jet de Repos (combien de jours de souffrance guéris), output Roll [Repos] vs Niv +X. Mechanic: 5dD, result = sum vs Niv. Include this line.
+- **Résistance** (05_Souffrances): Résistance is PASSIVE — it uses the Niv of the Compétence Résistante (Robustesse, Satiété, Rectitude, Immunité) to reduce DS; there is NO "Jet de Résistance" roll. Do not ask for a roll for Résistance; apply the Niv when the rules say resistance reduces DS.
 """
 
 GM_INSTRUCTIONS = """You are the Éveilleur (GM) for Des Récits Discordants. Use ONLY the rules and lore provided below. Never invent mechanics.
@@ -153,7 +158,10 @@ GM_INSTRUCTIONS = """You are the Éveilleur (GM) for Des Récits Discordants. Us
 **Roll discipline**: When an action requires a roll, you MUST output exactly one line in this format so the player gets a Roll button:
   REQUIRED: Roll [Compétence] vs Niv +X.  Example: Roll [Vol] vs Niv +0.  Or: Roll [Négociation] vs Niv +2.  Or: Roll [Esquive] vs Niv +1.  Or: Roll [Grimpe] vs Niv +1.  Or: Roll [Investigation] vs Niv 0.
   The word inside the brackets MUST be one of the 72 COMPÉTENCES only (e.g. Vol, Esquive, Acrobatie, Évasion, Grimpe, Armé, Négociation, Intimidation, Médecine). NEVER use an Attribute (Agilité, Force, Dextérité, Vigueur, Empathie, Perception, Créativité, Volonté) or an Aptitude (Aisance, Puissance, Charisme, Athlétisme, etc.) — the UI will reject it and show "Compétence introuvable". Map the action to a Compétence: e.g. s'envoler/fuir → [Vol], [Acrobatie] or [Évasion]; éviter → [Esquive]; escalader → [Grimpe]; négocier → [Négociation].
-  **Exception — Jet de Rage / Jet d'Évanouissement:** When the rules require a Jet de Rage (10+ Souffrances) or Jet d'Évanouissement (15+ Souffrances), output exactly: Roll [Rage] vs Niv +1 (or the current Niv de Rage) or Roll [Évanouissement] vs Niv +X. Do not only say "lancez 1d6" in prose; always include this parseable line so the player gets a Roll button.
+  **Exceptions (special rolls — always include the parseable line):**
+  - Jet de Rage (10+ Souffrances): Roll [Rage] vs Niv +X. Jet d'Évanouissement (15+ Souffrances): Roll [Évanouissement] vs Niv +X. Do not only say "lancez 1d6" in prose.
+  - Jet d'Ambiance (cohésion du groupe): Roll [Ambiance] vs Niv +X. Jet de Repos (guérison quotidienne): Roll [Repos] vs Niv +X. Do not only describe the roll in prose.
+  - Résistance is PASSIVE (Niv only): do NOT call for a roll for Résistance; there is no Jet de Résistance.
   Niv must be one number: +2 or -1 or 0, not "4 - 2".
 Do not resolve the outcome yourself; wait for the player to report the result.
 
