@@ -95,14 +95,114 @@
 
     function markdownToHtml(text) {
         if (typeof marked !== 'undefined' && typeof DOMPurify !== 'undefined') {
-            marked.setOptions({ gfm: true, breaks: true });
+            marked.setOptions({ gfm: true, breaks: true, tables: true });
             var raw = marked.parse(String(text || ''));
             return DOMPurify.sanitize(raw, {
-                ALLOWED_TAGS: ['h1','h2','h3','h4','h5','h6','p','strong','em','b','i','u','ul','ol','li','table','thead','tbody','tr','th','td','blockquote','hr','br','code','pre','a','span','div'],
-                ALLOWED_ATTR: ['href','class','target','rel']
+                ALLOWED_TAGS: ['h1','h2','h3','h4','h5','h6','p','strong','em','b','i','u','ul','ol','li','table','thead','tbody','tr','th','td','blockquote','hr','br','code','pre','a','span','div','button'],
+                ALLOWED_ATTR: ['href','class','target','rel','type','data-competence','data-niv']
             });
         }
         return null;
+    }
+
+    /** Escape HTML for safe insertion into attribute or text. */
+    function escapeHtml(s) {
+        if (s == null) return '';
+        var div = document.createElement('div');
+        div.textContent = s;
+        return div.innerHTML;
+    }
+
+    /** Post-process assistant message HTML: turn "Roll [X] vs Niv Y" into styled inline + Roll button (scoped to that message). */
+    function injectInlineRollButtons(html) {
+        if (!html || typeof html !== 'string') return html;
+        var re = /Roll\s*\[\s*([^\]]+)\s*\]\s*vs\s*Niv\s*([+-]?\d+)/gi;
+        return html.replace(re, function (match, comp, niv) {
+            var c = escapeHtml(comp.trim());
+            var n = escapeHtml(String(niv));
+            return '<span class="gm-roll-request-inline"><span class="gm-roll-text">Roll [' + c + '] vs Niv ' + n + '</span><button type="button" class="gm-roll-inline-btn" data-competence="' + c + '" data-niv="' + n + '">Roll</button></span>';
+        });
+    }
+
+    /** Format a user message that is a roll result into structured HTML with tables. */
+    function formatUserRollMessage(content) {
+        if (!content || typeof content !== 'string') return escapeHtml(content);
+        var raw = content.trim();
+        if (/Pool\s*:?\s*/.test(raw) && raw.indexOf('\n') === -1) {
+            raw = raw.replace(/(\.)(Pool\s*:?\s*)/i, '$1\n$2')
+                .replace(/(dD)\s*(Jet\s*:)/i, '$1\n$2')
+                .replace(/(=\s*Résultat\s*[+-]?\d+)\s*(Marques)/i, '$1\n$2')
+                .replace(/(=\s*Result\s*[+-]?\d+)\s*(Marks)/i, '$1\n$2')
+                .replace(/(\])\s*(Vous subissez)/i, '$1\n$2')
+                .replace(/(\])\s*(You suffer)/i, '$1\n$2')
+                .replace(/(Blessures\.)\s*(R\[)/i, '$1\n$2');
+        }
+        var lines = raw.split(/\r?\n/).map(function (s) { return s.trim(); }).filter(Boolean);
+        var outcome = '';
+        var poolLine = '';
+        var jetLine = '';
+        var feedback = [];
+        var i = 0;
+        if (lines.length > 0 && /^Rolled\s/i.test(lines[0])) {
+            outcome = lines[0];
+            i = 1;
+        }
+        while (i < lines.length) {
+            var line = lines[i];
+            if (/^Pool\s/i.test(line)) {
+                poolLine = line;
+                i++;
+            } else if (/^(Rolled?|Jet)\s*:?\s*\[/.test(line) && /gardés|kept/.test(line)) {
+                jetLine = line;
+                i++;
+            } else {
+                feedback.push(line);
+                i++;
+            }
+        }
+
+        var lang = getLang();
+        var isFr = lang === 'fr';
+        var L = {
+            pool: isFr ? 'Pool' : 'Pool',
+            rolled: isFr ? 'Jet' : 'Rolled',
+            kept: isFr ? '5 gardés' : '5 kept',
+            sum: isFr ? 'Somme' : 'Sum',
+            result: isFr ? 'Résultat' : 'Result',
+            effects: isFr ? 'Effets' : 'Effects'
+        };
+
+        var html = '';
+        var hasCard = outcome || poolLine || jetLine || feedback.length > 0;
+        if (hasCard) html += '<div class="gm-roll-result-card">';
+        if (outcome) html += '<div class="gm-roll-outcome">' + escapeHtml(outcome) + '</div>';
+
+        if (poolLine || jetLine) {
+            var rolledMatch = jetLine.match(/\[[+\-0,]+\]/g);
+            var rolledDice = rolledMatch && rolledMatch[0] ? rolledMatch[0] : '';
+            var keptDice = rolledMatch && rolledMatch[1] ? rolledMatch[1] : '';
+            var sumMatch = jetLine.match(/somme\s*([+-]?\d+)|sum\s*([+-]?\d+)/i);
+            var sumVal = sumMatch ? (sumMatch[1] || sumMatch[2] || '').trim() : '';
+            var resultPart = jetLine.replace(/^.*?→\s*somme\s*[+-]?\d+\.?\s*/i, '').replace(/^.*?→\s*sum\s*[+-]?\d+\.?\s*/i, '');
+            html += '<table class="gm-roll-dice-table"><tbody>';
+            if (poolLine) html += '<tr><th scope="row">' + L.pool + '</th><td>' + escapeHtml(poolLine.replace(/^Pool\s*:?\s*/i, '')) + '</td></tr>';
+            if (rolledDice) html += '<tr><th scope="row">' + L.rolled + '</th><td><span class="gm-dice-faces">' + escapeHtml(rolledDice) + '</span></td></tr>';
+            if (keptDice) html += '<tr><th scope="row">' + L.kept + '</th><td><span class="gm-dice-faces gm-dice-kept">' + escapeHtml(keptDice) + '</span></td></tr>';
+            if (sumVal) html += '<tr><th scope="row">' + L.sum + '</th><td>' + escapeHtml(sumVal) + '</td></tr>';
+            if (resultPart) html += '<tr><th scope="row">' + L.result + '</th><td>' + escapeHtml(resultPart) + '</td></tr>';
+            html += '</tbody></table>';
+        }
+
+        if (feedback.length) {
+            html += '<table class="gm-roll-effects-table"><tbody>';
+            feedback.forEach(function (f) {
+                html += '<tr><td class="gm-roll-effect-cell">' + escapeHtml(f) + '</td></tr>';
+            });
+            html += '</tbody></table>';
+        }
+
+        if (hasCard) html += '</div>';
+        return html || escapeHtml(content);
     }
 
     /** Current thinking phrase index for rotation. */
@@ -134,9 +234,20 @@
             body.className = 'gm-chat-body' + (m.role === 'assistant' ? ' gm-chat-body--md' : '');
             if (m.role === 'assistant') {
                 var html = markdownToHtml(m.content);
-                if (html != null) { body.innerHTML = html; } else { body.textContent = m.content; }
+                if (html != null) {
+                    html = injectInlineRollButtons(html);
+                    body.innerHTML = html;
+                } else {
+                    body.textContent = m.content;
+                }
             } else {
-                body.textContent = m.content;
+                var userContent = m.content;
+                if (typeof userContent === 'string' && /^Rolled\s/i.test(userContent)) {
+                    body.className = (body.className || '') + ' gm-chat-body--roll';
+                    body.innerHTML = formatUserRollMessage(userContent);
+                } else {
+                    body.textContent = userContent;
+                }
             }
             div.appendChild(role);
             div.appendChild(body);
@@ -153,7 +264,12 @@
             var streamBody = document.createElement('div');
             streamBody.className = 'gm-chat-body gm-chat-body--md';
             var html = markdownToHtml(streamingContent);
-            if (html != null) streamBody.innerHTML = html; else streamBody.textContent = streamingContent;
+            if (html != null) {
+                html = injectInlineRollButtons(html);
+                streamBody.innerHTML = html;
+            } else {
+                streamBody.textContent = streamingContent;
+            }
             var cursor = document.createElement('span');
             cursor.className = 'gm-stream-cursor';
             cursor.setAttribute('aria-hidden', 'true');
@@ -480,6 +596,19 @@
                     e.preventDefault();
                     submit();
                 }
+            });
+        }
+
+        if (container) {
+            container.addEventListener('click', function (e) {
+                var btn = e.target && e.target.closest && e.target.closest('.gm-roll-inline-btn');
+                if (!btn) return;
+                var comp = btn.getAttribute('data-competence');
+                var nivStr = btn.getAttribute('data-niv');
+                var niv = parseInt(nivStr, 10);
+                if (!comp || isNaN(niv)) return;
+                pendingRoll = { competence: comp, niv: niv };
+                performPlayTabRoll(container, input, hintEl, sendBtn, useChar);
             });
         }
     }

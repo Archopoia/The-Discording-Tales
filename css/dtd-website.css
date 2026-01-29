@@ -1424,6 +1424,118 @@ img {
     color: var(--tdt-beige-light);
 }
 
+/* Inline Roll request inside GM message: styled text + Roll button (scoped to that message) */
+.gm-chat-messages .msg.assistant .gm-roll-request-inline {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.25em 0;
+    padding: 0.35em 0.5em;
+    background: rgba(0,0,0,0.2);
+    border-radius: 6px;
+    border: 1px solid rgba(212, 197, 168, 0.3);
+}
+.gm-chat-messages .msg.assistant .gm-roll-request-inline .gm-roll-text {
+    font-family: ui-monospace, "Cascadia Code", Menlo, monospace;
+    font-size: 0.95em;
+    color: var(--tdt-mint);
+    font-weight: 600;
+}
+.gm-chat-messages .msg.assistant .gm-roll-inline-btn {
+    flex-shrink: 0;
+    padding: 0.25rem 0.6rem;
+    font-size: 0.8rem;
+    background: #643030;
+    color: #F3E2A9;
+    border: 2px solid #674B1B;
+    border-radius: 4px;
+    font-family: 'Quintessential', cursive, serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.gm-chat-messages .msg.assistant .gm-roll-inline-btn:hover {
+    background: #fff6df;
+    color: #4d3000;
+    transform: translateY(-1px);
+}
+
+/* User message: formatted roll result (outcome + dice table + effects table) */
+.gm-chat-messages .msg.user .gm-chat-body--roll {
+    font-size: 0.95em;
+}
+.gm-chat-messages .msg.user .gm-roll-result-card {
+    background: rgba(0,0,0,0.2);
+    border-radius: 8px;
+    border: 1px solid rgba(212, 197, 168, 0.25);
+    padding: 0.75rem 0.85rem;
+    margin: 0;
+}
+.gm-chat-messages .msg.user .gm-roll-outcome {
+    font-weight: 700;
+    font-size: 1.05em;
+    color: var(--tdt-beige-light);
+    margin: 0 0 0.6rem 0;
+    padding: 0.4rem 0.5rem;
+    background: rgba(90, 31, 31, 0.4);
+    border-radius: 6px;
+    border-left: 4px solid var(--tdt-mint);
+    text-shadow: 0 0 4px rgba(0,0,0,0.4);
+}
+.gm-chat-messages .msg.user .gm-roll-dice-table {
+    width: 100%;
+    margin: 0.5rem 0 0.75rem 0;
+    border-collapse: collapse;
+    font-size: 0.9em;
+}
+.gm-chat-messages .msg.user .gm-roll-dice-table th,
+.gm-chat-messages .msg.user .gm-roll-dice-table td {
+    border: 1px solid rgba(212, 197, 168, 0.3);
+    padding: 0.35rem 0.5rem;
+    text-align: left;
+    vertical-align: middle;
+}
+.gm-chat-messages .msg.user .gm-roll-dice-table th {
+    width: 6em;
+    font-weight: 600;
+    color: var(--tdt-mint);
+    background: rgba(0,0,0,0.3);
+}
+.gm-chat-messages .msg.user .gm-roll-dice-table td {
+    color: var(--tdt-beige-light);
+}
+.gm-chat-messages .msg.user .gm-dice-faces {
+    font-family: ui-monospace, "Cascadia Code", Menlo, monospace;
+    font-size: 1.05em;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+}
+.gm-chat-messages .msg.user .gm-dice-kept {
+    color: var(--tdt-mint);
+}
+.gm-chat-messages .msg.user .gm-roll-effects-table {
+    width: 100%;
+    margin: 0;
+    border-collapse: collapse;
+    font-size: 0.9em;
+}
+.gm-chat-messages .msg.user .gm-roll-effects-table td {
+    border: 1px solid rgba(212, 197, 168, 0.2);
+    border-top: none;
+    padding: 0.3rem 0.5rem;
+    color: rgba(255, 235, 205, 0.95);
+}
+.gm-chat-messages .msg.user .gm-roll-effects-table tr:first-child td {
+    border-top: 1px solid rgba(212, 197, 168, 0.2);
+}
+.gm-chat-messages .msg.user .gm-roll-effect-cell {
+    background: rgba(0,0,0,0.15);
+}
+.gm-chat-messages .msg.user .gm-roll-effect-cell:empty {
+    display: none;
+}
+
 /* Brief highlight on competence row after Play-tab roll */
 .gm-last-rolled {
     animation: gm-last-rolled-pulse 2s ease-out;
