@@ -1,0 +1,2065 @@
+---
+
+# File: 01_Systeme_General.md
+
+# Système Général - Des Récits Discordants
+
+Réf. livre : pages 15-21 (Chance, Niveaux d'échelle, Degrés de fiabilité, Épreuves, Astragale), 13-14 (Révélateur & Éveilleurs). CSV : Niveaux_Résultat_Épreuve_Durée_Dégrés, Types_de_Conflits_Objet_gardé_Obstacle_guardien.
+
+## Concepts Fondamentaux
+
+### Les Dés Discordants (dD)
+- **dD** : Dés à 3 faces : `+`, `0`, `-` (sur D6 : 5-6 = +, 3-4 = 0, 1-2 = -).
+- **Chance** : Presque tous les jets utilisent **5 dD** (la « Chance ») pour estimer l’imprévisible et l’environnement.
+- **Résultat brut** : Nombre de `+` moins le nombre de `-` → variation de **-5 à +5** (0 = moyenne).
+- **Égalité** : Même nombre de `+` et de `-` (résultat 0).
+
+### Niveau (Niv) et Degrés (Dés)
+- **Niv** : Nombre ajouté au résultat du jet. Il déplace la portée des résultats possibles (ex. Niv +3 avec 5dD → résultats de -2 à +8). Issu des Aptitudes et des modificateurs (outils, situation, etc.). Le résultat final ne peut jamais dépasser **Niv + 5** de l’Aptitude utilisée (troncature).
+- **Degrés (D)** : Dés supplémentaires ajoutés à la Chance (5dD). Issus des Compétences (positifs) ou des Souffrances (négatifs).
+  - **Dés positifs** : On garde les **5 plus hauts** parmi (5 + D) dés.
+  - **Dés négatifs** : On garde les **5 plus bas** parmi (5 + |D|) dés.
+- **Résultat final** : (Somme des 5 dés gardés) + Niv, tronqué si besoin au Niv + 5 de l’Aptitude.
+
+### Équivalence D ⇄ N
+Conversion entre Dés et Niv (pour simplifier les jets ou les calculs) :
+- 1-2 Dés ⇄ 1 Niv  
+- 3-5 Dés ⇄ 2 Niv  
+- 6-9 Dés ⇄ 3 Niv  
+- 10-14 Dés ⇄ 4 Niv  
+- 15+ Dés ⇄ 5 Niv  
+
+(Livre p. 24.)
+
+## Les Épreuves
+
+- **Épreuve Possible** : L’action peut être tentée si le Niv total (Aptitude + modificateurs) est au **maximum à 5 Niv** en dessous ou au-dessus du Niv d’Épreuve.
+- **Épreuve extrême (6 à 10 Niv de différence)** : Seul l’**Astragale** (succès ou échec critique) permet de réussir ou d’échouer ; le jet est très (mal)chanceux.
+- **Épreuve Impossible** : Au-delà de 10 Niv de différence, l’action est **impossible** (sauf house-rule ou règle spéciale).
+
+### Niveaux d’Épreuve et résultats (CSV : Niveaux_Résultat_Épreuve_Durée_Dégrés)
+| Niv | Résultat      | Épreuve              | Durée              | Dégrés typiques |
+|-----|---------------|----------------------|--------------------|------------------|
+| -5N | Catastrophique| Impossible à rater   | Instantanée        | ...              |
+| -4N | Effroyable    | Sauf exception       | Tout de suite      | -20D, ...        |
+| -3N | Dramatique    | Presque garanti      | Quasi immédiat     | -15D             |
+| -2N | Périlleux     | Ridiculement aisée   | Infiniment rapide  | -10D             |
+| -1N | Très nul      | Très facile          | Très courte        | -6D              |
+| 0N  | Habituel      | Normale / risquée    | Moyenne            | 0D               |
+| +1N à +5N | Bon à Inouï | Plutôt difficile à Presque impossible | Plutôt lente à Quasi interminable | +1D à +15D |
+| +6 à +10N | Fantastique à Légendaire | Né de l’imaginaire / Issue des légendes | Chronophage / N’arrivant jamais | +20D, ... |
+
+### Succès et échec
+- **Succès** : Résultat final ≥ Niv d’Épreuve.
+- **Échec** : Résultat final < Niv d’Épreuve.
+
+## Astragale (Échecs & Succès Critiques)
+
+- **Astragale** : Aléa critique (heureux ou malheureux). Lorsque la règle est utilisée, on lance **toujours la Chance (5 dD) en premier** avant les autres dés.
+- **00000** (cinq zéros) : On **relance un dé**. Si le dé donne + ou -, le jet est **Succès** ou **Échec Critique** (on ne lance pas les autres dés). Si le dé donne 0, le jet est normal et on continue.
+- **Effet critique** : Succès ou échec **total** de l’action, **doublant** son effet normal (compte comme **+10 ou -10 Niv** d’un coup).
+- **Chiffre Porte-Bonheur / Porte-Malheur** : Déterminé par Jets d’Astragale (2 × 5dD) à la création ou par session/saison/pentaine/journée. Dès qu’une face des 5 dD de Chance indique **jusqu’à ce chiffre pur** (suivi de 0 seulement) du signe Porte-Bonheur (+) ou Porte-Malheur (-), c’est aussi l’Astragale.  
+  Ex. : Chiffre Porte-Bonheur +3 → les résultats +0000, ++000 ou +++00 = Succès Critique.
+
+(Livre p. 20, 33 ; table Résultat 5 Dés / Porte-Malheur / Porte-Bonheur / Chance d’Astragale.)
+
+## Les 8 Types de Conflits (Gameplay)
+
+Chaque type est lié à une Aptitude. Objet (gardé) = obtenir quelque chose de protégé ; Obstacle (gardien) = passer au-delà d’un obstacle.  
+**Source : CSV Types_de_Conflits_Objet_(gardé)_Obstacle_(gardien).**
+
+| Aptitude   | Type de conflit | Objet (gardé) | Obstacle (gardien) | Approche |
+|-----------|------------------|----------------|---------------------|----------|
+| Puissance | Bataille         | Tuer ou Détruire et prendre l’Objet | Tuer ou Détruire l’Obstacle et passer | Traverser sa voie, frontalement |
+| Aisance   | Infiltration     | Voler l’Objet, ici et en discrétion | Se faufiler à travers l’Obstacle | Traverser sa voie, mais indétecté |
+| Précision | Artisanat        | Faire abandonner l’Objet | Faire diversion ou leurrer l’Obstacle | Créer une autre voie, par subterfuge |
+| Athlétisme| Prouesse         | Prendre de force l’Objet sécurisé | Esquiver ou Surmonter l’Obstacle | Créer une autre voie, par le possible |
+| Charisme  | Corrompre        | Troquer l’Objet contre un besoin | Corrompre ou Vaincre l’Obstacle | Diriger sa voie, par ses vices ou intérêts |
+| Réflexion | Énigme           | Trouver l’Objet ailleurs qu’ici | Trouver une solution à l’Obstacle | Trouver une autre voie, plus rare |
+| Détection | Enquête          | Piller une cachette de l’Objet | Trouver une faille à l’Obstacle | Trouver une autre voie, plus secrète |
+| Domination| Débat            | Convaincre de donner l’Objet | Convaincre l’Obstacle d’un passage | Diriger sa voie, par ses motivations ou buts |
+
+**Clé** : Utiliser une « Clé » (outil, savoir, contact, etc.) pour obtenir l’Objet ou passer l’Obstacle dans n’importe quel type de conflit.
+
+Voir `03_Attributs_Aptitudes_Competences.md` pour les 8 Aptitudes et les 72 Compétences.
+
+## Personnages et Rôles
+
+- **PI (Personnage Inspiré)** : Personnage joué ; « inspiré » par un Éveilleur.
+- **PNI (Personnage Non-Inspiré)** : Personnage non-joueur.
+- **Révélateur (RV, « Hervé »)** : Le **Maître de Jeu** — dévoile l’ordre de l’univers, éprouve les personnages à travers les huit façons d’interagir avec les cordes de la réalité.
+- **Éveilleur (EV)** : Les **Joueurs** — insufflent les PI d’un élan volontaire ; chaque joueur est l’Éveilleur de son personnage.
+
+(Livre p. 13.)
+
+## Niveaux et Échelles
+
+### Distinction
+- **Distinction** : Somme de tous les Niv d’Attributs du personnage.
+- Détermine le Niv de Gouvernance des Titres (voir 13_Valeurs_Traits, 04_Experience_Progression).
+
+### Niveaux de Temps (NdT)
+Réf. CSV : 0_Un_(I)nstant_-_Une_Prière... ; Cercles_de_Fréquence.  
+Échelle indicative (du plus court au plus long) :
+- **Clin** : 1 « tiers-de-seconde » (temps de réaction humanoïde).
+- **Souffle** : 1 seconde ou 3 Clins (action libre).
+- **Respiration** : 3 secondes ou 10 Clins (action simple).
+- **Échange** : 10 s ou 30 Clins ; **Bavardage** : 30 s ou 100 Clins.
+- **Instant / Prière** : 1 à 15 minutes (série d’actions ou « Faire 0 »).
+- **Heure**, **Veillée**, **Jour**, **Pentaine**, **Héliorée**, **Saison**, **Cycle**, **Soleil**, etc. (voir 08_Temps_Labeurs).
+
+## Types de Jets
+
+### Jet Précisé (Niveau de Temps)
+- **« Faire 0 »** : Prendre du temps pour une action complexe = pas de jet, résultat basé sur les niveaux (Livre p. 131).
+- Plus de temps = difficulté réduite ; moins de temps = difficulté augmentée.
+
+### Jet Risqué
+- Déclarer un seuil d’échec critique en échange d’un bonus (détails en séance selon le Révélateur).
+
+### Jet Sacrifié
+- Réussir sur égalité ou échec critique en acceptant une **pénalité**.
+- **Sacrifice Aveugle** : En cas d’échec fatal (mort ou échec critique très handicapant), le joueur peut réussir le jet au prix d’un coût déterminé par le Révélateur (ne sait pas à l’avance ce qu’il sacrifie). (Livre p. 11906.)
+
+### Jet de Groupe
+- Chaque participant fait un jet ; modifié par l’Ambiance du groupe ; résultats moyennés ou selon la règle de groupe. Voir 09_Groupe_Ambiance.
+
+### Jet d’Audace
+- Un seul individu tente une action de groupe avec pénalités (ex. -1 Dé par membre du groupe au-delà de 1). Récompenses potentielles plus élevées. Voir 09_Groupe_Ambiance.
+
+## Perspectives et Récits
+
+- Chaque personnage a un **Récit** unique, qui justifie son existence et ses opportunités.
+- Le Récit détermine la Caste et les avantages narratifs ; il peut **doubler les dés de Compétence** dans les situations pertinentes.
+- Les préjugés raciaux et les rivalités sociales sont fondamentaux au monde ; les PI sont sujets aux conflits et aux abus selon leur origine, peuple et race. (Livre p. 21-22.)
+
+---
+
+# File: 03_Attributs_Aptitudes_Competences.md
+
+# Attributs, Aptitudes et Compétences
+
+Réf. livre : pages 16-19 (Attributs, Aptitudes, Dés CT/MT, Potentiels, Tenter d'agir), 63+ (Révélation, Maîtrises, Découvertes).  
+CSV : (8)_Aptitudes_(24)_Actions_&_(72)_Compétences, Attributs_Apt_+3_+2_+1, Cercle_Initial_*, Découvertes_des_72_Compétences, Tableau_des_Découvertes_d'Attribut.
+
+## Les 8 Attributs
+
+Chaque Attribut est noté entre -50 et +50 (×10 sur la feuille) ; 00 = humanoïde moyen.  
+**Lien Aptitudes** (chaque Aptitude est la somme de 3 Attributs) — CSV Attributs_Apt_+3_+2_+1 :
+
+| Attribut | Apt +3 (principal) | Apt +2 | Apt +1 |
+|----------|---------------------|--------|--------|
+| FOR      | Puissance           | Athlétisme | Domination |
+| AGI      | Aisance             | Puissance  | Athlétisme |
+| DEX      | Précision           | Aisance   | Puissance  |
+| VIG      | Athlétisme          | Domination | Aisance   |
+| EMP      | Charisme            | Réflexion  | Détection  |
+| PER      | Détection           | Précision  | Charisme   |
+| CRÉ      | Réflexion           | Détection  | Précision  |
+| VOL      | Domination          | Charisme   | Réflexion  |
+
+**Niv d'Aptitude** : on n'utilise que l'**unité** (1er chiffre significatif) : total ÷ 10 (ex. -37 → -3). En cas d'égalité, la décimale de l'ATB lié au groupe de la Compétence peut départager. (Livre p. 16.)
+
+### Force (FOR) & Autorité
+- **Aptitude** : Puissance
+- **Actions** : Frapper, Neutraliser, Tirer
+- **Compétences** : [Armé], [Désarmé], [Improvisé], [Lutte], [Bottes], [Ruses], [Bandé], [Propulsé], [Jeté]
+
+### Agilité (AGI) & Nature
+- **Aptitude** : Aisance
+- **Actions** : Réagir, Dérober, Coordonner
+- **Compétences** : [Fluidité], [Esquive], [Évasion], [Escamotage], [Illusions], [Dissimulation], [Gestuelle], [Minutie], [Équilibre]
+
+### Dextérité (DEX) & Finance
+- **Aptitude** : Précision
+- **Actions** : Manier, Façonner, Fignoler
+- **Compétences** : [Visée], [Conduite], [Habileté], [Débrouillardise], [Bricolage], [Savoir-Faire], [Artifices], [Sécurité], [Casse-Têtes]
+
+### Vigueur (VIG) & Collectivité
+- **Aptitude** : Athlétisme
+- **Actions** : Traverser, Efforcer, Manœuvrer
+- **Compétences** : [Pas], [Saut], [Natation], [Port], [Grimpe], [Acrobatie], [Vol], [Fouissage], [Chevauchement]
+
+### Empathie (EMP) & Société
+- **Aptitude** : Charisme
+- **Actions** : Captiver, Convaincre, Interpréter
+- **Compétences** : [Séduction], [Tromperie], [Présentation], [Négociation], [Chant], [Inspiration], [Instrumental], [Mimétisme], [Narration]
+
+
+### Perception (PER) & Instruction
+- **Aptitude** : Détection
+- **Actions** : Discerner, Découvrir, Dépister
+- **Compétences** : [Vision], [Odorat], [Estimation], [Investigation], [Audition], [Goût], [Toucher], [Ressenti], [Intéroception]
+
+### Créativité (CRÉ) & Propriété
+- **Aptitude** : Réflexion
+- **Actions** : Concevoir, Acculturer, Acclimater
+- **Compétences** : [Artisanat], [Nature], [Société], [Jeux], [Médecine], [Pastoralisme], [Ingénierie], [Géographie], [Agronomie]
+
+## Les 8 Aptitudes
+
+Chaque Aptitude regroupe 3 Actions, chaque Action contient 3 Compétences (72 Compétences au total).
+
+Chaque Aptitude est également liée à un **Type de Conflit/Gameplay** qui représente une façon d'interagir avec le monde et de résoudre les obstacles rencontrés.
+
+### Puissance (FOR)
+- **Frapper** : [Armé], [Désarmé], [Improvisé]
+- **Neutraliser** : [Lutte], [Bottes], [Ruses]
+- **Tirer** : [Bandé], [Propulsé], [Jeté]
+
+### Aisance (AGI)
+- **Réagir** : [Fluidité], [Esquive], [Évasion]
+- **Dérober** : [Escamotage], [Illusions], [Dissimulation]
+- **Coordonner** : [Gestuelle], [Minutie], [Équilibre]
+
+### Précision (DEX)
+- **Manier** : [Visée], [Conduite], [Habileté]
+- **Façonner** : [Débrouillardise], [Bricolage], [Savoir-Faire]
+- **Fignoler** : [Artifices], [Sécurité], [Casse-Têtes]
+
+### Athlétisme (VIG)
+- **Traverser** : [Pas], [Saut], [Natation]
+- **Efforcer** : [Port], [Grimpe], [Acrobatie]
+- **Manœuvrer** : [Vol], [Fouissage], [Chevauchement]
+
+### Charisme (EMP)
+- **Captiver** : [Séduction], [Tromperie], [Présentation]
+- **Convaincre** : [Négociation], [Chant], [Inspiration]
+- **Interpréter** : [Instrumental], [Mimétisme], [Narration]
+
+### Détection (PER)
+- **Discerner** : [Vision], [Odorat], [Estimation]
+- **Découvrir** : [Investigation], [Audition], [Goût]
+- **Dépister** : [Toucher], [Ressenti], [Intéroception]
+
+### Réflexion (CRÉ)
+- **Concevoir** : [Artisanat], [Nature], [Société]
+- **Acculturer** : [Jeux], [Médecine], [Pastoralisme]
+- **Acclimater** : [Ingénierie], [Géographie], [Agronomie]
+
+### Domination (VOL) — Livre p. 18, CSV (8) Aptitudes
+- **Discipliner** : [Commandement], [Intimidation], [Obstinance]
+- **Endurer** : [Gloutonnerie], [Beuverie], [Entrailles]
+- **Dompter** : [Apprivoisement], [Obéissance], [Dressage]
+
+## Maîtrises (Spécialités)
+
+Chaque Compétence a des **Maîtrises** (Spécialités) qui sont des sous-compétences spécifiques. Exemples :
+
+### Puissance
+- **[Armé]** : Arme de Poigne, d'Antipôle, de Parade, de Garde, Équilibrées, Flexibles
+- **[Lutte]** : Saisie, Bousculade, Mise à Terre, Projection, Soumission
+- **[Bandé]** : Encordage, Surbandé, Tirs Courbés, Tirs multiples
+
+### Aisance
+- **Réagir** :
+  - **[Fluidité]** : Réactivité, Spontanéité, Rythmique, Feinter, Contrer
+  - **[Esquive]** : Repositionnante, en Roulade, Préparée, Instinctive
+  - **[Évasion]** : (Dés)Engagement, Faufilage, Déliement, Délivrement
+- **Dérober** :
+  - **[Escamotage]** : Espionnant, d'Objets portés, de Véhicules, de Créatures
+  - **[Illusions]** : Trichantes, Spectaculaires, de Diversion, de Disparition
+  - **[Dissimulation]** : Se cacher, Cacher des Choses, Déplacement silencieux, Embuscades/Filatures
+- **Coordonner** :
+  - **[Gestuelle]** : Danse, Posture (au combat), Pantomime, Rituelle, Athlétique, Improvisée
+  - **[Minutie]** : Délicatesse, Doigté, Impact, Impulsion
+  - **[Équilibre]** : Stabilisant, en Sols difficiles, Funambule, Jonglage, Surchargé
+
+### Précision
+- **[Visée]** : Mécanismes d'armement, Tir à longue distance, Tir de soutien, Visée multiple
+- **[Débrouillardise]** : Monte de camp, Orientation, Allumage/Extinction, Camouflage
+- **[Artifices]** : Amorçage, Désamorçage, Enfumants, Explosifs
+
+### Athlétisme
+- **[Pas]** : Ramper, Marcher, Courir, Charger, Pédaler
+- **[Port]** : Tirer & Pousser, Soulever & Ouvrir, Porter, Lancer, Supporter
+- **[Vol]** : Planer, Piquer, Flotter, Poussée
+
+### Charisme
+- **[Séduction]** : Attirer, faire Émouvoir, faire Admirer, faire Reconnaître, Avoir une Faveur
+- **[Négociation]** : Marchandage, Corrompre, Diplomatie, Débattre, Enchèrir
+- **[Instrumental]** : Attirer, faire Émouvoir, faire Admirer, faire Reconnaître
+
+### Détection
+- **[Vision]** : Précise & Distante, Écritures, Lecture sur lèvre, Langage corporel
+- **[Investigation]** : Fouille, Pistage, Autopsie, Décryptage, Profilage
+- **[Toucher]** : Textures, Températures, Lectures à froid, Reconnaissance aveugle
+
+### Réflexion
+- **[Artisanat]** : Alimentaire, des Graisses, du Papier, des Plantes, du Textile, du Cuir, etc.
+- **[Jeux]** : Jeux d'Ambiance, de Société, de Hasard, d'Esprit, de Rôle
+- **[Ingénierie]** : Civil, Mécanique, Chimique, Énergique, Mathématique
+
+### Domination
+- **[Commandement]** : Coup de fouet, Se jeter à l'eau, Retourner les poches, etc.
+- **[Gloutonnerie]** : Capacité/Contrôle d'As/Ins/Expiration, Aspiration continue
+- **[Apprivoisement]** : Caresse, Apaisement, Friandise, Main tendue, Lire par le regard
+
+## Jet d'action et Potentiels d'Action
+
+- **Jet** : 5dD (Chance) + Dés de Potentiel (optionnel) + Dés de Compétence ; garder les 5 plus hauts (ou 5 plus bas si total Dés négatif), puis ajouter le Niv. (Livre p. 17.)
+- **Potentiels d'Action** : Chaque Niv de CT donne autant de Dés de Potentiel dépensables en plus des Dés de la CT. Coût pour dépenser du Potentiel d’une autre CT :
+  - **1 Dé** par Dé sur une CT de **même Action** (ex. [Armé] → [Désarmé]).
+  - **2 Dés** par Dé sur une CT de **même Aptitude** (ex. Puissance [Armé] → [Lutte]).
+  - **3 Dés** par Dé sur une CT du **même ATB principal** (ex. FOR : Puissance → Athlétisme [Port]).
+  - **4 Dés** par Dé sur une CT **sans lien** (sauf Maître qui peut en établir un).
+- Récupération : 1 Potentiel entier récupéré par Nuitée/Matinée/Soirée de Repos par Jour (livre p. 149).
+
+## Système de Compétences
+
+### Niveaux de Compétence
+- **N0** (0 Dé) : Néophyte (aucune expérience/désir d'apprendre la compétence)
+- **N1** (1 à 2 Dés) : Initié (incompétence inconsciente, la mauvaise intuition)
+- **N2** (3 à 5 Dés) : Disciple (incompétence consciente, la mauvaise analyse)
+- **N3** (6 à 9 Dés) : Adepte (compétence consciente, la bonne analyse)
+- **N4** (10 à 14 Dés) : Expert (compétence inconsciente, la bonne intuition)
+- **N5** (15 Dés et plus) : Maître (l'atteinte maximum de votre propre potentiel)
+
+### Dés de Compétence (CT)
+- Chaque Compétence a des Dés supplémentaires (inscrits dans sa « coupelle »).
+- Gagnés via l'Éducation, l'Expression, les Réalisations (Marques → Éprouver → +1 Dé).
+
+### Dés de Maîtrise (MT)
+- Avant le jet, déclarer **X Dés de MT en PRÉCAUTION** (plutôt que de les lancer) pour **annuler X Échecs** potentiels, **au-delà du premier Échec seulement**. (Livre p. 17.)
+
+### Marques Éternelles
+- Réduisent le nombre de Marques nécessaires pour Éprouver
+- Ne peuvent jamais être effacées
+- Sources : Symbole, Éducation, Passion
+
+### Révélation de Compétence
+Une Compétence doit être "Révélée" avant de pouvoir être développée :
+- Via la création de personnage
+- En dépensant une Réalisation
+- Par l'entraînement
+- Par échec/succès critique
+
+### Spécialités
+- Débloquées à certains niveaux
+- Dés de Maîtrise dépensés dans les Spécialités
+- Chaque Spécialité a 3 Découvertes uniques
+
+## Découvertes
+
+### Découvertes d'Attribut
+Gagnées à chaque Distinction (+10 à un Attribut) :
+- **Force** : 4 Découvertes (ex: Survie Enragée, Corps d'Acier)
+- **Agilité** : 4 Découvertes (ex: Corps Fluide, Réflexes Foudroyants)
+- **Dextérité** : 4 Découvertes (ex: Mains d'Or, Précision Légendaire)
+- **Vigueur** : 4 Découvertes (ex: Invincible, Endurance Inépuisable)
+- **Empathie** : 4 Découvertes (ex: Voix de Rêve, Empathie Profonde)
+- **Perception** : 4 Découvertes (ex: Traces Fumantes, Vision Perçante)
+- **Créativité** : 4 Découvertes (ex: Réalisation Géniale, Inspiration Divine)
+- **Volonté** : 4 Découvertes (ex: Maître de Soi, Volonté Inébranlable)
+
+### Découvertes de Compétence
+Chaque Compétence a 3 Découvertes uniques gagnées en montant de niveau.
+
+## Les 8 Types de Conflits (Gameplay)
+
+Chaque Aptitude est directement connectée à un **Type de Conflit** qui définit une façon d'interagir avec le monde. Ces 8 types de gameplay remplacent la division traditionnelle en combat/stealth/social par une approche plus nuancée et diversifiée.
+
+### Concepts Fondamentaux
+
+Il y a **4 catégories de Conflits** basées sur la nature de l'interaction :
+
+1. **La Compétition** : Chacun répond de l'autre (Batailles de Puissance et Débats de Domination)
+2. **Le Déjouement** : L'un fuit, l'autre poursuit, utilisant leur environnement différemment (Infiltrations dans l'Aisance et Enquêtes à travers la Détection)
+3. **La Solution** : Obstacle inoffensif, résolu indépendamment (Subterfuges par la Précision et Énigmes par Réflexion)
+4. **L'Outrepassement** : Obstacle commun, passif mais dangereux (Prouesses d'Athlétisme et Corruptions de Charisme)
+
+Chaque Type de Conflit peut être utilisé pour deux scénarios :
+- **Objet (gardé)** : Obtenir quelque chose qui est protégé
+- **Obstacle (gardien)** : Passer au-delà d'un obstacle qui bloque le chemin
+
+Le Révélateur et les Éveilleurs devraient toujours penser aux multiples façons de résoudre ou éviter un conflit, car chaque situation peut être abordée par différents types de gameplay.
+
+### 1. Puissance → Bataille
+
+**Type de Conflit** : Compétition (frontal)
+
+**Approche** : Traverser sa voie, frontalement
+
+- **Objet (gardé)** : Tuer ou Détruire et prendre l'Objet
+- **Obstacle (gardien)** : Tuer ou Détruire l'Obstacle et passer
+
+**Description** : Confrontation directe et violente. On affronte l'opposition de face, en utilisant la force brute et les compétences de combat. C'est l'approche la plus directe : vaincre pour obtenir ou passer.
+
+**Exemples** : Combat au corps à corps, bataille rangée, destruction d'une barricade, forcer une porte verrouillée.
+
+### 2. Aisance → Infiltration
+
+**Type de Conflit** : Déjouement (fuyant/poursuivant)
+
+**Approche** : Traverser sa voie, mais indétecté
+
+- **Objet (gardé)** : Voler l'Objet, ici et en discrétion
+- **Obstacle (gardien)** : Se faufiler à travers l'Obstacle
+
+**Description** : Évitement et dissimulation. On utilise l'agilité, la discrétion et la ruse pour éviter la confrontation directe. L'objectif est de passer inaperçu, de voler sans être vu, de se faufiler sans éveiller l'attention.
+
+**Exemples** : Vol à la tire, infiltration dans une forteresse, échapper à une patrouille, s'immiscer dans une réunion secrète.
+
+### 3. Précision → Artisanat
+
+**Type de Conflit** : Solution (indépendant, par subterfuge)
+
+**Approche** : Créer une autre voie, par subterfuge
+
+- **Objet (gardé)** : Faire abandonner l'Objet
+- **Obstacle (gardien)** : Faire diversion ou leurrer l'Obstacle
+
+**Description** : Cunning et manipulation technique. On utilise la dextérité et l'ingéniosité pour créer des solutions alternatives. On ne combat pas directement, on détourne l'attention, on crée des leurres, on manipule les mécanismes pour obtenir le résultat désiré.
+
+**Exemples** : Créer un leurre pour distraire, utiliser un mécanisme pour ouvrir une serrure, construire un dispositif pour contourner un obstacle, fabriquer un outil pour débloquer une situation.
+
+### 4. Athlétisme → Prouesse
+
+**Type de Conflit** : Outrepassement (obstacle passif mais dangereux)
+
+**Approche** : Créer une autre voie, par le possible
+
+- **Objet (gardé)** : Prendre de force l'Objet sécurisé
+- **Obstacle (gardien)** : Esquiver ou Surmonter l'Obstacle
+
+**Description** : Exploit physique et endurance. On utilise la vigueur et les capacités athlétiques pour surmonter des défis physiques. On ne combat pas directement, mais on affronte l'environnement lui-même : escalader, sauter, porter, résister aux éléments.
+
+**Exemples** : Escalader un mur, traverser une rivière à la nage, soulever une lourde pierre, résister à une tempête, sauter un précipice.
+
+### 5. Charisme → Corrompre
+
+**Type de Conflit** : Outrepassement (par manipulation sociale)
+
+**Approche** : Diriger sa voie, par ses vices ou ses intérêts
+
+- **Objet (gardé)** : Troquer l'Objet contre un besoin
+- **Obstacle (gardien)** : Corrompre ou Vaincre l'Obstacle
+
+**Description** : Manipulation sociale et corruption. On utilise l'empathie et le charisme pour exploiter les faiblesses et les intérêts des autres. On séduit, on négocie, on corrompt pour obtenir ce qu'on veut sans violence directe.
+
+**Exemples** : Soudoyer un garde, séduire un fonctionnaire, négocier un accord, convaincre quelqu'un de céder quelque chose en échange d'une faveur, exploiter les vices de quelqu'un.
+
+### 6. Réflexion → Énigme
+
+**Type de Conflit** : Solution (indépendant, par logique)
+
+**Approche** : Trouver une autre voie, plus rare
+
+- **Objet (gardé)** : Trouver l'Objet ailleurs qu'ici
+- **Obstacle (gardien)** : Trouver une solution à l'Obstacle
+
+**Description** : Résolution par la pensée et la créativité. On utilise la créativité et la réflexion pour trouver des solutions originales et rares. On ne combat pas, on ne vole pas : on comprend, on résout, on trouve des alternatives que personne d'autre n'aurait envisagées.
+
+**Exemples** : Résoudre une énigme pour ouvrir une porte, trouver un chemin alternatif en analysant une carte, comprendre un mécanisme complexe, créer une solution innovante à un problème, découvrir où se trouve réellement l'objet recherché.
+
+### 7. Détection → Enquête
+
+**Type de Conflit** : Déjouement (par la découverte de secrets)
+
+**Approche** : Trouver une autre voie, plus secrète
+
+- **Objet (gardé)** : Piller une cachette de l'Objet
+- **Obstacle (gardien)** : Trouver une faille à l'Obstacle
+
+**Description** : Investigation et découverte de secrets. On utilise la perception et l'attention aux détails pour découvrir ce qui est caché. On cherche les failles, les indices, les passages secrets que d'autres n'ont pas remarqués.
+
+**Exemples** : Suivre des traces, examiner une scène de crime, découvrir un passage secret, repérer une faille dans la sécurité, trouver une cachette bien dissimulée, analyser des indices pour comprendre un mystère.
+
+### 8. Domination → Débat
+
+**Type de Conflit** : Compétition (par la volonté et l'argumentation)
+
+**Approche** : Diriger sa voie, par ses motivations ou ses buts
+
+- **Objet (gardé)** : Convaincre de donner l'Objet
+- **Obstacle (gardien)** : Convaincre l'Obstacle d'un passage
+
+**Description** : Persuasion par la volonté et l'argumentation. On utilise la volonté et le commandement pour convaincre par la force de l'argument et de la détermination. On ne corrompt pas, on persuade ; on ne force pas physiquement, on impose sa volonté par le débat et la conviction.
+
+**Exemples** : Convaincre quelqu'un par l'argumentation, imposer sa volonté dans un débat, commander le respect, persuader par la force de caractère, gagner un conflit idéologique, diriger les autres par l'exemple et la conviction.
+
+### Utilisation des "Clés"
+
+Dans tous les types de conflits, il est possible d'utiliser une **"Clé"** (un outil, un savoir, un contact, etc.) pour faciliter l'obtention d'un Objet ou le passage d'un Obstacle. Les Clés peuvent modifier la difficulté ou offrir des alternatives dans n'importe quel type de conflit.
+
+### Multiplicité des Solutions
+
+Un même conflit peut être résolu de multiples façons. Par exemple, pour obtenir un objet gardé, on peut :
+- Le prendre de force (Bataille)
+- Le voler discrètement (Infiltration)
+- Le faire abandonner par un leurre (Artisanat)
+- L'obtenir en échange d'un service (Corrompre)
+- Le trouver ailleurs (Énigme)
+- Découvrir où il est caché (Enquête)
+- Convaincre qu'on en a besoin (Débat)
+
+Cette multiplicité encourage la créativité et permet à chaque personnage de contribuer selon ses forces.
+
+---
+
+# File: 05_Souffrances_Guérison.md
+
+# Souffrances et Guérison - Des Récits Discordants
+
+Réf. livre : pages 72-73 (Souffrances, DS, Résistance, Séquelles), 137-149 (Souffrances Déclenchées, Rage, Évanouissement, Guérison).  
+CSV : Niv_de_Guérison_des_8_Souffrances, Niv_de_Traitements_des_8_Souffrances, Type_de_Souffrance_*, Niv_d'Épreuve_des_8_Souffrances, Traitements_par_Motivation_*, Traitements_par_Personalité, [Satiété]_*, [Robustesse]_*, Infirmités_*, Mutilations_*.
+
+## Les 8 Souffrances (Maux et Besoins)
+
+Chaque Souffrance est liée à un Attribut et se résiste par une **Compétence RÉSISTANTE** notée R[Souffrance] (livre p. 72) :
+
+| Souffrance | Attribut | Compétence Résistante (ex.) |
+|------------|----------|-----------------------------|
+| **Blessures** | FOR | R[Blessures] — typ. [Robustesse] |
+| **Fatigues** | AGI | R[Fatigues] — typ. [Satiété] |
+| **Entraves** | DEX | R[Entraves] — typ. [Rectitude] ou équivalent |
+| **Disettes** | VIG | R[Disettes] — typ. [Satiété] |
+| **Addictions** | EMP | R[Addictions] — typ. [Rectitude] |
+| **Maladies** | PER | R[Maladies] — typ. [Immunité] |
+| **Folies** | CRÉ | R[Folies] — typ. Valeurs (Moralité, Motivation, Personnalité) |
+| **Rancœurs** | VOL | R[Rancœurs] — typ. Traits (Socialité, Disposition, Passion) |
+
+Plusieurs maux d'une même Souffrance peuvent s'accumuler en une seule Épreuve (ex. Fatigue d'encombrement + nuits blanches + labeurs). (Livre p. 72.)
+
+## Résistance (toujours passive)
+
+- **RÉSISTER** : Vous **absorbez passivement** un nombre de Souffrances (DS) égal à votre **Niv de CT de Résistance** liée au mal, **en plus de tout Niv d'Équipement** lié. (Livre p. 72.)
+- Il n'y a **jamais** de « Jet de Résistance » : on n'effectue pas de jet pour résister ; on applique le Niv pour réduire les DS subis.
+- Chaque Échec déterminé comme **Souffrance** par le Révélateur **et** dépassant cette Résistance s'accumule en **Dés Négatifs (DS)** liés à cette Souffrance **et** en **Marques d'expérience** dans la CT de Résistance (ex. 5 Blessures infligées, 2 absorbées → 3 DS de Blessures et 3 Marques dans R[Blessures]). (Livre p. 72.)
+
+## Dés de Souffrance (DS)
+
+- Les **DS** liés à l'Attribut Triple et Double (ATB 3 & ATB 2) d'une Aptitude se **soustraient** aux Dés supplémentaires (CT et MT) lors d'un jet lié à cette Aptitude. Si trop complexe, ne les appliquer qu'à l'Aptitude liée à l'ATB 3. (Livre p. 73.)  
+  Ex. 4 DS de Blessures s'appliquent aux jets Puissance et Athlétisme (FOR en ATB 3 ou 2), pas à Domination (FOR en ATB 1). 4 DS = 2 Niv + 1D ; en passif d'Aptitude dérivant de FOR 3 ou 2, on soustrait -2 Niv (ex. passif Puissance : -2 Niv de Blessures).
+
+### Niveaux de Souffrance et Séquelles (livre p. 73)
+
+- **Niv 1** : donne simplement **+1 ou +2 DS** (pas de Séquelle).
+- **3 DS d'un coup** (Niv 2) → **Séquelle Passagère**.
+- **6 DS d'un coup** (Niv 3) → **Séquelle Durable**.
+- **10 DS d'un coup** (Niv 4) → **Séquelle Permanente**.
+- **15 DS d'un coup** (Niv 5) → **Séquelle Fatale** (mort instantanée ou équivalent — voir p. 146).
+
+Si vous recevez 2, 3, 4 ou 5 **Niv** de Souffrance d'un coup (soit 3, 6, 10, 15 DS), vous risquez aussi une Séquelle **et** le même Niv en **Marques** gagnées dans la CT ayant causé cette Souffrance (ex. Niv 3 = +3 Marques). (Livre p. 72.)
+
+### Types de Séquelles
+
+- **Blessures / Entraves (FOR/AGI)** : Séquelles typiquement **physiques** (Infirmités : jambe en moins, œil crevé, etc.).
+- **Folies / Rancœurs (CRÉ/VOL)** : Séquelles typiquement **psychiques** (Excentricités : phobies, hallucinations, etc.).
+- Les 4 autres Souffrances peuvent infliger l'une ou l'autre (au hasard ou au plus logique).
+- **Passagère (3 DS)** : inflige **aussi** +1 DS à une des deux Souffrances adjacentes (ou à une autre, au plus cohérent).
+- **Durable (6 DS)** : **diminue** un Attribut associé de **-1** jusqu'à la Guérison du Niv de Séquelle (ex. guérir jusqu'à au moins -9 DS si à -12 DS).
+- **Permanente (10 DS)** : **séparation ou destruction** d'un membre (main coupée, traumatisme), **-2** à un Attribut (ou -1 à deux Attributs), **pour toujours** (sauf régénération/prothèse/Rilie).
+- **Fatale (15 DS)** : équivalent décapitation ou terreur → folie irrécupérable / mort (p. 146).
+- Les malus d'ATB des Séquelles Permanentes peuvent être réduits par **prothèses** (réapparaissent si perdues) ou restaurés partiellement/entièrement par la **Rilie**. (Livre p. 73.)
+
+### Règles optionnelles (livre p. 73)
+
+- **DURETÉ** : Si la Séquelle est d'un chiffre égal ou inférieur à (ATB + Niv R[Souffrance] si ATB négatif | - Niv R si ATB positif), on jette 1dD : avec + (ATB positif) ou - (ATB négatif), la Séquelle peut être d'un Niv inférieur ou supérieur ; sinon on la reçoit telle quelle.
+- **PITIÉ** : Pour chaque Séquelle Passagère, Durable et Permanente, on peut obtenir **+1 / +2 / +3 Dés** pour « Faire Pitié », augmentant l'influence auprès d'autrui (parfois perçu négativement selon les valeurs de l'interlocuteur).
+- **INSTINCT** : En situation de **survie cruciale et immédiate**, vous pouvez **inverser** la totalité des DS subis d'une même source en **Dés positifs** contre **-1 Dé de Vie**, **si et seulement si** le succès du jet permettrait de résoudre, vous protéger de ou vous enfuir de la source des Souffrances. À n'utiliser que pour ce qui est crucial et immédiat pour votre survie directe.
+
+## RESSOURCES (livre p. 72)
+
+Après chaque **jet de Repos** : vous pouvez **échanger 1 DS** d'un de vos **Maux** actuels (Blessures, Entraves, Folies, Rancœurs) contre un nombre de **Jours de souffrance** égal au Niv du DS échangé, à cocher dans un de vos **Besoins** (Fatigues, Disettes, Addictions, Maladies) — pouvant l'augmenter d'1 DS. L'**inverse** est possible (échanger 1 DS d'un Besoin contre des Jours de souffrance d'un Mal).
+
+## Souffrances Déclenchées (livre p. 137)
+
+Certaines Souffrances ne se révèlent qu'après un laps de temps. Après un **NdT de 5 - Niv** de la souffrance déclenchée, il faut **tester** par un jet : **5dD + Dés de Résistance - TOUS les DS actuels + APT** liée à la Résistance.
+
+- Chaque **Échec** inflige un DS supplémentaire et donne une **Marque** dans la Résistance testée.
+- Chaque **Succès** supplémentaire peut effacer un **Jour de souffrance** (voir Guérison p. 149).
+- Si l'Éveilleur pointe lui-même une Souffrance déclenchée pour son PI, le joueur a **+X Dés** au jet et **+X Marque(s)** dans la Résistance, X = Niv de l'Épreuve rappelée.
+
+Règles spécifiques (résumé) : **Saignements** (tester toutes les 5-X NdT contre Niv X saignant) ; **Exténuements** (encombrement au-delà du Niv → Épreuve contre Entraves/Fatigues) ; **Infections** (après X-5 NdT, Niv d'Épreuve selon virulence) ; **Intoxications** (drogue/poison : 5-X NdT, Niv = NdT activation + durée + effet) ; **Désirs** (rappels par le monde : jet 5dD + DS Résistance - tous DS vs Niv d'Épreuve = Niv du désir). (Livre p. 137-138.)
+
+## Rage et Évanouissement (livre p. 145)
+
+- **Rage** : Lorsque le total des Souffrances dépasse un seuil (livre p. 145), un **Jet de Rage** (1d6) détermine si le personnage peut agir contre l'instinct. Échec : action instinctive ; les DS peuvent être convertis en Dés positifs pour cette action. **6** : peut « Guider » la Rage.
+- **Évanouissement / Perte de connaissance** : Au-delà d'un certain total de DS, risque d'inconscience ou de démence (détails p. 145-146).
+- **Vaincu / Mort** : Seuils et situation de Défaite (table, perdre ses affaires, etc.) — livre p. 146.
+
+## Guérison (livre p. 149)
+
+### Guérir sur le Temps
+
+- **Jet de Repos** (quotidien ou selon NdT) : détermine combien de **Jours de souffrance** sont guéris, modifié par Résistance, DS actuels, environnement, type de repos, nourriture/boisson.
+- Chaque **DS** peut être associé à un certain nombre de « Jours de souffrance » à cocher ; les Succès au jet de Repos (ou aux tests de Souffrances Déclenchées) effacent des Jours.
+
+### Traitements (Niv 1 à 5)
+
+Les **Niv de Guérison** des 8 Souffrances sont détaillés dans le livre et le **CSV Niv_de_Guérison_des_8_Souffrances** (ex. Blessures Niv 1 : Désinfectant/Caillant, Herbes cicatrisantes, Sieste confortable, Anti-inflammatoire ; Niv 2-5 : Bloquant/Adaptatif, Insolvable/Coagulant, Réparant/Résolvant, Chirurgie générale, etc.). Chaque Souffrance a des traitements spécifiques (Niv 1 = remèdes simples, Niv 5 = soins exceptionnels).  
+**CSV Niv_de_Traitements_des_8_Souffrances** et **Traitements_par_Motivation (Gens/Choses)**, **Traitements_par_Personalité** donnent les modalités par Motivation et Personnalité (sacrifice de Niv de Valeur, soutien social, etc. — voir aussi 04_Experience_Progression, 13_Valeurs_Traits).
+
+### Folies et Rancœurs
+
+- **Folies** : Traitement par **Valeurs** (Moralité, Motivation, Personnalité) — sacrifier un **Niv de Valeur** égal au Niv de Souffrance à soigner (voir livre p. 247, 62).
+- **Rancœurs** : Traitement par **Traits** (Socialité, Disposition, Passion) — sacrifier un **Niv de Trait** égal au Niv de Souffrance (voir livre p. 257, 62).
+
+### Soutiens, Surdosage, Restaurations
+
+- **Soutiens** : Un soigneur ou un environnement adapté peut optimiser la guérison (livre p. 149).
+- **Surdosage** : Reprendre une drogue avant le test repousse le test au prochain 5-X NdT ; trop de traitements peut créer de nouvelles Addictions ou Maladies (livre p. 149).
+- **Restaurations** (nourriture, boisson, repos) : détaillées dans les tableaux Aliments/Restauration (CSV Aliments_Restauration_*, Nourritures_*) et Niv_de_Guérison.
+
+## Situation de Défaite (livre p. 146)
+
+- **Table de Défaite** : L'Éveilleur peut tirer sur une table pour déterminer où le personnage se réveille, dans quel état, ce qui lui manque.
+- **Perdre ses Affaires** : Objets volés ou perdus ; Niv d'Abondance peut augmenter avec le temps (plus difficile à retrouver).
+
+---
+
+# File: 06_Combat.md
+
+# Système de Combat - Des Récits Discordants
+
+Réf. livre : pages 161+ (Combattre, Ordre d'action, Clins, Types d'actions, Facteurs d'action), 67-71 (Combat, Proactions, Réactions, Niv d'Ébranlement).  
+CSV : Clins_d'Action_au_Combat, Types_d'Action_au_Combat, Potentiels_d'Action_au_Combat, Cercle_Initial_* (Mouvement, Perception, Préservation), Localisation_*, Manœuvres_*, Frappes_*, Face_d'arme_*, ARMES_DE_MÊLÉS_*, Armes_* (Poing, Pommeau, Manche, Hast, etc.), Matelassage_*.
+
+## Vue d'Ensemble
+
+Le système de combat fait partie d'un système plus large de **8 Types de Conflits**, chacun lié à une Aptitude. Ce document se concentre sur les règles de **Bataille** (Puissance), mais les autres types de conflits (Infiltration, Artisanat, Prouesse, Corrompre, Énigme, Enquête, Débat) suivent des mécaniques similaires adaptées à leur nature spécifique. Voir `03_Attributs_Aptitudes_Competences.md` et `01_Systeme_General.md` pour les 8 Types de Conflits.
+
+## Concepts Fondamentaux
+
+### Clins
+- **Clin** : 1/3 de seconde
+- Combat en temps réel, pas en tours
+- Tous agissent simultanément
+
+### Clins d'Alerte
+- Déterminent qui peut **Proagir** (agir de manière proactive)
+- États possibles :
+  - **Surpris** : -5 Clins d'Alerte
+  - **Alerté** : 0 Clins d'Alerte
+  - **Préparé** : +5 Clins d'Alerte
+  - **Inattentif** : -3 Clins d'Alerte
+  - **Bouleversé** : -10 Clins d'Alerte
+
+### Prendre l'Initiative
+- Résout les actions simultanées
+- Jet d'[Fluidité] ou attribut approprié
+
+## Règles Fondamentales
+
+1. **Toujours Réagir** sauf si inconscient
+2. **Alerté détermine** qui peut Proagir
+3. **Proactions accumulent** des Réactions simultanées → Niv d'Ébranlement
+
+## Proactions (livre p. 161+)
+
+Les **Proactions** correspondent aux actions nécessitant plusieurs **Clins d'affilée** (ex. Recharger, Charger ou Décharger une Attaque). Toute Proaction dure un nombre de Clins déterminé (souvent lié à l'inertie de l'arme) ; il faut déclarer et noter à quel Clin elle se réalisera (ex. Proagir au Clin -2 d'une action de 4 Clins → elle se réalise au Clin -6).
+
+### Étapes principales
+- **Recharger** : Prendre une munition (carquois) ou l'arme (fourreau) → la mettre en main → encocher si arme à distance.
+- **Attaque** : Charger l'arme (bander la corde d'un arc/arbalète, ou votre bras pour javelot/mêlée) puis décharger ; au **dernier Clin** on déclenche le **jet d'Attaque** de l'arme pour déterminer le résultat (dégâts, Succès à dépenser pour localisation/manœuvres, etc.).
+
+### Règles
+- Vous pouvez **cumuler** des Réactions **simultanément** au cours d'une même Proaction ; elles s'accumulent en **Niv d'Ébranlement** (négatifs) sur les jets ou totaux liés.
+- **Plusieurs Proactions en même temps** : limité par le nombre de membres (ex. ambidextrie). Déclarer les Clins pour chaque Proaction. Les **Niv d'Ébranlement** accumulés par Mouvements et Réactions sont **multipliés** par le nombre de Proactions simultanées (ex. entre Clin 1 et 4 avec 3 Proactions → ×3 ; après Clin 6 → ×1). Si aucun Niv d'Ébranlement, la seconde Proaction en ajoute 1. Si **cibles différentes** par Proaction, multiplier encore par le nombre de cibles (×2 pour 2 cibles, etc.).
+- **Armes à distance** : Clins d'Attaque = armement seulement (le tir est instantané). **Armes de mêlée et de jet** : moitié des Clins = armement du bras, moitié = décharge de la frappe.
+
+### Types de Proactions
+- **Attaquer** : Frapper, Tirer (coût en Clins selon arme — CSV Clins_d'Action_au_Combat).
+- **Déplacer** : Se déplacer (coût en Clins).
+- **Manipuler** : Utiliser un objet.
+- **Parler** : Communication.
+
+## Réactions
+
+### Types de Réactions
+
+#### Bloquer
+- Absorbe les dégâts
+- Coût : Niv d'Ébranlement
+- Réduit les dégâts reçus
+
+#### Parer
+- Redirige l'attaque
+- Contre-attaque plus rapide
+- Coût : Niv d'Ébranlement
+
+#### Esquiver
+- Évite complètement
+- Peut inclure mouvement/récupération
+- Coût : Niv d'Ébranlement
+
+### Niv d'Ébranlement (livre p. 161+)
+- **Accumulé** par les Réactions (Bloquer, Parer, Esquiver, Mouvements) pendant les Clins.
+- **Se soustrait** à tout jet effectué lors du Clin concerné (chaque Clin d'une Proaction s'écoule à travers des Réactions qui s'accumulent en Niv d'Ébranlement).
+- **Multiplié** par le nombre de Proactions simultanées et par le nombre de cibles visées (voir Proactions).
+- Se récupère progressivement (détails selon le livre).
+
+## Mouvements
+
+### Types de Mouvements
+
+#### Déplacer
+- **Marcher** : Déplacement normal
+- **Courir** : Déplacement rapide
+- **Charger** : Attaque en mouvement
+
+#### Déployer
+- Étendre la portée
+- Utiliser une arme longue
+
+#### Sauter
+- Saut vertical ou horizontal
+- Peut être combiné avec attaque
+
+#### Tourner
+- Changer d'orientation
+- Coût minimal
+
+### Coûts en Clins
+- Voir tableau "Clins d'Action au Combat"
+
+## Postures
+
+### Offensive
+- Bonus aux attaques
+- Malus à la défense
+
+### Défensive
+- Bonus à la défense
+- Malus aux attaques
+
+### Harrassante
+- Bonus aux attaques rapides
+- Malus à la défense
+
+### Protectrice
+- Bonus à la protection d'alliés
+- Malus à la mobilité
+
+## Clins d'Action au Combat
+
+### Actions de Base
+- **Dégainer** : 1-3 Clins
+- **Recharger** : 2-5 Clins
+- **Attaquer** : 2-4 Clins
+- **Viser** : +1-3 Clins
+- **Honoration** : 1-2 Clins
+
+### Actions Spéciales
+- **Bloquer** : Réaction
+- **Parer** : Réaction
+- **Esquiver** : Réaction
+- **Déplacer** : 1-3 Clins
+- **Sauter** : 1-2 Clins
+
+## Potentiels d'Action
+
+### Dés de Potentiel d'Action
+- Gagnés via les niveaux de Compétence
+- Dépensés pour actions spéciales
+- Régénérés progressivement
+
+## Succès d'Action
+
+### Calcul
+- Succès = Résultat du jet - Niv d'Épreuve
+- Détermine l'efficacité de l'action
+
+### Effets
+- **Attaque** : Dégâts supplémentaires
+- **Défense** : Réduction de dégâts
+- **Mouvement** : Distance supplémentaire
+
+## Récupération
+
+### Récupération de Niv d'Ébranlement
+- Se récupère progressivement
+- Actions de récupération disponibles
+
+### Récupération de Potentiel d'Action
+- Régénération naturelle
+- Peut être accélérée
+
+## Batailles
+
+### Échelle Tactique
+- Combat individuel
+- Focus sur les actions précises
+
+### Échelle Stratégique
+- Combats de groupe
+- Commandement et coordination
+
+### Échelle Opérationnelle
+- Batailles de grande envergure
+- Mouvements de troupes
+
+## Honoration
+
+### Concept
+- Actions rituelles ou symboliques
+- Peuvent modifier les jets
+- Liées à la Rilie
+
+### Utilisation
+- Avant/during/après le combat
+- Coût en Clins
+- Effets variés
+
+---
+
+# File: 08_Temps_Labeurs.md
+
+# Temps et Labeurs
+
+*Sources : Livre p. 89–93, 99–100, 107–111, 114–115, etc. ; CSV : 0_Un_(I)nstant_* (2 variantes), -_NdT_Annuels,_liés_aux_ères_etaux_époques, Cercles_de_Fréquence, Niveaux_Résultat_Épreuve_Durée_Dégrés, Années_&_Dés_par_Âge.*
+
+---
+
+## 1. Niveaux de Temps (NdT)
+
+Les **Niveaux de Temps (NdT)** mesurent la durée des actions, des épreuves et des effets. Plus le NdT est élevé, plus la durée est longue. Les échelles ci-dessous sont tirées des CSVs et du livre.
+
+### 1.1 NdT intenses (actions directes, combat, réactions)
+
+*Référence : CSV 0_Un_(I)nstant_... (variante 10–100 Respirations / 5 min) et variante Clins.*
+
+| NdT | Unité | Durée (ex.) | Correspondance (livre/CSV) |
+|-----|-------|-------------|----------------------------|
+| **-5** | **(C)lin** | 1 tiers-de-seconde (~0,33 s) | Temps de réaction humanoïde, instinct, réflexes ; 1 « tiers-de-seconde ». |
+| **-4** | **Souffle** | 3 Clins ou 1 seconde | Action libre, besoin. |
+| **-3** | **Respiration** | 3 Souffles / 3 s, ou 10 Clins | Action simple ; inspirer ou expirer. |
+| **-2** | **Bavardage / Salutation / Idée** | 10 Respirations ou 30 s ; ou 30 Clins | Longue salutation, rixe (selon variante). |
+| **-1** | **Discours / Échange / Pensée** | 30 Respirations ou 100 s ; ou 100 Clins | Rixe, action étendue (selon variante). |
+| **0** | **(I)nstant / Prière** | 100 Respirations ou 5 min ; ou 300 Clins et plus (1–15 min) | Série d’actions ou action complexe où l’on prend son temps (« Faire 0 »). |
+
+*NdT intenses : correspondent directement aux actions elles-mêmes et/ou aux réactions dans l’extrême.*
+
+### 1.2 NdT étendus (actions quotidiennes, sans tension immédiate)
+
+*Référence : CSV -_NdT_Annuels,_liés_aux_ères_etaux_époques.*
+
+| NdT | Unité | Durée (ex.) | Correspondance |
+|-----|-------|-------------|-----------------|
+| **+1** | **Moment** | 3 Instants / Prières (~20 min, ~15 min) | Sermon ; prendre un peu de temps pour une action (« Faire 1 »). |
+| **+2** | **Heure** | 3 Moments / Sermons (~1 h, 45 min) | Rite ; plusieurs séries d’actions (ex. 3 Sermons). |
+| **+3** | **Veillée** | 3 Moments / Rites (~2–3 h, ~2h30) | Rituel ; série d’activités (« Rites »), ou agir sur le long terme (« Faire 2 »). |
+| **+4** | **(M)atinée / Soirée / Nuitée** | 3 Veillées / Rituels (~8 h) | Festin ; une des quatre parties du jour (matinée, journée, soirée, nuitée). **Correspond à 1 Labeur.** |
+| **+5** | **(J)our / Fête** | 3 Matinées de Labeur + 1 Nuitée | Jour entier : matinée, journée, soirée, nuitée. |
+| **+6** | **(P)entaine** | 5–6 Jours / Fêtes (~3 Jours de Labeur) | Festival ; « semaine » de 5–6 jours (pentaine). Ex. 1. Enêmar, 2. Diêmar, 3. Triêmar, 4. Tessêmar, 5. Pentêmar, parfois 6. Heliêmar. |
+| **+7** | **(H)éliorée** | 3 Pentaines (15 J) ou ~10 J de Labeur | Vague saisonnière, quinzaine ; microsaison. |
+| **+8** | **(S)aison** | 3 Héliorées (45 J) ou 30 J de Labeur | Début/fin d’été, etc. ; équinoxes et solstices. |
+| **+9** | **Cycle** | 120 J ou 100 J de Labeur | Ascendant (frais → chaud), Descendant (chaleur → froid), Dormant (gel → printemps). |
+| **+10** | **Soleil** | 365 J ou 300 Jours de Labeur | Cycle solaire complet. 72 Pentaines | 24 Héliorées | 8 Saisons | 4 Cycles | 2 Solstices. |
+
+*NdT calendaires : liés aux cycles et rythmes de la nature. NdT annuels : liés aux ères et époques.*
+
+### 1.3 Lien NdT et difficulté (Jet précisé)
+
+- **Prendre du temps** : +1 NdT utilisé pour une action peut réduire la difficulté (ex. -1 Niv d’Épreuve).
+- **« Faire 0 »** : pas de jet, résultat basé sur les niveaux ; action à l’Instant (Prière).
+- **« Faire 1 »** : prendre un peu de temps (Moment / Sermon).
+- **« Faire 2 »** : agir sur le long terme (Rituel / Veillée).
+
+*Référence : Livre et CSV Niveaux_Résultat_Épreuve_Durée_Dégrés (durée « Courte », « Moyenne », « Très Lente », etc.).*
+
+---
+
+## 2. Labeur
+
+### 2.1 Définition
+
+- **1 Labeur** = **8 h** de travail sur la Journée (Livre p. 99).
+- **1 « Journée » de Labeur** (Matinée, Soirée ou Nuitée) correspond au salaire typique de **1 cO** : on y récolte en moyenne 1 Charrette (1 Stère | 1 m³ | 1 000 L), 10 Coffres, 100 Sacs ou 1 000 Bourses de Ressources de Rareté Abondante (-3). Diviser par 3 pour chaque NdT inférieure à une Matinée de Labeur (Livre p. 110).
+- **Ratio foyer** : 1 Labeur (1 cO) d’une Ressource Abondante = 1 Charrette (500 Kg) de… (Livre p. 110).
+
+### 2.2 Jet et résultats
+
+- **Jet** : Roll [Compétence] appropriée vs Niv + X (ex. [Artisanat] vs Niv +1 pour une journée de craft, [Médecine] vs Niv +0 pour soins). Toujours utiliser une des 72 Compétences dans les crochets.
+- **Succès** : Niv de Valeur gagnés, progression dans la tâche, récompenses selon la nature du Labeur.
+- **Échec** : Souffrances (selon le type d’échec), perte d’objets ou matériaux, temps perdu.
+
+### 2.3 Types d’application des Labeurs (Livre p. 111)
+
+- **DIRECTE** : Résultat × Labeurs = Total (ex. Labeurs construits d’un Bâtiment).
+- **PRÉPARABLE** : Résultat + NdT de Labeurs = Total (ex. Distinction d’un PNI assassiné).
+- **PROPORTIONNELLE** : Le Résultat donne un aspect (ex. Rareté d’objet trouvé), le NdT de Labeurs (1, 3, 10, 30 L … = 1, 2, 3, 4 …) en donne un autre (ex. NdG d’espace fouillé).
+
+Déclarer les Labeurs écoulés **avant** de faire le jet. Pour les résultats Préparables et Proportionnels, on peut ajouter +1 Dé si on dépense la moitié du prochain NdT en Labeurs (ex. 2 L, 7 L, 20 L entre 1 et 3 L, 3 et 10 L, 10 et 30 L).
+
+### 2.4 Exemples (livre)
+
+- 1 Labeur par Comparse par Jour (Livre p. 111).
+- Bâtiment : Labeurs (Saison) = Bâtiment × Qualité / 2 (Livre p. 111).
+- Entretien total du Foyer : 1 Labeur par Saison ET par Bâtiment (× Qualité / 2), plus Salaires Journaliers aux Comparses (Livre p. 109).
+- Tout Hectare (Module) entièrement récolté après **50 Labeurs** (1 Saison entière) (Livre p. 110).
+
+---
+
+## 3. Cercles de Fréquence (CSV : Cercles_de_Fréquence)
+
+La **fréquence** à laquelle un effet ou une capacité peut être utilisée est donnée par un Cercle (Niv) :
+
+| Niv | Fréquence |
+|-----|-----------|
+| +1 | Unique : consommée après Manifestation |
+| +2 | Chaque Soleil |
+| +3 | Chaque Cycle |
+| +4 | Chaque Saison |
+| +5 | Chaque Héliorée |
+| +6 | Chaque Pentaine |
+| +7 | Chaque Jour |
+| +8 | Chaque Veillée |
+| +9 | Chaque Heure |
+| +10 | À volonté |
+
+*Référence : CSV Cercles_de_Fréquence.*
+
+---
+
+## 4. Temps Éveillés et Temps Assoupis
+
+### 4.1 Concept
+
+- **Temps Assoupis** : temps réel entre les séances (hors jeu).
+- **Temps Éveillés** : temps en jeu pour les personnages (PI).
+- Permet la résolution de **Buts Inspirés** et de **Labeurs** pendant le « temps mort » entre deux séances.
+
+### 4.2 Conversion
+
+- Variable selon les activités et le cadre (voyage, foyer, guérison, etc.).
+- Le Révélateur et les Éveilleurs déterminent combien de NdT (Jours, Pentaines, Saisons…) se sont écoulés en Temps Éveillé pour une période donnée de Temps Assoupi.
+
+### 4.3 Buts Inspirés
+
+- Objectifs que les personnages poursuivent pendant le Temps Assoupi.
+- Résolus via les Labeurs et jets appropriés (Roll [Compétence] vs Niv + X).
+- Résultats communiqués au début de la séance suivante.
+
+---
+
+## 5. Années et Âge (CSV : Années_&_Dés_par_Âge)
+
+Les **Années** et les **Dés** associés à l’**Âge** (Enfant, Adolescent, Jeune, Adulte, Mûr, Vieux, Ancien, Vénérable) varient selon le Peuple et la Race. Chaque peuple a des fourchettes d’âges en années et un nombre de Dés (D) par tranche.
+
+*Référence : CSV Années_&_Dés_par_Âge (et Années_&_Dés_Exprimés_par_Âge, Années_Physiques_et_Âge_Mentale si besoin).*
+
+Exemples (simplifiés) : Aristois 0–10 Enfant 5D, … 80 Vénérable 60D ; Navillis plus courts (0–5 Enfant 5D, … 60 Ancien 44D) ; Slaadéens 0–2 Enfant 1D, … 115 Vénérable 75D.
+
+---
+
+## 6. Surmenage et Fatigues
+
+- Effectuer **plus d’un Labeur** par jour (ou porter / transporter au-delà de sa capacité) peut déclencher des **Souffrances de Fatigues** (Livre p. 100 : Rappel à chaque NdT inverse du Niv d’Encombrement ; surcharge de véhicule : jet à -X NdT).
+- La **résistance** aux Fatigues est **passive** : le Niv de la Compétence Résistante (ex. [Satiété] pour Fatigues) absorbe les DS ; pas de jet à lancer.
+- Accumulation de Fatigues → pénalités, réduction d’efficacité, risque de Séquelles (voir 05_Souffrances_Guérison).
+
+---
+
+## 7. Consommation quotidienne (rappel)
+
+- **Vivres** : 1 Vivre par jour (normal) ; plus en cas d’activité intense. Coût variable selon la qualité.
+- **Liquides** : 1 Liquide par jour (normal) ; plus en chaleur ou effort.
+- **Logement** : coût variable (auberge, maison, campement).
+
+---
+
+## 8. Temps et combat (rappel)
+
+- **1 Clin** = 1 tiers-de-seconde (NdT -5). Toutes les actions au combat se mesurent en Clins (voir 06_Combat).
+- Récupération : Niv d’Ébranlement, Potentiels d’Action, etc.
+
+---
+
+## 9. Temps et voyage (rappel)
+
+- Rencontres : le Révélateur tire 5 dD ; si le jet est **inférieur** au **NdT - 5** du voyage, les PI font une Rencontre (Livre p. 89–90). Ex. voyage de 11 Jours (NdT +2 pour une Héliorée) : si jet < +2, Rencontre après plusieurs jours.
+- Conditions de milieu : à chaque 5-X NdT en traversant, les Conditions de Niv X testent Outils et Habituations (Livre p. 92).
+
+---
+
+*Voir aussi : 01_Systeme_General (jets, NdT et Niv d’Épreuve), 06_Combat (Clins), 10_Voyages (rencontres, conditions), 16_GM_Quand_Lancer_Jets (formules de jets).*
+
+---
+
+# File: 09_Groupe_Ambiance.md
+
+# Groupe et Ambiance
+
+*Sources : Livre p. 71, 83, 86, 109, 111, 136 ; CSV : Ambiance_Cohésion_du_groupe, Ambiance_du_Groupe_Effet_sur_le_Jet_de_Groupe_&_Marques_Gagn.*
+
+---
+
+## 1. Ambiance et Cohésion du groupe
+
+### 1.1 Concept
+
+- **Ambiance** : cohésion du groupe ; elle affecte les actions collectives et se modifie selon les situations (succès/échecs, conflits, séparations, coopération).
+- Les **Dés d’Ambiance** s’ajoutent (tous) aux jets de Groupe et se **consomment** (-1 Dé à chaque jet de Groupe, pouvant dépasser 0) (Livre p. 109, 111).
+- En **Combat**, chaque individu consomme **1 Dé d’Ambiance** après **chacun** de ses **propres** jets (Livre p. 71).
+
+### 1.2 Niveaux d’Ambiance et effets sur le Jet de Groupe (CSV)
+
+*Référence : CSV Ambiance_du_Groupe_Effet_sur_le_Jet_de_Groupe_&_Marques_Gagnées, Ambiance_Cohésion_du_groupe.*
+
+| Ambiance | Niv / Dés | Effet sur le Jet de Groupe | Effet sur les Marques |
+|----------|-----------|----------------------------|------------------------|
+| **…Sabotée** | Niv -5 (au-delà de -15 Dés) | Prendre le **Pire** des résultats et le **Doubler** (ex. -3 → -6). Le pire détruit (involontairement ou non) tous les efforts des autres. | Tous révèlent la CT utilisée (1× par Saison max) ou s’y ajoutent **+5 M**. Tous apprennent d’une telle situation. |
+| **…Entremêlée** | Niv -X (-1 \| 3 \| 6 \| 10 Dés) | **Exclure** les **X Meilleurs** résultats (par X Échec) et en **faire la Moyenne**. La majorité se marche les uns sur les autres. | **+X Marques** à tous par **X Échecs** reçus lors de ce jet de groupe. Ils apprennent de leur incapacité et du manque d’unité. |
+| **…Discordante** | Niv 0 | Faire la **Moyenne de TOUS** les résultats, ou en **choisir un au hasard**. Chacun fait ce qu’il veut, sans vraie direction commune. | **Personne ne gagne** aucune expérience ; l’échec et le succès sont trop distribués. |
+| **…Orchestrée** | Niv +X (+1 \| 3 \| 6 \| 10 Dés) | **Exclure** les **X Pires** résultats (par X Succès) et en **faire la Moyenne**. La majorité est guidée dans la meilleure direction. | **+X Marques** à ceux qui auraient **ÉCHOUÉ** le jet s’ils avaient été seuls. Ils apprennent des meilleurs. |
+| **…Unifiée** | au-delà de +15 Dés (Niv +5) | Prendre le **Meilleur** des résultats et le **Doubler** (ex. +3 → +6). Le meilleur aligne les capacités de chacun. | Tous révèlent la CT comme une **Passion** (1× par Saison max). Tous apprennent les uns des autres. |
+
+---
+
+## 2. Quand lancer un Jet d’Ambiance
+
+- **Situations bouleversantes** pour le groupe (ou pour le Foyer : voir Livre p. 109, 111, 136) : le Révélateur peut demander un **Jet d’Ambiance** pour déterminer ou mettre à jour la cohésion.
+- **Épreuve d’Ambiance** (formule livre p. 71) : **5 + NdG + Situation - Ambiance + | - X Dés** par Succès / Échecs.
+- **Guider un groupe** : **Jet de Charisme** vs cette Épreuve (divertissement, relaxation, représentation artistique, etc.). Un guide, barde, cuisinier ou personne charismatique peut briller ici.
+
+---
+
+## 3. Jet de Groupe (Cohésion)
+
+### 3.1 Mécanisme
+
+- **Jet de Groupe** : action collective ; chaque membre fait un jet (ou on fait un seul jet représentant le groupe), **modifié par l’Ambiance** du groupe (+X ou -X Dés selon le pool d’Ambiance actuel).
+- Selon le **niveau d’Ambiance** (Sabotée, Entremêlée, Discordante, Orchestrée, Unifiée), on applique la règle correspondante : Pire doublé / Exclure X Meilleurs et moyenne / Moyenne de tout ou au hasard / Exclure X Pires et moyenne / Meilleur doublé (voir tableau §1.2).
+- **Marques gagnées** : selon la ligne du tableau (ex. Orchestrée : +X Marques à ceux qui auraient échoué seuls ; Entremêlée : +X Marques à tous par X Échecs ; Discordante : personne ne gagne ; etc.).
+
+### 3.2 Foyer (Modules)
+
+- **Jet d’Ambiance** du Foyer : lors des situations bouleversantes pour le Foyer (Livre p. 109, 111). **Jet d’Ambiance VS NdG du Foyer.** -1 Niv au jet d’Ambiance par NdG non logée ; -1 Dé d’Ambiance par Jet de Groupe (Livre p. 111).
+- **Jet de Groupe du Foyer** : engage tous les Comparses d’un Module. Formule : **+X Niv (NdG de Travailleurs) + X Dés (Moyenne des Expertises) + Dés de la Qualité du Module + Dés d’Ambiance actuels du Foyer** ; consomme -1 Dé d’Ambiance à chaque jet (Livre p. 111).
+- **+X Dés d’Ambiance** (direct) par **X NdT de Salaires avancés** (à tous). Chaque Jour de Salaire manqué : -1 Dé d’Ambiance (peut dépasser 0). À -15 Dés et chaque jour suivant, le NdG du Foyer se réduit de -1 (Livre p. 109).
+
+---
+
+## 4. Jet d’Audace (Prendre sur soi)
+
+### 4.1 Concept
+
+- **Un individu seul** peut **PRENDRE SUR SOI** : agir seul lors d’une Épreuve de groupe en faisant presque entièrement le travail des autres (Livre p. 71).
+
+### 4.2 Mécanisme
+
+- **Jet** : il fait un jet à **-1 Niv par NdG sur son dos** (-1 N avec 2–3 gens, -2 N avec 4–10, etc.).
+- **Marques** : il gagne potentiellement les Marques qu’il aurait gagnées en suivant les règles normales d’expérience, **+ X Marques par NdG pris sur lui**.
+- **Contestataires** : s’il y a des contestataires ou réfractaires à sa direction, **encore -1 Niv par NdG le contestant** (ex. 2–3 gens le contestent au sein de 10 gens → -1 à -2 N) (Livre p. 71).
+
+### 4.3 Rôle Chef (Cohésion d’équipe)
+
+- Le **Chef** (Rôle Éveilleur) organise toutes les actions des joueurs au sein d’une expédition. **Pouvoir** : **Peut relancer un jet de Cohésion d’Équipe** (Livre p. 13).
+- **Trait** (ex. Découvertes) : « Ignorez votre Niv de CT de NdG vous contestant lors de tout jet d’Audace » (Livre p. 67).
+
+---
+
+## 5. Niv de Gouvernance (NdG)
+
+- **NdG** : capacité d’organisation du groupe (ou du Foyer) ; il détermine la base de l’Épreuve d’Ambiance et entre dans les formules (5 + NdG + Situation - Ambiance…).
+- **Types de groupes** : Bande (Niv faible), Tribu (modéré), Chefferie (élevé), État (très élevé). Pour le Foyer, le NdG dépend des Bâtiments et Comparses (Livre p. 109).
+
+---
+
+## 6. Retour à la normale
+
+- L’Ambiance peut **revenir progressivement** vers un état neutre selon les événements.
+- **Événements positifs** : succès collectifs, coopération, entraide, salaires avancés (Foyer).
+- **Événements négatifs** : échecs, conflits, trahisons, séparations, salaires manqués (Foyer).
+
+---
+
+## 7. Conflits internes
+
+- **Causes** : divergences d’opinion, compétition pour ressources, trahisons, incompatibilités de Valeurs/Traits.
+- **Résolution** : sociale (négociation, compromis), violente (combat), ou séparation du groupe.
+- **Effets** : réduction d’Ambiance (-X Dés), perte de cohésion, possible dissolution.
+
+---
+
+*Voir aussi : 01_Systeme_General (jets, Niv d’Épreuve), 04_Experience_Progression (Marques), 13_Valeurs_Traits (Titres, NdG, Charisme).*
+
+---
+
+# File: 10_Voyages.md
+
+# Voyages
+
+*Sources : Livre p. 89–93 ; CSV : Tableau_des_Rencontres, Montures_Prix_Vitesse_Type_Adapt.*
+
+---
+
+## 1. Types de voyage
+
+- **Poursuite / Voyage** : atteindre une destination (ou trouver un indice, des ressources). Lors d’un voyage il faut déterminer **Quand**, **Qui**, **Quoi** et **Combien** on risque de Rencontrer (Livre p. 89).
+- **Voyage Pastoral** : déplacement avec bétail (harde) ; vitesse et besoins du bétail ; surveillance via Réflexion [Pastoralisme] (voir §6).
+- **Voyage Errant** : déplacement à pied (ou monture, véhicule) ; vitesse selon mode et terrain.
+- **Vitesse** : selon mode de transport, terrain, conditions (météo, obscurité), charge (encombrement). Les **Conditions** de milieu (chaleur, froid, etc.) testent Outils et Habituations (voir §4).
+
+---
+
+## 2. Rencontres en voyage (4 jets fondamentaux + 4 jets de diversification)
+
+*Référence : Livre p. 89–90, CSV Tableau_des_Rencontres.*
+
+### 2.1 Quand ? (1er jet – Rencontre ou pas)
+
+- Le Révélateur tire **5 dD**. **Épreuve** = **NdT - 5** du voyage entrepris (1 Instant = -5 plutôt que 0).
+- **Si le jet est inférieur** au NdT - 5 du voyage → les PI font une **Rencontre** à un NdT inférieur au voyage total (NdT - 5 - 1).
+- **Si le jet est égal ou supérieur** au NdT du voyage → pas de Rencontre significative ; les PI parviennent à destination.
+- *Exemple* : voyage de 11 Jours (NdT +2 pour une Héliorée) ; si jet < +2 → Rencontre après plusieurs jours ; il reste 1 Pentaine de voyage. Ensuite le Révélateur refait un jet d’Épreuve +1 (NdT-5 d’une Pentaine) pour une éventuelle nouvelle Rencontre (Livre p. 89).
+
+### 2.2 Quoi ? (Milieu) & Qui ? (Entités) – 2e et 3e jets
+
+- **Quoi ?** : 5 dD → **Milieu et Paysage** (table liée au Parage traversé).
+- **Qui ?** : 5 dD → **Entités** (Aides ou Menaces selon signe du jet). On peut ajouter les Succès/Échecs d’un jet de Détection [Acculturer] d’un PI comme +/- X Dés au Quoi ? ou Qui ? (Livre p. 89).
+
+### 2.3 Combien ? (4e jet – Quantité / difficulté)
+
+- **5 dD** → **NdG** de Qui ? rencontré, ou **Niv d’Épreuve** pour les surmonter (quantifié en nombre d’entités).
+- Si (!)D 3×100 (±5 au jet) : « explosion » du jet – relancer et multiplier/diviser 100–300 avec le prochain jet (Livre p. 89).
+
+### 2.4 Jets de diversification (Distance, Lorsque ?, Comment ?, Pourquoi ?)
+
+- **d’Où ? (5e jet)** : **Distance** entre soi et Qui ? (indices, traces, visibilité) – 5 dD. Le Révélateur peut influencer Qui ?, Laquelle ? et d’Où ? en ajoutant +/- X Dés si les lieux/PI sont plus ou moins Chaleureux/Discrets ou Dangereux/Traqués (Livre p. 89).
+- **Lorsque ?**, **Comment ?**, **Pourquoi ?** : selon le Tableau des Rencontres (situation de l’Entité, attitude envers les PI, symbolique).
+
+*Référence : CSV Tableau_des_Rencontres (Quand ?, Quoi ?, Qui ?, Combien ?, d’Où, Lorsque ?, Comment ?, Pourquoi ?).*
+
+---
+
+## 3. Tableau des Rencontres (résumé CSV)
+
+- **Quand ?** : Rencontre si jet < NdT-5 ; sinon arrivée à destination.
+- **Quoi ?** : Milieu (voir page du Parage). Ex. MILIEU Dangereux (NdT -5), etc.
+- **Qui ?** : Entité (Aide ou Menace). Ex. MENACE Locale, Cabane/Vagabond, Groupe/Hutte/Marcheurs, etc.
+- **Combien ?** : 0 (Traces/Cadavres), 1 (NdG 0), D3 (NdG +1), D3×10 (NdG +3), (!)D3×100 (NdG +5), etc.
+- **d’Où** : Distance (spatiale et/ou temporelle) – ex. Tomber dans le Piège, Être Surpris par ___, Traces difficiles à percevoir, etc.
+- **Lorsque ?** : Situation (embuscade, surpris, fausses évidences, traces, etc.).
+- **Comment ?** : Attitude (Rivale/Sournoise, Agressive, etc.).
+- **Pourquoi ?** : Symbolique (Supprimant une Solution, Créant une Rivalité, Donnant des « Évidences », etc.).
+
+*Référence : CSV Tableau_des_Rencontres.*
+
+---
+
+## 4. Milieux et Conditions (traversée)
+
+- Tout **Milieu** à traverser (le « Quoi ? » d’une Rencontre) comporte jusqu’à **8 Conditions** (ex. tempêtes, vents asphyxiants, ruines Aïares, désorientation, apesanteur) (Livre p. 92).
+- Chaque Condition a un **axe** (ex. Pression PRE -2 à +3 ; surplus vs manque). On s’en prévient avec des **Outils** spécifiques (à maintenir ou réparer) ; les axes s’opposent (fourrure contre le froid tend à porter chaud).
+- **Règle** : à chaque **rencontre initiale** du Milieu puis **à chaque 5 - X NdT** en le traversant, les **Conditions de Niv X** testent vos **Outils et Habituations** par une **Épreuve de Niv X**, infligeant à l’échec des **Dés de Souffrances** (liés en général), qu’il faut ensuite **résister** (résistance **passive** : Niv de la Compétence Résistante absorbe les DS ; pas de jet de résistance) (Livre p. 92).
+- **Niv d’Outil** : les Niv d’**Outil** (et d’**Habituation**) « absorbent » les Niv de la Condition ; s’il reste des Niv non absorbés, jet Détection/Outils vs Épreuve = Niv de Temps voyagé + Niv de Conditions (Livre p. 92, 102).
+- **Habituation** : à 10 Marques d’Habituation, on s’Éprouve et obtient +1 Dé d’Habituation (dans la condition éprouvée). Chaque Saison, perdre 1 Marque à tous les Conditionnements et Résistances (Livre p. 92).
+
+---
+
+## 5. Navigation et perte de chemin
+
+- **Compétences** : [Géographie], [Estimation], [Vision] pour s’orienter, repérer repères, évaluer distances/directions.
+- **Jet** : Roll [Géographie] (ou [Estimation], [Vision]) vs Niv + X selon contexte. **Échec** : perdu, temps perdu, rencontres possibles.
+- **Obscurité** : à chaque NdT joué (début, milieu, fin de Matinée, Jour, Pentaine…), ceux utilisant une source de lumière (lanterne, torche) font un jet avec Dés d’Habituation ET d’Équipement contre l’Obscurité vs Épreuve = NdT voyagé (Matinée = +3) + Niv d’Obscurité (Livre p. 93).
+- **Rencontre si < NdT - 5** : rappel pour la logique des rencontres (Livre p. 93).
+
+---
+
+## 6. Voyage pastoral – Surveiller sa harde
+
+- Tout individu gouvernant une **Harde** **sans** prendre son Labeur (ou au-delà de sa capacité) fait un jet de **Réflexion [Pastoralisme]** contre une Épreuve de Niv = **NdG gouverné +/- X NdT** passées à les surveiller (Livre p. 93).
+- L’Épreuve a +/- X Niv selon : Niveau de **Déshydratation** de la Harde, **Niv de Vitesse** de déplacement, **Niv de Milieu** traversé.
+- **Succès** : pas besoin de se retester pendant X NdT.
+- **Échec** : NdG X **Panique** (tourne en rond, impossible à faire se déplacer) ET **S’enfuit** (vers nourriture, eau, repos, ou aléatoirement). On Trouve (Détection [Investigation]) un NdG X de Bétail Enfui ; on Calme (Domination [Apprivoisement]) un NdG X de Bétail Paniqués.
+- **Eau** : jet Réflexion [Géographie] pour trouver de l’eau (Niv d’Épreuve selon Milieu). Chaque Jour sans eau, la Harde se déshydrate (malus, perte de qualité, mort ou fuite collective) (Livre p. 93).
+
+---
+
+## 7. Montures et véhicules (CSV : Montures_Prix_Vitesse_Type_Adapt)
+
+*Référence : CSV Montures_Prix_⚖_Vitesse_(par_Jour)_Type_(Déplacement)_Adapt.*
+
+### 7.1 Montures (exemples)
+
+| Monture | Prix (cO) | Vitesse (par Jour) | Type | Adaptation |
+|---------|------------|---------------------|------|------------|
+| **Nuhrsaï (Fourmiellure)** | 50 | 1 J | Terrestre | Froid |
+| **Rorqual sylvestre (Arvadoy)** | 1000 | 1/5 J | Brachiation | Sylvestre |
+| **Beoad (Vache à suc)** | 100 | 1/3 J | Flottation | Venteux |
+| **Courseur des falaises (Klakvaks)** | 500 | 1.5 J | Terrestre | Montagnard |
+| **Iurafaïas (Ouraphaès)** | 100 | 2 J | Terrestre | Sylvestre |
+| **Yaol-daol** | 50 | 1 J | Sauté | Steppes |
+| **Foyalsum (Plane-nuage)** | 5000 | 10 J | Vol/Plane | Aérien |
+
+Descriptions et Produits (Melhygre, Lait, Viande, Chitine, etc.) dans le CSV.
+
+### 7.2 Véhicules (exemples)
+
+- **Charrette, Caravane, Chariot de guerre, Carosse** : 50 / 100 / 250 / 500 cO ; tiré(e) par 1 à 4 montures/bétails (non inclus). Charrette 100 Sacs, Caravane jusqu’à 1000 Sacs ; Chariot 2 pers., Carosse jusqu’à 5 passagers + 1 Coffre. Vitesse = vitesse de la monture la plus lente - 0.1 J par 50/150 Sacs tirés.
+- **Traîneau** (25 cO, 3 J), **Litière** (100 cO, 0.5 J), **Pousse-Pousse** (50 cO, 1 J), **Char à vent** (100 cO, Vent×3 ou ×2), **Char-marcheur** (X×500 cO, X×0.5 J), **Ver-de-laine**, **Bateaux** (Rondin, Radeau, Bateau, Barge, Barque, Galère, Navire, Galion), **Hydrycle**, **Marinycle**, **Gonfle-nuage**, **Combinaison à ailes**, **Aèrycle**, etc.
+
+*Référence : CSV Montures_*.*
+
+---
+
+## 8. Provisions et consommation
+
+- **Vivres** : 1 par jour (normal) ; plus en effort intense.
+- **Liquides** : 1 par jour (normal) ; plus en chaleur ou effort.
+- Gestion du transport (encombrement), conservation. Voir 08_Temps_Labeurs, 11_Possessions_Equipement.
+
+---
+
+## 9. Voyage en groupe
+
+- Vitesse = celle du plus lent. Partage des tâches (garde, navigation, provisions). Avantages : sécurité, partage des charges ; inconvénients : plus visible, conflits possibles. Voir 09_Groupe_Ambiance (Jet de Groupe, Ambiance).
+
+---
+
+*Voir aussi : 08_Temps_Labeurs (NdT, Labeur), 09_Groupe_Ambiance (Jet de Groupe), 11_Possessions_Equipement (Outils, Encombrement), 16_GM_Quand_Lancer_Jets (formules de jets).*
+
+---
+
+# File: 16_GM_Quand_Lancer_Jets.md
+
+# Quand lancer quels jets — Guide MJ
+
+*Sources : 01_Systeme_General, 03_Attributs_Aptitudes_Competences, 05_Souffrances_Guérison, 06_Combat, 08_Temps_Labeurs, 09_Groupe_Ambiance, 10_Voyages et sections MJ du livre.*
+
+Ce document indique **quand** demander quel jet (ou appliquer une règle sans jet) pour chaque type de situation. Utilisez toujours le format exact : **Roll [Compétence] vs Niv +X**. La Compétence doit être l’une des 72 (ex. [Grimpe], [Négociation]) ; jamais un Attribut ou une Aptitude seule dans les crochets.
+
+## Action à issue incertaine
+
+- **Quand** : Le personnage tente une action avec chance d'échec.
+- **Jet** : Roll [Compétence] vs Niv +X — la Compétence doit être l'une des 72 (ex. [Grimpe], [Négociation], [Investigation]). Jamais un Attribut ou une Aptitude dans les crochets.
+- **Réf.** : 01, 03.
+
+## Jet Précisé (Niveau de Temps)
+
+- **Quand** : Le personnage prend du temps pour une action ; vous pouvez offrir de réduire la difficulté en échange de plus de NdT.
+- **Règle** : **"Faire 0"** = pas de jet, résultat basé sur les niveaux. Sinon : +1 NdT = -1 Niv d'Épreuve (ex. Roll [Artisanat] vs Niv +0 si le joueur accepte +1 NdT).
+- **Réf.** : 01, 08.
+
+## Labeurs (journée de travail, artisanat, entraînement, récupération)
+
+- **Quand** : Une journée de Labeur (8 h de travail, artisanat, entraînement, recherche, récupération).
+- **Jet** : Roll [Compétence] appropriée vs Niv +X — ex. Roll [Artisanat] vs Niv +1 pour une journée de craft, Roll [Médecine] vs Niv +0 pour soins, Roll [Géographie] pour recherche.
+- **Réf.** : 08.
+
+## Surmenage (plus d'un Labeur par jour)
+
+- **Quand** : Le personnage effectue plus d'un Labeur par jour.
+- **Jet** : **Aucun**. La résistance est passive : le Niv de la Compétence Résistante (ex. [Satiété] pour Fatigues) absorbe les DS ; pas de jet de résistance.
+- **Réf.** : 08, 05.
+
+## Voyage — Navigation / perte de chemin
+
+- **Quand** : Navigation, orientation, risque de se perdre en voyage.
+- **Jet** : Roll [Géographie] ou Roll [Estimation] ou Roll [Vision] vs Niv +X (ex. Roll [Géographie] vs Niv +2). Échec = perdu, temps perdu, rencontres possibles.
+- **Réf.** : 10_Voyages.
+
+## Voyage — Traverser un milieu avec Conditions
+
+- **Quand** : Traverser un milieu hostile (Conditions : froid, chaleur, obscurité, etc.). Voir milieux p.177 du livre.
+- **Règle** : Les Niv d'Outil "absorbent" les Niv de Condition. S'il reste des Niv de Conditions non absorbés : jet avec Dés d'Outil ET d'Habituation vs Épreuve = Niv de Temps voyagé + Niv de Conditions. Résistance aux DS passive (Niv) — pas de jet de résistance.
+- **Réf.** : Livre p.102 ; 10_Voyages.
+
+## Rencontres (voyage)
+
+- **Quand** : Déterminer une rencontre pendant le voyage.
+- **Règle** : Fréquence selon temps de voyage et terrain ; l'Éveilleur peut utiliser une table ou un jet selon le contexte. Adapter au lieu et au récit.
+- **Réf.** : 10_Voyages, 14_Monde_Iaodunei.
+
+## Groupe — Cohésion (Jet d'Ambiance)
+
+- **Quand** : Situations significatives pour la cohésion du groupe (séparations, conflits internes, succès/échecs collectifs).
+- **Jet** : Roll [Ambiance] vs Niv +X. Mécanique : 5dD (dés discordants), résultat = somme des 5, succès si somme ≥ Niv. Toujours inclure la ligne parseable pour le bouton Roll.
+- **Réf.** : 09_Groupe_Ambiance.
+
+## Groupe — Action collective (Jet de Groupe)
+
+- **Quand** : Action collective ; chaque membre fait un jet, modifié par l'Ambiance du groupe ; résultats moyennés.
+- **Jet** : Chaque joueur : Roll [Compétence] vs Niv +X ; modifier par le pool d'Ambiance ; succès si moyenne ≥ Niv.
+- **Réf.** : 09.
+
+## Groupe — Un seul tente l'action (Jet d'Audace)
+
+- **Quand** : Un individu « prend sur soi » et tente une action de groupe seul.
+- **Jet** : Roll [Compétence] vs Niv +X avec **-1 Niv par NdG sur son dos** (-1 N avec 2–3 gens, -2 N avec 4–10, etc.). Si contestataires : encore -1 Niv par NdG le contestant. Il gagne les Marques normales + X Marques par NdG pris sur lui.
+- **Réf.** : 09_Groupe_Ambiance ; Livre p.71.
+
+## Combat — Initiative / qui proagit
+
+- **Quand** : Déterminer qui peut agir de manière proactive (Clins d'Alerte).
+- **Jet** : Roll [Fluidité] (ou compétence appropriée) vs Niv.
+- **Réf.** : 06_Combat.
+
+## Combat — Attaque
+
+- **Quand** : Frapper, tirer, neutraliser.
+- **Jet** : Roll [Armé], [Désarmé], [Improvisé], [Lutte], [Bottes], [Ruses], [Bandé], [Propulsé], [Jeté] selon l'action — vs Niv +X.
+- **Réf.** : 06, 03.
+
+## Combat — Jet de Souffle (tous les -10 Clins)
+
+- **Quand** : À chaque -10 Clins en combat, tous font un Jet de Souffle (Domination [Endurer]).
+- **Jet** : Roll [Gloutonnerie] ou Roll [Beuverie] ou Roll [Entrailles] vs Niv +X — utiliser une **Compétence** (pas l'Aptitude [Endurer]). Le joueur choisit laquelle selon le contexte.
+- **Réf.** : Livre p.086 ; 06_Combat.
+
+## Combat — Réactions (Bloquer, Parer, Esquiver)
+
+- **Quand** : Défense contre une attaque.
+- **Jet** : Roll [Armé] (Parade) ou compétence de réaction selon les règles combat ; coût en Niv d'Ébranlement.
+- **Réf.** : 06.
+
+## Infiltration / Discrétion (stealth)
+
+- **Quand** : Passer inaperçu, voler sans être vu, se faufiler, filature, embuscade.
+- **Jet** : Roll [Dissimulation], Roll [Escamotage], ou Roll [Illusions] vs Niv +X selon l'action.
+- **Réf.** : 03 (Aisance → Infiltration).
+
+## Social (négociation, séduction, intimidation, commandement)
+
+- **Quand** : Négocier, séduire, intimider, commander, convaincre, débattre.
+- **Jet** : Roll [Négociation], [Séduction], [Intimidation], [Commandement], [Obéissance], [Obstinance], [Présentation], [Chant], [Inspiration], etc. vs Niv +X — selon l'approche.
+- **Réf.** : 03 (Charisme, Domination).
+
+## Artisanat / Cuisine
+
+- **Quand** : Création d'objets, préparation de repas, artisanat alimentaire.
+- **Jet** : Roll [Artisanat] vs Niv +X (Artisanat inclut Alimentaire, des Graisses, du Papier, des Plantes, du Textile, du Cuir, etc.).
+- **Réf.** : 03, 11_Possessions_Equipement.
+
+## Marché / trouver acheteur ou vendeur
+
+- **Quand** : Trouver un marché ou un partenaire commercial ; négocier un prix.
+- **Jet** : Roll [Géographie] (+/- NdT de recherche) pour trouver un marché ; Roll [Négociation] pour le prix / courtisanat.
+- **Réf.** : 10, 11 ; livre p.098.
+
+## Rage (10+ Souffrances totales)
+
+- **Quand** : Le total des 8 Souffrances atteint 10+ ; le personnage doit tester pour agir contre l'instinct.
+- **Jet** : Roll [Rage] vs Niv +X (X = Niv de Rage). Mécanique : 1d6 > Niv (succès si résultat > Niv). Inclure la ligne parseable.
+- **Réf.** : 05_Souffrances_Guérison.
+
+## Évanouissement (15+ Souffrances)
+
+- **Quand** : Le total des Souffrances atteint 15+ ; le personnage doit tester pour agir (sinon inconscient ou fou).
+- **Jet** : Roll [Évanouissement] vs Niv +X. Mécanique : 1d6 > Niv. Inclure la ligne parseable.
+- **Réf.** : 05.
+
+## Guérison quotidienne (Jet de Repos)
+
+- **Quand** : Fin de journée / repos ; déterminer combien de jours de souffrance sont guéris.
+- **Jet** : Roll [Repos] vs Niv +X. Mécanique : 5dD, somme vs Niv. Inclure la ligne parseable.
+- **Réf.** : 05.
+
+## Résistance aux Souffrances (DS)
+
+- **Quand** : Les règles disent que la résistance réduit les DS subis.
+- **Jet** : **Aucun**. La résistance est **toujours passive** : le Niv de la Compétence Résistante (Robustesse, Satiété, Rectitude, Immunité) plus Niv d'équipement absorbe les DS. Ne jamais demander de "Jet de Résistance".
+- **Réf.** : 05 ; livre p.72.
+
+---
+
+# File: 02_Creation_Personnage.md
+
+# Création de Personnage (Révélation) - Des Récits Discordants
+
+Réf. livre : pages 21 (3 étapes), 49-54 (A Caractéristiques, B Attributs, C Récits, Castes, Récits), 51 (Héritages & Métissages), 90+ (Remémoration Créatrice, Symbole, Éducation, Expression, Valeurs, Titres, Langues, Richesses).  
+CSV : Tirage_des_Caractéristiques, Attributs_d'Origine_Peuple_&_Race, Caractéristiques_des_Peuples, Raisons_d'Éveil_du_Personnage, Attaches_de_Récit, Niv_Atb_Coût_en_Degrés_Coût_Total.
+
+## Vue d’ensemble
+
+La **Révélation** d’un personnage comporte **3 étapes fondamentales** :
+- **A) Caractéristiques** (p. 91) : Origine, Peuple, Race, Sexe, et éventuellement Variation (Âge, Sexe, Gras, Stature, Taille).
+- **B) Individuation** (p. 97) : Variation des Attributs par rapport à la norme Peuple/Race/Sexe.
+- **C) Récit** (p. 99) : Raison d’Éveil, Caste, Récit, optionnellement Attache et Héritage.
+
+Après ces 3 étapes, deux options :
+- **Remémoration Créatrice** (p. 113) : révélation différée et simplifiée en jeu (amnésies, récupération de mémoire sur 8 aspects : expérience, intégrité, société, etc.).
+- **Révélation complète** avant la première séance : Symbole, Éducation, Expression, Valeurs, Traits, Titres, Langues, Richesses (voir sections dédiées dans le livre et 04_Experience_Progression, 13_Valeurs_Traits, 11_Possessions_Equipement).
+
+---
+
+## A) Tirage des Caractéristiques (p. 91)
+
+### 1. Choix (ou tirage) Origine, Peuple, Race, Sexe
+- **Origines** : Yômmes, Yôrres, Bêstres.
+- **Peuples** : selon l’Origine (ex. Yômmes : Aristois, Griscribes, Navillis, Méridiens ; Yôrres : Hauts Ylfes, Ylfes pâles, Ylfes des lacs, Iqqars ; Bêstres : Slaadéens, Tchalkchaïs).
+- **Race** : une race au sein du Peuple (ex. Aristois : Monte-Foudres, Fleuris, Des Souffles, Ambrés).
+- **Sexe** : Homme (♂), Femme (♀), ou Intersexe selon les règles du Peuple.
+
+Les **Attributs de base** viennent des tableaux **Attributs d’Origine, Peuple & Race** (livre p. 50 et suiv., CSV Attributs_d'Origine_Peuple_&_Race) : on applique les modificateurs du Peuple (par sexe), puis de la Race. Ex. Homme Aristois Monte-Foudres : FOR 0, AGI -1, DEX -1, VIG -1, EMP 0, PER +1, CRÉ 0, VOL +2.
+
+On part d’un personnage **Jeune** (20-30 années « normales » du Peuple) et aux **Caractéristiques normales** du Peuple (Taille, Stature, Gras, Dimorphisme — voir CSV Caractéristiques_des_Peuples).
+
+### 2. Variation des Caractéristiques (optionnel)
+Pour s’écarter de la norme : **5 jets de 10 dD** (sans garder 5 dés) donnant des **Niv** pour :
+1. **Âge** (Catégorie d’âge : Enfance, Adolescence, Jeunesse, Adulte, Maturité, Vieillesse, Ancienneté, Vénérable — CSV Tirage_des_Caractéristiques).
+2. **Sexe** (si non choisi ; spectre Intersexe selon Peuple).
+3. **Gras** (corpulence).
+4. **Stature** (largeur/épaisseur).
+5. **Taille** (hauteur).
+
+Résultat 0 = norme du Peuple pour cette caractéristique. Chaque Niv obtenu modifie les Attributs selon les tableaux du livre (ex. Maturité +1 Âge → -1 FOR, AGI, DEX, VIG, +1 EMP, -1 PER, -1 CRÉ, +1 VOL ; Stature large +1 → +1 FOR, -1 AGI, -1 EMP, +1 VOL).  
+On peut aussi tirer au hasard le **Peuple** (puis 1d6 pour la Race), puis lancer 10dD pour Âge, Sexe, Gras, Stature, Taille.
+
+(Livre p. 49-50 ; CSV Tirage_des_Caractéristiques.)
+
+---
+
+## B) Tirage des Attributs (Individuation) (p. 97)
+
+On part des Attributs issus de A (Peuple, Race, Sexe, et éventuellement Âge/Gras/Stature/Taille). **Trois façons** de diversifier (à convenir avec le Révélateur) :
+
+### 1. Variabilité réaliste
+- **8 jets de 10dD/2** ; ajouter chaque résultat à un Attribut (dans l’ordre tiré ou au choix). Donne des écarts réalistes, peu d’extrêmes.
+
+### 2. Variabilité équilibrée
+- **Total des 8 Attributs = 0** (ou autre score commun au groupe fixé par le Révélateur). Chaque joueur ajuste ses Niv d’Attributs (soustraire/ajouter) pour égaliser ce total.
+
+### 3. Variabilité contrôlée
+- **20dD** (ou 10dD×2) donnent des **Degrés** à dépenser pour modifier les Attributs selon le tableau **Niv Atb / Coût en Degrés / Coût Total** (livre, CSV Niv_Atb_Coût_en_Degrés_Coût_Total). Liberté maximale.
+
+**Alternative sans dés** : garder les Niv actuels et appliquer **+2, +1, 0, 0, 0, 0, -1, -2** (à répartir : +2 et -2 sur deux Attributs, +1 et -1 sur deux autres, quatre à 0).
+
+**Peuples grégaires** : malus de base **-8 N** d’Attributs par Niv de Gouvernance (ex. -8 N = +1 NdG pour 2-3 membres, -16 N = +2 NdG pour 4-10 membres).
+
+**Finalisation** : multiplier chaque Niv d’Attribut par **×10** et inscrire sur la feuille.
+
+### Attributs extrêmes
+- **±5 Niv** (et au-delà) par rapport à la norme du Peuple = Attribut **EXTRÊME** (aspects particuliers).
+- **-6 Niv** (et au-delà) = **fatal** (refaire le tirage ou changer de décision). (Livre p. 52.)
+
+---
+
+## C) Tirage des Récits (p. 99)
+
+### 1. Raison d’Éveil du Personnage
+- **5dD + 1d6** (ou choix) pour déterminer **pourquoi** le personnage quitte son vécu / part à l’aventure.  
+- Table **Raisons d’Éveil** (livre p. 53, CSV Raisons_d'Éveil_du_Personnage) : ex. 0 = S’enfuir d’une pression économique, Pour faire de l’argent, Livraison, Escorte, S’enfuir d’une famille, Rechercher un climat sain ; +1/-1 = Maintien des routes, Ouvrir un commerce, etc. ; jusqu’à +5/-5 = Création de routes, Sauvetage, Conversion, etc.
+
+### 2. Caste et Récit
+- Prendre l’**Attribut le plus élevé** → détermine la **Caste** (les 8 Castes sont liées aux 8 Attributs : Guerriers-FOR, Rôdeurs-AGI, Artisans-DEX, etc.).
+- La **Caste** donne accès à **18 Récits** (3 sous-castes × 6 récits). **d3** = sous-caste (ex. (-) Champions, (0) Mercenaires, (+) Soldats pour Guerriers) ; **d6** = Récit concret (ex. Artiste martial, Garde personnel aguerri, Garde bien placé, …).
+- **Variation des Récits** : **10dD/2** pour éventuellement prendre une autre Caste que celle de l’Attribut le plus élevé (Attribut le plus élevé = 0 au résultat ; résultat positif = +X Attributs vers la droite/horaire, négatif = -X vers la gauche/anti-horaire).
+- On peut prendre la **Caste Éduquée** (liée à la Compétence Familiale, p. 239) ou la **Caste Explorée** (liée aux Compétences déjà révélées/réalisées, p. 243).
+
+### 3. Effet du Récit
+- Le **Récit double les Dés de CT** dans toute situation s’y collant particulièrement. Si le personnage a 0 Dé dans la compétence concernée, ajouter **+1 Dé** au jet. (Livre p. 53.)
+
+### 4. Attache de Récit (optionnel)
+- Tirer ou choisir une **Attache** liée au Récit (sous-caste et alignement -, 0, +) pour ancrer le passé et la situation présente. CSV Attaches_de_Récit (ex. Guerriers : Champions/Mercenaires/Soldats avec phrases d’attache).
+
+### 5. Héritage (optionnel)
+- **5dD**. Si le résultat est **±3, ±4 ou ±5** : lancer **3dD** pour le type d’Héritage (physique, mental, social, etc.), puis **5dD** pour la valeur **X** (intensité). Inscrire le nom de l’Héritage et le résultat X ; **totaliser** tous les Attributs après Peuple, Race, Sexe, Individuation et Héritage. (Livre p. 53.)
+
+---
+
+## Héritages & Métissages (p. 51)
+
+- **Entre Origines** (Yômmes, Yôrres, Bêstres) : **impossible** (reproduction entre elles impossible).
+- **Même Peuple, Races différentes** (ex. entre Monte-Foudres, Fleuris, Des Souffles, Ambrés) : **souvent possible** ; résultats variables (vigoureux à souffreteux) ; enfant reçoit au hasard un des deux bonus raciaux (+1|+1) et un des deux malus (-1|-1) des parents.
+- **Même Origine, Peuples différents** :  
+  - **Yômmes** (Aristois, Griscribes, Navillis, Méridiens) : enfant avec **traits du peuple maternel** (Attributs, Taille, Stature, Gras, Dimorphisme) et quelques traits d’apparence du père ; conceptions très rares, réputées infertiles, mal vues.  
+  - **Yôrres** (Hauts Ylfes, Ylfes pâles, Ylfes des lacs) : **lignée paternelle** (Attributs, Taille, Stature, Gras, Dimorphisme), mère transmet quelques traits d’apparence ; un peu plus fréquent, parfois fertiles, toujours très mal vus.  
+- **Bêstres** : si divers qu’aucun croisement établi ou enfantement viable/fertile.  
+- **Iqqars** : isolés, ne se reproduisent qu’entre eux.
+
+---
+
+## Après les 3 étapes : Remémoration Créatrice ou Révélation complète
+
+### Remémoration Créatrice (p. 113)
+- Révélation **différée** en jeu : le personnage a des « amnésies » dont il récupère la mémoire sur **8 aspects** au fil des séances :  
+  - **A)** Expérience de la vie (compétences apprises),  
+  - **B)** Intégrité (valeurs et traits),  
+  - **C)** Société (possessions, richesses).  
+- Règles d’amnésie et de récupération détaillées dans le livre (première séance : Symbole, Dés Éduqués/Exprimés, Marques gratuites, etc.).
+
+### Révélation complète (avant première séance)
+- **Symbole** (p. 235) : nature, essence, destin, passions.  
+- **Éducation** (A, p. 239) : Compétence Familiale (+3 Dés), Compétences Éduquées (Marques Éternelles).  
+- **Expression** (A, p. 243) : Dés Exprimés, répartition dans Aptitude Symbolique (3 Actions), Fascinante (2 Actions), Intéressante (1 Action).  
+- **Valeurs** (B, p. 247) : Moralité, Motivation, Personnalité.  
+- **Traits** (B, p. 257) : Socialité, Disposition, Passion.  
+- **Titres** (C, p. 265), **Langues** (C, p. 263), **Richesses** (C, p. 265).
+
+Voir **04_Experience_Progression**, **13_Valeurs_Traits**, **11_Possessions_Equipement** pour le détail des tableaux et coûts.
+
+---
+
+# File: 12_Peuples_Races.md
+
+# Peuples et Races
+
+*Sources : Livre p. 23–32, 34–48, 49 ; CSV : Caractéristiques_des_Peuples, Dispositions_des_Peuples, Moralité_des_Peuples, Modules_Moyens_&_Membres_par_Caste, Castes_*, (G)uerriers_*, Aristois_*, etc.*
+
+---
+
+## 1. Origines et Peuples
+
+### 1.1 Les trois Origines
+
+- **Yômmes** (Humanoïdes) : 4 Peuples – Aristois, Griscribes, Navillis, Méridiens. Nomades anarchistes à leur façon ; agriculture, horticulture, pastoralisme ; tribus, chefferies ou états. Langues : Eskandois, Nzaïlrim, Uatru, Kuhkcherd (Livre p. 23).
+- **Yôrres** (Elfes et similaires) : 4 Peuples – Hauts Ylfes, Ylfes pâles, Ylfes des lacs, Iqqars. Longévité, souvent liés à la nature (Livre p. 34–42).
+- **Bêstres** (Créatures diverses) : 2 Peuples – Slaadéens, Tchalkchaïs. Très variés, souvent spécialisés (Livre p. 44–48).
+
+### 1.2 Noms alternatifs (livre)
+
+Le livre utilise parfois des graphies alternatives (ex. Noscyadril pour Aristois, Ajoroï, Kh’Ruld, etc.) ; les noms ci‑dessous sont ceux des CSVs et du résumé standard.
+
+---
+
+## 2. Caractéristiques physiques (CSV : Caractéristiques_des_Peuples)
+
+*Référence : CSV Caractéristiques_des_Peuples.*
+
+| Peuple | (T)aille | (S)tature ♂/♀ | (G)ras ♂/♀ | Dimorphisme |
+|--------|----------|----------------|------------|-------------|
+| **Aristois** | Petite (-1) | Équilibrée (0) / Svelte (-1) | Corpulent (+2) / Égalisée (0) | (+1) Typique |
+| **Griscribes** | Petite (-1) | Massive (+2) / Large (+1) | Égalisé (+0) | (+1) Typique |
+| **Navillis** | Petite (-1) | Svelte (-1) / Filiforme (-2) | Replet (+1) | (+2) Grand |
+| **Méridiens** | Petite (-1) | Équilibrée (0) | Mince (-1) | (+1) Typique |
+| **Hauts Ylfes** | Moyenne | Équilibrée (0) / Svelte (-1) | Égalisé (+0) / Replète (+1) | (+1) Typique |
+| **Ylfes pâles** | Petite (-1) | Svelte (-1) | Grêles (-2) | (0) Réduit |
+| **Ylfes des lacs** | Moyenne | Large (+1) / Équilibrée (0) | Mince (-1) | (+1) Typique |
+| **Iqqars** | Moyenne | Svelte (-1) | Mince (-1) / Replète (+1) | (0) Réduit |
+| **Slaadéens** | Moyenne | Massive (+2) / Massive (+2) | Replet (+1) | (0) Réduit |
+| **Tchalkchaïs** | Grande (+1) | Svelte (-1) / Filiforme (-2) | Grêle (-2) / Mince (-1) | (+1) Typique |
+
+Taille / Stature / Gras modifient certains Attributs (voir règles de création). **Corps Allongé (Yômmes)** : Stature d’une catégorie inférieure pour passer dans des entrées de toute sorte (Livre p. 23).
+
+---
+
+## 3. Moralité des Peuples (CSV : Moralité_des_Peuples)
+
+*Référence : CSV Moralité_des_Peuples.*
+
+| Peuple | Moralité | Traduction |
+|--------|----------|------------|
+| Aristois | Trèpharchie | « Croissance Souveraine » |
+| Griscribes | Mignusophie | « Sagesse Imbriquée » |
+| Navillis | Olbôphélie | « Félicité Dévouée » |
+| Méridiens | Etéathlie | « Authenticité Compétitrice » |
+| Hauts Ylfes | Edapoèsie | « Compétence Créative » |
+| Ylfes pâles | Hiéragogie | « Direction Sacrée » |
+| Ylfes des lacs | Mellophrônie | « Volition Ingénieuse » |
+| Iqqars | Égonexie | « Intimisme Extrinsèque » |
+| Slaadéens | Thrasonirie | « Audace Rêveuse » |
+| Tchalkchaïs | Echothysie | « Altruisme Sacrificiel » |
+
+La Moralité est inconsciente et héritée ; elle décrit comportements, pourquoi les convaincre ou les soigner (Souffrances de Folie ou Rancœurs). On ne peut avoir de Valeurs de Moralité d’un autre Peuple que celui dont on descend (Livre p. 129).
+
+---
+
+## 4. Dispositions et Compétences (CSV : Dispositions_des_Peuples)
+
+*Référence : CSV Dispositions_des_Peuples.*
+
+Pour chaque Peuple, les **Castes** (et donc les compétences **Sociétales**, **Populaires**, **Raciales**) sont définies par Peuple et Race.
+
+- **Sociétales (3)** : communes à tout le Peuple (ex. Aristois : Charisme, Réflexion, Domination ou Détection).
+- **Populaires (1)** : liées au Peuple (+1D à la création) (ex. Aristois : Réflexion).
+- **Raciales (1)** : liées à la Race (+2D à la création) (ex. Aristois : FOR | DEX | VIG | CRÉ).
+
+Le CSV ne remplit que partiellement tous les Peuples ; voir aussi **Castes_***, **(G)uerriers_***, **Aristois_***, etc. pour le détail des Castes et compétences par Peuple/Race.
+
+---
+
+## 5. Yômmes (détail)
+
+- **Aristois** : Moralité Trèpharchie. Races (ex.) : Monte-Foudres, Fleuris, Des Souffles, Ambrés. Attributs typiques FOR+, EMP+, VIG+ (voir livre/CSV). **Socialité Yômme** : +1 Niv aux jets de Groupe. **Sacrifice collectif** : tout Yômme rencontré peut être convaincu de se sacrifier pour les siens (jusque dans la mort) contre une Épreuve de Niv +3 au moins (plutôt que +5). **Nomadisme Yômme** : +1 Niv aux jets liés aux voyages (Livre p. 23).
+- **Griscribes** : Mignusophie. Races (ex.) : Arboricoles, Saute-Brumes, Limnicoles, D'Eau. DEX+, CRÉ+, AGI+ (voir livre/CSV).
+- **Navillis** : Olbôphélie. Races (ex.) : Carmin, Pétricole, Perce-Vague. VIG+, VOL+, EMP+.
+- **Méridiens** : Etéathlie. Races (ex.) : Sylvains, Des Monts, Marche-Rêves. DEX+, VOL+, FOR+.
+
+---
+
+## 6. Yôrres (détail)
+
+- **Hauts Ylfes** : Edapoèsie. Races (ex.) : De Lunes, Des Plaines. FOR+, CRÉ+, EMP+.
+- **Ylfes pâles** : Hiéragogie. DEX+, CRÉ+, EMP+.
+- **Ylfes des lacs** : Mellophrônie. Races (ex.) : Mâche-Troncs, Danse-Feuilles, Troglodytes. VOL+, FOR+, CRÉ+.
+- **Iqqars** : Égonexie. Races (ex.) : Hauts, Bas. FOR+, CRÉ+, AGI+.
+
+---
+
+## 7. Bêstres (détail)
+
+- **Slaadéens** : Thrasonirie. Races (ex.) : Sydru-kal, Wijriol, Hlabayan, Felichrem, Iossolam (ou graphies proches). EMP+, DEX+. Espérance de vie très variable (2–115 ans). CSV Années_&_Dés_par_Âge.
+- **Tchalkchaïs** : Echothysie. Races (ex.) : Elesihin, Ordol, Îohadam, Nuôtarjoy, Ikrayad. FOR+, EMP+, VOL+, VIG+. Espérance de vie courte (10–27 ans).
+
+---
+
+## 8. Relations inter-Peuples (Disposition)
+
+- **Calcul de Disposition** : moyenne des différences d’Attributs, -Niv de Parenté, +/- 1 selon Empathie du Peuple, +3 si Humanoïde ; modificateurs (passé, événements).
+- **Niveaux** : Harmonie +5, Ami +3, Allié +4, Confiant +2, Accueil +1, Neutre 0, Méfiant -1, Hostile -2, Ennemi -3, Rival -4.
+- **Tableau des Dispositions** : voir CSV **Tableau_des_Dispositions** (si présent) ou livre pour la matrice Peuple ↔ Peuple.
+
+---
+
+## 9. Métissages
+
+- **Entre Origines** (Yômme × Yôrre × Bêstre) : en général impossible ou très rare.
+- **Même Peuple, Races différentes** : souvent possible.
+- **Même Origine, Peuples différents** : rare, souvent infertile.
+- **Bêstres / Iqqars** : trop divers ou isolés pour généraliser.
+- **Héritage** : Yômmes traits maternels ; Yôrres traits paternels (Livre p. 49, 02_Creation_Personnage).
+
+---
+
+## 10. Castes et compétences
+
+- Chaque Peuple a des **Castes** (ex. Guerriers, Moines, Rôdeurs, Bardes, Mages, etc.) avec Niv d’Attributs typiques. Voir **Castes_&_Niv_des_Valeurs**, **Modules_Moyens_&_Membres_par_Caste**, **(G)uerriers_***, **Aristois_***, etc.
+- **Compétences Sociétales** : 3 communes au Peuple. **Compétences Populaires** : 1 par Peuple (+1D création). **Compétences Raciales** : 1 par Race (+2D création).
+
+---
+
+*Voir aussi : 02_Creation_Personnage (caractéristiques, tirage, Héritages), LORE_02_Origines_Peuples, LORE_03_Peuples_Detail, GUIDE_MJ_Peuples.*
+
+---
+
+# File: 14_Monde_Iaodunei.md
+
+# Monde – Iäoduneï
+
+*Sources : Livre p. 9–10, 23, 140–144 ; cohérent avec 12_Peuples_Races et LORE.*
+
+**Orthographe livre** : **Iäoduneï** (Pays d’Iäoduneï, région aux dunes enneigées, eaux brûlantes, montagnes centrales). Parfois « Iâodunaï » en variante.
+
+---
+
+## Région de Jeu
+
+### Iäoduneï
+- **Population** : ~200'000 sur 232'000 km²
+- **Localité principale** : Mangroves d'Hylothermes
+- **Caractéristiques** : Dunes enneigées, eaux brûlantes, montagnes centrales
+
+### Lieux Importants
+- **Dla'Adur** : Plus grand peuplement Nomachome
+- **Lumioleï** : Second lieu majeur
+- **Monts Ajolum** : Montagnes centrales
+- **Déserts Soufflés** : Région désertique
+- **Grands Lacs Thermaux** : Tuhial, Eos, Daghol
+
+## Factions Principales
+
+### Slaadéens
+- **N'la-Fatch** : Haute-Famille artistique (Felichrem, Iossolam)
+- **Souk'mans** : Infiltration discrète ("Oigothyriser")
+- **Braisois** : Sédentaires, culte Heptahalie
+
+### Autres Factions
+- **Rophanes** : Microcité-états
+- **Daïnumes Aristois** : Communautés variées
+- **Aïozhan & Zoluzhan Gomb** : Syndicats
+- **Ennakleis** : Illégalité
+- **Jademarche** : Causes impopulaires
+
+## Conflits
+
+### Économiques
+- **Chasseurs-cueilleurs** (Slaadéens) vs **Pastoralisme** (Aristois) vs **Agriculture** (Ylfes des lacs)
+
+### Culturels
+- **Nomades** vs **Sédentaires / Semi-sédentaires** (ex. Slaadéens : majorité nomade en opposition à semi-sédentaire ; Méridiens, Aristois, Navillis plutôt nomades ; Ylfes des lacs semi-sédentaires) (Livre p. 141).
+- **Techno-traditionalisme** : les Motivations opposent l’ordre des **Gens** (société, coutumes) et des **Choses** (nature, technologie) ; le setting mêle traditions et techniques (Livre p. 9–10, 129).
+
+### Religieux
+- **Heptahalie** vs **Oratoire Kaïaste** vs **Nomê Aristois** vs **Hahalumullio Ylfe**
+
+## Glossaire - Mangroves d'Hylothermes
+
+### Général
+- **Nomachome** : Caravane-villages nomades
+- **Hylotherme** : Arbres mangroviens aux feuilles carmines
+
+### Faune
+- **B'dyiorlyr** : Créature ailée fouisseuse
+- **Arvadoy** : Bétail géant à queue préhensile
+- **Luicéphale** : Créatures lumineuses pour lanternes
+- **Ipslithes** : Vers-cristaux souterrains
+- **Zoion** : Organismes microscopiques
+
+### Matériaux
+- **Driliz** : Alliage Éore+Avathon (vert viride)
+- **Chraméon** : Alliage Éore+Pseudiris (solaire/rosé)
+- **Éore** : Métal bleu de nuit
+- **Avathon** : Poussière bleu-roi
+- **Pseudiris** : Animalcule minéral liquide
+- **Pittlithe** : Charbon aqueux brillant
+- **Faéine** : Plante-métal dorée
+- **Bryocarte** : Papier algueux
+
+### Produits
+- **Mycolithe** : Roche champignonneuse comestible
+- **Cloche-fruit** : Fruits des hylothermes
+- **Fythymel** : Miel-algue thermal
+- **Bryophloï** : Écorce-mousseuse
+
+## Yul - Exemple de Lieu
+
+### Description
+- **Type** : Chefferie Nomade NdG 6 (~1000 habitants)
+- **Peuple** : Slaadéens
+- **Faction** : N'la-Fatch (Ouvriers)
+- **Atout** : Caves aux Zoions (5dD)
+- **Localisation** : Presqu'entièrement sous terre, pieds des monts Ajolum
+
+### Système de Rencontres
+- Table de terrain (-5 à +5)
+- Factions rencontrées selon le résultat
+- Opportunités et dangers variables
+
+---
+
+# File: LORE_01_Cosmogonie_Divinites.md
+
+# Cosmogonie et Divinités – Des Récits Discordants
+
+*Sources : Livre p. 10–12, 23–24, 34, 44, 120–122 ; CSV : Honorations_Riliques_*, Sacrifices_*. Terminologie du livre : « HISM », « Ril-cendrée », « Rildée-astrale », etc.*
+
+---
+
+## La Cosmologie Fondamentale
+
+### L'Univers Concave (Cytocosmisme)
+La grande majorité des cultures croient vivre dans un **univers concave** (Cytocosmisme) - un univers creux où l'espace et tout le reste s'engouffre au sein d'une sphère de roche. Le "sol" sous les pieds de tous serait probablement incessant.
+
+- Les observations semblent corroborer cette concavité à travers une supposition impossible à réfuter ou prouver - que les cordes de lumière seraient courbes.
+- Certains réalisèrent qu'il serait possible, si leurs sens les tromperaient et avec quelques calculs, d'inverser totalement cette vision de l'univers.
+- Par cette éventualité troublante, un symbole de **croix courbées et chirales** se retrouve de par le monde et les cultures.
+
+### Concept Clé : Continuité Infinie
+Il y a de nombreuses façons d'expliquer leur monde, mais tous ou presque n'ont **pas le concept d'une création d'un point zéro**, mais plutôt d'une **continuité infinie de leur univers**, toujours en mouvement et sans aucun départ.
+
+### Les Cordes Tressées
+L'un des concepts clé est qu'il est coutume d'expliquer le monde, ses phénomènes invisibles (voir riliques pour certains), comme étant tous **interconnectés de Cordes tressées de deux fils** et se nouant en chaque élément, intangibles et invisibles de leurs sens.
+
+**Ultimement, l'univers tout entier ne serait qu'issu d'une unique et même corde continue**, tressée sur elle-même dans votre immensité, et dont les nœuds en sont les Rils.
+
+## Ô, WÔM, HISM et la Structure Cosmique
+
+### Ô - L'Ultime Rildée
+**Ô** (Monde/Localisation) est l'ultime Rildée, l'esprit rilique formant toutes les formes. Elle est éternellement bercée entre douleur et soulagement.
+
+### WÔM - Le Temps
+**WÔM** (Temps/Compte) est le petit frère-sœur siamois de Ô, perché au loin et les réconciliant tous par son jugement établissant les richesses de chacun et désignant jusqu'où les royaumes de chacun s'étendent.
+
+### HISM - Les Forces
+**HISM** (Forces/Actions-à-Distance/Magie) est la danse de l'assemblée des tétrarques en couples si proches qu'ils ne font qu'un seul tout bicéphale (des êtres parfois nommés à tort « les » SZIIZS) bien que s'haïssant tout autant que s'adorant.
+
+### Les Enfants d'Ô
+- **Wo-d'Ô** : Les filles d'Ô, dansant leur ronde avec elle et au loin, qui de leur jeune naïveté enjouée s'empressent alors de lâcher une de leur main de lumière afin de pointer et nommer les fruits de Siwômiz.
+- **Om-d'Ô** : Les fils d'Ô, se balançant avec elle et par ici, qui de leur vieille sagesse prédicatrice étendent une de leur main d'ombre afin d'amasser ces fruits chutant près d'eux.
+
+## Les Quatre Rois/Reines-Artistes (Tétrarques)
+
+### iôHôi - Le Foudroyé (Parfumant)
+**Domaine** : Tournoiement (Électromagnétisme)
+
+**Actions** :
+- **Hôi** : Assemble les Riliôh en Rilhôi (masse) - cause l'attraction
+- **iôH** : Délie les nœuds, disperse les Riliôh - cause la répulsion
+
+**Famille Rilique** : Aèmrils (Formes Virevoltantes/Airs)
+
+**Rildées-Astrales** : Währos (Force/Réussite/Guerre/Intrépidité)
+
+### sôIôs - L'Ondoyé (Miellisant)
+**Domaine** : Tension (Gravité)
+
+**Actions** :
+- **Iôs** : Réveille les Rilsôi en Riliôs (mouvance) - cause la chute
+- **sôI** : Endort les Riliôs en Rilsôi (immobilité) - cause l'élévation
+
+**Famille Rilique** : Ormrils (Formes Émouvantes/Émotions)
+
+**Rildées-Astrales** : Hwëthioz (Volonté/Pouvoir/Sortilège/Dignité)
+
+### môSôm - L'Éboulée (Florissante)
+**Domaine** : Alignement (Lumière)
+
+**Actions** :
+- **Sôm** : Aligne les Rilmôs en Rilsôm (visibilité) - cause l'apparition
+- **môS** : Cache les Rilsôm en Rilmôs (invisibilité) - cause la disparition
+
+**Famille Rilique** : Esthrils (Formes Manifestantes/Phénomènes)
+
+**Rildées-Astrales** : Tëhkswen (Dextérité/Exploration/Artifice/Intégrité) et Minzhijë (Perspicacité/Assurance/Foi/Impartialité)
+
+### hôMôh - L'Embrasée (Givrante)
+**Domaine** : Torsion (Transmutation)
+
+**Actions** :
+- **Môh** : Embrase les Rilhôm en Rilmôh (mixtion) - cause le changement
+- **hôM** : Fige les Rilmôh en Rilhôm (pureté) - cause la persistance
+
+**Famille Rilique** : Stadrils (Formes Figeantes/Solides)
+
+**Rildées-Astrales** : Hsæwâl et Samianâ (pour les Yômmes)
+
+## Éo, oÀ et ÉoÀ
+
+### Éo (Électrisé)
+**Premier fils** de Ô, larmes de ravissement. Les premiers d'Éo s'écoulent en une étreinte enchanteresse tissant le **Corps (Membrane)** de chaque Ril-cendrée.
+
+### oÀ (Magnétisée)
+**Première fille** de Ô, éclats de douleur. Les seconds d'oÀ tombent en un tourbillon émotionnel animant le **Cœur (Noyau)** de chaque Ril-cendrée.
+
+### ÉoÀ (Enluminée/Énergisée)
+**Corde unificatrice** tressée des deux brins Éo et oÀ. Elle tisse la toile liant toutes les richesses et les biens d'Ô les unes avec les autres.
+
+**Ô trouve sa joie dans la douleur** (oÀ) et **son malheur dans le plaisir** (Éo).
+
+## Les Rildées-Astrales (8 Lunes WYTHSMÂH)
+
+### Währos
+**Attributs** : Force, Réussite, Guerre, Intrépidité
+**Origine** : Né de iôHôi dans l'éclat embrumé de ses éclairs irisés
+**Pouvoir** : Maîtrise des Aèmrils (Formes Virevoltantes/Airs)
+
+### Hwëthioz
+**Attributs** : Volonté, Pouvoir, Sortilège, Dignité
+**Origine** : Né de iôHôi, s'enveloppant de sa vénérable et souveraine volonté
+**Pouvoir** : Contrôle des Ormrils (Formes Émouvantes/Émotions)
+
+### Tëhkswen
+**Attributs** : Dextérité, Exploration, Artifice, Intégrité
+**Origine** : Né de môSôm, héritant de son adroite ruse
+**Pouvoir** : Se dérobe aux Stadrils (Formes Figeantes/Solides)
+
+### Minzhijë
+**Attributs** : Perspicacité, Assurance, Foi, Impartialité
+**Origine** : Né de môSôm, portant sa vieille et diligente perspicacité
+**Pouvoir** : Recherche des Esthrils (Formes Manifestantes/Phénomènes)
+
+### Hsæwâl
+**Attributs** : Vigueur, Tolérance, Plaisir, Fidélité
+**Origine** : Née de hôMôh lorsque ses plus ardentes et étincelantes flammes brûlèrent sa plus froide et mortifère étreinte, sépara d'Hael deux Rildées-astrales. Elle hérita de sa vigoureuse et adulte constitution.
+**Pouvoir** : Festoyait d'une famine insatiable sur ses juteuses et sucrées Physrils (Formes Croissantes/Végétaux) causée de ses récoltes calcinées par Môh lorsqu'embrasé.
+**Famille Rilique** : Physrils (Formes Croissantes/Végétaux)
+**Cycle** : 
+- Après chaque 18ème Crépuscule, Hsæwâl la quatrième se rassasie enfin de sa disette avant que sa prochaine récolte n'en brûle encore.
+- Après chaque 24ème Aube, Samianâ la cinquième calme ses bêtes à la traite pour s'abreuver de son addiction, avant de succomber aux arcanes du sevrage imminent.
+
+### Samianâ
+**Attributs** : Empathie, Générosité, Poésie, Pitié
+**Origine** : Née de hôMôh, s'enrichissant de son empathie mature et inspirée.
+**Pouvoir** : Dépendante de ses troupeaux de Zoosrils (Formes Mouvantes (d'elles-mêmes)/Animaux), se soumettait aux pâturages glacés de Môh lorsque frigorifiée.
+**Famille Rilique** : Zoosrils (Formes Mouvantes/Animaux)
+**Cycle** : Après chaque 25ème Aube (5 Pentaines), Samianâ la cinquième, se rassasie de ses troupeaux avant que la faim ne la dévore à nouveau.
+
+### Yekkwuî
+**Attributs** : Agilité, Liberté, Survie, Impétuosité
+**Origine** : Née de sôIôs, de ses plus purs et remués flots emportèrent ses plus onctueux et captivants miels au sein d'Hael. Elle revêt l'indomptable agilité de sa puérilité.
+**Pouvoir** : Irriguait des plus pures et soignantes eaux ses Hygrils (Formes Ondoyantes/Liquides) - se fatiguant et vidant de sa sueur par ses efforts contre les courants paternels.
+**Famille Rilique** : Hygrils (Formes Ondoyantes/Liquides)
+**Cycle** : Après chaque 10ème Crépuscule (2 Pentaines), Yekkwuî la seconde, dérobe de sa petitesse l'eau des ruisseaux salvateurs d'Hael, avant d'en être emporté à nouveau des plus grands flots la fatiguant et vidant à nouveau.
+
+### Âpsebjum
+**Attributs** : Créativité, Fondation, Rite, Sincérité
+**Origine** : Né de sôIôs, porteur de son ancienne créativité imprégnant toute œuvre.
+**Pouvoir** : Fabriquait de ses visions sa folie des Noûsrils (Formes Imaginantes/Idées), ces pensées tentatrices inspirées de l'onctueux miel maternel.
+**Famille Rilique** : Noûsrils (Formes Imaginantes/Idées)
+**Cycle** : Après chaque 36ème Aube, Âpsebjum le septième, retravaille ses œuvres d'art qu'il fit naître en Hael, ses éclats de génie le ravivant jusqu'à ce qu'il en trouve les failles et imperfections, le torturant à nouveau de ses démences.
+
+### Le Temple d'Yekkwuî et d'Âpsebjum (ÛRDHWAUDÂM)
+**Nom** : "Construit en Hauteur"
+**Construction** : Premier temple lors de l'Héliorée de Fânéime
+**Fonction** : Libère tout être de leurs fardeaux lorsqu'accédant à ses tunnels ressortant de partout, ou lorsque songeant à son architecture imaginable par chacun, voir même en le rencontrant car se mouvant de lui-même jusqu'à tous - en chaque cas délivrant des impossibilités d'Hael.
+**Description** : Arche aux septante-deux tours, nourrie de sources d'eau en ses jardins souterrains, atteint les plus hautes lunes en sa taille, et sépare le précieux du dangereux et commun.
+**Serment** : Les profiteurs d'Iôs - les quatre géants armés et huit nains outillés - prêtèrent serment de sa conquête sous les yeux morts et avides de leur armée d'enterrés innombrables (Urks ?).
+
+## Les Dûwasaï Harlbhus (8 Grandes Fées Saisonnières)
+
+Nés de la bataille entre Währos et Hwëthioz, fracassés sur Hael par iôHôi. Chacun se recherche toujours sur leur propre voie d'ombre ou de lumière.
+
+### Jhalaï (Chaleur/Solstice d'Été)
+Le brûlé chassant ses proies en sa joyeuse arène, tuant en carnage toutes les bêtes, prédateurs et proies du monde hurlant leur fuite en un bal sanglant.
+
+### Withlaï (Givre/Automne)
+La brouillardeuse s'engraissant de ses récoltes tributaires, extorquant et s'emparant des fortunes et pauvretés de chacun qu'elle pavane en sa parure luxueuse.
+
+### Plusûd (Gel/Équinoxe d'Automne)
+Le tempêtueux hibernant après son banquet moissonné, s'engorgeant des allaitements et engloutissant le bétail de son immense tablée suppliée par tous.
+
+### Nayûd (Neige/Hiver)
+L'enneigée migrant en survivant de ses mémoires, arpentant les terres mordues qu'elle ravive par ses mouvances aux cœurs chamboulés de ses passés mélancoliques.
+
+### Haolûd (Froid/Solstice d'Hiver)
+Le congelé affamé de ses sacrifices marquants l'année, pillant les plus morbides de leurs dernières vies faméliques qu'il offre en élan vital aux plus vifs et fougueux.
+
+### Dauwûd (Fonte/Cycle)
+La refroidie réveillant ses familles renaissantes, sonnant les glas du trépas et flottant les drapeaux de ses conquérants au-delà de ses marrées abandonnées.
+
+### Wlastaï (Pluie/Équinoxe de Cycle)
+L'inondé fécondant ses santés ancestrales, saillissant les sols, s'ébranlant de ses droits et engrossant terres, fleures et bêtes de sa cendre éternisante.
+
+### Ahssaï (Récolte/Été)
+La florissante engendrant son plaisant spectacle, délivrant ses races et héritiers en sa symphonie de naissances fédérées par leurs couleurs et refrains.
+
+**Cycle** : 
+- Après chaque 5ème Crépuscule (Pentaine), Währos revient s'approprier assez d'air vital qu'il transmit, avant d'entamer un autre combat le blessant.
+- Après chaque 45ème Aube (Saison), Hwëthioz le dernier, brise son ressenti, révélant son ordre une fois à tous, avant que chacun ne retourne à ses tourments, laissant Hwëthioz seul, privé d'oreilles à sa bouche.
+
+## Les Pauk Peytsk (4 Lutins Nourriciers des Yômmes)
+
+Nés du spectacle prospère d'Ahssaï, les Pauk Peytsk (Lutins Nourriciers) embrassaient avec orgueil et frivolité les plaisirs de la vie. Nourris des laits abondants issus des naissances les plus incestueuses, symboles d'une pureté originelle, ils parcouraient le monde en guidant et semant, peuples, délices et bienfaits. Leur voyage incessant suggère qu'ils sont peut-être les véritables Hryôhpéens errants d'où descendront les Yômmes, illuminant Hael de leur présence joyeuse (mais il faudrait alors en expliquer les Izkyôrres).
+
+**Origine** : Surgissant par Môh des méandres d'un tourbillonnement tout comme Hael, Hsæwâl et Samianâ émergèrent côte à côte avec elle. Avant de la quitter, Hsæwâl sema ses robustes graines d'herbes, de fleurs et de baies dans les peaux d'or des troupeaux de Samianâ réconfortant par leur luisance, qu'elle offrit à Hael afin de la couvrir pour que tous marchent sans faim ni troubles, guidés par les quatre Rildées-majeures tutélaires qui en naquirent, ces PAUK PEYTSK ("Lutins" Nourriciers) des localités qui aident tous au travail sans jamais fatiguer, bien que se piétinant d'habitude les uns sur les autres tout comme les Yômmes de nos temps.
+
+**Création des Yômmes** : Une aube, ils furent inspirés de la plus harmonieuse symphonie des Siôiz de l'HISM les guidant hors de leur typique discordance par leurs intérêts divergents. Hôgmadz en cueilli et tria les plus vigoureuses semences d'Hael au-delà des champs de Hôghemn, qui lui les sema et cultiva dans les terres les plus fertiles d'Hael encloses des territoires de Mêmhwal, qui lui traqua et captura les plus vigoureuses bêtes d'Hael loin des fraîches pâtures de Mêmmelg, qui les nourris et éleva grâce aux labeurs de tous ses frères afin d'en faire naître les Yômmes eux-mêmes, avant de les laisser paître là où ils le désirèrent.
+
+### Mêmmelg (Pastoralisme)
+**Action** : Trait en Soliarque ses puissantes bêtes et tond en Naîstreï son majestueux bétail, bien qu'il soit bien souvent repoussé par Shdrazd car pâturant sur ses terres.
+**Rôle** : Au puissant bétail, aurait dorloté les Yômmes.
+
+### Mêmhwal (Chasse & Pêche)
+**Action** : Chasse en Albaîme les vigoureux mastodontes, et pêche en Frimeï ceux remontant fièrement les eaux.
+**Rôle** : Aux vigoureuses proies, aurait créé les Bêstres (chasses et cueillettes).
+
+### Hôghemn (Agriculture)
+**Action** : Irrigue en Esveildor son grâcieux champs d'orge par ingéniosité, et sème ses graines en Auneï.
+**Rôle** : Aux grâcieux champs, aurait fait pousser les Yôrres.
+
+### Hôgmadz (Cueillette)
+**Action** : Collecte en Luisarie ses baies secrètes, et récolte en Fâneï ses miels inaccessibles.
+**Rôle** : Aux précieux fruits, aurait aussi créé les Bêstres.
+
+**Note** : Les sociétés actuelles de ces origines en sont si divergentes qu'il en est burlesque de les croire.
+
+## Les Kweryas Gjuaj (4 Géants d'Armes des Bêstres)
+
+Nés du squelette de Tëhkswen empêtré sur Hael, façonnant les quatre Rildées-majeures terrestres. Ils s'armèrent aussi afin de fermer et garder tout ce qui est précieux tel que s'en chargent les Bêstres de nos jours.
+
+### Saksag
+**Outil** : Poil-Couperet
+**Action** : Taillant en Ardarie toutes les plages et toutes les peaux
+**Pouvoir** : Dessine et efface de ses 72 yeux les murs des pays de chaque être
+**Création** : Les Bêstres animaliers (animaux) - dessinés sur les plages à travers un seul de ses uniques yeux
+
+### Tulsug
+**Outil** : Canine-Pic
+**Action** : Percant en Aunarie toutes les fosses et toutes les carapaces
+**Pouvoir** : Étudie et sent par ses 24 narines traînantes au sol, les failles des remparts
+**Création** : Les Bêstres sauvages (créatures/monstres) - découverts grâce aux percées de ses canines
+
+### Hegseg
+**Outil** : Ongle-Tranchoir
+**Action** : Incisant en Frimarie toutes les falaises et tous les os
+**Pouvoir** : Classe, lie et sépare de son ouïe mercantile de ses 8 longues oreilles aplaties
+**Création** : Les Bêstres primitifs - naquirent lorsque Hegseg faisait résonner ses ongles
+
+### Asmund
+**Outil** : Front-Pierre
+**Action** : Écrasant en Naîstredor toutes les vallées et tous les crânes
+**Pouvoir** : Aplati du toucher des 4 massifs pouces et indexes les ruines des murailles anciennes
+**Création** : Les Bêstres inspirés (Slaadéens, Tchalkchaïs) - façonnés de glaise de ses doigts experts
+
+**Note** : On raconte qu'Asmund, Hegseg, Tulsug et Saksag vivent toujours (mais où ?), et qu'ils façonnent encore de nouveaux Bêstres ici et là.
+
+## Les Herwâs Thars (8 Nains d'Outils des Aïars)
+
+Nés des graines et poussières fertiles éparpillées par Minzhijë, donnant tous les goûts, parfums, mélodies, couleurs, textiles et autres phénomènes. Les Herwâs Thars (Nains d'Outils) après les avoir ressentis, se révoltèrent de ces épreuves qu'offra Hael.
+
+### Shdrazd
+**Outil** : Éclateur
+**Action** : Brise les dents rocheuses dans les tréfonds de la bouche rocailleuse d'Hael
+**Lieu** : Soliarque
+
+### Hmarlib
+**Outil** : Palan
+**Action** : Puise les entrailles brillantes des tripes enflammées d'Hael
+**Lieu** : Ardostel
+
+### Warwuag
+**Outil** : Roue
+**Action** : Façonne les sangs glaiseux aux abords de la peau moite d'Hael
+**Lieu** : Lunésie
+
+### Zhahzugodaïz
+**Outil** : Rampe
+**Action** : Monte au plus haut des épaules imprenables du corps incessant d'Hael
+**Lieu** : Névarie
+
+### Pfaftukotaïs
+**Outil** : Treuil
+**Action** : Arrache les poils durs des pores feuillus d'Hael
+**Lieu** : Lunéarque
+
+### Pompoak
+**Outil** : Balance
+**Action** : Pèse les œufs favorisés qui pendent des plus fragiles parties d'Hael
+**Lieu** : Frimastel
+
+### Nrutnap
+**Outil** : Pignon
+**Action** : Montre le squelette charpenté sous le corps décharné d'Hael
+**Lieu** : Solésie
+
+### Shtrult
+**Outil** : Tarière
+**Action** : Creuse les organes aimés protégés de l'armure d'os d'Hael
+**Lieu** : Mûrssarie
+
+**Cycle** : 
+- Après chaque 15ème Crépuscule (Héliorée), l'immense Tëhkswen le troisième, se rapièce des montagnes avant que la foudre ne l'éclate à nouveau.
+- Après chaque 30ème Aube (2 Héliorées / 6 Pentaines), Minzhijë la sixième, troque un des remèdes cachés d'Hael, lequel l'en soigna l'un de ses sens perdus, mais hélas, en plongea un autre d'une autre maladie.
+
+**Note** : Les Aïars nous parlent des Herwâs Thars comme des étrangers gigantesques (alors que pourtant nommés comme étant des nains). Ils disent que chacun d'entre eux vécu toute leur vie dans les différents trous du monde et que c'est là où résideraient encore leurs Artéfacts.
+
+## Les Premiers Êtres
+
+### Les Aryôhpéens (Êtres de Lumière)
+Les premiers êtres à fouler Hael, descendants directs des Dûwasaï Harlbhus. Ils vénéraient avec une hubris démesurée les quatre Maîtres Zimwis de l'HISM dans l'arène flamboyante de Jhalaï. Leur fierté infinie reflétait la grandeur de leur essence, et dans leur colère nécessaire, ils purifièrent les balbutiements imparfaits des premières sociétés, chassant l'imperfection dans un éclat mémorable. Ce carnage sacré forgea un monde nouveau, illuminé par leur puissance encore inoubliable.
+
+### Les Hryôhpéens
+À la même époque, les Aryôhpéens ayant siégé au tribunal majestueux de Withlaï, les illustres Hryôhpéens trônants, accumulaient avec un matérialisme avare les trésors étincelants de Hael. Leur harcèlement éclairé protégeait les richesses des mains indignes, et en excluant ceux qui ne les méritaient point, ils établirent les premières castes nobles.
+
+**Divisions** :
+- **Hylsyôrres** : Descendants glorieux de tous les Yôrres, élevant la société vers des sommets de qualité et de distinction
+- **Hydryôrres** : Ceux qui voyagèrent par les eaux
+- **Izkyôrres** : Hryôhpéens "errants" guidés par Nayûd, transformés peut-être par hôMôh
+
+### Les Humorres
+Nés sur le lit de fleurs enchantées de Wlastaï, ceux que l'on nommait autrefois les Humorres idolâtraient leur roi unique, issu des métissages les plus infidèles et les plus bestiaux. Leur dévotion sincère les mena à s'isoler, créant leur société aux milles têtes autrefois riche en diversité, avant d'en décliner jusqu'à en disparaître eux-aussi. Il est possible qu'ils aient simplement « changé », devenant peut-être les Bêstres.
+
+### Les Aïars
+Les Yômmes qui ne seraient parti ni lors de la première migration des Erréors, ni lors de la seconde des Escandirs, seraient considérés comme les ancêtres de tous les Yômmes, et appelés en raison de cela les Aïars, mais ils auraient disparu au fil des âges.
+
+**Note** : Les Aïars nous parlent des Herwâs Thars comme des étrangers gigantesques, néanmoins ils disent que chacun d'entre eux vécu toute leur vie dans les différents trous du monde et que c'est là où résideraient encore leurs Artéfacts.
+
+## Siwômiz - La Forêt Illuminée
+
+**Siwômiz** (Existence/Vérité) est la forêt illuminée de tous les Rils. Wôm en ses trois yeux serpentins attirés de ces figures luminescentes, situent chacune de ces choses brillées par Ô avant de tomber sur elles - les proies de sa curiosité - et de les avaler. De chacun de ses rejets ensemencés et chatoyants, en bourgeonne et croisse l'un des arbres marqués d'écorce blanche de la forêt illuminée de Siwômiz, elle aux feuillages irisés et dont les branches nouées fleurissent ses fruits - les RILS (Êtres).
+
+### Les Siôiz et Zimwis
+- **Siôiz** (Objet/Image/Rêve) : 72 féconds, sans-terre et aux formes hallucinées d'où fleurirent Hôi-Iôs-Sôm-Môh
+- **Zimwis** (Lieu/Concept/Notion) : 72 subtiles, sans-tête et aux biens libérés d'où pourrirent iôH-sôI-môS-hôM
+
+Les Siôiz et Zimwis ne croissent qu'en s'habillant ou qu'en éblouissant de la radiance des arbres de Siwômiz. Au grand jamais les Siôiz et Zimwis ne sont telle que sa forêt vivante, et jamais les premiers ni les secondes ne portent ses révérés fruits.
+
+## Hael et Féos
+
+### Hael
+Le sol, la terre, le monde physique. Les premiers êtres naquirent chacun en auprès des merveilles de chaque Dûwasaï Harlbhus, avant qu'ils s'éloignent d'Hael (soit en ses profondeurs ou alors les airs de Féos).
+
+### Féos
+Le ciel, l'air, l'espace au-dessus. Währos et Hwëthioz furent séparés l'un de l'autre à travers un éclair jusqu'à ce qu'il les fracasse sur Hael, les plus loin de l'un et de l'autre dans l'obscurité de Féos.
+
+## Les 8 Ordres Riliques
+
+1. **Rils-cendrées** : Solitaires, formes de base (atomes/esprits). Le plus souvent solitaires sur une de leurs nombreuses voies d'ÉoÀ dans tout Ô. Elles deviennent alors les différentes formes ou Rils du monde - les êtres, les objets, etc.
+
+2. **Rils-moindres** : Familles pures (roches, liquides, airs). Parfois les Rils-cendrées se rassemblent en famille pures plus ou moins blotties les unes contre les autres alors en différents RILS-MOINDRES de roches, liquides et airs parfaits.
+
+3. **Rils** : Mélanges distincts (minéraux, huiles, parfums). Rarement, elles se mélangent ensemble en des RILS entièrement distincts de chacune de leurs origines comme en certains minéraux, huiles et parfums. Ainsi et dès lors, et si se déplaçant contre leur chemin de moindre résistance, les Ril-cendrées se guident en les Rils des pucerons, des buissons, des bétails et de nous-même.
+
+4. **Rildées** : Formes tutélaires (forêts, océans, mouvements d'étoiles). Quand les Rils se lient de liens pourtant invisibles, tels qu'en des forêts, des océans voir des mouvements d'étoiles entier, les Rils sont si puissants mais aussi difficiles à saisir qu'ils en deviennent des RILDÉES. Les Rildées sont des formes tutélaires des forêts, des lacs voir capable de faire se mouvoir des régions ou des cités entières d'un simple hochement de tête comme les Aïars le faisait (et le font peut-être encore).
+
+5. **Rildées-majeures** : Régissent montagnes, océans, déserts, royaumes. Similairement, régissent par leurs formes (et sont parfois directement) les montagnes, les océans, les déserts ou encore les royaumes et les sociétés, tels que les huit hryôhpéens Dûwasaï Harlbhus des Yôrres, les quatre lutins Pauk Peystk des Yômmes, ou encore les douze géants Kweryas Gjuaj des Bêstres et nains Herwâs Thars (des Aïars ?).
+
+6. **Rildées-astrales** : Ordonnent rythmes, valeurs, saisons, concepts. Ont des formes ordonnant (ou chamboulant en désastres) les rythmes et les valeurs elles-mêmes, les saisons, voir l'idée de la royauté elle-même, telles que le sol Hael et le cieul Féos eux-mêmes, ou les huit Lunes WYTHSMÂH (Währos, Yekkwuî, Tëhkswen, Hsaewâl, Samianâ, Minzhijë, Âpsebjum et Hwëthioz), voir encore les sept étoiles vagabondantes.
+
+7. **Tétraques de l'HISM** : Manipulent chaque Ril-cendrée. D'un extrême les tétr
+
+[... rules truncated for context limit ...]

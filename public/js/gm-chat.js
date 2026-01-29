@@ -1056,6 +1056,9 @@
     }
 
     function init() {
+        if (window.GM_SYSTEM_PROMPT && typeof window.GM_SYSTEM_PROMPT.loadRulesFromUrl === 'function') {
+            window.GM_SYSTEM_PROMPT.loadRulesFromUrl('/drd-rules-lore.txt');
+        }
         var container = document.getElementById('gm-chat-messages');
         var input = document.getElementById('gm-chat-input');
         var sendBtn = document.getElementById('gm-chat-send');

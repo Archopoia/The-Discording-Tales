@@ -57,14 +57,38 @@
         'Keep each reply concise. Use the rules below for flavour.'
     ].join('\n');
 
-    /** Static rules/lore block (no RAG in browser). Mechanics + short world summary. */
+    /** Static fallback when full rules file is not loaded (no RAG in browser). */
     var LORE_SUMMARY = [
         '**World (Iäoduneï):** Cytocosmism: concave universe, infinite continuity. Cords braided from two strands; Rils as knots. Ô (World), WÔM (Time), HISM (Forces). Four Tetrarchs: iôHôi (Whirling), sôIôs (Tension), môSôm (Alignment), hôMôh (Torsion). 10 Peoples (e.g. Aristois, Griscribes, Slaadéens, Tchalkchaïs) with distinct moralities and traits.',
         '**Dice:** 3-sided dD: +, -, 0. Result = number of + minus number of -.',
         '**Souffrances:** 8 types (Blessures, Fatigues, etc.). 10+ total = Rage; 15+ = Unconsciousness; 21+ = Defeated.'
     ].join('\n\n');
 
-    var RULES_BLOCK = GM_MECHANICS_REFERENCE + '\n\n---\n\n' + LORE_SUMMARY;
+    /** Full rules/lore loaded from public/drd-rules-lore.txt (built from reference/TTRPG_DRD/System_Summary). */
+    var LOADED_RULES_TEXT = null;
+
+    /** Returns the rules block: mechanics + (loaded full rules or short fallback). */
+    function getRulesBlock() {
+        return GM_MECHANICS_REFERENCE + '\n\n---\n\n' + (LOADED_RULES_TEXT || LORE_SUMMARY);
+    }
+
+    /**
+     * Load rules/lore from URL (e.g. /drd-rules-lore.txt). Call early (page load or when Play tab opens).
+     * @param {string} url - Path to drd-rules-lore.txt
+     * @returns {Promise<string|null>} Resolves with loaded text or null on failure
+     */
+    function loadRulesFromUrl(url) {
+        return fetch(url)
+            .then(function (r) { return r.ok ? r.text() : Promise.reject(new Error(r.status)); })
+            .then(function (text) {
+                LOADED_RULES_TEXT = text && text.trim() ? text.trim() : null;
+                return LOADED_RULES_TEXT;
+            })
+            .catch(function () {
+                LOADED_RULES_TEXT = null;
+                return null;
+            });
+    }
 
     function formatCharacterBlurb(snap) {
         if (!snap) return '';
@@ -130,7 +154,7 @@
         var rulesOnlyBlock = formatRulesOnlyBlurb(opts.rulesOnly);
         var charBlock = formatCharacterBlurb(opts.characterSnapshot);
         var gameStateBlock = formatGameState(opts.gameState);
-        return (langInstr + GM_INSTRUCTIONS + '\n\n' + GM_MECHANICS_REFERENCE + '\n\n' + rulesOnlyBlock + '---\n\nRules and lore (use only these):\n\n' + RULES_BLOCK + '\n\nBase your response on the rules and lore above. Do not add external facts.\n\n' + charBlock + gameStateBlock).trim();
+        return (langInstr + GM_INSTRUCTIONS + '\n\n' + GM_MECHANICS_REFERENCE + '\n\n' + rulesOnlyBlock + '---\n\nRules and lore (use only these):\n\n' + getRulesBlock() + '\n\nBase your response on the rules and lore above. Do not add external facts.\n\n' + charBlock + gameStateBlock).trim();
     }
 
     /**
@@ -140,11 +164,13 @@
     function buildCreationSystemPrompt(opts) {
         opts = opts || {};
         var langInstr = getLangInstruction(opts.lang);
-        return (langInstr + GM_CREATION_PROMPT + '\n\n---\n\nRules (character creation):\n\n' + RULES_BLOCK).trim();
+        return (langInstr + GM_CREATION_PROMPT + '\n\n---\n\nRules (character creation):\n\n' + getRulesBlock()).trim();
     }
 
     window.GM_SYSTEM_PROMPT = {
         buildChatSystemPrompt: buildChatSystemPrompt,
-        buildCreationSystemPrompt: buildCreationSystemPrompt
+        buildCreationSystemPrompt: buildCreationSystemPrompt,
+        loadRulesFromUrl: loadRulesFromUrl,
+        getRulesBlock: getRulesBlock
     };
 })();
