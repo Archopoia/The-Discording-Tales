@@ -12,6 +12,15 @@ import type { Competence } from '@/game/character/data/CompetenceData';
 import type { CompetenceRollParams } from './CompetenceRoll';
 import type { CharacterSheetLang } from '@/lib/characterSheetI18n';
 
+/** Get the souffrance linked to the competence's aptitude (first attribute). Used for applying DS on failure. */
+export function getSouffranceForCompetence(comp: Competence): Souffrance | null {
+  const action = getCompetenceAction(comp);
+  const aptitude = getActionAptitude(action);
+  const [atb1] = getAptitudeAttributes(aptitude);
+  const souf = (Object.values(Souffrance) as Souffrance[]).find((s) => getSouffranceAttribute(s) === atb1);
+  return souf ?? null;
+}
+
 export function getRollParams(
   manager: CharacterSheetManager,
   comp: Competence,

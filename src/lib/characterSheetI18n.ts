@@ -89,6 +89,8 @@ const UI = {
     youSuffer: (ds: number, name: string) => `Vous subissez ${ds} DS ${name}.`,
     dsAccumulate: "Les DS s'accumulent ici ; à 10+ Rage, 15+ Évanouissement.",
     resistanceFail: (name: string) => `${name} échec → +1 Marque résistance.`,
+    resistanceAbsorb: (name: string, n: number) => `${name} absorbe ${n} DS.`,
+    resistanceMarksGained: (name: string, n: number) => `${name} : +${n} marques.`,
     resistanceMarks: "La compétence de Résistance gagne des marques à l'échec.",
     eprouveResistance: (name: string) => `Éprouvé : ${name} +1 degré de résistance.`,
     // Challenges (for sim)
@@ -145,6 +147,8 @@ const UI = {
     youSuffer: (ds: number, name: string) => `You suffer ${ds} DS ${name}.`,
     dsAccumulate: 'DS accumulate here; at 10+ Rage, 15+ Unconsciousness.',
     resistanceFail: (name: string) => `${name} failure → +1 Resistance mark.`,
+    resistanceAbsorb: (name: string, n: number) => `${name} absorbs ${n} DS.`,
+    resistanceMarksGained: (name: string, n: number) => `${name}: +${n} marks.`,
     resistanceMarks: 'Resistance skill gains marks on failure.',
     eprouveResistance: (name: string) => `Tested: ${name} +1 resistance degree.`,
     challengeClimb: 'Climb the wall',

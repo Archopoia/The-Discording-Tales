@@ -8,7 +8,7 @@ import { Aptitude, getAptitudeAttributes } from '@/game/character/data/AptitudeD
 import { Action, getActionAptitude, getActionLinkedAttribute } from '@/game/character/data/ActionData';
 import { Competence, getCompetenceAction, COMPETENCE_NAMES, resolveCompetenceFromLabel } from '@/game/character/data/CompetenceData';
 import { Souffrance, getSouffranceAttribute } from '@/game/character/data/SouffranceData';
-import { getRollParams } from '@/game/dice/rollParams';
+import { getRollParams, getSouffranceForCompetence } from '@/game/dice/rollParams';
 import { rollCompetenceCheck } from '@/game/dice/CompetenceRoll';
 import { loadCachedCharacter } from '@/lib/simulationStorage';
 import { getCharacterSheetLang } from '@/lib/characterSheetI18n';
@@ -230,22 +230,30 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
         if (masteryPoints > 0) feedbackLines.push(tParam('masteryPoints', lang, masteryPoints, compName));
       }
 
-      // Souffrance: 2 DS BLESSURES + resistance check (mirrors SimulationEventLog)
-      const souf = Souffrance.BLESSURES;
-      const ds = 2;
-      manager.addSouffranceDegree(souf, ds);
-      updateState();
-      feedbackLines.push(tParam('youSuffer', lang, ds, getSouffranceName(souf, lang)));
-      const resistFail = Math.random() < 0.5;
-      if (resistFail) {
-        manager.addSouffranceMark(souf);
+      // Souffrance: only on failure. DS = failure amount (niv − result). Souffrance tied to aptitude (e.g. Puissance → Blessures, Domination → Rancoeurs).
+      // Resistance absorbs DS equal to its level; actual DS applied; resistance gains 1 mark per actual DS.
+      const isFailure = !rollResult.success && !rollResult.criticalSuccess;
+      if (isFailure) {
+        const failureAmount = Math.max(0, opts.niv - rollResult.result);
+        const souf = getSouffranceForCompetence(comp) ?? Souffrance.BLESSURES;
+        const resistanceLevel = manager.getResistanceLevel(souf);
+        const absorbed = Math.min(failureAmount, resistanceLevel);
+        const actualDS = failureAmount - absorbed;
+        manager.addSouffranceDegree(souf, actualDS);
+        for (let i = 0; i < actualDS; i++) manager.addSouffranceMark(souf);
         updateState();
-        feedbackLines.push(tParam('resistanceFail', lang, getResistanceCompetenceName(souf, lang)));
-      }
-      if (manager.isSouffranceEprouvee(souf)) {
-        manager.realizeSouffrance(souf);
-        updateState();
-        feedbackLines.push(tParam('eprouveResistance', lang, getResistanceCompetenceName(souf, lang)));
+        feedbackLines.push(tParam('youSuffer', lang, actualDS, getSouffranceName(souf, lang)));
+        if (absorbed > 0) {
+          feedbackLines.push(tParam('resistanceAbsorb', lang, getResistanceCompetenceName(souf, lang), absorbed));
+        }
+        if (actualDS > 0) {
+          feedbackLines.push(tParam('resistanceMarksGained', lang, getResistanceCompetenceName(souf, lang), actualDS));
+        }
+        if (manager.isSouffranceEprouvee(souf)) {
+          manager.realizeSouffrance(souf);
+          updateState();
+          feedbackLines.push(tParam('eprouveResistance', lang, getResistanceCompetenceName(souf, lang)));
+        }
       }
 
       saveCachedCharacter(manager.getState());
