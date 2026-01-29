@@ -1,4 +1,8 @@
-# Stratégie de Partage - Des Récits Discordants
+# Stratégie de Partage – Des Récits Discordants
+
+*Sources : sections méta/présentation du livre si présentes ; aligné avec les résumés 01–14 et LORE. Aucune règle de jeu modifiée sauf si issue du livre.*
+
+---
 
 ## Constraintes Acceptées
 

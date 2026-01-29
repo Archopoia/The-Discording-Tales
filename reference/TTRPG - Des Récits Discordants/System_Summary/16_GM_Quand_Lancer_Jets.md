@@ -1,6 +1,8 @@
 # Quand lancer quels jets — Guide MJ
 
-Ce document indique **quand** demander quel jet (ou appliquer une règle sans jet) pour chaque type de situation. Utilisez toujours le format exact : Roll [Compétence] vs Niv +X. Réf. : 01_Systeme_General, 03_Attributs_Aptitudes_Competences, 05_Souffrances_Guérison, 06_Combat, 08_Temps_Labeurs, 09_Groupe_Ambiance, 10_Voyages.
+*Sources : 01_Systeme_General, 03_Attributs_Aptitudes_Competences, 05_Souffrances_Guérison, 06_Combat, 08_Temps_Labeurs, 09_Groupe_Ambiance, 10_Voyages et sections MJ du livre.*
+
+Ce document indique **quand** demander quel jet (ou appliquer une règle sans jet) pour chaque type de situation. Utilisez toujours le format exact : **Roll [Compétence] vs Niv +X**. La Compétence doit être l’une des 72 (ex. [Grimpe], [Négociation]) ; jamais un Attribut ou une Aptitude seule dans les crochets.
 
 ## Action à issue incertaine
 

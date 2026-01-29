@@ -1,4 +1,10 @@
-# Monde - Iäoduneï
+# Monde – Iäoduneï
+
+*Sources : Livre p. 9–10, 23, 140–144 ; cohérent avec 12_Peuples_Races et LORE.*
+
+**Orthographe livre** : **Iäoduneï** (Pays d’Iäoduneï, région aux dunes enneigées, eaux brûlantes, montagnes centrales). Parfois « Iâodunaï » en variante.
+
+---
 
 ## Région de Jeu
 
@@ -34,7 +40,8 @@
 - **Chasseurs-cueilleurs** (Slaadéens) vs **Pastoralisme** (Aristois) vs **Agriculture** (Ylfes des lacs)
 
 ### Culturels
-- **Nomades** vs **Sédentaires/Semi-sédentaires**
+- **Nomades** vs **Sédentaires / Semi-sédentaires** (ex. Slaadéens : majorité nomade en opposition à semi-sédentaire ; Méridiens, Aristois, Navillis plutôt nomades ; Ylfes des lacs semi-sédentaires) (Livre p. 141).
+- **Techno-traditionalisme** : les Motivations opposent l’ordre des **Gens** (société, coutumes) et des **Choses** (nature, technologie) ; le setting mêle traditions et techniques (Livre p. 9–10, 129).
 
 ### Religieux
 - **Heptahalie** vs **Oratoire Kaïaste** vs **Nomê Aristois** vs **Hahalumullio Ylfe**

@@ -150,3 +150,24 @@
 - Modifie négativement tous les jets
 - Affecte les effets Riliques
 
+---
+
+## Titres, Pouvoir et Charismes (Livre p. 136)
+
+- **Titre (honorifique)** : dérive du **Niv de Gouvernance (NdG)** et des **Dés d’Influence** liés à la Caste que le personnage valorise le plus. Acquit auprès d’une Entité (personne, guilde, état…) pour récolter ressources, acquérir services ou accéder à des opportunités.
+- **Distinction** : somme de tous les Niv d’Attribut du personnage ; similaire aux « niveaux » des JdR – capacité à percevoir et exploiter la matrice narrative. Le **NdG du Titre** se tire avec un jet de Distinction (10 dD + somme des Niv d’Attribut + Niv Caste - Niv Caste du Peuple ; garder 10 plus hauts ou plus bas Dés selon le signe). Si NdG dépasse le Niv de Caste du Peuple, le reste s’ajoute au jet de Charisme (Titre « trop bon » ou exécrable).
+- **Influence** : +1 Dé d’Influence = réputation « Accueillante » (+10 points ou Marques ; Charisme mesuré comme Qualité). Se gagne en jeu comme les Marques (en réussissant des quêtes). Permet d’accéder à services, droits, opportunités.
+- **Pouvoir** : nombre de **Dés totaux** à jeter lors d’un **jet de Charisme** lié à ce Titre. = Dés du Titre de plus haut NdG + Dés de chaque Titre de NdG inférieur (limité à -1 nDés par Niv inférieur : NdG +3 → jusqu’à +15 D [5 nDés], NdG +2 → +10 D [4 nDés], NdG +1 → +3 D [2 nDés]).
+- **Niv & Dés d’Influence** : jet de **5 dD + Niv restants** (au-delà du NdG de Caste du Peuple). **Contacts** : par +/- 1 Dés d’Influence, 1 Relation (Allié ou Ennemi) à étoffer (nom, localité, récit). Résultat négatif au jet de NdG = **infamie** (Titre à réputation négative).
+- **Lien avec Niv Distinction** : la Distinction (somme des Niv d’Attribut) sert au tirage du NdG des Titres et reflète la « puissance » narrative du personnage ; voir 04_Experience_Progression (Découvertes d’Attribut, Réalisations).
+
+*Référence : Livre p. 136 ; 12_Peuples_Races (Castes, Peuples).*
+
+---
+
+## Dispositions entre Peuples (CSV : Tableau_des_Dispositions)
+
+*Référence : CSV Tableau_des_Dispositions.*
+
+La **Disposition** d’un Peuple envers un autre est donnée dans le tableau (Ami +3, Confiant +2, Accueil +1, Neutre, Méfiant -1, Hostile -2, Ennemi -3, Rival -4, Allié +4, Harmonie +5). Ex. Aristois envers Griscribes : Confiant +2 ; Navillis envers Griscribes : Allié +4 ; Iqqars envers Hauts Ylfes : Harmonie +5 ; Ylfes des lacs envers Tchalkchaïs : Rival -4.
+

@@ -1297,6 +1297,12 @@ img {
     max-width: none;
     width: 100%;
 }
+/* Messages fill all space between toolbar and input – no empty gap below buttons */
+.play-flip-face-front .gm-chat-messages {
+    max-height: none;
+    flex: 1;
+    min-height: 0;
+}
 .play-flip-face-back {
     transform: rotateY(180deg);
 }
