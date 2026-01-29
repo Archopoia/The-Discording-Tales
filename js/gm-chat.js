@@ -1168,6 +1168,15 @@
             renderMessages(container);
             creationMode = false;
             updateInputVisibility();
+            /* Flip Play tab back to chat side */
+            var fc = document.getElementById('play-flip-container');
+            var fChat = document.getElementById('play-flip-chat');
+            var fSheet = document.getElementById('play-flip-sheet');
+            if (fc && fChat && fSheet) {
+                fc.classList.remove('flipped');
+                fChat.classList.add('active');
+                fSheet.classList.remove('active');
+            }
         });
 
         window.addEventListener('drd-roll-result', function (ev) {
