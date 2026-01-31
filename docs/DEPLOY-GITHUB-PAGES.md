@@ -21,7 +21,8 @@ The workflow (`.github/workflows/deploy-pages.yml`) uses GitHub’s **official**
 1. **Use “GitHub Actions” as the source**  
    In the repo: **Settings → Pages**:
    - Under **Build and deployment**, set **Source** to **“GitHub Actions”** (not “Deploy from a branch”).
-   - Save.
+   - You may see suggested workflows (**GitHub Pages Jekyll**, **Static HTML**, etc.). **Do not choose those.** Your repo already has a custom workflow (`.github/workflows/deploy-pages.yml`). Leave them and do not create a new workflow.
+   - Save if needed.
 
 2. **Push the workflow**  
    Commit and push `.github/workflows/deploy-pages.yml` to `main`.
