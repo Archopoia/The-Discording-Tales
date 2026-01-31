@@ -37,11 +37,13 @@ To use **Ollama** for GM completions, set `LLM_PROVIDER=ollama`, `LLM_MODEL=deep
 
 If Ollama is not installed or not running, you’ll get a connection error; start Ollama or set `LLM_PROVIDER=openai` and ensure `OPENAI_API_KEY` is set to fall back to OpenAI.
 
+**Local models and hallucination:** Local models (Ollama, vLLM) often invent rules or lore instead of sticking to the retrieved rulebook. To reduce this: (1) set **`LLM_TEMPERATURE=0.2`** (or `0.1`) in `.env` — lower temperature makes the model stick closer to the provided context; (2) the backend now uses a stronger instruction ("if the rules do not contain the answer, say so; do not invent"). If you still see invented mechanics, try a larger local model (e.g. `deepseek-r1:32b`) or slightly increase `RAG_TOP_K` so more rulebook chunks are injected.
+
 ## RAG source
 
 - The index is built from **System_Summary**, **AllBookPages-FullBook**, and **AllBookTables-csv** under `reference/TTRPG_DRD` (or any `reference/` subdir whose name contains `TTRPG`, e.g. `TTRPG - Des Récits Discordants`). You can rename the folder to `TTRPG_DRD` for simpler paths.
 - **Rebuild index** after adding or changing any `.md` or `.csv` in those dirs: (1) delete the `backend/faiss_drd` folder, or (2) set `RAG_FORCE_REBUILD=1` (or `true`/`yes`) in `.env` and restart the backend — the index is rebuilt on the next `/chat` (one-time per process when using `RAG_FORCE_REBUILD`). You can also prebuild from project root: `python backend/build_rag_index.py` (requires `OPENAI_API_KEY` in `backend/.env`).
-- Optional: set `FAISS_PATH` (default `./faiss_drd`), `RAG_TOP_K` (default 8), `RAG_FORCE_REBUILD`, and `RAG_SOURCE_DIR` in `.env`. `RAG_SOURCE_DIR` is a **root** path that must contain the three subdirs `System_Summary`, `AllBookPages-FullBook`, and `AllBookTables-csv`; if unset, defaults are used.
+- Optional: set `FAISS_PATH` (default `./faiss_drd`), `RAG_TOP_K` (default 12), `RAG_FORCE_REBUILD`, and `RAG_SOURCE_DIR` in `.env`. `RAG_SOURCE_DIR` is a **root** path that must contain the three subdirs `System_Summary`, `AllBookPages-FullBook`, and `AllBookTables-csv`; if unset, defaults are used.
 
 ## Run
 

@@ -39,7 +39,12 @@ _raw = os.getenv("CORS_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173,ht
 CORS_ORIGINS = [o.strip() for o in _raw.split(",") if o.strip()]
 # Use * for local dev when no credentials (Play chat doesn't send cookies)
 CORS_USE_WILDCARD = os.getenv("CORS_WILDCARD", "true").lower() in ("1", "true", "yes")
-RAG_TOP_K = int(os.getenv("RAG_TOP_K", "8"))
+RAG_TOP_K = int(os.getenv("RAG_TOP_K", "12"))
+# Lower temperature = less hallucination when grounding on rulebook (especially for local models)
+_t = os.getenv("LLM_TEMPERATURE", "").strip()
+LLM_TEMPERATURE = float(_t) if _t else 0.3
+_tp = os.getenv("LLM_TOP_P", "").strip()
+LLM_TOP_P = float(_tp) if _tp else None
 
 app = FastAPI(title="DRD GM API", version="0.1.0")
 
@@ -404,7 +409,10 @@ def chat(req: ChatRequest):
         for m in messages:
             openai_messages.append({"role": m.role, "content": m.content})
 
-        r = chat_completion(client, model, openai_messages, max_tokens=1024, stream=False)
+        r = chat_completion(
+            client, model, openai_messages, max_tokens=1024, stream=False,
+            temperature=LLM_TEMPERATURE, top_p=LLM_TOP_P,
+        )
         reply = (r.choices[0].message.content or "").strip()
         _log_gm_response(reply, last_user)
     except ValueError as e:
@@ -421,7 +429,10 @@ def _chat_system_prompt(req: ChatRequest, rules_block: str) -> str:
     char_block = _format_character_blurb(req.characterSnapshot)
     game_state_block = _format_game_state(req.gameState)
     rules_only_block = _format_rules_only_blurb(req.rules_only)
-    rag_instruction = "Base your response solely on the retrieved rules and lore above. Do not add external facts or opinions.\n\n"
+    rag_instruction = (
+        "Base your response solely on the retrieved rules and lore above. Do not add external facts or opinions. "
+        "If the rules and lore above do not contain the answer, say that you do not have that information and do not invent mechanics or lore.\n\n"
+    )
     lang_instruction = ""
     if req.lang and req.lang.lower() == "en":
         lang_instruction = "**Language**: You MUST respond in English. All narrative, descriptions, and dialogue must be in English. Keep competence names in brackets in French (e.g. Roll [Grimpe]) as required by the UI.\n\n"
@@ -466,7 +477,10 @@ def _stream_chat_sse(req: ChatRequest):
         for m in req.messages:
             openai_messages.append({"role": m.role, "content": m.content})
 
-        stream = chat_completion(client, model, openai_messages, max_tokens=1024, stream=True)
+        stream = chat_completion(
+            client, model, openai_messages, max_tokens=1024, stream=True,
+            temperature=LLM_TEMPERATURE, top_p=LLM_TOP_P,
+        )
         full_text: list[str] = []
         for chunk in stream:
             if not chunk.choices:

@@ -61,14 +61,22 @@ def chat_completion(
     messages: list[dict[str, str]],
     max_tokens: int = 1024,
     stream: bool = False,
+    temperature: float | None = None,
+    top_p: float | None = None,
 ) -> Any:
     """
     Call chat completions. Returns either the full response (stream=False)
     or the stream iterator (stream=True).
+    Use temperature=0.2–0.4 for RAG/rulebook grounding to reduce hallucination.
     """
-    return client.chat.completions.create(
-        model=model,
-        messages=messages,
-        max_tokens=max_tokens,
-        stream=stream,
-    )
+    kwargs = {
+        "model": model,
+        "messages": messages,
+        "max_tokens": max_tokens,
+        "stream": stream,
+    }
+    if temperature is not None:
+        kwargs["temperature"] = temperature
+    if top_p is not None:
+        kwargs["top_p"] = top_p
+    return client.chat.completions.create(**kwargs)
