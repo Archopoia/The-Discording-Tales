@@ -492,6 +492,18 @@ img {
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
 }
 
+.site-tagline {
+    max-width: 75ch;
+    margin: 0 auto var(--spacing-xs);
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.site-tagline-muted {
+    font-size: 1rem;
+    color: var(--tdt-beige-warm);
+}
+
 .site-title {
     font-size: 2.5rem;
     margin-bottom: var(--spacing-xs);
@@ -502,9 +514,9 @@ img {
     text-decoration: none;
 }
 
-.site-description {
+.site-genre {
     font-size: 1.1rem;
-    color: var(--tdt-cream);
+    color: var(--tdt-beige-warm);
     font-style: italic;
     max-width: 75ch;
     margin: 0 auto;
