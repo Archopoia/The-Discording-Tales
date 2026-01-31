@@ -1414,7 +1414,7 @@
             'How do you gain experience in The Discording Tales?'
         ];
         var ASK_WORLD_PROMPTS_FR = [
-            'Quelles sont les 10 races des Récits Discordants ?',
+            'Quelles sont les 10 peuples des Récits Discordants ?',
             'Comment gagne-t-on de l\'expérience dans Les Récits Discordants ?'
         ];
 
