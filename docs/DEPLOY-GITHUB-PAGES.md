@@ -9,37 +9,39 @@
 
 So tabs that depend on those scripts fail on the live site.
 
-## Fix: Deploy a built site to the `gh-pages` branch
+## Fix: Deploy with GitHub Actions (no branch push)
 
-A GitHub Actions workflow (`.github/workflows/deploy-pages.yml`) does the following on every push to `main`:
+The workflow (`.github/workflows/deploy-pages.yml`) uses GitHub’s **official** Pages deployment:
 
-1. Runs `npm run build` (creates `dist/character-sheet.js` and `dist/play-webllm.js`).
-2. Assembles a site folder with: `index.html`, `css/`, `assets/`, `dist/`, and `js/` (copy of `public/js/`).
-3. Pushes that folder to the `gh-pages` branch.
+1. **build** job: runs `npm run build`, assembles a `site/` folder with `index.html`, `css/`, `assets/`, `dist/`, and `js/` (from `public/js/`), then uploads it as an artifact.
+2. **deploy** job: deploys that artifact to GitHub Pages. There is **no `gh-pages` branch** and no push to the repo, so you avoid permission errors.
 
-## Steps for you
+## One-time setup
 
-1. **Push the workflow**  
-   Commit and push the new `.github/workflows/deploy-pages.yml` (and this doc if you want) to `main`.
-
-2. **Run the workflow**  
-   After the push, the workflow runs automatically. Check **Actions** in your repo to see the run and that it succeeds. The first run will create the `gh-pages` branch.
-
-3. **Point GitHub Pages at `gh-pages`**  
+1. **Use “GitHub Actions” as the source**  
    In the repo: **Settings → Pages**:
-   - **Build and deployment → Source**: “Deploy from a branch”.
-   - **Branch**: choose `gh-pages` (not `main`).
-   - **Folder**: `/ (root)`.
+   - Under **Build and deployment**, set **Source** to **“GitHub Actions”** (not “Deploy from a branch”).
    - Save.
 
-After that, the live site is built from the `gh-pages` branch and will have `js/` and `dist/` at the root, so the tabs and scripts will load correctly.
+2. **Push the workflow**  
+   Commit and push `.github/workflows/deploy-pages.yml` to `main`.
+
+3. **Run the workflow**  
+   On the next push to `main` the workflow runs automatically. You can also run it manually: **Actions** tab → “Deploy to GitHub Pages” → “Run workflow”.
+
+After the deploy job succeeds, the site will be live with `js/` and `dist/` at the root, and the tabs will work.
+
+## If you see “Permission denied” or 403
+
+The workflow no longer pushes to a branch; it uses `actions/upload-pages-artifact` and `actions/deploy-pages`. If you still get errors:
+
+- Ensure **Settings → Pages → Source** is **“GitHub Actions”**.
+- Ensure the **deploy** job has the `github-pages` environment (the workflow sets `environment: name: github-pages`). If your repo doesn’t have that environment yet, it is created when you first run the workflow.
 
 ## Manual deploy (optional)
 
-If you ever want to build and deploy from your machine instead of Actions:
+If you want to build and deploy from your machine:
 
 1. Run `npm run build`.
 2. Create a folder with: `index.html`, `css/`, `assets/`, `dist/`, and copy `public/js` as `js/`.
-3. Push that folder’s contents to the `gh-pages` branch (e.g. with `gh-pages` npm package or by copying into a clone of `gh-pages` and pushing).
-
-The workflow automates this so you don’t have to do it by hand.
+3. Use the `gh-pages` npm package or another method to push that folder to a branch and point Pages at it. The automated workflow is usually easier.
