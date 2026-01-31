@@ -94,6 +94,42 @@
         'Le récit s\'agite…'
     ];
 
+    /** DRD-themed phrases for model loading; always shown with "… X%". */
+    const LOADING_PHRASES_EN = [
+        "The Éveilleur weighs the threads…",
+        "The Rils align…",
+        "The cords braid…",
+        "The tale stirs awake…",
+        "Consulting the Rils…",
+        "Under our steps, the mysteries…",
+        "The Discordant Dice stir…",
+        "The Rilie whispers…",
+        "WÔM counts the moments…",
+        "The tetrarchs dance…",
+        "Ô gathers the forms…",
+        "The Clins advance…",
+        "Souffrances and Rage await…",
+        "The braided cord tightens…",
+        "HISM moves at a distance…"
+    ];
+    const LOADING_PHRASES_FR = [
+        "L'Éveilleur pèse les fils…",
+        "Les Rils s'alignent…",
+        "Les cordes se tressent…",
+        "Le récit s'éveille…",
+        "Consultation des Rils…",
+        "Sous nos pas, les mystères…",
+        "Les dés discordants s'agitent…",
+        "La Rilie murmure…",
+        "WÔM compte les instants…",
+        "Les tétrarques dansent…",
+        "Ô rassemble les formes…",
+        "Les Clins s'égrènent…",
+        "Souffrances et Rage attendent…",
+        "La corde tressée se tend…",
+        "HISM agit à distance…"
+    ];
+
     let messages = [];
     /** Last roll requested by GM: { competence: string, niv: number } or null. Cleared when user sends a message. */
     let pendingRoll = null;
@@ -986,7 +1022,10 @@
         if (typeof window.getWebLLMEngine === 'function' && window.GM_SYSTEM_PROMPT) {
             var progressListener = function (ev) {
                 var p = (ev.detail && ev.detail.progress != null) ? Math.round(ev.detail.progress * 100) : 0;
-                renderMessages(container, (getLang() === 'fr' ? 'Chargement du modèle… ' : 'Loading GM model… ') + p + '%');
+                var phrases = getLang() === 'fr' ? LOADING_PHRASES_FR : LOADING_PHRASES_EN;
+                var idx = Math.min(Math.floor((p / 100) * phrases.length), phrases.length - 1);
+                var phrase = phrases[Math.max(0, idx)];
+                renderMessages(container, phrase + ' ' + p + '%');
             };
             var skipDoneSending = false;
             window.addEventListener('webllm-progress', progressListener);
@@ -1057,7 +1096,7 @@
 
     function init() {
         if (window.GM_SYSTEM_PROMPT && typeof window.GM_SYSTEM_PROMPT.loadRulesFromUrl === 'function') {
-            window.GM_SYSTEM_PROMPT.loadRulesFromUrl('/drd-rules-lore.txt');
+            window.GM_SYSTEM_PROMPT.loadRulesFromUrl('drd-rules-lore.txt');
         }
         var container = document.getElementById('gm-chat-messages');
         var input = document.getElementById('gm-chat-input');
@@ -1369,15 +1408,25 @@
             });
         }
 
+        /** Placeholder prompts when clicking "Ask about the world or rules"; one is picked at random each time. */
+        var ASK_WORLD_PROMPTS_EN = [
+            'What are the 10 races of The Discording Tales?',
+            'How do you gain experience in The Discording Tales?'
+        ];
+        var ASK_WORLD_PROMPTS_FR = [
+            'Quelles sont les 10 races des Récits Discordants ?',
+            'Comment gagne-t-on de l\'expérience dans Les Récits Discordants ?'
+        ];
+
         var askWorldBtn = document.getElementById('gm-chat-ask-world');
         if (askWorldBtn) {
             askWorldBtn.addEventListener('click', function () {
                 askWorldInputRevealed = true;
                 var input = document.getElementById('gm-chat-input');
                 if (input) {
-                    input.value = getLang() === 'fr'
-                        ? 'Parle-moi du monde et des règles des Récits Discordants.'
-                        : 'Tell me about the world and the rules of The Discording Tales.';
+                    var prompts = getLang() === 'fr' ? ASK_WORLD_PROMPTS_FR : ASK_WORLD_PROMPTS_EN;
+                    var idx = Math.floor(Math.random() * prompts.length);
+                    input.value = prompts[idx];
                     input.disabled = false;
                     input.focus();
                 }
