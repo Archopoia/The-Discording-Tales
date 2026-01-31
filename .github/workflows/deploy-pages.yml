@@ -1,0 +1,55 @@
+# Build the site and deploy to GitHub Pages (gh-pages branch).
+# After this runs, set GitHub Pages to deploy from branch "gh-pages", folder "/ (root)".
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (Vite + play-webllm)
+        run: npm run build
+
+      - name: Assemble site for Pages
+        run: |
+          mkdir -p site
+          cp index.html site/
+          cp -r css site/
+          cp -r assets site/
+          cp -r dist site/
+          cp -r public/js site/
+          # public/drd-rules-lore.txt if ever needed by the app
+          [ -f public/drd-rules-lore.txt ] && cp public/drd-rules-lore.txt site/ || true
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          force_orphan: true

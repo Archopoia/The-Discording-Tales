@@ -1255,28 +1255,7 @@ Ce document indique **quand** demander quel jet (ou appliquer une règle sans je
 ## Voyage — Traverser un milieu avec Conditions
 
 - **Quand** : Traverser un milieu hostile (Conditions : froid, chaleur, obscurité, etc.). Voir milieux p.177 du livre.
-- **Règle** : Les Niv d'Outil "absorbent" les Niv de Condition. S'il reste des Niv de Conditions non absorbés : jet avec Dés d'Outil ET d'Habituation vs Épreuve = Niv de Temps voyagé + Niv de Conditions. Résistance aux DS passive (Niv) — pas de jet de résistance.
-- **Réf.** : Livre p.102 ; 10_Voyages.
-
-## Rencontres (voyage)
-
-- **Quand** : Déterminer une rencontre pendant le voyage.
-- **Règle** : Fréquence selon temps de voyage et terrain ; l'Éveilleur peut utiliser une table ou un jet selon le contexte. Adapter au lieu et au récit.
-- **Réf.** : 10_Voyages, 14_Monde_Iaodunei.
-
-## Groupe — Cohésion (Jet d'Ambiance)
-
-- **Quand** : Situations significatives pour la cohésion du groupe (séparations, conflits internes, succès/échecs collectifs).
-- **Jet** : Roll [Ambiance] vs Niv +X. Mécanique : 5dD (dés discordants), résultat = somme des 5, succès si somme ≥ Niv. Toujours inclure la ligne parseable pour le bouton Roll.
-- **Réf.** : 09_Groupe_Ambiance.
-
-## Groupe — Action collective (Jet de Groupe)
-
-- **Quand** : Action collective ; chaque membre fait un jet, modifié par l'Ambiance du groupe ; résultats moyennés.
-- **Jet** : Chaque joueur : Roll [Compétence] vs Niv +X ; modifier par le pool d'Ambiance ; succès si moyenne ≥ Niv.
-- **Réf.** : 09.
-
-## Groupe — Un seul 
+- **Règle** : Les Niv d'Outil "absorbent" les Niv de Condition. S'il reste des Niv de Conditions non absorbés : jet avec Dés d'Outil ET d'Habituation vs Épreuve = 
 [... truncated ...]
 
 ---
@@ -2599,28 +2578,6 @@ Au sein du récit des ères, résonne le murmure du passé où la rigueur glacia
 - Iäoduneï , la brûlée de méandres de sources thermales turquoisées perçants les dunes neiges soufflées du tranchant blizzard y abreuvant leurs brousses écar- lates, s’engouffre dans Dümavel érigeant ses hauts plateaux, montagnes et rivières fleuris toujours balayés par les tous les vents.
 - Les collines bleuies d’ Agvalsis survivant à ses steppes carnées se mêlent aux forêts - jungles froides, humides, givrées mais surtout luxu- riantes de la mer tourmentée d’ Hatrohaj .
 - Les glaciales baies de Dalvvar’Aad creusées et perforées de leurs vents mordants, les marécages et mangroves blanches embrumés et noyés de Mevyriil et les côtes luisantes aux agressives falaises escarpées d ’Êadryllir enrichissent le paysage des souffrances révélatrices qu’elles engendrent.
-- Ondusiöl elle, valse ses collines aux couleurs saisonnières, suivies des forêts soufflées et des lacs enfeuillés de Bruysséliand , percées par ses piliers ouatés de nuages cachant leurs hauts pics.
-- Enfin, les déserts brûlants et glacials d ’Adriuhn , abritent un fleuve solitaire aux marais résilient, aux inondations à la fois torturantes et sauveuses.
-
-## 1) Des Territoires extrêmes
-
-
-**Sommes-nous à l’intérieur ou à l’extérieur ?**
-
-Nos sens nous indique que nous engouffrons le ciel. Dans l’infinité de nos sols résideraient encore biens plus de mystères et de passés.
-
----
-
-# page_007.md
-
-# Page 7
-
-*Source: publication-7.html*
-
----
-
-Ces contrées abritent créatures, grandes et minuscules, certaines arborant jusqu’à 55 membres, nageant dans le sol comme l’eau, ou foulant les airs avec légèreté. Elles sont fuies, chas- sées, élevées, traites et tondues entre elles - mêmes et par d’autres à travers différentes préda- tions, parasitismes, coopérations et symbioses.
-
-- Certains sont en cocons suspendus ou en navigent les ruis- seaux… Les graines d’autres se gonflent en bulles et flotte
+- Ondusiöl elle, valse ses collines aux couleurs saisonnièr
 
 [... rules truncated for context limit ...]
