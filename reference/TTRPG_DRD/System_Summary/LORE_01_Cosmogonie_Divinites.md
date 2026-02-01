@@ -130,7 +130,7 @@ L'un des concepts clé est qu'il est coutume d'expliquer le monde, ses phénomè
 **Attributs** : Empathie, Générosité, Poésie, Pitié
 **Origine** : Née de hôMôh, s'enrichissant de son empathie mature et inspirée.
 **Pouvoir** : Dépendante de ses troupeaux de Zoosrils (Formes Mouvantes (d'elles-mêmes)/Animaux), se soumettait aux pâturages glacés de Môh lorsque frigorifiée.
-**Famille Rilique** : Zoosrils (Formes Mouvantes/Animaux)
+**Famille Rilique** : Zoosrils (Formes Mouvantes (d'elles-mêmes) / Animaux)
 
 ### Yekkwuî
 **Attributs** : Agilité, Liberté, Survie, Impétuosité
@@ -365,7 +365,7 @@ Contrôlés par Minzhijë. Dissimulés dans les efflorescences colorées.
 ### Physrils (Formes Croissantes/Végétaux)
 Contrôlés par Hsæwâl. Juteuses et sucrées, causée de ses récoltes calcinées.
 
-### Zoosrils (Formes Mouvantes/Animaux)
+### Zoosrils (Formes Mouvantes (d'elles-mêmes) / Animaux)
 Contrôlés par Samianâ. Dépendante de ses troupeaux, se soumettait aux pâturages glacés.
 
 ### Hygrils (Formes Ondoyantes/Liquides)
