@@ -10,7 +10,8 @@ import { Competence, getCompetenceAction, COMPETENCE_NAMES, resolveCompetenceFro
 import { Souffrance, getSouffranceAttribute } from '@/game/character/data/SouffranceData';
 import { getRollParams, getSouffranceForCompetence } from '@/game/dice/rollParams';
 import { rollCompetenceCheck } from '@/game/dice/CompetenceRoll';
-import { loadCachedCharacter, clearCachedCharacter } from '@/lib/simulationStorage';
+import { loadCachedCharacter, clearCachedCharacter, loadCharacterInfo } from '@/lib/simulationStorage';
+import { getPeopleBaseSheetScale } from '@/game/character/data/PeopleAttributeModifiers';
 import { getCharacterSheetLang } from '@/lib/characterSheetI18n';
 import { getMasteries } from '@/game/character/data/MasteryRegistry';
 import {
@@ -30,7 +31,7 @@ import DegreeInput from './ui/DegreeInput';
 import ProgressBar from './ui/ProgressBar';
 import ExpandableSection from './ui/ExpandableSection';
 import Tooltip from './ui/Tooltip';
-import SimulationEventLog, { type StepActionPayload, ATTRIBUTE_SPREAD_SHEET, attributesMatchSpread, MIN_REVEAL, MAX_REVEAL, POOL_DICE } from './SimulationEventLog';
+import SimulationEventLog, { type StepActionPayload, ATTRIBUTE_SPREAD_SHEET, attributesMatchSpreadWithBase, MIN_REVEAL, MAX_REVEAL, POOL_DICE } from './SimulationEventLog';
 import { saveCachedCharacter } from '@/lib/simulationStorage';
 
 /** Payload for drd-roll-result custom event (Play-tab dice resolution). */
@@ -427,7 +428,8 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
 
   if (!embedded && !isOpen) return null;
 
-  const attributesValid = attributesMatchSpread(state.attributes);
+  const peopleBase = getPeopleBaseSheetScale(loadCharacterInfo());
+  const attributesValid = attributesMatchSpreadWithBase(state.attributes, peopleBase);
   const revealedCount = Object.values(Competence).filter((c) => state.competences[c]?.isRevealed).length;
   const diceSum =
     Object.values(Competence)
@@ -438,12 +440,19 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
   const [creationAttributeAssignments, setCreationAttributeAssignments] = useState<Partial<Record<Attribute, number>>>(() => ({}));
 
   useEffect(() => {
-    if (simHighlightId === 'create-attributes' && attributesMatchSpread(state.attributes)) {
-      setCreationAttributeAssignments({ ...state.attributes });
+    if (simHighlightId === 'create-attributes' && attributesMatchSpreadWithBase(state.attributes, peopleBase)) {
+      const base: Record<Attribute, number> = peopleBase ?? (Object.fromEntries(Object.values(Attribute).map((a) => [a, 0])) as Record<Attribute, number>);
+      const spreadAssignments = {} as Partial<Record<Attribute, number>>;
+      Object.values(Attribute).forEach((attr) => {
+        const total = state.attributes[attr] ?? 0;
+        const b = base[attr] ?? 0;
+        spreadAssignments[attr] = total - b;
+      });
+      setCreationAttributeAssignments(spreadAssignments);
     } else if (simHighlightId !== 'create-attributes') {
       setCreationAttributeAssignments({});
     }
-  }, [simHighlightId]);
+  }, [simHighlightId, state.attributes, peopleBase]);
 
   const getAvailableSpreadPool = (): number[] => {
     const assigned = Object.values(creationAttributeAssignments).filter((v): v is number => v != null);
@@ -456,13 +465,14 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
   };
 
   const handleCreationAttributeAssign = (attr: Attribute, value: number | null) => {
+    const baseVal = (peopleBase?.[attr] ?? 0);
     if (value === null) {
-      manager.setAttribute(attr, 0);
+      manager.setAttribute(attr, baseVal);
       const next = { ...creationAttributeAssignments };
       delete next[attr];
       setCreationAttributeAssignments(next);
     } else {
-      manager.setAttribute(attr, value);
+      manager.setAttribute(attr, baseVal + value);
       setCreationAttributeAssignments((prev) => ({ ...prev, [attr]: value }));
     }
     updateState();
@@ -505,7 +515,8 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
   /** Reset the current creation step so the user can redo that step's choices. */
   const resetCreationStep = (step: 'attributes' | 'reveal' | 'dice') => {
     if (step === 'attributes') {
-      Object.values(Attribute).forEach((attr) => manager.setAttribute(attr, 0));
+      const base = peopleBase ?? (Object.fromEntries(Object.values(Attribute).map((a) => [a, 0])) as Record<Attribute, number>);
+      Object.values(Attribute).forEach((attr) => manager.setAttribute(attr, base[attr] ?? 0));
       setCreationAttributeAssignments({});
     } else if (step === 'reveal') {
       Object.values(Competence).forEach((c) => manager.unrevealCompetence(c));

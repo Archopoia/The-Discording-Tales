@@ -40,10 +40,12 @@ export function clearCachedCharacter(): void {
   }
 }
 
-/** Narrative creation info (origin, peuple, name) synced with chat. */
+/** Narrative creation info (origin, peuple, sex, name) synced with chat. */
 export interface CharacterInfo {
   origin?: string;
   peuple?: string;
+  /** male | female; required for Peoples with sex-based attribute modifiers. */
+  sex?: 'male' | 'female';
   name?: string;
 }
 

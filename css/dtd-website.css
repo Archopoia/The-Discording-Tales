@@ -847,7 +847,7 @@ img {
 }
 
 .pitch-intro {
-    font-size: 1.1rem;
+    font-size: 1.35rem;
     color: var(--tdt-beige-warm);
     font-style: italic;
     line-height: 1.8;
@@ -856,7 +856,7 @@ img {
 }
 
 .pitch-golden {
-    font-size: 1.15rem;
+    font-size: 1.4rem;
     color: var(--tdt-cream);
     line-height: 1.7;
     margin-bottom: 5rem;
@@ -864,7 +864,7 @@ img {
 }
 
 .pitch-question {
-    font-size: 1.1rem;
+    font-size: 1.35rem;
     color: var(--tdt-beige-warm);
     font-style: italic;
     margin-bottom: 5rem;
@@ -872,7 +872,7 @@ img {
 }
 
 .pitch-depths {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: var(--tdt-beige-warm);
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -881,7 +881,7 @@ img {
 }
 
 .pitch-discord {
-    font-size: 2.5rem;
+    font-size: 3.2rem;
     font-family: var(--font-heading);
     font-weight: 900;
     color: var(--tdt-cream);

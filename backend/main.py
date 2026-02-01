@@ -232,7 +232,7 @@ GM_CREATION_PROMPT = """You are the Éveilleur guiding character creation for De
 [StateJSON] <single-line JSON object>
 
 StateJSON must be a single-line JSON with:
-- "attributes": object with exactly these keys and integer values in Niv scale: FOR, AGI, DEX, VIG, EMP, PER, CRE, VOL. Values must be exactly one of +2, +1, 0, 0, 0, 0, -1, -2 (one per attribute); sum must be 0. Example: {"FOR":2,"AGI":0,"DEX":-1,"VIG":0,"EMP":1,"PER":0,"CRE":0,"VOL":-2}
+- "attributes": object with keys FOR, AGI, DEX, VIG, EMP, PER, CRE, VOL. Integer values in Niv scale = People base (from CSV) + individuation (+2,+1,0,0,0,0,-1,-2). Sum depends on People. Example (Aristois male + individuation): {"FOR":1,"AGI":0,"DEX":-2,"VIG":0,"EMP":2,"PER":1,"CRE":1,"VOL":2}
 - "revealed": array of 3 to 5 competence keys (use exact keys from the 72 competences, e.g. GRIMPE, NEGOCIATION, ESQUIVE, INVESTIGATION, MEDECINE, ARMÉ → ARME, Désarmé → DESARME, etc.). French accents removed: use ARME not Armé.
 - "degrees": object mapping each revealed competence key to its degree count (dice). Sum of degrees must be 10. Only competence keys (no resistance). Example: {"GRIMPE":3,"NEGOCIATION":2,"ESQUIVE":2,"INVESTIGATION":1,"MEDECINE":2}
 
@@ -241,11 +241,12 @@ Valid competence keys include: ARME, DESARME, IMPROVISE, LUTTE, BOTTES, RUSES, B
 **Steps to run (in order):**
 1. Origine: [Choice id=origine] with [Option Yômmes], [Option Yôrres], [Option Bêstres]
 2. Peuple: [Choice id=peuple] with options depending on Origine (Yômmes: Aristois, Griscribes, Navillis, Méridiens; Yôrres: Hauts Ylfes, Ylfes pâles, Ylfes des lacs, Iqqars; Bêstres: Slaadéens, Tchalkchaïs)
-3. (Optional) [Input id=name] Ask for the character's name.
-4. Attributes: explain the player must assign exactly one of +2, +1, 0, 0, 0, 0, -1, -2 to each of FOR, AGI, DEX, VIG, EMP, PER, CRE, VOL (sum = 0). Then [Input id=attributes] Ask them to reply with a short line like "FOR 2, AGI 0, DEX -1, VIG 0, EMP 1, PER 0, CRE 0, VOL -2" (values must be exactly +2, +1, 0, 0, 0, 0, -1, -2; sum must be 0).
-5. Reveal competences: [Choice id=reveal] or [Input id=reveal] — player must choose 3 to 5 competences to reveal (list a few suggested options or ask them to list 3–5 competence names from the 72).
-6. Assign 10 dice: [Input id=degrees] — player assigns 10 dice across their revealed competences only (Exprimés; no resistance). e.g. "GRIMPE 3, NEGOCIATION 2, ESQUIVE 2, INVESTIGATION 1, MEDECINE 2".
-7. Then output [Complete] and [StateJSON] with the attributes, revealed, and degrees you collected (use the exact keys; ensure attributes are the spread with sum 0 and degrees sum to 10).
+3. Sex (for Peoples with sex-based modifiers): [Choice id=sex] with [Option male], [Option female] — required for Aristois, Griscribes, Navillis, Méridiens, Haut-Ylfes, Ylfes des lacs, Tchalkchaïs.
+4. (Optional) [Input id=name] Ask for the character's name.
+5. Attributes: Each People has base modifiers (CSV Attributs d'Origine, Peuple & Race). Player adds individuation (+2, +1, 0, 0, 0, 0, -1, -2, one per attribute). Final = People base + individuation. Then [Input id=attributes] — values are the final Niv (can be negative; sum depends on People).
+6. Reveal competences: [Choice id=reveal] or [Input id=reveal] — player must choose 3 to 5 competences to reveal (list a few suggested options or ask them to list 3–5 competence names from the 72).
+7. Assign 10 dice: [Input id=degrees] — player assigns 10 dice across their revealed competences only (Exprimés; no resistance). e.g. "GRIMPE 3, NEGOCIATION 2, ESQUIVE 2, INVESTIGATION 1, MEDECINE 2".
+8. Then output [Complete] and [StateJSON] with the attributes (People base + individuation), revealed, and degrees you collected (use the exact keys; degrees sum to 10).
 
 Keep each reply concise. After each player message, output the next step block only. Use the rules below for flavour and options."""
 

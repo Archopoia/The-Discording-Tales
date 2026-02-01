@@ -22,27 +22,36 @@
         'Bêstres': ['Slaadéens', 'Tchalkchaïs']
     };
 
-    /** Get hardcoded creation step content. stepIndex 0=origin, 1=peuple (pass origin), 2=name, 3=hand-off. */
-    function getCreationScriptStep(stepIndex, lang, origin) {
+    /** Peoples with different male/female attribute modifiers (CSV: Attributs d'Origine, Peuple & Race). */
+    var PEUPLES_WITH_SEX_VARIANTS = ['Aristois', 'Griscribes', 'Navillis', 'Méridiens', 'Hauts Ylfes', 'Ylfes des lacs', 'Tchalkchaïs'];
+
+    /** Get hardcoded creation step content. stepName: 'origin'|'peuple'|'sex'|'name'|'handoff'. ctx: {origin, peuple}. */
+    function getCreationScriptStep(stepName, lang, ctx) {
         var isFr = lang === 'fr';
-        if (stepIndex === 0) {
+        var origin = ctx && ctx.origin;
+        var peuple = ctx && ctx.peuple;
+        if (stepName === 'origin') {
             var prompt0 = isFr ? "Choisissez l'Origine de votre personnage :" : "Choose your character's Origin:";
             return "[Choice id=origin] " + prompt0 + "\n[Option Yômmes]\n[Option Yôrres]\n[Option Bêstres]";
         }
-        if (stepIndex === 1 && origin) {
+        if (stepName === 'peuple' && origin) {
             var options = PEUPLES_BY_ORIGIN[origin] || [];
             var prompt1 = isFr ? "Choisissez le Peuple parmi les " + origin + " :" : "Choose your People among " + origin + ":";
             var optionLines = options.map(function (o) { return "[Option " + o + "]"; }).join("\n");
             return "[Choice id=peuple] " + prompt1 + "\n" + optionLines;
         }
-        if (stepIndex === 2) {
+        if (stepName === 'sex') {
+            var promptSex = isFr ? "Choisissez le sexe de votre personnage (modificateurs d'attributs selon le Peuple) :" : "Choose your character's sex (attribute modifiers depend on People):";
+            return "[Choice id=sex] " + promptSex + "\n[Option male]\n[Option female]";
+        }
+        if (stepName === 'name') {
             var prompt2 = isFr ? "Quel est le nom de votre personnage ? (Optionnel, vous pouvez répondre « aucun » pour passer.)" : "What is your character's name? (Optional; you can reply \"none\" to skip.)";
             return "[Input id=name] " + prompt2;
         }
-        if (stepIndex === 3) {
+        if (stepName === 'handoff') {
             return isFr
-                ? "Le reste de votre personnage (18 points d'attributs, 3 à 5 compétences à révéler, 10 dés à répartir) se fait sur la feuille de personnage ci-dessous. Complétez les étapes là, puis vous pourrez discuter avec l'Éveilleur."
-                : "The rest of your character (18 attribute points, 3 to 5 competences to reveal, 10 dice to assign) is to be done on the character sheet below. Complete the steps there; then you can chat with the Éveilleur.";
+                ? "Le reste de votre personnage (attributs de base du Peuple + individuation +2,+1,0,0,0,0,-1,-2, 3 à 5 compétences à révéler, 10 dés à répartir) se fait sur la feuille de personnage ci-dessous. Complétez les étapes là, puis vous pourrez discuter avec l'Éveilleur."
+                : "The rest of your character (People base attributes + individuation +2,+1,0,0,0,0,-1,-2, 3 to 5 competences to reveal, 10 dice to assign) is to be done on the character sheet below. Complete the steps there; then you can chat with the Éveilleur.";
         }
         return '';
     }
@@ -1361,6 +1370,8 @@
                 msg = isFr ? "Mon origine : " + String(data.value) + "." : "I choose " + String(data.value) + " as my origin.";
             } else if (s === 'peuple' && data && data.value) {
                 msg = isFr ? "Mon peuple : " + String(data.value) + "." : "I choose " + String(data.value) + " as my people.";
+            } else if (s === 'sex' && data && data.value) {
+                msg = isFr ? "Mon sexe : " + String(data.value) + "." : "I choose " + String(data.value) + ".";
             } else if (s === 'name' && data && data.value) {
                 var nameVal = String(data.value).trim();
                 msg = nameVal ? (isFr ? "Le nom de mon personnage : " + nameVal + "." : "My character's name: " + nameVal + ".") : (isFr ? "Je ne donne pas de nom pour l'instant." : "I'll skip the name for now.");
@@ -1392,7 +1403,7 @@
                     } catch (e2) {}
                     messages = [];
                     creationMode = true;
-                    var firstStepContent = getCreationScriptStep(0, getLang(), null);
+                    var firstStepContent = getCreationScriptStep('origin', getLang(), {});
                     messages.push({ role: 'assistant', content: firstStepContent });
                     saveMessages();
                     renderMessages(container);
@@ -1508,12 +1519,26 @@
                     if (!lastAssistant) return;
                     var blocks = parseCreationBlocks(lastAssistant.content);
                     var choiceId = blocks.choice && blocks.choice.id ? blocks.choice.id : null;
+                    var originFromMsgs = messages.length >= 2 && messages[1].role === 'user' ? messages[1].content : '';
+                    var peupleFromMsgs = messages.length >= 4 && messages[3].role === 'user' ? messages[3].content : '';
                     messages.push({ role: 'user', content: option });
-                    if (choiceId === 'origin') {
-                        messages.push({ role: 'assistant', content: getCreationScriptStep(1, getLang(), option) });
-                    } else if (choiceId === 'peuple') {
-                        messages.push({ role: 'assistant', content: getCreationScriptStep(2, getLang(), null) });
-                    }
+                    try {
+                        if (choiceId === 'origin') {
+                            saveCharacterInfoToStorage({ origin: option });
+                            window.dispatchEvent(new CustomEvent('drd-narrative-from-chat', { detail: { field: 'origin', value: option } }));
+                            messages.push({ role: 'assistant', content: getCreationScriptStep('peuple', getLang(), { origin: option }) });
+                        } else if (choiceId === 'peuple') {
+                            saveCharacterInfoToStorage({ origin: originFromMsgs, peuple: option });
+                            window.dispatchEvent(new CustomEvent('drd-narrative-from-chat', { detail: { field: 'peuple', value: option } }));
+                            var needsSex = PEUPLES_WITH_SEX_VARIANTS.indexOf(option) >= 0;
+                            messages.push({ role: 'assistant', content: getCreationScriptStep(needsSex ? 'sex' : 'name', getLang(), { origin: originFromMsgs, peuple: option }) });
+                        } else if (choiceId === 'sex') {
+                            var sexVal = (option === 'female') ? 'female' : 'male';
+                            saveCharacterInfoToStorage({ origin: originFromMsgs, peuple: peupleFromMsgs, sex: sexVal });
+                            window.dispatchEvent(new CustomEvent('drd-narrative-from-chat', { detail: { field: 'sex', value: sexVal } }));
+                            messages.push({ role: 'assistant', content: getCreationScriptStep('name', getLang(), { origin: originFromMsgs, peuple: peupleFromMsgs, sex: sexVal }) });
+                        }
+                    } catch (err) {}
                     saveMessages();
                     renderMessages(container);
                     return;
@@ -1524,11 +1549,13 @@
                     var field = block ? block.querySelector('.gm-creation-input-field') : null;
                     var val = field ? field.value.trim() : '';
                     var nameVal = (val === '' || /^(none|aucun)$/i.test(val)) ? '' : val;
-                    messages.push({ role: 'user', content: nameVal || (getLang() === 'fr' ? 'Aucun' : 'None') });
                     var originFromMsg = messages.length >= 2 && messages[1].role === 'user' ? messages[1].content : '';
                     var peupleFromMsg = messages.length >= 4 && messages[3].role === 'user' ? messages[3].content : '';
-                    saveCharacterInfoToStorage({ origin: originFromMsg, peuple: peupleFromMsg, name: nameVal });
-                    messages.push({ role: 'assistant', content: getCreationScriptStep(3, getLang(), null) });
+                    var sexFromMsg = (messages.length >= 6 && messages[5].role === 'user' && messages[5].content === 'female') ? 'female' : (messages.length >= 6 && messages[5].role === 'user') ? 'male' : undefined;
+                    messages.push({ role: 'user', content: nameVal || (getLang() === 'fr' ? 'Aucun' : 'None') });
+                    saveCharacterInfoToStorage({ origin: originFromMsg, peuple: peupleFromMsg, sex: sexFromMsg || undefined, name: nameVal });
+                    try { window.dispatchEvent(new CustomEvent('drd-narrative-from-chat', { detail: { field: 'name', value: nameVal } })); } catch (e) {}
+                    messages.push({ role: 'assistant', content: getCreationScriptStep('handoff', getLang(), {}) });
                     var defaultState = buildCharacterSheetState('{}');
                     if (defaultState) {
                         try {

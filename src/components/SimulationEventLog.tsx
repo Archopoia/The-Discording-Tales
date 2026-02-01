@@ -9,6 +9,7 @@ import { Souffrance } from '@/game/character/data/SouffranceData';
 import { loadCachedCharacter, saveCachedCharacter, loadCharacterInfo, saveCharacterInfo } from '@/lib/simulationStorage';
 import type { CharacterSheetLang } from '@/lib/characterSheetI18n';
 import { t, tParam } from '@/lib/characterSheetI18n';
+import { getPeopleModifiers, toSheetScale, getPeopleBaseSheetScale, PEOPLES_WITH_SEX_VARIANTS } from '@/game/character/data/PeopleAttributeModifiers';
 
 /** Book "sans dés": exactly one of +2,+1,0,0,0,0,-1,-2 per attribute (×10 on sheet). Sum = 0. */
 export const ATTRIBUTE_SPREAD_SHEET = [20, 10, 0, 0, 0, 0, -10, -20] as const;
@@ -33,7 +34,19 @@ export function attributesMatchSpread(attributes: Record<Attribute, number>): bo
   return vals.length === 8 && vals.every((v, i) => v === want[i]);
 }
 
-export type CreateStepType = 'origin' | 'peuple' | 'name' | 'attributes' | 'reveal' | 'dice';
+/** True if (attributes - peopleBase) matches the spread multiset. peopleBase in sheet scale. */
+export function attributesMatchSpreadWithBase(
+  attributes: Record<Attribute, number>,
+  peopleBase: Record<Attribute, number> | null
+): boolean {
+  if (!peopleBase) return attributesMatchSpread(attributes);
+  const diff: number[] = Object.values(Attribute).map((a) => (attributes[a] ?? 0) - (peopleBase[a] ?? 0));
+  const vals = diff.sort((a, b) => a - b);
+  const want = [...ATTRIBUTE_SPREAD_SHEET].sort((a, b) => a - b);
+  return vals.length === 8 && vals.every((v, i) => v === want[i]);
+}
+
+export type CreateStepType = 'origin' | 'peuple' | 'sex' | 'name' | 'attributes' | 'reveal' | 'dice';
 
 export type StepActionPayload =
   | { step: 'attributes' | 'reveal' | 'dice'; label: string; onClick: () => void; disabled: boolean; /** When true, clicking confirms the step and clears the tutorial overlay; when false (Random), only runs onClick and keeps overlay so button can switch to Validate. */ confirmAction?: boolean }
@@ -61,26 +74,38 @@ export default function SimulationEventLog({
   const [mode, setMode] = useState<'idle' | 'creating' | 'running'>('idle');
   const [createStep, setCreateStep] = useState<CreateStepType>('origin');
 
-  // When the user selects origin/peuple/name in the chat, persist to storage and advance step (chat-only; no pickers in sheet)
+  // When the user selects origin/peuple/sex/name in the chat, persist to storage and advance step (chat-only; no pickers in sheet)
   useEffect(() => {
     const handler = (ev: Event) => {
       const e = ev as CustomEvent<{ field: string; value: string }>;
       const field = e.detail?.field;
       const value = e.detail?.value ?? '';
+      const info = loadCharacterInfo();
       if (field === 'origin') {
-        saveCharacterInfo({ ...loadCharacterInfo(), origin: value });
+        saveCharacterInfo({ ...info, origin: value });
         setCreateStep('peuple');
       } else if (field === 'peuple') {
-        saveCharacterInfo({ ...loadCharacterInfo(), peuple: value });
+        saveCharacterInfo({ ...info, peuple: value });
+        const needsSex = PEOPLES_WITH_SEX_VARIANTS.includes(value.trim() as import('@/game/character/data/PeopleAttributeModifiers').PeopleKey);
+        setCreateStep(needsSex ? 'sex' : 'name');
+      } else if (field === 'sex') {
+        saveCharacterInfo({ ...info, sex: value === 'female' ? 'female' : 'male' });
         setCreateStep('name');
       } else if (field === 'name') {
-        saveCharacterInfo({ ...loadCharacterInfo(), name: value });
+        saveCharacterInfo({ ...info, name: value });
+        const updatedInfo = loadCharacterInfo();
+        const base = getPeopleModifiers(updatedInfo?.peuple ?? '', updatedInfo?.sex as 'male' | 'female' | undefined);
+        if (base) {
+          const sheetBase = toSheetScale(base);
+          Object.entries(sheetBase).forEach(([attr, val]) => manager.setAttribute(attr as Attribute, val));
+          updateSheet();
+        }
         setCreateStep('attributes');
       }
     };
     window.addEventListener('drd-narrative-from-chat', handler);
     return () => window.removeEventListener('drd-narrative-from-chat', handler);
-  }, []);
+  }, [manager, updateSheet]);
 
   // When chat "Kill and create new" is clicked: reset creation state so sheet shows empty / origin step
   useEffect(() => {
@@ -104,6 +129,12 @@ export default function SimulationEventLog({
         setMode('creating');
         const info = loadCharacterInfo();
         if (info?.origin) {
+          const peopleBaseSheet = getPeopleBaseSheetScale(info);
+          const attrsValid = attributesMatchSpreadWithBase(manager.getState().attributes, peopleBaseSheet);
+          if (!attrsValid && peopleBaseSheet) {
+            Object.entries(peopleBaseSheet).forEach(([attr, val]) => manager.setAttribute(attr as Attribute, val));
+            updateSheet();
+          }
           setCreateStep('attributes');
         } else {
           setCreateStep('origin');
@@ -210,9 +241,15 @@ export default function SimulationEventLog({
   };
 
   const randomAttributes = () => {
+    const info = loadCharacterInfo();
+    const base = getPeopleModifiers(info?.peuple ?? '', info?.sex);
+    const sheetBase = base ? toSheetScale(base) : null;
     const spread = shuffle([...ATTRIBUTE_SPREAD_SHEET]);
     const attrs = Object.values(Attribute);
-    attrs.forEach((attr, i) => manager.setAttribute(attr, spread[i]));
+    attrs.forEach((attr, i) => {
+      const baseVal = sheetBase ? sheetBase[attr] : 0;
+      manager.setAttribute(attr, baseVal + spread[i]);
+    });
     updateSheet();
   };
 
@@ -249,12 +286,13 @@ export default function SimulationEventLog({
       onStepAction?.(null);
       return;
     }
-    if (createStep === 'origin' || createStep === 'peuple' || createStep === 'name') {
+    if (createStep === 'origin' || createStep === 'peuple' || createStep === 'sex' || createStep === 'name') {
       onStepAction?.(null);
       return;
     }
     const attrs = manager.getState().attributes;
-    const attributesValid = creationStateDeps?.attributesValid ?? attributesMatchSpread(attrs);
+    const peopleBase = getPeopleBaseSheetScale(loadCharacterInfo());
+    const attributesValid = creationStateDeps?.attributesValid ?? attributesMatchSpreadWithBase(attrs, peopleBase);
     const revealedCount = creationStateDeps?.revealedCount ?? Object.values(Competence).filter((c) => manager.getState().competences[c]?.isRevealed).length;
     const state = manager.getState();
     const diceSum = creationStateDeps?.diceSum ?? (
@@ -297,8 +335,8 @@ export default function SimulationEventLog({
     }
   }, [mode, createStep, creationStateDeps?.attributesValid, creationStateDeps?.revealedCount, creationStateDeps?.diceSum, lang, onHighlight, onStepAction]);
 
-  // When in creating mode but still on origin/peuple/name, show hint only (choices are made in the chat)
-  if (mode !== 'creating' || !(createStep === 'origin' || createStep === 'peuple' || createStep === 'name')) {
+  // When in creating mode but still on origin/peuple/sex/name, show hint only (choices are made in the chat)
+  if (mode !== 'creating' || !(createStep === 'origin' || createStep === 'peuple' || createStep === 'sex' || createStep === 'name')) {
     return null;
   }
 
