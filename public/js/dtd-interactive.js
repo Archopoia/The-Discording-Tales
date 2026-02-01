@@ -93,7 +93,10 @@
         });
     }
 
-    function switchTab(tabId) {
+    function switchTab(tabId, options) {
+        options = options || {};
+        const skipScrollToTop = options.skipScrollToTop === true;
+
         // Update active states
         elements.tabLinks.forEach(link => {
             link.classList.remove('active');
@@ -107,10 +110,9 @@
             if (content.id === tabId) {
                 content.classList.add('active');
                 state.currentTab = tabId;
-                
-                
-                // Scroll to top
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                if (!skipScrollToTop) {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
             }
         });
     }
@@ -118,12 +120,35 @@
     function handleHashChange() {
         const hash = window.location.hash.substring(1);
         const validTabs = ['landing', 'lore', 'rules', 'play', 'about'];
-        
-        if (hash && validTabs.includes(hash)) {
-            switchTab(hash);
-        } else {
+        const sectionToTab = {
+            cosmology: 'lore',
+            peoples: 'lore',
+            'world-context': 'lore',
+            'system-overview': 'rules',
+            'character-creation': 'rules',
+            combat: 'rules',
+            magic: 'rules'
+        };
+
+        if (!hash) {
             switchTab('landing');
+            return;
         }
+        if (validTabs.includes(hash)) {
+            switchTab(hash);
+            return;
+        }
+        if (sectionToTab[hash]) {
+            switchTab(sectionToTab[hash], { skipScrollToTop: true });
+            requestAnimationFrame(function () {
+                requestAnimationFrame(function () {
+                    const el = document.getElementById(hash);
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            });
+            return;
+        }
+        switchTab('landing');
     }
 
     // ========================================

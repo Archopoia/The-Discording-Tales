@@ -238,6 +238,8 @@ html::-webkit-scrollbar-thumb:hover {
 .gm-chat-messages,
 .gm-chat-messages pre,
 .inspirations-table-wrapper,
+.rules-table-wrapper,
+.lore-table-wrapper,
 .play-flip-face-back .play-character-sheet-root {
     scrollbar-width: thin;
     scrollbar-color: var(--tdt-brown) var(--tdt-burgundy);
@@ -1275,6 +1277,37 @@ img {
     text-shadow: 1px 1px 2px rgba(90, 31, 31, 0.2);
 }
 
+/* Tab in-page sub-navigation (Lore, Rules) */
+.tab-sub-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-sm) 0;
+}
+.tab-sub-nav-link {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    color: var(--tdt-cream);
+    background: rgba(90, 31, 31, 0.5);
+    border: 1px solid var(--tdt-beige-warm);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background 0.2s, color 0.2s;
+}
+.tab-sub-nav-link:hover {
+    background: var(--tdt-burgundy-warm);
+    color: var(--tdt-beige);
+}
+
+/* Scroll margin for anchor targets (avoid header overlap) */
+#cosmology, #peoples, #world-context,
+#system-overview, #character-creation, #combat, #magic {
+    scroll-margin-top: 6rem;
+}
+
 /* ========================================
    Lore Sections
    ======================================== */
@@ -2282,6 +2315,65 @@ img {
     padding: var(--spacing-md);
 }
 
+/* Rules and Lore tables (reuse inspirations-table pattern) */
+.rules-table-wrapper,
+.lore-table-wrapper {
+    overflow-x: auto;
+    margin: var(--spacing-md) 0;
+}
+.rules-table-wrapper::-webkit-scrollbar,
+.lore-table-wrapper::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+}
+.rules-table-wrapper::-webkit-scrollbar-track,
+.lore-table-wrapper::-webkit-scrollbar-track {
+    background: var(--tdt-burgundy);
+    border-radius: var(--radius-sm);
+}
+.rules-table-wrapper::-webkit-scrollbar-thumb,
+.lore-table-wrapper::-webkit-scrollbar-thumb {
+    background: var(--tdt-brown);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--tdt-beige);
+}
+.rules-table,
+.lore-table {
+    width: 100%;
+    min-width: 320px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background: rgba(70, 0, 0, 0.4);
+    border: 2px solid var(--tdt-beige);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+.rules-table thead,
+.lore-table thead {
+    background: rgba(217, 205, 184, 0.2);
+}
+.rules-table th,
+.rules-table td,
+.lore-table th,
+.lore-table td {
+    color: var(--tdt-cream);
+    padding: var(--spacing-sm);
+    text-align: left;
+    border-bottom: 1px solid rgba(139, 115, 85, 0.2);
+}
+.rules-table th,
+.lore-table th {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    border-bottom: 2px solid var(--tdt-beige);
+}
+.rules-table tbody tr:hover,
+.lore-table tbody tr:hover {
+    background: rgba(217, 205, 184, 0.1);
+}
+.lore-table.peoples-summary-table {
+    max-width: 700px;
+}
 
 .genre-card ul {
     list-style: none;
@@ -2391,6 +2483,24 @@ img {
     
     .section-title {
         font-size: 2rem;
+    }
+    
+    .tab-sub-nav {
+        gap: var(--spacing-xs);
+    }
+    .tab-sub-nav-link {
+        font-size: 0.85rem;
+        padding: var(--spacing-xs);
+    }
+    .rules-table,
+    .lore-table {
+        font-size: 0.9rem;
+    }
+    .rules-table th,
+    .rules-table td,
+    .lore-table th,
+    .lore-table td {
+        padding: var(--spacing-xs);
     }
 }
 
