@@ -1345,6 +1345,51 @@ img {
     margin-right: auto;
 }
 
+/* Full-width two-column tables row (breaks out of center container) */
+/* Full-width row: outside rules-section, spans page width, two tables side by side */
+.rules-tables-fullwidth {
+    width: 100%;
+    box-sizing: border-box;
+    padding: var(--spacing-md) var(--spacing-lg);
+    margin: 0 0 var(--spacing-md) 0;
+    display: grid;
+    grid-template-columns: minmax(260px, 1fr) minmax(320px, 1fr);
+    gap: var(--spacing-xl);
+    align-items: start;
+    background: linear-gradient(to right, rgba(107, 40, 40, 0.2) 0%, rgba(90, 31, 31, 0.25) 100%);
+}
+
+.rules-tables-fullwidth .rules-table-col {
+    min-width: 0;
+    overflow-x: auto;
+}
+
+.rules-tables-fullwidth .rules-table-col h4 {
+    color: var(--tdt-cream);
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: var(--spacing-sm);
+}
+
+.rules-tables-fullwidth .rules-table-col p {
+    margin-bottom: var(--spacing-sm);
+    color: var(--tdt-cream);
+    max-width: none;
+}
+
+.rules-tables-fullwidth .rules-table {
+    width: 100%;
+    min-width: 0;
+}
+
+@media (max-width: 720px) {
+    .rules-tables-fullwidth {
+        grid-template-columns: 1fr;
+        padding-left: var(--spacing-md);
+        padding-right: var(--spacing-md);
+    }
+}
+
 .lore-section h3,
 .rules-section h3 {
     font-size: 2rem;
@@ -1427,6 +1472,295 @@ img {
 
 .rules-section#magic .rules-content em {
     color: var(--tdt-beige-warm);
+}
+
+/* Magic (Rilie) intro */
+.rules-section#magic .magic-intro {
+    margin-bottom: var(--spacing-md);
+}
+
+.rules-section#magic .magic-intro p {
+    line-height: 1.6;
+}
+
+/* Magic accordion (mirrors combat-accordion) */
+.rules-section#magic {
+    --magic-accent: var(--tdt-mint-dark);
+    --magic-accent-light: var(--tdt-mint);
+    --magic-card-bg: rgba(127, 222, 192, 0.15);
+    --magic-border: var(--tdt-beige);
+}
+
+.magic-accordion {
+    margin: var(--spacing-md) 0;
+    border: 1px solid var(--magic-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.magic-accordion-item {
+    border-bottom: 1px solid var(--magic-border);
+}
+
+.magic-accordion-item:last-child {
+    border-bottom: none;
+}
+
+.magic-accordion-head {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-align: left;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--tdt-cream);
+    background: var(--magic-card-bg);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.magic-accordion-head:hover,
+.magic-accordion-head:focus {
+    background: var(--magic-accent);
+    color: var(--tdt-cream);
+    outline: 2px solid var(--tdt-mint);
+    outline-offset: 2px;
+}
+
+.magic-accordion-head::after {
+    content: "▼";
+    font-size: 0.7rem;
+    opacity: 0.8;
+    transition: transform var(--transition-fast);
+}
+
+.magic-accordion-item[aria-expanded="true"] .magic-accordion-head::after {
+    transform: rotate(-180deg);
+}
+
+.magic-accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-normal) ease-out;
+}
+
+.magic-accordion-body.is-open {
+    max-height: 2400px;
+    transition: max-height var(--transition-slow) ease-in;
+}
+
+.magic-accordion-body .rules-content,
+.magic-accordion-body > p,
+.magic-accordion-body > ul,
+.magic-accordion-body > ol {
+    padding: var(--spacing-md);
+    margin: 0;
+    background: rgba(0, 0, 0, 0.2);
+    color: var(--tdt-cream);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.magic-accordion-body .magic-table-wrapper {
+    padding: var(--spacing-md);
+    margin: 0;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.magic-accordion-body ul,
+.magic-accordion-body ol {
+    padding-left: 1.5rem;
+    margin-top: 0.35rem;
+    margin-bottom: 0.35rem;
+}
+
+.magic-accordion-body li {
+    margin-bottom: 0.25rem;
+}
+
+.magic-orders-list {
+    list-style: decimal;
+    padding-left: 1.5rem;
+}
+
+.magic-accordion-actions {
+    margin: var(--spacing-sm) 0 var(--spacing-md);
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.magic-expand-all,
+.magic-collapse-all {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.9rem;
+    font-family: var(--font-body);
+    color: var(--tdt-cream);
+    background: var(--magic-accent);
+    border: 1px solid var(--magic-border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.magic-expand-all:hover,
+.magic-collapse-all:hover {
+    background: var(--magic-accent-light);
+}
+
+.magic-expand-all:focus,
+.magic-collapse-all:focus {
+    outline: 2px solid var(--tdt-mint);
+    outline-offset: 2px;
+}
+
+/* Magic reference tables */
+.magic-tables-wrap {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--magic-border);
+}
+
+.magic-tables-wrap h4 {
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--tdt-mint);
+}
+
+.magic-tables-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.magic-tab-link {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.9rem;
+    font-family: var(--font-body);
+    color: var(--tdt-cream);
+    background: var(--magic-card-bg);
+    border: 1px solid var(--magic-border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.magic-tab-link:hover,
+.magic-tab-link:focus {
+    background: var(--magic-accent);
+    border-color: var(--tdt-mint);
+    outline: none;
+}
+
+.magic-tab-link.active {
+    background: var(--magic-accent);
+    border-color: var(--tdt-mint);
+    color: var(--tdt-cream);
+}
+
+.magic-tables-panel {
+    display: none;
+    padding: var(--spacing-md) 0;
+}
+
+.magic-tables-panel.active {
+    display: block;
+}
+
+.magic-table-wrapper {
+    margin-bottom: var(--spacing-md);
+}
+
+.magic-table-wrapper h5,
+.magic-table-wrapper h6 {
+    font-size: 1rem;
+    margin-bottom: 0.35rem;
+    margin-top: var(--spacing-sm);
+    color: var(--tdt-beige-light);
+}
+
+.magic-table-wrapper h6:first-child {
+    margin-top: 0;
+}
+
+.magic-table-note {
+    font-size: 0.85rem;
+    color: var(--tdt-beige);
+    margin-bottom: 0.5rem;
+    font-style: italic;
+}
+
+.magic-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    color: var(--tdt-cream);
+}
+
+.magic-table th,
+.magic-table td {
+    padding: 0.4rem 0.6rem;
+    border: 1px solid var(--magic-border);
+    text-align: left;
+}
+
+.magic-table thead th {
+    background: var(--magic-accent);
+    color: var(--tdt-cream);
+    font-weight: 600;
+}
+
+.magic-table tbody tr:nth-child(even) {
+    background: rgba(127, 222, 192, 0.08);
+}
+
+.magic-table tbody tr:hover {
+    background: rgba(127, 222, 192, 0.15);
+}
+
+.magic-table-scroll {
+    overflow-x: auto;
+}
+
+.magic-table.magic-table--small {
+    font-size: 0.85rem;
+}
+
+.magic-table.magic-table--small th,
+.magic-table.magic-table--small td {
+    padding: 0.3rem 0.5rem;
+}
+
+/* Cercles initiaux: grid of cards */
+.magic-cercles-initiaux {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.magic-cercle-card {
+    padding: var(--spacing-md);
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--magic-border);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--tdt-mint);
+}
+
+.magic-cercle-card h6 {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--tdt-mint);
+    margin: 0 0 var(--spacing-sm) 0;
+}
+
+.magic-cercle-card .magic-table {
+    font-size: 0.82rem;
 }
 
 /* ========================================
@@ -1617,6 +1951,211 @@ img {
 .combat-collapse-all:focus {
     outline: 2px solid var(--tdt-gold);
     outline-offset: 2px;
+}
+
+/* ========================================
+   Progression Section (Experience–Souffrance–Healing)
+   ======================================== */
+.progression-section {
+    --progression-accent: var(--tdt-brown);
+    --progression-accent-light: var(--tdt-brown-light);
+    --progression-card-bg: rgba(90, 31, 31, 0.25);
+    --progression-border: var(--tdt-beige);
+}
+
+.progression-intro {
+    margin-bottom: var(--spacing-md);
+}
+
+.progression-subsection-note {
+    margin-bottom: var(--spacing-sm);
+    font-size: 0.95rem;
+    color: var(--tdt-beige-light);
+}
+
+/* Progression accordion (mirrors combat-accordion) */
+.progression-accordion {
+    margin: var(--spacing-md) 0;
+    border: 1px solid var(--progression-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.progression-accordion-item {
+    border-bottom: 1px solid var(--progression-border);
+}
+
+.progression-accordion-item:last-child {
+    border-bottom: none;
+}
+
+.progression-accordion-head {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-align: left;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--tdt-cream);
+    background: var(--progression-card-bg);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.progression-accordion-head:hover,
+.progression-accordion-head:focus {
+    background: var(--progression-accent);
+    color: var(--tdt-gold);
+    outline: 2px solid var(--tdt-gold);
+    outline-offset: 2px;
+}
+
+.progression-accordion-head::after {
+    content: "▼";
+    font-size: 0.7rem;
+    opacity: 0.8;
+    transition: transform var(--transition-fast);
+}
+
+.progression-accordion-item[aria-expanded="true"] .progression-accordion-head::after {
+    transform: rotate(-180deg);
+}
+
+.progression-accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-normal) ease-out;
+}
+
+.progression-accordion-body.is-open {
+    max-height: 2000px;
+    transition: max-height var(--transition-slow) ease-in;
+}
+
+.progression-accordion-body .rules-content,
+.progression-accordion-body > p,
+.progression-accordion-body > ul,
+.progression-accordion-body > ol,
+.progression-accordion-body .progression-card,
+.progression-accordion-body .rules-table-wrapper {
+    padding: var(--spacing-md);
+    margin: 0 0 var(--spacing-sm) 0;
+    background: rgba(0, 0, 0, 0.2);
+    color: var(--tdt-cream);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.progression-accordion-body .rules-table-wrapper:last-child {
+    margin-bottom: 0;
+}
+
+.progression-accordion-body ul,
+.progression-accordion-body ol {
+    padding-left: 1.5rem;
+    margin-top: 0.35rem;
+    margin-bottom: 0.35rem;
+}
+
+.progression-accordion-body li {
+    margin-bottom: 0.25rem;
+}
+
+/* Progression cards */
+.progression-card {
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+    background: rgba(0, 0, 0, 0.15);
+    border-left: 4px solid var(--progression-border);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+}
+
+.progression-card:last-child {
+    margin-bottom: 0;
+}
+
+.progression-card h5 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--tdt-gold);
+    margin-top: 0;
+    margin-bottom: var(--spacing-xs);
+}
+
+.progression-card p,
+.progression-card ul,
+.progression-card ol {
+    margin: 0 0 0.5rem 0;
+    color: var(--tdt-cream);
+}
+
+/* Progression accordion actions */
+.progression-accordion-actions {
+    margin: var(--spacing-sm) 0 var(--spacing-md);
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.progression-expand-all,
+.progression-collapse-all {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.9rem;
+    font-family: var(--font-body);
+    color: var(--tdt-cream);
+    background: var(--progression-accent);
+    border: 1px solid var(--progression-border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.progression-expand-all:hover,
+.progression-collapse-all:hover {
+    background: var(--progression-accent-light);
+}
+
+.progression-expand-all:focus,
+.progression-collapse-all:focus {
+    outline: 2px solid var(--tdt-gold);
+    outline-offset: 2px;
+}
+
+/* Progression tables */
+.progression-section .progression-table caption,
+.progression-section .sequelles-table caption {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    color: var(--tdt-beige-light);
+    caption-side: top;
+    margin-bottom: 0.35rem;
+    text-align: left;
+}
+
+.progression-treatments-wrap {
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+.progression-section .treatments-table {
+    font-size: 0.85rem;
+}
+
+.progression-section .treatments-table .souffrance-names th {
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.progression-section .sufferings-table tbody tr:nth-child(even),
+.progression-section .sequelles-table tbody tr:nth-child(even),
+.progression-section .treatments-table tbody tr:nth-child(even) {
+    background: rgba(217, 205, 184, 0.08);
 }
 
 /* Combat reference tables */
@@ -1847,6 +2386,13 @@ img {
         padding: var(--spacing-sm);
     }
 
+    .progression-accordion-body .rules-content,
+    .progression-accordion-body > p,
+    .progression-accordion-body .progression-card,
+    .progression-accordion-body .rules-table-wrapper {
+        padding: var(--spacing-sm);
+    }
+
     .combat-table {
         font-size: 0.8rem;
     }
@@ -1854,6 +2400,37 @@ img {
     .combat-table th,
     .combat-table td {
         padding: 0.3rem 0.4rem;
+    }
+
+    /* Magic (Rilie) responsive */
+    .magic-tables-nav {
+        flex-direction: column;
+    }
+
+    .magic-tab-link {
+        width: 100%;
+        text-align: left;
+    }
+
+    .magic-accordion-body .rules-content,
+    .magic-accordion-body > p,
+    .magic-accordion-body > ul,
+    .magic-accordion-body > ol,
+    .magic-accordion-body .magic-table-wrapper {
+        padding: var(--spacing-sm);
+    }
+
+    .magic-table {
+        font-size: 0.8rem;
+    }
+
+    .magic-table th,
+    .magic-table td {
+        padding: 0.3rem 0.4rem;
+    }
+
+    .magic-cercles-initiaux {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -2969,6 +3546,10 @@ img {
     min-width: 240px;
 }
 
+.worldlore-dice-block {
+    margin-top: var(--spacing-md);
+}
+
 .worldlore-struggle-center {
     flex: 0 0 auto;
     display: flex;
@@ -3548,8 +4129,34 @@ img {
 .lore-table tbody tr:hover {
     background: rgba(217, 205, 184, 0.1);
 }
+/* Peoples section: title, then intro (left) + table (right); table takes freed space */
+.peoples-intro {
+    margin: 0;
+    max-width: 75ch;
+}
+
+.peoples-top {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 2fr);
+    gap: var(--spacing-lg);
+    align-items: start;
+    margin-bottom: var(--spacing-md);
+}
+
+.peoples-table-wrapper {
+    min-width: 0;
+    width: 100%;
+}
+
 .lore-table.peoples-summary-table {
-    max-width: 700px;
+    max-width: none;
+    width: 100%;
+}
+
+@media (max-width: 640px) {
+    .peoples-top {
+        grid-template-columns: 1fr;
+    }
 }
 
 .genre-card ul {

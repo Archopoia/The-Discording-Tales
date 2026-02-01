@@ -51,6 +51,8 @@
         initTabs();
         initSubTabs();
         initCombat();
+        initMagic();
+        initProgression();
         initLanguage();
         initCarousel();
         initMenuToggle();
@@ -129,6 +131,7 @@
             'world-context': 'lore',
             'system-overview': 'rules',
             'character-creation': 'rules',
+            progression: 'rules',
             combat: 'rules',
             magic: 'rules'
         };
@@ -187,6 +190,8 @@
             const linkSubId = linkHref ? linkHref.replace('#', '') : '';
             link.classList.toggle('active', linkSubId === subId);
         });
+        // Re-apply current language so all [data-en][data-fr] in newly visible panel are correct
+        setLanguage(state.currentLang);
     }
 
     function ensureFirstSubTabActive(tabId) {
@@ -300,6 +305,89 @@
     }
 
     // ========================================
+    // Magic (Rilie) Section: Accordion, Table Tabs
+    // ========================================
+    function initMagic() {
+        const magicSection = document.getElementById('magic');
+        if (!magicSection) return;
+
+        // Accordion: toggle body on head click
+        magicSection.querySelectorAll('.magic-accordion-item').forEach(function(item) {
+            const head = item.querySelector('.magic-accordion-head');
+            const body = item.querySelector('.magic-accordion-body');
+            if (!head || !body) return;
+            head.addEventListener('click', function() {
+                const isOpen = body.classList.contains('is-open');
+                body.classList.toggle('is-open', !isOpen);
+                head.setAttribute('aria-expanded', !isOpen);
+            });
+        });
+
+        // Expand all / Collapse all
+        const expandAll = magicSection.querySelector('.magic-expand-all');
+        const collapseAll = magicSection.querySelector('.magic-collapse-all');
+        if (expandAll) {
+            expandAll.addEventListener('click', function() {
+                magicSection.querySelectorAll('.magic-accordion-body').forEach(function(b) { b.classList.add('is-open'); });
+                magicSection.querySelectorAll('.magic-accordion-head').forEach(function(h) { h.setAttribute('aria-expanded', 'true'); });
+            });
+        }
+        if (collapseAll) {
+            collapseAll.addEventListener('click', function() {
+                magicSection.querySelectorAll('.magic-accordion-body').forEach(function(b) { b.classList.remove('is-open'); });
+                magicSection.querySelectorAll('.magic-accordion-head').forEach(function(h) { h.setAttribute('aria-expanded', 'false'); });
+            });
+        }
+
+        // Magic reference tables: tab links
+        magicSection.querySelectorAll('.magic-tab-link').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-magic-tab');
+                if (!tabId) return;
+                magicSection.querySelectorAll('.magic-tab-link').forEach(function(b) { b.classList.remove('active'); });
+                magicSection.querySelectorAll('.magic-tables-panel').forEach(function(p) {
+                    p.classList.toggle('active', p.getAttribute('data-magic-panel') === tabId);
+                });
+                this.classList.add('active');
+            });
+        });
+    }
+
+    // ========================================
+    // Progression Section: Accordion (Expand/Collapse)
+    // ========================================
+    function initProgression() {
+        const progressionSection = document.getElementById('progression');
+        if (!progressionSection) return;
+
+        progressionSection.querySelectorAll('.progression-accordion-item').forEach(function(item) {
+            const head = item.querySelector('.progression-accordion-head');
+            const body = item.querySelector('.progression-accordion-body');
+            if (!head || !body) return;
+            head.addEventListener('click', function() {
+                const isOpen = body.classList.contains('is-open');
+                body.classList.toggle('is-open', !isOpen);
+                head.setAttribute('aria-expanded', !isOpen);
+            });
+        });
+
+        const expandAll = progressionSection.querySelector('.progression-expand-all');
+        const collapseAll = progressionSection.querySelector('.progression-collapse-all');
+        if (expandAll) {
+            expandAll.addEventListener('click', function() {
+                progressionSection.querySelectorAll('.progression-accordion-body').forEach(function(b) { b.classList.add('is-open'); });
+                progressionSection.querySelectorAll('.progression-accordion-head').forEach(function(h) { h.setAttribute('aria-expanded', 'true'); });
+            });
+        }
+        if (collapseAll) {
+            collapseAll.addEventListener('click', function() {
+                progressionSection.querySelectorAll('.progression-accordion-body').forEach(function(b) { b.classList.remove('is-open'); });
+                progressionSection.querySelectorAll('.progression-accordion-head').forEach(function(h) { h.setAttribute('aria-expanded', 'false'); });
+            });
+        }
+    }
+
+    // ========================================
     // Language Toggle System
     // ========================================
     function initLanguage() {
@@ -316,12 +404,22 @@
         });
     }
 
+    var PAGE_TITLE_EN = 'THE DISCORDING TALES – Under our steps awake those mysteries believed to be warring among the stars…';
+    var PAGE_TITLE_FR = 'DES RÉCITS DISCORDANTS – Sous nos pas s\'éveillent ces mystères que l\'on croyait se battre parmi les étoiles…';
+    var META_DESCRIPTION_EN = 'For those of us who crave DISCOVERY. A journey through exotic cultures, unexplored lands, weird creatures, and untold ways of thinking and being—yearning to experience the vast potentials, technologies and moralities of worlds unlike ours.';
+    var META_DESCRIPTION_FR = 'Pour ceux d\'entre nous qui aspirent à la DÉCOUVERTE. Un voyage à travers des cultures exotiques, des terres inexplorées, des créatures étranges et des façons inédites de penser et d\'être—aspirant à expérimenter les vastes potentiels, technologies et moralités de mondes différents du nôtre.';
+
     function setLanguage(lang) {
         state.currentLang = lang;
         document.documentElement.lang = lang;
         try {
             window.dispatchEvent(new CustomEvent('tdt-lang-changed', { detail: lang }));
         } catch (e) {}
+
+        // Page title and meta description: always one language only
+        document.title = lang === 'fr' ? PAGE_TITLE_FR : PAGE_TITLE_EN;
+        var metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) metaDesc.setAttribute('content', lang === 'fr' ? META_DESCRIPTION_FR : META_DESCRIPTION_EN);
 
         // Update button states
         elements.langButtons.forEach(btn => {
@@ -331,12 +429,14 @@
             }
         });
 
-        // Update all text elements with data-en and data-fr attributes
+        // Update all text elements with data-en and data-fr attributes (one language only)
         document.querySelectorAll('[data-en][data-fr]').forEach(element => {
             const text = element.getAttribute(`data-${lang}`);
             if (text) {
                 if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
                     element.placeholder = text;
+                } else if (element.tagName === 'OPTION') {
+                    element.textContent = text;
                 } else {
                     // Use innerHTML to render HTML tags like <strong>, <em>, etc.
                     element.innerHTML = text;
@@ -366,6 +466,12 @@
         document.querySelectorAll('[data-alt-en][data-alt-fr]').forEach(element => {
             const alt = element.getAttribute(`data-alt-${lang}`);
             if (alt) element.setAttribute('alt', alt);
+        });
+
+        // Update tooltips (data-tip) from data-tip-en / data-tip-fr (e.g. combat glossary)
+        document.querySelectorAll('[data-tip-en][data-tip-fr]').forEach(element => {
+            const tip = element.getAttribute(`data-tip-${lang}`);
+            if (tip != null) element.setAttribute('data-tip', tip);
         });
 
         // Update carousel aria-labels (carousel is built in JS, so update after lang change)
