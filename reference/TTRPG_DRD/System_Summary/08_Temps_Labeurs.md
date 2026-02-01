@@ -139,7 +139,7 @@ Exemples (simplifiés) : Aristois 0–10 Enfant 5D, … 80 Vénérable 60D ; Nav
 ## 6. Surmenage et Fatigues
 
 - Effectuer **plus d’un Labeur** par jour (ou porter / transporter au-delà de sa capacité) peut déclencher des **Souffrances de Fatigues** (Livre p. 100 : Rappel à chaque NdT inverse du Niv d’Encombrement ; surcharge de véhicule : jet à -X NdT).
-- La **résistance** aux Fatigues est **passive** : le Niv de la Compétence Résistante (ex. [Satiété] pour Fatigues) absorbe les DS ; pas de jet à lancer.
+- La **résistance** aux Fatigues est **passive** : le Niv de la Compétence Résistante (ex. R[Fatigues]) absorbe les DS ; pas de jet à lancer.
 - Accumulation de Fatigues → pénalités, réduction d’efficacité, risque de Séquelles (voir 05_Souffrances_Guérison).
 
 ---

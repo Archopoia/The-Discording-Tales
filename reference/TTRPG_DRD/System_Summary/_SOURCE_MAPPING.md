@@ -30,7 +30,7 @@
 - **02_Creation**: Tirage_des_Caractéristiques, Attributs_d'Origine*, Caractéristiques_des_Peuples, Attributs_&_Aptitudes_Extrêmes, Raisons_d'Éveil*, Attaches_de_Récit*
 - **03_Attributs**: Aptitudes_Actions_Compétences, Attributs_Apt*, Aptitude_Atb*, Découvertes*, Cercle_Initial_*
 - **04_Experience**: Niv_Atb_Coût*, Tableau_des_Symboles_Calendaires, Variation_des_Compétences_Éduquées
-- **05_Souffrances**: Type_de_Souffrance*, Niv_de_Guérison*, Niv_d'Épreuve_des_8_Souffrances, Niv_de_Traitements*, Traitements_par_*, [Satiété]*, [Robustesse]*, Infirmités*, Mutilations*
+- **05_Souffrances**: Type_de_Souffrance*, Niv_de_Guérison*, Niv_d'Épreuve_des_8_Souffrances, Niv_de_Traitements*, Traitements_par_*, Infirmités*, Mutilations*
 - **06_Combat**: Clins_d'Action_au_Combat, Types_d'Action*, Potentiels*, Cercle_Initial_*, Localisation*, Manœuvres*, Frappes*, Face_d'arme*, ARMES_DE_MÊLÉS*, Armes_*, Matelassage*
 - **07_Rilie**: Honorations_Riliques*, Sacrifices_*
 - **08_Temps**: 0_Un_*Instant*, +9_Un_Solstice*, Cercles_de_Fréquence, Années_*

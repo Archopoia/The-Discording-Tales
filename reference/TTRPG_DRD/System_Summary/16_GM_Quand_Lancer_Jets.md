@@ -25,7 +25,7 @@ Ce document indique **quand** demander quel jet (ou appliquer une règle sans je
 ## Surmenage (plus d'un Labeur par jour)
 
 - **Quand** : Le personnage effectue plus d'un Labeur par jour.
-- **Jet** : **Aucun**. La résistance est passive : le Niv de la Compétence Résistante (ex. [Satiété] pour Fatigues) absorbe les DS ; pas de jet de résistance.
+- **Jet** : **Aucun**. La résistance est passive : le Niv de la Compétence Résistante (ex. R[Fatigues]) absorbe les DS ; pas de jet de résistance.
 - **Réf.** : 08, 05.
 
 ## Voyage — Navigation / perte de chemin
@@ -133,5 +133,5 @@ Ce document indique **quand** demander quel jet (ou appliquer une règle sans je
 ## Résistance aux Souffrances (DS)
 
 - **Quand** : Les règles disent que la résistance réduit les DS subis.
-- **Jet** : **Aucun**. La résistance est **toujours passive** : le Niv de la Compétence Résistante (Robustesse, Satiété, Rectitude, Immunité) plus Niv d'équipement absorbe les DS. Ne jamais demander de "Jet de Résistance".
+- **Jet** : **Aucun**. La résistance est **toujours passive** : le Niv de la Compétence Résistante R[Souffrance] (ex. R[Blessures], R[Fatigues], R[Entraves]) plus Niv d'équipement absorbe les DS. Ne jamais demander de "Jet de Résistance".
 - **Réf.** : 05 ; livre p.72.

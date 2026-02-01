@@ -1,7 +1,7 @@
 # Souffrances et Guérison - Des Récits Discordants
 
 Réf. livre : pages 72-73 (Souffrances, DS, Résistance, Séquelles), 137-149 (Souffrances Déclenchées, Rage, Évanouissement, Guérison).  
-CSV : Niv_de_Guérison_des_8_Souffrances, Niv_de_Traitements_des_8_Souffrances, Type_de_Souffrance_*, Niv_d'Épreuve_des_8_Souffrances, Traitements_par_Motivation_*, Traitements_par_Personalité, [Satiété]_*, [Robustesse]_*, Infirmités_*, Mutilations_*.
+CSV : Niv_de_Guérison_des_8_Souffrances, Niv_de_Traitements_des_8_Souffrances, Type_de_Souffrance_*, Niv_d'Épreuve_des_8_Souffrances, Traitements_par_Motivation_*, Traitements_par_Personalité, Infirmités_*, Mutilations_*.
 
 ## Les 8 Souffrances (Maux et Besoins)
 
@@ -9,12 +9,12 @@ Chaque Souffrance est liée à un Attribut et se résiste par une **Compétence 
 
 | Souffrance | Attribut | Compétence Résistante (ex.) |
 |------------|----------|-----------------------------|
-| **Blessures** | FOR | R[Blessures] — typ. [Robustesse] |
-| **Fatigues** | AGI | R[Fatigues] — typ. [Satiété] |
-| **Entraves** | DEX | R[Entraves] — typ. [Rectitude] ou équivalent |
-| **Disettes** | VIG | R[Disettes] — typ. [Satiété] |
-| **Addictions** | EMP | R[Addictions] — typ. [Rectitude] |
-| **Maladies** | PER | R[Maladies] — typ. [Immunité] |
+| **Blessures** | FOR | R[Blessures] |
+| **Fatigues** | AGI | R[Fatigues] |
+| **Entraves** | DEX | R[Entraves] |
+| **Disettes** | VIG | R[Disettes] |
+| **Addictions** | EMP | R[Addictions] |
+| **Maladies** | PER | R[Maladies] |
 | **Folies** | CRÉ | R[Folies] — typ. Valeurs (Moralité, Motivation, Personnalité) |
 | **Rancœurs** | VOL | R[Rancœurs] — typ. Traits (Socialité, Disposition, Passion) |
 

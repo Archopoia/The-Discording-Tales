@@ -33,7 +33,7 @@ Un artiste nomade qui cherche à capturer la beauté de la souffrance dans ses �
 - Populaire : [Inspiration] +1D
 - Populaire : [Débrouillardise] +1D
 - Populaire : [Chant] +1D
-- Raciale : [Rectitude] +2D
+- Raciale : [Entraves] +2D
 - Raciale : [Apprivoisement] +2D
 - Familiale : [Puissance] +3D
 

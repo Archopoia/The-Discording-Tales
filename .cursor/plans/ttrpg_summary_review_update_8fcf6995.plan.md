@@ -59,7 +59,7 @@ Deliverable: How Marques are earned (including échec critique = 5 Marques); Ré
 
 **2.5 [05_Souffrances_Guérison.md](reference/TTRPG%20-%20Des%20Récits%20Discordants/System_Summary/05_Souffrances_Guérison.md)**
 
-Sources: Pages 72–73, 137 (souffrances, résistance, séquelles, rage, guérison). CSVs: Type_de_Souffrance_Niveau_d’Épreuve_Rappel_&_Description (both variants), Niv_de_Guérison_des_8_Souffrances, Niv_d’Épreuve_des_8_Souffrances, Niv_de_Traitements_*, Traitements_par_Motivation_*, Traitements_par_Personalité, [Satiété]_*, [Robustesse]**, Infirmités, Mutilations_*.
+Sources: Pages 72–73, 137 (souffrances, résistance, séquelles, rage, guérison). CSVs: Type_de_Souffrance_Niveau_d’Épreuve_Rappel_&_Description (both variants), Niv_de_Guérison_des_8_Souffrances, Niv_d’Épreuve_des_8_Souffrances, Niv_de_Traitements_*, Traitements_par_Motivation_*, Traitements_par_Personalité, (Resistances R[Souffrance]), Infirmités, Mutilations_*.
 
 Deliverable: All 8 Souffrances with correct names and linked attributs; DS thresholds and Séquelles (Passagère/Durable/Permanente/Fatale) from book/CSV; resistance = passive (Niv only, no jet); Rage and Évanouissement rules; full treatment tables or exact references to CSVs.
 

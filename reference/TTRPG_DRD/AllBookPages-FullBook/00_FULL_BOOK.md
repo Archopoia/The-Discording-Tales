@@ -10514,7 +10514,7 @@ Immunisé au démontement (tomber de sa monture/sortir de votre véhicule)
 # FOR +1
 
 
-**[Satiété]**
+**[Fatigues]**
 
 Les besoins ne sont jamais rappelés et +1 nuit blanche avant d’avoir à tester
 
@@ -10523,7 +10523,7 @@ Transformer ses dés d’addiction ou rancoeur en dé de fatigue ou disette
 Les séquelles liés sont passagères ou durables (jamais permanentes/fatales)
 
 
-**[Robustesse]**
+**[Blessures]**
 
 +1 NdT avant de tester les rappels de saignement ou température
 
@@ -10541,7 +10541,7 @@ Vous communiez avec vos bêtes et si possible elles vous aident d’elles-mêmes
 Vos bêtes obéissent jusqu’à souffrir d’un Niv égal à votre Niv de CT
 
 
-**[Immunité]**
+**[Maladies]**
 
 Les drogues ne rappelent jamais l’envie, et les blessures ne s’infectent plus
 
@@ -10568,7 +10568,7 @@ Discerner immédiatement le type de motivation de tout groupe rencontré
 Immunisé aux situations enrageantes (donnant des rancoeurs)
 
 
-**[Rectitude]**
+**[Entraves]**
 
 Les séquelles physiques ou psychiques ne font jamais revivre de souvenir
 
@@ -11017,7 +11017,7 @@ Vos êtres dressés obéissent jusqu’à souffrir un Niv égal à votre Niv de 
 # FOR +1
 
 
-**[Satiété]**
+**[Fatigues]**
 
 Les besoins ne sont jamais rappelés et +1 nuit blanche avant d’avoir à tester
 
@@ -11026,7 +11026,7 @@ Transformer ses dés d’addiction ou rancoeur en dé de fatigue ou disette
 Les séquelles liés sont passagères ou durables (jamais permanentes/fatales)
 
 
-**[Robustesse]**
+**[Blessures]**
 
 +1 NdT avant de tester les rappels de saignement ou température
 
@@ -11044,7 +11044,7 @@ Vous communiez avec vos bêtes et si possible elles vous aident d’elles-mêmes
 Vos bêtes obéissent jusqu’à souffrir d’un Niv égal à votre Niv de CT
 
 
-**[Immunité]**
+**[Maladies]**
 
 Les drogues ne rappelent jamais l’envie, et les blessures ne s’infectent plus
 
@@ -11071,7 +11071,7 @@ Discerner immédiatement le type de motivation de tout groupe rencontré
 Immunisé aux situations enrageantes (donnant des rancoeurs)
 
 
-**[Rectitude]**
+**[Entraves]**
 
 Les séquelles physiques ou psychiques ne font jamais revivre de souvenir
 
@@ -39069,7 +39069,7 @@ Puis, il faudra faire au prochain jet de 10dD, +/-6 pour avoir été éduqué et
 # DLG
 
 
-**[ Immunité ]**
+**[ Maladies ]**
 
 
 **[ Investigation ]**
@@ -39293,7 +39293,7 @@ Puis, il faudra faire au prochain jet de 10dD, +/-6 pour avoir été éduqué et
 **[ Débrouillardise ]**
 
 
-**♂ [ Robustesse ]**
+**♂ [ Blessures ]**
 
 
 **♂ [ Armé ] ou**
@@ -39457,7 +39457,7 @@ Puis, il faudra faire au prochain jet de 10dD, +/-6 pour avoir été éduqué et
 # DMN
 
 
-**[ Rectitude ]**
+**[ Entraves ]**
 
 
 **Peuples**
@@ -39630,7 +39630,7 @@ Puis, il faudra faire au prochain jet de 10dD, +/-6 pour avoir été éduqué et
 # DMN
 
 
-**[ Rectitude ]**
+**[ Entraves ]**
 
 
 **Peuples**
@@ -39647,7 +39647,7 @@ Puis, il faudra faire au prochain jet de 10dD, +/-6 pour avoir été éduqué et
 # DMN
 
 
-**[ Rectitude ]**
+**[ Entraves ]**
 
 
 **[ Chevauchement ]**
@@ -39710,7 +39710,7 @@ Puis, il faudra faire au prochain jet de 10dD, +/-6 pour avoir été éduqué et
 # DMN
 
 
-**[ Rectitude ]**
+**[ Entraves ]**
 
 
 **Troglodytes**
@@ -39814,7 +39814,7 @@ Puis, il faudra faire au prochain jet de 10dD, +/-6 pour avoir été éduqué et
 # DMN
 
 
-**[ Rectitude ]**
+**[ Entraves ]**
 
 # DMN
 
@@ -39883,7 +39883,7 @@ Puis, il faudra faire au prochain jet de 10dD, +/-6 pour avoir été éduqué et
 **[ Mimétisme ]**
 
 
-**♂ [ Satiété ]**
+**♂ [ Fatigues ]**
 
 
 **♀ [ Interne ]**
@@ -40226,7 +40226,7 @@ Puis, il faudra faire au prochain jet de 10dD, +/-6 pour avoir été éduqué et
 # DLG
 
 
-**[ Immunité ]**
+**[ Maladies ]**
 
 
 **[ Investigation ]**
@@ -40450,7 +40450,7 @@ Puis, il faudra faire au prochain jet de 10dD, +/-6 pour avoir été éduqué et
 **[ Débrouillardise ]**
 
 
-**♂ [ Robustesse ]**
+**♂ [ Blessures ]**
 
 
 **♂ [ Armé ] ou**
@@ -40614,7 +40614,7 @@ Puis, il faudra faire au prochain jet de 10dD, +/-6 pour avoir été éduqué et
 # DMN
 
 
-**[ Rectitude ]**
+**[ Entraves ]**
 
 
 **Peuples**
@@ -40787,7 +40787,7 @@ Puis, il faudra faire au prochain jet de 10dD, +/-6 pour avoir été éduqué et
 # DMN
 
 
-**[ Rectitude ]**
+**[ Entraves ]**
 
 
 **Peuples**
@@ -40804,7 +40804,7 @@ Puis, il faudra faire au prochain jet de 10dD, +/-6 pour avoir été éduqué et
 # DMN
 
 
-**[ Rectitude ]**
+**[ Entraves ]**
 
 
 **[ Chevauchement ]**
@@ -40867,7 +40867,7 @@ Puis, il faudra faire au prochain jet de 10dD, +/-6 pour avoir été éduqué et
 # DMN
 
 
-**[ Rectitude ]**
+**[ Entraves ]**
 
 
 **Troglodytes**
@@ -40971,7 +40971,7 @@ Puis, il faudra faire au prochain jet de 10dD, +/-6 pour avoir été éduqué et
 # DMN
 
 
-**[ Rectitude ]**
+**[ Entraves ]**
 
 # DMN
 
@@ -41040,7 +41040,7 @@ Puis, il faudra faire au prochain jet de 10dD, +/-6 pour avoir été éduqué et
 **[ Mimétisme ]**
 
 
-**♂ [ Satiété ]**
+**♂ [ Fatigues ]**
 
 
 **♀ [ Interne ]**

@@ -158,7 +158,7 @@
 # DLG
 
 
-**[ Immunité ]**
+**[ Maladies ]**
 
 
 **[ Investigation ]**
@@ -382,7 +382,7 @@
 **[ Débrouillardise ]**
 
 
-**♂ [ Robustesse ]**
+**♂ [ Blessures ]**
 
 
 **♂ [ Armé ] ou**
@@ -546,7 +546,7 @@
 # DMN
 
 
-**[ Rectitude ]**
+**[ Entraves ]**
 
 
 **Peuples**
@@ -719,7 +719,7 @@
 # DMN
 
 
-**[ Rectitude ]**
+**[ Entraves ]**
 
 
 **Peuples**
@@ -736,7 +736,7 @@
 # DMN
 
 
-**[ Rectitude ]**
+**[ Entraves ]**
 
 
 **[ Chevauchement ]**
@@ -799,7 +799,7 @@
 # DMN
 
 
-**[ Rectitude ]**
+**[ Entraves ]**
 
 
 **Troglodytes**
@@ -903,7 +903,7 @@
 # DMN
 
 
-**[ Rectitude ]**
+**[ Entraves ]**
 
 # DMN
 
@@ -972,7 +972,7 @@
 **[ Mimétisme ]**
 
 
-**♂ [ Satiété ]**
+**♂ [ Fatigues ]**
 
 
 **♀ [ Interne ]**
@@ -1315,7 +1315,7 @@
 # DLG
 
 
-**[ Immunité ]**
+**[ Maladies ]**
 
 
 **[ Investigation ]**
@@ -1539,7 +1539,7 @@
 **[ Débrouillardise ]**
 
 
-**♂ [ Robustesse ]**
+**♂ [ Blessures ]**
 
 
 **♂ [ Armé ] ou**
@@ -1703,7 +1703,7 @@
 # DMN
 
 
-**[ Rectitude ]**
+**[ Entraves ]**
 
 
 **Peuples**
@@ -1876,7 +1876,7 @@
 # DMN
 
 
-**[ Rectitude ]**
+**[ Entraves ]**
 
 
 **Peuples**
@@ -1893,7 +1893,7 @@
 # DMN
 
 
-**[ Rectitude ]**
+**[ Entraves ]**
 
 
 **[ Chevauchement ]**
@@ -1956,7 +1956,7 @@
 # DMN
 
 
-**[ Rectitude ]**
+**[ Entraves ]**
 
 
 **Troglodytes**
@@ -2060,7 +2060,7 @@
 # DMN
 
 
-**[ Rectitude ]**
+**[ Entraves ]**
 
 # DMN
 
@@ -2129,7 +2129,7 @@
 **[ Mimétisme ]**
 
 
-**♂ [ Satiété ]**
+**♂ [ Fatigues ]**
 
 
 **♀ [ Interne ]**

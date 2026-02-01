@@ -154,7 +154,7 @@ CRITICAL: The word inside the brackets MUST be a COMPÉTENCE (one of the 72 abov
 - **Jet d'Évanouissement** (15+ Souffrances): Roll [Évanouissement] vs Niv +X. Mechanic: 1d6 > Niv. Include this line.
 - **Jet d'Ambiance** (group cohesion, 09_Groupe_Ambiance): When the situation requires a Jet d'Ambiance (cohesion du groupe), output Roll [Ambiance] vs Niv +X. Mechanic: 5dD (dés discordants), result = sum of 5, success if result >= Niv. Include this line.
 - **Jet de Repos** (guérison quotidienne, 05_Souffrances): When the situation requires a Jet de Repos (combien de jours de souffrance guéris), output Roll [Repos] vs Niv +X. Mechanic: 5dD, result = sum vs Niv. Include this line.
-- **Résistance** (05_Souffrances): Résistance is PASSIVE — it uses the Niv of the Compétence Résistante (Robustesse, Satiété, Rectitude, Immunité) to reduce DS; there is NO "Jet de Résistance" roll. Do not ask for a roll for Résistance; apply the Niv when the rules say resistance reduces DS.
+- **Résistance** (05_Souffrances): Résistance is PASSIVE — it uses the Niv of the Compétence Résistante R[Souffrance] (e.g. R[Blessures], R[Fatigues], R[Entraves]) to reduce DS; there is NO "Jet de Résistance" roll. Do not ask for a roll for Résistance; apply the Niv when the rules say resistance reduces DS.
 
 **Situational rolls (when to call for which roll):**
 - **Voyage/Navigation** (lost, orientation): Roll [Géographie], [Estimation], or [Vision] vs Niv.

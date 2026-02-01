@@ -502,7 +502,7 @@ Cette multiplicité encourage la créativité et permet à chaque personnage de 
 # Souffrances et Guérison - Des Récits Discordants
 
 Réf. livre : pages 72-73 (Souffrances, DS, Résistance, Séquelles), 137-149 (Souffrances Déclenchées, Rage, Évanouissement, Guérison).  
-CSV : Niv_de_Guérison_des_8_Souffrances, Niv_de_Traitements_des_8_Souffrances, Type_de_Souffrance_*, Niv_d'Épreuve_des_8_Souffrances, Traitements_par_Motivation_*, Traitements_par_Personalité, [Satiété]_*, [Robustesse]_*, Infirmités_*, Mutilations_*.
+CSV : Niv_de_Guérison_des_8_Souffrances, Niv_de_Traitements_des_8_Souffrances, Type_de_Souffrance_*, Niv_d'Épreuve_des_8_Souffrances, Traitements_par_Motivation_*, Traitements_par_Personalité, Infirmités_*, Mutilations_*.
 
 ## Les 8 Souffrances (Maux et Besoins)
 
@@ -510,12 +510,12 @@ Chaque Souffrance est liée à un Attribut et se résiste par une **Compétence 
 
 | Souffrance | Attribut | Compétence Résistante (ex.) |
 |------------|----------|-----------------------------|
-| **Blessures** | FOR | R[Blessures] — typ. [Robustesse] |
-| **Fatigues** | AGI | R[Fatigues] — typ. [Satiété] |
-| **Entraves** | DEX | R[Entraves] — typ. [Rectitude] ou équivalent |
-| **Disettes** | VIG | R[Disettes] — typ. [Satiété] |
-| **Addictions** | EMP | R[Addictions] — typ. [Rectitude] |
-| **Maladies** | PER | R[Maladies] — typ. [Immunité] |
+| **Blessures** | FOR | R[Blessures] |
+| **Fatigues** | AGI | R[Fatigues] |
+| **Entraves** | DEX | R[Entraves] |
+| **Disettes** | VIG | R[Disettes] |
+| **Addictions** | EMP | R[Addictions] |
+| **Maladies** | PER | R[Maladies] |
 | **Folies** | CRÉ | R[Folies] — typ. Valeurs (Moralité, Motivation, Personnalité) |
 | **Rancœurs** | VOL | R[Rancœurs] — typ. Traits (Socialité, Disposition, Passion) |
 
@@ -947,7 +947,7 @@ Exemples (simplifiés) : Aristois 0–10 Enfant 5D, … 80 Vénérable 60D ; Nav
 ## 6. Surmenage et Fatigues
 
 - Effectuer **plus d’un Labeur** par jour (ou porter / transporter au-delà de sa capacité) peut déclencher des **Souffrances de Fatigues** (Livre p. 100 : Rappel à chaque NdT inverse du Niv d’Encombrement ; surcharge de véhicule : jet à -X NdT).
-- La **résistance** aux Fatigues est **passive** : le Niv de la Compétence Résistante (ex. [Satiété] pour Fatigues) absorbe les DS ; pas de jet à lancer.
+- La **résistance** aux Fatigues est **passive** : le Niv de la Compétence Résistante (ex. R[Fatigues]) absorbe les DS ; pas de jet à lancer.
 - Accumulation de Fatigues → pénalités, réduction d’efficacité, risque de Séquelles (voir 05_Souffrances_Guérison).
 
 ---
@@ -1243,7 +1243,7 @@ Ce document indique **quand** demander quel jet (ou appliquer une règle sans je
 ## Surmenage (plus d'un Labeur par jour)
 
 - **Quand** : Le personnage effectue plus d'un Labeur par jour.
-- **Jet** : **Aucun**. La résistance est passive : le Niv de la Compétence Résistante (ex. [Satiété] pour Fatigues) absorbe les DS ; pas de jet de résistance.
+- **Jet** : **Aucun**. La résistance est passive : le Niv de la Compétence Résistante (ex. R[Fatigues]) absorbe les DS ; pas de jet de résistance.
 - **Réf.** : 08, 05.
 
 ## Voyage — Navigation / perte de chemin

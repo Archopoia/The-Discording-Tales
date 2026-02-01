@@ -1,4 +1,4 @@
-﻿"﻿Compétences Sociétales, Populaires & Raciales",,,,,,,,,,,,
+"﻿Compétences Sociétales, Populaires & Raciales",,,,,,,,,,,,
 "Origines, Peuples, Races",,,,"Compétences
 Sociétales
 (Prendre toutes les 3)",,"1 Compétence Populaire (Ligne de son Peuple)
@@ -18,7 +18,7 @@ VIG","[Société]
 ,Peuples,Griscribes (♂|♀),,"DMN
 ITL
 DLG
-DLG","[Immunité]
+DLG","[Maladies]
 [Investigation]
 ♂ [Conduite] ou
 ♀ [Bricolage] ",ITL,[Estimation],ITL,[Médecine],ITL,,[Ingénierie]
@@ -43,7 +43,7 @@ DMN
 PSC 
 DMN
 DMN","[Débrouillardise]
-♂ [Robustesse] 
+♂ [Blessures] 
 ♂ [Armé] ou
 ♀ [Apprivoisement] 
 ♀ [Séduction] ",PRF,[Chevauchement],ITL,[Géographie],ASC,,[Équilibre]
@@ -58,7 +58,7 @@ IFL","[Bottes]
 ♂ [Puissance] ou
 ♀ [Instrument] ",PRF,[Acrobatie],ASC,[Esquive],ASC,,[Équilibre]
 ,,Races,De Lunes,,,ASC,[Dissimul.],ITL,[Estimation],ASC,,[Escamotage]
-,,,Des Plaines,,,IFL,[Chant],VIG,[Audition],DMN,,[Rectitude]
+,,,Des Plaines,,,IFL,[Chant],VIG,[Audition],DMN,,[Entraves]
 ,Peuples,Iqqars,,"PRF
 ITL
 ITL
@@ -75,16 +75,16 @@ IFL","[Savoir-Faire]
 [Négociation]",IFL,[Inspiration],VIG,[Ressenti],ITL,,[Société]
 ,,Races,Collinicoles,,,PSC,[Armé],PSC,[Bandé],IFL,,[Puissance]
 ,,,Chromatiques,,,VIG,[Audition],IFL,[Narration],IFL,,[Chant]
-,,,Pastoraux,,,ITL,[Médecine],DMN,[Intimidation],DMN,,[Rectitude]
+,,,Pastoraux,,,ITL,[Médecine],DMN,[Intimidation],DMN,,[Entraves]
 ,Peuples,Ylfes des lacs (♂|♀),,"DMN
 PRF
 ITL
-DMN","[Rectitude]
+DMN","[Entraves]
 [Chevauchement]
 ♂ [Investigation] ou 
 ♀ [Apprivoisement] ",VIG,[Ressenti],ITL,[Artisanat],DMN,,[Intimidation]
 ,,Races,Mâche-Troncs,,,ITL,[Société],IFL,[Présentation],ITL,,[Jeux]
-,,,Danse-Feuilles,,,ITL,[Médecine],DMN,[Intimidation],DMN,,[Rectitude]
+,,,Danse-Feuilles,,,ITL,[Médecine],DMN,[Intimidation],DMN,,[Entraves]
 ,,,Troglodytes,,,VIG,[Audition],IFL,[Narration],IFL,,[Chant]
 Origignes Bêstres,Peuples,Slaadéens,,"IFL
 DLG
@@ -93,7 +93,7 @@ IFL","[Inspiration]
 [Chant]",PRF,[Allure],PSC,[Armé],ITL,,[Société]
 ,,Races,Hlabayan,,,PSC,[Désarmé],PSC,[Improvisé],PSC,,[Propulsé]
 ,,,Sydru-kal,,,PRF,[Acrobatie],ASC,[Évasion] ,ASC,,[Gestuelle]
-,,,Felichrem,,,DMN,[Rectitude],DMN,[Apprivoisement],IFL,,[Puissance]
+,,,Felichrem,,,DMN,[Entraves],DMN,[Apprivoisement],IFL,,[Puissance]
 ,,,Iossolam,,,ITL,[Investigation],ITL,[Médecine],DLG,,[Artifices]
 ,,,Wijriol,,,VIG,[Audition],ITL,[Nature],IFL,,[Mimétisme]
 ,Peuples,Tchalkchaïs (♂|♀),,"PRF
@@ -101,7 +101,7 @@ IFL
 DMN
 VIG","[Saut]
 [Mimétisme]
-♂ [Satiété] 
+♂ [Fatigues] 
 ♀ [Interne] ",ASC,[Maniement],DLG,[Débrouillardise],ITL,,[Géographie]
 ,,Races,Nuôtarjoy,,,PRF,[Port],PRF,[Grimpe],PRF,,[Natation]
 ,,,Ikrayad,,,PRF,[Allure],ASC,[Dissimulation],DLG,,[Illusions]
