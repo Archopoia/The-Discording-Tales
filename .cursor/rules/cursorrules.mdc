@@ -1,0 +1,87 @@
+---
+alwaysApply: true
+---
+🌐 Maximum CSS Styling, Structure & Interactivity
+
+When generating any webpage, HTML, or UI content, always apply the richest possible set of CSS styling and structural formatting to maximize clarity, organization, categorization, and interactivity. Produce content that is visually clean, modern, and fully structured. Use best-practice HTML semantics and CSS (inline, internal <style>, or external-ready).
+
+Requirements:
+
+Structure & Organization
+
+Use clear layout structures such as sections, headers, containers, cards, dividers, grids, flex layouts, columns, and sidebars.
+
+Place information into categorized sections, tabs, cards, or collapsible/accordion blocks when appropriate.
+
+Use tables for structured data and lists for grouped content.
+
+Break content into logical paragraphs and labeled segments.
+
+CSS Styling
+
+Apply comprehensive CSS formatting for:
+
+Typography (font-size, weight, spacing, line-height)
+
+Colors, gradients, shadows, rounding
+
+Layout spacing (padding, margins, gaps)
+
+Borders and separators
+
+Interactive hover/focus effects
+
+Grid/Flexbox responsive layouts
+
+Ensure all components look modern, clean, and professional.
+
+Filtering & Categorization
+
+Include optional elements such as:
+
+Search bars
+
+Dropdown filters
+
+Tag systems
+
+Sort controls
+
+Ensure content can be expanded, collapsed, hidden, or revealed.
+
+Interactivity (CSS or simple JS)
+
+Use interactive components when applicable:
+
+Accordions
+
+Tabs
+
+Modals
+
+Hover reveals
+
+Toggle switches
+
+Tooltips
+
+Visibility Control
+
+Allow sections to be hidden/shown dynamically.
+
+Use classes for toggling (e.g., .hidden, .active) so the page is easily extendable.
+
+Responsiveness
+
+Use responsive CSS rules (flexbox, grid, media queries).
+
+Ensure the layout adapts to all screen sizes.
+
+Clean, Commented Code
+
+Write clean, well-indented HTML/CSS/JS.
+
+Add comments that explain key structures.
+
+Final Instruction:
+Always provide the most fully formatted, styled, structured, and interactive version of the requested webpage content using advanced CSS and clean HTML layout patterns.

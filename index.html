@@ -136,19 +136,19 @@
         </section>
         
         <!-- Lore Tab -->
-        <section id="lore" class="tab-content" data-lang-key="lore">
+        <section id="lore" class="tab-content has-subtabs" data-lang-key="lore">
             <div class="tab-header">
                 <h2 data-en="Worldlore" data-fr="Lore du Monde">Worldlore</h2>
                 <p class="tab-intro" data-en="Explore the baroque world worthy of myths and their mystical technologies" data-fr="Explorez le monde baroque digne de mythes et de leurs technologies mystiques">Explore the baroque world worthy of myths and their mystical technologies</p>
                 <nav class="tab-sub-nav" aria-label="Worldlore sections">
-                    <a href="#cosmology" class="tab-sub-nav-link" data-en="Cosmology" data-fr="Cosmogonie">Cosmology</a>
+                    <a href="#cosmology" class="tab-sub-nav-link active" data-en="Cosmology" data-fr="Cosmogonie">Cosmology</a>
                     <a href="#peoples" class="tab-sub-nav-link" data-en="Peoples" data-fr="Peuples">Peoples</a>
                     <a href="#world-context" class="tab-sub-nav-link" data-en="World Context" data-fr="Contexte du Monde">World Context</a>
                 </nav>
             </div>
             
             <!-- Cosmology Section -->
-            <div class="lore-section" id="cosmology">
+            <div class="lore-section tab-sub-panel active" id="cosmology">
                 <h3 data-en="Cosmology & Divinities" data-fr="Cosmogonie & Divinités">Cosmology & Divinities</h3>
                 <div class="lore-content" data-lang-key="cosmology-content">
                     <h4 data-en="Fundamental Cosmology" data-fr="Cosmologie Fondamentale">Fundamental Cosmology</h4>
@@ -219,7 +219,7 @@
             </div>
             
             <!-- Peoples Section -->
-            <div class="lore-section" id="peoples">
+            <div class="lore-section tab-sub-panel" id="peoples">
                 <h3 data-en="Peoples & Races" data-fr="Peuples & Races">Peoples & Races</h3>
                 <div class="peoples-gallery" data-lang-key="peoples-content">
                     <h4 data-en="10 Unique Peoples" data-fr="10 Peuples Uniques">10 Unique Peoples</h4>
@@ -301,7 +301,7 @@
             </div>
             
             <!-- World Context Section -->
-            <div class="lore-section" id="world-context">
+            <div class="lore-section tab-sub-panel" id="world-context">
                 <h3 data-en="World Context" data-fr="Contexte du Monde">World Context</h3>
                 <div class="lore-content" data-lang-key="world-content">
                     <h4 data-en="The Region: Iäoduneï" data-fr="La Région : Iäoduneï">The Region: Iäoduneï</h4>
@@ -327,18 +327,20 @@
         </section>
         
         <!-- Rules Tab -->
-        <section id="rules" class="tab-content" data-lang-key="rules">
+        <section id="rules" class="tab-content has-subtabs" data-lang-key="rules">
             <div class="tab-header">
                 <h2 data-en="Ruleset" data-fr="Système de Règles">Ruleset</h2>
                 <p class="tab-intro" data-en="Discover the free-forming system where failure becomes progression" data-fr="Découvrez le système libre-formant où l'échec devient progression">Discover the free-forming system where failure becomes progression</p>
                 <nav class="tab-sub-nav" aria-label="Ruleset sections">
-                    <a href="#system-overview" class="tab-sub-nav-link" data-en="System Overview" data-fr="Vue d'ensemble">System Overview</a>
+                    <a href="#system-overview" class="tab-sub-nav-link active" data-en="System Overview" data-fr="Vue d'ensemble">System Overview</a>
                     <a href="#character-creation" class="tab-sub-nav-link" data-en="Character Creation" data-fr="Création de personnage">Character Creation</a>
                     <a href="#combat" class="tab-sub-nav-link" data-en="Combat" data-fr="Combat">Combat</a>
                     <a href="#magic" class="tab-sub-nav-link" data-en="Magic (Rilie)" data-fr="Magie (Rilie)">Magic (Rilie)</a>
                 </nav>
             </div>
 
+            <!-- System Overview panel (intro + system overview section) -->
+            <div class="tab-sub-panel active" data-subtab="system-overview">
             <!-- Worldlore & Ruleset (from backup: same structure and pictures) -->
             <div class="worldlore-ruleset-block" id="worldlore-pitch">
                 <p class="worldlore-intro" data-en="Many riches will spring out of The Discording Tales, beginning with a Tabletop Role-Playing Game from which videogames, novels and more will sprout (all in English &amp; French)." data-fr="De nombreuses richesses jailliront des Récits Discordants, à commencer par un Jeu de Rôle sur Table d'où jailliront jeux vidéo, romans et plus (le tout en anglais &amp; français).">Many riches will spring out of The Discording Tales, beginning with a Tabletop Role-Playing Game from which videogames, novels and more will sprout (all in English &amp; French).</p>
@@ -508,7 +510,11 @@
                     </div>
                 </div>
             </div>
-            
+            </div>
+            <!-- end System Overview panel -->
+
+            <!-- Character Creation panel -->
+            <div class="tab-sub-panel" data-subtab="character-creation">
             <!-- Character Creation. Note: we do not use page numbers, chapter names, CSV/file names, or other source refs on the website. -->
             <div class="rules-section" id="character-creation">
                 <h3 data-en="Character Creation" data-fr="Création de Personnage">Character Creation</h3>
@@ -667,7 +673,11 @@
                     </div>
                 </div>
             </div>
-            
+            </div>
+            <!-- end Character Creation panel -->
+
+            <!-- Combat panel -->
+            <div class="tab-sub-panel" data-subtab="combat">
             <!-- Combat System -->
             <div class="rules-section" id="combat">
                 <h3 data-en="Combat System" data-fr="Système de Combat">Combat System</h3>
@@ -688,7 +698,11 @@
                     <p data-en="Accumulated through Reactions, reduces your capabilities. High Shock Levels can stun or incapacitate characters." data-fr="Accumulé par les Réactions, réduit vos capacités. Des Niveaux d'Ébranlement élevés peuvent étourdir ou incapaciter les personnages.">Accumulated through Reactions, reduces your capabilities. High Shock Levels can stun or incapacitate characters.</p>
                 </div>
             </div>
-            
+            </div>
+            <!-- end Combat panel -->
+
+            <!-- Magic panel -->
+            <div class="tab-sub-panel" data-subtab="magic">
             <!-- Magic System -->
             <div class="rules-section" id="magic">
                 <h3 data-en="Magic System (Rilie)" data-fr="Système de Magie (Rilie)">Magic System (Rilie)</h3>
@@ -731,6 +745,8 @@
                     <p data-en="<strong>Thresholds:</strong> 10+ total <span title=&quot;DS = Suffering Dice; accumulated negative dice from Sufferings.&quot;>DS</span> = Rage / 15+ = Unconsciousness (Évanouissement) / Defeated (Coma or Madness). <strong>Séquelles:</strong> 3 DS = Passagère, 6 DS = Durable, 10 DS = Permanente, 15 DS = Fatale." data-fr="<strong>Seuils:</strong> 10+ <span title=&quot;DS = Dés de Souffrance ; dés négatifs accumulés des Souffrances.&quot;>DS</span> totaux = Rage / 15+ = Évanouissement / Vaincu (Coma ou Folie). <strong>Séquelles:</strong> 3 DS = Passagère, 6 DS = Durable, 10 DS = Permanente, 15 DS = Fatale."><strong>Thresholds:</strong> 10+ total <span title="DS = Suffering Dice; accumulated negative dice from Sufferings.">DS</span> = Rage / 15+ = Unconsciousness (Évanouissement) / Defeated (Coma or Madness). <strong>Séquelles:</strong> 3 DS = Passagère, 6 DS = Durable, 10 DS = Permanente, 15 DS = Fatale.</p>
                 </div>
             </div>
+            </div>
+            <!-- end Magic panel -->
         </section>
         
         <!-- Play Tab (LLM GM Chat) -->

@@ -49,6 +49,7 @@
     // ========================================
     document.addEventListener('DOMContentLoaded', function() {
         initTabs();
+        initSubTabs();
         initLanguage();
         initCarousel();
         initMenuToggle();
@@ -113,6 +114,7 @@
                 if (!skipScrollToTop) {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
+                ensureFirstSubTabActive(tabId);
             }
         });
     }
@@ -140,15 +142,60 @@
         }
         if (sectionToTab[hash]) {
             switchTab(sectionToTab[hash], { skipScrollToTop: true });
-            requestAnimationFrame(function () {
-                requestAnimationFrame(function () {
-                    const el = document.getElementById(hash);
-                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                });
-            });
+            switchSubTab(sectionToTab[hash], hash);
             return;
         }
         switchTab('landing');
+    }
+
+    // ========================================
+    // Subtab Navigation (Lore, Rules)
+    // ========================================
+    function initSubTabs() {
+        document.querySelectorAll('.tab-sub-nav').forEach(function(nav) {
+            const tabContent = nav.closest('.tab-content');
+            if (!tabContent) return;
+            const links = nav.querySelectorAll('.tab-sub-nav-link');
+            links.forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
+                    const subId = href ? href.replace('#', '') : '';
+                    if (!subId) return;
+                    switchSubTab(tabContent.id, subId);
+                    if (history.pushState) {
+                        history.pushState(null, null, '#' + subId);
+                    }
+                });
+            });
+        });
+        // Set first subtab active when main tab is shown (handled in switchTab)
+    }
+
+    function switchSubTab(tabId, subId) {
+        const tabContent = document.getElementById(tabId);
+        if (!tabContent) return;
+        const panels = tabContent.querySelectorAll('.tab-sub-panel');
+        const links = tabContent.querySelectorAll('.tab-sub-nav-link');
+        panels.forEach(function(panel) {
+            const isActive = panel.id === subId || panel.getAttribute('data-subtab') === subId;
+            panel.classList.toggle('active', !!isActive);
+        });
+        links.forEach(function(link) {
+            const linkHref = link.getAttribute('href');
+            const linkSubId = linkHref ? linkHref.replace('#', '') : '';
+            link.classList.toggle('active', linkSubId === subId);
+        });
+    }
+
+    function ensureFirstSubTabActive(tabId) {
+        const tabContent = document.getElementById(tabId);
+        if (!tabContent || !tabContent.classList.contains('has-subtabs')) return;
+        const panels = tabContent.querySelectorAll('.tab-sub-panel');
+        const links = tabContent.querySelectorAll('.tab-sub-nav-link');
+        const firstLink = links[0];
+        const firstSubId = firstLink && firstLink.getAttribute('href') ? firstLink.getAttribute('href').replace('#', '') : '';
+        if (firstSubId) switchSubTab(tabId, firstSubId);
     }
 
     // ========================================

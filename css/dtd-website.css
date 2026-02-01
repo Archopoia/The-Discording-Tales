@@ -1301,6 +1301,20 @@ img {
     background: var(--tdt-burgundy-warm);
     color: var(--tdt-beige);
 }
+.tab-sub-nav-link.active {
+    background: var(--tdt-burgundy-warm);
+    color: var(--tdt-beige);
+    border-color: var(--tdt-beige);
+    font-weight: 600;
+}
+
+/* Subtab panels: only the active one is visible (no long scrolling page) */
+.tab-content.has-subtabs .tab-sub-panel {
+    display: none;
+}
+.tab-content.has-subtabs .tab-sub-panel.active {
+    display: block;
+}
 
 /* Scroll margin for anchor targets (avoid header overlap) */
 #cosmology, #peoples, #world-context,
@@ -1343,6 +1357,8 @@ img {
     color: var(--tdt-cream);
     line-height: 1.8;
     max-width: 75ch;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .lore-content h4,
@@ -2393,8 +2409,10 @@ img {
 
 /* Worldlore & Ruleset block (backup structure and pictures) */
 .worldlore-ruleset-block {
+    width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
     padding: var(--spacing-md);
     color: var(--tdt-cream);
 }
@@ -2404,6 +2422,10 @@ img {
     color: var(--tdt-cream);
     font-size: 1.1rem;
     margin-bottom: var(--spacing-lg);
+    width: 100%;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .worldlore-heading {
@@ -2694,8 +2716,15 @@ img {
 
 .worldlore-center-block {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
     max-width: 900px;
-    margin: var(--spacing-md) auto;
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    margin-left: auto;
+    margin-right: auto;
     padding-left: 1rem;
     padding-right: 1rem;
     box-sizing: border-box;
@@ -2704,6 +2733,8 @@ img {
 .worldlore-center-block .worldlore-p,
 .worldlore-center-block .worldlore-h4 {
     text-align: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .worldlore-center-block .worldlore-list {
@@ -2711,6 +2742,7 @@ img {
     display: inline-block;
     margin-left: auto;
     margin-right: auto;
+    max-width: 100%;
 }
 
 .worldlore-mint {
