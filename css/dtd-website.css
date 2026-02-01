@@ -937,6 +937,9 @@ img {
 .tetrarchs-grid {
     margin: var(--spacing-md) 0;
 }
+.tetrarchs-grid--hidden {
+    display: none !important;
+}
 
 .peoples-gallery {
     margin-top: var(--spacing-md);
@@ -2328,6 +2331,87 @@ img {
 
 .combat-weapon-panel.active {
     display: block;
+}
+
+/* ========================================
+   Popover (rich hover content)
+   ======================================== */
+.tdt-popover {
+    position: fixed;
+    z-index: 9999;
+    max-width: 360px;
+    max-height: 80vh;
+    overflow: auto;
+    padding: var(--spacing-md);
+    background: linear-gradient(135deg, var(--tdt-beige-lighter) 0%, var(--tdt-beige-warm) 50%, var(--tdt-beige-light) 100%);
+    border: 2px solid var(--tdt-burgundy-warm);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg), 0 0 0 1px var(--tdt-beige-light);
+    color: #0d0606;
+    font-size: 0.9rem;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-fast), visibility var(--transition-fast);
+}
+.tdt-popover p,
+.tdt-popover li {
+    color: #0d0606;
+}
+.tdt-popover.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+.tdt-popover .tdt-popover-inner {
+    position: relative;
+}
+.tdt-popover h5 {
+    margin: 0 0 var(--spacing-sm) 0;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: #2a0a0a;
+}
+.tdt-popover .peoples-back-section {
+    margin-bottom: var(--spacing-sm);
+}
+.tdt-popover .peoples-back-section h6 {
+    margin: 0 0 var(--spacing-xs) 0;
+    font-size: 0.85rem;
+    color: #2a0a0a;
+}
+.tdt-popover .lore-table,
+.tdt-popover .peoples-attr-table,
+.tdt-popover .peoples-phys-table {
+    font-size: 0.8rem;
+    background: rgba(70, 0, 0, 0.2);
+    color: #0d0606;
+}
+.tdt-popover .lore-table th,
+.tdt-popover .lore-table td,
+.tdt-popover .peoples-attr-table th,
+.tdt-popover .peoples-attr-table td,
+.tdt-popover .peoples-phys-table th,
+.tdt-popover .peoples-phys-table td {
+    padding: 2px 6px;
+    color: #0d0606;
+}
+/* Reset flip-card transform when cloned into popover (avoids mirrored text) */
+.tdt-popover .peoples-flip-back-inner {
+    transform: none;
+}
+/* Override any inherited light text from cloned card content */
+.tdt-popover * {
+    color: inherit;
+}
+.tdt-popover h5,
+.tdt-popover h6 {
+    color: #2a0a0a;
+}
+/* Triggers: subtle hover cue */
+[data-peuple],
+[data-tetrarch] {
+    cursor: help;
 }
 
 /* Tooltips (data-tip) */
@@ -4210,6 +4294,10 @@ img {
     font-size: 0.9em;
     color: var(--tdt-brown);
     margin-left: var(--spacing-xs);
+}
+/* Flip cards — hidden when using popovers; cards kept as content source */
+.peoples-gallery--hidden {
+    display: none !important;
 }
 /* Flip cards */
 .peoples-gallery {

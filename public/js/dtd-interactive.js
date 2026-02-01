@@ -51,6 +51,7 @@
         initTabs();
         initSubTabs();
         initPeuples();
+        initPopovers();
         initCombat();
         initMagic();
         initProgression();
@@ -243,6 +244,171 @@
             });
         });
 
+    }
+
+    // ========================================
+    // Popovers: hover-triggered rich content (Peoples, Tetrarchs, etc.)
+    // ========================================
+    const POPOVER_DELAY_MS = 300;
+
+    function initPopovers() {
+        let popoverEl = document.getElementById('tdt-popover');
+        if (!popoverEl) {
+            popoverEl = document.createElement('div');
+            popoverEl.id = 'tdt-popover';
+            popoverEl.className = 'tdt-popover';
+            popoverEl.setAttribute('role', 'tooltip');
+            popoverEl.setAttribute('aria-hidden', 'true');
+            const inner = document.createElement('div');
+            inner.className = 'tdt-popover-inner';
+            popoverEl.appendChild(inner);
+            document.body.appendChild(popoverEl);
+        }
+
+        const inner = popoverEl.querySelector('.tdt-popover-inner');
+        let showTimer = null;
+        let hideTimer = null;
+        let currentTrigger = null;
+
+        function showPopover(trigger, contentFn) {
+            function doShow() {
+                const content = contentFn();
+                if (!content) return;
+                inner.innerHTML = '';
+                inner.appendChild(content);
+                popoverEl.classList.add('is-visible');
+                popoverEl.setAttribute('aria-hidden', 'false');
+                positionPopover(popoverEl, trigger);
+                currentTrigger = trigger;
+            }
+            clearTimeout(hideTimer);
+            hideTimer = null;
+            if (showTimer) return;
+            showTimer = setTimeout(doShow, POPOVER_DELAY_MS);
+        }
+
+        function hidePopover() {
+            clearTimeout(showTimer);
+            showTimer = null;
+            hideTimer = setTimeout(function() {
+                popoverEl.classList.remove('is-visible');
+                popoverEl.setAttribute('aria-hidden', 'true');
+                currentTrigger = null;
+            }, 50);
+        }
+
+        function cancelHide() {
+            clearTimeout(hideTimer);
+            hideTimer = null;
+        }
+
+        function positionPopover(pop, trigger) {
+            const rect = trigger.getBoundingClientRect();
+            const popRect = pop.getBoundingClientRect();
+            const pad = 8;
+            let left = rect.left + (rect.width / 2) - (popRect.width / 2);
+            let top = rect.bottom + pad;
+            if (left < pad) left = pad;
+            if (left + popRect.width > window.innerWidth - pad) left = window.innerWidth - popRect.width - pad;
+            if (top + popRect.height > window.innerHeight - pad) top = rect.top - popRect.height - pad;
+            if (top < pad) top = pad;
+            pop.style.left = left + 'px';
+            pop.style.top = top + 'px';
+        }
+
+        // Peoples: table rows + tree nodes
+        const peoplesSection = document.getElementById('peoples');
+        if (peoplesSection) {
+            const rows = peoplesSection.querySelectorAll('.peoples-summary-table tbody tr[data-peuple]');
+            rows.forEach(function(tr) {
+                const peupleId = tr.getAttribute('data-peuple');
+                if (!peupleId) return;
+                tr.addEventListener('mouseenter', function() {
+                    showPopover(tr, function() {
+                        const card = peoplesSection.querySelector('.peoples-flip-card[data-peuple="' + peupleId + '"]');
+                        if (!card) return null;
+                        const backInner = card.querySelector('.peoples-flip-back-inner');
+                        if (!backInner) return null;
+                        const clone = backInner.cloneNode(true);
+                        clone.querySelectorAll('.peoples-flip-btn').forEach(function(btn) { btn.remove(); });
+                        return clone;
+                    });
+                });
+                tr.addEventListener('mouseleave', hidePopover);
+            });
+
+            peoplesSection.querySelectorAll('.peoples-tree-node[data-peuple]').forEach(function(node) {
+                const peupleId = node.getAttribute('data-peuple');
+                if (!peupleId) return;
+                node.addEventListener('mouseenter', function() {
+                    showPopover(node, function() {
+                        const card = peoplesSection.querySelector('.peoples-flip-card[data-peuple="' + peupleId + '"]');
+                        if (!card) return null;
+                        const backInner = card.querySelector('.peoples-flip-back-inner');
+                        if (!backInner) return null;
+                        const clone = backInner.cloneNode(true);
+                        clone.querySelectorAll('.peoples-flip-btn').forEach(function(btn) { btn.remove(); });
+                        return clone;
+                    });
+                });
+                node.addEventListener('mouseleave', hidePopover);
+            });
+        }
+
+        popoverEl.addEventListener('mouseenter', cancelHide);
+        popoverEl.addEventListener('mouseleave', hidePopover);
+
+        // Cosmology: tetrarch table rows
+        const cosmologySection = document.getElementById('cosmology');
+        if (cosmologySection) {
+            const tetrarchRows = cosmologySection.querySelectorAll('.tetrarchs-table tbody tr[data-tetrarch]');
+            tetrarchRows.forEach(function(tr) {
+                const tetrarchId = tr.getAttribute('data-tetrarch');
+                if (!tetrarchId) return;
+                tr.addEventListener('mouseenter', function() {
+                    showPopover(tr, function() {
+                        const card = cosmologySection.querySelector('.tetrarchs-grid .genre-card[data-tetrarch="' + tetrarchId + '"]');
+                        if (!card) return null;
+                        const frag = document.createDocumentFragment();
+                        Array.from(card.children).forEach(function(child) {
+                            frag.appendChild(child.cloneNode(true));
+                        });
+                        return frag;
+                    });
+                });
+                tr.addEventListener('mouseleave', hidePopover);
+            });
+        }
+
+        // Refresh popover content on language change (peoples and tetrarchs have data-en/data-fr)
+        try {
+            window.addEventListener('tdt-lang-changed', function() {
+                if (currentTrigger && popoverEl.classList.contains('is-visible')) {
+                    const peupleId = currentTrigger.getAttribute('data-peuple');
+                    const tetrarchId = currentTrigger.getAttribute('data-tetrarch');
+                    if (peupleId && peoplesSection) {
+                        const card = peoplesSection.querySelector('.peoples-flip-card[data-peuple="' + peupleId + '"]');
+                        if (card) {
+                            const backInner = card.querySelector('.peoples-flip-back-inner');
+                            if (backInner) {
+                                const clone = backInner.cloneNode(true);
+                                clone.querySelectorAll('.peoples-flip-btn').forEach(function(btn) { btn.remove(); });
+                                inner.innerHTML = '';
+                                inner.appendChild(clone);
+                            }
+                        }
+                    } else if (tetrarchId && cosmologySection) {
+                        const card = cosmologySection.querySelector('.tetrarchs-grid .genre-card[data-tetrarch="' + tetrarchId + '"]');
+                        if (card) {
+                            inner.innerHTML = '';
+                            Array.from(card.children).forEach(function(child) {
+                                inner.appendChild(child.cloneNode(true));
+                            });
+                        }
+                    }
+                }
+            });
+        } catch (e) {}
     }
 
     // ========================================
