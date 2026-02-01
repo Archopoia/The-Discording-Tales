@@ -2203,7 +2203,346 @@ img {
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
+/* Worldlore & Ruleset block (backup structure and pictures) */
+.worldlore-ruleset-block {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-md);
+    color: var(--tdt-cream);
+}
 
+.worldlore-intro {
+    text-align: center;
+    color: var(--tdt-cream);
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-lg);
+}
+
+.worldlore-heading {
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--tdt-cream);
+    margin: var(--spacing-xl) 0 var(--spacing-md);
+    text-decoration: underline;
+}
+
+.worldlore-heading:first-of-type {
+    margin-top: var(--spacing-md);
+}
+
+.worldlore-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    align-items: flex-start;
+    margin: var(--spacing-md) 0;
+}
+
+/* Uncover row: left = 2 sheet pics, center = text + 2x2 matrix, right = 2 pics */
+.worldlore-uncover-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    align-items: flex-start;
+    margin: var(--spacing-md) 0;
+}
+
+.worldlore-uncover-left {
+    flex: 0 1 32%;
+    min-width: 240px;
+}
+
+.worldlore-uncover-center {
+    flex: 1 1 36%;
+    min-width: 280px;
+}
+
+.worldlore-uncover-right {
+    flex: 0 1 28%;
+    min-width: 220px;
+}
+
+.worldlore-text-block {
+    margin-bottom: var(--spacing-md);
+}
+
+.worldlore-matrix-2x2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+}
+
+.worldlore-matrix-cell {
+    border-left: 1px solid rgba(30, 30, 30, 0.4);
+    padding-left: var(--spacing-sm);
+    padding-right: var(--spacing-xs);
+}
+
+.worldlore-matrix-cell .worldlore-pair-title {
+    margin-bottom: 0.2em;
+}
+
+.worldlore-matrix-cell .worldlore-pair-p {
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.worldlore-col {
+    flex: 1 1 280px;
+    min-width: 0;
+}
+
+.worldlore-col-images {
+    flex: 0 1 40%;
+    max-width: 500px;
+}
+
+.worldlore-col-text {
+    flex: 1 1 50%;
+}
+
+.worldlore-col-narrow {
+    flex: 0 0 125px;
+}
+
+/* Struggle row: left = dice pool + dice pic, center = long strip, right = realize failures */
+.worldlore-struggle-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    align-items: stretch;
+    margin: var(--spacing-md) 0;
+}
+
+.worldlore-struggle-left {
+    flex: 1 1 32%;
+    min-width: 240px;
+}
+
+.worldlore-struggle-center {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.worldlore-figure-strip img {
+    width: 125px;
+    height: auto;
+    max-height: 420px;
+    object-fit: contain;
+}
+
+.worldlore-struggle-right {
+    flex: 1 1 32%;
+    min-width: 240px;
+}
+
+.worldlore-figure {
+    margin: 0 0 var(--spacing-sm);
+}
+
+.worldlore-figure img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-sm);
+}
+
+.worldlore-figure-rounded img {
+    border-radius: var(--radius-md);
+}
+
+.worldlore-figure-inline {
+    text-align: center;
+    margin: var(--spacing-sm) 0;
+}
+
+.worldlore-figure-rencontres {
+    text-align: center;
+    margin: var(--spacing-lg) auto;
+    max-width: 1024px;
+}
+
+.worldlore-figure-rencontres img {
+    border-radius: var(--radius-md);
+}
+
+/* Coin: centered */
+.worldlore-coin-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.worldlore-figure-coin {
+    margin: 0 auto var(--spacing-sm);
+}
+
+.worldlore-figure-coin img {
+    width: 193px;
+    height: auto;
+}
+
+/* People/Things wheels: smaller and centered */
+.worldlore-wheels {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    margin: var(--spacing-md) 0;
+}
+
+.worldlore-figure-wheel {
+    margin: 0;
+    flex: 0 0 auto;
+}
+
+.worldlore-figure-wheel img {
+    max-width: 280px;
+    width: 100%;
+    height: auto;
+}
+
+.worldlore-p {
+    color: var(--tdt-beige-light);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0 0 var(--spacing-sm);
+}
+
+.worldlore-p strong {
+    color: var(--tdt-cream);
+}
+
+.worldlore-p em {
+    color: var(--tdt-beige-warm);
+    font-style: italic;
+}
+
+.worldlore-strong {
+    margin-bottom: var(--spacing-xs);
+}
+
+.worldlore-freeforming {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--tdt-mint);
+    margin: var(--spacing-sm) 0;
+}
+
+.worldlore-pairs {
+    margin-top: var(--spacing-md);
+}
+
+.worldlore-pair {
+    border-left: 1px solid rgba(30, 30, 30, 0.4);
+    padding-left: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.worldlore-pair-title {
+    font-size: 1.1rem;
+    color: var(--tdt-mint);
+    margin: 0 0 0.25em;
+    text-decoration: underline;
+}
+
+.worldlore-pair-p {
+    font-size: 1rem;
+    margin: 0;
+    color: var(--tdt-beige-light);
+}
+
+.worldlore-h4 {
+    font-size: 1.1rem;
+    color: var(--tdt-cream);
+    margin: var(--spacing-sm) 0 0.25em;
+}
+
+.worldlore-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0 0 var(--spacing-sm);
+}
+
+.worldlore-list li {
+    color: var(--tdt-beige-light);
+    font-size: 1rem;
+    margin-bottom: 0.25em;
+}
+
+.worldlore-center-block {
+    text-align: center;
+    max-width: 900px;
+    margin: var(--spacing-md) auto;
+}
+
+.worldlore-center-block .worldlore-p {
+    text-align: center;
+}
+
+.worldlore-mint {
+    color: var(--tdt-mint);
+}
+
+
+.worldlore-much-more {
+    margin-top: var(--spacing-lg);
+}
+
+.worldlore-large {
+    font-size: 1.2rem;
+    color: var(--tdt-cream);
+}
+
+@media screen and (max-width: 768px) {
+    .worldlore-columns {
+        flex-direction: column;
+    }
+    .worldlore-uncover-row {
+        flex-direction: column;
+    }
+    .worldlore-uncover-left,
+    .worldlore-uncover-center,
+    .worldlore-uncover-right {
+        flex: 1 1 100%;
+        min-width: 0;
+    }
+    .worldlore-matrix-2x2 {
+        grid-template-columns: 1fr;
+    }
+    .worldlore-struggle-row {
+        flex-direction: column;
+    }
+    .worldlore-struggle-left,
+    .worldlore-struggle-center,
+    .worldlore-struggle-right {
+        flex: 1 1 100%;
+        min-width: 0;
+    }
+    .worldlore-struggle-center {
+        order: 0;
+    }
+    .worldlore-figure-strip img {
+        max-height: 320px;
+    }
+    .worldlore-col-images,
+    .worldlore-col-text,
+    .worldlore-col-narrow {
+        flex: 1 1 100%;
+        max-width: none;
+    }
+    .worldlore-wheels {
+        flex-direction: column;
+        align-items: center;
+    }
+    .worldlore-figure-wheel img {
+        max-width: 240px;
+    }
+}
 
 /* ========================================
    About Sections
