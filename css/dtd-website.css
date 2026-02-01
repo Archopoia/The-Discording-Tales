@@ -1561,29 +1561,36 @@ img {
 
 .creation-pillars {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--spacing-md);
     margin-top: var(--spacing-md);
 }
 
 .creation-pillar {
     padding: var(--spacing-sm) var(--spacing-md);
-    background: rgba(90, 31, 31, 0.35);
-    border: 1px solid var(--tdt-beige);
+    background: linear-gradient(180deg, var(--tdt-beige-lighter) 0%, var(--tdt-beige-warm) 100%);
+    border: 2px solid var(--tdt-burgundy-warm);
     border-radius: var(--radius-md);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .creation-pillar-label {
     display: block;
     font-weight: 700;
-    color: var(--tdt-mint);
+    color: var(--tdt-burgundy-warm);
     margin-bottom: 0.25rem;
 }
 
 .creation-pillar p {
     margin: 0;
     font-size: 0.9rem;
-    color: var(--tdt-cream);
+    color: #2a0f0f;
+}
+
+@media (max-width: 560px) {
+    .creation-pillars {
+        grid-template-columns: 1fr;
+    }
 }
 
 .revelation-complete-list {
