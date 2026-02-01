@@ -2315,6 +2315,148 @@ img {
     padding: var(--spacing-md);
 }
 
+/* Inspirations expandable blocks (details/summary) */
+.inspirations-expandable {
+    margin: var(--spacing-md) 0;
+    border: 1px solid var(--tdt-beige);
+    border-radius: var(--radius-md);
+    background: rgba(70, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.inspirations-expandable summary {
+    list-style: none;
+    cursor: pointer;
+    padding: var(--spacing-sm) var(--spacing-md);
+    color: var(--tdt-cream);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.1rem;
+    user-select: none;
+}
+
+.inspirations-expandable summary::-webkit-details-marker {
+    display: none;
+}
+
+.inspirations-expandable summary::before {
+    content: "▸ ";
+    display: inline-block;
+    margin-right: 0.35em;
+    transition: transform var(--transition-fast);
+}
+
+.inspirations-expandable[open] summary::before {
+    transform: rotate(90deg);
+}
+
+.inspirations-expandable[open] summary {
+    border-bottom: 1px solid rgba(139, 115, 85, 0.3);
+    margin-bottom: 0;
+}
+
+.inspirations-expandable > .inspirations-table-wrapper,
+.inspirations-expandable > .inspirations-list,
+.inspirations-expandable > .inspirations-keywords,
+.inspirations-expandable > .inspirations-langs-scripts {
+    padding: var(--spacing-md);
+}
+
+.inspirations-langs-scripts {
+    color: var(--tdt-cream);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.inspirations-langs-heading {
+    margin: var(--spacing-sm) 0 0.25em;
+    color: var(--tdt-mint);
+}
+
+.inspirations-langs-heading:first-child {
+    margin-top: 0;
+}
+
+.inspirations-langs-list {
+    margin: 0 0 var(--spacing-sm);
+    color: var(--tdt-cream);
+}
+
+/* Inspirations lists (Books, Papers) */
+.inspirations-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    color: var(--tdt-cream);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+.inspirations-list li {
+    padding: 0.25em 0;
+    border-bottom: 1px solid rgba(139, 115, 85, 0.15);
+}
+
+.inspirations-list li:last-child {
+    border-bottom: none;
+}
+
+.inspirations-list em {
+    color: var(--tdt-beige-warm);
+    font-style: italic;
+}
+
+.inspirations-list a {
+    color: var(--tdt-mint);
+    text-decoration: underline;
+}
+
+.inspirations-list a:hover {
+    color: var(--tdt-mint-light);
+}
+
+/* Keywords (nested details per category) */
+.inspirations-keywords {
+    padding: 0;
+}
+
+.inspirations-keyword-category {
+    margin: 0.5em 0;
+    border: 1px solid rgba(139, 115, 85, 0.25);
+    border-radius: var(--radius-sm);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.inspirations-keyword-category summary {
+    padding: 0.4em var(--spacing-sm);
+    font-size: 0.95rem;
+    color: var(--tdt-mint);
+}
+
+.inspirations-keyword-category summary::before {
+    content: "▸ ";
+    font-size: 0.85em;
+}
+
+.inspirations-keyword-category[open] summary::before {
+    transform: rotate(90deg);
+}
+
+.inspirations-keyword-category p {
+    margin: 0;
+    padding: var(--spacing-sm) var(--spacing-md);
+    color: var(--tdt-cream);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.inspirations-keyword-category em {
+    color: var(--tdt-beige-warm);
+    font-style: italic;
+}
+
 /* Rules and Lore tables (reuse inspirations-table pattern) */
 .rules-table-wrapper,
 .lore-table-wrapper {
@@ -2501,6 +2643,21 @@ img {
     .lore-table th,
     .lore-table td {
         padding: var(--spacing-xs);
+    }
+    .inspirations-expandable summary {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: 1rem;
+    }
+    .inspirations-table {
+        font-size: 0.9rem;
+    }
+    .inspirations-table th,
+    .inspirations-table td {
+        padding: var(--spacing-xs);
+    }
+    .inspirations-list {
+        font-size: 0.9rem;
+        max-height: 45vh;
     }
 }
 
