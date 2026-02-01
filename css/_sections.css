@@ -1775,6 +1775,12 @@
     color: var(--tdt-brown);
     margin-left: var(--spacing-xs);
 }
+.peoples-tree-race {
+    cursor: help;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 2px;
+}
 /* Flip cards — hidden when using popovers; cards kept as content source */
 .peoples-gallery--hidden {
     display: none !important;

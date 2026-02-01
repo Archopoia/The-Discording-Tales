@@ -1544,9 +1544,35 @@
 .tdt-popover h6 {
     color: #2a0a0a;
 }
+/* Race list inside people popover (so user can hover races there) */
+.tdt-popover .peoples-popover-races {
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid rgba(70, 0, 0, 0.2);
+}
+.tdt-popover .peoples-popover-races li {
+    cursor: help;
+}
+
+/* Race description popover content */
+.tdt-popover .tdt-popover-race h6 {
+    margin: 0 0 var(--spacing-xs) 0;
+    font-size: 0.95rem;
+    color: #2a0a0a;
+}
+.tdt-popover .tdt-popover-race p {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    color: #0d0606;
+}
+
 /* Triggers: subtle hover cue */
 [data-peuple],
 [data-tetrarch] {
+    cursor: help;
+}
+.peoples-races-mini li {
     cursor: help;
 }
 
