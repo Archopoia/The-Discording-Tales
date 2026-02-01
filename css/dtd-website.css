@@ -2238,8 +2238,8 @@ img {
     margin: var(--spacing-md) 0;
 }
 
-/* Uncover row: left = 2 sheet pics, center = text + 2x2 matrix, right = 2 pics */
-.worldlore-uncover-row {
+/* Uncover: two blocks. Block 1 = pics left, text right. Block 2 = matrix left, pics right */
+.worldlore-block {
     display: flex;
     flex-wrap: wrap;
     gap: var(--spacing-md);
@@ -2247,23 +2247,34 @@ img {
     margin: var(--spacing-md) 0;
 }
 
-.worldlore-uncover-left {
-    flex: 0 1 32%;
+.worldlore-block-1 .worldlore-block-left {
+    flex: 0 1 38%;
     min-width: 240px;
 }
 
-.worldlore-uncover-center {
-    flex: 1 1 36%;
+.worldlore-block-1 .worldlore-block-right {
+    flex: 1 1 54%;
     min-width: 280px;
 }
 
-.worldlore-uncover-right {
-    flex: 0 1 28%;
-    min-width: 220px;
+.worldlore-block-2 .worldlore-block-left {
+    flex: 1 1 54%;
+    min-width: 280px;
 }
 
-.worldlore-text-block {
-    margin-bottom: var(--spacing-md);
+.worldlore-block-2 .worldlore-block-right {
+    flex: 0 1 38%;
+    min-width: 240px;
+}
+
+.worldlore-block-matrix {
+    display: flex;
+    align-items: flex-start;
+}
+
+.worldlore-block-matrix .worldlore-matrix-2x2 {
+    flex: 1;
+    margin-top: 0;
 }
 
 .worldlore-matrix-2x2 {
@@ -2502,14 +2513,21 @@ img {
     .worldlore-columns {
         flex-direction: column;
     }
-    .worldlore-uncover-row {
+    .worldlore-block {
         flex-direction: column;
     }
-    .worldlore-uncover-left,
-    .worldlore-uncover-center,
-    .worldlore-uncover-right {
+    .worldlore-block-1 .worldlore-block-left,
+    .worldlore-block-1 .worldlore-block-right,
+    .worldlore-block-2 .worldlore-block-left,
+    .worldlore-block-2 .worldlore-block-right {
         flex: 1 1 100%;
         min-width: 0;
+    }
+    .worldlore-block-2 .worldlore-block-left {
+        order: 1;
+    }
+    .worldlore-block-2 .worldlore-block-right {
+        order: 2;
     }
     .worldlore-matrix-2x2 {
         grid-template-columns: 1fr;
