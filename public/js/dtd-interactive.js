@@ -50,6 +50,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         initTabs();
         initSubTabs();
+        initCombat();
         initLanguage();
         initCarousel();
         initMenuToggle();
@@ -196,6 +197,106 @@
         const firstLink = links[0];
         const firstSubId = firstLink && firstLink.getAttribute('href') ? firstLink.getAttribute('href').replace('#', '') : '';
         if (firstSubId) switchSubTab(tabId, firstSubId);
+    }
+
+    // ========================================
+    // Combat Section: Accordion, Tables Tabs, Weapon Filter
+    // ========================================
+    function initCombat() {
+        const combatSection = document.getElementById('combat');
+        if (!combatSection) return;
+
+        // Accordion: toggle body on head click
+        combatSection.querySelectorAll('.combat-accordion-item').forEach(function(item) {
+            const head = item.querySelector('.combat-accordion-head');
+            const body = item.querySelector('.combat-accordion-body');
+            if (!head || !body) return;
+            head.addEventListener('click', function() {
+                const isOpen = body.classList.contains('is-open');
+                body.classList.toggle('is-open', !isOpen);
+                head.setAttribute('aria-expanded', !isOpen);
+            });
+        });
+
+        // Expand all / Collapse all
+        const expandAll = combatSection.querySelector('.combat-expand-all');
+        const collapseAll = combatSection.querySelector('.combat-collapse-all');
+        if (expandAll) {
+            expandAll.addEventListener('click', function() {
+                combatSection.querySelectorAll('.combat-accordion-body').forEach(function(b) { b.classList.add('is-open'); });
+                combatSection.querySelectorAll('.combat-accordion-head').forEach(function(h) { h.setAttribute('aria-expanded', 'true'); });
+            });
+        }
+        if (collapseAll) {
+            collapseAll.addEventListener('click', function() {
+                combatSection.querySelectorAll('.combat-accordion-body').forEach(function(b) { b.classList.remove('is-open'); });
+                combatSection.querySelectorAll('.combat-accordion-head').forEach(function(h) { h.setAttribute('aria-expanded', 'false'); });
+            });
+        }
+
+        // Combat reference tables: tab links
+        combatSection.querySelectorAll('.combat-tab-link').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-combat-tab');
+                if (!tabId) return;
+                combatSection.querySelectorAll('.combat-tab-link').forEach(function(b) { b.classList.remove('active'); });
+                combatSection.querySelectorAll('.combat-tables-panel').forEach(function(p) {
+                    p.classList.toggle('active', p.getAttribute('data-combat-panel') === tabId);
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // Weapon sub-tabs (inside "Armes par type" panel)
+        combatSection.querySelectorAll('.combat-weapon-tab').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                const type = this.getAttribute('data-weapon-type');
+                if (!type) return;
+                const panelWrap = this.closest('.combat-tables-panel');
+                if (!panelWrap) return;
+                panelWrap.querySelectorAll('.combat-weapon-tab').forEach(function(b) { b.classList.remove('active'); });
+                panelWrap.querySelectorAll('.combat-weapon-panel').forEach(function(p) {
+                    p.classList.toggle('active', p.getAttribute('data-weapon-panel') === type);
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // Weapon type dropdown: switch to "Armes par type" tab and show that weapon panel
+        const weaponTypeSelect = combatSection.querySelector('#combat-weapon-type');
+        if (weaponTypeSelect) {
+            weaponTypeSelect.addEventListener('change', function() {
+                const value = this.value;
+                if (!value) return;
+                const tabLink = combatSection.querySelector('.combat-tab-link[data-combat-tab="armes-type"]');
+                if (tabLink) tabLink.click();
+                const panelWrap = combatSection.querySelector('#combat-panel-armes-type');
+                if (!panelWrap) return;
+                panelWrap.querySelectorAll('.combat-weapon-tab').forEach(function(b) { b.classList.remove('active'); });
+                panelWrap.querySelectorAll('.combat-weapon-panel').forEach(function(p) {
+                    p.classList.toggle('active', p.getAttribute('data-weapon-panel') === value);
+                });
+                const tabBtn = panelWrap.querySelector('.combat-weapon-tab[data-weapon-type="' + value + '"]');
+                if (tabBtn) tabBtn.classList.add('active');
+            });
+        }
+
+        // Weapon search: filter rows in the visible weapon table
+        const weaponSearch = combatSection.querySelector('#combat-weapon-search');
+        if (weaponSearch) {
+            weaponSearch.addEventListener('input', function() {
+                const q = (this.value || '').trim().toLowerCase();
+                const activePanel = combatSection.querySelector('.combat-weapon-panel.active');
+                if (!activePanel) return;
+                const table = activePanel.querySelector('.combat-table--weapons tbody');
+                if (!table) return;
+                table.querySelectorAll('tr').forEach(function(tr) {
+                    const nameCell = tr.querySelector('td:first-child');
+                    const text = nameCell ? nameCell.textContent.toLowerCase() : '';
+                    tr.classList.toggle('hidden', q && text.indexOf(q) === -1);
+                });
+            });
+        }
     }
 
     // ========================================

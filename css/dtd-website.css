@@ -1430,6 +1430,434 @@ img {
 }
 
 /* ========================================
+   Combat System (Rules)
+   ======================================== */
+.combat-section {
+    --combat-accent: var(--tdt-dark-red);
+    --combat-accent-light: var(--tdt-dark-red-light);
+    --combat-card-bg: rgba(90, 31, 31, 0.2);
+    --combat-border: var(--tdt-beige);
+}
+
+.combat-intro {
+    margin-bottom: var(--spacing-md);
+}
+
+.combat-intro p {
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.6;
+}
+
+.combat-glossary {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--combat-card-bg);
+    border: 1px solid var(--combat-border);
+    border-radius: var(--radius-md);
+}
+
+.combat-glossary h4 {
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-xs);
+    color: var(--tdt-cream);
+}
+
+.combat-glossary-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.35rem;
+}
+
+.combat-glossary-list li {
+    font-size: 0.95rem;
+    color: var(--tdt-cream);
+}
+
+.combat-glossary-list strong {
+    color: var(--tdt-gold);
+    cursor: help;
+}
+
+.combat-quickref {
+    margin: var(--spacing-md) 0;
+    padding: var(--spacing-md);
+    background: var(--combat-card-bg);
+    border: 1px solid var(--combat-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.combat-quickref h4 {
+    font-size: 1rem;
+    margin-bottom: var(--spacing-xs);
+    color: var(--tdt-gold);
+}
+
+.combat-quickref ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    font-size: 0.95rem;
+    color: var(--tdt-cream);
+}
+
+/* Combat accordion */
+.combat-accordion {
+    margin: var(--spacing-md) 0;
+    border: 1px solid var(--combat-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.combat-accordion-item {
+    border-bottom: 1px solid var(--combat-border);
+}
+
+.combat-accordion-item:last-child {
+    border-bottom: none;
+}
+
+.combat-accordion-head {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-align: left;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--tdt-cream);
+    background: var(--combat-card-bg);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.combat-accordion-head:hover,
+.combat-accordion-head:focus {
+    background: var(--combat-accent);
+    color: var(--tdt-gold);
+    outline: 2px solid var(--tdt-gold);
+    outline-offset: 2px;
+}
+
+.combat-accordion-head::after {
+    content: "▼";
+    font-size: 0.7rem;
+    opacity: 0.8;
+    transition: transform var(--transition-fast);
+}
+
+.combat-accordion-item[aria-expanded="true"] .combat-accordion-head::after {
+    transform: rotate(-180deg);
+}
+
+.combat-accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-normal) ease-out;
+}
+
+.combat-accordion-body.is-open {
+    max-height: 1200px;
+    transition: max-height var(--transition-slow) ease-in;
+}
+
+.combat-accordion-body .rules-content,
+.combat-accordion-body > p,
+.combat-accordion-body > ul,
+.combat-accordion-body > ol {
+    padding: var(--spacing-md);
+    margin: 0;
+    background: rgba(0, 0, 0, 0.2);
+    color: var(--tdt-cream);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.combat-accordion-body ul,
+.combat-accordion-body ol {
+    padding-left: 1.5rem;
+    margin-top: 0.35rem;
+    margin-bottom: 0.35rem;
+}
+
+.combat-accordion-body li {
+    margin-bottom: 0.25rem;
+}
+
+.combat-accordion-actions {
+    margin: var(--spacing-sm) 0 var(--spacing-md);
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.combat-expand-all,
+.combat-collapse-all {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.9rem;
+    font-family: var(--font-body);
+    color: var(--tdt-cream);
+    background: var(--combat-accent);
+    border: 1px solid var(--combat-border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.combat-expand-all:hover,
+.combat-collapse-all:hover {
+    background: var(--combat-accent-light);
+}
+
+.combat-expand-all:focus,
+.combat-collapse-all:focus {
+    outline: 2px solid var(--tdt-gold);
+    outline-offset: 2px;
+}
+
+/* Combat reference tables */
+.combat-tables-wrap {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--combat-border);
+}
+
+.combat-tables-wrap h4 {
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--tdt-gold);
+}
+
+.combat-tables-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.combat-tab-link {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.9rem;
+    font-family: var(--font-body);
+    color: var(--tdt-cream);
+    background: var(--combat-card-bg);
+    border: 1px solid var(--combat-border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.combat-tab-link:hover,
+.combat-tab-link:focus {
+    background: var(--combat-accent);
+    border-color: var(--tdt-gold);
+    outline: none;
+}
+
+.combat-tab-link.active {
+    background: var(--combat-accent);
+    border-color: var(--tdt-gold);
+    color: var(--tdt-gold);
+}
+
+.combat-tables-panel {
+    display: none;
+    padding: var(--spacing-md) 0;
+}
+
+.combat-tables-panel.active {
+    display: block;
+}
+
+.combat-table-wrapper {
+    margin-bottom: var(--spacing-md);
+}
+
+.combat-table-wrapper h5 {
+    font-size: 1rem;
+    margin-bottom: 0.35rem;
+    color: var(--tdt-beige-light);
+}
+
+.combat-table-note {
+    font-size: 0.85rem;
+    color: var(--tdt-beige);
+    margin-bottom: 0.5rem;
+    font-style: italic;
+}
+
+.combat-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    color: var(--tdt-cream);
+}
+
+.combat-table th,
+.combat-table td {
+    padding: 0.4rem 0.6rem;
+    border: 1px solid var(--combat-border);
+    text-align: left;
+}
+
+.combat-table thead th {
+    background: var(--combat-accent);
+    color: var(--tdt-cream);
+    font-weight: 600;
+}
+
+.combat-table tbody tr:nth-child(even) {
+    background: rgba(90, 31, 31, 0.2);
+}
+
+.combat-table tbody tr:hover {
+    background: rgba(90, 31, 31, 0.35);
+}
+
+.combat-table-scroll {
+    overflow-x: auto;
+}
+
+/* Weapon filter and weapon sub-tabs */
+.combat-weapons-filter {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.combat-weapons-filter label {
+    font-size: 0.9rem;
+    color: var(--tdt-beige-light);
+}
+
+.combat-weapon-search,
+.combat-weapon-type {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.9rem;
+    background: var(--combat-card-bg);
+    border: 1px solid var(--combat-border);
+    border-radius: var(--radius-sm);
+    color: var(--tdt-cream);
+}
+
+.combat-weapon-search:focus,
+.combat-weapon-type:focus {
+    outline: 2px solid var(--tdt-gold);
+    outline-offset: 1px;
+}
+
+.combat-weapon-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.combat-weapon-tab {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.85rem;
+    font-family: var(--font-body);
+    color: var(--tdt-cream);
+    background: var(--combat-card-bg);
+    border: 1px solid var(--combat-border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background var(--transition-fast);
+}
+
+.combat-weapon-tab:hover,
+.combat-weapon-tab:focus {
+    background: var(--combat-accent);
+    outline: none;
+}
+
+.combat-weapon-tab.active {
+    background: var(--combat-accent);
+    border-color: var(--tdt-gold);
+    color: var(--tdt-gold);
+}
+
+.combat-weapon-panel {
+    display: none;
+}
+
+.combat-weapon-panel.active {
+    display: block;
+}
+
+/* Tooltips (data-tip) */
+[data-tip] {
+    position: relative;
+}
+
+[data-tip]:hover::after,
+[data-tip]:focus::after {
+    content: attr(data-tip);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 100%;
+    margin-bottom: 0.35rem;
+    padding: 0.35rem 0.5rem;
+    font-size: 0.8rem;
+    font-weight: normal;
+    color: var(--tdt-cream);
+    background: var(--tdt-burgundy);
+    border: 1px solid var(--combat-border);
+    border-radius: var(--radius-sm);
+    white-space: normal;
+    max-width: 280px;
+    z-index: 10;
+    box-shadow: var(--shadow-md);
+}
+
+[data-tip]:focus::after {
+    outline: 2px solid var(--tdt-gold);
+}
+
+/* Combat responsive */
+@media (max-width: 768px) {
+    .combat-tables-nav {
+        flex-direction: column;
+    }
+
+    .combat-tab-link {
+        width: 100%;
+        text-align: left;
+    }
+
+    .combat-weapon-tabs {
+        flex-direction: column;
+    }
+
+    .combat-weapon-tab {
+        width: 100%;
+    }
+
+    .combat-accordion-body .rules-content,
+    .combat-accordion-body > p,
+    .combat-accordion-body > ul,
+    .combat-accordion-body > ol {
+        padding: var(--spacing-sm);
+    }
+
+    .combat-table {
+        font-size: 0.8rem;
+    }
+
+    .combat-table th,
+    .combat-table td {
+        padding: 0.3rem 0.4rem;
+    }
+}
+
+/* ========================================
    Character Creation (Rules)
    No page numbers, chapter names, CSV/file names, or other source refs on the website — do not add them.
    ======================================== */

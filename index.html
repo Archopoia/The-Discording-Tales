@@ -679,23 +679,358 @@
             <!-- Combat panel -->
             <div class="tab-sub-panel" data-subtab="combat">
             <!-- Combat System -->
-            <div class="rules-section" id="combat">
+            <div class="rules-section combat-section" id="combat">
                 <h3 data-en="Combat System" data-fr="Système de Combat">Combat System</h3>
-                <div class="rules-content" data-lang-key="combat-content">
-                    <h4 data-en="Real-Time Combat" data-fr="Combat en Temps Réel">Real-Time Combat</h4>
-                    <p data-en="Combat happens in <strong>real-time</strong>, not in turns. The system uses <strong title=&quot;Clin: 1/3 of a second; basic time unit for combat. Alert Clins determine who can Proact.&quot;>Clins</strong> (1/3 of a second) as the basic time unit for combat actions." data-fr="Le combat se déroule en <strong>temps réel</strong>, pas en tours. Le système utilise les <strong title=&quot;Clin : 1/3 de seconde ; unité de temps de base pour le combat. Les Clins d'Alerte déterminent qui peut Proagir.&quot;>Clins</strong> (1/3 de seconde) comme unité de temps de base pour les actions de combat.">Combat happens in <strong>real-time</strong>, not in turns. The system uses <strong title="Clin: 1/3 of a second; basic time unit for combat. Alert Clins determine who can Proact.">Clins</strong> (1/3 of a second) as the basic time unit for combat actions.</p>
-                    
-                    <h4 data-en="Alert Clins" data-fr="Clins d'Alerte">Alert Clins</h4>
-                    <p data-en="Alert Clins determine who can act proactively. Higher Alert Clins allow characters to react first and take initiative." data-fr="Les Clins d'Alerte déterminent qui peut agir de manière proactive. Des Clins d'Alerte plus élevés permettent aux personnages de réagir en premier et de prendre l'initiative.">Alert Clins determine who can act proactively. Higher Alert Clins allow characters to react first and take initiative.</p>
-                    
-                    <h4 data-en="Proactions & Reactions" data-fr="Proactions & Réactions">Proactions & Reactions</h4>
+
+                <!-- Combat intro -->
+                <div class="combat-intro rules-content">
+                    <p data-en="Combat is part of the larger &lt;strong&gt;8 Types of Conflicts&lt;/strong&gt;, each tied to an Aptitude. This section covers &lt;strong&gt;Bataille&lt;/strong&gt; (Puissance). Combat runs in &lt;strong&gt;real-time&lt;/strong&gt;—no turns. Time is measured in &lt;strong data-tip=&quot;1/3 of a second; basic time unit. Alert Clins determine who can Proact.&quot;&gt;Clins&lt;/strong&gt; (1/3 second). Everyone acts simultaneously; &lt;strong data-tip=&quot;Proactive actions (attack, reload, move) that span multiple Clins.&quot;&gt;Proactions&lt;/strong&gt; and &lt;strong data-tip=&quot;Block, Parry, Dodge—at the last Clin of an enemy attack.&quot;&gt;Réactions&lt;/strong&gt; accumulate &lt;strong data-tip=&quot;Shock level; subtracts from rolls. Recovers next Clin unless you keep acting.&quot;&gt;Niv d'Ébranlement&lt;/strong&gt;, which penalizes your rolls." data-fr="Le combat fait partie des &lt;strong&gt;8 Types de Conflits&lt;/strong&gt;, chacun lié à une Aptitude. Cette section couvre la &lt;strong&gt;Bataille&lt;/strong&gt; (Puissance). Le combat se déroule en &lt;strong&gt;temps réel&lt;/strong&gt;—pas de tours. Le temps se mesure en &lt;strong data-tip=&quot;1/3 de seconde ; unité de base. Les Clins d'Alerte déterminent qui peut Proagir.&quot;&gt;Clins&lt;/strong&gt; (1/3 s). Tous agissent simultanément ; les &lt;strong data-tip=&quot;Actions proactives (attaquer, recharger, se déplacer) sur plusieurs Clins.&quot;&gt;Proactions&lt;/strong&gt; et les &lt;strong data-tip=&quot;Bloquer, Parer, Esquiver—au dernier Clin de l'attaque ennemie.&quot;&gt;Réactions&lt;/strong&gt; accumulent le &lt;strong data-tip=&quot;Niveau d'ébranlement ; se soustrait aux jets. Se récupère au Clin suivant sauf si vous continuez.&quot;&gt;Niv d'Ébranlement&lt;/strong&gt;, qui pénalise vos jets.">Combat is part of the larger <strong>8 Types of Conflicts</strong>, each tied to an Aptitude. This section covers <strong>Bataille</strong> (Puissance). Combat runs in <strong>real-time</strong>—no turns. Time is measured in <strong data-tip="1/3 of a second; basic time unit. Alert Clins determine who can Proact.">Clins</strong> (1/3 second). Everyone acts simultaneously; <strong data-tip="Proactive actions (attack, reload, move) that span multiple Clins.">Proactions</strong> and <strong data-tip="Block, Parry, Dodge—at the last Clin of an enemy attack.">Réactions</strong> accumulate <strong data-tip="Shock level; subtracts from rolls. Recovers next Clin unless you keep acting.">Niv d'Ébranlement</strong>, which penalizes your rolls.</p>
+                    <div class="combat-glossary">
+                        <h4 data-en="Glossary" data-fr="Glossaire">Glossary</h4>
+                        <ul class="combat-glossary-list">
+                            <li><strong data-tip="1/3 second; time unit for combat.">Clin</strong> — 1/3 s</li>
+                            <li><strong data-tip="Determines when you can Proact. States: Surpris (-5), Alerté (0), Préparé (+5), Inattentif (-3), Bouleversé (-10).">Clin d'Alerte</strong> — when you can act proactively</li>
+                            <li><strong data-tip="Multi-Clin actions: Reload, Attack, etc. Declare and note which Clin they resolve.">Proaction</strong> — multi-Clin action</li>
+                            <li><strong data-tip="Block, Parer, Esquiver at the last Clin of enemy attack. Each adds Niv d'Ébranlement.">Réaction</strong> — defensive response</li>
+                            <li><strong data-tip="Accumulated by Réactions and Mouvements; subtracts from rolls; recovers next Clin.">Niv d'Ébranlement</strong> — shock level</li>
+                            <li><strong data-tip="Ritual/symbolic action; can modify rolls; linked to Rilie. Cost in Clins.">Honoration</strong> — ritual action</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Quick reference card -->
+                <div class="combat-quickref card">
+                    <h4 data-en="Quick reference" data-fr="Référence rapide">Quick reference</h4>
                     <ul>
-                        <li data-en="<strong>Proactions</strong> : Offensive actions (attack, move)" data-fr="<strong>Proactions</strong> : Actions offensives (attaquer, déplacer)"><strong>Proactions</strong> : Offensive actions (attack, move)</li>
-                        <li data-en="<strong>Reactions</strong> : Block, Parry, Dodge (at the last Clin of the attack)" data-fr="<strong>Réactions</strong> : Bloquer, Parer, Esquiver (au dernier Clin de l'attaque)"><strong>Reactions</strong> : Block, Parry, Dodge (at the last Clin of the attack)</li>
+                        <li>1 Clin ≈ 1/3 s</li>
+                        <li data-en="Niv d'Ébranlement = Réactions + Mouvements (multiplied by simultaneous Proactions/cibles)" data-fr="Niv d'Ébranlement = Réactions + Mouvements (× Proactions/cibles)">Niv d'Ébranlement = Réactions + Mouvements</li>
+                        <li data-en="Block / Parry / Dodge at the last Clin of the attack" data-fr="Bloquer / Parer / Esquiver au dernier Clin de l'attaque">Block / Parry / Dodge at last Clin of attack</li>
                     </ul>
-                    
-                    <h4 data-en="Shock Level" data-fr="Niv d'Ébranlement">Shock Level</h4>
-                    <p data-en="Accumulated through Reactions, reduces your capabilities. High Shock Levels can stun or incapacitate characters." data-fr="Accumulé par les Réactions, réduit vos capacités. Des Niveaux d'Ébranlement élevés peuvent étourdir ou incapaciter les personnages.">Accumulated through Reactions, reduces your capabilities. High Shock Levels can stun or incapacitate characters.</p>
+                </div>
+
+                <!-- Rule blocks: accordions -->
+                <div class="combat-accordion" id="combat-accordion">
+                    <div class="combat-accordion-item" id="combat-clins-alerte">
+                        <button type="button" class="combat-accordion-head" aria-expanded="false" aria-controls="combat-clins-alerte-body" id="combat-clins-alerte-btn" data-en="Clins de Temps & Clins d'Alerte" data-fr="Clins de Temps & Clins d'Alerte">Clins de Temps & Clins d'Alerte</button>
+                        <div class="combat-accordion-body" id="combat-clins-alerte-body" role="region" aria-labelledby="combat-clins-alerte-btn">
+                            <p data-en="Time &quot;blinks&quot; (flows Clin by Clin) for everyone at once. Those whose Clin has not yet reached their &lt;strong&gt;Clin d'Alerte&lt;/strong&gt; are &lt;strong&gt;Surpris&lt;/strong&gt; and can only Réagir. Once you Réagir or are Touched while Surpris, you are no longer Surpris next Clin. &lt;strong&gt;Attaque sournoise&lt;/strong&gt;: any Réaction while Surpris uses the difference between current Clin and Alert Clin as negative Dés (or Niv) on the roll." data-fr="Le temps « cligne » (s'écoule Clin par Clin) pour tous. Ceux dont le Clin n'a pas encore atteint leur &lt;strong&gt;Clin d'Alerte&lt;/strong&gt; sont &lt;strong&gt;Surpris&lt;/strong&gt; et ne peuvent que Réagir. Dès que vous Réagissez ou êtes Touché en étant Surpris, vous ne l'êtes plus au Clin suivant. &lt;strong&gt;Attaque sournoise&lt;/strong&gt; : toute Réaction en étant Surpris utilise la différence entre le Clin actuel et le Clin d'Alerte comme Dés (ou Niv) négatifs au jet.">Time "blinks" (flows Clin by Clin) for everyone at once. Those whose Clin has not yet reached their <strong>Clin d'Alerte</strong> are <strong>Surpris</strong> and can only Réagir.</p>
+                            <p data-en="Roll <strong>Vigilance [Détection]</strong> minus 5 minus X (by situation) for Alert; minimum at Clin -1. Situations: <strong>Alerté</strong> (0), <strong>Préparé</strong> (+5, e.g. ambush with Alert ally), <strong>Inattentif</strong> (-3), <strong>Bouleversé</strong> (-10). Respectively -1 | -3 | -6 | -10 Dés to your Alert roll." data-fr="Jet de <strong>Vigilance [Détection]</strong> - 5 - X (selon la situation) pour l'Alerte ; minimum au Clin -1. Situations : <strong>Alerté</strong> (0), <strong>Préparé</strong> (+5), <strong>Inattentif</strong> (-3), <strong>Bouleversé</strong> (-10). Soit -1 | -3 | -6 | -10 Dés au jet d'Alerte.">Roll <strong>Vigilance [Détection]</strong> minus 5 minus X for Alert. Situations: <strong>Alerté</strong> (0), <strong>Préparé</strong> (+5), <strong>Inattentif</strong> (-3), <strong>Bouleversé</strong> (-10).</p>
+                        </div>
+                    </div>
+                    <div class="combat-accordion-item" id="combat-ordre-initiative">
+                        <button type="button" class="combat-accordion-head" aria-expanded="false" aria-controls="combat-ordre-initiative-body" id="combat-ordre-initiative-btn" data-en="Order of action & Initiative" data-fr="Ordre d'action & Initiative">Order of action & Initiative</button>
+                        <div class="combat-accordion-body" id="combat-ordre-initiative-body" role="region" aria-labelledby="combat-ordre-initiative-btn">
+                            <ol>
+                                <li data-en="You can always <strong>Réagir</strong> to any action, unless unconscious." data-fr="Vous pouvez toujours <strong>Réagir</strong> à toute action, sauf si inconscient.">You can always <strong>Réagir</strong> to any action, unless unconscious.</li>
+                                <li data-en="<strong>Clin d'Alerte</strong> determines when you can <strong>Proagir</strong> (act proactively)." data-fr="Le <strong>Clin d'Alerte</strong> détermine quand vous pouvez <strong>Proagir</strong>."><strong>Clin d'Alerte</strong> determines when you can <strong>Proagir</strong>.</li>
+                                <li data-en="You can cumulate <strong>Réactions</strong> simultaneously during one Proaction; they accumulate as <strong>Niv d'Ébranlement</strong> (negative) on related rolls." data-fr="Vous pouvez cumuler des <strong>Réactions</strong> simultanément pendant une Proaction ; elles s'accumulent en <strong>Niv d'Ébranlement</strong> sur les jets liés.">You can cumulate <strong>Réactions</strong> during one Proaction; they add <strong>Niv d'Ébranlement</strong>.</li>
+                            </ol>
+                            <p data-en="<strong>Initiative</strong>: If two individuals conflict over the same thing at the same Clin, roll 1dD: (-) one declares first, (+) the other, (0) both declare at once. Declaration order only gives the other a chance to react; both still act in the same Clin." data-fr="<strong>Initiative</strong> : en cas de conflit direct au même Clin, tirez 1dD pour qui déclare en premier (ou les deux en même temps)."><strong>Initiative</strong>: Roll 1dD to see who declares first when two conflict at the same Clin.</p>
+                        </div>
+                    </div>
+                    <div class="combat-accordion-item" id="combat-proactions">
+                        <button type="button" class="combat-accordion-head" aria-expanded="false" aria-controls="combat-proactions-body" id="combat-proactions-btn" data-en="Proactions" data-fr="Proactions">Proactions</button>
+                        <div class="combat-accordion-body" id="combat-proactions-body" role="region" aria-labelledby="combat-proactions-btn">
+                            <p data-en="<strong>Proactions</strong> are actions that take several <strong>Clins in a row</strong> (e.g. Reload, Charge or Discharge an Attack). Duration = number of Clins (often weapon Inertia). Declare and note at which Clin the action resolves (e.g. Proagir at Clin -2 for a 4-Clin action → resolves at Clin -6)." data-fr="Les <strong>Proactions</strong> durent plusieurs <strong>Clins d'affilée</strong> (Recharger, Charger ou Décharger une Attaque). Déclarer et noter à quel Clin elles se réalisent."><strong>Proactions</strong> span multiple Clins (e.g. Reload, Attack). Declare and note the Clin they resolve.</p>
+                            <p data-en="<strong>Recharger</strong>: Take ammunition (quiver) or weapon (sheath) → into hand → nock if ranged. <strong>Attaquer</strong>: Charge the weapon (draw string / arm) then release; at the <strong>last Clin</strong> make the weapon's <strong>Attack roll</strong> (damage, Success to spend on location/manœuvres)." data-fr="<strong>Recharger</strong> : munition/arme en main, encocher si à distance. <strong>Attaquer</strong> : charger puis décharger ; au <strong>dernier Clin</strong>, jet d'Attaque."><strong>Recharger</strong>: ammo/weapon to hand; nock if ranged. <strong>Attaquer</strong>: charge then release; at <strong>last Clin</strong>, Attack roll.</p>
+                            <p data-en="Multiple Proactions: limited by limbs (e.g. ambidexterity). Declare Clins for each. <strong>Niv d'Ébranlement</strong> from Mouvements and Réactions is <strong>multiplied</strong> by number of simultaneous Proactions (and by number of targets if different). Ranged: Attack Clins = arming only; melee/jet: half Clins = arm, half = strike." data-fr="Plusieurs Proactions : limité par les membres. Niv d'Ébranlement × nombre de Proactions (et × cibles). À distance : Clins = armement ; mêlée/jet : moitié armement, moitié frappe.">Multiple Proactions: Niv d'Ébranlement × Proactions × targets. Ranged = arming Clins only; melee/jet = half arm, half strike.</p>
+                        </div>
+                    </div>
+                    <div class="combat-accordion-item" id="combat-reactions">
+                        <button type="button" class="combat-accordion-head" aria-expanded="false" aria-controls="combat-reactions-body" id="combat-reactions-btn" data-en="Réactions" data-fr="Réactions">Réactions</button>
+                        <div class="combat-accordion-body" id="combat-reactions-body" role="region" aria-labelledby="combat-reactions-btn">
+                            <p data-en="Réactions happen at the <strong>last Clin</strong> of an enemy Proaction. Each additional Réaction on the same Clin adds -1 Niv d'Ébranlement to your roll." data-fr="Les Réactions se font au <strong>dernier Clin</strong> d'une Proaction ennemie. Chaque Réaction en plus sur ce Clin ajoute -1 Niv d'Ébranlement au jet.">Réactions at the <strong>last Clin</strong> of the enemy attack. Each extra Réaction on that Clin = -1 Niv d'Ébranlement.</p>
+                            <ul>
+                                <li><strong>Bloquer</strong> — Puissance [Neutraliser:(Dés)Armé] + Parade = X. Absorb X Échecs against X Durabilité of the weapon (max = Inertia).</li>
+                                <li><strong>Parer</strong> — Précision [Manier:(Dés)Armé] + Parade = X. Avoid damage; X Succès = -X Clins to current or next Proaction (counter-attack or chain).</li>
+                                <li><strong>Esquiver</strong> — Aisance [Réagir] = X. Avoid damage; X Succès = +X Mouvements, free Case, or 1 Clin Récupération. Réaction from left/right case blocks Réaction to the opposite side that Clin.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="combat-accordion-item" id="combat-mouvements">
+                        <button type="button" class="combat-accordion-head" aria-expanded="false" aria-controls="combat-mouvements-body" id="combat-mouvements-btn" data-en="Mouvements" data-fr="Mouvements">Mouvements</button>
+                        <div class="combat-accordion-body" id="combat-mouvements-body" role="region" aria-labelledby="combat-mouvements-btn">
+                            <ul>
+                                <li><strong>Déplacer</strong> — 1|2|3 Cases per Clin (Marcher / Courir / Charger). +1N / +2N / +3N Ébranlement. Must Marcher 3C before Courir, 6C before Charger (and slow 6C→Courir, 3C→Marcher). Cannot Charger from behind (Tourner once first). Course/Charge add Vitesse to damage if moving same direction.</li>
+                                <li><strong>Déployer</strong> — +0.5 Portée over X Cases in 1 Clin; occupy until next Clin. +X Niv d'Ébranlement per Case (limit = Niv Taille + 1). Stops Déplacer.</li>
+                                <li><strong>Sauter</strong> — X Cases (height + length) by Vitesse over X Clins (Athlétisme [Efforcer]). +X Niv d'Ébranlement per Case. +1N damage per height Case. Can swap length for height. No Déplacer while airborne; can Tourner (up to half-turn).</li>
+                                <li><strong>Tourner</strong> — 90° per Quart de Tour. +X Niv d'Ébranlement per Quart. One Réaction covers left OR right; no Réaction from behind.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="combat-accordion-item" id="combat-postures">
+                        <button type="button" class="combat-accordion-head" aria-expanded="false" aria-controls="combat-postures-body" id="combat-postures-btn" data-en="Postures" data-fr="Postures">Postures</button>
+                        <div class="combat-accordion-body" id="combat-postures-body" role="region" aria-labelledby="combat-postures-btn">
+                            <p data-en="Default: <strong>Neutre</strong> (no bonus/malus)." data-fr="Par défaut : <strong>Neutre</strong> (aucun effet).">Default: <strong>Neutre</strong>.</p>
+                            <ul>
+                                <li><strong>Offensive</strong> — -1N Dévier/Esquiver, +1N Attaquer/Engager</li>
+                                <li><strong>Défensive</strong> — -1N Attaquer/Engager, +1N Dévier/Esquiver</li>
+                                <li><strong>Harrassante</strong> — -XN to your Attack, -1N to X Enemies' Attacks</li>
+                                <li><strong>Protectrice</strong> — -XN to your Attack, +1N to X Allies' Attacks; center to hinder Enemies or help Allies at Portée</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="combat-accordion-item" id="combat-ebranlement">
+                        <button type="button" class="combat-accordion-head" aria-expanded="false" aria-controls="combat-ebranlement-body" id="combat-ebranlement-btn" data-en="Niv d'Ébranlement" data-fr="Niv d'Ébranlement">Niv d'Ébranlement</button>
+                        <div class="combat-accordion-body" id="combat-ebranlement-body" role="region" aria-labelledby="combat-ebranlement-btn">
+                            <p data-en="Each <strong>Niv d'Action</strong> beyond the first (Réactions, Mouvements, simultaneous Proactions) subtracts 1 Niv d'Ébranlement from all rolls that Clin (not counting the Attack itself). Ébranlement <strong>disappears next Clin</strong> unless you continue one of those actions. If you don't Réagir to an enemy Proaction, roll 5dD - Niv Taille - Niv Stature - Niv d'Ébranlement as base to compare to their attack." data-fr="Chaque Niv d'Action au-delà du premier soustrait 1 Niv d'Ébranlement aux jets ce Clin. L'Ébranlement disparaît au Clin suivant sauf si vous continuez. Sans Réaction : 5dD - Taille - Stature - Ébranlement vs attaque.">Each extra Niv d'Action (Réactions, Mouvements, Proactions) = -1 Niv d'Ébranlement that Clin. It clears <strong>next Clin</strong> unless you keep acting. No Réaction: 5dD - Taille - Stature - Ébranlement vs attack.</p>
+                        </div>
+                    </div>
+                    <div class="combat-accordion-item" id="combat-recuperation">
+                        <button type="button" class="combat-accordion-head" aria-expanded="false" aria-controls="combat-recuperation-body" id="combat-recuperation-btn" data-en="Récupération" data-fr="Récupération">Récupération</button>
+                        <div class="combat-accordion-body" id="combat-recuperation-body" role="region" aria-labelledby="combat-recuperation-btn">
+                            <p data-en="Every <strong>-10 Clins</strong>, everyone rolls Jet de Souffle (Domination [Endurer]). Failure can cause Fatigue Souffrances. If you have <strong>no Niv d'Ébranlement</strong> (or after a successful Esquiver that grants Récupération), you can:" data-fr="Tous les <strong>-10 Clins</strong>, Jet de Souffle (Domination [Endurer]). Si <strong>aucun Niv d'Ébranlement</strong>, vous pouvez :">Every <strong>-10 Clins</strong>: Jet de Souffle. With <strong>no Ébranlement</strong> you can:</p>
+                            <ul>
+                                <li><strong>Souffler</strong> — 1|2|3|4|5 Clins in a row → +1|3|6|10|15 Dés to next Jet de Souffle (can be interrupted).</li>
+                                <li><strong>Équilibrer</strong> — 1|2|3|4|5 Clins in a row → restore 1|2|3|4|5 Manœuvre level (Immobilisé→À Terre→Projeté→Poussé→Saisi→Libre). Manœuvre levels recover automatically after X Clins if the enemy doesn't maintain them.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="combat-accordion-item" id="combat-honoration">
+                        <button type="button" class="combat-accordion-head" aria-expanded="false" aria-controls="combat-honoration-body" id="combat-honoration-btn" data-en="Honoration" data-fr="Honoration">Honoration</button>
+                        <div class="combat-accordion-body" id="combat-honoration-body" role="region" aria-labelledby="combat-honoration-btn">
+                            <p data-en="Ritual or symbolic actions that can modify rolls; linked to <strong>Rilie</strong>. Use before, during or after combat. Cost in Clins (see table: -15|10|6|3|1 Dés to Honoration roll vs -1|3|10|30|100 Clins)." data-fr="Actions rituelles ou symboliques modifiant les jets ; liées à la <strong>Rilie</strong>. Coût en Clins (voir tableau).">Ritual/symbolic actions; linked to <strong>Rilie</strong>. Cost in Clins (see table).</p>
+                        </div>
+                    </div>
+                    <div class="combat-accordion-item" id="combat-batailles">
+                        <button type="button" class="combat-accordion-head" aria-expanded="false" aria-controls="combat-batailles-body" id="combat-batailles-btn" data-en="Batailles" data-fr="Batailles">Batailles</button>
+                        <div class="combat-accordion-body" id="combat-batailles-body" role="region" aria-labelledby="combat-batailles-btn">
+                            <ul>
+                                <li><strong>Échelle tactique</strong> — Individual combat; precise actions.</li>
+                                <li><strong>Échelle stratégique</strong> — Group combat; command and coordination.</li>
+                                <li><strong>Échelle opérationnelle</strong> — Large-scale battles; troop movements.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="combat-accordion-actions">
+                    <button type="button" class="combat-expand-all" data-en="Expand all" data-fr="Tout ouvrir">Expand all</button>
+                    <button type="button" class="combat-collapse-all" data-en="Collapse all" data-fr="Tout fermer">Collapse all</button>
+                </div>
+
+                <!-- Reference tables: inner tabs -->
+                <div class="combat-tables-wrap">
+                    <h4 data-en="Reference tables" data-fr="Tableaux de référence">Reference tables</h4>
+                    <nav class="combat-tables-nav" aria-label="Combat reference tables">
+                        <button type="button" class="combat-tab-link active" data-combat-tab="clins-types" data-en="Clins & Types" data-fr="Clins & Types">Clins & Types</button>
+                        <button type="button" class="combat-tab-link" data-combat-tab="potentiels" data-en="Potentiels" data-fr="Potentiels">Potentiels</button>
+                        <button type="button" class="combat-tab-link" data-combat-tab="armes-melee" data-en="Armes (mêlée)" data-fr="Armes (mêlée)">Armes (mêlée)</button>
+                        <button type="button" class="combat-tab-link" data-combat-tab="armes-type" data-en="Armes par type" data-fr="Armes par type">Armes par type</button>
+                        <button type="button" class="combat-tab-link" data-combat-tab="loc-manoeuvres" data-en="Localisation & Manœuvres" data-fr="Localisation & Manœuvres">Localisation & Manœuvres</button>
+                        <button type="button" class="combat-tab-link" data-combat-tab="frappes-matelassage" data-en="Frappes & Matelassage" data-fr="Frappes & Matelassage">Frappes & Matelassage</button>
+                    </nav>
+
+                    <div class="combat-tables-panel active" id="combat-panel-clins-types" data-combat-panel="clins-types">
+                        <div class="combat-table-wrapper">
+                            <h5>Clins d'Action au Combat</h5>
+                            <p class="combat-table-note">(Inertie = I, Clins = C)</p>
+                            <table class="combat-table combat-table--clins">
+                                <thead><tr><th>Action</th><th>Cost / Notes</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Manier</td><td>= Arme personnelle ; -1C Maîtrisée ; -2C Inconnue</td></tr>
+                                    <tr><td>Dégainer</td><td>I Clins ; I/2 à 1 main ; I×2 à 2 mains</td></tr>
+                                    <tr><td>Recharger</td><td>En sac/sol -10C → carquois -6C → main -3C → doigt -1C. Aisance [Coordonner] = X Clins (min 1)</td></tr>
+                                    <tr><td>Attaquer</td><td>Clins = IRT arme − Puissance (min 1). Mécanique (I×1…10) ; Corporel (×I) ; Auto (X/1C)</td></tr>
+                                    <tr><td>Viser</td><td>+1|2|3|4|5 Dés Attaque vs -1|3|6|10|15 Clins</td></tr>
+                                    <tr><td>Honoration</td><td>-15|10|6|3|1 Dés Honoration vs -1|3|10|30|100 Clins</td></tr>
+                                    <tr><td>Autres</td><td>Libre -1C ; Rapide -3C ; Simple -10C ; Complexe -15C</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="combat-table-wrapper">
+                            <h5>Types d'Action</h5>
+                            <table class="combat-table combat-table--types">
+                                <thead><tr><th>Type</th><th>Summary</th></tr></thead>
+                                <tbody>
+                                    <tr><td>PROactions</td><td>Attaquer définit l'Épreuve ; jet Puissance [Frapper/Tirer] ; Succès pour dégâts/localisation/manœuvres</td></tr>
+                                    <tr><td>Réactions</td><td>Bloquer (Neutraliser+Parade), Parer (Manier+Parade), Esquiver (Réagir) — au dernier Clin de l'attaque</td></tr>
+                                    <tr><td>Mouvements</td><td>Déplacer 1|2|3 Cases/Clin ; Déployer ; Tourner ; Sauter — chacun ajoute Niv d'Ébranlement</td></tr>
+                                    <tr><td>Postures</td><td>Neutre, Offensive, Défensive, Harrassante, Protectrice</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="combat-tables-panel" id="combat-panel-potentiels" data-combat-panel="potentiels">
+                        <div class="combat-table-wrapper">
+                            <h5>Potentiels d'Action au Combat</h5>
+                            <table class="combat-table combat-table--potentiels">
+                                <thead><tr><th>Aptitude / Action</th><th>Effet (résumé)</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Puissance / Frapper</td><td>+X cibles traversées ; +5×X dégâts contondants réorientés</td></tr>
+                                    <tr><td>Puissance / Neutraliser</td><td>+X Blocages sans Ébranlement ; +X Niv Gêne</td></tr>
+                                    <tr><td>Puissance / Tirer</td><td>+X portée ; +5×X dégâts contondants</td></tr>
+                                    <tr><td>Aisance / Réagir</td><td>+X Esquives sans Ébranlement ; +X Niv Alerte</td></tr>
+                                    <tr><td>Aisance / Dérober</td><td>+X taille objet volé ; +X Ruses</td></tr>
+                                    <tr><td>Aisance / Coordonner</td><td>+X Proactions/Quart sans Ébranlement ; -X Clins Proaction</td></tr>
+                                    <tr><td>Précision / Manier</td><td>+X Parades sans Ébranlement ; +X Dés visée sans Clins</td></tr>
+                                    <tr><td>Précision / Fignoler</td><td>+X Niv ou D6 Localisation ; +X Bottes</td></tr>
+                                    <tr><td>Athlétisme / Traverser</td><td>+X Vitesses sans Ébranlement</td></tr>
+                                    <tr><td>Athlétisme / Efforcer</td><td>+X Sauts sans Ébranlement ; +X Lutte</td></tr>
+                                    <tr><td>Athlétisme / Manœuvrer</td><td>+X Déploiements sans Ébranlement ou +X Cases</td></tr>
+                                    <tr><td>Détection / Dépister</td><td>+X attaques prédites ; +X Niv Ébranlement cible révélée</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="combat-tables-panel" id="combat-panel-armes-melee" data-combat-panel="armes-melee">
+                        <div class="combat-table-wrapper">
+                            <h5>ARMES DE MÊLÉE — Longueur / Structure / Équilibre</h5>
+                            <table class="combat-table combat-table--armes-melee">
+                                <thead><tr><th>Longueur</th><th>Structure</th><th>Équilibre</th></tr></thead>
+                                <tbody>
+                                    <tr><td>+0…0.5 : Peaume (Couteau, Bouclier, Gourdin)</td><td>Empoignée (Dague, Épée, Ceste, Bouclier)</td><td>Pommeau (Bouclier, Dague, Épée, Espadon, Fouet)</td></tr>
+                                    <tr><td>+1…1.5 : Bras (Épée, Marteau, Hache)</td><td>Emmanchée (Lance, Marteau, Hallebarde)</td><td>Centre (Bâton, Lance, Double-lame)</td></tr>
+                                    <tr><td>+2…2.5 : Corps (Lance, Espadon, Hallebarde)</td><td>Enliée (Fouet, Chaîne, Fléau)</td><td>Tête (Hache, Masse, Hallebarde)</td></tr>
+                                </tbody>
+                            </table>
+                            <h5>Faces (CTD / TRC / PRF)</h5>
+                            <p class="combat-table-note">Applati→Marteau ; Arrondi→Massue ; Lame→Épée ; Fil→Rapière ; Bec/Pointe→Lance, Flèche. Armes de pommeau : souvent 2 TRC + 1 PRF.</p>
+                            <h5>Traits</h5>
+                            <p class="combat-table-note">Multitêtes (+X IRT ou -1 DRT), Gardes (+IRT & +GRD), Crochets (+MNV, -DRT), Rigide/Flexible, Affinement, Flambure. Improvisée : ×2 IRT et ×2 DRT (négatif).</p>
+                        </div>
+                    </div>
+
+                    <div class="combat-tables-panel" id="combat-panel-armes-type" data-combat-panel="armes-type">
+                        <div class="combat-weapons-filter">
+                            <label for="combat-weapon-search" data-en="Search weapons" data-fr="Rechercher armes">Search</label>
+                            <input type="text" id="combat-weapon-search" class="combat-weapon-search" placeholder="Name..." aria-label="Search weapons by name"/>
+                            <label for="combat-weapon-type" data-en="Type" data-fr="Type">Type</label>
+                            <select id="combat-weapon-type" class="combat-weapon-type" aria-label="Weapon type">
+                                <option value="">All</option>
+                                <option value="poing">Poing</option>
+                                <option value="pommeau">Pommeau</option>
+                                <option value="manche">Manche</option>
+                                <option value="hast">Hast</option>
+                                <option value="jet">Jet</option>
+                                <option value="lancer">Lancer</option>
+                                <option value="flexibles">Flexibles</option>
+                            </select>
+                        </div>
+                        <div class="combat-weapon-tabs">
+                            <button type="button" class="combat-weapon-tab active" data-weapon-type="poing">Poing</button>
+                            <button type="button" class="combat-weapon-tab" data-weapon-type="pommeau">Pommeau</button>
+                            <button type="button" class="combat-weapon-tab" data-weapon-type="manche">Manche</button>
+                            <button type="button" class="combat-weapon-tab" data-weapon-type="hast">Hast</button>
+                            <button type="button" class="combat-weapon-tab" data-weapon-type="jet">Jet</button>
+                            <button type="button" class="combat-weapon-tab" data-weapon-type="lancer">Lancer</button>
+                            <button type="button" class="combat-weapon-tab" data-weapon-type="flexibles">Flexibles</button>
+                        </div>
+                        <div class="combat-weapon-panel active" data-weapon-panel="poing">
+                            <div class="combat-table-wrapper combat-table-scroll">
+                                <table class="combat-table combat-table--weapons">
+                                    <thead><tr><th>Arme</th><th>PRT</th><th>IRT</th><th>DGT</th><th>A</th><th>G</th><th>M</th><th>DRT</th><th>Prix</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Mains nues</td><td>0</td><td>0</td><td>C+</td><td>0</td><td>0</td><td>5</td><td>0</td><td>-</td></tr>
+                                        <tr><td>Couteau (rigide, 2 têtes)</td><td></td><td></td><td>T P-</td><td>1</td><td></td><td></td><td>-1</td><td>3</td></tr>
+                                        <tr><td>Bâtons rotatifs</td><td></td><td></td><td>P--</td><td>1</td><td></td><td></td><td></td><td>15</td></tr>
+                                        <tr><td>Anneaux-griffes</td><td></td><td></td><td>P</td><td>1</td><td></td><td></td><td></td><td>10×2</td></tr>
+                                        <tr><td>Poings / Gantelets cloutés</td><td></td><td>1</td><td>C+ P--</td><td>1</td><td></td><td></td><td>-1</td><td>3</td></tr>
+                                        <tr><td>Dague de pousse</td><td></td><td>1</td><td>T- P-</td><td>1</td><td></td><td></td><td>-1</td><td>5</td></tr>
+                                        <tr><td>Targe</td><td>0.5</td><td>3</td><td>C</td><td>1</td><td>3</td><td>4</td><td></td><td>10</td></tr>
+                                        <tr><td>Bouclier</td><td>1</td><td>4</td><td>C</td><td>2</td><td>3</td><td>3</td><td></td><td>15</td></tr>
+                                        <tr><td>Écu</td><td></td><td></td><td>C P</td><td></td><td></td><td></td><td>-1</td><td>20</td></tr>
+                                        <tr><td>Bouclier-cloche</td><td>1.5</td><td>5</td><td>C</td><td>3</td><td>4</td><td>2</td><td></td><td>25</td></tr>
+                                        <tr><td>Pavois</td><td>6</td><td></td><td>C</td><td>5</td><td></td><td></td><td></td><td>40</td></tr>
+                                        <tr><td>Bouclier de duel</td><td>2</td><td>7</td><td>C P-</td><td>4</td><td>5</td><td>1</td><td>-1</td><td>50</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="combat-weapon-panel" data-weapon-panel="pommeau">
+                            <div class="combat-table-wrapper combat-table-scroll">
+                                <table class="combat-table combat-table--weapons">
+                                    <thead><tr><th>Arme</th><th>PRT</th><th>IRT</th><th>DGT</th><th>A</th><th>G</th><th>M</th><th>DRT</th><th>Prix</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Dague</td><td>0.5</td><td>2</td><td>T- P-</td><td>1</td><td>2</td><td>4</td><td>0</td><td>10</td></tr>
+                                        <tr><td>De parade (croches, +garde)</td><td></td><td>3</td><td>T- P-</td><td>2</td><td>3</td><td>5</td><td>-2</td><td>15</td></tr>
+                                        <tr><td>Poignard (affiné)</td><td></td><td>1</td><td>P--</td><td></td><td></td><td></td><td>-1</td><td>15</td></tr>
+                                        <tr><td>Épée</td><td>1</td><td>3</td><td>T- P-</td><td>2</td><td>2</td><td>3</td><td>0</td><td>30</td></tr>
+                                        <tr><td>Machette (rigide, -garde)</td><td></td><td>2</td><td>T+ T--</td><td>3</td><td>1</td><td></td><td>-1</td><td>10</td></tr>
+                                        <tr><td>Espadon</td><td>1.5</td><td>4</td><td>T- P-</td><td>3</td><td>2</td><td>2</td><td>-1</td><td>40</td></tr>
+                                        <tr><td>Rapière (affiné)</td><td></td><td>2</td><td>P--</td><td></td><td></td><td></td><td>-1</td><td>25</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="combat-weapon-panel" data-weapon-panel="manche">
+                            <div class="combat-table-wrapper combat-table-scroll">
+                                <table class="combat-table combat-table--weapons">
+                                    <thead><tr><th>Arme</th><th>PRT</th><th>IRT</th><th>DGT</th><th>A</th><th>G</th><th>M</th><th>DRT</th><th>Prix</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Pipe de métal</td><td>0.5</td><td>1</td><td>C</td><td>1</td><td>1</td><td>5</td><td></td><td>5</td></tr>
+                                        <tr><td>Petit bâton</td><td>1</td><td>2</td><td>C</td><td>2</td><td>1</td><td>4</td><td></td><td>1</td></tr>
+                                        <tr><td>Lance (2 têtes)</td><td></td><td></td><td>T-- P-</td><td></td><td></td><td></td><td>-1</td><td>10</td></tr>
+                                        <tr><td>Bâton de marche</td><td>1.5</td><td>3</td><td>C</td><td>3</td><td>2</td><td>3</td><td></td><td>2</td></tr>
+                                        <tr><td>Long bâton</td><td>2</td><td>4</td><td>C</td><td>4</td><td>2</td><td>2</td><td></td><td>3</td></tr>
+                                        <tr><td>Marteau de guerre</td><td></td><td></td><td>C+</td><td></td><td></td><td></td><td></td><td></td></tr>
+                                        <tr><td>Hache d'armes</td><td></td><td></td><td>T+</td><td></td><td></td><td></td><td></td><td></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="combat-weapon-panel" data-weapon-panel="hast">
+                            <div class="combat-table-wrapper combat-table-scroll"><table class="combat-table combat-table--weapons"><thead><tr><th>Arme</th><th>PRT</th><th>IRT</th><th>DGT</th><th>A</th><th>G</th><th>M</th><th>DRT</th><th>Prix</th></tr></thead><tbody><tr><td>Lance longue</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Hallebarde</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div>
+                        </div>
+                        <div class="combat-weapon-panel" data-weapon-panel="jet">
+                            <div class="combat-table-wrapper combat-table-scroll"><table class="combat-table combat-table--weapons"><thead><tr><th>Arme</th><th>PRT</th><th>IRT</th><th>DGT</th><th>A</th><th>G</th><th>M</th><th>DRT</th><th>Prix</th></tr></thead><tbody><tr><td>Javelot</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Arc</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div>
+                        </div>
+                        <div class="combat-weapon-panel" data-weapon-panel="lancer">
+                            <div class="combat-table-wrapper combat-table-scroll"><table class="combat-table combat-table--weapons"><thead><tr><th>Arme</th><th>PRT</th><th>IRT</th><th>DGT</th><th>A</th><th>G</th><th>M</th><th>DRT</th><th>Prix</th></tr></thead><tbody><tr><td>Lancer (voir Armes de Jet)</td><td colspan="8">—</td></tr></tbody></table></div>
+                        </div>
+                        <div class="combat-weapon-panel" data-weapon-panel="flexibles">
+                            <div class="combat-table-wrapper combat-table-scroll"><table class="combat-table combat-table--weapons"><thead><tr><th>Arme</th><th>PRT</th><th>IRT</th><th>DGT</th><th>A</th><th>G</th><th>M</th><th>DRT</th><th>Prix</th></tr></thead><tbody><tr><td>Fouet</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Chaîne</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div>
+                        </div>
+                    </div>
+
+                    <div class="combat-tables-panel" id="combat-panel-loc-manoeuvres" data-combat-panel="loc-manoeuvres">
+                        <div class="combat-table-wrapper">
+                            <h5>Localisation (dépenser Succès)</h5>
+                            <table class="combat-table combat-table--localisation">
+                                <thead><tr><th>Succès</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th></tr></thead>
+                                <tbody>
+                                    <tr><td>+0</td><td colspan="6">Ne pas viser précisément ; toucher où possible</td></tr>
+                                    <tr><td>+1</td><td>Dos</td><td>Bras D</td><td>Jambe G</td><td>Jambe D</td><td>Bras G</td><td>Torse</td></tr>
+                                    <tr><td>+2</td><td>Nuque</td><td>Poignet</td><td>Coude</td><td>Main</td><td>Aisselle</td><td>Pied</td></tr>
+                                    <tr><td>+3</td><td>Dos crâne</td><td>Tête</td><td>Tendon Achille</td><td>Aine</td><td>Oreille</td><td>Reins</td></tr>
+                                    <tr><td>+4</td><td>Mâchoire</td><td>Nez</td><td>Cou</td><td>Œil</td><td>Tempe</td><td>Plexus</td></tr>
+                                    <tr><td>+5</td><td colspan="6">Point précis (×3→×2 dégâts)</td></tr>
+                                    <tr><td>+X</td><td colspan="6">+XD6 au jet Localisation pour choisir parmi plusieurs dés dans la catégorie</td></tr>
+                                </tbody>
+                            </table>
+                            <h5>Manœuvres</h5>
+                            <p class="combat-table-note">Lutte (désarmées), Bottes (armées), Ruse (générales). Plus de Succès = plus de manœuvres possibles. Niv Manœuvre 1–5 : Saisi, Poussé, Projeté, À Terre, Immobilisé ; récupération en 1–5 Clins ou Équilibrer.</p>
+                        </div>
+                    </div>
+
+                    <div class="combat-tables-panel" id="combat-panel-frappes-matelassage" data-combat-panel="frappes-matelassage">
+                        <div class="combat-table-wrapper">
+                            <h5>Frappes (orientation en mêlée)</h5>
+                            <table class="combat-table combat-table--frappes">
+                                <thead><tr><th>Type</th><th>Effet</th></tr></thead>
+                                <tbody>
+                                    <tr><td>(F)rontale +1S</td><td>Dégâts de l'arme (base)</td></tr>
+                                    <tr><td>(L)atérale +2S</td><td>Dégâts + X Inertie par X Cases d'écart</td></tr>
+                                    <tr><td>(G)lissement +3S</td><td>Dégâts OU Manœuvre (face d'arme) ; +X Clins à la prochaine Proaction</td></tr>
+                                </tbody>
+                            </table>
+                            <h5>Matelassage (armure) — 1ère Classe</h5>
+                            <table class="combat-table combat-table--matelassage">
+                                <thead><tr><th>Type</th><th>Dés absorbés</th><th>CTD</th><th>TRC</th><th>PRF</th><th>ERT</th><th>Prix</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Peau</td><td>🛡 vs CTD</td><td>1</td><td>1</td><td>1</td><td>2</td><td>100</td></tr>
+                                    <tr><td>Couche add.</td><td></td><td>+1</td><td>+1</td><td>+1</td><td>+1</td><td>+100</td></tr>
+                                    <tr><td>Gambison</td><td>🛡 vs PRF</td><td>4</td><td>4</td><td>3</td><td>2</td><td>200</td></tr>
+                                    <tr><td>Durci (sel &amp; melhygre)</td><td></td><td>+1</td><td>+1</td><td>+0.5</td><td>+10</td><td></td></tr>
+                                    <tr><td>Mailles (2ème cl.)</td><td>🛡 vs CTD</td><td>1</td><td>5</td><td>3</td><td>4</td><td>500</td></tr>
+                                    <tr><td>Brigandines</td><td>🛡 vs PRF</td><td>3</td><td>3</td><td>3</td><td>3</td><td>600</td></tr>
+                                    <tr><td>Plates (3ème cl.)</td><td>🛡 vs TRC</td><td>5</td><td>5</td><td>5</td><td>5</td><td>1500</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
             </div>
