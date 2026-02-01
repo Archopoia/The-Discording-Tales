@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node tools/build_rules_lore.js && node tools/build_html.js && tsc && vite build && vite build --config vite.play-webllm.config.ts",
+    "build": "node tools/build_rules_lore.js && node tools/build_html.js && node tools/build_css.js && node tools/build_i18n.js && tsc && vite build && vite build --config vite.main-site.config.ts && vite build --config vite.play-webllm.config.ts",
     "build:rules": "node tools/build_rules_lore.js",
     "build:html": "node tools/build_html.js",
+    "build:css": "node tools/build_css.js",
+    "build:i18n": "node tools/build_i18n.js",
     "preview": "vite preview"
   },
   "dependencies": {

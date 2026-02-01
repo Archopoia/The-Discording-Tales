@@ -606,10 +606,21 @@
         });
     }
 
+    // Fallback if build_i18n has not injected #tdt-i18n-strings
     var PAGE_TITLE_EN = 'THE DISCORDING TALES – Under our steps awake those mysteries believed to be warring among the stars…';
     var PAGE_TITLE_FR = 'DES RÉCITS DISCORDANTS – Sous nos pas s\'éveillent ces mystères que l\'on croyait se battre parmi les étoiles…';
     var META_DESCRIPTION_EN = 'For those of us who crave DISCOVERY. A journey through exotic cultures, unexplored lands, weird creatures, and untold ways of thinking and being—yearning to experience the vast potentials, technologies and moralities of worlds unlike ours.';
     var META_DESCRIPTION_FR = 'Pour ceux d\'entre nous qui aspirent à la DÉCOUVERTE. Un voyage à travers des cultures exotiques, des terres inexplorées, des créatures étranges et des façons inédites de penser et d\'être—aspirant à expérimenter les vastes potentiels, technologies et moralités de mondes différents du nôtre.';
+
+    function getPageI18n() {
+        var el = document.getElementById('tdt-i18n-strings');
+        if (!el || !el.textContent) return null;
+        try {
+            return JSON.parse(el.textContent);
+        } catch (e) {
+            return null;
+        }
+    }
 
     function setLanguage(lang) {
         state.currentLang = lang;
@@ -618,10 +629,15 @@
             window.dispatchEvent(new CustomEvent('tdt-lang-changed', { detail: lang }));
         } catch (e) {}
 
-        // Page title and meta description: always one language only
-        document.title = lang === 'fr' ? PAGE_TITLE_FR : PAGE_TITLE_EN;
+        // Page title and meta description: from #tdt-i18n-strings (build_i18n) or fallback
+        var pageI18n = getPageI18n();
+        var titleEn = (pageI18n && pageI18n.title && pageI18n.title.en) ? pageI18n.title.en : PAGE_TITLE_EN;
+        var titleFr = (pageI18n && pageI18n.title && pageI18n.title.fr) ? pageI18n.title.fr : PAGE_TITLE_FR;
+        var descEn = (pageI18n && pageI18n.description && pageI18n.description.en) ? pageI18n.description.en : META_DESCRIPTION_EN;
+        var descFr = (pageI18n && pageI18n.description && pageI18n.description.fr) ? pageI18n.description.fr : META_DESCRIPTION_FR;
+        document.title = lang === 'fr' ? titleFr : titleEn;
         var metaDesc = document.querySelector('meta[name="description"]');
-        if (metaDesc) metaDesc.setAttribute('content', lang === 'fr' ? META_DESCRIPTION_FR : META_DESCRIPTION_EN);
+        if (metaDesc) metaDesc.setAttribute('content', lang === 'fr' ? descFr : descEn);
 
         // Update button states
         elements.langButtons.forEach(btn => {

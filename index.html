@@ -6,8 +6,8 @@
     <title>THE DISCORDING TALES – Under our steps awake those mysteries believed to be warring among the stars…</title>
     <meta content="For those of us who crave DISCOVERY. A journey through exotic cultures, unexplored lands, weird creatures, and untold ways of thinking and being—yearning to experience the vast potentials, technologies and moralities of worlds unlike ours." name="description"/>
     
-    <!-- Main Stylesheet -->
-    <link href="css/dtd-website.css" rel="stylesheet" type="text/css"/>
+    <!-- Main Stylesheet (bundled by build_css.js) -->
+    <link href="dist/main-site.css" rel="stylesheet" type="text/css"/>
     <!-- Quintessential (Fermer / Envoyer button style) -->
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -21,6 +21,8 @@
     
     <!-- Favicon -->
     <link href="assets/images/cropped-symbolpur.png" rel="icon" sizes="32x32"/>
+    <!-- Page title/description for setLanguage (filled by build_i18n) -->
+    <script type="application/json" id="tdt-i18n-strings">{"title":{"en":"THE DISCORDING TALES – Under our steps awake those mysteries believed to be warring among the stars…","fr":"DES RÉCITS DISCORDANTS – Sous nos pas s'éveillent ces mystères que l'on croyait se battre parmi les étoiles…"},"description":{"en":"For those of us who crave DISCOVERY. A journey through exotic cultures, unexplored lands, weird creatures, and untold ways of thinking and being—yearning to experience the vast potentials, technologies and moralities of worlds unlike ours.","fr":"Pour ceux d'entre nous qui aspirent à la DÉCOUVERTE. Un voyage à travers des cultures exotiques, des terres inexplorées, des créatures étranges et des façons inédites de penser et d'être—aspirant à expérimenter les vastes potentiels, technologies et moralités de mondes différents du nôtre."}}</script>
 </head>
 <body>
     <!-- Skip to content link for accessibility -->
@@ -41,7 +43,7 @@
                     <span data-en="awoke those mysteries believed to be warring among the stars." data-fr="s'éveillèrent ces mystères-là que l'on croyait se battre parmi les étoiles.">awoke those mysteries believed to be warring among the stars.</span>
                 </p>
                 <a class="site-logo-link" href="#landing" data-aria-label-en="Home" data-aria-label-fr="Accueil" aria-label="Home">
-                    <img alt="The Discording Tales Symbol" class="site-logo" src="assets/images/symbolpur.png" height="100" width="100" data-alt-en="The Discording Tales Symbol" data-alt-fr="Le symbole des Récits Discordants"/>
+                    <img alt="The Discording Tales Symbol" class="site-logo" src="assets/images/symbolpur.png" height="100" width="100" decoding="async" data-alt-en="The Discording Tales Symbol" data-alt-fr="Le symbole des Récits Discordants"/>
                 </a>
                 <h1 class="site-title"><a href="#landing" rel="home" data-en="THE DISCORDING TALES" data-fr="DES RÉCITS DISCORDANTS">THE DISCORDING TALES</a></h1>
                 <p class="site-genre" data-en="The ETHNO-SCIENCE-FANTASY world" data-fr="Le monde ÉTHNO-SCIENCE-FANTASTIQUE">the ETHNO-SCIENCE-FANTASY world</p>
@@ -101,14 +103,14 @@
                     <div class="features-grid">
                         <div class="genre-card">
                             <h4 data-en="8 Paths to Interact" data-fr="8 Chemins d'Interaction">8 Paths to Interact</h4>
-                            <p data-en="Battle & Debate<br/>Infiltration & Investigation<br/>Craft & Enigma<br/>Travel & Feast" data-fr="Combat & Débat<br/>Infiltration & Investigation<br/>Artisanat & Énigme<br/>Voyage & Festin">Battle & Debate<br/>Infiltration & Investigation<br/>Craft & Enigma<br/>Travel & Feast</p>
+                            <p data-en="Battle &amp; Debate<br/>Infiltration &amp; Investigation<br/>Craft &amp; Enigma<br/>Travel &amp; Feast" data-fr="Combat &amp; Débat<br/>Infiltration &amp; Investigation<br/>Artisanat &amp; Énigme<br/>Voyage &amp; Festin">Battle & Debate<br/>Infiltration & Investigation<br/>Craft & Enigma<br/>Travel & Feast</p>
                         </div>
                         <div class="genre-card">
                             <h4 data-en="FREE-FORMING System" data-fr="Système LIBRE-FORMANT">FREE-FORMING System</h4>
                             <p data-en="Each rule is modular, solving a variety of situations in a logical manner. Create your character throughout the first sessions, as if unfolding naturally." data-fr="Chaque règle est modulaire, résolvant une variété de situations de manière logique. Créez votre personnage tout au long des premières sessions, comme s'il se déployait naturellement.">Each rule is modular, solving a variety of situations in a logical manner. Create your character throughout the first sessions, as if unfolding naturally.</p>
                         </div>
                         <div class="genre-card">
-                            <h4 data-en="Equal Depth & Strategy" data-fr="Profondeur et Stratégie Égales">Equal Depth & Strategy</h4>
+                            <h4 data-en="Equal Depth &amp; Strategy" data-fr="Profondeur et Stratégie Égales">Equal Depth & Strategy</h4>
                             <p data-en="Every path follows a streamlined progression, from quick single-roll resolutions to intricate, multi-step challenges." data-fr="Chaque chemin suit une progression rationalisée, des résolutions rapides en un seul jet aux défis complexes à plusieurs étapes.">Every path follows a streamlined progression, from quick single-roll resolutions to intricate, multi-step challenges.</p>
                         </div>
                     </div>
@@ -149,7 +151,7 @@
             
             <!-- Cosmology Section -->
             <div class="lore-section tab-sub-panel active" id="cosmology">
-                <h3 data-en="Cosmology & Divinities" data-fr="Cosmogonie & Divinités">Cosmology & Divinities</h3>
+                <h3 data-en="Cosmology &amp; Divinities" data-fr="Cosmogonie &amp; Divinités">Cosmology & Divinities</h3>
                 <div class="lore-content" data-lang-key="cosmology-content">
                     <h4 data-en="Fundamental Cosmology" data-fr="Cosmologie Fondamentale">Fundamental Cosmology</h4>
                     <p data-en="The vast majority of cultures believe they live in a <strong>concave universe</strong> (Cytocosmism) - a hollow universe where space and everything else rushes into a sphere of rock. The 'ground' under everyone's feet would probably be endless." data-fr="La grande majorité des cultures croient vivre dans un <strong>univers concave</strong> (Cytocosmisme) - un univers creux où l'espace et tout le reste s'engouffre au sein d'une sphère de roche. Le 'sol' sous les pieds de tous serait probablement incessant.">The vast majority of cultures believe they live in a <strong>concave universe</strong> (Cytocosmism) - a hollow universe where space and everything else rushes into a sphere of rock. The 'ground' under everyone's feet would probably be endless.</p>
@@ -632,7 +634,7 @@
                         <li data-en="<strong>Grands Lacs Thermaux</strong> — Tuhial, Eos, Daghol" data-fr="<strong>Grands Lacs Thermaux</strong> — Tuhial, Eos, Daghol"><strong>Grands Lacs Thermaux</strong> — Tuhial, Eos, Daghol</li>
                     </ul>
                     <h4 data-en="Main Factions" data-fr="Factions Principales">Main Factions</h4>
-                    <p data-en="<strong>Slaadéens:</strong> N'la-Fatch (artistic high family; Felichrem, Iossolam), Souk'mans (discreet infiltration), Braisois (sedentary, Heptahalie cult). <strong>Others:</strong> Rophanes (microcity-states), Daïnumes Aristois (varied communities), Aïozhan & Zoluzhan Gomb (syndicates), Ennakleis (illegality), Jademarche (unpopular causes)." data-fr="<strong>Slaadéens :</strong> N'la-Fatch (haute-famille artistique ; Felichrem, Iossolam), Souk'mans (infiltration discrète), Braisois (sédentaires, culte Heptahalie). <strong>Autres :</strong> Rophanes (microcité-états), Daïnumes Aristois, Aïozhan & Zoluzhan Gomb (syndicats), Ennakleis (illégalité), Jademarche (causes impopulaires)."><strong>Slaadéens:</strong> N'la-Fatch (artistic high family; Felichrem, Iossolam), Souk'mans (discreet infiltration), Braisois (sedentary, Heptahalie cult). <strong>Others:</strong> Rophanes (microcity-states), Daïnumes Aristois (varied communities), Aïozhan & Zoluzhan Gomb (syndicates), Ennakleis (illegality), Jademarche (unpopular causes).</p>
+                    <p data-en="<strong>Slaadéens:</strong> N'la-Fatch (artistic high family; Felichrem, Iossolam), Souk'mans (discreet infiltration), Braisois (sedentary, Heptahalie cult). <strong>Others:</strong> Rophanes (microcity-states), Daïnumes Aristois (varied communities), Aïozhan &amp; Zoluzhan Gomb (syndicates), Ennakleis (illegality), Jademarche (unpopular causes)." data-fr="<strong>Slaadéens :</strong> N'la-Fatch (haute-famille artistique ; Felichrem, Iossolam), Souk'mans (infiltration discrète), Braisois (sédentaires, culte Heptahalie). <strong>Autres :</strong> Rophanes (microcité-états), Daïnumes Aristois, Aïozhan &amp; Zoluzhan Gomb (syndicats), Ennakleis (illégalité), Jademarche (causes impopulaires)."><strong>Slaadéens:</strong> N'la-Fatch (artistic high family; Felichrem, Iossolam), Souk'mans (discreet infiltration), Braisois (sedentary, Heptahalie cult). <strong>Others:</strong> Rophanes (microcity-states), Daïnumes Aristois (varied communities), Aïozhan & Zoluzhan Gomb (syndicates), Ennakleis (illegality), Jademarche (unpopular causes).</p>
                     <h4 data-en="Conflicts" data-fr="Conflits">Conflicts</h4>
                     <ul>
                         <li data-en="<strong>Economic:</strong> Hunter-gatherers (Slaadéens) vs Pastoralism (Aristois) vs Agriculture (Ylfes des lacs)" data-fr="<strong>Économiques :</strong> Chasseurs-cueilleurs (Slaadéens) vs Pastoralisme (Aristois) vs Agriculture (Ylfes des lacs)"><strong>Economic:</strong> Hunter-gatherers (Slaadéens) vs Pastoralism (Aristois) vs Agriculture (Ylfes des lacs)</li>
@@ -834,7 +836,7 @@
                     <ol class="creation-flow" aria-label="Character creation steps">
                         <li data-en="<strong>A) Caractéristiques</strong> — Origin, People, Race, Sex; base attributes" data-fr="<strong>A) Caractéristiques</strong> — Origine, Peuple, Race, Sexe ; attributs de base"><strong>A) Caractéristiques</strong> — Origin, People, Race, Sex; base attributes</li>
                         <li data-en="<strong>B) Individuation</strong> — Adjust attributes (+2, +1, 0, 0, 0, 0, -1, -2 or dice)" data-fr="<strong>B) Individuation</strong> — Ajuster les attributs (+2, +1, 0, 0, 0, 0, -1, -2 ou dés)"><strong>B) Individuation</strong> — Adjust attributes (+2, +1, 0, 0, 0, 0, -1, -2 or dice)</li>
-                        <li data-en="<strong>C) Récit</strong> — Reason for Awakening, Caste, Story (18 Récits); optional Attache & Héritage" data-fr="<strong>C) Récit</strong> — Raison d'Éveil, Caste, Récit (18 Récits) ; optionnel Attache & Héritage"><strong>C) Récit</strong> — Reason for Awakening, Caste, Story (18 Récits); optional Attache & Héritage</li>
+                        <li data-en="<strong>C) Récit</strong> — Reason for Awakening, Caste, Story (18 Récits); optional Attache &amp; Héritage" data-fr="<strong>C) Récit</strong> — Raison d'Éveil, Caste, Récit (18 Récits) ; optionnel Attache &amp; Héritage"><strong>C) Récit</strong> — Reason for Awakening, Caste, Story (18 Récits); optional Attache & Héritage</li>
                         <li data-en="<strong>Then choose:</strong> <em>Remémoration Créatrice</em> (deferred, in play) or <em>Révélation complète</em> (before first session)" data-fr="<strong>Puis choisir :</strong> <em>Remémoration Créatrice</em> (différée, en jeu) ou <em>Révélation complète</em> (avant première séance)"><strong>Then choose:</strong> <em>Remémoration Créatrice</em> (deferred, in play) or <em>Révélation complète</em> (before first session)</li>
                     </ol>
 
@@ -921,7 +923,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <h5 data-en="2. Caste & Récit (18 Récits)" data-fr="2. Caste & Récit (18 Récits)">2. Caste & Récit (18 Récits)</h5>
+                        <h5 data-en="2. Caste &amp; Récit (18 Récits)" data-fr="2. Caste &amp; Récit (18 Récits)">2. Caste & Récit (18 Récits)</h5>
                         <p data-en="Your <strong>highest Attribute</strong> determines your <strong>Caste</strong>. Each Caste has 18 Récits (3 sous-castes × 6 récits). Roll <strong>d3</strong> = sous-caste, <strong>d6</strong> = specific Récit. Your Récit <strong>doubles the CT dice</strong> in situations that fit it; if you have 0 Dé in that skill, add +1 Dé. Optional: <strong>Variation des Récits</strong> (10dD/2) to pick another Caste than the highest Attribute." data-fr="L'<strong>Attribut le plus élevé</strong> détermine la <strong>Caste</strong>. Chaque Caste a 18 Récits (3 sous-castes × 6 récits). Lancer <strong>d3</strong> = sous-caste, <strong>d6</strong> = Récit concret. Le Récit <strong>double les Dés de CT</strong> quand la situation s'y prête ; si 0 Dé dans la compétence, +1 Dé. Optionnel : <strong>Variation des Récits</strong> (10dD/2) pour une autre Caste.">Your <strong>highest Attribute</strong> determines your <strong>Caste</strong>. Each Caste has 18 Récits (3×6). Roll <strong>d3</strong> = sous-caste, <strong>d6</strong> = Récit. Récit <strong>doubles CT dice</strong> when it fits; if 0 Dé, +1 Dé. Optional: 10dD/2 for another Caste.</p>
                         <div class="creation-table-wrap">
                             <table class="creation-table">
@@ -940,7 +942,7 @@
                             </table>
                         </div>
                         <details class="creation-details">
-                            <summary data-en="Optional: Attache de Récit & Héritage" data-fr="Optionnel : Attache de Récit & Héritage">Optional: Attache de Récit & Héritage</summary>
+                            <summary data-en="Optional: Attache de Récit &amp; Héritage" data-fr="Optionnel : Attache de Récit &amp; Héritage">Optional: Attache de Récit & Héritage</summary>
                             <p data-en="<strong>Attache:</strong> Draw or choose an Attache linked to your Récit (sous-caste and alignment -, 0, +) to anchor past and present." data-fr="<strong>Attache :</strong> Tirer ou choisir une Attache liée au Récit (sous-caste et alignement -, 0, +)."><strong>Attache:</strong> Draw or choose an Attache linked to your Récit (sous-caste and alignment -, 0, +).</p>
                             <p data-en="<strong>Héritage:</strong> Roll 5dD. If result ±3, ±4 or ±5: roll 3dD for Heritage type, then 5dD for value X (intensity). Write Heritage name and X; total all attributes after People, Race, Sex, Individuation and Héritage." data-fr="<strong>Héritage :</strong> Lancer 5dD. Si ±3, ±4 ou ±5 : 3dD pour le type d'Héritage, puis 5dD pour la valeur X. Inscrire le nom et X ; totaliser tous les attributs."><strong>Héritage:</strong> Roll 5dD. If ±3, ±4 or ±5: 3dD for type, 5dD for value X. Total all attributes after A, B and Héritage.</p>
                         </details>
@@ -999,7 +1001,7 @@
                 <div class="progression-accordion" id="progression-accordion">
                     <!-- Experience & Marques -->
                     <div class="progression-accordion-item" id="progression-experience">
-                        <button type="button" class="progression-accordion-head" aria-expanded="false" aria-controls="progression-experience-body" id="progression-experience-btn" data-en="Experience & Marques" data-fr="Expérience & Marques">Experience & Marques</button>
+                        <button type="button" class="progression-accordion-head" aria-expanded="false" aria-controls="progression-experience-body" id="progression-experience-btn" data-en="Experience &amp; Marques" data-fr="Expérience &amp; Marques">Experience & Marques</button>
                         <div class="progression-accordion-body" id="progression-experience-body" role="region" aria-labelledby="progression-experience-btn">
                             <div class="progression-card">
                                 <h5 data-en="Marques d'expérience" data-fr="Marques d'expérience">Marques d'expérience</h5>
@@ -1012,7 +1014,7 @@
                                 </ul>
                             </div>
                             <div class="progression-card">
-                                <h5 data-en="Éprouver & Réalisation" data-fr="Éprouver & Réalisation">Éprouver & Réalisation</h5>
+                                <h5 data-en="Éprouver &amp; Réalisation" data-fr="Éprouver &amp; Réalisation">Éprouver & Réalisation</h5>
                                 <p data-en="<strong>10 Marques</strong> (minus Eternal) = CT <strong>Éprouvée</strong>. An Éprouvée CT can be <strong>Réalisée</strong> at any moment (often at an epiphany). On Réalisation:" data-fr="<strong>10 Marques</strong> (moins les Éternelles) = CT <strong>Éprouvée</strong>. Une CT Éprouvée peut être <strong>Réalisée</strong> à tout moment. Lors de la Réalisation :"><strong>10 Marques</strong> (minus Eternal) = CT <strong>Éprouvée</strong>. An Éprouvée CT can be <strong>Réalisée</strong> at any moment. On Réalisation:</p>
                                 <ol>
                                     <li data-en="<strong>+1 Dé</strong> to that CT; Marques erased (except Eternal)." data-fr="<strong>+1 Dé</strong> à cette CT ; Marques effacées (sauf Éternelles)."><strong>+1 Dé</strong> to that CT; Marques erased (except Eternal).</li>
@@ -1035,14 +1037,14 @@
                                 </table>
                             </div>
                             <div class="progression-card">
-                                <h5 data-en="Distinction & Découvertes" data-fr="Distinction & Découvertes">Distinction & Découvertes</h5>
+                                <h5 data-en="Distinction &amp; Découvertes" data-fr="Distinction &amp; Découvertes">Distinction & Découvertes</h5>
                                 <p data-en="<strong>Distinction</strong> = sum of all Attribut levels (e.g. -50 to +50). Gain a Distinction level when an Attribut gains <strong>+10</strong>. At each Distinction: choose one of <strong>4 Attribut Découvertes</strong> for that Attribut. 5th Distinction in same Attribut/Aptitude → extreme Attribut Découverte (book p. 98)." data-fr="<strong>Distinction</strong> = somme des Niv d'Attributs. Gagner un niveau de Distinction quand un Attribut gagne <strong>+10</strong>. À chaque Distinction : une des <strong>4 Découvertes d'Attribut</strong>. 5e Distinction → Découverte extrême (p. 98)."><strong>Distinction</strong> = sum of Attribut levels. +1 Distinction when an Attribut gains +10. At each: one of 4 Attribut Découvertes; 5th → extreme Découverte.</p>
                             </div>
                         </div>
                     </div>
                     <!-- Symbole & Dés Éduqués/Exprimés -->
                     <div class="progression-accordion-item" id="progression-symbole">
-                        <button type="button" class="progression-accordion-head" aria-expanded="false" aria-controls="progression-symbole-body" id="progression-symbole-btn" data-en="Symbole & Dés Éduqués/Exprimés" data-fr="Symbole & Dés Éduqués/Exprimés">Symbole & Dés Éduqués/Exprimés</button>
+                        <button type="button" class="progression-accordion-head" aria-expanded="false" aria-controls="progression-symbole-body" id="progression-symbole-btn" data-en="Symbole &amp; Dés Éduqués/Exprimés" data-fr="Symbole &amp; Dés Éduqués/Exprimés">Symbole & Dés Éduqués/Exprimés</button>
                         <div class="progression-accordion-body" id="progression-symbole-body" role="region" aria-labelledby="progression-symbole-btn">
                             <div class="progression-card">
                                 <h5 data-en="Symbole" data-fr="Symbole">Symbole</h5>
@@ -1054,7 +1056,7 @@
                                 </ul>
                             </div>
                             <div class="progression-card">
-                                <h5 data-en="Dés Éduqués & Exprimés" data-fr="Dés Éduqués & Exprimés">Dés Éduqués & Exprimés</h5>
+                                <h5 data-en="Dés Éduqués &amp; Exprimés" data-fr="Dés Éduqués &amp; Exprimés">Dés Éduqués & Exprimés</h5>
                                 <p data-en="<strong>10 Dés Éduqués</strong>: 3×+1 D (People/APT), 2×+2 D (Race), 1×+3 D (Family CT). Placed on Actions first; in play assign to a concrete CT of that Action (name the CT). No Marques in a CT until you have spent at least 1 Dé there and written its name. <strong>Eternal Marques Éduquées</strong>: Familial +3 = 3; Racial +2 = 2 each; Popular +1 = 1. <strong>10 Dés Exprimés</strong>: spend during play in any Action (then assign to a CT), according to character history." data-fr="<strong>10 Dés Éduqués</strong> : 3×+1, 2×+2, 1×+3 (Peuple/Race/Famille). En jeu, affecter à une CT précise. <strong>10 Dés Exprimés</strong> : à dépenser au fil du jeu."><strong>10 Dés Éduqués</strong>: 3×+1, 2×+2, 1×+3 (People/Race/Family). <strong>10 Dés Exprimés</strong>: spend in play. Eternal Marques: Familial 3, Racial 2 each, Popular 1.</p>
                             </div>
                             <div class="progression-card">
@@ -1093,7 +1095,7 @@
                     </div>
                     <!-- Résistance, DS & Séquelles -->
                     <div class="progression-accordion-item" id="progression-ds-sequelles">
-                        <button type="button" class="progression-accordion-head" aria-expanded="false" aria-controls="progression-ds-sequelles-body" id="progression-ds-sequelles-btn" data-en="Résistance, DS & Séquelles" data-fr="Résistance, DS & Séquelles">Résistance, DS & Séquelles</button>
+                        <button type="button" class="progression-accordion-head" aria-expanded="false" aria-controls="progression-ds-sequelles-body" id="progression-ds-sequelles-btn" data-en="Résistance, DS &amp; Séquelles" data-fr="Résistance, DS &amp; Séquelles">Résistance, DS & Séquelles</button>
                         <div class="progression-accordion-body" id="progression-ds-sequelles-body" role="region" aria-labelledby="progression-ds-sequelles-btn">
                             <div class="progression-card">
                                 <h5 data-en="Résistance (passive only)" data-fr="Résistance (toujours passive)">Résistance</h5>
@@ -1101,11 +1103,11 @@
                             </div>
                             <div class="progression-card">
                                 <h5 data-en="Dés de Souffrance (DS)" data-fr="Dés de Souffrance (DS)">DS</h5>
-                                <p data-en="DS from the <strong>ATB 3 & 2</strong> of an Aptitude <strong>subtract</strong> from extra dice (CT/MT) on rolls for that Aptitude. Example: 4 DS Blessures → -2 Niv on Puissance/Athlétisme passif (FOR 3 or 2), not Domination (FOR 1)." data-fr="Les DS de l'ATB 3 et 2 d'une Aptitude se soustraient aux Dés (CT/MT) des jets de cette Aptitude.">DS from ATB 3 & 2 subtract from CT/MT dice on that Aptitude's rolls.</p>
+                                <p data-en="DS from the <strong>ATB 3 &amp; 2</strong> of an Aptitude <strong>subtract</strong> from extra dice (CT/MT) on rolls for that Aptitude. Example: 4 DS Blessures → -2 Niv on Puissance/Athlétisme passif (FOR 3 or 2), not Domination (FOR 1)." data-fr="Les DS de l'ATB 3 et 2 d'une Aptitude se soustraient aux Dés (CT/MT) des jets de cette Aptitude.">DS from ATB 3 & 2 subtract from CT/MT dice on that Aptitude's rolls.</p>
                             </div>
                             <div class="rules-table-wrapper">
                                 <table class="rules-table progression-table sequelles-table">
-                                    <caption data-en="Suffering levels & Séquelles (at once)" data-fr="Niveaux de Souffrance & Séquelles (d'un coup)">Séquelles</caption>
+                                    <caption data-en="Suffering levels &amp; Séquelles (at once)" data-fr="Niveaux de Souffrance &amp; Séquelles (d'un coup)">Séquelles</caption>
                                     <thead><tr><th data-en="DS (at once)" data-fr="DS (d'un coup)">DS</th><th data-en="Level" data-fr="Niv">Niv</th><th data-en="Effect" data-fr="Effet">Effect</th></tr></thead>
                                     <tbody>
                                         <tr><td>+1 or +2</td><td>1</td><td data-en="No Séquelle" data-fr="Pas de Séquelle">No Séquelle</td></tr>
@@ -1139,7 +1141,7 @@
                     </div>
                     <!-- Rage & Évanouissement -->
                     <div class="progression-accordion-item" id="progression-rage">
-                        <button type="button" class="progression-accordion-head" aria-expanded="false" aria-controls="progression-rage-body" id="progression-rage-btn" data-en="Rage & Unconsciousness" data-fr="Rage & Évanouissement">Rage & Unconsciousness</button>
+                        <button type="button" class="progression-accordion-head" aria-expanded="false" aria-controls="progression-rage-body" id="progression-rage-btn" data-en="Rage &amp; Unconsciousness" data-fr="Rage &amp; Évanouissement">Rage & Unconsciousness</button>
                         <div class="progression-accordion-body" id="progression-rage-body" role="region" aria-labelledby="progression-rage-btn">
                             <p data-en="<strong>10+ total DS</strong> → <strong>Rage</strong>: roll <strong>1d6</strong>; failure = instinctive action (DS can become positive dice for that action); <strong>6</strong> = can « Guider » the Rage. <strong>15+ total DS</strong> → <strong>Unconsciousness</strong> or <strong>Defeated</strong> (Coma or Madness). Defeat: table for where you wake, state, what is missing; possessions can be lost (Niv d'Abondance may increase over time)." data-fr="<strong>10+ DS</strong> totaux → <strong>Rage</strong> (jet 1d6 ; 6 = Guider). <strong>15+</strong> → <strong>Évanouissement</strong> / <strong>Vaincu</strong> (Coma ou Folie). Table de Défaite, perdre ses affaires."><strong>10+ total DS</strong> → Rage (1d6; 6 = Guider). <strong>15+</strong> → Unconsciousness / Defeated. Defeat table; lose possessions.</p>
                         </div>
@@ -1179,11 +1181,11 @@
                     </div>
                     <!-- Folies & Rancœurs -->
                     <div class="progression-accordion-item" id="progression-folies-rancoeurs">
-                        <button type="button" class="progression-accordion-head" aria-expanded="false" aria-controls="progression-folies-rancoeurs-body" id="progression-folies-rancoeurs-btn" data-en="Folies & Rancœurs (Values/Traits)" data-fr="Folies & Rancœurs (Valeurs/Traits)">Folies & Rancœurs</button>
+                        <button type="button" class="progression-accordion-head" aria-expanded="false" aria-controls="progression-folies-rancoeurs-body" id="progression-folies-rancoeurs-btn" data-en="Folies &amp; Rancœurs (Values/Traits)" data-fr="Folies &amp; Rancœurs (Valeurs/Traits)">Folies & Rancœurs</button>
                         <div class="progression-accordion-body" id="progression-folies-rancoeurs-body" role="region" aria-labelledby="progression-folies-rancoeurs-btn">
                             <div class="progression-card">
                                 <h5 data-en="Folies" data-fr="Folies">Folies</h5>
-                                <p data-en="Treat with <strong>Valeurs</strong> (Morality, Motivation, Personality): sacrifice <strong>Niv de Valeur</strong> equal to the Niv of Souffrance to heal (e.g. Niv 3 Folies → sacrifice 3 Niv in a Value). See Values & Traits (Rules)." data-fr="Traiter par <strong>Valeurs</strong> : sacrifier un <strong>Niv de Valeur</strong> égal au Niv de Souffrance.">Folies: treat with <strong>Valeurs</strong> — sacrifice Niv de Valeur = Niv of suffering.</p>
+                                <p data-en="Treat with <strong>Valeurs</strong> (Morality, Motivation, Personality): sacrifice <strong>Niv de Valeur</strong> equal to the Niv of Souffrance to heal (e.g. Niv 3 Folies → sacrifice 3 Niv in a Value). See Values &amp; Traits (Rules)." data-fr="Traiter par <strong>Valeurs</strong> : sacrifier un <strong>Niv de Valeur</strong> égal au Niv de Souffrance.">Folies: treat with <strong>Valeurs</strong> — sacrifice Niv de Valeur = Niv of suffering.</p>
                             </div>
                             <div class="progression-card">
                                 <h5 data-en="Rancœurs" data-fr="Rancœurs">Rancœurs</h5>
@@ -1209,7 +1211,7 @@
 
                 <!-- Combat intro -->
                 <div class="combat-intro rules-content">
-                    <p data-en="Combat is part of the larger &lt;strong&gt;8 Types of Conflicts&lt;/strong&gt;, each tied to an Aptitude. This section covers &lt;strong&gt;Bataille&lt;/strong&gt; (Puissance). Combat runs in &lt;strong&gt;real-time&lt;/strong&gt;—no turns. Time is measured in &lt;strong data-tip=&quot;1/3 of a second; basic time unit. Alert Clins determine who can Proact.&quot;&gt;Clins&lt;/strong&gt; (1/3 second). Everyone acts simultaneously; &lt;strong data-tip=&quot;Proactive actions (attack, reload, move) that span multiple Clins.&quot;&gt;Proactions&lt;/strong&gt; and &lt;strong data-tip=&quot;Block, Parry, Dodge—at the last Clin of an enemy attack.&quot;&gt;Réactions&lt;/strong&gt; accumulate &lt;strong data-tip=&quot;Shock level; subtracts from rolls. Recovers next Clin unless you keep acting.&quot;&gt;Niv d'Ébranlement&lt;/strong&gt;, which penalizes your rolls." data-fr="Le combat fait partie des &lt;strong&gt;8 Types de Conflits&lt;/strong&gt;, chacun lié à une Aptitude. Cette section couvre la &lt;strong&gt;Bataille&lt;/strong&gt; (Puissance). Le combat se déroule en &lt;strong&gt;temps réel&lt;/strong&gt;—pas de tours. Le temps se mesure en &lt;strong data-tip=&quot;1/3 de seconde ; unité de base. Les Clins d'Alerte déterminent qui peut Proagir.&quot;&gt;Clins&lt;/strong&gt; (1/3 s). Tous agissent simultanément ; les &lt;strong data-tip=&quot;Actions proactives (attaquer, recharger, se déplacer) sur plusieurs Clins.&quot;&gt;Proactions&lt;/strong&gt; et les &lt;strong data-tip=&quot;Bloquer, Parer, Esquiver—au dernier Clin de l'attaque ennemie.&quot;&gt;Réactions&lt;/strong&gt; accumulent le &lt;strong data-tip=&quot;Niveau d'ébranlement ; se soustrait aux jets. Se récupère au Clin suivant sauf si vous continuez.&quot;&gt;Niv d'Ébranlement&lt;/strong&gt;, qui pénalise vos jets.">Combat is part of the larger <strong>8 Types of Conflicts</strong>, each tied to an Aptitude. This section covers <strong>Bataille</strong> (Puissance). Combat runs in <strong>real-time</strong>—no turns. Time is measured in <strong data-tip="1/3 of a second; basic time unit. Alert Clins determine who can Proact.">Clins</strong> (1/3 second). Everyone acts simultaneously; <strong data-tip="Proactive actions (attack, reload, move) that span multiple Clins.">Proactions</strong> and <strong data-tip="Block, Parry, Dodge—at the last Clin of an enemy attack.">Réactions</strong> accumulate <strong data-tip="Shock level; subtracts from rolls. Recovers next Clin unless you keep acting.">Niv d'Ébranlement</strong>, which penalizes your rolls.</p>
+                    <p data-en="Combat is part of the larger <strong>8 Types of Conflicts</strong>, each tied to an Aptitude. This section covers <strong>Bataille</strong> (Puissance). Combat runs in <strong>real-time</strong>—no turns. Time is measured in <strong data-tip=&quot;1/3 of a second; basic time unit. Alert Clins determine who can Proact.&quot;>Clins</strong> (1/3 second). Everyone acts simultaneously; <strong data-tip=&quot;Proactive actions (attack, reload, move) that span multiple Clins.&quot;>Proactions</strong> and <strong data-tip=&quot;Block, Parry, Dodge—at the last Clin of an enemy attack.&quot;>Réactions</strong> accumulate <strong data-tip=&quot;Shock level; subtracts from rolls. Recovers next Clin unless you keep acting.&quot;>Niv d'Ébranlement</strong>, which penalizes your rolls." data-fr="Le combat fait partie des <strong>8 Types de Conflits</strong>, chacun lié à une Aptitude. Cette section couvre la <strong>Bataille</strong> (Puissance). Le combat se déroule en <strong>temps réel</strong>—pas de tours. Le temps se mesure en <strong data-tip=&quot;1/3 de seconde ; unité de base. Les Clins d'Alerte déterminent qui peut Proagir.&quot;>Clins</strong> (1/3 s). Tous agissent simultanément ; les <strong data-tip=&quot;Actions proactives (attaquer, recharger, se déplacer) sur plusieurs Clins.&quot;>Proactions</strong> et les <strong data-tip=&quot;Bloquer, Parer, Esquiver—au dernier Clin de l'attaque ennemie.&quot;>Réactions</strong> accumulent le <strong data-tip=&quot;Niveau d'ébranlement ; se soustrait aux jets. Se récupère au Clin suivant sauf si vous continuez.&quot;>Niv d'Ébranlement</strong>, qui pénalise vos jets.">Combat is part of the larger <strong>8 Types of Conflicts</strong>, each tied to an Aptitude. This section covers <strong>Bataille</strong> (Puissance). Combat runs in <strong>real-time</strong>—no turns. Time is measured in <strong data-tip="1/3 of a second; basic time unit. Alert Clins determine who can Proact.">Clins</strong> (1/3 second). Everyone acts simultaneously; <strong data-tip="Proactive actions (attack, reload, move) that span multiple Clins.">Proactions</strong> and <strong data-tip="Block, Parry, Dodge—at the last Clin of an enemy attack.">Réactions</strong> accumulate <strong data-tip="Shock level; subtracts from rolls. Recovers next Clin unless you keep acting.">Niv d'Ébranlement</strong>, which penalizes your rolls.</p>
                     <div class="combat-glossary">
                         <h4 data-en="Glossary" data-fr="Glossaire">Glossary</h4>
                         <ul class="combat-glossary-list">
@@ -1236,14 +1238,14 @@
                 <!-- Rule blocks: accordions -->
                 <div class="combat-accordion" id="combat-accordion">
                     <div class="combat-accordion-item" id="combat-clins-alerte">
-                        <button type="button" class="combat-accordion-head" aria-expanded="false" aria-controls="combat-clins-alerte-body" id="combat-clins-alerte-btn" data-en="Clins de Temps & Clins d'Alerte" data-fr="Clins de Temps & Clins d'Alerte">Clins de Temps & Clins d'Alerte</button>
+                        <button type="button" class="combat-accordion-head" aria-expanded="false" aria-controls="combat-clins-alerte-body" id="combat-clins-alerte-btn" data-en="Clins de Temps &amp; Clins d'Alerte" data-fr="Clins de Temps &amp; Clins d'Alerte">Clins de Temps & Clins d'Alerte</button>
                         <div class="combat-accordion-body" id="combat-clins-alerte-body" role="region" aria-labelledby="combat-clins-alerte-btn">
-                            <p data-en="Time &quot;blinks&quot; (flows Clin by Clin) for everyone at once. Those whose Clin has not yet reached their &lt;strong&gt;Clin d'Alerte&lt;/strong&gt; are &lt;strong&gt;Surpris&lt;/strong&gt; and can only Réagir. Once you Réagir or are Touched while Surpris, you are no longer Surpris next Clin. &lt;strong&gt;Attaque sournoise&lt;/strong&gt;: any Réaction while Surpris uses the difference between current Clin and Alert Clin as negative Dés (or Niv) on the roll." data-fr="Le temps « cligne » (s'écoule Clin par Clin) pour tous. Ceux dont le Clin n'a pas encore atteint leur &lt;strong&gt;Clin d'Alerte&lt;/strong&gt; sont &lt;strong&gt;Surpris&lt;/strong&gt; et ne peuvent que Réagir. Dès que vous Réagissez ou êtes Touché en étant Surpris, vous ne l'êtes plus au Clin suivant. &lt;strong&gt;Attaque sournoise&lt;/strong&gt; : toute Réaction en étant Surpris utilise la différence entre le Clin actuel et le Clin d'Alerte comme Dés (ou Niv) négatifs au jet.">Time "blinks" (flows Clin by Clin) for everyone at once. Those whose Clin has not yet reached their <strong>Clin d'Alerte</strong> are <strong>Surpris</strong> and can only Réagir.</p>
+                            <p data-en="Time &quot;blinks&quot; (flows Clin by Clin) for everyone at once. Those whose Clin has not yet reached their <strong>Clin d'Alerte</strong> are <strong>Surpris</strong> and can only Réagir. Once you Réagir or are Touched while Surpris, you are no longer Surpris next Clin. <strong>Attaque sournoise</strong>: any Réaction while Surpris uses the difference between current Clin and Alert Clin as negative Dés (or Niv) on the roll." data-fr="Le temps « cligne » (s'écoule Clin par Clin) pour tous. Ceux dont le Clin n'a pas encore atteint leur <strong>Clin d'Alerte</strong> sont <strong>Surpris</strong> et ne peuvent que Réagir. Dès que vous Réagissez ou êtes Touché en étant Surpris, vous ne l'êtes plus au Clin suivant. <strong>Attaque sournoise</strong> : toute Réaction en étant Surpris utilise la différence entre le Clin actuel et le Clin d'Alerte comme Dés (ou Niv) négatifs au jet.">Time "blinks" (flows Clin by Clin) for everyone at once. Those whose Clin has not yet reached their <strong>Clin d'Alerte</strong> are <strong>Surpris</strong> and can only Réagir.</p>
                             <p data-en="Roll <strong>Vigilance [Détection]</strong> minus 5 minus X (by situation) for Alert; minimum at Clin -1. Situations: <strong>Alerté</strong> (0), <strong>Préparé</strong> (+5, e.g. ambush with Alert ally), <strong>Inattentif</strong> (-3), <strong>Bouleversé</strong> (-10). Respectively -1 | -3 | -6 | -10 Dés to your Alert roll." data-fr="Jet de <strong>Vigilance [Détection]</strong> - 5 - X (selon la situation) pour l'Alerte ; minimum au Clin -1. Situations : <strong>Alerté</strong> (0), <strong>Préparé</strong> (+5), <strong>Inattentif</strong> (-3), <strong>Bouleversé</strong> (-10). Soit -1 | -3 | -6 | -10 Dés au jet d'Alerte.">Roll <strong>Vigilance [Détection]</strong> minus 5 minus X for Alert. Situations: <strong>Alerté</strong> (0), <strong>Préparé</strong> (+5), <strong>Inattentif</strong> (-3), <strong>Bouleversé</strong> (-10).</p>
                         </div>
                     </div>
                     <div class="combat-accordion-item" id="combat-ordre-initiative">
-                        <button type="button" class="combat-accordion-head" aria-expanded="false" aria-controls="combat-ordre-initiative-body" id="combat-ordre-initiative-btn" data-en="Order of action & Initiative" data-fr="Ordre d'action & Initiative">Order of action & Initiative</button>
+                        <button type="button" class="combat-accordion-head" aria-expanded="false" aria-controls="combat-ordre-initiative-body" id="combat-ordre-initiative-btn" data-en="Order of action &amp; Initiative" data-fr="Ordre d'action &amp; Initiative">Order of action & Initiative</button>
                         <div class="combat-accordion-body" id="combat-ordre-initiative-body" role="region" aria-labelledby="combat-ordre-initiative-btn">
                             <ol>
                                 <li data-en="You can always <strong>Réagir</strong> to any action, unless unconscious." data-fr="Vous pouvez toujours <strong>Réagir</strong> à toute action, sauf si inconscient.">You can always <strong>Réagir</strong> to any action, unless unconscious.</li>
@@ -1338,12 +1340,12 @@
                 <div class="combat-tables-wrap">
                     <h4 data-en="Reference tables" data-fr="Tableaux de référence">Reference tables</h4>
                     <nav class="combat-tables-nav" aria-label="Combat reference tables">
-                        <button type="button" class="combat-tab-link active" data-combat-tab="clins-types" data-en="Clins & Types" data-fr="Clins & Types">Clins & Types</button>
+                        <button type="button" class="combat-tab-link active" data-combat-tab="clins-types" data-en="Clins &amp; Types" data-fr="Clins &amp; Types">Clins & Types</button>
                         <button type="button" class="combat-tab-link" data-combat-tab="potentiels" data-en="Potentiels" data-fr="Potentiels">Potentiels</button>
                         <button type="button" class="combat-tab-link" data-combat-tab="armes-melee" data-en="Weapons (melee)" data-fr="Armes (mêlée)">Weapons (melee)</button>
                         <button type="button" class="combat-tab-link" data-combat-tab="armes-type" data-en="Weapons by type" data-fr="Armes par type">Weapons by type</button>
-                        <button type="button" class="combat-tab-link" data-combat-tab="loc-manoeuvres" data-en="Location & Manœuvres" data-fr="Localisation & Manœuvres">Location & Manœuvres</button>
-                        <button type="button" class="combat-tab-link" data-combat-tab="frappes-matelassage" data-en="Strikes & Padding" data-fr="Frappes & Matelassage">Strikes & Padding</button>
+                        <button type="button" class="combat-tab-link" data-combat-tab="loc-manoeuvres" data-en="Location &amp; Manœuvres" data-fr="Localisation &amp; Manœuvres">Location & Manœuvres</button>
+                        <button type="button" class="combat-tab-link" data-combat-tab="frappes-matelassage" data-en="Strikes &amp; Padding" data-fr="Frappes &amp; Matelassage">Strikes & Padding</button>
                     </nav>
 
                     <div class="combat-tables-panel active" id="combat-panel-clins-types" data-combat-panel="clins-types">
@@ -1414,7 +1416,7 @@
                             <h5 data-en="Faces (CTD / TRC / PRF)" data-fr="Faces (CTD / TRC / PRF)">Faces (CTD / TRC / PRF)</h5>
                             <p class="combat-table-note" data-en="Flat→Hammer; Round→Mace; Blade→Sword; Edge→Rapier; Tip/Point→Lance, Arrow. Pommel weapons: often 2 TRC + 1 PRF." data-fr="Applati→Marteau ; Arrondi→Massue ; Lame→Épée ; Fil→Rapière ; Bec/Pointe→Lance, Flèche. Armes de pommeau : souvent 2 TRC + 1 PRF.">Flat→Hammer; Round→Mace; Blade→Sword; Edge→Rapier; Tip/Point→Lance, Arrow. Pommel weapons: often 2 TRC + 1 PRF.</p>
                             <h5 data-en="Traits" data-fr="Traits">Traits</h5>
-                            <p class="combat-table-note" data-en="Multi-head (+X IRT or -1 DRT), Guards (+IRT & +GRD), Hooks (+MNV, -DRT), Rigid/Flexible, Refinement, Flare. Improvised: ×2 IRT and ×2 DRT (negative)." data-fr="Multitêtes (+X IRT ou -1 DRT), Gardes (+IRT & +GRD), Crochets (+MNV, -DRT), Rigide/Flexible, Affinement, Flambure. Improvisée : ×2 IRT et ×2 DRT (négatif).">Multi-head (+X IRT or -1 DRT), Guards (+IRT & +GRD), Hooks (+MNV, -DRT), Rigid/Flexible, Refinement, Flare. Improvised: ×2 IRT and ×2 DRT (negative).</p>
+                            <p class="combat-table-note" data-en="Multi-head (+X IRT or -1 DRT), Guards (+IRT &amp; +GRD), Hooks (+MNV, -DRT), Rigid/Flexible, Refinement, Flare. Improvised: ×2 IRT and ×2 DRT (negative)." data-fr="Multitêtes (+X IRT ou -1 DRT), Gardes (+IRT &amp; +GRD), Crochets (+MNV, -DRT), Rigide/Flexible, Affinement, Flambure. Improvisée : ×2 IRT et ×2 DRT (négatif).">Multi-head (+X IRT or -1 DRT), Guards (+IRT & +GRD), Hooks (+MNV, -DRT), Rigid/Flexible, Refinement, Flare. Improvised: ×2 IRT and ×2 DRT (negative).</p>
                         </div>
                     </div>
 
@@ -1962,7 +1964,7 @@
         <!-- About Tab -->
         <section id="about" class="tab-content" data-lang-key="about">
             <div class="tab-header">
-                <h2 data-en="Genre & Inspirations" data-fr="Genre & Inspirations">Genre & Inspirations</h2>
+                <h2 data-en="Genre &amp; Inspirations" data-fr="Genre &amp; Inspirations">Genre & Inspirations</h2>
             </div>
             
             <!-- Genre Cards -->
@@ -1983,7 +1985,7 @@
                     <div class="genre-card">
                         <h4 data-en="Mystical" data-fr="Mystique">Mystical</h4>
                         <p data-en="From the Mystical, the mundane is divine, and nature is magical. Ordinary actions intersect with supernatural forces. Vision quests and deeds influence truth, <strong>blurring lines between the mundane and celestial</strong>, making the common, extraordinary." data-fr="Dans le Mystique, le banal est divin, et la nature est magique. Les actions ordinaires croisent les forces surnaturelles. Les quêtes de vision et les actes influencent la vérité, <strong>brouillant les lignes entre le banal et le céleste</strong>, rendant le commun, extraordinaire.">From the Mystical, the mundane is divine, and nature is magical. Ordinary actions intersect with supernatural forces. Vision quests and deeds influence truth, <strong>blurring lines between the mundane and celestial</strong>, making the common, extraordinary.</p>
-                        <p class="genre-example" data-en="<em>Ex: TES III : Morrowind, Animisms, Zelda (Ocarina of Time & Majora's Mask)</em>" data-fr="<em>Ex: TES III : Morrowind, Animismes, Zelda (Ocarina of Time & Majora's Mask)</em>"><em>Ex: TES III : Morrowind, Animisms, Zelda (Ocarina of Time & Majora's Mask)</em></p>
+                        <p class="genre-example" data-en="<em>Ex: TES III : Morrowind, Animisms, Zelda (Ocarina of Time &amp; Majora's Mask)</em>" data-fr="<em>Ex: TES III : Morrowind, Animismes, Zelda (Ocarina of Time &amp; Majora's Mask)</em>"><em>Ex: TES III : Morrowind, Animisms, Zelda (Ocarina of Time & Majora's Mask)</em></p>
                     </div>
                     <div class="genre-card genre-card-full">
                         <h4 data-en="Ethno-Science-Fantasy" data-fr="Ethno-Science-Fantasy">Ethno-Science-Fantasy</h4>
@@ -2010,7 +2012,7 @@
             
             <!-- Inspirations -->
             <div class="about-section" id="inspirations">
-                <h3 data-en="Themes & Inspirations" data-fr="Thèmes & Inspirations">Themes & Inspirations</h3>
+                <h3 data-en="Themes &amp; Inspirations" data-fr="Thèmes &amp; Inspirations">Themes & Inspirations</h3>
                 <p class="inspirations-intro" data-en="This is an archive of what could be remembered of the research on the lands and rules of The Discording Tales." data-fr="Ceci est une archive de ce qui pourrait être rappelé de la recherche sur les terres et les règles de The Discording Tales.">This is an archive of what could be remembered of the research on the lands and rules of The Discording Tales.</p>
                 
                 <div class="inspirations-content" data-lang-key="inspirations-content">
@@ -2282,19 +2284,16 @@
         </div>
     </footer>
     
-    <!-- Scripts -->
-    <!-- WebGL Shader System - Must load before interactive.js -->
-    <script src="js/shaders.js" type="text/javascript"></script>
-    <script src="js/dtd-interactive.js" type="text/javascript"></script>
+    <!-- Scripts (defer: run in order after DOM parse, non-blocking) -->
+    <!-- Main-site bundle: shaders, dtd-interactive, gm-system-prompt, gm-chat (built with Vite) -->
+    <script src="dist/main-site.js" defer></script>
     <!-- Markdown + sanitizer for GM chat formatted replies -->
-    <script src="https://cdn.jsdelivr.net/npm/marked@9.1.6/marked.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.9/dist/purify.min.js" crossorigin="anonymous"></script>
-    <!-- WebLLM: in-browser GM (load before gm-chat.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@9.1.6/marked.min.js" crossorigin="anonymous" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.9/dist/purify.min.js" crossorigin="anonymous" defer></script>
+    <!-- WebLLM: in-browser GM -->
     <script type="module" src="dist/play-webllm.js"></script>
-    <script src="js/gm-system-prompt.js" type="text/javascript"></script>
-    <script src="js/gm-chat.js" type="text/javascript"></script>
     <!-- React Character Sheet Bundle (built with Vite) -->
-    <script src="dist/character-sheet.js"></script>
+    <script src="dist/character-sheet.js" defer></script>
 </body>
 </html>
 
