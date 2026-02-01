@@ -1255,7 +1255,13 @@ Ce document indique **quand** demander quel jet (ou appliquer une règle sans je
 ## Voyage — Traverser un milieu avec Conditions
 
 - **Quand** : Traverser un milieu hostile (Conditions : froid, chaleur, obscurité, etc.). Voir milieux p.177 du livre.
-- **Règle** : Les Niv d'Outil "absorbent" les Niv de Condition. S'il reste des Niv de Conditions non absorbés : jet avec Dés d'Outil ET d'Habituation vs Épreuve = 
+- **Règle** : Les Niv d'Outil "absorbent" les Niv de Condition. S'il reste des Niv de Conditions non absorbés : jet avec Dés d'Outil ET d'Habituation vs Épreuve = Niv de Temps voyagé + Niv de Conditions. Résistance aux DS passive (Niv) — pas de jet de résistance.
+- **Réf.** : Livre p.102 ; 10_Voyages.
+
+## Rencontres (voyage)
+
+- **Quand** : Déterminer une rencontre pendant le voyage.
+- **Règle** : Fréquence selon temps de voyage et terra
 [... truncated ...]
 
 ---
