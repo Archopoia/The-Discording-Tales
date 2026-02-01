@@ -509,56 +509,161 @@
                 </div>
             </div>
             
-            <!-- Character Creation -->
+            <!-- Character Creation. Note: we do not use page numbers, chapter names, CSV/file names, or other source refs on the website. -->
             <div class="rules-section" id="character-creation">
                 <h3 data-en="Character Creation" data-fr="Création de Personnage">Character Creation</h3>
                 <div class="rules-content" data-lang-key="creation-content">
-                    <h4 data-en="Ultra-Quick Creation (5 minutes)" data-fr="Création Ultra-Rapide (5 minutes)">Ultra-Quick Creation (5 minutes)</h4>
-                    
+                    <p class="creation-intro" data-en="Character <strong>Révélation</strong> has <strong>3 fundamental steps</strong>, then a choice of path." data-fr="La <strong>Révélation</strong> du personnage comporte <strong>3 étapes fondamentales</strong>, puis un choix de parcours.">Character <strong>Révélation</strong> has <strong>3 fundamental steps</strong>, then a choice of path.</p>
+                    <ol class="creation-flow" aria-label="Character creation steps">
+                        <li data-en="<strong>A) Caractéristiques</strong> — Origin, People, Race, Sex; base attributes" data-fr="<strong>A) Caractéristiques</strong> — Origine, Peuple, Race, Sexe ; attributs de base"><strong>A) Caractéristiques</strong> — Origin, People, Race, Sex; base attributes</li>
+                        <li data-en="<strong>B) Individuation</strong> — Adjust attributes (+2, +1, 0, 0, 0, 0, -1, -2 or dice)" data-fr="<strong>B) Individuation</strong> — Ajuster les attributs (+2, +1, 0, 0, 0, 0, -1, -2 ou dés)"><strong>B) Individuation</strong> — Adjust attributes (+2, +1, 0, 0, 0, 0, -1, -2 or dice)</li>
+                        <li data-en="<strong>C) Récit</strong> — Reason for Awakening, Caste, Story (18 Récits); optional Attache & Héritage" data-fr="<strong>C) Récit</strong> — Raison d'Éveil, Caste, Récit (18 Récits) ; optionnel Attache & Héritage"><strong>C) Récit</strong> — Reason for Awakening, Caste, Story (18 Récits); optional Attache & Héritage</li>
+                        <li data-en="<strong>Then choose:</strong> <em>Remémoration Créatrice</em> (deferred, in play) or <em>Révélation complète</em> (before first session)" data-fr="<strong>Puis choisir :</strong> <em>Remémoration Créatrice</em> (différée, en jeu) ou <em>Révélation complète</em> (avant première séance)"><strong>Then choose:</strong> <em>Remémoration Créatrice</em> (deferred, in play) or <em>Révélation complète</em> (before first session)</li>
+                    </ol>
+
+                    <!-- A) Caractéristiques -->
+                    <h4 data-en="A) Caractéristiques (Characteristics)" data-fr="A) Caractéristiques">A) Caractéristiques (Characteristics)</h4>
                     <div class="genre-card">
-                        <h5 data-en="1. Choose an Origin" data-fr="1. Choisir une Origine">1. Choose an Origin</h5>
-                        <p data-en="Pick one of the three Origins; your People options depend on it." data-fr="Choisissez une des trois Origines ; les Peuples proposés en dépendent.">Pick one of the three Origins; your People options depend on it.</p>
-                        <ul>
-                            <li data-en="<strong>Yômmes</strong> (Humanoids)" data-fr="<strong>Yômmes</strong> (Humanoïdes)"><strong>Yômmes</strong> (Humanoids)</li>
-                            <li data-en="<strong>Yôrres</strong> (Elves and the like)" data-fr="<strong>Yôrres</strong> (Elfes et similaires)"><strong>Yôrres</strong> (Elves and the like)</li>
-                            <li data-en="<strong>Bêstres</strong> (Diverse creatures)" data-fr="<strong>Bêstres</strong> (Créatures diverses)"><strong>Bêstres</strong> (Diverse creatures)</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="genre-card">
-                        <h5 data-en="2. Choose a People" data-fr="2. Choisir un Peuple">2. Choose a People</h5>
-                        <p data-en="Within your Origin, choose a People. Full list (10 Peoples):" data-fr="Dans votre Origine, choisissez un Peuple. Liste complète (10 Peuples) :">Within your Origin, choose a People. Full list (10 Peoples):</p>
+                        <h5 data-en="Origin → People → Race → Sex" data-fr="Origine → Peuple → Race → Sexe">Origin → People → Race → Sex</h5>
+                        <p data-en="Pick <strong>Origin</strong> (Yômmes, Yôrres, Bêstres), then a <strong>People</strong> within it, then one <strong>Race</strong> within that People, then <strong>Sex</strong> (♂ / ♀ / Intersexe where applicable). Base attributes come from People (by sex) + Race. Default: Young (20–30 years), normal Taille, Stature, Gras for the People." data-fr="Choisir <strong>Origine</strong> (Yômmes, Yôrres, Bêstres), puis un <strong>Peuple</strong>, puis une <strong>Race</strong> au sein du Peuple, puis le <strong>Sexe</strong> (♂ / ♀ / Intersexe si applicable). Les attributs de base viennent du Peuple (par sexe) + Race. Par défaut : Jeune (20–30 ans), Taille, Stature, Gras normaux du Peuple.">Pick <strong>Origin</strong> (Yômmes, Yôrres, Bêstres), then a <strong>People</strong> within it, then one <strong>Race</strong> within that People, then <strong>Sex</strong> (♂ / ♀ / Intersexe where applicable). Base attributes come from People (by sex) + Race. Default: Young (20–30 years), normal Taille, Stature, Gras for the People.</p>
                         <ul>
                             <li data-en="<strong>Yômmes:</strong> Aristois, Griscribes, Navillis, Méridiens" data-fr="<strong>Yômmes :</strong> Aristois, Griscribes, Navillis, Méridiens"><strong>Yômmes:</strong> Aristois, Griscribes, Navillis, Méridiens</li>
                             <li data-en="<strong>Yôrres:</strong> Hauts Ylfes, Ylfes pâles, Ylfes des lacs, Iqqars" data-fr="<strong>Yôrres :</strong> Hauts Ylfes, Ylfes pâles, Ylfes des lacs, Iqqars"><strong>Yôrres:</strong> Hauts Ylfes, Ylfes pâles, Ylfes des lacs, Iqqars</li>
                             <li data-en="<strong>Bêstres:</strong> Slaadéens, Tchalkchaïs" data-fr="<strong>Bêstres :</strong> Slaadéens, Tchalkchaïs"><strong>Bêstres:</strong> Slaadéens, Tchalkchaïs</li>
                         </ul>
-                        <p data-en="Each People has fixed base attribute modifiers (see CSV Attributs d'Origine, Peuple & Race). Examples: Aristois ♂ (EMP +1, PER +1, VOL +2); Slaadéens (FOR +2, VIG +1, EMP +2, VOL +1); Tchalkchaïs ♀ (DEX +3, VIG +3, EMP +5, PER +4)." data-fr="Chaque Peuple a des modificateurs d'attributs fixes (voir CSV Attributs d'Origine, Peuple & Race). Exemples : Aristois ♂ (EMP +1, PER +1, VOL +2) ; Slaadéens (FOR +2, VIG +1, EMP +2, VOL +1) ; Tchalkchaïs ♀ (DEX +3, VIG +3, EMP +5, PER +4).">Each People has fixed base attribute modifiers (see CSV Attributs d'Origine, Peuple & Race). Examples: Aristois ♂ (EMP +1, PER +1, VOL +2); Slaadéens (FOR +2, VIG +1, EMP +2, VOL +1); Tchalkchaïs ♀ (DEX +3, VIG +3, EMP +5, PER +4).</p>
+                        <p data-en="Example races: Aristois → Monte-Foudres, Fleuris, Des Souffles, Ambrés. Slaadéens → Hlabayan, Sydru-kal, Felichrem, Iossolam, Wijriol." data-fr="Exemples de races : Aristois → Monte-Foudres, Fleuris, Des Souffles, Ambrés. Slaadéens → Hlabayan, Sydru-kal, Felichrem, Iossolam, Wijriol.">Example races: Aristois → Monte-Foudres, Fleuris, Des Souffles, Ambrés. Slaadéens → Hlabayan, Sydru-kal, Felichrem, Iossolam, Wijriol.</p>
+                        <div class="creation-table-wrap">
+                            <table class="creation-table" data-en="Base attributes (sample)" data-fr="Attributs de base (exemples)">
+                                <caption data-en="Base attributes (Peuple + Race + Sex)" data-fr="Attributs de base (Peuple + Race + Sexe)">Base attributes (Peuple + Race + Sex)</caption>
+                                <thead>
+                                    <tr><th data-en="Example" data-fr="Exemple">Example</th><th>FOR</th><th>AGI</th><th>DEX</th><th>VIG</th><th>EMP</th><th>PER</th><th>CRÉ</th><th>VOL</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td data-en="Aristois ♂ Monte-Foudres" data-fr="Aristois ♂ Monte-Foudres">Aristois ♂ Monte-Foudres</td><td>0</td><td>-1</td><td>-1</td><td>-1</td><td>0</td><td>+1</td><td>0</td><td>+2</td></tr>
+                                    <tr><td data-en="Slaadéens (no sex)" data-fr="Slaadéens (sans sexe)">Slaadéens</td><td>+2</td><td>-3</td><td>+1</td><td>+2</td><td>-3</td><td>+1</td><td>+1</td><td>+1</td></tr>
+                                    <tr><td data-en="Tchalkchaïs ♀" data-fr="Tchalkchaïs ♀">Tchalkchaïs ♀</td><td>-4</td><td>-1</td><td>+3</td><td>+3</td><td>+5</td><td>+4</td><td>-5</td><td>-5</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <details class="creation-details">
+                            <summary data-en="Optional: Variation des Caractéristiques (5×10dD)" data-fr="Optionnel : Variation des Caractéristiques (5×10dD)">Optional: Variation des Caractéristiques (5×10dD)</summary>
+                            <p data-en="To deviate from the norm: roll <strong>5 times 10dD</strong> (no keep-5) for Niv of: (1) Âge, (2) Sexe, (3) Gras, (4) Stature, (5) Taille. Result 0 = People norm. Each Niv modifies attributes per the book tables (e.g. Maturité +1 Âge: -1 FOR, AGI, DEX, VIG, +1 EMP, -1 PER, -1 CRÉ, +1 VOL)." data-fr="Pour s'écarter de la norme : lancer <strong>5 fois 10dD</strong> (sans garder 5 dés) pour le Niv de : (1) Âge, (2) Sexe, (3) Gras, (4) Stature, (5) Taille. Résultat 0 = norme du Peuple. Chaque Niv modifie les attributs selon les tableaux du livre.">To deviate from the norm: roll <strong>5 times 10dD</strong> (no keep-5) for Niv of: (1) Âge, (2) Sexe, (3) Gras, (4) Stature, (5) Taille. Result 0 = People norm. Each Niv modifies attributes per the book tables.</p>
+                            <table class="creation-table creation-table--compact">
+                                <thead><tr><th data-en="10dD range" data-fr="10dD plage">10dD</th><th data-en="Âge (example)" data-fr="Âge (ex.)">Âge</th><th data-en="10dD range" data-fr="10dD plage">10dD</th><th data-en="Sexe" data-fr="Sexe">Sexe</th></tr></thead>
+                                <tbody>
+                                    <tr><td>-10 à -5</td><td data-en="Childhood" data-fr="Enfance">Enfance</td><td>0 à +8</td><td>♂</td></tr>
+                                    <tr><td>-2 à +1</td><td data-en="Youth / Adult" data-fr="Jeunesse / Adulte">Jeunesse / Adulte</td><td>+9 à +10</td><td data-en="Intersexe" data-fr="Intersexe">Intersexe</td></tr>
+                                    <tr><td>+2 à +5</td><td data-en="Maturity / Old age" data-fr="Maturité / Vieillesse">Maturité / Vieillesse</td><td>-10 à -1</td><td>♀</td></tr>
+                                    <tr><td>+6 à +10</td><td data-en="Anciency / Venerable" data-fr="Ancienneté / Vénérable">Ancienneté / Vénérable</td><td></td><td></td></tr>
+                                </tbody>
+                            </table>
+                        </details>
                     </div>
-                    
+
+                    <!-- B) Individuation -->
+                    <h4 data-en="B) Individuation" data-fr="B) Individuation">B) Individuation</h4>
                     <div class="genre-card">
-                        <h5 data-en="3. Sex (if applicable) and Base Attributes" data-fr="3. Sexe (si applicable) et Attributs de base">3. Sex (if applicable) and Base Attributes</h5>
-                        <p data-en="For Peoples with sex-based modifiers (Aristois, Griscribes, Navillis, Méridiens, Haut-Ylfes, Ylfes des lacs, Tchalkchaïs), choose sex. The sheet applies your People's base modifiers automatically. Then add <strong>individuation</strong>: assign exactly one of <strong>+2, +1, 0, 0, 0, 0, -1, -2</strong> to each attribute (drag and drop). Final = People base + individuation." data-fr="Pour les Peuples avec modificateurs par sexe (Aristois, Griscribes, Navillis, Méridiens, Haut-Ylfes, Ylfes des lacs, Tchalkchaïs), choisissez le sexe. La feuille applique automatiquement les modificateurs de base. Puis ajoutez l'<strong>individuation</strong> : assignez exactement une des valeurs <strong>+2, +1, 0, 0, 0, 0, -1, -2</strong> à chaque attribut (glisser-déposer). Final = base Peuple + individuation.">For Peoples with sex-based modifiers (Aristois, Griscribes, Navillis, Méridiens, Haut-Ylfes, Ylfes des lacs, Tchalkchaïs), choose sex. The sheet applies your People's base modifiers automatically. Then add <strong>individuation</strong>: assign exactly one of <strong>+2, +1, 0, 0, 0, 0, -1, -2</strong> to each attribute (drag and drop). Final = People base + individuation.</p>
+                        <p data-en="Starting from the attributes from A, diversify with one of the following. <strong>Quick (no dice):</strong> assign exactly <strong>+2, +1, 0, 0, 0, 0, -1, -2</strong> to the 8 attributes (one value per attribute). Final = base from A + this. Then <strong>multiply each Niv by ×10</strong> for the sheet. ±5 Niv vs People norm = <strong>EXTRÊME</strong>; -6 or below = <strong>fatal</strong> (reroll or change). Gregarious Peoples: -8 N per Niv de Gouvernance." data-fr="À partir des attributs de A, diversifier avec l'une des options suivantes. <strong>Rapide (sans dés) :</strong> assigner exactement <strong>+2, +1, 0, 0, 0, 0, -1, -2</strong> aux 8 attributs. Final = base de A + ceci. Puis <strong>multiplier chaque Niv par ×10</strong> pour la feuille. ±5 Niv vs norme Peuple = <strong>EXTRÊME</strong> ; -6 ou moins = <strong>fatal</strong>. Peuples grégaires : -8 N par Niv de Gouvernance.">Starting from the attributes from A, diversify with one of the following. <strong>Quick (no dice):</strong> assign exactly <strong>+2, +1, 0, 0, 0, 0, -1, -2</strong> to the 8 attributes. Final = base from A + this. Then <strong>multiply each Niv by ×10</strong> for the sheet. ±5 Niv vs People norm = <strong>EXTRÊME</strong>; -6 or below = <strong>fatal</strong>. Gregarious Peoples: -8 N per Niv de Gouvernance.</p>
+                        <details class="creation-details">
+                            <summary data-en="Other methods: réaliste, équilibrée, contrôlée" data-fr="Autres méthodes : réaliste, équilibrée, contrôlée">Other methods: réaliste, équilibrée, contrôlée</summary>
+                            <ul>
+                                <li data-en="<strong>Variabilité réaliste:</strong> 8× (10dD/2), add each result to one attribute (order or choice)." data-fr="<strong>Variabilité réaliste :</strong> 8× (10dD/2), ajouter chaque résultat à un attribut."><strong>Variabilité réaliste:</strong> 8× (10dD/2), add each result to one attribute.</li>
+                                <li data-en="<strong>Variabilité équilibrée:</strong> Total of 8 attributes = 0 (or group target); adjust Niv to match." data-fr="<strong>Variabilité équilibrée :</strong> Total des 8 attributs = 0 ; ajuster les Niv pour égaliser."><strong>Variabilité équilibrée:</strong> Total of 8 attributes = 0; adjust Niv to match.</li>
+                                <li data-en="<strong>Variabilité contrôlée:</strong> 20dD → Degrés to spend per table below." data-fr="<strong>Variabilité contrôlée :</strong> 20dD → Degrés à dépenser selon le tableau ci-dessous."><strong>Variabilité contrôlée:</strong> 20dD → Degrés to spend per table below.</li>
+                            </ul>
+                            <div class="creation-table-wrap">
+                                <table class="creation-table creation-table--compact">
+                                    <caption data-en="Niv Atb / Coût en Degrés / Coût Total" data-fr="Niv Atb / Coût en Degrés / Coût Total">Niv Atb / Coût en Degrés / Coût Total</caption>
+                                    <thead><tr><th>Niv Atb</th><th data-en="Cost (Degrés)" data-fr="Coût (Degrés)">Cost</th><th data-en="Cumul." data-fr="Cumul.">Total</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>-5</td><td>-5</td><td>-15</td></tr><tr><td>-4</td><td>-4</td><td>-10</td></tr><tr><td>-3</td><td>-3</td><td>-6</td></tr><tr><td>-2</td><td>-2</td><td>-3</td></tr><tr><td>-1</td><td>-1</td><td>-1</td></tr>
+                                        <tr><td>0</td><td>—</td><td>0</td></tr>
+                                        <tr><td>+1</td><td>+1</td><td>1</td></tr><tr><td>+2</td><td>+2</td><td>3</td></tr><tr><td>+3</td><td>+3</td><td>6</td></tr><tr><td>+4</td><td>+4</td><td>10</td></tr><tr><td>+5</td><td>+5</td><td>15</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </details>
                     </div>
-                    
+
+                    <!-- C) Récit -->
+                    <h4 data-en="C) Récit (Story)" data-fr="C) Récit">C) Récit (Story)</h4>
                     <div class="genre-card">
-                        <h5 data-en="4. Reveal 3–5 skills, then 10 dice" data-fr="4. Révéler 3–5 compétences, puis 10 dés">4. Reveal 3–5 skills, then 10 dice</h5>
-                        <p data-en="Choose 3 to 5 competences to reveal. Then distribute exactly <strong>10 dice</strong> among revealed competences and/or resistances R[Souffrance] (Exprimés; full rules also give 10 Éduqués by Peuple/Race/Familiale)." data-fr="Choisissez 3 à 5 compétences à révéler. Puis répartissez exactement <strong>10 dés</strong> sur les compétences révélées et/ou les résistances R[Souffrance] (Exprimés ; les règles complètes ajoutent 10 Éduqués par Peuple/Race/Familiale).">Choose 3 to 5 competences to reveal. Then distribute exactly <strong>10 dice</strong> among revealed competences and/or resistances R[Souffrance] (Exprimés; full rules also give 10 Éduqués by Peuple/Race/Familiale).</p>
+                        <h5 data-en="1. Raison d'Éveil (Reason for Awakening)" data-fr="1. Raison d'Éveil">1. Raison d'Éveil (Reason for Awakening)</h5>
+                        <p data-en="Roll <strong>5dD + 1d6</strong> (or choose) to determine why the character leaves their life / sets out. Use the table below." data-fr="Lancer <strong>5dD + 1d6</strong> (ou choisir) pour déterminer pourquoi le personnage quitte son vécu. Utiliser le tableau ci-dessous.">Roll <strong>5dD + 1d6</strong> (or choose) to determine why the character leaves their life. Use the table below.</p>
+                        <div class="creation-table-wrap">
+                            <table class="creation-table">
+                                <caption data-en="Raisons d'Éveil (5dD result + 1d6 column)" data-fr="Raisons d'Éveil (résultat 5dD + colonne 1d6)">Raisons d'Éveil</caption>
+                                <thead><tr><th>5dD</th><th data-en="Examples (1d6 = column)" data-fr="Exemples (1d6 = colonne)">Examples</th></tr></thead>
+                                <tbody>
+                                    <tr><td>0</td><td data-en="Flee economic pressure, Earn money, Delivery, Escort, Flee family, Seek healthy climate" data-fr="S'enfuir pression éco., Faire de l'argent, Livraison, Escorte, S'enfuir famille, Climat sain">Flee economic pressure, Earn money, Delivery, Escort, Flee family, Seek healthy climate</td></tr>
+                                    <tr><td>±1</td><td data-en="Maintain roads, Open business, Flee marriage/pregnancy, Hunt, Mine resources, Mediation" data-fr="Maintien routes, Ouvrir commerce, Fuir mariage/grossesse, Chasse, Miner, Médiation">Maintain roads, Open business, Flee marriage/pregnancy, Hunt, Mine resources, Mediation</td></tr>
+                                    <tr><td>±2</td><td data-en="Explore ruins, Learn secrets, Nomadic work, Patrol, Art/history research, Religious fervour" data-fr="Ruines, Secrets, Travail nomade, Patrouille, Art/histoire, Engouement religieux">Explore ruins, Learn secrets, Nomadic work, Patrol, Art/history research, Religious fervour</td></tr>
+                                    <tr><td>±3</td><td data-en="Raids, Military transfer, Flee accusation, Build community, Save/convert, Observation" data-fr="Raids, Transfert régiment, Fuir accusation, Bâtir communauté, Sauver/convertir, Observation">Raids, Military transfer, Flee accusation, Build community, Save/convert, Observation</td></tr>
+                                    <tr><td>±4</td><td data-en="Adventure itself, Disinheritance, Follow visions, Assassination, Flee persecution, Rumours of wealth" data-fr="L'aventure elle-même, Déshéritage, Visions, Assassinats, Fuir persécution, Rumeurs richesses">Adventure itself, Disinheritance, Follow visions, Assassination, Flee persecution, Rumours of wealth</td></tr>
+                                    <tr><td>±5</td><td data-en="Create routes, “Because it's there”, Family pressure, Rescue, Explore new places, Conversion" data-fr="Création de routes, Car c'est là-bas, (R)amené par la famille, Sauvetage, Exploration, Conversion">Create routes, “Because it's there”, Family pressure, Rescue, Explore new places, Conversion</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <h5 data-en="2. Caste & Récit (18 Récits)" data-fr="2. Caste & Récit (18 Récits)">2. Caste & Récit (18 Récits)</h5>
+                        <p data-en="Your <strong>highest Attribute</strong> determines your <strong>Caste</strong>. Each Caste has 18 Récits (3 sous-castes × 6 récits). Roll <strong>d3</strong> = sous-caste, <strong>d6</strong> = specific Récit. Your Récit <strong>doubles the CT dice</strong> in situations that fit it; if you have 0 Dé in that skill, add +1 Dé. Optional: <strong>Variation des Récits</strong> (10dD/2) to pick another Caste than the highest Attribute." data-fr="L'<strong>Attribut le plus élevé</strong> détermine la <strong>Caste</strong>. Chaque Caste a 18 Récits (3 sous-castes × 6 récits). Lancer <strong>d3</strong> = sous-caste, <strong>d6</strong> = Récit concret. Le Récit <strong>double les Dés de CT</strong> quand la situation s'y prête ; si 0 Dé dans la compétence, +1 Dé. Optionnel : <strong>Variation des Récits</strong> (10dD/2) pour une autre Caste.">Your <strong>highest Attribute</strong> determines your <strong>Caste</strong>. Each Caste has 18 Récits (3×6). Roll <strong>d3</strong> = sous-caste, <strong>d6</strong> = Récit. Récit <strong>doubles CT dice</strong> when it fits; if 0 Dé, +1 Dé. Optional: 10dD/2 for another Caste.</p>
+                        <div class="creation-table-wrap">
+                            <table class="creation-table">
+                                <caption data-en="8 Castes ↔ 8 Attributes" data-fr="8 Castes ↔ 8 Attributs">8 Castes ↔ 8 Attributes</caption>
+                                <thead><tr><th data-en="Caste" data-fr="Caste">Caste</th><th>ATB</th><th data-en="Sous-castes (d3)" data-fr="Sous-castes (d3)">Sous-castes</th></tr></thead>
+                                <tbody>
+                                    <tr><td data-en="Guerriers (Warriors)" data-fr="Guerriers">Guerriers</td><td>FOR</td><td data-en="Champions | Mercenaries | Soldiers" data-fr="Champions | Mercenaires | Soldats">Champions | Mercenaires | Soldats</td></tr>
+                                    <tr><td data-en="Rôdeurs (Rangers)" data-fr="Rôdeurs">Rôdeurs</td><td>AGI</td><td data-en="Vagabonds | Survivalists | Dissidents" data-fr="Vagabonds | Survivalistes | Dissidents">Vagabonds | Survivalistes | Dissidents</td></tr>
+                                    <tr><td data-en="Artisans" data-fr="Artisans">Artisans</td><td>DEX</td><td data-en="Suppliers | Makers | Engineers" data-fr="Fournisseurs | Fabricants | Ingénieurs">Fournisseurs | Fabricants | Ingénieurs</td></tr>
+                                    <tr><td data-en="Ouvriers (Workers)" data-fr="Ouvriers">Ouvriers</td><td>VIG</td><td data-en="Extractors | Carriers | Producers" data-fr="Extracteurs | Transporteurs | Producteurs">Extracteurs | Transporteurs | Producteurs</td></tr>
+                                    <tr><td data-en="Aides (Aides)" data-fr="Aides">Aides</td><td>EMP</td><td data-en="Supporters | Entertainers | Revelers" data-fr="Soutiens | Animateurs | Fêtards">Soutiens | Animateurs | Fêtards</td></tr>
+                                    <tr><td data-en="Marchands (Merchants)" data-fr="Marchands">Marchands</td><td>PER</td><td data-en="Bureaucrats | Merchants | Charlatans" data-fr="Bureaucrates | Commerçants | Charlatans">Bureaucrates | Commerçants | Charlatans</td></tr>
+                                    <tr><td data-en="Érudits (Scholars)" data-fr="Érudits">Érudits</td><td>CRÉ</td><td data-en="Researchers | Sages | Artists" data-fr="Chercheurs | Sages | Artistes">Chercheurs | Sages | Artistes</td></tr>
+                                    <tr><td data-en="Prêtres (Priests)" data-fr="Prêtres">Prêtres</td><td>VOL</td><td data-en="Mages | Cultists | Guides" data-fr="Mages | Cultistes | Guides">Mages | Cultistes | Guides</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <details class="creation-details">
+                            <summary data-en="Optional: Attache de Récit & Héritage" data-fr="Optionnel : Attache de Récit & Héritage">Optional: Attache de Récit & Héritage</summary>
+                            <p data-en="<strong>Attache:</strong> Draw or choose an Attache linked to your Récit (sous-caste and alignment -, 0, +) to anchor past and present." data-fr="<strong>Attache :</strong> Tirer ou choisir une Attache liée au Récit (sous-caste et alignement -, 0, +)."><strong>Attache:</strong> Draw or choose an Attache linked to your Récit (sous-caste and alignment -, 0, +).</p>
+                            <p data-en="<strong>Héritage:</strong> Roll 5dD. If result ±3, ±4 or ±5: roll 3dD for Heritage type, then 5dD for value X (intensity). Write Heritage name and X; total all attributes after People, Race, Sex, Individuation and Héritage." data-fr="<strong>Héritage :</strong> Lancer 5dD. Si ±3, ±4 ou ±5 : 3dD pour le type d'Héritage, puis 5dD pour la valeur X. Inscrire le nom et X ; totaliser tous les attributs."><strong>Héritage:</strong> Roll 5dD. If ±3, ±4 or ±5: 3dD for type, 5dD for value X. Total all attributes after A, B and Héritage.</p>
+                        </details>
                     </div>
-                    
-                    <div class="genre-card">
-                        <h5 data-en="5. A Symbol" data-fr="5. Un Symbole">5. A Symbol</h5>
-                        <p data-en="Your highest Attribute determines your Symbol (destiny/passion). It gives 3 Skills with 3 Eternal Marks each." data-fr="Votre Attribut le plus élevé détermine votre Symbole (destinée/passion). Il donne 3 Compétences avec 3 Marques Éternelles chacune.">Your highest Attribute determines your Symbol (destiny/passion). It gives 3 Skills with 3 Eternal Marks each.</p>
+
+                    <!-- After the 3 steps: choice -->
+                    <h4 data-en="After the 3 steps: choose your path" data-fr="Après les 3 étapes : choisir votre parcours">After the 3 steps: choose your path</h4>
+
+                    <!-- Remémoration Créatrice -->
+                    <div class="genre-card creation-pillars-card">
+                        <h5 data-en="Remémoration Créatrice (Creative Remembrance)" data-fr="Remémoration Créatrice">Remémoration Créatrice (Creative Remembrance)</h5>
+                        <p data-en="<strong>Deferred revelation</strong> in play: the character has “amnesias” and recovers memory over <strong>8 aspects</strong> across sessions. First session: Symbole, Dés Éduqués/Exprimés, Marques gratuites, etc. You make choices as you become aware of needs through play, rather than deciding everything in advance." data-fr="<strong>Révélation différée</strong> en jeu : le personnage a des « amnésies » et récupère la mémoire sur <strong>8 aspects</strong> au fil des séances. Première séance : Symbole, Dés Éduqués/Exprimés, Marques gratuites. Vous choisissez en prenant conscience de vos besoins en jouant."><strong>Deferred revelation</strong> in play: the character has “amnesias” and recovers memory over <strong>8 aspects</strong> across sessions. First session: Symbole, Dés Éduqués/Exprimés, Marques gratuites. You choose as you become aware of needs through play.</p>
+                        <div class="creation-pillars" role="group" aria-label="Three pillars of Remémoration Créatrice">
+                            <div class="creation-pillar">
+                                <span class="creation-pillar-label" data-en="A) Experience" data-fr="A) Expérience">A) Experience</span>
+                                <p data-en="Life experience — skills learned (compétences apprises)." data-fr="Expérience de la vie — compétences apprises.">Life experience — skills learned.</p>
+                            </div>
+                            <div class="creation-pillar">
+                                <span class="creation-pillar-label" data-en="B) Integrity" data-fr="B) Intégrité">B) Integrity</span>
+                                <p data-en="Values and traits that guide decisions (valeurs et traits)." data-fr="Valeurs et traits qui aident à se décider.">Values and traits that guide decisions.</p>
+                            </div>
+                            <div class="creation-pillar">
+                                <span class="creation-pillar-label" data-en="C) Society" data-fr="C) Société">C) Society</span>
+                                <p data-en="Possessions and wealth (possessions, richesses)." data-fr="Possessions matérielles ou non, richesses.">Possessions and wealth.</p>
+                            </div>
+                        </div>
                     </div>
-                    
+
+                    <!-- Révélation complète -->
                     <div class="genre-card">
-                        <h5 data-en="6. A Value" data-fr="6. Une Valeur">6. A Value</h5>
-                        <p data-en="Choose a Value related to your People (Morality) with +6 Dice." data-fr="Choisissez une Valeur liée à votre Peuple (Moralité) avec +6 Dés.">Choose a Value related to your People (Morality) with +6 Dice.</p>
-                    </div>
-                    
-                    <div class="genre-card">
-                        <h5 data-en="7. That's All!" data-fr="7. C'est Tout !">7. That's All!</h5>
-                        <p data-en="You have a playable character. The rest is discovered through play." data-fr="Vous avez un personnage jouable. Le reste se découvre en jouant.">You have a playable character. The rest is discovered through play.</p>
+                        <h5 data-en="Révélation complète (before first session)" data-fr="Révélation complète (avant première séance)">Révélation complète (before first session)</h5>
+                        <p data-en="Finalise the character before play with the following." data-fr="Finaliser le personnage avant la première séance avec les éléments suivants.">Finalise before first session.</p>
+                        <ul class="revelation-complete-list">
+                            <li data-en="<strong>Symbole</strong>: nature, essence, destiny, passions. Aptitude Symbolique = 3 Actions; Fascinante = 2; Intéressante = 1." data-fr="<strong>Symbole</strong> : nature, essence, destin, passions. Aptitude Symbolique = 3 Actions ; Fascinante = 2 ; Intéressante = 1."><strong>Symbole</strong>: nature, essence, destiny, passions.</li>
+                            <li data-en="<strong>Éducation</strong>: Compétence Familiale (+3 Dés), Compétences Éduquées (Marques Éternelles). 10 Dés Éduqués." data-fr="<strong>Éducation</strong> : Compétence Familiale (+3 Dés), Compétences Éduquées, 10 Dés Éduqués."><strong>Éducation</strong>: Familial +3D, Éduquées, 10 Dés Éduqués.</li>
+                            <li data-en="<strong>Expression</strong>: 10 Dés Exprimés, spread in Symbolic (3 Actions), Fascinante (2), Intéressante (1)." data-fr="<strong>Expression</strong> : 10 Dés Exprimés, répartition Symbolique/Fascinante/Intéressante."><strong>Expression</strong>: 10 Dés Exprimés.</li>
+                            <li data-en="<strong>Valeurs</strong>: Moralité (+6D), Motivation (+3D), Personnalité (+1D)." data-fr="<strong>Valeurs</strong> : Moralité (+6D), Motivation (+3D), Personnalité (+1D)."><strong>Valeurs</strong>: Moralité +6D, Motivation +3D, Personnalité +1D.</li>
+                            <li data-en="<strong>Traits</strong>: Socialité, Disposition, Passion." data-fr="<strong>Traits</strong> : Socialité, Disposition, Passion."><strong>Traits</strong>: Socialité, Disposition, Passion.</li>
+                            <li data-en="<strong>Titres</strong>, <strong>Langues</strong>, <strong>Richesses</strong>." data-fr="<strong>Titres</strong>, <strong>Langues</strong>, <strong>Richesses</strong>."><strong>Titres</strong>, <strong>Langues</strong>, <strong>Richesses</strong>.</li>
+                        </ul>
                     </div>
                 </div>
             </div>

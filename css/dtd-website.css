@@ -1413,6 +1413,187 @@ img {
     color: var(--tdt-beige-warm);
 }
 
+/* ========================================
+   Character Creation (Rules)
+   No page numbers, chapter names, CSV/file names, or other source refs on the website — do not add them.
+   ======================================== */
+.creation-intro {
+    margin-bottom: var(--spacing-md);
+}
+
+.creation-flow {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+    margin-bottom: var(--spacing-lg);
+    counter-reset: creation-step;
+}
+
+.creation-flow li {
+    position: relative;
+    padding-left: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+    counter-increment: creation-step;
+    color: var(--tdt-cream);
+}
+
+.creation-flow li::before {
+    content: counter(creation-step);
+    position: absolute;
+    left: 0;
+    width: 1.75rem;
+    height: 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--tdt-burgundy-warm);
+    color: var(--tdt-cream);
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.creation-flow li:last-of-type::before {
+    content: "→";
+    background: var(--tdt-dark-red);
+}
+
+.creation-table-wrap {
+    overflow-x: auto;
+    margin: var(--spacing-sm) 0 var(--spacing-md);
+}
+
+.creation-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    color: var(--tdt-cream);
+}
+
+.creation-table caption {
+    text-align: left;
+    font-style: italic;
+    color: var(--tdt-beige-warm);
+    margin-bottom: var(--spacing-xs);
+    font-size: 0.9rem;
+}
+
+.creation-table th,
+.creation-table td {
+    padding: 0.4rem 0.6rem;
+    border: 1px solid var(--tdt-beige);
+    text-align: left;
+}
+
+.creation-table thead th {
+    background: var(--tdt-burgundy-warm);
+    color: var(--tdt-cream);
+    font-weight: 600;
+}
+
+.creation-table tbody tr:nth-child(even) {
+    background: rgba(90, 31, 31, 0.25);
+}
+
+.creation-table--compact th,
+.creation-table--compact td {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* Character creation cards: light background — use dark text for readability */
+#character-creation .genre-card .creation-table,
+#character-creation .genre-card .creation-table td {
+    color: #2a0f0f;
+}
+
+#character-creation .genre-card .creation-table thead th {
+    color: var(--tdt-cream);
+}
+
+#character-creation .genre-card .creation-table caption {
+    color: #2a0f0f;
+    opacity: 0.9;
+}
+
+#character-creation .genre-card .creation-details summary {
+    color: #2a0f0f;
+    font-weight: 600;
+}
+
+#character-creation .genre-card .creation-details[open] summary {
+    color: #1a0808;
+}
+
+.creation-details {
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+.creation-details summary {
+    cursor: pointer;
+    color: var(--tdt-beige-warm);
+    font-weight: 600;
+    list-style: none;
+    padding: 0.25rem 0;
+}
+
+.creation-details summary::-webkit-details-marker {
+    display: none;
+}
+
+.creation-details summary::before {
+    content: "▸ ";
+}
+
+.creation-details[open] summary::before {
+    content: "▾ ";
+}
+
+.creation-details .creation-table-wrap,
+.creation-details .creation-table {
+    margin-top: var(--spacing-sm);
+}
+
+.creation-pillars-card {
+    margin-top: var(--spacing-md);
+}
+
+.creation-pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.creation-pillar {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: rgba(90, 31, 31, 0.35);
+    border: 1px solid var(--tdt-beige);
+    border-radius: var(--radius-md);
+}
+
+.creation-pillar-label {
+    display: block;
+    font-weight: 700;
+    color: var(--tdt-mint);
+    margin-bottom: 0.25rem;
+}
+
+.creation-pillar p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--tdt-cream);
+}
+
+.revelation-complete-list {
+    margin-top: var(--spacing-sm);
+}
+
+.revelation-complete-list li {
+    margin-bottom: var(--spacing-xs);
+}
+
 /* Play tab: Flip layout (Chat | Sheet) with toggle buttons left */
 .play-flip-layout {
     display: flex;
