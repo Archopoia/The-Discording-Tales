@@ -1,0 +1,83 @@
+/* ========================================
+   THE DISCORDING TALES - Website Stylesheet
+   Baroque, Maximalist, Interactive Design
+   ======================================== */
+
+/* ========================================
+   CSS Variables & Color System
+   ======================================== */
+:root {
+    /* TDT Theme Colors - Warmer Palette */
+    --tdt-cream: #fff8e8;
+    --tdt-cream-light: #fffbf0;
+    --tdt-beige: #c4b59a;
+    --tdt-beige-light: #d8cbb0;
+    --tdt-beige-lighter: #e8ddd0;
+    --tdt-beige-warm: #d4c5a8;
+    --tdt-brown: #8b7355;
+    --tdt-brown-light: #a0886b;
+    --tdt-dark-red: #6b2828;
+    --tdt-dark-red-light: #7a3232;
+    --tdt-burgundy: #4a1818;
+    --tdt-burgundy-light: #5c2222;
+    --tdt-burgundy-warm: #5a1f1f;
+    --tdt-mint: #a0fdda;
+    --tdt-mint-light: #87fccf;
+    --tdt-mint-dark: #7fdec0;
+    --tdt-gold: #f5e6c4;
+    --tdt-theme-color: #5a1f1f;
+    
+    /* Background Patterns */
+    --bg-image: url(../assets/images/2023/02/cropped-site-background-1.jpg);
+    --bg-pattern: url(../assets/images/bg.jpg);
+    
+    /* Typography */
+    --font-heading: 'Texturina', 'Fondamento', serif;
+    --font-body: 'Fanwood Text', 'Quattrocento', serif;
+    
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 0.75rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2.5rem;
+    --spacing-xl: 3.5rem;
+    
+    /* Transitions - Smoother and longer */
+    --transition-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --shadow-glow-mint: 0 0 20px rgba(160, 253, 218, 0.5);
+    --shadow-glow-beige: 0 0 20px rgba(217, 205, 184, 0.3);
+    
+    /* Card Shadows - Consolidated */
+    --card-shadow: 
+        0 0 0 1px var(--tdt-beige-light),
+        0 0 0 2px var(--tdt-burgundy-warm),
+        0 0 0 4px var(--tdt-beige-light),
+        0 0 0 5px var(--tdt-burgundy-warm),
+        inset 4px 4px 8px rgba(0, 0, 0, 0.25),
+        inset -4px -4px 8px rgba(0, 0, 0, 0.15),
+        inset 0 0 20px rgba(0, 0, 0, 0.1),
+        var(--shadow-sm);
+    --card-shadow-hover: 
+        0 0 0 1px var(--tdt-beige-light),
+        0 0 0 3px var(--tdt-burgundy-warm),
+        0 0 0 5px var(--tdt-beige-light),
+        0 0 0 6px var(--tdt-burgundy-warm),
+        0 0 20px 8px rgba(90, 31, 31, 0.5),
+        inset 5px 5px 12px rgba(0, 0, 0, 0.3),
+        inset -5px -5px 12px rgba(0, 0, 0, 0.2),
+        inset 0 0 25px rgba(0, 0, 0, 0.15),
+        var(--shadow-md);
+    
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+    --radius-full: 9999px;
+}

@@ -1,6 +1,14 @@
 /**
  * The Discording Tales - Interactive Website JavaScript
  * Handles tab switching, language toggle, content loading, and animations
+ *
+ * Table of contents (sections):
+ *   State, DOM Elements, Hero Images, DOMContentLoaded
+ *   Tabs, SubTabs, Peuples, Popovers
+ *   initAccordion, initTabPanels (shared helpers)
+ *   Combat, Magic, Progression
+ *   Language, Carousel, Menu Toggle, Newsletter, Scroll Animations
+ *   Character Sheet, WebGL Shaders
  */
 
 (function() {
@@ -412,99 +420,130 @@
     }
 
     // ========================================
-    // Combat Section: Accordion, Tables Tabs, Weapon Filter
+    // Shared: Accordion initializer
     // ========================================
-    function initCombat() {
-        const combatSection = document.getElementById('combat');
-        if (!combatSection) return;
+    function initAccordion(section, options) {
+        if (!section) return;
+        var itemSel = options.itemSelector;
+        var headSel = options.headSelector;
+        var bodySel = options.bodySelector;
+        var expandAllSel = options.expandAllSelector;
+        var collapseAllSel = options.collapseAllSelector;
 
-        // Accordion: toggle body on head click
-        combatSection.querySelectorAll('.combat-accordion-item').forEach(function(item) {
-            const head = item.querySelector('.combat-accordion-head');
-            const body = item.querySelector('.combat-accordion-body');
+        section.querySelectorAll(itemSel).forEach(function(item) {
+            var head = item.querySelector(headSel);
+            var body = item.querySelector(bodySel);
             if (!head || !body) return;
             head.addEventListener('click', function() {
-                const isOpen = body.classList.contains('is-open');
+                var isOpen = body.classList.contains('is-open');
                 body.classList.toggle('is-open', !isOpen);
                 head.setAttribute('aria-expanded', !isOpen);
             });
         });
 
-        // Expand all / Collapse all
-        const expandAll = combatSection.querySelector('.combat-expand-all');
-        const collapseAll = combatSection.querySelector('.combat-collapse-all');
+        var expandAll = section.querySelector(expandAllSel);
+        var collapseAll = section.querySelector(collapseAllSel);
         if (expandAll) {
             expandAll.addEventListener('click', function() {
-                combatSection.querySelectorAll('.combat-accordion-body').forEach(function(b) { b.classList.add('is-open'); });
-                combatSection.querySelectorAll('.combat-accordion-head').forEach(function(h) { h.setAttribute('aria-expanded', 'true'); });
+                section.querySelectorAll(bodySel).forEach(function(b) { b.classList.add('is-open'); });
+                section.querySelectorAll(headSel).forEach(function(h) { h.setAttribute('aria-expanded', 'true'); });
             });
         }
         if (collapseAll) {
             collapseAll.addEventListener('click', function() {
-                combatSection.querySelectorAll('.combat-accordion-body').forEach(function(b) { b.classList.remove('is-open'); });
-                combatSection.querySelectorAll('.combat-accordion-head').forEach(function(h) { h.setAttribute('aria-expanded', 'false'); });
+                section.querySelectorAll(bodySel).forEach(function(b) { b.classList.remove('is-open'); });
+                section.querySelectorAll(headSel).forEach(function(h) { h.setAttribute('aria-expanded', 'false'); });
             });
         }
+    }
 
-        // Combat reference tables: tab links
-        combatSection.querySelectorAll('.combat-tab-link').forEach(function(btn) {
+    // ========================================
+    // Shared: Tab-panel initializer
+    // ========================================
+    function initTabPanels(container, options) {
+        if (!container) return;
+        var linkSel = options.linkSelector;
+        var panelSel = options.panelSelector;
+        var linkAttr = options.linkDataAttr;
+        var panelAttr = options.panelDataAttr;
+
+        container.querySelectorAll(linkSel).forEach(function(btn) {
             btn.addEventListener('click', function() {
-                const tabId = this.getAttribute('data-combat-tab');
+                var tabId = this.getAttribute(linkAttr);
                 if (!tabId) return;
-                combatSection.querySelectorAll('.combat-tab-link').forEach(function(b) { b.classList.remove('active'); });
-                combatSection.querySelectorAll('.combat-tables-panel').forEach(function(p) {
-                    p.classList.toggle('active', p.getAttribute('data-combat-panel') === tabId);
+                container.querySelectorAll(linkSel).forEach(function(b) { b.classList.remove('active'); });
+                container.querySelectorAll(panelSel).forEach(function(p) {
+                    p.classList.toggle('active', p.getAttribute(panelAttr) === tabId);
                 });
                 this.classList.add('active');
             });
+        });
+    }
+
+    // ========================================
+    // Combat Section: Accordion, Tables Tabs, Weapon Filter
+    // ========================================
+    function initCombat() {
+        var combatSection = document.getElementById('combat');
+        if (!combatSection) return;
+
+        initAccordion(combatSection, {
+            itemSelector: '.combat-accordion-item',
+            headSelector: '.combat-accordion-head',
+            bodySelector: '.combat-accordion-body',
+            expandAllSelector: '.combat-expand-all',
+            collapseAllSelector: '.combat-collapse-all'
+        });
+
+        initTabPanels(combatSection, {
+            linkSelector: '.combat-tab-link',
+            panelSelector: '.combat-tables-panel',
+            linkDataAttr: 'data-combat-tab',
+            panelDataAttr: 'data-combat-panel'
         });
 
         // Weapon sub-tabs (inside "Armes par type" panel)
-        combatSection.querySelectorAll('.combat-weapon-tab').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                const type = this.getAttribute('data-weapon-type');
-                if (!type) return;
-                const panelWrap = this.closest('.combat-tables-panel');
-                if (!panelWrap) return;
-                panelWrap.querySelectorAll('.combat-weapon-tab').forEach(function(b) { b.classList.remove('active'); });
-                panelWrap.querySelectorAll('.combat-weapon-panel').forEach(function(p) {
-                    p.classList.toggle('active', p.getAttribute('data-weapon-panel') === type);
-                });
-                this.classList.add('active');
+        var panelWrap = combatSection.querySelector('#combat-panel-armes-type');
+        if (panelWrap) {
+            initTabPanels(panelWrap, {
+                linkSelector: '.combat-weapon-tab',
+                panelSelector: '.combat-weapon-panel',
+                linkDataAttr: 'data-weapon-type',
+                panelDataAttr: 'data-weapon-panel'
             });
-        });
+        }
 
         // Weapon type dropdown: switch to "Armes par type" tab and show that weapon panel
-        const weaponTypeSelect = combatSection.querySelector('#combat-weapon-type');
+        var weaponTypeSelect = combatSection.querySelector('#combat-weapon-type');
         if (weaponTypeSelect) {
             weaponTypeSelect.addEventListener('change', function() {
-                const value = this.value;
+                var value = this.value;
                 if (!value) return;
-                const tabLink = combatSection.querySelector('.combat-tab-link[data-combat-tab="armes-type"]');
+                var tabLink = combatSection.querySelector('.combat-tab-link[data-combat-tab="armes-type"]');
                 if (tabLink) tabLink.click();
-                const panelWrap = combatSection.querySelector('#combat-panel-armes-type');
-                if (!panelWrap) return;
-                panelWrap.querySelectorAll('.combat-weapon-tab').forEach(function(b) { b.classList.remove('active'); });
-                panelWrap.querySelectorAll('.combat-weapon-panel').forEach(function(p) {
+                var wrap = combatSection.querySelector('#combat-panel-armes-type');
+                if (!wrap) return;
+                wrap.querySelectorAll('.combat-weapon-tab').forEach(function(b) { b.classList.remove('active'); });
+                wrap.querySelectorAll('.combat-weapon-panel').forEach(function(p) {
                     p.classList.toggle('active', p.getAttribute('data-weapon-panel') === value);
                 });
-                const tabBtn = panelWrap.querySelector('.combat-weapon-tab[data-weapon-type="' + value + '"]');
+                var tabBtn = wrap.querySelector('.combat-weapon-tab[data-weapon-type="' + value + '"]');
                 if (tabBtn) tabBtn.classList.add('active');
             });
         }
 
         // Weapon search: filter rows in the visible weapon table
-        const weaponSearch = combatSection.querySelector('#combat-weapon-search');
+        var weaponSearch = combatSection.querySelector('#combat-weapon-search');
         if (weaponSearch) {
             weaponSearch.addEventListener('input', function() {
-                const q = (this.value || '').trim().toLowerCase();
-                const activePanel = combatSection.querySelector('.combat-weapon-panel.active');
+                var q = (this.value || '').trim().toLowerCase();
+                var activePanel = combatSection.querySelector('.combat-weapon-panel.active');
                 if (!activePanel) return;
-                const table = activePanel.querySelector('.combat-table--weapons tbody');
+                var table = activePanel.querySelector('.combat-table--weapons tbody');
                 if (!table) return;
                 table.querySelectorAll('tr').forEach(function(tr) {
-                    const nameCell = tr.querySelector('td:first-child');
-                    const text = nameCell ? nameCell.textContent.toLowerCase() : '';
+                    var nameCell = tr.querySelector('td:first-child');
+                    var text = nameCell ? nameCell.textContent.toLowerCase() : '';
                     tr.classList.toggle('hidden', q && text.indexOf(q) === -1);
                 });
             });
@@ -515,48 +554,22 @@
     // Magic (Rilie) Section: Accordion, Table Tabs
     // ========================================
     function initMagic() {
-        const magicSection = document.getElementById('magic');
+        var magicSection = document.getElementById('magic');
         if (!magicSection) return;
 
-        // Accordion: toggle body on head click
-        magicSection.querySelectorAll('.magic-accordion-item').forEach(function(item) {
-            const head = item.querySelector('.magic-accordion-head');
-            const body = item.querySelector('.magic-accordion-body');
-            if (!head || !body) return;
-            head.addEventListener('click', function() {
-                const isOpen = body.classList.contains('is-open');
-                body.classList.toggle('is-open', !isOpen);
-                head.setAttribute('aria-expanded', !isOpen);
-            });
+        initAccordion(magicSection, {
+            itemSelector: '.magic-accordion-item',
+            headSelector: '.magic-accordion-head',
+            bodySelector: '.magic-accordion-body',
+            expandAllSelector: '.magic-expand-all',
+            collapseAllSelector: '.magic-collapse-all'
         });
 
-        // Expand all / Collapse all
-        const expandAll = magicSection.querySelector('.magic-expand-all');
-        const collapseAll = magicSection.querySelector('.magic-collapse-all');
-        if (expandAll) {
-            expandAll.addEventListener('click', function() {
-                magicSection.querySelectorAll('.magic-accordion-body').forEach(function(b) { b.classList.add('is-open'); });
-                magicSection.querySelectorAll('.magic-accordion-head').forEach(function(h) { h.setAttribute('aria-expanded', 'true'); });
-            });
-        }
-        if (collapseAll) {
-            collapseAll.addEventListener('click', function() {
-                magicSection.querySelectorAll('.magic-accordion-body').forEach(function(b) { b.classList.remove('is-open'); });
-                magicSection.querySelectorAll('.magic-accordion-head').forEach(function(h) { h.setAttribute('aria-expanded', 'false'); });
-            });
-        }
-
-        // Magic reference tables: tab links
-        magicSection.querySelectorAll('.magic-tab-link').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                const tabId = this.getAttribute('data-magic-tab');
-                if (!tabId) return;
-                magicSection.querySelectorAll('.magic-tab-link').forEach(function(b) { b.classList.remove('active'); });
-                magicSection.querySelectorAll('.magic-tables-panel').forEach(function(p) {
-                    p.classList.toggle('active', p.getAttribute('data-magic-panel') === tabId);
-                });
-                this.classList.add('active');
-            });
+        initTabPanels(magicSection, {
+            linkSelector: '.magic-tab-link',
+            panelSelector: '.magic-tables-panel',
+            linkDataAttr: 'data-magic-tab',
+            panelDataAttr: 'data-magic-panel'
         });
     }
 
@@ -564,34 +577,16 @@
     // Progression Section: Accordion (Expand/Collapse)
     // ========================================
     function initProgression() {
-        const progressionSection = document.getElementById('progression');
+        var progressionSection = document.getElementById('progression');
         if (!progressionSection) return;
 
-        progressionSection.querySelectorAll('.progression-accordion-item').forEach(function(item) {
-            const head = item.querySelector('.progression-accordion-head');
-            const body = item.querySelector('.progression-accordion-body');
-            if (!head || !body) return;
-            head.addEventListener('click', function() {
-                const isOpen = body.classList.contains('is-open');
-                body.classList.toggle('is-open', !isOpen);
-                head.setAttribute('aria-expanded', !isOpen);
-            });
+        initAccordion(progressionSection, {
+            itemSelector: '.progression-accordion-item',
+            headSelector: '.progression-accordion-head',
+            bodySelector: '.progression-accordion-body',
+            expandAllSelector: '.progression-expand-all',
+            collapseAllSelector: '.progression-collapse-all'
         });
-
-        const expandAll = progressionSection.querySelector('.progression-expand-all');
-        const collapseAll = progressionSection.querySelector('.progression-collapse-all');
-        if (expandAll) {
-            expandAll.addEventListener('click', function() {
-                progressionSection.querySelectorAll('.progression-accordion-body').forEach(function(b) { b.classList.add('is-open'); });
-                progressionSection.querySelectorAll('.progression-accordion-head').forEach(function(h) { h.setAttribute('aria-expanded', 'true'); });
-            });
-        }
-        if (collapseAll) {
-            collapseAll.addEventListener('click', function() {
-                progressionSection.querySelectorAll('.progression-accordion-body').forEach(function(b) { b.classList.remove('is-open'); });
-                progressionSection.querySelectorAll('.progression-accordion-head').forEach(function(h) { h.setAttribute('aria-expanded', 'false'); });
-            });
-        }
     }
 
     // ========================================

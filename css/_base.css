@@ -1,0 +1,279 @@
+/* ========================================
+   Font Face Declarations
+   ======================================== */
+/* Body Fonts - Fanwood Text & Quattrocento */
+@font-face {
+    font-family: 'Fanwood Text';
+    font-style: italic;
+    font-weight: 400;
+    src: url(https://fonts.wp.com/s/fanwoodtext/v17/3XFzErwl05Ad_vSCF6Fq7xX2R-zV_Pw.ttf) format('truetype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Fanwood Text';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.wp.com/s/fanwoodtext/v17/3XFtErwl05Ad_vSCF6Fq7xX2TNzc.ttf) format('truetype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Quattrocento';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.wp.com/s/quattrocento/v24/OZpEg_xvsDZQL_LKIF7q4jP3zWj_.ttf) format('truetype');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Quattrocento';
+    font-style: normal;
+    font-weight: 700;
+    src: url(https://fonts.wp.com/s/quattrocento/v24/OZpbg_xvsDZQL_LKIF7q4jP_eE3vfqnd.ttf) format('truetype');
+    font-display: swap;
+}
+
+/* Heading Font - Texturina */
+@font-face {
+    font-family: 'Texturina';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../assets/fonts/c4mM1nxpEtL3pXiAulRTkY-HGmNEX1b9NspjMwhAgliHhVrXy2eYGvUl25riW1OD.woff2') format('woff2');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Texturina';
+    font-style: normal;
+    font-weight: 900;
+    src: url('../assets/fonts/c4mM1nxpEtL3pXiAulRTkY-HGmNEX1b9NspjMwhAgliHhVrXy2cxHfUl25riW1OD.woff2') format('woff2');
+    font-display: swap;
+}
+
+/* ========================================
+   Reset & Base Styles
+   ======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--tdt-dark-red);
+    /* Procedural marble texture via WebGL canvas replaces static background */
+    background: linear-gradient(
+        135deg,
+        rgba(90, 31, 31, 0.95) 0%,
+        rgba(74, 24, 24, 0.98) 50%,
+        rgba(58, 16, 16, 1) 100%
+    );
+    background-position: left top;
+    background-size: auto;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    color: var(--tdt-cream);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* ========================================
+   Custom scrollbars (viewport + overflow areas)
+   ======================================== */
+/* Firefox */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--tdt-brown) var(--tdt-burgundy);
+}
+/* WebKit: viewport scrollbar */
+html::-webkit-scrollbar {
+    width: 10px;
+}
+html::-webkit-scrollbar-track {
+    background: var(--tdt-burgundy);
+}
+html::-webkit-scrollbar-thumb {
+    background: var(--tdt-brown);
+    border-radius: var(--radius-sm);
+    border: 2px solid var(--tdt-burgundy);
+}
+html::-webkit-scrollbar-thumb:hover {
+    background: var(--tdt-brown-light);
+}
+
+/* Custom scrollbars: add .tdt-scrollable to any scrollable area that should use TDT styling */
+.tdt-scrollable::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+}
+.tdt-scrollable::-webkit-scrollbar-track {
+    background: var(--tdt-burgundy);
+    border-radius: var(--radius-sm);
+}
+.tdt-scrollable::-webkit-scrollbar-thumb {
+    background: var(--tdt-brown);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--tdt-beige);
+}
+.tdt-scrollable::-webkit-scrollbar-thumb:hover {
+    background: var(--tdt-brown-light);
+}
+.tdt-scrollable {
+    scrollbar-width: thin;
+    scrollbar-color: var(--tdt-brown) var(--tdt-burgundy);
+}
+
+/* WebGL Background Canvas - Procedural marble texture */
+.webgl-bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.4;
+    mix-blend-mode: multiply;
+}
+
+/* WebGL Header Canvas - Procedural gold texture */
+.webgl-header-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.3;
+    mix-blend-mode: overlay;
+}
+
+/* Mystical glow overlay for depth */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+    background: 
+        radial-gradient(
+            ellipse at 30% 20%,
+            rgba(160, 253, 218, 0.08) 0%,
+            transparent 50%
+        ),
+        radial-gradient(
+            ellipse at 70% 80%,
+            rgba(245, 230, 196, 0.06) 0%,
+            transparent 50%
+        ),
+        radial-gradient(
+            ellipse at center,
+            transparent 0%,
+            transparent 40%,
+            rgba(90, 31, 31, 0.3) 70%,
+            rgba(42, 15, 15, 0.6) 85%,
+            rgba(20, 5, 5, 0.85) 100%
+        );
+    animation: mysticalPulse 20s ease-in-out infinite alternate;
+}
+
+@keyframes mysticalPulse {
+    0% {
+        opacity: 0.7;
+        filter: hue-rotate(0deg);
+    }
+    100% {
+        opacity: 0.9;
+        filter: hue-rotate(15deg);
+    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--tdt-cream);
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-sm);
+    /* Maximalist baroque text shadows for ornate effect */
+    text-shadow: 
+        2px 2px 0px rgba(90, 31, 31, 0.5),
+        4px 4px 8px rgba(0, 0, 0, 0.4),
+        0 0 16px rgba(245, 230, 196, 0.3),
+        0 0 32px rgba(245, 230, 196, 0.1);
+    letter-spacing: 0.05em;
+    position: relative;
+}
+
+/* Enhanced title styling with mystical glow */
+.site-title {
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5))
+            drop-shadow(0 0 24px rgba(245, 230, 196, 0.4));
+    animation: titleGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+    0% {
+        text-shadow: 
+            2px 2px 0px rgba(90, 31, 31, 0.5),
+            4px 4px 8px rgba(0, 0, 0, 0.4),
+            0 0 16px rgba(245, 230, 196, 0.3),
+            0 0 32px rgba(245, 230, 196, 0.1);
+    }
+    100% {
+        text-shadow: 
+            2px 2px 0px rgba(90, 31, 31, 0.5),
+            4px 4px 8px rgba(0, 0, 0, 0.4),
+            0 0 24px rgba(245, 230, 196, 0.5),
+            0 0 48px rgba(160, 253, 218, 0.2),
+            0 0 64px rgba(245, 230, 196, 0.15);
+    }
+}
+
+p {
+    margin-bottom: var(--spacing-sm);
+    color: var(--tdt-cream);
+    max-width: 75ch;
+}
+
+code {
+    background: rgba(90, 31, 31, 0.6);
+    color: var(--tdt-beige-warm);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+a {
+    color: var(--tdt-beige-warm);
+    text-decoration: none;
+    transition: all var(--transition-normal);
+}
+
+a:hover, a:focus {
+    color: var(--tdt-cream);
+    text-shadow: 0 0 8px rgba(255, 245, 221, 0.5);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
