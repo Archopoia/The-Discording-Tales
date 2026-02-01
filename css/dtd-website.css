@@ -4136,10 +4136,6 @@ img {
 }
 
 .peoples-top {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(280px, 2fr);
-    gap: var(--spacing-lg);
-    align-items: start;
     margin-bottom: var(--spacing-md);
 }
 
@@ -4154,8 +4150,199 @@ img {
 }
 
 @media (max-width: 640px) {
-    .peoples-top {
+    .peoples-tree-table-row {
         grid-template-columns: 1fr;
+    }
+}
+
+/* ----- Peuples: intro, tree+table row, then cards ----- */
+/* Row: tree (left) + summary table (right) */
+.peoples-tree-table-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 1fr);
+    gap: var(--spacing-lg);
+    margin: var(--spacing-md) 0;
+    align-items: start;
+}
+.peoples-tree-wrap,
+.peoples-table-wrap {
+    min-width: 0;
+}
+/* Tree: collapsible Origin → People → Races — explicit text color for readability */
+.peoples-tree {
+    border: 1px solid var(--tdt-beige);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-sm);
+    background: var(--tdt-cream);
+    color: #1a0808;
+}
+.peoples-tree-node {
+    margin: var(--spacing-xs) 0;
+    color: #1a0808;
+}
+.peoples-tree-node strong {
+    color: var(--tdt-burgundy);
+    font-weight: 700;
+}
+.peoples-tree-node[data-origin] > .peoples-tree-children {
+    margin-left: var(--spacing-md);
+    border-left: 2px solid var(--tdt-burgundy-warm);
+    padding-left: var(--spacing-sm);
+}
+.peoples-tree-toggle {
+    display: inline-block;
+    width: 1em;
+    margin-right: var(--spacing-xs);
+    cursor: pointer;
+    font-size: 0.85em;
+    color: var(--tdt-burgundy);
+}
+.peoples-tree-node[aria-expanded="true"] > .peoples-tree-toggle::before {
+    content: '▼';
+}
+.peoples-tree-node[aria-expanded="false"] > .peoples-tree-toggle::before {
+    content: '▶';
+}
+.peoples-tree-node[aria-expanded="false"] > .peoples-tree-children {
+    display: none;
+}
+.peoples-tree-races {
+    font-size: 0.9em;
+    color: var(--tdt-brown);
+    margin-left: var(--spacing-xs);
+}
+/* Flip cards */
+.peoples-gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-md);
+}
+.peoples-flip-card {
+    position: relative;
+    perspective: 1000px;
+    min-height: 280px;
+    transition: transform var(--transition-normal);
+    transform-style: preserve-3d;
+}
+.peoples-flip-card.flipped {
+    transform: rotateY(180deg);
+}
+.peoples-flip-front,
+.peoples-flip-back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--card-shadow);
+    background: linear-gradient(135deg, var(--tdt-beige-lighter) 0%, var(--tdt-beige-warm) 50%, var(--tdt-beige-light) 100%);
+    border: 1px solid var(--tdt-burgundy-warm);
+}
+.peoples-flip-back {
+    transform: rotateY(180deg);
+}
+.peoples-flip-back-inner {
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+.peoples-origin-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    background: var(--tdt-burgundy-warm);
+    color: var(--tdt-cream);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--spacing-xs);
+}
+.peoples-morality-line {
+    margin: var(--spacing-xs) 0;
+    font-size: 0.95rem;
+}
+.peoples-morality-line em {
+    font-style: normal;
+    color: var(--tdt-brown);
+}
+.peoples-races-mini {
+    list-style: none;
+    margin: var(--spacing-xs) 0;
+    padding-left: 0;
+    font-size: 0.9rem;
+}
+.peoples-races-mini li {
+    padding-left: var(--spacing-sm);
+    position: relative;
+}
+.peoples-races-mini li::before {
+    content: '•';
+    color: var(--tdt-burgundy-warm);
+    position: absolute;
+    left: 0;
+}
+.peoples-hook {
+    margin-top: auto;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--tdt-brown);
+}
+.peoples-flip-btn {
+    margin-top: var(--spacing-sm);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: var(--tdt-burgundy-warm);
+    color: var(--tdt-cream);
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: background var(--transition-fast);
+}
+.peoples-flip-btn:hover {
+    background: var(--tdt-dark-red);
+}
+.peoples-flip-back-btn {
+    margin-top: auto;
+}
+.peoples-back-section {
+    margin-bottom: var(--spacing-md);
+}
+.peoples-back-section h6 {
+    margin: 0 0 var(--spacing-xs) 0;
+    font-size: 0.95rem;
+    color: var(--tdt-burgundy);
+}
+.peoples-attr-table,
+.peoples-phys-table {
+    font-size: 0.9rem;
+    width: 100%;
+}
+.peoples-attr-table th,
+.peoples-phys-table th,
+.peoples-attr-table td,
+.peoples-phys-table td {
+    padding: 2px 6px;
+}
+.attr-sex-diff td:nth-child(2) {
+    font-variant-numeric: tabular-nums;
+}
+/* Hide cards by filter */
+.peoples-flip-card.peoples-hidden {
+    display: none !important;
+}
+/* Responsive: Peuples */
+@media (max-width: 640px) {
+    .peoples-gallery {
+        grid-template-columns: 1fr; /* already 1 col */
+    }
+    .peoples-flip-card {
+        min-height: 260px;
     }
 }
 

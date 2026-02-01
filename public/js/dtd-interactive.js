@@ -50,6 +50,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         initTabs();
         initSubTabs();
+        initPeuples();
         initCombat();
         initMagic();
         initProgression();
@@ -202,6 +203,46 @@
         const firstLink = links[0];
         const firstSubId = firstLink && firstLink.getAttribute('href') ? firstLink.getAttribute('href').replace('#', '') : '';
         if (firstSubId) switchSubTab(tabId, firstSubId);
+    }
+
+    // ========================================
+    // Peuples Section: Flip cards, view tabs, tree, filter/search
+    // ========================================
+    function initPeuples() {
+        const peoplesSection = document.getElementById('peoples');
+        if (!peoplesSection) return;
+
+        // Flip cards: toggle .flipped on the card when See details / Back is clicked
+        peoplesSection.querySelectorAll('.peoples-flip-btn').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const card = btn.closest('.peoples-flip-card');
+                if (card) card.classList.toggle('flipped');
+            });
+        });
+
+        // Tree: toggle expand/collapse on Origin nodes (nodes with data-origin)
+        peoplesSection.querySelectorAll('.peoples-tree-node[data-origin]').forEach(function(node) {
+            const toggle = node.querySelector('.peoples-tree-toggle');
+            const children = node.querySelector('.peoples-tree-children');
+            if (!children) return;
+            function expand() {
+                node.setAttribute('aria-expanded', 'true');
+                children.style.display = '';
+            }
+            function collapse() {
+                node.setAttribute('aria-expanded', 'false');
+                children.style.display = 'none';
+            }
+            if (node.getAttribute('aria-expanded') === 'true') expand();
+            else collapse();
+            (toggle || node).addEventListener('click', function(e) {
+                e.preventDefault();
+                if (node.getAttribute('aria-expanded') === 'true') collapse();
+                else expand();
+            });
+        });
+
     }
 
     // ========================================

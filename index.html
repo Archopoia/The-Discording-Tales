@@ -218,12 +218,47 @@
                 </div>
             </div>
             
-            <!-- Peoples Section -->
+            <!-- Peoples Section: intro, then tree (left) + table (right), then cards -->
             <div class="lore-section tab-sub-panel" id="peoples">
                 <h3 data-en="10 Unique Peoples" data-fr="10 Peuples Uniques">10 Unique Peoples</h3>
                 <div class="peoples-top" data-lang-key="peoples-content">
                     <p class="peoples-intro" data-en="Each People has their own <strong>morality</strong> (driving them insane from you), <strong>cultures</strong> (struggling against each other), and unique racial <strong>traits</strong> (distinguishing them from others)." data-fr="Chaque Peuple a sa propre <strong>moralité</strong> (qui les rend fous de vous), ses <strong>cultures</strong> (luttant les unes contre les autres), et des traits raciaux uniques (les distinguant des autres).">Each People has their own <strong>morality</strong> (driving them insane from you), <strong>cultures</strong> (struggling against each other), and unique racial <strong>traits</strong> (distinguishing them from others).</p>
-                    <div class="lore-table-wrapper peoples-table-wrapper">
+                    <!-- Row: tree (left) + summary table (right) -->
+                    <div class="peoples-tree-table-row">
+                        <div class="peoples-tree-wrap">
+                            <div class="peoples-tree" role="tree" aria-label="Origins and peoples">
+                            <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-origin="yommes">
+                                <span class="peoples-tree-toggle" aria-hidden="true"></span>
+                                <strong data-en="Yômmes" data-fr="Yômmes">Yômmes</strong>
+                                <div class="peoples-tree-children">
+                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="false" data-peuple="aristois"><span class="peoples-tree-toggle"></span><span data-en="Aristois" data-fr="Aristois">Aristois</span> <span class="peoples-tree-races">Monte-Foudres, Fleuris, Des Souffles, Ambrés</span></div>
+                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="false" data-peuple="griscribes"><span class="peoples-tree-toggle"></span><span data-en="Griscribes" data-fr="Griscribes">Griscribes</span> <span class="peoples-tree-races">Arboricoles, Saute-Brumes, Limnicoles, D'Eau</span></div>
+                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="false" data-peuple="navillis"><span class="peoples-tree-toggle"></span><span data-en="Navillis" data-fr="Navillis">Navillis</span> <span class="peoples-tree-races">Carmin, Pétricole, Perce-Vague</span></div>
+                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="false" data-peuple="meridiens"><span class="peoples-tree-toggle"></span><span data-en="Méridiens" data-fr="Méridiens">Méridiens</span> <span class="peoples-tree-races">Sylvains, Des Monts, Marche-Rêves</span></div>
+                                </div>
+                            </div>
+                            <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-origin="yorres">
+                                <span class="peoples-tree-toggle" aria-hidden="true"></span>
+                                <strong data-en="Yôrres" data-fr="Yôrres">Yôrres</strong>
+                                <div class="peoples-tree-children">
+                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="false" data-peuple="hauts-ylfes"><span class="peoples-tree-toggle"></span><span data-en="Hauts Ylfes" data-fr="Hauts Ylfes">Hauts Ylfes</span> <span class="peoples-tree-races">De Lunes, Des Plaines</span></div>
+                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="false" data-peuple="ylfes-pales"><span class="peoples-tree-toggle"></span><span data-en="Ylfes pâles" data-fr="Ylfes pâles">Ylfes pâles</span> <span class="peoples-tree-races">Collinicoles, Chromatiques, Pastoraux</span></div>
+                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="false" data-peuple="ylfes-des-lacs"><span class="peoples-tree-toggle"></span><span data-en="Ylfes des lacs" data-fr="Ylfes des lacs">Ylfes des lacs</span> <span class="peoples-tree-races">Mâche-Troncs, Troglodytes, Danse-Feuilles</span></div>
+                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="false" data-peuple="iqqars"><span class="peoples-tree-toggle"></span><span data-en="Iqqars" data-fr="Iqqars">Iqqars</span> <span class="peoples-tree-races">Hauts, Bas</span></div>
+                                </div>
+                            </div>
+                            <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-origin="bestres">
+                                <span class="peoples-tree-toggle" aria-hidden="true"></span>
+                                <strong data-en="Bêstres" data-fr="Bêstres">Bêstres</strong>
+                                <div class="peoples-tree-children">
+                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="false" data-peuple="slaadeens"><span class="peoples-tree-toggle"></span><span data-en="Slaadéens" data-fr="Slaadéens">Slaadéens</span> <span class="peoples-tree-races">Sydru-kal, Wijriol, Hlabayan, Felichrem, Iossolam</span></div>
+                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="false" data-peuple="tchalkchais"><span class="peoples-tree-toggle"></span><span data-en="Tchalkchaïs" data-fr="Tchalkchaïs">Tchalkchaïs</span> <span class="peoples-tree-races">Elesihin, Ordol, Îohadam, Nuôtarjoy, Ikrayad</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="peoples-table-wrap">
+                            <div class="lore-table-wrapper peoples-table-wrapper">
                         <table class="lore-table peoples-summary-table">
                             <thead>
                                 <tr>
@@ -245,57 +280,338 @@
                                 <tr><td>Tchalkchaïs</td><td data-en="Bêstres" data-fr="Bêstres">Bêstres</td><td data-en="Sacrificial Altruism" data-fr="Echothysie">Sacrificial Altruism</td></tr>
                             </tbody>
                         </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <!-- Flip cards per People -->
                 <div class="peoples-gallery" data-lang-key="peoples-cards">
-                    <div class="genre-card">
-                        <h5 data-en="Aristois" data-fr="Aristois">Aristois</h5>
-                        <p data-en="<strong>Morality:</strong> Trèpharchie ('Sovereign Growth')<br/><strong>Attributes (♂):</strong> FOR -1, AGI -1, DEX -1, VIG -1, EMP +1, PER +1, CRE 0, VOL +2<br/><strong>Attributes (♀):</strong> FOR -3, AGI 0, DEX -1, VIG -1, EMP +3, PER +2, CRE -1, VOL 0<br/><strong>Description:</strong> Sovereign warriors with a strong sense of hierarchy and growth." data-fr="<strong>Moralité:</strong> Trèpharchie ('Croissance Souveraine')<br/><strong>Attributs (♂) :</strong> FOR -1, AGI -1, DEX -1, VIG -1, EMP +1, PER +1, CRÉ 0, VOL +2<br/><strong>Attributs (♀) :</strong> FOR -3, AGI 0, DEX -1, VIG -1, EMP +3, PER +2, CRÉ -1, VOL 0<br/><strong>Description:</strong> Guerriers souverains avec un fort sens de la hiérarchie et de la croissance."><strong>Morality:</strong> Trèpharchie ('Sovereign Growth')<br/><strong>Attributes (♂):</strong> FOR -1, AGI -1, DEX -1, VIG -1, EMP +1, PER +1, CRE 0, VOL +2<br/><strong>Attributes (♀):</strong> FOR -3, AGI 0, DEX -1, VIG -1, EMP +3, PER +2, CRE -1, VOL 0<br/><strong>Description:</strong> Sovereign warriors with a strong sense of hierarchy and growth.</p>
+                    <!-- Aristois -->
+                    <div class="peoples-flip-card genre-card" data-origin="yommes" data-peuple="aristois">
+                            <div class="peoples-flip-front">
+                                <span class="peoples-origin-badge" data-en="Yômmes" data-fr="Yômmes">Yômmes</span>
+                                <h5 data-en="Aristois" data-fr="Aristois">Aristois</h5>
+                                <p class="peoples-morality-line"><span data-en="Trèpharchie" data-fr="Trèpharchie">Trèpharchie</span> <em data-en="(Sovereign Growth)" data-fr="(Croissance Souveraine)">(Sovereign Growth)</em></p>
+                                <ul class="peoples-races-mini"><li title="Auraient perdu leurs émotions contre leurs muscles lors de leur plus longue et guerrière transhumance escarpée. Leurs nomapalais mercenaires perdus au travers des lointaines terres hostiles. Leurs lutteurs-cavaliers défendent nos archives de leurs pavois grandissant à chaque fracas.">Monte-Foudres</li><li title="Descendraient de la colonie perdue d'Uyahel. Leurs artisans associèrent et alignèrent leurs voiles, planches et rails sur les forces attractives du monde afin d'envoyer au loin ces Bêstres.">Fleuris</li><li title="Leurs sommeliers de sucs ravissent tous, et leurs tambours enterrés font vibrer les tubules de nos mastodontes d'un même rythme bien qu'inaudible à quiconque n'en possédant pas.">Des Souffles</li><li title="Leurs dompteurs-guérisseurs savent convaincre par la musicalité de leurs tromoroches, nos faunes et flores de se raviver à chaque printemps.">Ambrés</li></ul>
+                                <p class="peoples-hook" data-en="Sovereign warriors; growth and archives." data-fr="Guerriers souverains ; croissance et archives.">Sovereign warriors; growth and archives.</p>
+                                <button type="button" class="peoples-flip-btn" aria-label="See details"><span data-en="See details" data-fr="Voir détails">See details</span></button>
+                            </div>
+                            <div class="peoples-flip-back">
+                                <div class="peoples-flip-back-inner">
+                                <h5 data-en="Aristois" data-fr="Aristois">Aristois</h5>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Attributes (♂|♀)" data-fr="Attributs (♂|♀)">Attributes (♂|♀)</h6>
+                                    <div class="lore-table-wrapper"><table class="lore-table peoples-attr-table attr-sex-diff"><thead><tr><th>Attr</th><th data-en="Modifier ♂|♀" data-fr="Mod. ♂|♀">Modifier ♂|♀</th></tr></thead><tbody>
+                                        <tr><td>FOR</td><td>−1|−3</td></tr><tr><td>AGI</td><td>−1|0</td></tr><tr><td>DEX</td><td>−1</td></tr><tr><td>VIG</td><td>−1</td></tr><tr><td>EMP</td><td>+1|+3</td></tr><tr><td>PER</td><td>+1|+2</td></tr><tr><td>CRE</td><td>0|−1</td></tr><tr><td>VOL</td><td>+2|0</td></tr>
+                                    </tbody></table></div>
+                                </div>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Physical" data-fr="Physique">Physical</h6>
+                                    <div class="lore-table-wrapper"><table class="lore-table peoples-phys-table"><thead><tr><th data-en="Taille" data-fr="Taille">Taille</th><th data-en="Stature ♂|♀" data-fr="Stature ♂|♀">Stature ♂|♀</th><th data-en="Gras ♂|♀" data-fr="Gras ♂|♀">Gras ♂|♀</th><th data-en="Dimorphisme" data-fr="Dimorphisme">Dimorphisme</th></tr></thead><tbody><tr><td data-en="Petite (-1)" data-fr="Petite (-1)">Petite (-1)</td><td>Éq.(0)|Svelte(-1)</td><td>Corp.(+2)|Ég.(0)</td><td data-en="Typique" data-fr="Typique">Typique</td></tr></tbody></table></div>
+                                </div>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Competences" data-fr="Compétences">Competences</h6>
+                                    <p><span data-en="Sociétales:" data-fr="Sociétales :">Sociétales:</span> Charisme, Réflexion, Domination ou Détection. <span data-en="Populaire:" data-fr="Populaire :">Populaire:</span> Réflexion. <span data-en="Raciales:" data-fr="Raciales :">Raciales:</span> FOR|DEX|VIG|CRÉ.</p>
+                                </div>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Relations" data-fr="Relations">Relations</h6>
+                                    <p><span data-en="Ami:" data-fr="Ami :">Ami:</span> Griscribes, Navillis. <span data-en="Confiant:" data-fr="Confiant :">Confiant:</span> Méridiens. <span data-en="Neutre:" data-fr="Neutre :">Neutre:</span> Slaadéens, Tchalkchaïs. <span data-en="Méfiant:" data-fr="Méfiant :">Méfiant:</span> Ylfes des lacs. <span data-en="Hostile:" data-fr="Hostile :">Hostile:</span> Hauts Ylfes, Ylfes pâles.</p>
+                                </div>
+                                <button type="button" class="peoples-flip-btn peoples-flip-back-btn" aria-label="Back"><span data-en="Back" data-fr="Retour">Back</span></button>
+                                </div>
+                            </div>
                     </div>
                     
-                    <div class="genre-card">
-                        <h5 data-en="Griscribes" data-fr="Griscribes">Griscribes</h5>
-                        <p data-en="<strong>Morality:</strong> Mignusophie ('Nested Wisdom')<br/><strong>Attributes (♂):</strong> FOR +1, AGI -2, DEX -2, VIG +1, EMP 0, PER +2, CRE 0, VOL 0<br/><strong>Attributes (♀):</strong> FOR -1, AGI -1, DEX -2, VIG +1, EMP +2, PER +3, CRE -1, VOL -1<br/><strong>Description:</strong> Nested sages who value interconnected knowledge and wisdom." data-fr="<strong>Moralité:</strong> Mignusophie ('Sagesse Imbriquée')<br/><strong>Attributs (♂) :</strong> FOR +1, AGI -2, DEX -2, VIG +1, EMP 0, PER +2, CRÉ 0, VOL 0<br/><strong>Attributs (♀) :</strong> FOR -1, AGI -1, DEX -2, VIG +1, EMP +2, PER +3, CRÉ -1, VOL -1<br/><strong>Description:</strong> Sages imbriqués qui valorisent le savoir et la sagesse interconnectés."><strong>Morality:</strong> Mignusophie ('Nested Wisdom')<br/><strong>Attributes (♂):</strong> FOR +1, AGI -2, DEX -2, VIG +1, EMP 0, PER +2, CRE 0, VOL 0<br/><strong>Attributes (♀):</strong> FOR -1, AGI -1, DEX -2, VIG +1, EMP +2, PER +3, CRE -1, VOL -1<br/><strong>Description:</strong> Nested sages who value interconnected knowledge and wisdom.</p>
+                    <!-- Griscribes -->
+                    <div class="peoples-flip-card genre-card" data-origin="yommes" data-peuple="griscribes">
+                            <div class="peoples-flip-front">
+                                <span class="peoples-origin-badge" data-en="Yômmes" data-fr="Yômmes">Yômmes</span>
+                                <h5 data-en="Griscribes" data-fr="Griscribes">Griscribes</h5>
+                                <p class="peoples-morality-line"><span data-en="Mignusophie" data-fr="Mignusophie">Mignusophie</span> <em data-en="(Nested Wisdom)" data-fr="(Sagesse Imbriquée)">(Nested Wisdom)</em></p>
+                                <ul class="peoples-races-mini"><li title="Les premiers chamanes seraient tous mort dans les passes brouillardeuses d'Izkaraï. Ils inventèrent les rails à montures pour leurs démineurs-déments qui désamorcent les bulles d'accroissement exponentielles issues de ces brumes meurtrières.">Arboricoles</li><li title="Auraient vu depuis leur plus haut arbre une cité de lumière dans leur ciel avant qu'elle ne disparaissent. Leurs caravaniers aux mastodontes élevés dans et nés par l'or naviguant même à l'envers sur les parois.">Saute-Brumes</li><li title="Auraient survécu dans des cités secrètes au sein des gouffres. Leurs inventeurs-enlisés produisent des inventions telles que la physiosèmie aérienne ou aquatique réagissant pour changer de couleur, texture afin d'y révéler des secrets.">Limnicoles</li><li title="Leurs sophisto-parfumeurs élevèrent ces volatiles reconnaissant tout individu ou chose marquée, communiquant au travers des eaux spéciales à des fins d'étude ou politiques.">D'Eau</li></ul>
+                                <p class="peoples-hook" data-en="Nested sages; mangroves and truths." data-fr="Sages imbriqués ; mangroves et vérités.">Nested sages; mangroves and truths.</p>
+                                <button type="button" class="peoples-flip-btn" aria-label="See details"><span data-en="See details" data-fr="Voir détails">See details</span></button>
+                            </div>
+                            <div class="peoples-flip-back">
+                                <div class="peoples-flip-back-inner">
+                                <h5 data-en="Griscribes" data-fr="Griscribes">Griscribes</h5>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Attributes (♂|♀)" data-fr="Attributs (♂|♀)">Attributes (♂|♀)</h6>
+                                    <div class="lore-table-wrapper"><table class="lore-table peoples-attr-table attr-sex-diff"><thead><tr><th>Attr</th><th data-en="Modifier ♂|♀" data-fr="Mod. ♂|♀">Modifier ♂|♀</th></tr></thead><tbody>
+                                        <tr><td>FOR</td><td>+1|−1</td></tr><tr><td>AGI</td><td>−2|−1</td></tr><tr><td>DEX</td><td>−2</td></tr><tr><td>VIG</td><td>+1</td></tr><tr><td>EMP</td><td>0|+2</td></tr><tr><td>PER</td><td>+2|+3</td></tr><tr><td>CRE</td><td>0|−1</td></tr><tr><td>VOL</td><td>0|−1</td></tr>
+                                    </tbody></table></div>
+                                </div>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Physical" data-fr="Physique">Physical</h6>
+                                    <div class="lore-table-wrapper"><table class="lore-table peoples-phys-table"><thead><tr><th data-en="Taille" data-fr="Taille">Taille</th><th data-en="Stature ♂|♀" data-fr="Stature ♂|♀">Stature ♂|♀</th><th data-en="Gras ♂|♀" data-fr="Gras ♂|♀">Gras ♂|♀</th><th data-en="Dimorphisme" data-fr="Dimorphisme">Dimorphisme</th></tr></thead><tbody><tr><td data-en="Petite (-1)" data-fr="Petite (-1)">Petite (-1)</td><td>Massive(+2)|Large(+1)</td><td>Égalisé(+0)</td><td data-en="Typique" data-fr="Typique">Typique</td></tr></tbody></table></div>
+                                </div>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Competences" data-fr="Compétences">Competences</h6>
+                                    <p><span data-en="Sociétales:" data-fr="Sociétales :">Sociétales:</span> Charisme, Détection, Détection ou Charisme. <span data-en="Populaire:" data-fr="Populaire :">Populaire:</span> Détection. <span data-en="Raciales:" data-fr="Raciales :">Raciales:</span> DEX|AGI|CRÉ|EMP.</p>
+                                </div>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Relations" data-fr="Relations">Relations</h6>
+                                    <p><span data-en="Ami:" data-fr="Ami :">Ami:</span> Navillis. <span data-en="Confiant:" data-fr="Confiant :">Confiant:</span> Aristois. <span data-en="Accueil:" data-fr="Accueil :">Accueil:</span> Méridiens. <span data-en="Neutre:" data-fr="Neutre :">Neutre:</span> Slaadéens, Tchalkchaïs, Iqqars. <span data-en="Méfiant:" data-fr="Méfiant :">Méfiant:</span> Ylfes pâles. <span data-en="Hostile:" data-fr="Hostile :">Hostile:</span> Hauts Ylfes, Ylfes des lacs.</p>
+                                </div>
+                                <button type="button" class="peoples-flip-btn peoples-flip-back-btn" aria-label="Back"><span data-en="Back" data-fr="Retour">Back</span></button>
+                                </div>
+                            </div>
                     </div>
                     
-                    <div class="genre-card">
-                        <h5 data-en="Slaadéens" data-fr="Slaadéens">Slaadéens</h5>
-                        <p data-en="<strong>Morality:</strong> Thrasonirie ('Dreaming Audacity')<br/><strong>Attributes:</strong> FOR +2, AGI 0, DEX -3, VIG +1, EMP +2, PER -3, CRE 0, VOL +1<br/><strong>Description:</strong> Bold artists with a life expectancy ranging from 2 to 115 years." data-fr="<strong>Moralité:</strong> Thrasonirie ('Audace Rêveuse')<br/><strong>Attributs :</strong> FOR +2, AGI 0, DEX -3, VIG +1, EMP +2, PER -3, CRÉ 0, VOL +1<br/><strong>Description:</strong> Artistes audacieux avec une espérance de vie variant de 2 à 115 ans."><strong>Morality:</strong> Thrasonirie ('Dreaming Audacity')<br/><strong>Attributes:</strong> FOR +2, AGI 0, DEX -3, VIG +1, EMP +2, PER -3, CRE 0, VOL +1<br/><strong>Description:</strong> Bold artists with a life expectancy ranging from 2 to 115 years.</p>
+                    <!-- Navillis -->
+                    <div class="peoples-flip-card genre-card" data-origin="yommes" data-peuple="navillis">
+                            <div class="peoples-flip-front">
+                                <span class="peoples-origin-badge" data-en="Yômmes" data-fr="Yômmes">Yômmes</span>
+                                <h5 data-en="Navillis" data-fr="Navillis">Navillis</h5>
+                                <p class="peoples-morality-line"><span data-en="Olbôphélie" data-fr="Olbôphélie">Olbôphélie</span> <em data-en="(Devoted Felicity)" data-fr="(Félicité Dévouée)">(Devoted Felicity)</em></p>
+                                <ul class="peoples-races-mini"><li title="Auraient prétendu avoir découvert ces êtres vivants dans les plus grandes profondeurs des océans et qui aujourd'hui produisent nos communications par leurs lumières, fumées et couleurs changeantes qu'on fait croître, arrange et s'envoie.">Carmin</li><li title="Avec leurs mangent-tout au sein de leurs cours et cuisines ils découvrirent les faussetés médicinales de la consommation de nos corps sans vie. Ils comprirent l'harmonie entre les bêtes et nous-mêmes afin d'accomplir ensemble nos besoins jusqu'à éclairer les tréfonds des océans.">Pétricole</li><li title="Leurs confectionneurs marins savent réaliser le désir de quiconque, jusqu'à pouvoir établir la voie entre toute chose de leurs ponts croissants au-delà entre tout terrain, toute fosse ou toute rivière.">Perce-Vague</li></ul>
+                                <p class="peoples-hook" data-en="Maritime tribes; boat-gardens, joy." data-fr="Tribus maritimes ; bateaux-jardins, joie.">Maritime tribes; boat-gardens, joy.</p>
+                                <button type="button" class="peoples-flip-btn" aria-label="See details"><span data-en="See details" data-fr="Voir détails">See details</span></button>
+                            </div>
+                            <div class="peoples-flip-back">
+                                <div class="peoples-flip-back-inner">
+                                <h5 data-en="Navillis" data-fr="Navillis">Navillis</h5>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Attributes (♂|♀)" data-fr="Attributs (♂|♀)">Attributes (♂|♀)</h6>
+                                    <div class="lore-table-wrapper"><table class="lore-table peoples-attr-table attr-sex-diff"><thead><tr><th>Attr</th><th data-en="Modifier ♂|♀" data-fr="Mod. ♂|♀">Modifier ♂|♀</th></tr></thead><tbody>
+                                        <tr><td>FOR</td><td>−3|−6</td></tr><tr><td>AGI</td><td>var|+1</td></tr><tr><td>DEX</td><td>+1</td></tr><tr><td>VIG</td><td>—</td></tr><tr><td>EMP</td><td>+2|+5</td></tr><tr><td>PER</td><td>var|+2</td></tr><tr><td>CRE</td><td>+1|−1</td></tr><tr><td>VOL</td><td>−1|−2</td></tr>
+                                    </tbody></table></div>
+                                </div>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Physical" data-fr="Physique">Physical</h6>
+                                    <div class="lore-table-wrapper"><table class="lore-table peoples-phys-table"><thead><tr><th data-en="Taille" data-fr="Taille">Taille</th><th data-en="Stature ♂|♀" data-fr="Stature ♂|♀">Stature ♂|♀</th><th data-en="Gras ♂|♀" data-fr="Gras ♂|♀">Gras ♂|♀</th><th data-en="Dimorphisme" data-fr="Dimorphisme">Dimorphisme</th></tr></thead><tbody><tr><td data-en="Petite (-1)" data-fr="Petite (-1)">Petite (-1)</td><td>Svelte(-1)|Filiforme(-2)</td><td>Replet(+1)</td><td data-en="Grand" data-fr="Grand">Grand</td></tr></tbody></table></div>
+                                </div>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Relations" data-fr="Relations">Relations</h6>
+                                    <p><span data-en="Ami:" data-fr="Ami :">Ami:</span> Griscribes. <span data-en="Confiant:" data-fr="Confiant :">Confiant:</span> Aristois. <span data-en="Accueil:" data-fr="Accueil :">Accueil:</span> Tchalkchaïs, Iqqars. <span data-en="Neutre:" data-fr="Neutre :">Neutre:</span> Slaadéens. <span data-en="Méfiant:" data-fr="Méfiant :">Méfiant:</span> Ylfes pâles. <span data-en="Hostile:" data-fr="Hostile :">Hostile:</span> Hauts Ylfes, Ylfes des lacs.</p>
+                                </div>
+                                <button type="button" class="peoples-flip-btn peoples-flip-back-btn" aria-label="Back"><span data-en="Back" data-fr="Retour">Back</span></button>
+                                </div>
+                            </div>
                     </div>
                     
-                    <div class="genre-card">
-                        <h5 data-en="Tchalkchaïs" data-fr="Tchalkchaïs">Tchalkchaïs</h5>
-                        <p data-en="<strong>Morality:</strong> Echothysie ('Sacrificial Altruism')<br/><strong>Attributes (♂):</strong> FOR -2, AGI -2, DEX +3, VIG +3, EMP +3, PER +3, CRE -4, VOL -4<br/><strong>Attributes (♀):</strong> FOR -4, AGI -1, DEX +3, VIG +3, EMP +5, PER +4, CRE -5, VOL -5<br/><strong>Description:</strong> Sacrificial altruists who believe in giving everything for the greater good." data-fr="<strong>Moralité:</strong> Echothysie ('Altruisme Sacrificiel')<br/><strong>Attributs (♂) :</strong> FOR -2, AGI -2, DEX +3, VIG +3, EMP +3, PER +3, CRÉ -4, VOL -4<br/><strong>Attributs (♀) :</strong> FOR -4, AGI -1, DEX +3, VIG +3, EMP +5, PER +4, CRÉ -5, VOL -5<br/><strong>Description:</strong> Altruistes sacrificiels qui croient en donner tout pour le bien commun."><strong>Morality:</strong> Echothysie ('Sacrificial Altruism')<br/><strong>Attributes (♂):</strong> FOR -2, AGI -2, DEX +3, VIG +3, EMP +3, PER +3, CRE -4, VOL -4<br/><strong>Attributes (♀):</strong> FOR -4, AGI -1, DEX +3, VIG +3, EMP +5, PER +4, CRE -5, VOL -5<br/><strong>Description:</strong> Sacrificial altruists who believe in giving everything for the greater good.</p>
+                    <!-- Méridiens -->
+                    <div class="peoples-flip-card genre-card" data-origin="yommes" data-peuple="meridiens">
+                            <div class="peoples-flip-front">
+                                <span class="peoples-origin-badge" data-en="Yômmes" data-fr="Yômmes">Yômmes</span>
+                                <h5 data-en="Méridiens" data-fr="Méridiens">Méridiens</h5>
+                                <p class="peoples-morality-line"><span data-en="Etéathlie" data-fr="Etéathlie">Etéathlie</span> <em data-en="(Competitive Authenticity)" data-fr="(Authenticité Compétitrice)">(Competitive Authenticity)</em></p>
+                                <ul class="peoples-races-mini"><li title="Auraient hérité de leur adresse et délicatesse animale en sacrifiant ces monstres dans leurs sources arboricoles où leurs docteurs grimpent de leurs gants adhésifs et dont l'armure disparaît dans les reflets des eaux.">Sylvains</li><li title="Dans leur jovialité dansaient leurs prophéties de leurs doigts sur les cadavres de leurs vaincus pour y tourmenter les tempêtes sur leurs ennemis. Chaque corps dansé serait pour eux une possibilité de recontacter leurs ancêtres qu'ils tentent de rejoindre par leurs chariots cristallins.">Des Monts</li><li title="Par la divination de leurs roches flottantes et aliénantes, leurs guides spirituels aux lames tranchant tout, cachèrent ou élucidèrent nos paroles à tous lors de la purge en lisant de leurs doigts les précieuses textures et formes changeantes de ces pierres.">Marche-Rêves</li></ul>
+                                <p class="peoples-hook" data-en="Prove worth by action; austèles, Labyrinthe." data-fr="Prouver sa valeur par l'action ; austèles, Labyrinthe.">Prove worth by action; austèles, Labyrinthe.</p>
+                                <button type="button" class="peoples-flip-btn" aria-label="See details"><span data-en="See details" data-fr="Voir détails">See details</span></button>
+                            </div>
+                            <div class="peoples-flip-back">
+                                <div class="peoples-flip-back-inner">
+                                <h5 data-en="Méridiens" data-fr="Méridiens">Méridiens</h5>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Attributes (♂|♀)" data-fr="Attributs (♂|♀)">Attributes (♂|♀)</h6>
+                                    <div class="lore-table-wrapper"><table class="lore-table peoples-attr-table attr-sex-diff"><thead><tr><th>Attr</th><th data-en="Modifier ♂|♀" data-fr="Mod. ♂|♀">Modifier ♂|♀</th></tr></thead><tbody>
+                                        <tr><td>FOR</td><td>var|−4</td></tr><tr><td>AGI</td><td>+2|+3</td></tr><tr><td>DEX</td><td>—</td></tr><tr><td>VIG</td><td>—</td></tr><tr><td>EMP</td><td>−2|+4</td></tr><tr><td>PER</td><td>−1|+1</td></tr><tr><td>CRE</td><td>var|−2</td></tr><tr><td>VOL</td><td>+1|−1</td></tr>
+                                    </tbody></table></div>
+                                </div>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Physical" data-fr="Physique">Physical</h6>
+                                    <div class="lore-table-wrapper"><table class="lore-table peoples-phys-table"><thead><tr><th data-en="Taille" data-fr="Taille">Taille</th><th data-en="Stature ♂|♀" data-fr="Stature ♂|♀">Stature ♂|♀</th><th data-en="Gras ♂|♀" data-fr="Gras ♂|♀">Gras ♂|♀</th><th data-en="Dimorphisme" data-fr="Dimorphisme">Dimorphisme</th></tr></thead><tbody><tr><td data-en="Petite (-1)" data-fr="Petite (-1)">Petite (-1)</td><td>Équilibrée(0)</td><td>Mince(-1)</td><td data-en="Typique" data-fr="Typique">Typique</td></tr></tbody></table></div>
+                                </div>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Relations" data-fr="Relations">Relations</h6>
+                                    <p><span data-en="Confiant:" data-fr="Confiant :">Confiant:</span> Entre eux. <span data-en="Accueil:" data-fr="Accueil :">Accueil:</span> Par les autres Yômmes. <span data-en="Méfiant:" data-fr="Méfiant :">Méfiant:</span> Envers autres Yômmes. <span data-en="Hostile:" data-fr="Hostile :">Hostile:</span> Yôrres et Bêstres.</p>
+                                </div>
+                                <button type="button" class="peoples-flip-btn peoples-flip-back-btn" aria-label="Back"><span data-en="Back" data-fr="Retour">Back</span></button>
+                                </div>
+                            </div>
                     </div>
                     
-                    <div class="genre-card">
-                        <h5 data-en="Navillis" data-fr="Navillis">Navillis</h5>
-                        <p data-en="<strong>Morality:</strong> Olbôphélie ('Devoted Felicity')<br/><strong>Attributes (♂):</strong> FOR -3, AGI var, DEX +1, EMP +2, PER var, CRE +1, VOL -1<br/><strong>Attributes (♀):</strong> FOR -6, AGI +1, DEX +1, EMP +5, PER +2, CRE -1, VOL -2<br/><strong>Description:</strong> Maritime tribes devoted to joy and caring for others; boat-gardens, bay settlements." data-fr="<strong>Moralité:</strong> Olbôphélie ('Félicité Dévouée')<br/><strong>Attributs (♂) :</strong> FOR -3, AGI var, DEX +1, EMP +2, PER var, CRÉ +1, VOL -1<br/><strong>Attributs (♀) :</strong> FOR -6, AGI +1, DEX +1, EMP +5, PER +2, CRÉ -1, VOL -2<br/><strong>Description:</strong> Tribus maritimes dévouées à la joie et au soin des autres ; bateaux-jardins, peuplements des baies."><strong>Morality:</strong> Olbôphélie ('Devoted Felicity')<br/><strong>Attributes (♂):</strong> FOR -3, AGI var, DEX +1, EMP +2, PER var, CRE +1, VOL -1<br/><strong>Attributes (♀):</strong> FOR -6, AGI +1, DEX +1, EMP +5, PER +2, CRE -1, VOL -2<br/><strong>Description:</strong> Maritime tribes devoted to joy and caring for others; boat-gardens, bay settlements.</p>
+                    <!-- Hauts Ylfes -->
+                    <div class="peoples-flip-card genre-card" data-origin="yorres" data-peuple="hauts-ylfes">
+                            <div class="peoples-flip-front">
+                                <span class="peoples-origin-badge" data-en="Yôrres" data-fr="Yôrres">Yôrres</span>
+                                <h5 data-en="Hauts Ylfes" data-fr="Hauts Ylfes">Hauts Ylfes</h5>
+                                <p class="peoples-morality-line"><span data-en="Edapoèsie" data-fr="Edapoèsie">Edapoèsie</span> <em data-en="(Creative Competence)" data-fr="(Compétence Créative)">(Creative Competence)</em></p>
+                                <ul class="peoples-races-mini"><li title="Bénis par les huit lunes en leur fertilité d'esprits, leurs yeux blancs ou gris brillent la nuit lorsqu'ils partent à huit en résonnant leur tymbafrons pour révulser les indésirables, afin d'accueillir la neuvième lune d'où ils seraient originaires.">De Lunes</li><li title="Naquirent de la conquête guerrière de leur statue chantante, et dont ils chantent encore lorsqu'ils massacrent dans la paix et l'harmonie à travers leur téléséismes vibrant au travers des plaines en amplifiant leurs paroles et relayant leurs savoirs.">Des Plaines</li></ul>
+                                <p class="peoples-hook" data-en="Tall Ylfes; mastery and creation." data-fr="Grands Ylfes ; maîtrise et création.">Tall Ylfes; mastery and creation.</p>
+                                <button type="button" class="peoples-flip-btn" aria-label="See details"><span data-en="See details" data-fr="Voir détails">See details</span></button>
+                            </div>
+                            <div class="peoples-flip-back">
+                                <div class="peoples-flip-back-inner">
+                                <h5 data-en="Hauts Ylfes" data-fr="Hauts Ylfes">Hauts Ylfes</h5>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Attributes (♂|♀)" data-fr="Attributs (♂|♀)">Attributes (♂|♀)</h6>
+                                    <div class="lore-table-wrapper"><table class="lore-table peoples-attr-table attr-sex-diff"><thead><tr><th>Attr</th><th data-en="Modifier ♂|♀" data-fr="Mod. ♂|♀">Modifier ♂|♀</th></tr></thead><tbody>
+                                        <tr><td>FOR</td><td>+1|−1</td></tr><tr><td>AGI</td><td>+1|+2</td></tr><tr><td>DEX</td><td>—</td></tr><tr><td>VIG</td><td>—</td></tr><tr><td>EMP</td><td>−3|−1</td></tr><tr><td>PER</td><td>−3|−2</td></tr><tr><td>CRE</td><td>+3|+2</td></tr><tr><td>VOL</td><td>+1|var</td></tr>
+                                    </tbody></table></div>
+                                </div>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Physical" data-fr="Physique">Physical</h6>
+                                    <div class="lore-table-wrapper"><table class="lore-table peoples-phys-table"><thead><tr><th data-en="Taille" data-fr="Taille">Taille</th><th data-en="Stature ♂|♀" data-fr="Stature ♂|♀">Stature ♂|♀</th><th data-en="Gras ♂|♀" data-fr="Gras ♂|♀">Gras ♂|♀</th><th data-en="Dimorphisme" data-fr="Dimorphisme">Dimorphisme</th></tr></thead><tbody><tr><td data-en="Moyenne" data-fr="Moyenne">Moyenne</td><td>Éq.(0)|Svelte(-1)</td><td>Ég.(0)|Replète(+1)</td><td data-en="Typique" data-fr="Typique">Typique</td></tr></tbody></table></div>
+                                </div>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Relations" data-fr="Relations">Relations</h6>
+                                    <p><span data-en="Ami:" data-fr="Ami :">Ami:</span> Entre eux. <span data-en="Neutre:" data-fr="Neutre :">Neutre:</span> Aristois. <span data-en="Méfiant:" data-fr="Méfiant :">Méfiant:</span> Ylfes des lacs. <span data-en="Hostile:" data-fr="Hostile :">Hostile:</span> Ylfes pâles, Iqqars, Aristois, Méridiens. <span data-en="Ennemi:" data-fr="Ennemi :">Ennemi:</span> Griscribes, Navillis, Bêstres.</p>
+                                </div>
+                                <button type="button" class="peoples-flip-btn peoples-flip-back-btn" aria-label="Back"><span data-en="Back" data-fr="Retour">Back</span></button>
+                                </div>
+                            </div>
                     </div>
                     
-                    <div class="genre-card">
-                        <h5 data-en="Méridiens" data-fr="Méridiens">Méridiens</h5>
-                        <p data-en="<strong>Morality:</strong> Etéathlie ('Competitive Authenticity')<br/><strong>Attributes (♂):</strong> FOR var, AGI +2, EMP -2, PER -1, CRE var, VOL +1<br/><strong>Attributes (♀):</strong> FOR -4, AGI +3, EMP +4, PER +1, CRE -2, VOL -1<br/><strong>Description:</strong> Prove worth through action and conflict; travelling chefferies, amphibian mounts, revolt against the false." data-fr="<strong>Moralité:</strong> Etéathlie ('Authenticité Compétitrice')<br/><strong>Attributs (♂) :</strong> FOR var, AGI +2, EMP -2, PER -1, CRÉ var, VOL +1<br/><strong>Attributs (♀) :</strong> FOR -4, AGI +3, EMP +4, PER +1, CRÉ -2, VOL -1<br/><strong>Description:</strong> Prouvent leur valeur par l'action et le conflit ; chefferies voyageuses, montures amphibies, révolte contre le faux."><strong>Morality:</strong> Etéathlie ('Competitive Authenticity')<br/><strong>Attributes (♂):</strong> FOR var, AGI +2, EMP -2, PER -1, CRE var, VOL +1<br/><strong>Attributes (♀):</strong> FOR -4, AGI +3, EMP +4, PER +1, CRE -2, VOL -1<br/><strong>Description:</strong> Prove worth through action and conflict; travelling chefferies, amphibian mounts, revolt against the false.</p>
+                    <!-- Ylfes pâles -->
+                    <div class="peoples-flip-card genre-card" data-origin="yorres" data-peuple="ylfes-pales">
+                            <div class="peoples-flip-front">
+                                <span class="peoples-origin-badge" data-en="Yôrres" data-fr="Yôrres">Yôrres</span>
+                                <h5 data-en="Ylfes pâles" data-fr="Ylfes pâles">Ylfes pâles</h5>
+                                <p class="peoples-morality-line"><span data-en="Hiéragogie" data-fr="Hiéragogie">Hiéragogie</span> <em data-en="(Sacred Direction)" data-fr="(Direction Sacrée)">(Sacred Direction)</em></p>
+                                <ul class="peoples-races-mini"><li title="Nés au sein des montagnes surplombant les collines, c'est à l'intérieur de leurs mastodontes qu'ils organisaient leurs immenses foires. Leurs éleveurs-prêteurs créèrent les royaumes de bétail et les Cordon d'Or. Leurs armures cratocoraxes à leviers accroissent leurs forces.">Collinicoles</li><li title="Anciens maîtres des terres autrefois décorées de leurs gigantesques symboles marqués les sols des collines changeant leurs couleurs avec les saisons. Leurs gemmologistes-serruriers manient des coffres-forts roulants, tours téléstoles et télécordions mécaniques.">Chromatiques</li><li title="Auraient repris vie d'un passé les ayant autrefois pétrifiés telle armée, sortant alors d'un grand nécribunal. Ils rapportèrent du passé leurs catapultes hypséboles et leurs rails tensodromes pour envoyer carrosses et vivres vers leurs cités.">Pastoraux</li></ul>
+                                <p class="peoples-hook" data-en="Pale Ylfes; gain and regency." data-fr="Ylfes pâles ; gain et régence.">Pale Ylfes; gain and regency.</p>
+                                <button type="button" class="peoples-flip-btn" aria-label="See details"><span data-en="See details" data-fr="Voir détails">See details</span></button>
+                            </div>
+                            <div class="peoples-flip-back">
+                                <div class="peoples-flip-back-inner">
+                                <h5 data-en="Ylfes pâles" data-fr="Ylfes pâles">Ylfes pâles</h5>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Attributes" data-fr="Attributs">Attributes</h6>
+                                    <div class="lore-table-wrapper"><table class="lore-table peoples-attr-table"><thead><tr><th>Attr</th><th data-en="Modifier" data-fr="Mod.">Modifier</th></tr></thead><tbody>
+                                        <tr><td>FOR</td><td>−3</td></tr><tr><td>AGI</td><td>−1</td></tr><tr><td>DEX</td><td>—</td></tr><tr><td>VIG</td><td>−1</td></tr><tr><td>EMP</td><td>−4</td></tr><tr><td>PER</td><td>+2</td></tr><tr><td>CRE</td><td>+2</td></tr><tr><td>VOL</td><td>+4</td></tr>
+                                    </tbody></table></div>
+                                </div>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Physical" data-fr="Physique">Physical</h6>
+                                    <div class="lore-table-wrapper"><table class="lore-table peoples-phys-table"><thead><tr><th data-en="Taille" data-fr="Taille">Taille</th><th data-en="Stature ♂|♀" data-fr="Stature ♂|♀">Stature ♂|♀</th><th data-en="Gras ♂|♀" data-fr="Gras ♂|♀">Gras ♂|♀</th><th data-en="Dimorphisme" data-fr="Dimorphisme">Dimorphisme</th></tr></thead><tbody><tr><td data-en="Petite (-1)" data-fr="Petite (-1)">Petite (-1)</td><td>Svelte(-1)</td><td>Grêles(-2)</td><td data-en="Reduced" data-fr="Réduit">Reduced</td></tr></tbody></table></div>
+                                </div>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Relations" data-fr="Relations">Relations</h6>
+                                    <p><span data-en="Confiant:" data-fr="Confiant :">Confiant:</span> Entre eux. <span data-en="Neutre:" data-fr="Neutre :">Neutre:</span> Griscribes. <span data-en="Méfiant:" data-fr="Méfiant :">Méfiant:</span> Hauts Ylfes, Iqqars. <span data-en="Hostile:" data-fr="Hostile :">Hostile:</span> Ylfes des lacs, Aristois, Méridiens, Slaadéens, Tchalkchaïs. <span data-en="Ennemi:" data-fr="Ennemi :">Ennemi:</span> Hauts Ylfes.</p>
+                                </div>
+                                <button type="button" class="peoples-flip-btn peoples-flip-back-btn" aria-label="Back"><span data-en="Back" data-fr="Retour">Back</span></button>
+                                </div>
+                            </div>
                     </div>
                     
-                    <div class="genre-card">
-                        <h5 data-en="Hauts Ylfes" data-fr="Hauts Ylfes">Hauts Ylfes</h5>
-                        <p data-en="<strong>Morality:</strong> Edapoèsie ('Creative Competence')<br/><strong>Attributes (♂):</strong> FOR +1, AGI +1, EMP -3, PER -3, CRE +3, VOL +1<br/><strong>Attributes (♀):</strong> FOR -1, AGI +2, EMP -1, PER -2, CRE +2, VOL var<br/><strong>Description:</strong> Tall Ylfes seeking to prove value through mastery and creation; coastal and woodland clans, horticulture." data-fr="<strong>Moralité:</strong> Edapoèsie ('Compétence Créative')<br/><strong>Attributs (♂) :</strong> FOR +1, AGI +1, EMP -3, PER -3, CRÉ +3, VOL +1<br/><strong>Attributs (♀) :</strong> FOR -1, AGI +2, EMP -1, PER -2, CRÉ +2, VOL var<br/><strong>Description:</strong> Grands Ylfes prouvant leur valeur par la maîtrise et la création ; clans côtiers et forestiers, horticulture."><strong>Morality:</strong> Edapoèsie ('Creative Competence')<br/><strong>Attributes (♂):</strong> FOR +1, AGI +1, EMP -3, PER -3, CRE +3, VOL +1<br/><strong>Attributes (♀):</strong> FOR -1, AGI +2, EMP -1, PER -2, CRE +2, VOL var<br/><strong>Description:</strong> Tall Ylfes seeking to prove value through mastery and creation; coastal and woodland clans, horticulture.</p>
+                    <!-- Ylfes des lacs -->
+                    <div class="peoples-flip-card genre-card" data-origin="yorres" data-peuple="ylfes-des-lacs">
+                            <div class="peoples-flip-front">
+                                <span class="peoples-origin-badge" data-en="Yôrres" data-fr="Yôrres">Yôrres</span>
+                                <h5 data-en="Ylfes des lacs" data-fr="Ylfes des lacs">Ylfes des lacs</h5>
+                                <p class="peoples-morality-line"><span data-en="Mellophrônie" data-fr="Mellophrônie">Mellophrônie</span> <em data-en="(Ingenious Volition)" data-fr="(Volition Ingénieuse)">(Ingenious Volition)</em></p>
+                                <ul class="peoples-races-mini"><li title="Isolés et omis des autres, ils poursuivaient une guerre ancienne qu'ils croyaient éternelle. Leurs officiers-jongleurs maîtres de la poésie martiale firent un jour danser leurs trébuchets hydrobèles sur leurs tours de siège hydropyrgues bien au-delà des espérances.">Mâche-Troncs</li><li title="Ils menaient des affrontements rituels où chaque geste de leurs maîtres chante-contes résonnait en harmonie avec les échos aquatiques. Leurs aires hydrosèmiques conformaient les eaux en leurs paroles. Leur téléhydrie de canaux et de valves pressant l'eau en paroles.">Troglodytes</li><li title="Jadis saisis par une frénésie de danse collective, ils furent emportés dans des rythmes incontrôlables des feuilles dans le vent qui marquèrent leurs âmes. Ils développèrent les diplo-traumas et les ascenseurs hydrores pour glisser dans leurs branche-canaux et tronc-canaux.">Danse-Feuilles</li></ul>
+                                <p class="peoples-hook" data-en="Semi-sedentary; lake and forest, ingenuity." data-fr="Semi-sédentaires ; lacs et forêts, ingéniosité.">Semi-sedentary; lake and forest, ingenuity.</p>
+                                <button type="button" class="peoples-flip-btn" aria-label="See details"><span data-en="See details" data-fr="Voir détails">See details</span></button>
+                            </div>
+                            <div class="peoples-flip-back">
+                                <div class="peoples-flip-back-inner">
+                                <h5 data-en="Ylfes des lacs" data-fr="Ylfes des lacs">Ylfes des lacs</h5>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Attributes (♂|♀)" data-fr="Attributs (♂|♀)">Attributes (♂|♀)</h6>
+                                    <div class="lore-table-wrapper"><table class="lore-table peoples-attr-table attr-sex-diff"><thead><tr><th>Attr</th><th data-en="Modifier ♂|♀" data-fr="Mod. ♂|♀">Modifier ♂|♀</th></tr></thead><tbody>
+                                        <tr><td>FOR</td><td>+4|+2</td></tr><tr><td>AGI</td><td>var|+1</td></tr><tr><td>DEX</td><td>−3</td></tr><tr><td>VIG</td><td>—</td></tr><tr><td>EMP</td><td>−3|−1</td></tr><tr><td>PER</td><td>−3|−2</td></tr><tr><td>CRE</td><td>+4|+3</td></tr><tr><td>VOL</td><td>+1|var</td></tr>
+                                    </tbody></table></div>
+                                </div>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Physical" data-fr="Physique">Physical</h6>
+                                    <div class="lore-table-wrapper"><table class="lore-table peoples-phys-table"><thead><tr><th data-en="Taille" data-fr="Taille">Taille</th><th data-en="Stature ♂|♀" data-fr="Stature ♂|♀">Stature ♂|♀</th><th data-en="Gras ♂|♀" data-fr="Gras ♂|♀">Gras ♂|♀</th><th data-en="Dimorphisme" data-fr="Dimorphisme">Dimorphisme</th></tr></thead><tbody><tr><td data-en="Moyenne" data-fr="Moyenne">Moyenne</td><td>Large(+1)|Éq.(0)</td><td>Mince(-1)</td><td data-en="Typique" data-fr="Typique">Typique</td></tr></tbody></table></div>
+                                </div>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Relations" data-fr="Relations">Relations</h6>
+                                    <p><span data-en="Confiant:" data-fr="Confiant :">Confiant:</span> Entre eux. <span data-en="Neutre:" data-fr="Neutre :">Neutre:</span> Slaadéens. <span data-en="Méfiant:" data-fr="Méfiant :">Méfiant:</span> Hauts Ylfes, Ylfes pâles, Iqqars. <span data-en="Hostile:" data-fr="Hostile :">Hostile:</span> Aristois, Méridiens, Tchalkchaïs. <span data-en="Ennemi:" data-fr="Ennemi :">Ennemi:</span> Griscribes, Navillis, Iqqars.</p>
+                                </div>
+                                <button type="button" class="peoples-flip-btn peoples-flip-back-btn" aria-label="Back"><span data-en="Back" data-fr="Retour">Back</span></button>
+                                </div>
+                            </div>
                     </div>
                     
-                    <div class="genre-card">
-                        <h5 data-en="Ylfes pâles" data-fr="Ylfes pâles">Ylfes pâles</h5>
-                        <p data-en="<strong>Morality:</strong> Hiéragogie ('Sacred Direction')<br/><strong>Attributes:</strong> FOR -3, AGI -1, VIG -1, EMP -4, PER +2, CRE +2, VOL +4<br/><strong>Description:</strong> Small pale Ylfes seeking gain and regency for clan prosperity; pastoral bands, hereditary or elected aristocracy." data-fr="<strong>Moralité:</strong> Hiéragogie ('Direction Sacrée')<br/><strong>Attributs :</strong> FOR -3, AGI -1, VIG -1, EMP -4, PER +2, CRÉ +2, VOL +4<br/><strong>Description:</strong> Petits Ylfes pâles recherchant le gain et la régence pour la prospérité du clan ; bandes pastorales, aristocratie héréditaire ou élue."><strong>Morality:</strong> Hiéragogie ('Sacred Direction')<br/><strong>Attributes:</strong> FOR -3, AGI -1, VIG -1, EMP -4, PER +2, CRE +2, VOL +4<br/><strong>Description:</strong> Small pale Ylfes seeking gain and regency for clan prosperity; pastoral bands, hereditary or elected aristocracy.</p>
+                    <!-- Iqqars -->
+                    <div class="peoples-flip-card genre-card" data-origin="yorres" data-peuple="iqqars">
+                            <div class="peoples-flip-front">
+                                <span class="peoples-origin-badge" data-en="Yôrres" data-fr="Yôrres">Yôrres</span>
+                                <h5 data-en="Iqqars" data-fr="Iqqars">Iqqars</h5>
+                                <p class="peoples-morality-line"><span data-en="Égonexie" data-fr="Égonexie">Égonexie</span> <em data-en="(Extrinsic Intimism)" data-fr="(Intimisme Extrinsèque)">(Extrinsic Intimism)</em></p>
+                                <ul class="peoples-races-mini"><li title="Les Hauts et Bas Iqqars, contrairement aux autres Races séparées et oubliées, se possédèrent en un seul tout dans un grand élan guidé par les vents. Ensemble, ils descendirent sur les terres des Bêstres afin de célébrer leur union au travers un triomphe extatique de chaque corps.">Hauts</li><li title="Les Hauts et Bas Iqqars se possédèrent en un seul tout dans un grand élan guidé par les vents. Ensemble, ils descendirent sur les terres des Bêstres afin de célébrer leur union au travers un triomphe extatique de chaque corps.">Bas</li></ul>
+                                <p class="peoples-hook" data-en="Inner experience; reduced dimorphism." data-fr="Expérience intérieure ; dimorphisme réduit.">Inner experience; reduced dimorphism.</p>
+                                <button type="button" class="peoples-flip-btn" aria-label="See details"><span data-en="See details" data-fr="Voir détails">See details</span></button>
+                            </div>
+                            <div class="peoples-flip-back">
+                                <div class="peoples-flip-back-inner">
+                                <h5 data-en="Iqqars" data-fr="Iqqars">Iqqars</h5>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Attributes" data-fr="Attributs">Attributes</h6>
+                                    <div class="lore-table-wrapper"><table class="lore-table peoples-attr-table"><thead><tr><th>Attr</th><th data-en="Modifier" data-fr="Mod.">Modifier</th></tr></thead><tbody>
+                                        <tr><td>FOR</td><td>−3</td></tr><tr><td>AGI</td><td>+2</td></tr><tr><td>DEX</td><td>—</td></tr><tr><td>VIG</td><td>−1</td></tr><tr><td>EMP</td><td>+3</td></tr><tr><td>PER</td><td>+2</td></tr><tr><td>CRE</td><td>−1</td></tr><tr><td>VOL</td><td>−2</td></tr>
+                                    </tbody></table></div>
+                                </div>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Physical" data-fr="Physique">Physical</h6>
+                                    <div class="lore-table-wrapper"><table class="lore-table peoples-phys-table"><thead><tr><th data-en="Taille" data-fr="Taille">Taille</th><th data-en="Stature ♂|♀" data-fr="Stature ♂|♀">Stature ♂|♀</th><th data-en="Gras ♂|♀" data-fr="Gras ♂|♀">Gras ♂|♀</th><th data-en="Dimorphisme" data-fr="Dimorphisme">Dimorphisme</th></tr></thead><tbody><tr><td data-en="Moyenne" data-fr="Moyenne">Moyenne</td><td>Svelte(-1)</td><td>Mince(-1)|Replète(+1)</td><td data-en="Reduced" data-fr="Réduit">Reduced</td></tr></tbody></table></div>
+                                </div>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Relations" data-fr="Relations">Relations</h6>
+                                    <p><span data-en="Harmonie:" data-fr="Harmonie :">Harmonie:</span> Entre eux. <span data-en="Accueil:" data-fr="Accueil :">Accueil:</span> Navillis, Ylfes pâles, Tchalkchaïs. <span data-en="Neutre:" data-fr="Neutre :">Neutre:</span> Hauts Ylfes, Griscribes, Slaadéens. <span data-en="Méfiant:" data-fr="Méfiant :">Méfiant:</span> Ylfes des lacs, Slaadéens. <span data-en="Hostile:" data-fr="Hostile :">Hostile:</span> Hauts Ylfes, Ylfes des lacs.</p>
+                                </div>
+                                <button type="button" class="peoples-flip-btn peoples-flip-back-btn" aria-label="Back"><span data-en="Back" data-fr="Retour">Back</span></button>
+                                </div>
+                            </div>
                     </div>
                     
-                    <div class="genre-card">
-                        <h5 data-en="Ylfes des lacs" data-fr="Ylfes des lacs">Ylfes des lacs</h5>
-                        <p data-en="<strong>Morality:</strong> Mellophrônie ('Ingenious Volition')<br/><strong>Attributes (♂):</strong> FOR +4, AGI var, DEX -3, EMP -3, PER -3, CRE +4, VOL +1<br/><strong>Attributes (♀):</strong> FOR +2, AGI +1, DEX -3, EMP -1, PER -2, CRE +3, VOL var<br/><strong>Description:</strong> Semi-sedentary clans revealing authenticity through ingenious exploration; agriculture, lake and forest, vassalage." data-fr="<strong>Moralité:</strong> Mellophrônie ('Volition Ingénieuse')<br/><strong>Attributs (♂) :</strong> FOR +4, AGI var, DEX -3, EMP -3, PER -3, CRÉ +4, VOL +1<br/><strong>Attributs (♀) :</strong> FOR +2, AGI +1, DEX -3, EMP -1, PER -2, CRÉ +3, VOL var<br/><strong>Description:</strong> Clans semi-sédentaires révélant l'authenticité par l'exploration ingénieuse ; agriculture, lacs et forêts, vassalité."><strong>Morality:</strong> Mellophrônie ('Ingenious Volition')<br/><strong>Attributes (♂):</strong> FOR +4, AGI var, DEX -3, EMP -3, PER -3, CRE +4, VOL +1<br/><strong>Attributes (♀):</strong> FOR +2, AGI +1, DEX -3, EMP -1, PER -2, CRE +3, VOL var<br/><strong>Description:</strong> Semi-sedentary clans revealing authenticity through ingenious exploration; agriculture, lake and forest, vassalage.</p>
+                    <!-- Slaadéens -->
+                    <div class="peoples-flip-card genre-card" data-origin="bestres" data-peuple="slaadeens">
+                            <div class="peoples-flip-front">
+                                <span class="peoples-origin-badge" data-en="Bêstres" data-fr="Bêstres">Bêstres</span>
+                                <h5 data-en="Slaadéens" data-fr="Slaadéens">Slaadéens</h5>
+                                <p class="peoples-morality-line"><span data-en="Thrasonirie" data-fr="Thrasonirie">Thrasonirie</span> <em data-en="(Dreaming Audacity)" data-fr="(Audace Rêveuse)">(Dreaming Audacity)</em></p>
+                                <ul class="peoples-races-mini"><li title="Auraient autrefois été exhumées de leurs tombes enneigées avant d'être rhabillés afin de reprendre leurs vies dansées. Les glisse-souffles Sydru-kal seraient d'une telle adresse qui pourraient flotter en dansant sur les vents tailladant.">Sydru-kal</li><li title="On entendra les chants gutturaux des hurle-muscs Wijriol qui contrôleraient les neiges des parfums produit de leurs voix jusqu'à en diriger leurs bateaux atmonautes flottant dans les airs.">Wijriol</li><li title="Auraient été éveillés des neiges par les mystérieux tremblements du ciel. Munis des armures pneumocoraxes dont les vapeurs fondent toute neige, les mur-murs Hlabayans auraient formé les premières parois gardant tout bastion.">Hlabayan</li><li title="Les dompte-rêves Felichrem par leur réseau téléatmique traversant les dunes en les brûlant, auraient donné toutes les habitudes, désirs et besoins farfelus ou non des êtres aux alentours par leurs paroles entubées les atteignant tous.">Felichrem</li><li title="Auraient autrefois cultivé les oasis thermales. Leurs brûle-sages méditant dans les profondeurs de leurs cuisantes oasis d'or utilisent encore les cannons cryothermiques dont les projections pompe toute chaleur.">Iossolam</li></ul>
+                                <p class="peoples-hook" data-en="Bold dreamers; life 2–115 years." data-fr="Rêveurs audacieux ; vie 2–115 ans.">Bold dreamers; life 2–115 years.</p>
+                                <button type="button" class="peoples-flip-btn" aria-label="See details"><span data-en="See details" data-fr="Voir détails">See details</span></button>
+                            </div>
+                            <div class="peoples-flip-back">
+                                <div class="peoples-flip-back-inner">
+                                <h5 data-en="Slaadéens" data-fr="Slaadéens">Slaadéens</h5>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Attributes (♂|♀)" data-fr="Attributs (♂|♀)">Attributes</h6>
+                                    <div class="lore-table-wrapper"><table class="lore-table peoples-attr-table"><thead><tr><th>Attr</th><th data-en="Modifier" data-fr="Mod.">Modifier</th></tr></thead><tbody>
+                                        <tr><td>FOR</td><td>+2</td></tr><tr><td>AGI</td><td>0</td></tr><tr><td>DEX</td><td>−3</td></tr><tr><td>VIG</td><td>+1</td></tr><tr><td>EMP</td><td>+2</td></tr><tr><td>PER</td><td>−3</td></tr><tr><td>CRE</td><td>0</td></tr><tr><td>VOL</td><td>+1</td></tr>
+                                    </tbody></table></div>
+                                </div>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Physical" data-fr="Physique">Physical</h6>
+                                    <div class="lore-table-wrapper"><table class="lore-table peoples-phys-table"><thead><tr><th data-en="Taille" data-fr="Taille">Taille</th><th data-en="Stature ♂|♀" data-fr="Stature ♂|♀">Stature ♂|♀</th><th data-en="Gras ♂|♀" data-fr="Gras ♂|♀">Gras ♂|♀</th><th data-en="Dimorphisme" data-fr="Dimorphisme">Dimorphisme</th></tr></thead><tbody><tr><td data-en="Moyenne" data-fr="Moyenne">Moyenne</td><td>Massive(+2)|Massive(+2)</td><td>Replet(+1)</td><td data-en="Reduced" data-fr="Réduit">Reduced</td></tr></tbody></table></div>
+                                </div>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Relations" data-fr="Relations">Relations</h6>
+                                    <p><span data-en="Confiant:" data-fr="Confiant :">Confiant:</span> Entre eux. <span data-en="Neutre:" data-fr="Neutre :">Neutre:</span> Tous Iômmes, Ylfes des lacs, Tchalkchaïs. <span data-en="Méfiant:" data-fr="Méfiant :">Méfiant:</span> Hauts Ylfes, Ylfes pâles, Iqqars.</p>
+                                </div>
+                                <button type="button" class="peoples-flip-btn peoples-flip-back-btn" aria-label="Back"><span data-en="Back" data-fr="Retour">Back</span></button>
+                                </div>
+                            </div>
                     </div>
                     
-                    <div class="genre-card">
-                        <h5 data-en="Iqqars" data-fr="Iqqars">Iqqars</h5>
-                        <p data-en="<strong>Morality:</strong> Égonexie ('Extrinsic Intimism')<br/><strong>Attributes:</strong> FOR -3, AGI +2, VIG -1, EMP +3, PER +2, CRE -1, VOL -2<br/><strong>Description:</strong> Yôrres valuing inner experience and extrinsic connection; reduced dimorphism, varied relations with other Peoples." data-fr="<strong>Moralité:</strong> Égonexie ('Intimisme Extrinsèque')<br/><strong>Attributs :</strong> FOR -3, AGI +2, VIG -1, EMP +3, PER +2, CRÉ -1, VOL -2<br/><strong>Description:</strong> Yôrres valorisant l'expérience intérieure et la connexion extrinsèque ; dimorphisme réduit, relations variées avec les autres Peuples."><strong>Morality:</strong> Égonexie ('Extrinsic Intimism')<br/><strong>Attributes:</strong> FOR -3, AGI +2, VIG -1, EMP +3, PER +2, CRE -1, VOL -2<br/><strong>Description:</strong> Yôrres valuing inner experience and extrinsic connection; reduced dimorphism, varied relations with other Peoples.</p>
+                    <!-- Tchalkchaïs -->
+                    <div class="peoples-flip-card genre-card" data-origin="bestres" data-peuple="tchalkchais">
+                            <div class="peoples-flip-front">
+                                <span class="peoples-origin-badge" data-en="Bêstres" data-fr="Bêstres">Bêstres</span>
+                                <h5 data-en="Tchalkchaïs" data-fr="Tchalkchaïs">Tchalkchaïs</h5>
+                                <p class="peoples-morality-line"><span data-en="Echothysie" data-fr="Echothysie">Echothysie</span> <em data-en="(Sacrificial Altruism)" data-fr="(Altruisme Sacrificiel)">(Sacrificial Altruism)</em></p>
+                                <ul class="peoples-races-mini"><li title="Nés sous un ciel où les astres semblaient s'aligner en d'anciennes augures, ils devinrent les gardiens des secrets des temps, leurs perce-temps voyant au travers roches-bleues et sables roses désertiques, mais aussi les échos des âges passés et futurs.">Elesihin</li><li title="Marqués par un savoir mystérieux venu des cieux les plus lointains, ils parlent souvent des étoiles invisibles qui guidèrent leurs ancêtres. Leurs ludo-rhéteurs sont connus pour leurs mises extravagantes. Leurs bateaux navhélions captent les rayons solaires pour propulser leurs vaisseaux à travers les dunes.">Ordol</li><li title="Héritiers d'un passé glorieux aux cités hallucinées, ils virent leurs plus précieux artefacts dispersés. Les labour-rêves cultivent désormais des mirages spectaculaires qui scintillent à l'horizon. Outils héliergoniques captant l'énergie du soleil et l'eau du fleuve.">Îohadam</li><li title="Anciennement guidés par les apparitions lumineuses d'êtres à la silhouette étrange qui traversaient leurs marais brumeux. Leurs tire-rivières construisirent des citadelles inébranlables sur les montagnes et flots.">Nuôtarjoy</li><li title="Anciens adeptes d'un ordre secret qui émergea des dunes aux poussières enivrantes, maîtres de la dissimulation. Leur marche-ombres serait à l'origine de tous les mirages. Leurs réseaux téléhéliques permettent d'envoyer des messages codés en un éclat furtif.">Ikrayad</li></ul>
+                                <p class="peoples-hook" data-en="Sacrificial altruists; life 10–27 years." data-fr="Altruistes sacrificiels ; vie 10–27 ans.">Sacrificial altruists; life 10–27 years.</p>
+                                <button type="button" class="peoples-flip-btn" aria-label="See details"><span data-en="See details" data-fr="Voir détails">See details</span></button>
+                            </div>
+                            <div class="peoples-flip-back">
+                                <div class="peoples-flip-back-inner">
+                                <h5 data-en="Tchalkchaïs" data-fr="Tchalkchaïs">Tchalkchaïs</h5>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Attributes (♂|♀)" data-fr="Attributs (♂|♀)">Attributes (♂|♀)</h6>
+                                    <div class="lore-table-wrapper"><table class="lore-table peoples-attr-table attr-sex-diff"><thead><tr><th>Attr</th><th data-en="Modifier ♂|♀" data-fr="Mod. ♂|♀">Modifier ♂|♀</th></tr></thead><tbody>
+                                        <tr><td>FOR</td><td>−2|−4</td></tr><tr><td>AGI</td><td>−2|−1</td></tr><tr><td>DEX</td><td>+3</td></tr><tr><td>VIG</td><td>+3</td></tr><tr><td>EMP</td><td>+3|+5</td></tr><tr><td>PER</td><td>+3|+4</td></tr><tr><td>CRE</td><td>−4|−5</td></tr><tr><td>VOL</td><td>−4|−5</td></tr>
+                                    </tbody></table></div>
+                                </div>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Physical" data-fr="Physique">Physical</h6>
+                                    <div class="lore-table-wrapper"><table class="lore-table peoples-phys-table"><thead><tr><th data-en="Taille" data-fr="Taille">Taille</th><th data-en="Stature ♂|♀" data-fr="Stature ♂|♀">Stature ♂|♀</th><th data-en="Gras ♂|♀" data-fr="Gras ♂|♀">Gras ♂|♀</th><th data-en="Dimorphisme" data-fr="Dimorphisme">Dimorphisme</th></tr></thead><tbody><tr><td data-en="Grande (+1)" data-fr="Grande (+1)">Grande (+1)</td><td>Svelte(-1)|Filiforme(-2)</td><td>Grêle(-2)|Mince(-1)</td><td data-en="Typique" data-fr="Typique">Typique</td></tr></tbody></table></div>
+                                </div>
+                                <div class="peoples-back-section">
+                                    <h6 data-en="Relations" data-fr="Relations">Relations</h6>
+                                    <p><span data-en="Confiant:" data-fr="Confiant :">Confiant:</span> Entre eux. <span data-en="Accueil:" data-fr="Accueil :">Accueil:</span> Navillis, Iqqars. <span data-en="Neutre:" data-fr="Neutre :">Neutre:</span> Aristois, Griscribes, Méridiens, Ylfes pâles, Slaadéens. <span data-en="Méfiant:" data-fr="Méfiant :">Méfiant:</span> Hauts Ylfes. <span data-en="Hostile:" data-fr="Hostile :">Hostile:</span> Ylfes des lacs.</p>
+                                </div>
+                                <button type="button" class="peoples-flip-btn peoples-flip-back-btn" aria-label="Back"><span data-en="Back" data-fr="Retour">Back</span></button>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>
