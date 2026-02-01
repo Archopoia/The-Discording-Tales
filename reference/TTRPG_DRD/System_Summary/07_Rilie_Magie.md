@@ -31,10 +31,10 @@ La grande majorité des cultures croient vivre dans un **univers concave** (Cyto
 
 | Tétrarque | Épithète | Domaine | Action fondatrice | Action inverse (Zimwis) |
 |----------|----------|---------|-------------------|--------------------------|
-| **iôHôi** | Le Foudroyé, parfumant | **Tournoiement** (Électromagnétisme) | **Hôi** : assemble les Riliôh en Rilhôi (masse), attraction | **iôH** : délie, disperse, répulsion |
-| **sôIôs** | L’Ondoyé, miellisant | **Tension** (Gravité) | **Iôs** : réveille les Rilsôi en Riliôs (mouvance), chute | **sôI** : endort les Riliôs en Rilsôi (immobilité), élévation |
-| **môSôm** | L’Éboulée, florissante | **Alignement** (Lumière) | **Sôm** : aligne les Rilmôs en Rilsôm (visibilité), apparition | **môS** : cache les Rilsôm en Rilmôs (invisibilité), disparition |
-| **hôMôh** | L’Embrasée, givrante | **Torsion** (Transmutation) | **Môh** : embrase les Rilhôm en Rilmôh (mixtion), changement | **hôM** : fige les Rilmôh en Rilhôm (pureté), persistance |
+| **iôHôi** | le Foudroyé-Parfumant | **Tournoiement** (Électromagnétisme) | **Hôi** : assemble les Riliôh (Formes Uniques / Atome) en Rilhôi (masse), attraction | **iôH** : délie Rilhôi (Formes Massives / Masse) en Riliôh (Formes Uniques / Atome), répulsion |
+| **sôIôs** | l'Ondoyé-Miellisant | **Tension** (Gravité) | **Iôs** : réveille les Rilsôi (Formes Immobiles / Immobilité) en Riliôs (mouvance), chute | **sôI** : endort les Riliôs (Formes Mouvantes / Mouvance) en Rilsôi (immobilité), élévation |
+| **môSôm** | l'Éboulée-Florissante | **Alignement** (Lumière) | **Sôm** : aligne les Rilmôs (Formes Invisibles / Invisibilité) en Rilsôm (visibilité), apparition | **môS** : cache les Rilsôm (Formes Visibles / Visibilité) en Rilmôs (invisibilité), disparition |
+| **hôMôh** | l'Embrasée-Givrante | **Torsion** (Transmutation) | **Môh** : embrase les Rilhôm (Formes Pures / Pureté) en Rilmôh (Formes Mixtionnées / Miction), changement | **hôM** : fige les Rilmôh (Formes Mixtionnées / Miction) en Rilhôm (pureté), persistance |
 
 ---
 

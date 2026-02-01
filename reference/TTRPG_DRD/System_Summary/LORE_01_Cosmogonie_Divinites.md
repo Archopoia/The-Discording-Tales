@@ -38,49 +38,49 @@ L'un des concepts clé est qu'il est coutume d'expliquer le monde, ses phénomè
 
 ## Les Quatre Rois/Reines-Artistes (Tétrarques)
 
-### iôHôi - Le Foudroyé (Parfumant)
+### iôHôi le Foudroyé-Parfumant
 **Domaine** : Tournoiement (Électromagnétisme)
 
 **Actions** :
-- **Hôi** : Assemble les Riliôh en Rilhôi (masse) - cause l'attraction
-- **iôH** : Délie les nœuds, disperse les Riliôh - cause la répulsion
+- **Hôi** : Assemble les Riliôh (Formes Uniques / Atome) en Rilhôi (masse) - cause l'attraction
+- **iôH** : Délie les nœuds de Rilhôi (Formes Massives / Masse), disperse en Riliôh (Formes Uniques / Atome) - cause la répulsion
 
 **Famille Rilique** : Aèmrils (Formes Virevoltantes/Airs)
 
-**Rildées-Astrales** : Währos (Force/Réussite/Guerre/Intrépidité)
+**Rildées-astrales** : Währos (Force/Réussite/Guerre/Intrépidité)
 
-### sôIôs - L'Ondoyé (Miellisant)
+### sôIôs l'Ondoyé-Miellisant
 **Domaine** : Tension (Gravité)
 
 **Actions** :
-- **Iôs** : Réveille les Rilsôi en Riliôs (mouvance) - cause la chute
-- **sôI** : Endort les Riliôs en Rilsôi (immobilité) - cause l'élévation
+- **Iôs** : Réveille les Rilsôi (Formes Immobiles / Immobilité) en Riliôs (mouvance) - cause la chute
+- **sôI** : Endort les Riliôs (Formes Mouvantes / Mouvance) en Rilsôi (immobilité) - cause l'élévation
 
 **Famille Rilique** : Ormrils (Formes Émouvantes/Émotions)
 
-**Rildées-Astrales** : Hwëthioz (Volonté/Pouvoir/Sortilège/Dignité)
+**Rildées-astrales** : Hwëthioz (Volonté/Pouvoir/Sortilège/Dignité)
 
-### môSôm - L'Éboulée (Florissante)
+### môSôm l'Éboulée-Florissante
 **Domaine** : Alignement (Lumière)
 
 **Actions** :
-- **Sôm** : Aligne les Rilmôs en Rilsôm (visibilité) - cause l'apparition
-- **môS** : Cache les Rilsôm en Rilmôs (invisibilité) - cause la disparition
+- **Sôm** : Aligne les Rilmôs (Formes Invisibles / Invisibilité) en Rilsôm (visibilité) - cause l'apparition
+- **môS** : Cache les Rilsôm (Formes Visibles / Visibilité) en Rilmôs (invisibilité) - cause la disparition
 
 **Famille Rilique** : Esthrils (Formes Manifestantes/Phénomènes)
 
-**Rildées-Astrales** : Tëhkswen (Dextérité/Exploration/Artifice/Intégrité) et Minzhijë (Perspicacité/Assurance/Foi/Impartialité)
+**Rildées-astrales** : Tëhkswen (Dextérité/Exploration/Artifice/Intégrité) et Minzhijë (Perspicacité/Assurance/Foi/Impartialité)
 
-### hôMôh - L'Embrasée (Givrante)
+### hôMôh l'Embrasée-Givrante
 **Domaine** : Torsion (Transmutation)
 
 **Actions** :
-- **Môh** : Embrase les Rilhôm en Rilmôh (mixtion) - cause le changement
-- **hôM** : Fige les Rilmôh en Rilhôm (pureté) - cause la persistance
+- **Môh** : Embrase les Rilhôm (Formes Pures / Pureté) en Rilmôh (Formes Mixtionnées / Miction) - cause le changement
+- **hôM** : Fige les Rilmôh (Formes Mixtionnées / Miction) en Rilhôm (pureté) - cause la persistance
 
 **Famille Rilique** : Stadrils (Formes Figeantes/Solides)
 
-**Rildées-Astrales** : Hsæwâl et Samianâ (pour les Yômmes)
+**Rildées-astrales** : Hsæwâl et Samianâ (pour les Yômmes)
 
 ## Éo, oÀ et ÉoÀ
 
@@ -95,7 +95,7 @@ L'un des concepts clé est qu'il est coutume d'expliquer le monde, ses phénomè
 
 **Ô trouve sa joie dans la douleur** (oÀ) et **son malheur dans le plaisir** (Éo).
 
-## Les Rildées-Astrales (8 Lunes WYTHSMÂH)
+## Les Rildées-astrales (8 Lunes WYTHSMÂH)
 
 ### Währos
 **Attributs** : Force, Réussite, Guerre, Intrépidité
@@ -131,7 +131,6 @@ L'un des concepts clé est qu'il est coutume d'expliquer le monde, ses phénomè
 **Origine** : Née de hôMôh, s'enrichissant de son empathie mature et inspirée.
 **Pouvoir** : Dépendante de ses troupeaux de Zoosrils (Formes Mouvantes (d'elles-mêmes)/Animaux), se soumettait aux pâturages glacés de Môh lorsque frigorifiée.
 **Famille Rilique** : Zoosrils (Formes Mouvantes/Animaux)
-**Cycle** : Après chaque 25ème Aube (5 Pentaines), Samianâ la cinquième, se rassasie de ses troupeaux avant que la faim ne la dévore à nouveau.
 
 ### Yekkwuî
 **Attributs** : Agilité, Liberté, Survie, Impétuosité
@@ -242,9 +241,9 @@ Nés du squelette de Tëhkswen empêtré sur Hael, façonnant les quatre Rildée
 
 **Note** : On raconte qu'Asmund, Hegseg, Tulsug et Saksag vivent toujours (mais où ?), et qu'ils façonnent encore de nouveaux Bêstres ici et là.
 
-## Les Herwâs Thars (8 Nains d'Outils des Aïars)
+## Les Herwâs Thars (8 Nains d'Outil des Aïars)
 
-Nés des graines et poussières fertiles éparpillées par Minzhijë, donnant tous les goûts, parfums, mélodies, couleurs, textiles et autres phénomènes. Les Herwâs Thars (Nains d'Outils) après les avoir ressentis, se révoltèrent de ces épreuves qu'offra Hael.
+Nés des graines et poussières fertiles éparpillées par Minzhijë, donnant tous les goûts, parfums, mélodies, couleurs, textiles et autres phénomènes. Les Herwâs Thars (Nains d'Outil) après les avoir ressentis, se révoltèrent de ces épreuves qu'offra Hael.
 
 ### Shdrazd
 **Outil** : Éclateur
@@ -343,7 +342,7 @@ Le ciel, l'air, l'espace au-dessus. Währos et Hwëthioz furent séparés l'un d
 
 5. **Rildées-majeures** : Régissent montagnes, océans, déserts, royaumes. Similairement, régissent par leurs formes (et sont parfois directement) les montagnes, les océans, les déserts ou encore les royaumes et les sociétés, tels que les huit hryôhpéens Dûwasaï Harlbhus des Yôrres, les quatre lutins Pauk Peystk des Yômmes, ou encore les douze géants Kweryas Gjuaj des Bêstres et nains Herwâs Thars (des Aïars ?).
 
-6. **Rildées-astrales** : Ordonnent rythmes, valeurs, saisons, concepts. Ont des formes ordonnant (ou chamboulant en désastres) les rythmes et les valeurs elles-mêmes, les saisons, voir l'idée de la royauté elle-même, telles que le sol Hael et le cieul Féos eux-mêmes, ou les huit Lunes WYTHSMÂH (Währos, Yekkwuî, Tëhkswen, Hsaewâl, Samianâ, Minzhijë, Âpsebjum et Hwëthioz), voir encore les sept étoiles vagabondantes.
+6. **Rildées-astrales** : Ordonnent rythmes, valeurs, saisons, concepts. Ont des formes ordonnant (ou chamboulant en désastres) les rythmes et les valeurs elles-mêmes, les saisons, voir l'idée de la royauté elle-même, telles que le sol Hael et le cieul Féos eux-mêmes, ou les huit Lunes WYTHSMÂH (Währos, Yekkwuî, Tëhkswen, Hsæwâl, Samianâ, Minzhijë, Âpsebjum et Hwëthioz), voir encore les sept étoiles vagabondantes.
 
 7. **Tétraques de l'HISM** : Manipulent chaque Ril-cendrée. D'un extrême les tétraques bicéphales de l'HISM (« les » Sziizs) mûrent, meuvent et mouvront (« riliquement ») chaque Ril-cendrée et Rildée-astrale sans pour autant être des Rils eux-mêmes.
 

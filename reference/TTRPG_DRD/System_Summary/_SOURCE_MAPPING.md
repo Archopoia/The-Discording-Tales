@@ -64,4 +64,5 @@ Les résumés utilisent la terminologie du livre de façon cohérente :
 - **NdT** : Niveau de Temps.
 - **DS** : Dés de Souffrance.
 - **Ril-cendrée** (avec trait d’union), **Rildée-astrale**, **HISM**, **Éo**, **oÀ**, **ÉoÀ**.
+- Le livre utilise **Môh** dans le corps du texte ; la table des matières du livre donne « Honorations Riliques Hôi, Iôs, Sôm, Môi » (avec *i*) pour le titre de section — les résumés gardent **Môh**.
 - Références croisées internes : « voir 03_Attributs_Aptitudes_Competences », etc. Les numéros de page livre (ex. « Livre p. 137 ») sont indiqués dans les résumés où pertinent.

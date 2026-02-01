@@ -78,7 +78,7 @@ Les dates précises sont estimées par le chroniqueur basé sur les relations de
 
 **1ère Ère, ~8 900 AEA** - Minzhijë, par son tournoiement, éparpille toutes ses graines et poussières fertiles qu'elle trouva en les lits fleuris, donnant tous les goûts, parfums, mélodies, couleurs, textiles et autres phénomènes.
 
-**1ère Ère, ~8 850 AEA** - Naissance des huit Rildées-majeures souterraines, les Herwâs Thars (Nains d'Outils), des graines et poussières de Minzhijë : Shdrazd, Hmarlib, Warwuag, Zhahzugodaïz, Pfaftukotaïs, Pompoak, Nrutnap, Shtrult.
+**1ère Ère, ~8 850 AEA** - Naissance des huit Rildées-majeures souterraines, les Herwâs Thars (Nains d'Outil), des graines et poussières de Minzhijë : Shdrazd, Hmarlib, Warwuag, Zhahzugodaïz, Pfaftukotaïs, Pompoak, Nrutnap, Shtrult.
 
 **1ère Ère, ~8 800 AEA** - Les Herwâs Thars se révoltent des épreuves qu'offra Hael, tout comme les Aïars qui en descendent l'auraient fait.
 
