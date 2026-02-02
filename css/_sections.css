@@ -2341,6 +2341,32 @@
     margin-bottom: var(--spacing-md);
 }
 
+/* Peoples: origins accordion (Yômmes, Yôrres, Bêstres) */
+/* Origin name in tree: clickable to toggle description panel */
+.peoples-tree-origin-name {
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 2px;
+}
+.peoples-tree-origin-name:hover {
+    color: var(--tdt-gold, #c9a227);
+}
+
+/* Origin description panel (inline under origin name in tree) */
+.peoples-tree-origin-content[hidden] {
+    display: none;
+}
+.peoples-tree-origin-content .peoples-tree-origin-body {
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin: var(--spacing-sm) 0 0;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-sm);
+    color: var(--tdt-cream);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
 /* ----- Peuples: intro, tree only, then hidden cards (popover source) ----- */
 .peoples-tree-wrap {
     min-width: 0;

@@ -408,6 +408,21 @@
         // Peoples: inline accordions in the tree (no popover)
         const peoplesSection = document.getElementById('peoples');
         if (peoplesSection) {
+            var PEOPLES_ORIGIN_DESCRIPTIONS = {
+                yommes: {
+                    en: 'Humanoids of small stature, the Yômmes descend from the Aïars and split through two great migrations: the Erréors south into mangroves (giving rise to Méridiens and Navillis), then the Escandirs north-west into the mountains (Aristois and Griscribes). They are nomadic in spirit yet practise agriculture, horticulture and pastoralism—tribes, chiefdoms or states—with chamanic rites and a shared sense of regret expressed in collective sacrifice. They tend to see the Yôrres as mad or charlatans for their religion and cannibalism, and the Bêstres as bastard dregs bewitched by natural forces, to be purged; they themselves resent the abuse of their small size by the other origins.',
+                    fr: 'Humanoïdes de petite taille, les Yômmes descendent des Aïars et se scindent en deux grandes migrations : les Erréors vers le Sud dans les mangroves (Méridiens et Navillis), puis les Escandirs vers le Nord-Ouest dans les montagnes (Aristois et Griscribes). Nomades dans l\'âme, ils pratiquent agriculture, horticulture et pastoralisme—tribus, chefferies ou états—avec des rites chamaniques et un regret partagé qui s\'exprime par le sacrifice collectif. Ils voient volontiers les Yôrres comme fous ou charlatans pour leur religion et leur cannibalisme, et les Bêstres comme des immondices bâtardes envoûtées par les forces naturelles, à purger ; eux-mêmes regrettent l\'abus de leur petite taille par les autres origines.'
+                },
+                yorres: {
+                    en: 'Elf-like and long-lived, the Yôrres spring from the Hryôhpéens who sat in judgment at Withlaï and the Hydryôrres who travelled by water—giving rise to the Hauts Ylfes, Ylfes pâles, Ylfes des lacs, and the errant Iqqars. They built a sedentary civilisation that was shattered when their world collapsed from the sky; cold and flood drove them to ritual cannibalism and a sacred direction that unites them. They preserve and pass on possessions to those who use them best, and withdraw into the pure solitude of temple-homes. How they view the Yômmes and Bêstres varies from people to people, but they remain bound by lineage, longevity and a morality that feels alien to the others.',
+                    fr: 'Proches des elfes et longévifs, les Yôrres descendent des Hryôhpéens qui siégeaient au tribunal de Withlaï et des Hydryôrres qui voyagèrent par les eaux—donnant les Hauts Ylfes, Ylfes pâles, Ylfes des lacs et les Iqqars errants. Ils bâtirent une civilisation sédentaire que l\'effondrement du ciel détruisit ; le froid et les flots les menèrent au cannibalisme rituel et à une direction sacrée qui les unit. Ils sauvegardent et transmettent leurs biens à ceux qui les utilisent le mieux, et se retirent dans la solitude pure de leurs temples-maisons. Leur perception des Yômmes et des Bêstres varie selon les peuples, mais ils restent liés par la lignée, la longévité et une moralité qui demeure étrangère aux autres.'
+                },
+                bestres: {
+                    en: 'Diverse creatures shaped by the Kweryas Gjuaj (the four giants of arms), the Bêstres range from animal and wild to primitive and inspired—of whom only the inspired peoples, the Slaadéens and Tchalkchaïs, are treated here. They emerged from caverns and troglodytic refuges as the world warmed, spreading from desert to forest. They use the Yômmes as living tools who manipulate nature through sacrifice, and observe the Ylfes as beings alienated from natural forces, other. They claim that the Yômmes and Yôrres were in truth also shaped from clay, and that their thought too was pressed into their skulls by the reproving fingers of Asmund—a pretension the other origins find absurd.',
+                    fr: 'Créatures diverses façonnées par les Kweryas Gjuaj (les quatre géants d\'armes), les Bêstres vont de l\'animal et du sauvage au primitif et à l\'inspiré—seuls les peuples inspirés, Slaadéens et Tchalkchaïs, sont traités ici. Ils sortirent des cavernes et refuges troglodytes avec le réchauffement du monde, s\'éparpillant du désert à la forêt. Ils utilisent les Yômmes comme êtres-outils manipulant la nature par le sacrifice, et voient les Ylfes comme des êtres aliénés des forces naturelles, autres. Ils prétendent que les Yômmes et les Yôrres furent eux aussi de glaise et que leur pensée fut écrasée en leur crâne par les doigts réprobateurs d\'Asmund—prétention que les autres origines jugent ridicule.'
+                }
+            };
+
             function buildPeopleAccordionContent(section, peupleId) {
                 var card = section.querySelector('.peoples-flip-card[data-peuple="' + peupleId + '"]');
                 if (!card) return null;
@@ -503,9 +518,52 @@
                         row.appendChild(content);
                     });
                 });
+                // Inject origin description panels (after origin name, before children)
+                peoplesSection.querySelectorAll('.peoples-tree-node[data-origin]').forEach(function(node) {
+                    var originId = node.getAttribute('data-origin');
+                    if (!originId || !PEOPLES_ORIGIN_DESCRIPTIONS[originId]) return;
+                    var panel = document.createElement('div');
+                    panel.className = 'peoples-tree-origin-content';
+                    panel.setAttribute('aria-expanded', 'false');
+                    panel.setAttribute('hidden', '');
+                    var childrenEl = node.querySelector('.peoples-tree-children');
+                    if (childrenEl) {
+                        node.insertBefore(panel, childrenEl);
+                    } else {
+                        node.appendChild(panel);
+                    }
+                });
 
                 treeWrap.addEventListener('click', function(ev) {
                     var target = ev.target;
+                    if (target.closest && target.closest('.peoples-tree-origin-name')) {
+                        var originNameEl = target.closest('.peoples-tree-origin-name');
+                        var originNode = originNameEl.closest('.peoples-tree-node[data-origin]');
+                        if (!originNode) return;
+                        ev.preventDefault();
+                        ev.stopPropagation();
+                        var panel = originNode.querySelector('.peoples-tree-origin-content');
+                        if (!panel) return;
+                        var isExpanded = !panel.hasAttribute('hidden');
+                        if (isExpanded) {
+                            panel.setAttribute('hidden', '');
+                            panel.setAttribute('aria-expanded', 'false');
+                        } else {
+                            panel.removeAttribute('hidden');
+                            panel.setAttribute('aria-expanded', 'true');
+                            var originId = originNode.getAttribute('data-origin');
+                            var lang = document.documentElement.lang || 'en';
+                            var text = (PEOPLES_ORIGIN_DESCRIPTIONS[originId] && PEOPLES_ORIGIN_DESCRIPTIONS[originId][lang]) || '';
+                            var body = panel.querySelector('.peoples-tree-origin-body');
+                            if (!body) {
+                                body = document.createElement('div');
+                                body.className = 'peoples-tree-origin-body';
+                                panel.appendChild(body);
+                            }
+                            body.textContent = text;
+                        }
+                        return;
+                    }
                     if (target.closest && target.closest('.peoples-tree-name')) {
                         var nameEl = target.closest('.peoples-tree-name');
                         var node = nameEl.closest('.peoples-tree-node[data-peuple]');
@@ -576,6 +634,14 @@
                 window.addEventListener('tdt-lang-changed', function(ev) {
                     if (!peoplesSection) return;
                     var lang = (ev && ev.detail) || document.documentElement.lang || 'en';
+                    peoplesSection.querySelectorAll('.peoples-tree-origin-content:not([hidden])').forEach(function(panel) {
+                        var originNode = panel.closest('.peoples-tree-node[data-origin]');
+                        if (!originNode) return;
+                        var originId = originNode.getAttribute('data-origin');
+                        var text = (PEOPLES_ORIGIN_DESCRIPTIONS[originId] && PEOPLES_ORIGIN_DESCRIPTIONS[originId][lang]) || '';
+                        var body = panel.querySelector('.peoples-tree-origin-body');
+                        if (body) body.textContent = text;
+                    });
                     peoplesSection.querySelectorAll('.peoples-tree-people-content:not([hidden])').forEach(function(panel) {
                         var node = panel.closest('.peoples-tree-node[data-peuple]');
                         if (!node) return;
