@@ -1,6 +1,6 @@
 # Des Récits Discordants — Zine : Règles de base (10 pages)
 
-*Règles minimales pour jouer dans l’univers et le système de Des Récits Discordants. Sources : AllBookPages-FullBook, AllBookTables-csv, System_Summary. Terminologie du livre (Révélateur, Éveilleur, Niv, dD).*
+*Règles minimales pour jouer dans l’univers et le système de Des Récits Discordants. Terminologie du livre (Révélateur, Éveilleur, Niv, dD).*
 
 ---
 
@@ -204,7 +204,7 @@ Les DS s’appliquent comme **dés négatifs** aux jets liés à l’Attribut af
 
 ## Rilie (magie)
 
-La magie naît de l’interaction avec les **Rils** (formes fondamentales du monde), orchestrée par quatre Tétrarques : Tournoiement, Tension, Alignement, Torsion. Les **Honorations Riliques** sont des actions rituelles (sacrifices, serments, offrandes) pour obtenir des effets (guérison, résistance, dégâts, etc.). À révéler comme Compétence ; voir livre / `07_Rilie_Magie.md` pour les cercles et familles riliques.
+La magie naît de l’interaction avec les **Rils** (formes fondamentales du monde), orchestrée par quatre Tétrarques : Tournoiement, Tension, Alignement, Torsion. Les **Honorations Riliques** sont des actions rituelles (sacrifices, serments, offrandes) pour obtenir des effets (guérison, résistance, dégâts, etc.). À révéler comme Compétence ; voir le livre de règles pour les cercles et familles riliques.
 
 ---
 
@@ -226,9 +226,7 @@ Si échec : Rancœurs (VOL), possible Rage à 10+ Souffrances ; dans tous les ca
 
 ## Pour aller plus loin
 
-- **Règles complètes** : dossiers `System_Summary/` (01 à 16), `LORE_*`, `07_Rilie_Magie.md`.
-- **Tables** : `AllBookTables-csv/`.
-- **Livre intégral** : `AllBookPages-FullBook/`.
+- **Règles complètes**, **tables** et **livre intégral** : voir le livre de règles.
 
 *Des Récits Discordants : un jeu où la souffrance forge le héros, pas seulement le handicape.*
 

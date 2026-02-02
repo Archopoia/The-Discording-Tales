@@ -1221,24 +1221,6 @@
     border-radius: var(--radius-md);
 }
 
-/* Character revelation: cut in half (show one half) and oval frame */
-.worldlore-figure-revelation {
-    overflow: hidden;
-    border-radius: 50%;
-    width: 42%;
-    max-width: 260px;
-    aspect-ratio: 2 / 3;
-    margin: 0 auto;
-}
-
-.worldlore-figure-revelation img {
-    width: 200%;
-    height: 100%;
-    object-fit: cover;
-    object-position: left center;
-    display: block;
-}
-
 .worldlore-figure-inline {
     text-align: center;
     margin: var(--spacing-sm) 0;
