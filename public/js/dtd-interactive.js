@@ -324,62 +324,52 @@
             pop.style.top = top + 'px';
         }
 
-        // Peoples: table rows + tree nodes
+        // Peoples: tree only — only the people name shows people popover, only race names show race popover
         const peoplesSection = document.getElementById('peoples');
         if (peoplesSection) {
-            const rows = peoplesSection.querySelectorAll('.peoples-summary-table tbody tr[data-peuple]');
-            rows.forEach(function(tr) {
-                const peupleId = tr.getAttribute('data-peuple');
-                if (!peupleId) return;
-                tr.addEventListener('mouseenter', function() {
-                    showPopover(tr, function() {
-                        return buildPeoplePopoverContent(peoplesSection, peupleId);
-                    });
-                });
-                tr.addEventListener('mouseleave', hidePopover);
-            });
-
-            peoplesSection.querySelectorAll('.peoples-tree-node[data-peuple]').forEach(function(node) {
-                const peupleId = node.getAttribute('data-peuple');
-                if (!peupleId) return;
-                node.addEventListener('mouseenter', function(ev) {
-                    if (ev.target.closest && ev.target.closest('.peoples-tree-race')) return;
-                    showPopover(node, function() {
-                        return buildPeoplePopoverContent(peoplesSection, peupleId);
-                    });
-                });
-                node.addEventListener('mouseleave', hidePopover);
-            });
-
-            // Tree race spans: hover shows race popover (not people)
-            peoplesSection.querySelectorAll('.peoples-tree-race').forEach(function(span) {
-                span.addEventListener('mouseenter', function(ev) {
-                    ev.stopPropagation();
-                    const peupleId = span.getAttribute('data-peuple');
-                    const raceLabel = span.getAttribute('data-race') || span.textContent.trim();
-                    showPopover(span, function() {
-                        const card = peoplesSection.querySelector('.peoples-flip-card[data-peuple="' + peupleId + '"]');
-                        if (!card) return null;
-                        const lis = card.querySelectorAll('.peoples-races-mini li');
-                        for (var i = 0; i < lis.length; i++) {
-                            if (lis[i].textContent.trim() === raceLabel) {
-                                var desc = lis[i].getAttribute('title') || lis[i].getAttribute('data-title-en') || lis[i].getAttribute('data-title-fr') || '';
-                                var wrap = document.createElement('div');
-                                wrap.className = 'tdt-popover-race';
-                                var h6 = document.createElement('h6');
-                                h6.textContent = raceLabel;
-                                var p = document.createElement('p');
-                                p.textContent = desc;
-                                wrap.appendChild(h6);
-                                wrap.appendChild(p);
-                                return wrap;
+            var treeWrap = peoplesSection.querySelector('.peoples-tree-wrap');
+            if (treeWrap) {
+                treeWrap.addEventListener('mouseover', function(ev) {
+                    var target = ev.target;
+                    var raceSpan = target.closest && target.closest('.peoples-tree-race');
+                    if (raceSpan) {
+                        var peupleId = raceSpan.getAttribute('data-peuple');
+                        var raceLabel = raceSpan.getAttribute('data-race') || raceSpan.textContent.trim();
+                        showPopover(raceSpan, function() {
+                            var card = peoplesSection.querySelector('.peoples-flip-card[data-peuple="' + peupleId + '"]');
+                            if (!card) return null;
+                            var lis = card.querySelectorAll('.peoples-races-mini li');
+                            for (var i = 0; i < lis.length; i++) {
+                                if (lis[i].textContent.trim() === raceLabel) {
+                                    var desc = lis[i].getAttribute('title') || lis[i].getAttribute('data-title-en') || lis[i].getAttribute('data-title-fr') || '';
+                                    var wrap = document.createElement('div');
+                                    wrap.className = 'tdt-popover-race';
+                                    var h6 = document.createElement('h6');
+                                    h6.textContent = raceLabel;
+                                    var p = document.createElement('p');
+                                    p.textContent = desc;
+                                    wrap.appendChild(h6);
+                                    wrap.appendChild(p);
+                                    return wrap;
+                                }
                             }
+                            return null;
+                        });
+                        return;
+                    }
+                    var nameEl = target.closest && target.closest('.peoples-tree-name');
+                    if (nameEl) {
+                        var peopleNode = nameEl.closest('.peoples-tree-node[data-peuple]');
+                        if (peopleNode) {
+                            var peupleId = peopleNode.getAttribute('data-peuple');
+                            showPopover(nameEl, function() {
+                                return buildPeoplePopoverContent(peoplesSection, peupleId);
+                            });
                         }
-                        return null;
-                    });
+                    }
                 });
-                span.addEventListener('mouseleave', hidePopover);
-            });
+                treeWrap.addEventListener('mouseleave', hidePopover);
+            }
 
             function buildPeoplePopoverContent(section, peupleId) {
                 const card = section.querySelector('.peoples-flip-card[data-peuple="' + peupleId + '"]');
@@ -451,7 +441,11 @@
         try {
             window.addEventListener('tdt-lang-changed', function() {
                 if (currentTrigger && popoverEl.classList.contains('is-visible')) {
-                    const peupleId = currentTrigger.getAttribute('data-peuple');
+                    var peupleId = currentTrigger.getAttribute && currentTrigger.getAttribute('data-peuple');
+                    if (!peupleId && currentTrigger.closest) {
+                        var peopleNode = currentTrigger.closest('.peoples-tree-node[data-peuple]');
+                        if (peopleNode) peupleId = peopleNode.getAttribute('data-peuple');
+                    }
                     const tetrarchId = currentTrigger.getAttribute('data-tetrarch');
                     const isRaceTrigger = currentTrigger.closest && (currentTrigger.closest('.peoples-races-mini') || currentTrigger.closest('.peoples-tree-race'));
                     if (peupleId && peoplesSection && !isRaceTrigger) {
@@ -473,9 +467,9 @@
                         var name, desc;
                         if (currentTrigger.closest && currentTrigger.closest('.peoples-tree-race')) {
                             var span = currentTrigger.closest('.peoples-tree-race') || currentTrigger;
-                            var peupleId = span.getAttribute('data-peuple');
+                            var racePeupleId = span.getAttribute('data-peuple');
                             var raceLabel = span.getAttribute('data-race') || span.textContent.trim();
-                            var card = peoplesSection && peoplesSection.querySelector('.peoples-flip-card[data-peuple="' + peupleId + '"]');
+                            var card = peoplesSection && peoplesSection.querySelector('.peoples-flip-card[data-peuple="' + racePeupleId + '"]');
                             if (card) {
                                 var cardLis = card.querySelectorAll('.peoples-races-mini li');
                                 for (var j = 0; j < cardLis.length; j++) {

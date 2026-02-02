@@ -1703,34 +1703,10 @@
     margin-bottom: var(--spacing-md);
 }
 
-.peoples-table-wrapper {
+/* ----- Peuples: intro, tree only, then hidden cards (popover source) ----- */
+.peoples-tree-wrap {
     min-width: 0;
-    width: 100%;
-}
-
-.lore-table.peoples-summary-table {
-    max-width: none;
-    width: 100%;
-}
-
-@media (max-width: 640px) {
-    .peoples-tree-table-row {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* ----- Peuples: intro, tree+table row, then cards ----- */
-/* Row: tree (left) + summary table (right) */
-.peoples-tree-table-row {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(280px, 1fr);
-    gap: var(--spacing-lg);
     margin: var(--spacing-md) 0;
-    align-items: start;
-}
-.peoples-tree-wrap,
-.peoples-table-wrap {
-    min-width: 0;
 }
 /* Tree: collapsible Origin → People → Races — explicit text color for readability */
 .peoples-tree {
@@ -1747,6 +1723,23 @@
 .peoples-tree-node strong {
     color: var(--tdt-burgundy);
     font-weight: 700;
+}
+.peoples-tree-name {
+    font-weight: 600;
+    color: var(--tdt-burgundy);
+    cursor: help;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 2px;
+}
+.peoples-tree-morality {
+    font-size: 0.85em;
+    color: var(--tdt-brown);
+    margin-left: var(--spacing-xs);
+}
+.peoples-tree-morality em {
+    font-style: normal;
+    opacity: 0.9;
 }
 .peoples-tree-node[data-origin] > .peoples-tree-children {
     margin-left: var(--spacing-md);
@@ -1771,11 +1764,17 @@
     display: none;
 }
 .peoples-tree-races {
+    display: block;
+    margin-top: var(--spacing-xs);
+    margin-left: var(--spacing-md);
+    padding-left: var(--spacing-sm);
+    border-left: 1px solid var(--tdt-burgundy-warm);
     font-size: 0.9em;
     color: var(--tdt-brown);
-    margin-left: var(--spacing-xs);
 }
 .peoples-tree-race {
+    display: block;
+    margin-top: 2px;
     cursor: help;
     text-decoration: underline;
     text-decoration-style: dotted;
