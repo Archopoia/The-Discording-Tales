@@ -1273,7 +1273,11 @@
     margin: var(--spacing-md) 0;
 }
 
-/* Callout block: character sheet image left, text right */
+/* Callout block: character sheet + symbols images left, text right */
+.worldlore-block-images-stack .worldlore-figure + .worldlore-figure {
+    margin-top: var(--spacing-md);
+}
+
 .worldlore-block-callout .worldlore-block-left {
     flex: 0 1 38%;
     min-width: 240px;
@@ -1898,10 +1902,10 @@
     color: var(--tdt-mint);
 }
 
-/* Conflicts card grid */
+/* Conflicts card grid: 4 columns × 2 rows */
 .conflicts-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: var(--spacing-md);
 }
 

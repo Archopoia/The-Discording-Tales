@@ -219,7 +219,7 @@
   "tpl.166": "Perception",
   "tpl.167": "Creativity",
   "tpl.168": "Willpower",
-  "tpl.169": "The 8 Types of Conflicts (Gameplay)",
+  "tpl.169": "The 8 Conflicts",
   "tpl.17": "Most cultures believe they live in a <strong>concave universe</strong>—a hollow where space rushes into a sphere of rock. The ground under their feet may be endless.",
   "tpl.170": "The system proposes <strong>8 types of gameplay</strong> directly linked to the 8 Aptitudes. Use a \"Key\" (tool, knowledge, contact) to obtain the Object or pass the Obstacle in any conflict type.",
   "tpl.171": "Aptitude",
@@ -871,5 +871,9 @@
   "tpl.96": "<strong>Religious:</strong> Heptahalie vs Oratoire Kaïaste vs Nomê Aristois vs Hahalumullio Ylfe.",
   "tpl.97": "Ruleset",
   "tpl.98": "A free-forming system where failure becomes progression. Your choices matter; the world responds.",
-  "tpl.99": "Go to Play (Character Sheet & GM)"
+  "tpl.99": "Go to Play (Character Sheet & GM)",
+  "tpl.900": "Dice",
+  "tpl.901": "Struggle",
+  "tpl.902": "Mark",
+  "tpl.903": "Realize"
 }

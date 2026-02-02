@@ -219,7 +219,7 @@
   "tpl.166": "Perception",
   "tpl.167": "Créativité",
   "tpl.168": "Volonté",
-  "tpl.169": "Les 8 Types de Conflits (Gameplay)",
+  "tpl.169": "Les 8 Conflits",
   "tpl.17": "La plupart des cultures croient vivre dans un <strong>univers concave</strong>—un creux où l'espace s'engouffre vers une sphère de roche. Le sol sous leurs pieds pourrait être sans fin.",
   "tpl.170": "Le système propose <strong>8 types de gameplay</strong> directement liés aux 8 Aptitudes. Utilisez une « Clé » (outil, savoir, contact) pour obtenir l'Objet ou passer l'Obstacle dans tout type de conflit.",
   "tpl.171": "Aptitude",
@@ -871,5 +871,9 @@
   "tpl.96": "<strong>Religieux :</strong> Heptahalie vs Oratoire Kaïaste vs Nomê Aristois vs Hahalumullio Ylfe.",
   "tpl.97": "Règles",
   "tpl.98": "Un système libre-formant où l'échec devient progression. Vos choix comptent ; le monde répond.",
-  "tpl.99": "Aller à Jouer (Feuille de Personnage & MJ)"
+  "tpl.99": "Aller à Jouer (Feuille de Personnage & MJ)",
+  "tpl.900": "Dés",
+  "tpl.901": "Lutte",
+  "tpl.902": "Marque",
+  "tpl.903": "Réaliser"
 }
