@@ -54,8 +54,9 @@
             <button aria-controls="primary-menu" aria-expanded="false" class="menu-toggle" id="menu-toggle" {{i18n:nav.menu}}>Menu</button>
             <ul class="menu" id="primary-menu">
                 <li class="menu-item"><a href="#landing" data-tab="landing" class="tab-link active" {{i18n:nav.home}}>Home</a></li>
-                <li class="menu-item"><a href="#lore" data-tab="lore" class="tab-link" {{i18n:nav.worldlore}}>Worldlore</a></li>
-                <li class="menu-item"><a href="#rules" data-tab="rules" class="tab-link" {{i18n:nav.ruleset}}>Ruleset</a></li>
+                <li class="menu-item archived-section"><a href="#lore" data-tab="lore" class="tab-link" {{i18n:nav.worldlore}}>Monde.old</a></li>
+                <li class="menu-item"><a href="#univers" data-tab="univers" class="tab-link" {{i18n:nav.univers}}>Universe</a></li>
+                <li class="menu-item archived-section"><a href="#rules" data-tab="rules" class="tab-link" {{i18n:nav.ruleset}}>Règles.old</a></li>
                 <li class="menu-item"><a href="#play" data-tab="play" class="tab-link" {{i18n:nav.play}}>Play</a></li>
                 <li class="menu-item"><a href="#about" data-tab="about" class="tab-link" {{i18n:nav.about}}>About</a></li>
             </ul>
@@ -141,15 +142,14 @@
             </div>
         </section>
         
-        <!-- Lore Tab -->
-        <section id="lore" class="tab-content has-subtabs" data-lang-key="lore">
+        <!-- Lore Tab (archived) -->
+        <section id="lore" class="tab-content has-subtabs archived-section" data-lang-key="lore">
             <div class="tab-header">
                 <h2 {{i18n:tpl.10}}>Worldlore</h2>
                 <p class="tab-intro" {{i18n:tpl.11}}>Explore the baroque world worthy of myths and their mystical technologies</p>
                 <nav class="tab-sub-nav" aria-label="Worldlore sections">
-                    <a href="#cosmology" class="tab-sub-nav-link archived-section active" {{i18n:tpl.12}}>Cosmology</a>
-                    <a href="#peoples" class="tab-sub-nav-link" {{i18n:tpl.13}}>Peoples</a>
-                    <a href="#world-context" class="tab-sub-nav-link archived-section" {{i18n:tpl.14}}>World Context</a>
+                    <a href="#cosmology" class="tab-sub-nav-link active" {{i18n:tpl.12}}>Cosmology</a>
+                    <a href="#world-context" class="tab-sub-nav-link" {{i18n:tpl.14}}>World Context</a>
                 </nav>
             </div>
             
@@ -222,10 +222,44 @@
                         </div>
                     </div>
                 </div>
+            <!-- World Context Section -->
+            <div class="lore-section tab-sub-panel archived-section" id="world-context">
+                <h3 {{i18n:tpl.14}}>World Context</h3>
+                <div class="lore-content" data-lang-key="world-content">
+                    <h4 {{i18n:tpl.83}}>The Region: Iäoduneï</h4>
+                    <p {{i18n:tpl.84}}>The default setting is <strong>Iäoduneï</strong> (also written Iâodunaï): a land of snow-capped dunes, burning waters, and central mountains. Population ~200,000 over 232,000 km². Main locality: <strong>Mangroves d'Hylothermes</strong> (Hylotherme: carmine-leaved mangrove trees; Nomachome: nomadic caravan-villages).</p>
+                    <h4 {{i18n:tpl.85}}>Key Locations</h4>
+                    <ul>
+                        <li {{i18n:tpl.86}}><strong>Dla'Adur</strong> — Largest Nomachome settlement</li>
+                        <li {{i18n:tpl.87}}><strong>Lumioleï</strong> — Second major site</li>
+                        <li {{i18n:tpl.88}}><strong>Monts Ajolum</strong> — Central mountains</li>
+                        <li {{i18n:tpl.89}}><strong>Déserts Soufflés</strong> — Desert region</li>
+                        <li {{i18n:tpl.90}}><strong>Grands Lacs Thermaux</strong> — Tuhial, Eos, Daghol</li>
+                    </ul>
+                    <h4 {{i18n:tpl.91}}>Main Factions</h4>
+                    <p {{i18n:tpl.92}}><strong>Slaadéens:</strong> N'la-Fatch (artistic high family; Felichrem, Iossolam), Souk'mans (discreet infiltration), Braisois (sedentary, Heptahalie cult). <strong>Others:</strong> Rophanes (microcity-states), Daïnumes Aristois (varied communities), Aïozhan & Zoluzhan Gomb (syndicates), Ennakleis (illegality), Jademarche (unpopular causes).</p>
+                    <h4 {{i18n:tpl.93}}>Conflicts</h4>
+                    <ul>
+                        <li {{i18n:tpl.94}}><strong>Economic:</strong> Hunter-gatherers (Slaadéens) vs Pastoralism (Aristois) vs Agriculture (Ylfes des lacs)</li>
+                        <li {{i18n:tpl.95}}><strong>Cultural:</strong> Nomads vs Sedentary / Semi-sedentary; techno-traditionalism (Gens vs Choses)</li>
+                        <li {{i18n:tpl.96}}><strong>Religious:</strong> Heptahalie vs Oratoire Kaïaste vs Nomê Aristois vs Hahalumullio Ylfe</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Univers Tab: Peoples + Vue d'ensemble -->
+        <section id="univers" class="tab-content has-subtabs" data-lang-key="univers">
+            <div class="tab-header">
+                <h2 {{i18n:nav.univers}}>Universe</h2>
+                <nav class="tab-sub-nav" aria-label="Universe sections">
+                    <a href="#peoples" class="tab-sub-nav-link active" {{i18n:tpl.13}}>Monde</a>
+                    <a href="#system-overview" class="tab-sub-nav-link" {{i18n:tpl.100}}>Rules</a>
+                </nav>
             </div>
             
-            <!-- Peoples Section: intro, then tree (left) + table (right), then cards -->
-            <div class="lore-section tab-sub-panel" id="peoples">
+            <!-- Peoples Section -->
+            <div class="lore-section tab-sub-panel active" id="peoples">
                 <h3 {{i18n:tpl.55}}>10 Unique Peoples</h3>
                 <div class="peoples-top" data-lang-key="peoples-content">
                     <p class="peoples-intro" {{i18n:tpl.56}}>Each People has their own <strong>morality</strong> (driving them insane from you), <strong>cultures</strong> (struggling against each other), and unique racial <strong>traits</strong> (distinguishing them from others).</p>
@@ -263,60 +297,14 @@
                     </div>
                 </div>
 {{peoples-cards}}
-
             </div>
             
-            <!-- World Context Section -->
-            <div class="lore-section tab-sub-panel archived-section" id="world-context">
-                <h3 {{i18n:tpl.14}}>World Context</h3>
-                <div class="lore-content" data-lang-key="world-content">
-                    <h4 {{i18n:tpl.83}}>The Region: Iäoduneï</h4>
-                    <p {{i18n:tpl.84}}>The default setting is <strong>Iäoduneï</strong> (also written Iâodunaï): a land of snow-capped dunes, burning waters, and central mountains. Population ~200,000 over 232,000 km². Main locality: <strong>Mangroves d'Hylothermes</strong> (Hylotherme: carmine-leaved mangrove trees; Nomachome: nomadic caravan-villages).</p>
-                    <h4 {{i18n:tpl.85}}>Key Locations</h4>
-                    <ul>
-                        <li {{i18n:tpl.86}}><strong>Dla'Adur</strong> — Largest Nomachome settlement</li>
-                        <li {{i18n:tpl.87}}><strong>Lumioleï</strong> — Second major site</li>
-                        <li {{i18n:tpl.88}}><strong>Monts Ajolum</strong> — Central mountains</li>
-                        <li {{i18n:tpl.89}}><strong>Déserts Soufflés</strong> — Desert region</li>
-                        <li {{i18n:tpl.90}}><strong>Grands Lacs Thermaux</strong> — Tuhial, Eos, Daghol</li>
-                    </ul>
-                    <h4 {{i18n:tpl.91}}>Main Factions</h4>
-                    <p {{i18n:tpl.92}}><strong>Slaadéens:</strong> N'la-Fatch (artistic high family; Felichrem, Iossolam), Souk'mans (discreet infiltration), Braisois (sedentary, Heptahalie cult). <strong>Others:</strong> Rophanes (microcity-states), Daïnumes Aristois (varied communities), Aïozhan & Zoluzhan Gomb (syndicates), Ennakleis (illegality), Jademarche (unpopular causes).</p>
-                    <h4 {{i18n:tpl.93}}>Conflicts</h4>
-                    <ul>
-                        <li {{i18n:tpl.94}}><strong>Economic:</strong> Hunter-gatherers (Slaadéens) vs Pastoralism (Aristois) vs Agriculture (Ylfes des lacs)</li>
-                        <li {{i18n:tpl.95}}><strong>Cultural:</strong> Nomads vs Sedentary / Semi-sedentary; techno-traditionalism (Gens vs Choses)</li>
-                        <li {{i18n:tpl.96}}><strong>Religious:</strong> Heptahalie vs Oratoire Kaïaste vs Nomê Aristois vs Hahalumullio Ylfe</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Rules Tab -->
-        <section id="rules" class="tab-content has-subtabs" data-lang-key="rules">
-            <div class="tab-header">
-                <h2 {{i18n:tpl.97}}>Ruleset</h2>
-                <p class="tab-intro" {{i18n:tpl.98}}>Discover the free-forming system where failure becomes progression</p>
-                <div class="character-sheet-trigger character-sheet-trigger-inline" style="text-align: center; margin: 1.5rem 0;">
-                    <button id="open-character-sheet" class="cta-button" style="font-size: 1.2rem; padding: 1rem 2rem;">
-                        <span {{i18n:tpl.99}}>Go to Play (Character Sheet &amp; GM)</span>
-                    </button>
-                </div>
-                <nav class="tab-sub-nav" aria-label="Ruleset sections">
-                    <a href="#system-overview" class="tab-sub-nav-link active" {{i18n:tpl.100}}>System Overview</a>
-                    <a href="#character-creation" class="tab-sub-nav-link archived-section" {{i18n:tpl.101}}>Character Creation</a>
-                    <a href="#progression" class="tab-sub-nav-link archived-section" {{i18n:tpl.102}}>Progression</a>
-                    <a href="#combat" class="tab-sub-nav-link archived-section" {{i18n:tpl.103}}>Combat</a>
-                    <a href="#magic" class="tab-sub-nav-link archived-section" {{i18n:tpl.104}}>Magic (Rilie)</a>
-                </nav>
-            </div>
-
-            <!-- System Overview panel (intro + system overview section) -->
-            <div class="tab-sub-panel active" data-subtab="system-overview">
+            <!-- System Overview panel (Vue d'ensemble) -->
+            <div class="tab-sub-panel" data-subtab="system-overview" id="system-overview-panel">
             <div class="system-overview-dashboard">
                 <!-- Quick-nav sidebar (fixed on desktop) -->
                 <nav class="system-overview-nav" aria-label="On this page">
-                    <h4 class="system-overview-nav-title" {{i18n:tpl.100}}>System Overview</h4>
+                    <h4 class="system-overview-nav-title" {{i18n:tpl.100}}>Rules</h4>
                     <ul class="system-overview-nav-list">
                         <li><a href="#system-overview-uncover" class="system-overview-nav-link" {{i18n:tpl.106}}>Uncover a world of possibilities</a></li>
                         <li><a href="#system-overview-struggle" class="system-overview-nav-link" {{i18n:tpl.121}}>Struggle, suffer, strengthen</a></li>
@@ -607,6 +595,25 @@
             </div>
             </div>
             <!-- end System Overview panel -->
+        </section>
+        
+        <!-- Rules Tab (archived) -->
+        <section id="rules" class="tab-content has-subtabs archived-section" data-lang-key="rules">
+            <div class="tab-header">
+                <h2 {{i18n:tpl.97}}>Ruleset</h2>
+                <p class="tab-intro" {{i18n:tpl.98}}>Discover the free-forming system where failure becomes progression</p>
+                <div class="character-sheet-trigger character-sheet-trigger-inline" style="text-align: center; margin: 1.5rem 0;">
+                    <button id="open-character-sheet" class="cta-button" style="font-size: 1.2rem; padding: 1rem 2rem;">
+                        <span {{i18n:tpl.99}}>Go to Play (Character Sheet &amp; GM)</span>
+                    </button>
+                </div>
+                <nav class="tab-sub-nav" aria-label="Ruleset sections">
+                    <a href="#character-creation" class="tab-sub-nav-link active" {{i18n:tpl.101}}>Character Creation</a>
+                    <a href="#progression" class="tab-sub-nav-link" {{i18n:tpl.102}}>Progression</a>
+                    <a href="#combat" class="tab-sub-nav-link" {{i18n:tpl.103}}>Combat</a>
+                    <a href="#magic" class="tab-sub-nav-link" {{i18n:tpl.104}}>Magic (Rilie)</a>
+                </nav>
+            </div>
 
             <!-- Character Creation panel -->
             <div class="tab-sub-panel archived-section" data-subtab="character-creation">

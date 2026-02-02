@@ -138,12 +138,12 @@
 
     function handleHashChange() {
         const hash = window.location.hash.substring(1);
-        const validTabs = ['landing', 'lore', 'rules', 'play', 'about'];
+        const validTabs = ['landing', 'lore', 'univers', 'rules', 'play', 'about'];
         const sectionToTab = {
             cosmology: 'lore',
-            peoples: 'lore',
+            peoples: 'univers',
             'world-context': 'lore',
-            'system-overview': 'rules',
+            'system-overview': 'univers',
             'character-creation': 'rules',
             progression: 'rules',
             combat: 'rules',
@@ -154,13 +154,27 @@
             switchTab('landing');
             return;
         }
+        var archivedHidden = document.body.classList.contains('archived-hidden');
+        if (archivedHidden && (hash === 'lore' || hash === 'rules')) {
+            if (history.replaceState) history.replaceState(null, null, '#peoples');
+            switchTab('univers');
+            switchSubTab('univers', 'peoples');
+            return;
+        }
         if (validTabs.includes(hash)) {
             switchTab(hash);
             return;
         }
         if (sectionToTab[hash]) {
-            switchTab(sectionToTab[hash], { skipScrollToTop: true });
-            switchSubTab(sectionToTab[hash], hash);
+            var tab = sectionToTab[hash];
+            if (archivedHidden && (tab === 'lore' || tab === 'rules')) {
+                if (history.replaceState) history.replaceState(null, null, '#peoples');
+                switchTab('univers');
+                switchSubTab('univers', 'peoples');
+                return;
+            }
+            switchTab(tab, { skipScrollToTop: true });
+            switchSubTab(tab, hash);
             return;
         }
         switchTab('landing');
@@ -221,7 +235,7 @@
     }
 
     var ARCHIVED_SUBTABS = { lore: ['cosmology', 'world-context'], rules: ['character-creation', 'progression', 'combat', 'magic'] };
-    var FIRST_NON_ARCHIVED = { lore: 'peoples', rules: 'system-overview' };
+    var FIRST_NON_ARCHIVED = { lore: 'cosmology', univers: 'peoples', rules: 'character-creation' };
 
     function initZinePages() {
         var container = document.querySelector('.zine-content');
@@ -247,7 +261,11 @@
         checkbox.checked = showArchived;
         if (!showArchived) {
             document.body.classList.add('archived-hidden');
-            switchSubTab('lore', 'peoples');
+            var activeTab = document.querySelector('.tab-content.active');
+            if (activeTab && (activeTab.id === 'lore' || activeTab.id === 'rules')) {
+                switchTab('univers');
+                switchSubTab('univers', 'peoples');
+            }
         } else {
             document.body.classList.remove('archived-hidden');
         }
