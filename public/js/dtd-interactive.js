@@ -348,6 +348,7 @@
                         var h6 = sectionEl.querySelector('h6');
                         if (h6) h6.remove();
                     }
+                    if (i === 3) sectionEl.classList.add('peoples-relations-section');
                 });
                 var attrTable = backClone.querySelector('table.peoples-attr-table');
                 if (attrTable) {
@@ -383,6 +384,18 @@
                 }
                 frag.appendChild(backClone);
                 return frag;
+            }
+
+            function applyLanguageToPanel(panel, lang) {
+                if (!panel || !lang) return;
+                panel.querySelectorAll('[data-en][data-fr]').forEach(function(el) {
+                    var text = el.getAttribute('data-' + lang);
+                    if (text) {
+                        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = text;
+                        else if (el.tagName === 'OPTION') el.textContent = text;
+                        else el.innerHTML = text;
+                    }
+                });
             }
 
             var treeWrap = peoplesSection.querySelector('.peoples-tree-wrap');
@@ -435,7 +448,10 @@
                             if (!panel.children.length) {
                                 var peupleId = node.getAttribute('data-peuple');
                                 var content = buildPeopleAccordionContent(peoplesSection, peupleId);
-                                if (content) panel.appendChild(content);
+                                if (content) {
+                                    panel.appendChild(content);
+                                    applyLanguageToPanel(panel, document.documentElement.lang || 'en');
+                                }
                             }
                         }
                         return;
@@ -459,10 +475,11 @@
                                 var raceLabel = raceSpan.getAttribute('data-race') || raceSpan.textContent.trim();
                                 var card = peoplesSection.querySelector('.peoples-flip-card[data-peuple="' + peupleId + '"]');
                                 if (card) {
+                                    var lang = document.documentElement.lang || 'en';
                                     var lis = card.querySelectorAll('.peoples-races-mini li');
                                     for (var i = 0; i < lis.length; i++) {
                                         if (lis[i].textContent.trim() === raceLabel) {
-                                            var desc = lis[i].getAttribute('title') || lis[i].getAttribute('data-title-en') || lis[i].getAttribute('data-title-fr') || '';
+                                            var desc = lis[i].getAttribute('data-title-' + lang) || lis[i].getAttribute('data-title-en') || lis[i].getAttribute('data-title-fr') || lis[i].getAttribute('title') || '';
                                             var wrap = document.createElement('div');
                                             wrap.className = 'peoples-tree-race-body';
                                             var p = document.createElement('p');
@@ -481,15 +498,19 @@
 
             // Refresh inline accordion content on language change
             try {
-                window.addEventListener('tdt-lang-changed', function() {
+                window.addEventListener('tdt-lang-changed', function(ev) {
                     if (!peoplesSection) return;
+                    var lang = (ev && ev.detail) || document.documentElement.lang || 'en';
                     peoplesSection.querySelectorAll('.peoples-tree-people-content:not([hidden])').forEach(function(panel) {
                         var node = panel.closest('.peoples-tree-node[data-peuple]');
                         if (!node) return;
                         var peupleId = node.getAttribute('data-peuple');
                         panel.innerHTML = '';
                         var content = buildPeopleAccordionContent(peoplesSection, peupleId);
-                        if (content) panel.appendChild(content);
+                        if (content) {
+                            panel.appendChild(content);
+                            applyLanguageToPanel(panel, lang);
+                        }
                     });
                     peoplesSection.querySelectorAll('.peoples-tree-race-content:not([hidden])').forEach(function(panel) {
                         var row = panel.closest('.peoples-tree-race-row');
@@ -504,7 +525,7 @@
                             var lis = card.querySelectorAll('.peoples-races-mini li');
                             for (var j = 0; j < lis.length; j++) {
                                 if (lis[j].textContent.trim() === raceLabel) {
-                                    var desc = lis[j].getAttribute('title') || lis[j].getAttribute('data-title-en') || lis[j].getAttribute('data-title-fr') || '';
+                                    var desc = lis[j].getAttribute('data-title-' + lang) || lis[j].getAttribute('data-title-en') || lis[j].getAttribute('data-title-fr') || lis[j].getAttribute('title') || '';
                                     var wrap = document.createElement('div');
                                     wrap.className = 'peoples-tree-race-body';
                                     var p = document.createElement('p');

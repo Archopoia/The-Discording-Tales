@@ -1812,10 +1812,10 @@
     color: inherit;
 }
 .peoples-tree-people-content .peoples-back-section {
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
 }
 .peoples-tree-people-content .peoples-back-section:last-child {
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
 }
 .peoples-tree-people-content h5,
 .peoples-tree-people-content h6 {
@@ -1831,8 +1831,8 @@
 .peoples-tree-people-content p:last-child {
     margin-bottom: 0;
 }
-.peoples-tree-people-content .peoples-back-section:nth-child(4) p span {
-    font-weight: 600;
+.peoples-tree-people-content .peoples-relations-section p span {
+    font-weight: 600 !important;
 }
 .peoples-tree-people-content .lore-table,
 .peoples-tree-people-content .peoples-attr-table,
