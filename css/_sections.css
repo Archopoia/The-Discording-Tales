@@ -1727,7 +1727,7 @@
 .peoples-tree-name {
     font-weight: 600;
     color: var(--tdt-burgundy);
-    cursor: help;
+    cursor: pointer;
     text-decoration: underline;
     text-decoration-style: dotted;
     text-underline-offset: 2px;
@@ -1775,12 +1775,118 @@
 .peoples-tree-race {
     display: block;
     margin-top: 2px;
-    cursor: help;
+    cursor: pointer;
     text-decoration: underline;
     text-decoration-style: dotted;
     text-underline-offset: 2px;
 }
-/* Flip cards — hidden when using popovers; cards kept as content source */
+/* Inline accordions: people and race content folded in the tree */
+.peoples-tree-people-content[hidden],
+.peoples-tree-race-content[hidden] {
+    display: none !important;
+}
+/* Reset flip-card transform when cloned into tree (avoids mirrored text) */
+.peoples-tree-people-content .peoples-flip-back-inner {
+    transform: none;
+}
+/* Remove shadows from accordion content (headings, tables, etc.) */
+.peoples-tree-people-content,
+.peoples-tree-people-content *,
+.peoples-tree-race-content,
+.peoples-tree-race-content * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+/* Harmonized palette for tree accordions: warm neutrals only */
+.peoples-tree-people-content {
+    margin-top: var(--spacing-xs);
+    margin-left: var(--spacing-md);
+    padding: 0.35rem 0.6rem;
+    border-left: 3px solid var(--tdt-brown);
+    background: var(--tdt-beige-lighter);
+    border-radius: 0 6px 6px 0;
+    font-size: 0.88em;
+    color: #2c2419;
+}
+.peoples-tree-people-content * {
+    color: inherit;
+}
+.peoples-tree-people-content .peoples-back-section {
+    margin-bottom: 0;
+}
+.peoples-tree-people-content .peoples-back-section:last-child {
+    margin-bottom: 0;
+}
+.peoples-tree-people-content h5,
+.peoples-tree-people-content h6 {
+    margin: 0 0 0.2em;
+    color: #3d2e24;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+.peoples-tree-people-content p {
+    margin: 0 0 0.2em;
+    line-height: 1.4;
+}
+.peoples-tree-people-content p:last-child {
+    margin-bottom: 0;
+}
+.peoples-tree-people-content .peoples-back-section:nth-child(4) p span {
+    font-weight: 600;
+}
+.peoples-tree-people-content .lore-table,
+.peoples-tree-people-content .peoples-attr-table,
+.peoples-tree-people-content .peoples-phys-table {
+    margin: 0 0 0.15rem;
+    font-size: 0.85em;
+    background: rgba(255, 252, 248, 0.6);
+    border: 1px solid var(--tdt-brown);
+    border-radius: 4px;
+    color: #2c2419;
+}
+.peoples-tree-people-content .peoples-attr-table th,
+.peoples-tree-people-content .peoples-attr-table td {
+    padding: 2px 4px;
+    text-align: center;
+}
+.peoples-tree-people-content .lore-table th,
+.peoples-tree-people-content .lore-table td,
+.peoples-tree-people-content .peoples-attr-table th,
+.peoples-tree-people-content .peoples-attr-table td,
+.peoples-tree-people-content .peoples-phys-table th,
+.peoples-tree-people-content .peoples-phys-table td {
+    color: #2c2419;
+    border-color: rgba(139, 115, 85, 0.25);
+}
+.peoples-tree-people-content .lore-table th,
+.peoples-tree-people-content .peoples-attr-table th,
+.peoples-tree-people-content .peoples-phys-table th {
+    background: rgba(139, 115, 85, 0.12);
+    color: #3d2e24;
+}
+.peoples-tree-race-row {
+    display: block;
+    margin-top: 2px;
+}
+.peoples-tree-race-content {
+    margin-top: var(--spacing-xs);
+    margin-left: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-left: 3px solid var(--tdt-brown);
+    background: var(--tdt-beige-lighter);
+    border-radius: 0 6px 6px 0;
+    font-size: 0.88em;
+    color: #2c2419;
+}
+.peoples-tree-race-content * {
+    color: inherit;
+}
+.peoples-tree-race-body p {
+    margin: 0;
+    line-height: 1.5;
+    color: #2c2419;
+}
+/* Flip cards — hidden when using accordions; cards kept as content source */
 .peoples-gallery--hidden {
     display: none !important;
 }
