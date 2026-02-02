@@ -58,6 +58,8 @@
     document.addEventListener('DOMContentLoaded', function() {
         initTabs();
         initSubTabs();
+        initArchiveToggle();
+        initZinePages();
         initPeuples();
         initPopovers();
         initCombat();
@@ -207,11 +209,64 @@
     function ensureFirstSubTabActive(tabId) {
         const tabContent = document.getElementById(tabId);
         if (!tabContent || !tabContent.classList.contains('has-subtabs')) return;
-        const panels = tabContent.querySelectorAll('.tab-sub-panel');
         const links = tabContent.querySelectorAll('.tab-sub-nav-link');
-        const firstLink = links[0];
+        const archivedHidden = document.body.classList.contains('archived-hidden');
+        const firstLink = archivedHidden
+            ? Array.prototype.find.call(links, function(link) { return !link.classList.contains('archived-section'); })
+            : links[0];
         const firstSubId = firstLink && firstLink.getAttribute('href') ? firstLink.getAttribute('href').replace('#', '') : '';
         if (firstSubId) switchSubTab(tabId, firstSubId);
+    }
+
+    var ARCHIVED_SUBTABS = { lore: ['cosmology', 'world-context'], rules: ['character-creation', 'progression', 'combat', 'magic'] };
+    var FIRST_NON_ARCHIVED = { lore: 'peoples', rules: 'system-overview' };
+
+    function initZinePages() {
+        var container = document.querySelector('.zine-content');
+        if (!container) return;
+        var radios = container.querySelectorAll('.zine-page-radio');
+        var panels = container.querySelectorAll('.zine-page.zine-page-panel');
+        radios.forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                var value = this.getAttribute('value');
+                panels.forEach(function(panel) {
+                    panel.classList.toggle('zine-page-active', panel.getAttribute('data-page') === value);
+                });
+            });
+        });
+    }
+
+    function initArchiveToggle() {
+        var checkbox = document.getElementById('archive-toggle');
+        if (!checkbox) return;
+        var key = 'drd_archived_visible';
+        var stored = localStorage.getItem(key);
+        var showArchived = stored === 'true';
+        checkbox.checked = showArchived;
+        if (!showArchived) {
+            document.body.classList.add('archived-hidden');
+            switchSubTab('lore', 'peoples');
+        } else {
+            document.body.classList.remove('archived-hidden');
+        }
+        checkbox.addEventListener('change', function() {
+            var show = checkbox.checked;
+            localStorage.setItem(key, show ? 'true' : 'false');
+            if (show) {
+                document.body.classList.remove('archived-hidden');
+            } else {
+                document.body.classList.add('archived-hidden');
+                var activeTab = document.querySelector('.tab-content.active');
+                var tabId = activeTab ? activeTab.id : null;
+                if (tabId && ARCHIVED_SUBTABS[tabId]) {
+                    var activeLink = activeTab.querySelector('.tab-sub-nav-link.active');
+                    var activeSubId = activeLink && activeLink.getAttribute('href') ? activeLink.getAttribute('href').replace('#', '') : '';
+                    if (ARCHIVED_SUBTABS[tabId].indexOf(activeSubId) !== -1) {
+                        switchSubTab(tabId, FIRST_NON_ARCHIVED[tabId]);
+                    }
+                }
+            }
+        });
     }
 
     // ========================================

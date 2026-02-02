@@ -25,11 +25,14 @@ function build() {
   const template = fs.readFileSync(templatePath, 'utf8');
   const peoplesPath = path.join(partialsDir, 'peoples-cards.html');
   const keywordsPath = path.join(partialsDir, 'inspirations-keywords.html');
+  const zinePath = path.join(partialsDir, 'zine-content.html');
   const peoples = fs.readFileSync(peoplesPath, 'utf8');
   const keywords = fs.readFileSync(keywordsPath, 'utf8');
+  const zineContent = fs.existsSync(zinePath) ? fs.readFileSync(zinePath, 'utf8') : '<!-- Run build_zine.js to generate zine-content -->';
   let out = template
     .replace('{{peoples-cards}}', peoples.trim())
-    .replace('{{inspirations-keywords}}', keywords.trim());
+    .replace('{{inspirations-keywords}}', keywords.trim())
+    .replace('{{zine-content}}', zineContent.trim());
   fs.writeFileSync(indexPath, out, 'utf8');
   console.log('Built index.html from template + partials');
 }

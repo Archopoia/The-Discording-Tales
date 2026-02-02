@@ -309,6 +309,31 @@
         inset 0 1px 3px rgba(255, 248, 232, 0.4);
 }
 
+/* Archive toggle: show/hide archived subtabs (Cosmology, World Context, Character Creation, Progression, Combat, Magic) */
+.archive-toggle-wrap {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-top: 1px solid rgba(217, 205, 184, 0.3);
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--tdt-beige-warm);
+    white-space: nowrap;
+}
+.archive-toggle-wrap:hover {
+    color: var(--tdt-cream);
+}
+.archive-toggle {
+    margin: 0;
+    cursor: pointer;
+}
+
+/* When archived sections are hidden, hide .archived-section links and panels */
+body.archived-hidden .archived-section {
+    display: none !important;
+}
+
 /* ========================================
    Tab Content System
    ======================================== */

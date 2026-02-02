@@ -186,23 +186,22 @@
     margin-bottom: var(--spacing-xs);
 }
 
-/* Play tab: Flip layout (Chat | Sheet) with toggle buttons left */
-.play-flip-layout {
+/* Play tab: Three panels (Zine | Chat | Sheet) with toggle buttons left */
+.play-panels-layout {
     display: flex;
     flex-direction: row;
     align-items: stretch;
     gap: var(--spacing-md);
     width: 100%;
 }
-.play-flip-buttons {
+.play-panels-buttons {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     flex-shrink: 0;
     padding-top: 0.25rem;
 }
-/* Toggle buttons – same style as Send button (.gm-chat-input-row button) */
-.play-flip-btn {
+.play-panel-btn {
     padding: 0.5rem 1rem;
     background: #643030;
     color: #F3E2A9;
@@ -216,68 +215,143 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 0 0 1px #ffebc6;
     white-space: nowrap;
 }
-.play-flip-btn:hover {
+.play-panel-btn:hover {
     background: #fff6df;
     color: #4d3000;
     transform: translateY(-2px);
     box-shadow: 0 0 15px 5px #ffebc6, 0 4px 8px rgba(0, 0, 0, 0.3);
 }
-.play-flip-btn.active {
+.play-panel-btn.active {
     background: #fff6df;
     color: #4d3000;
     box-shadow: 0 0 15px 5px #ffebc6, 0 4px 8px rgba(0, 0, 0, 0.3);
 }
-.play-flip-container {
+.play-panels-container {
     flex: 1;
     min-width: 0;
     min-height: 80vh;
-    perspective: 1200px;
     overflow: hidden;
-}
-.play-flip-inner {
     position: relative;
+}
+.play-panel {
+    display: none;
+    position: absolute;
+    inset: 0;
+    flex-direction: column;
     width: 100%;
     height: 100%;
     min-height: 80vh;
-    transform-style: preserve-3d;
-    transition: transform 0.6s ease;
-}
-.play-flip-container.flipped .play-flip-inner {
-    transform: rotateY(180deg);
-}
-.play-flip-face {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-}
-.play-flip-face-front {
-    transform: rotateY(0deg);
+    overflow: auto;
     padding-bottom: 1.5rem;
     box-sizing: border-box;
 }
-.play-flip-face-front .gm-chat-wrapper {
+.play-panel.active {
+    display: flex;
+    position: relative;
+}
+/* Zine panel: page nav (radio buttons) + one visible page at a time; full width like Chat/Sheet */
+#play-panel-zine.play-panel {
+    width: 100%;
+    min-width: 0;
+}
+#play-panel-zine.play-panel .zine-content {
+    padding: var(--spacing-md);
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    color: var(--tdt-cream);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+.zine-pages-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) 0;
+    border-bottom: 1px solid rgba(217, 205, 184, 0.3);
+    margin-bottom: var(--spacing-xs);
+}
+.zine-page-radio {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+.zine-page-nav-label {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--tdt-beige-warm);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background var(--transition-normal), color var(--transition-normal);
+}
+.zine-page-nav-label:hover {
+    background: var(--tdt-burgundy-warm);
+    color: var(--tdt-beige);
+}
+.zine-page-radio:checked + .zine-page-nav-label {
+    background: var(--tdt-burgundy-warm);
+    color: var(--tdt-beige);
+}
+.zine-pages-container {
+    flex: 1;
+    min-height: 0;
+    min-width: 0;
+    width: 100%;
+    overflow: auto;
+}
+.zine-content .zine-page.zine-page-panel {
+    display: none;
+    margin-bottom: 0;
+}
+.zine-content .zine-page.zine-page-panel.zine-page-active {
+    display: block;
+    margin-bottom: var(--spacing-lg);
+}
+#play-panel-zine .zine-page.zine-page-panel h1 {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--tdt-beige-warm);
+}
+#play-panel-zine .zine-page.zine-page-panel h2 {
+    font-size: 1.25rem;
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-xs);
+    color: var(--tdt-beige-warm);
+}
+#play-panel-zine .zine-page.zine-page-panel table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--spacing-sm) 0;
+    font-size: 0.95rem;
+}
+#play-panel-zine .zine-page.zine-page-panel th,
+#play-panel-zine .zine-page.zine-page-panel td {
+    padding: 0.35rem 0.6rem;
+    border: 1px solid var(--tdt-beige);
+    text-align: left;
+}
+#play-panel-zine .zine-page.zine-page-panel thead th {
+    background: var(--tdt-burgundy-warm);
+    color: var(--tdt-cream);
+}
+/* Chat panel */
+#play-panel-chat .gm-chat-wrapper {
     height: 100%;
     min-height: 0;
     max-width: none;
     width: 100%;
 }
-/* Messages fill all space between toolbar and input – no empty gap below buttons */
-.play-flip-face-front .gm-chat-messages {
+#play-panel-chat .gm-chat-messages {
     max-height: none;
     flex: 1;
     min-height: 0;
 }
-.play-flip-face-back {
-    transform: rotateY(180deg);
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    min-height: 100%;
-}
-.play-flip-face-back .play-character-sheet-root {
+/* Sheet panel */
+#play-panel-sheet .play-character-sheet-root {
     margin-top: 0;
     flex: 1 1 0;
     min-height: 100%;
@@ -285,22 +359,21 @@
     overflow: auto;
 }
 
-/* Play tab: Character Sheet (inside flip back face) */
+/* Play tab: Character Sheet (inside sheet panel) */
 .play-character-sheet-root {
     margin-top: var(--spacing-lg);
     width: 100%;
 }
-.play-flip-face-back .play-character-sheet-root {
+#play-panel-sheet .play-character-sheet-root {
     margin-top: 0;
 }
-/* When sheet is in flip panel, make embedded wrapper and card fill same height as chat */
-.play-flip-face-back .play-character-sheet-root .play-character-sheet-embedded {
+#play-panel-sheet .play-character-sheet-root .play-character-sheet-embedded {
     height: 100%;
     min-height: 100%;
     display: flex;
     flex-direction: column;
 }
-.play-flip-face-back .play-character-sheet-root .play-character-sheet-embedded .play-character-sheet-card {
+#play-panel-sheet .play-character-sheet-root .play-character-sheet-embedded .play-character-sheet-card {
     flex: 1;
     min-height: 100%;
     max-height: none;

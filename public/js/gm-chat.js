@@ -1295,14 +1295,15 @@
             renderMessages(container);
             creationMode = false;
             updateInputVisibility();
-            /* Flip Play tab back to chat side */
-            var fc = document.getElementById('play-flip-container');
-            var fChat = document.getElementById('play-flip-chat');
-            var fSheet = document.getElementById('play-flip-sheet');
-            if (fc && fChat && fSheet) {
-                fc.classList.remove('flipped');
-                fChat.classList.add('active');
-                fSheet.classList.remove('active');
+            /* Switch Play tab to chat panel */
+            var panelChat = document.getElementById('play-panel-chat');
+            var btnChat = document.getElementById('play-panel-chat-btn');
+            if (panelChat && btnChat) {
+                document.querySelectorAll('.play-panel').forEach(function (p) { p.classList.remove('active'); p.setAttribute('aria-hidden', 'true'); });
+                document.querySelectorAll('.play-panel-btn').forEach(function (b) { b.classList.remove('active'); });
+                panelChat.classList.add('active');
+                panelChat.setAttribute('aria-hidden', 'false');
+                btnChat.classList.add('active');
             }
         });
 
@@ -1467,22 +1468,33 @@
             });
         }
 
-        /* Flip Chat / Sheet (Play tab) */
-        var flipContainer = document.getElementById('play-flip-container');
-        var flipChatBtn = document.getElementById('play-flip-chat');
-        var flipSheetBtn = document.getElementById('play-flip-sheet');
-        if (flipContainer && flipChatBtn && flipSheetBtn) {
-            flipChatBtn.addEventListener('click', function () {
-                flipContainer.classList.remove('flipped');
-                flipChatBtn.classList.add('active');
-                flipSheetBtn.classList.remove('active');
+        /* Three panels: Zine / Chat / Sheet (Play tab) */
+        var panelsContainer = document.getElementById('play-panels-container');
+        var panelZine = document.getElementById('play-panel-zine');
+        var panelChat = document.getElementById('play-panel-chat');
+        var panelSheet = document.getElementById('play-panel-sheet');
+        var btnZine = document.getElementById('play-panel-zine-btn');
+        var btnChat = document.getElementById('play-panel-chat-btn');
+        var btnSheet = document.getElementById('play-panel-sheet-btn');
+        function setPlayPanel(panelId) {
+            if (!panelsContainer) return;
+            var panels = [panelZine, panelChat, panelSheet];
+            var buttons = [btnZine, btnChat, btnSheet];
+            panels.forEach(function (p) {
+                if (p) {
+                    p.classList.remove('active');
+                    p.setAttribute('aria-hidden', 'true');
+                }
             });
-            flipSheetBtn.addEventListener('click', function () {
-                flipContainer.classList.add('flipped');
-                flipSheetBtn.classList.add('active');
-                flipChatBtn.classList.remove('active');
-            });
+            buttons.forEach(function (b) { if (b) b.classList.remove('active'); });
+            var target = document.getElementById('play-panel-' + panelId);
+            var targetBtn = document.getElementById('play-panel-' + panelId + '-btn');
+            if (target) { target.classList.add('active'); target.setAttribute('aria-hidden', 'false'); }
+            if (targetBtn) targetBtn.classList.add('active');
         }
+        if (btnZine) btnZine.addEventListener('click', function () { setPlayPanel('zine'); });
+        if (btnChat) btnChat.addEventListener('click', function () { setPlayPanel('chat'); });
+        if (btnSheet) btnSheet.addEventListener('click', function () { setPlayPanel('sheet'); });
 
         if (sendBtn) sendBtn.addEventListener('click', submit);
         if (input) {
@@ -1567,15 +1579,8 @@
                     }
                     saveMessages();
                     renderMessages(container);
-                    /* Auto-flip to character sheet for next step */
-                    var fc = document.getElementById('play-flip-container');
-                    var fChat = document.getElementById('play-flip-chat');
-                    var fSheet = document.getElementById('play-flip-sheet');
-                    if (fc && fChat && fSheet) {
-                        fc.classList.add('flipped');
-                        fSheet.classList.add('active');
-                        fChat.classList.remove('active');
-                    }
+                    /* Auto-switch to character sheet panel for next step */
+                    setPlayPanel('sheet');
                     return;
                 }
             });

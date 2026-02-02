@@ -63,6 +63,10 @@
                 <button id="lang-en" class="lang-btn active" data-lang="en">EN</button>
                 <button id="lang-fr" class="lang-btn" data-lang="fr">FR</button>
             </div>
+            <label class="archive-toggle-wrap" id="archive-toggle-wrap">
+                <input type="checkbox" id="archive-toggle" class="archive-toggle" aria-describedby="archive-toggle-desc"/>
+                <span id="archive-toggle-desc" {{i18n:nav.show_archived}}>Show archived sections</span>
+            </label>
         </nav>
     </header>
     
@@ -143,14 +147,14 @@
                 <h2 {{i18n:tpl.10}}>Worldlore</h2>
                 <p class="tab-intro" {{i18n:tpl.11}}>Explore the baroque world worthy of myths and their mystical technologies</p>
                 <nav class="tab-sub-nav" aria-label="Worldlore sections">
-                    <a href="#cosmology" class="tab-sub-nav-link active" {{i18n:tpl.12}}>Cosmology</a>
+                    <a href="#cosmology" class="tab-sub-nav-link archived-section active" {{i18n:tpl.12}}>Cosmology</a>
                     <a href="#peoples" class="tab-sub-nav-link" {{i18n:tpl.13}}>Peoples</a>
-                    <a href="#world-context" class="tab-sub-nav-link" {{i18n:tpl.14}}>World Context</a>
+                    <a href="#world-context" class="tab-sub-nav-link archived-section" {{i18n:tpl.14}}>World Context</a>
                 </nav>
             </div>
             
             <!-- Cosmology Section -->
-            <div class="lore-section tab-sub-panel active" id="cosmology">
+            <div class="lore-section tab-sub-panel active archived-section" id="cosmology">
                 <h3 {{i18n:tpl.15}}>Cosmology & Divinities</h3>
                 <div class="lore-content" data-lang-key="cosmology-content">
                     <h4 {{i18n:tpl.16}}>Fundamental Cosmology</h4>
@@ -263,7 +267,7 @@
             </div>
             
             <!-- World Context Section -->
-            <div class="lore-section tab-sub-panel" id="world-context">
+            <div class="lore-section tab-sub-panel archived-section" id="world-context">
                 <h3 {{i18n:tpl.14}}>World Context</h3>
                 <div class="lore-content" data-lang-key="world-content">
                     <h4 {{i18n:tpl.83}}>The Region: Iäoduneï</h4>
@@ -300,10 +304,10 @@
                 </div>
                 <nav class="tab-sub-nav" aria-label="Ruleset sections">
                     <a href="#system-overview" class="tab-sub-nav-link active" {{i18n:tpl.100}}>System Overview</a>
-                    <a href="#character-creation" class="tab-sub-nav-link" {{i18n:tpl.101}}>Character Creation</a>
-                    <a href="#progression" class="tab-sub-nav-link" {{i18n:tpl.102}}>Progression</a>
-                    <a href="#combat" class="tab-sub-nav-link" {{i18n:tpl.103}}>Combat</a>
-                    <a href="#magic" class="tab-sub-nav-link" {{i18n:tpl.104}}>Magic (Rilie)</a>
+                    <a href="#character-creation" class="tab-sub-nav-link archived-section" {{i18n:tpl.101}}>Character Creation</a>
+                    <a href="#progression" class="tab-sub-nav-link archived-section" {{i18n:tpl.102}}>Progression</a>
+                    <a href="#combat" class="tab-sub-nav-link archived-section" {{i18n:tpl.103}}>Combat</a>
+                    <a href="#magic" class="tab-sub-nav-link archived-section" {{i18n:tpl.104}}>Magic (Rilie)</a>
                 </nav>
             </div>
 
@@ -470,7 +474,7 @@
             <!-- end System Overview panel -->
 
             <!-- Character Creation panel -->
-            <div class="tab-sub-panel" data-subtab="character-creation">
+            <div class="tab-sub-panel archived-section" data-subtab="character-creation">
             <!-- Character Creation. Note: we do not use page numbers, chapter names, CSV/file names, or other source refs on the website. -->
             <div class="rules-section" id="character-creation">
                 <h3 {{i18n:tpl.199}}>Character Creation</h3>
@@ -633,7 +637,7 @@
             <!-- end Character Creation panel -->
 
             <!-- Progression panel (Experience–Souffrance–Healing pipeline) -->
-            <div class="tab-sub-panel" data-subtab="progression">
+            <div class="tab-sub-panel archived-section" data-subtab="progression">
             <div class="rules-section progression-section" id="progression">
                 <h3 {{i18n:tpl.102}}>Progression</h3>
                 <div class="rules-content progression-intro" data-lang-key="progression-content">
@@ -847,7 +851,7 @@
             <!-- end Progression panel -->
 
             <!-- Combat panel -->
-            <div class="tab-sub-panel" data-subtab="combat">
+            <div class="tab-sub-panel archived-section" data-subtab="combat">
             <!-- Combat System -->
             <div class="rules-section combat-section" id="combat">
                 <h3 {{i18n:tpl.421}}>Combat System</h3>
@@ -1207,7 +1211,7 @@
             <!-- end Combat panel -->
 
             <!-- Magic panel -->
-            <div class="tab-sub-panel" data-subtab="magic">
+            <div class="tab-sub-panel archived-section" data-subtab="magic">
             <!-- Magic System (Rilie) -->
             <div class="rules-section" id="magic">
                 <h3 {{i18n:tpl.512}}>Magic System (Rilie)</h3>
@@ -1550,18 +1554,23 @@
                 <h2 {{i18n:tpl.616}}>Play</h2>
                 <p class="tab-intro" {{i18n:tpl.617}}>Chat with the Éveilleur (GM). Roll in the Character Sheet, then report results here.</p>
             </div>
-            <div class="play-flip-layout">
-                <div class="play-flip-buttons" role="group" {{i18n-aria:tpl.711}} aria-label="Chat or character sheet">
-                    <button type="button" id="play-flip-chat" class="play-flip-btn active" data-side="chat">
+            <div class="play-panels-layout">
+                <div class="play-panels-buttons" role="group" {{i18n-aria:tpl.711}} aria-label="Zine, chat or character sheet">
+                    <button type="button" id="play-panel-zine-btn" class="play-panel-btn" data-panel="zine">
+                        <span {{i18n:play.zine}}>Zine</span>
+                    </button>
+                    <button type="button" id="play-panel-chat-btn" class="play-panel-btn active" data-panel="chat">
                         <span {{i18n:tpl.618}}>Chat</span>
                     </button>
-                    <button type="button" id="play-flip-sheet" class="play-flip-btn" data-side="sheet">
+                    <button type="button" id="play-panel-sheet-btn" class="play-panel-btn" data-panel="sheet">
                         <span {{i18n:tpl.619}}>Sheet</span>
                     </button>
                 </div>
-                <div class="play-flip-container" id="play-flip-container">
-                    <div class="play-flip-inner">
-                        <div class="play-flip-face play-flip-face-front">
+                <div class="play-panels-container" id="play-panels-container">
+                    <div id="play-panel-zine" class="play-panel" aria-hidden="true">
+                        {{zine-content}}
+                    </div>
+                    <div id="play-panel-chat" class="play-panel active" aria-hidden="false">
                             <!-- GM Chat -->
                             <div class="gm-chat-wrapper rules-section">
                                 <div class="gm-chat-toolbar">
@@ -1594,11 +1603,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="play-flip-face play-flip-face-back">
+                    </div>
+                    <div id="play-panel-sheet" class="play-panel" aria-hidden="true">
                             <!-- Character Sheet -->
                             <div id="character-sheet-root" class="play-character-sheet-root tdt-scrollable"></div>
-                        </div>
                     </div>
                 </div>
             </div>
