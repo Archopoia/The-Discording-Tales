@@ -1813,13 +1813,20 @@
 }
 .peoples-tree-people-content .peoples-back-section {
     margin-bottom: 0 !important;
+    margin-top: 0.2rem;
+}
+.peoples-tree-people-content .peoples-back-section:first-child {
+    margin-top: 0;
 }
 .peoples-tree-people-content .peoples-back-section:last-child {
     margin-bottom: 0 !important;
 }
+.peoples-tree-people-content .lore-table-wrapper {
+    margin: 0.15rem 0;
+}
 .peoples-tree-people-content h5,
 .peoples-tree-people-content h6 {
-    margin: 0 0 0.2em;
+    margin: 0 0 0.15rem;
     color: #3d2e24;
     font-weight: 600;
     font-size: 0.9rem;
