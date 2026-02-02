@@ -56,6 +56,7 @@
     // Initialize on DOM Load
     // ========================================
     document.addEventListener('DOMContentLoaded', function() {
+        initLanguage();
         initTabs();
         initSubTabs();
         initArchiveToggle();
@@ -65,7 +66,7 @@
         initCombat();
         initMagic();
         initProgression();
-        initLanguage();
+        initSystemOverview();
         initCarousel();
         initMenuToggle();
         initNewsletter();
@@ -130,6 +131,7 @@
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
                 ensureFirstSubTabActive(tabId);
+                requestAnimationFrame(function() { setLanguage(state.currentLang); });
             }
         });
     }
@@ -812,6 +814,22 @@
             bodySelector: '.progression-accordion-body',
             expandAllSelector: '.progression-expand-all',
             collapseAllSelector: '.progression-collapse-all'
+        });
+    }
+
+    // ========================================
+    // System Overview (Vue d'ensemble): Accordion
+    // ========================================
+    function initSystemOverview() {
+        var accordionEl = document.getElementById('system-overview-accordion');
+        if (!accordionEl) return;
+
+        initAccordion(accordionEl, {
+            itemSelector: '.system-overview-accordion-item',
+            headSelector: '.system-overview-accordion-head',
+            bodySelector: '.system-overview-accordion-body',
+            expandAllSelector: '.system-overview-expand-all',
+            collapseAllSelector: '.system-overview-collapse-all'
         });
     }
 

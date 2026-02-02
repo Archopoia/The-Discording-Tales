@@ -313,158 +313,306 @@
 
             <!-- System Overview panel (intro + system overview section) -->
             <div class="tab-sub-panel active" data-subtab="system-overview">
-            <!-- Worldlore & Ruleset (from backup: same structure and pictures) -->
-            <div class="worldlore-ruleset-block" id="worldlore-pitch">
-                <h3 class="worldlore-heading" {{i18n:tpl.106}}>Uncover a world of possibilities</h3>
-                <!-- Block 1: two sheet pics on the left, rules + LIBRE-FORMANT text on the right -->
-                <div class="worldlore-block worldlore-block-1">
-                    <div class="worldlore-block-left">
-                        <figure class="worldlore-figure"><img src="assets/images/2024/11/feuilles-de-personnage2.png" alt="Character sheets 2" loading="lazy" width="1754" height="1240"/></figure>
-                    </div>
-                    <div class="worldlore-block-right">
-                        <p class="worldlore-p" {{i18n:tpl.107}}>The rules and sheets are designed to be <strong>mechanically elegant</strong> however complex they may appear at first glance.</p>
-                        <p class="worldlore-p worldlore-strong" {{i18n:tpl.108}}><strong>How ?</strong></p>
-                        <p class="worldlore-p" {{i18n:tpl.109}}>Each rule is modular, solving a variety of situations in a logical manner (<em>WITHOUT having you to refer to a table</em>).<br/><em>It was made for those of us sick of abstract and messy restrictions, YET who still want our <strong>decisions to be mechanically impactful</strong> rather than wished.</em></p>
-                        <p class="worldlore-p" {{i18n:tpl.110}}><strong>Hence the fundamental keyword for this ruleset:</strong></p>
-                        <p class="worldlore-p worldlore-freeforming" {{i18n:tpl.111}}>FREE-FORMING</p>
-                        <p class="worldlore-p" {{i18n:tpl.112}}><em>This allows you to <strong>create your character <span style="text-decoration: underline">throughout</span> the first sessions</strong>, as if unfolding naturally, because each rule block is modular (independent and optional), rather than a dense weave of contextual rules.</em></p>
-                    </div>
-                </div>
-                <!-- Block 2: 2x2 matrix on the left, two pics on the right -->
-                <div class="worldlore-block worldlore-block-2">
-                    <div class="worldlore-block-left worldlore-block-matrix">
-                        <div class="worldlore-matrix-2x2">
-                            <div class="worldlore-matrix-cell">
-                                <h4 class="worldlore-pair-title" {{i18n:tpl.113}}>10 Races…</h4>
-                                <p class="worldlore-pair-p" {{i18n:tpl.114}}>With their own <strong>morality</strong> (<em>driving them insane from you</em>), <strong>cultures</strong> (<em>struggling against each other</em>), and unique racial <strong>traits</strong> (<em>distinguishing them from others</em>)</p>
-                            </div>
-                            <div class="worldlore-matrix-cell">
-                                <h4 class="worldlore-pair-title" {{i18n:tpl.115}}>…8 Worldviews</h4>
-                                <p class="worldlore-pair-p" {{i18n:tpl.116}}>Organically emerging from also 8 attributes, seasons and types of <strong>challenges</strong> (<em>from fights to debates</em>), <strong>ailments</strong> (<em>from wounds to resentments</em>) &amp; <strong>environments</strong> (<em>from pressure to radiation</em>)</p>
-                            </div>
-                            <div class="worldlore-matrix-cell">
-                                <h4 class="worldlore-pair-title" {{i18n:tpl.117}}>24 Classes…</h4>
-                                <p class="worldlore-pair-p" {{i18n:tpl.118}}>As unrestrictive <strong>symbols</strong> rewarding your roleplay, and <strong>24 actions</strong> (<em>from crafting to tracking</em>), to always find new ways to deal with the world</p>
-                            </div>
-                            <div class="worldlore-matrix-cell">
-                                <h4 class="worldlore-pair-title" {{i18n:tpl.119}}>…Up to 72 Skills</h4>
-                                <p class="worldlore-pair-p" {{i18n:tpl.120}}><strong>Gradually discovered</strong> through play to avoid choice paralysis, with many <strong>specializations</strong> for each, to further your eccentric builds</p>
+            <div class="system-overview-dashboard">
+                <!-- Quick-nav sidebar (fixed on desktop) -->
+                <nav class="system-overview-nav" aria-label="On this page">
+                    <h4 class="system-overview-nav-title" {{i18n:tpl.100}}>System Overview</h4>
+                    <ul class="system-overview-nav-list">
+                        <li><a href="#system-overview-uncover" class="system-overview-nav-link" {{i18n:tpl.106}}>Uncover a world of possibilities</a></li>
+                        <li><a href="#system-overview-struggle" class="system-overview-nav-link" {{i18n:tpl.121}}>Struggle, suffer, strengthen</a></li>
+                        <li><a href="#system-overview-traits" class="system-overview-nav-link" {{i18n:tpl.137}}>Traits &amp; Values</a></li>
+                        <li><a href="#system-overview-more" class="system-overview-nav-link" {{i18n:tpl.141}}>And much, much more.</a></li>
+                        <li><a href="#system-overview" class="system-overview-nav-link" {{i18n:tpl.146}}>The 8 attributes</a></li>
+                        <li><a href="#system-overview-conflicts" class="system-overview-nav-link" {{i18n:tpl.169}}>The 8 Types of Conflicts (Gameplay)</a></li>
+                    </ul>
+                </nav>
+
+                <div class="system-overview-content">
+                <!-- Accordion: main worldlore sections (first expanded) -->
+                <div class="system-overview-accordion" id="system-overview-accordion">
+                    <div class="system-overview-accordion-item" id="system-overview-uncover">
+                        <button type="button" class="system-overview-accordion-head" aria-expanded="true" aria-controls="system-overview-uncover-body" id="system-overview-uncover-btn" {{i18n:tpl.106}}>Uncover a world of possibilities</button>
+                        <div class="system-overview-accordion-body is-open" id="system-overview-uncover-body" role="region" aria-labelledby="system-overview-uncover-btn">
+                            <div class="worldlore-ruleset-block">
+                                <div class="worldlore-block worldlore-block-callout">
+                                    <div class="worldlore-block-left">
+                                        <figure class="worldlore-figure"><img src="assets/images/2024/11/feuilles-de-personnage2.png" alt="Character sheets 2" loading="lazy" width="1754" height="1240"/></figure>
+                                    </div>
+                                    <div class="worldlore-block-right">
+                                        <div class="callout callout-freeforming">
+                                            <p class="worldlore-p" {{i18n:tpl.107}}>The rules and sheets are designed to be <strong>mechanically elegant</strong> however complex they may appear at first glance.</p>
+                                            <p class="worldlore-p worldlore-strong" {{i18n:tpl.108}}><strong>How ?</strong></p>
+                                            <p class="worldlore-p" {{i18n:tpl.109}}>Each rule is modular, solving a variety of situations in a logical manner (<em>WITHOUT having you to refer to a table</em>).<br/><em>It was made for those of us sick of abstract and messy restrictions, YET who still want our <strong>decisions to be mechanically impactful</strong> rather than wished.</em></p>
+                                            <p class="worldlore-p" {{i18n:tpl.110}}><strong>Hence the fundamental keyword for this ruleset:</strong></p>
+                                            <p class="worldlore-p worldlore-freeforming" {{i18n:tpl.111}}>FREE-FORMING</p>
+                                            <p class="worldlore-p" {{i18n:tpl.112}}><em>This allows you to <strong>create your character <span style="text-decoration: underline">throughout</span> the first sessions</strong>, as if unfolding naturally, because each rule block is modular (independent and optional), rather than a dense weave of contextual rules.</em></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="worldlore-block worldlore-block-1 worldlore-block-matrix-full">
+                                    <div class="worldlore-matrix-2x2 worldlore-matrix-cards">
+                                            <div class="worldlore-matrix-cell system-overview-card">
+                                                <h4 class="worldlore-pair-title" {{i18n:tpl.113}}>10 Races…</h4>
+                                                <p class="worldlore-pair-p" {{i18n:tpl.114}}>With their own <strong>morality</strong> (<em>driving them insane from you</em>), <strong>cultures</strong> (<em>struggling against each other</em>), and unique racial <strong>traits</strong> (<em>distinguishing them from others</em>)</p>
+                                            </div>
+                                            <div class="worldlore-matrix-cell system-overview-card">
+                                                <h4 class="worldlore-pair-title" {{i18n:tpl.115}}>…8 Worldviews</h4>
+                                                <p class="worldlore-pair-p" {{i18n:tpl.116}}>Organically emerging from also 8 attributes, seasons and types of <strong>challenges</strong> (<em>from fights to debates</em>), <strong>ailments</strong> (<em>from wounds to resentments</em>) &amp; <strong>environments</strong> (<em>from pressure to radiation</em>)</p>
+                                            </div>
+                                            <div class="worldlore-matrix-cell system-overview-card">
+                                                <h4 class="worldlore-pair-title" {{i18n:tpl.117}}>24 Classes…</h4>
+                                                <p class="worldlore-pair-p" {{i18n:tpl.118}}>As unrestrictive <strong>symbols</strong> rewarding your roleplay, and <strong>24 actions</strong> (<em>from crafting to tracking</em>), to always find new ways to deal with the world</p>
+                                            </div>
+                                            <div class="worldlore-matrix-cell system-overview-card">
+                                                <h4 class="worldlore-pair-title" {{i18n:tpl.119}}>…Up to 72 Skills</h4>
+                                                <p class="worldlore-pair-p" {{i18n:tpl.120}}><strong>Gradually discovered</strong> through play to avoid choice paralysis, with many <strong>specializations</strong> for each, to further your eccentric builds</p>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="worldlore-block worldlore-block-2">
+                                    <div class="worldlore-block-left worldlore-block-matrix">
+                                        <figure class="worldlore-figure"><img src="assets/images/2024/11/symbols.jpg" alt="Symbols" loading="lazy" width="2480" height="1754"/></figure>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="worldlore-block-right">
-                        <figure class="worldlore-figure"><img src="assets/images/2024/11/symbols.jpg" alt="Symbols" loading="lazy" width="2480" height="1754"/></figure>
+
+                    <div class="system-overview-accordion-item" id="system-overview-struggle">
+                        <button type="button" class="system-overview-accordion-head" aria-expanded="false" aria-controls="system-overview-struggle-body" id="system-overview-struggle-btn" {{i18n:tpl.121}}>Struggle, suffer, strengthen</button>
+                        <div class="system-overview-accordion-body" id="system-overview-struggle-body" role="region" aria-labelledby="system-overview-struggle-btn">
+                            <div class="worldlore-ruleset-block">
+                                <!-- Core loop flow diagram -->
+                                <div class="system-overview-flow">
+                                    <div class="system-overview-flow-step"><span class="system-overview-flow-label">Dice</span></div>
+                                    <div class="system-overview-flow-arrow">→</div>
+                                    <div class="system-overview-flow-step"><span class="system-overview-flow-label">Struggle</span></div>
+                                    <div class="system-overview-flow-arrow">→</div>
+                                    <div class="system-overview-flow-step"><span class="system-overview-flow-label">Mark</span></div>
+                                    <div class="system-overview-flow-arrow">→</div>
+                                    <div class="system-overview-flow-step"><span class="system-overview-flow-label">Realize</span></div>
+                                </div>
+                                <div class="callout callout-struggle">
+                                    <h4 class="worldlore-h4" {{i18n:tpl.121}}>Struggle, Suffer &amp; Strengthen</h4>
+                                </div>
+                                <div class="worldlore-struggle-row">
+                                    <div class="worldlore-struggle-left">
+                                        <h4 class="worldlore-h4" {{i18n:tpl.122}}>Roll a <strong>dynamic</strong> dice pool…</h4>
+                                        <p class="worldlore-p" {{i18n:tpl.123}}>Starting with a pool of 5 &quot;fudge&quot; dice (<em>marked +1/0/-1, which can be made from normal 6-sided dice</em>), increase it with positive or negative dice, representing your character's experience or his ailments.<br/><em>These extra dices shape the chances of reaching the extremes of the character's limits, which are altered by simple modifiers (such as +3 or -2) with equipment or physical growth.</em></p>
+                                        <figure class="worldlore-figure worldlore-figure-inline"><img src="assets/images/2024/11/fate-dice-pool.png" alt="FATE Dice pool" loading="lazy" width="150" height="82"/></figure>
+                                        <ul class="worldlore-list">
+                                            <li {{i18n:tpl.124}}>With the total typically ranging from -5 to +5, the readings are <strong>clear</strong>, the calculations <strong>simple</strong>, and outcomes <strong>realistic</strong>.</li>
+                                        </ul>
+                                        <div class="worldlore-dice-block" data-lang-key="dice-block">
+                                            <h4 class="worldlore-h4" {{i18n:tpl.125}}>The Dice (dD)</h4>
+                                            <p class="worldlore-p" {{i18n:tpl.126}}><strong>Discordant Dice (dD):</strong> 3-sided dice: <code>+</code>, <code>-</code>, <code>0</code><br/><strong>Result of a roll:</strong> Number of <code>+</code> minus the number of <code>-</code><br/><strong>Example:</strong> <code>++-0-</code> = 2 - 1 = <strong>+1</strong></p>
+                                        </div>
+                                    </div>
+                                    <div class="worldlore-struggle-center">
+                                        <figure class="worldlore-figure worldlore-figure-strip"><img src="assets/images/2024/11/atb_str-eng.png" alt="Attributes" loading="lazy" width="186" height="1021"/></figure>
+                                    </div>
+                                    <div class="worldlore-struggle-right">
+                                        <h4 class="worldlore-h4" {{i18n:tpl.127}}>…Realize your <strong>failures</strong></h4>
+                                        <p class="worldlore-p" {{i18n:tpl.128}}>Every failed struggle <strong>marks</strong> your character in proportion to the failure, generating experience in the skill used. What doesn't kill you <em>will</em> make you stronger.<br/><em>With <strong>10 marks</strong>, you <strong>realize</strong> something about this skill, which can be spent to any other realized skill. The closer the skills are in relation, the more free marks you gain in them, as each learning overlaps (fighting armed, for instance, also teaches you a bit about fighting unarmed).</em></p>
+                                        <ul class="worldlore-list">
+                                            <li {{i18n:tpl.129}}>You will gain +1 Die in the <strong>skill</strong> (<em>boosting your chances</em>), +1 Die on one of its <strong>specializations</strong> (<em>&quot;tracking&quot; can use scent or foresight</em>), and +.1 in its related <strong>attribute</strong> (<em>increasing your limits</em>), as well as unlocking <strong>feats</strong> at certain milestones.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="worldlore-center-block worldlore-coin-block">
+                                    <figure class="worldlore-figure worldlore-figure-coin"><img src="assets/images/2024/11/symbolcoin.png" alt="Symbol coin" loading="lazy" width="193" height="193"/></figure>
+                                    <h4 class="worldlore-h4" {{i18n:tpl.130}}>…eternally returning over ever increasing struggles…</h4>
+                                    <p class="worldlore-p" {{i18n:tpl.131}}><strong>Embrace suffering to ASSERT YOUR WILL</strong>, for you will grow through your recovery.<br/>Ailments organically shape and refresh gameplay as well as gamemastering, presenting different <strong>burdens</strong> (<em>a wound impacts physical tasks heavily, while resentment hinders mental focus</em>) in varied <strong>conditions</strong> (<em>from floods and landslides to firestorms and snow blindness, or suffocating darkness and abysmal pressures</em>).</p>
+                                    <h4 class="worldlore-h4" {{i18n:tpl.132}}>– of One against Many, and Many against One –</h4>
+                                    <p class="worldlore-p" {{i18n:tpl.133}}>Alignments have been thought anew for <strong>a world beyond relativism and dogmatism</strong> :</p>
+                                    <p class="worldlore-p worldlore-mint" {{i18n:tpl.134}}><strong>The Discording Tales of many Goods and Evils.</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="system-overview-accordion-item" id="system-overview-traits">
+                        <button type="button" class="system-overview-accordion-head" aria-expanded="false" aria-controls="system-overview-traits-body" id="system-overview-traits-btn" {{i18n:tpl.137}}>Traits &amp; Values</button>
+                        <div class="system-overview-accordion-body" id="system-overview-traits-body" role="region" aria-labelledby="system-overview-traits-btn">
+                            <div class="worldlore-ruleset-block">
+                                <div class="callout callout-traits">
+                                    <h4 class="worldlore-h4 worldlore-mint" {{i18n:tpl.137}}>Traits &amp; Values</h4>
+                                </div>
+                                <div class="worldlore-wheels">
+                                    <figure class="worldlore-figure worldlore-figure-wheel"><img src="assets/images/2024/11/people-english-v2.png" alt="People" loading="lazy" width="1024" height="1024"/></figure>
+                                    <figure class="worldlore-figure worldlore-figure-wheel"><img src="assets/images/2024/11/things-english.png" alt="Things" loading="lazy" width="1024" height="1024"/></figure>
+                                </div>
+                                <div class="worldlore-center-block">
+                                    <p class="worldlore-p" {{i18n:tpl.135}}><em>Everyone and Everymany have their own perspective about <strong>People</strong> and <strong>Things</strong>, the world studded with countless power struggles across kinds and kingdoms all seeking to rule over one another.</em></p>
+                                    <p class="worldlore-p" {{i18n:tpl.136}}>From suicidal generosity to sustainable cannibalism, these kings and beggars proliferate and flourish… <strong>Because their reasons to be</strong> (by fate or not) <strong>Exult life beyond mere survival.</strong></p>
+                                    <p class="worldlore-p" {{i18n:tpl.138}}>Traits &amp; Values are <strong>clear one-liners</strong> (<em>acted upon oneself up to a whole nation</em>) for your character to keep it all together when the world alienates him through its enmaddening suffering.</p>
+                                    <p class="worldlore-p" {{i18n:tpl.139}}>There are 8 discordant perspectives (from Success or Faith to Generosity or Survival), through which you can (optionally) heal your insanity and resentment, but other Traits &amp; Values can be found as well (<em>through your estranging racial morality, your growing personality, or perceived social roles for example</em>).</p>
+                                    <p class="worldlore-p" {{i18n:tpl.140}}><strong>Reward the strong, Spend on pleasures, Share to the weak, or Test a weapon</strong>…<br/>You'll suffer from your actions upon the world,<br/>But recover from what it did to you.<br/><em>You may want to change…</em><br/><strong>But without a scar ?</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="system-overview-accordion-item" id="system-overview-more">
+                        <button type="button" class="system-overview-accordion-head" aria-expanded="false" aria-controls="system-overview-more-body" id="system-overview-more-btn" {{i18n:tpl.141}}>And much, much more.</button>
+                        <div class="system-overview-accordion-body" id="system-overview-more-body" role="region" aria-labelledby="system-overview-more-btn">
+                            <div class="worldlore-ruleset-block">
+                                <div class="worldlore-center-block worldlore-much-more">
+                                    <p class="worldlore-p worldlore-large" {{i18n:tpl.141}}><strong>And MUCH, much more !</strong></p>
+                                    <p class="worldlore-p" {{i18n:tpl.142}}>Such as swiftly generating and playing through different <strong>scales</strong> of…</p>
+                                    <ul class="worldlore-list">
+                                        <li {{i18n:tpl.143}}><strong>TIME</strong> <em>(from second-by-second to year-by-year)</em></li>
+                                        <li {{i18n:tpl.144}}><strong>SPACE</strong> <em>(from anywhere to wherever and for however time)</em></li>
+                                        <li {{i18n:tpl.145}}><strong>ENCOUNTERS</strong> <em>(from a lone creature to a walking army, admiring or hating you, in opulence or the most dire situation, and holding the keys to your quest or secretly working against you)</em></li>
+                                    </ul>
+                                </div>
+                                <figure class="worldlore-figure worldlore-figure-rencontres"><img src="assets/images/2024/11/rencontres.jpg" alt="Encounters" loading="lazy" width="1024" height="724"/></figure>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="system-overview-accordion-actions">
+                        <button type="button" class="system-overview-expand-all" {{i18n:tpl.419}}>Expand all</button>
+                        <button type="button" class="system-overview-collapse-all" {{i18n:tpl.420}}>Collapse all</button>
                     </div>
                 </div>
 
-                <h3 class="worldlore-heading" {{i18n:tpl.121}}>Struggle, Suffer &amp; Strengthen</h3>
-                <div class="worldlore-struggle-row">
-                    <div class="worldlore-struggle-left">
-                        <h4 class="worldlore-h4" {{i18n:tpl.122}}>Roll a <strong>dynamic</strong> dice pool…</h4>
-                        <p class="worldlore-p" {{i18n:tpl.123}}>Starting with a pool of 5 &quot;fudge&quot; dice (<em>marked +1/0/-1, which can be made from normal 6-sided dice</em>), increase it with positive or negative dice, representing your character's experience or his ailments.<br/><em>These extra dices shape the chances of reaching the extremes of the character's limits, which are altered by simple modifiers (such as +3 or -2) with equipment or physical growth.</em></p>
-                        <figure class="worldlore-figure worldlore-figure-inline"><img src="assets/images/2024/11/fate-dice-pool.png" alt="FATE Dice pool" loading="lazy" width="150" height="82"/></figure>
-                        <ul class="worldlore-list">
-                            <li {{i18n:tpl.124}}>With the total typically ranging from -5 to +5, the readings are <strong>clear</strong>, the calculations <strong>simple</strong>, and outcomes <strong>realistic</strong>.</li>
-                        </ul>
-                        <div class="worldlore-dice-block" data-lang-key="dice-block">
-                            <h4 class="worldlore-h4" {{i18n:tpl.125}}>The Dice (dD)</h4>
-                            <p class="worldlore-p" {{i18n:tpl.126}}><strong>Discordant Dice (dD):</strong> 3-sided dice: <code>+</code>, <code>-</code>, <code>0</code><br/><strong>Result of a roll:</strong> Number of <code>+</code> minus the number of <code>-</code><br/><strong>Example:</strong> <code>++-0-</code> = 2 - 1 = <strong>+1</strong></p>
+                <!-- Reference cards: Attributes + Conflicts (replacing tables) -->
+                <div class="system-overview-cards-section" id="system-overview" aria-label="Attributes and Conflicts reference">
+                    <section class="system-overview-cards-block" id="system-overview-attributes">
+                        <h4 class="system-overview-cards-title" {{i18n:tpl.146}}>The 8 Attributes</h4>
+                        <p class="system-overview-cards-intro" {{i18n:tpl.147}}>Each attribute links to three aptitudes. Together they define what your character can attempt and how far they can go.</p>
+                        <div class="attributes-cards" id="attributes-cards">
+                            <div class="attribute-card" data-attr="Force">
+                                <span class="attribute-card-abbrev" title="Force">FOR</span>
+                                <h5 class="attribute-card-name" {{i18n:tpl.153}}>Force</h5>
+                                <div class="attribute-card-aptitudes">
+                                    <span class="aptitude-badge aptitude-principal" {{i18n:tpl.154}}>Power</span>
+                                    <span class="aptitude-badge" {{i18n:tpl.155}}>Athletics</span>
+                                    <span class="aptitude-badge" {{i18n:tpl.156}}>Domination</span>
+                                </div>
+                            </div>
+                            <div class="attribute-card" data-attr="Agility">
+                                <span class="attribute-card-abbrev" title="Agility">AGI</span>
+                                <h5 class="attribute-card-name" {{i18n:tpl.157}}>Agility</h5>
+                                <div class="attribute-card-aptitudes">
+                                    <span class="aptitude-badge aptitude-principal" {{i18n:tpl.158}}>Ease</span>
+                                    <span class="aptitude-badge" {{i18n:tpl.154}}>Power</span>
+                                    <span class="aptitude-badge" {{i18n:tpl.155}}>Athletics</span>
+                                </div>
+                            </div>
+                            <div class="attribute-card" data-attr="Dexterity">
+                                <span class="attribute-card-abbrev" title="Dexterity">DEX</span>
+                                <h5 class="attribute-card-name" {{i18n:tpl.159}}>Dexterity</h5>
+                                <div class="attribute-card-aptitudes">
+                                    <span class="aptitude-badge aptitude-principal" {{i18n:tpl.160}}>Precision</span>
+                                    <span class="aptitude-badge" {{i18n:tpl.158}}>Ease</span>
+                                    <span class="aptitude-badge" {{i18n:tpl.154}}>Power</span>
+                                </div>
+                            </div>
+                            <div class="attribute-card" data-attr="Vigor">
+                                <span class="attribute-card-abbrev" title="Vigor">VIG</span>
+                                <h5 class="attribute-card-name" {{i18n:tpl.161}}>Vigor</h5>
+                                <div class="attribute-card-aptitudes">
+                                    <span class="aptitude-badge aptitude-principal" {{i18n:tpl.155}}>Athletics</span>
+                                    <span class="aptitude-badge" {{i18n:tpl.156}}>Domination</span>
+                                    <span class="aptitude-badge" {{i18n:tpl.158}}>Ease</span>
+                                </div>
+                            </div>
+                            <div class="attribute-card" data-attr="Empathy">
+                                <span class="attribute-card-abbrev" title="Empathy">EMP</span>
+                                <h5 class="attribute-card-name" {{i18n:tpl.162}}>Empathy</h5>
+                                <div class="attribute-card-aptitudes">
+                                    <span class="aptitude-badge aptitude-principal" {{i18n:tpl.163}}>Charisma</span>
+                                    <span class="aptitude-badge" {{i18n:tpl.164}}>Reflection</span>
+                                    <span class="aptitude-badge" {{i18n:tpl.165}}>Detection</span>
+                                </div>
+                            </div>
+                            <div class="attribute-card" data-attr="Perception">
+                                <span class="attribute-card-abbrev" title="Perception">PER</span>
+                                <h5 class="attribute-card-name" {{i18n:tpl.166}}>Perception</h5>
+                                <div class="attribute-card-aptitudes">
+                                    <span class="aptitude-badge aptitude-principal" {{i18n:tpl.165}}>Detection</span>
+                                    <span class="aptitude-badge" {{i18n:tpl.160}}>Precision</span>
+                                    <span class="aptitude-badge" {{i18n:tpl.163}}>Charisma</span>
+                                </div>
+                            </div>
+                            <div class="attribute-card" data-attr="Creativity">
+                                <span class="attribute-card-abbrev" title="Creativity">CRÉ</span>
+                                <h5 class="attribute-card-name" {{i18n:tpl.167}}>Creativity</h5>
+                                <div class="attribute-card-aptitudes">
+                                    <span class="aptitude-badge aptitude-principal" {{i18n:tpl.164}}>Reflection</span>
+                                    <span class="aptitude-badge" {{i18n:tpl.165}}>Detection</span>
+                                    <span class="aptitude-badge" {{i18n:tpl.160}}>Precision</span>
+                                </div>
+                            </div>
+                            <div class="attribute-card" data-attr="Willpower">
+                                <span class="attribute-card-abbrev" title="Willpower">VOL</span>
+                                <h5 class="attribute-card-name" {{i18n:tpl.168}}>Willpower</h5>
+                                <div class="attribute-card-aptitudes">
+                                    <span class="aptitude-badge aptitude-principal" {{i18n:tpl.156}}>Domination</span>
+                                    <span class="aptitude-badge" {{i18n:tpl.163}}>Charisma</span>
+                                    <span class="aptitude-badge" {{i18n:tpl.164}}>Reflection</span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="worldlore-struggle-center">
-                        <figure class="worldlore-figure worldlore-figure-strip"><img src="assets/images/2024/11/atb_str-eng.png" alt="Attributes" loading="lazy" width="186" height="1021"/></figure>
-                    </div>
-                    <div class="worldlore-struggle-right">
-                        <h4 class="worldlore-h4" {{i18n:tpl.127}}>…Realize your <strong>failures</strong></h4>
-                        <p class="worldlore-p" {{i18n:tpl.128}}>Every failed struggle <strong>marks</strong> your character in proportion to the failure, generating experience in the skill used. What doesn't kill you <em>will</em> make you stronger.<br/><em>With <strong>10 marks</strong>, you <strong>realize</strong> something about this skill, which can be spent to any other realized skill. The closer the skills are in relation, the more free marks you gain in them, as each learning overlaps (fighting armed, for instance, also teaches you a bit about fighting unarmed).</em></p>
-                        <ul class="worldlore-list">
-                            <li {{i18n:tpl.129}}>You will gain +1 Die in the <strong>skill</strong> (<em>boosting your chances</em>), +1 Die on one of its <strong>specializations</strong> (<em>&quot;tracking&quot; can use scent or foresight</em>), and +.1 in its related <strong>attribute</strong> (<em>increasing your limits</em>), as well as unlocking <strong>feats</strong> at certain milestones.</li>
-                        </ul>
-                    </div>
+                    </section>
+
+                    <section class="system-overview-cards-block" id="system-overview-conflicts">
+                        <h4 class="system-overview-cards-title" {{i18n:tpl.169}}>The 8 Types of Conflicts (Gameplay)</h4>
+                        <p class="system-overview-cards-intro" {{i18n:tpl.170}}>The system proposes <strong>8 types of gameplay</strong> directly linked to the 8 Aptitudes. Use a &quot;Key&quot; (tool, knowledge, contact) to obtain the Object or pass the Obstacle in any conflict type.</p>
+                        <div class="conflicts-cards" id="conflicts-cards">
+                            <div class="conflict-card">
+                                <span class="conflict-card-type" {{i18n:tpl.175}}>Battle</span>
+                                <span class="conflict-card-aptitude" {{i18n:tpl.154}}>Power</span>
+                                <p class="conflict-card-object" {{i18n:tpl.176}}>Kill or Destroy and take the Object</p>
+                                <p class="conflict-card-obstacle" {{i18n:tpl.177}}>Kill or Destroy the Obstacle and pass</p>
+                            </div>
+                            <div class="conflict-card">
+                                <span class="conflict-card-type" {{i18n:tpl.178}}>Infiltration</span>
+                                <span class="conflict-card-aptitude" {{i18n:tpl.158}}>Ease</span>
+                                <p class="conflict-card-object" {{i18n:tpl.179}}>Steal the Object here and in discretion</p>
+                                <p class="conflict-card-obstacle" {{i18n:tpl.180}}>Slip through the Obstacle</p>
+                            </div>
+                            <div class="conflict-card">
+                                <span class="conflict-card-type" {{i18n:tpl.181}}>Craft</span>
+                                <span class="conflict-card-aptitude" {{i18n:tpl.160}}>Precision</span>
+                                <p class="conflict-card-object" {{i18n:tpl.182}}>Make the holder abandon the Object</p>
+                                <p class="conflict-card-obstacle" {{i18n:tpl.183}}>Diversion or lure the Obstacle</p>
+                            </div>
+                            <div class="conflict-card">
+                                <span class="conflict-card-type" {{i18n:tpl.184}}>Feat</span>
+                                <span class="conflict-card-aptitude" {{i18n:tpl.155}}>Athletics</span>
+                                <p class="conflict-card-object" {{i18n:tpl.185}}>Take by force the secured Object</p>
+                                <p class="conflict-card-obstacle" {{i18n:tpl.186}}>Dodge or Overcome the Obstacle</p>
+                            </div>
+                            <div class="conflict-card">
+                                <span class="conflict-card-type" {{i18n:tpl.187}}>Corruption</span>
+                                <span class="conflict-card-aptitude" {{i18n:tpl.163}}>Charisma</span>
+                                <p class="conflict-card-object" {{i18n:tpl.188}}>Trade the Object for a need</p>
+                                <p class="conflict-card-obstacle" {{i18n:tpl.189}}>Corrupt or Defeat the Obstacle</p>
+                            </div>
+                            <div class="conflict-card">
+                                <span class="conflict-card-type" {{i18n:tpl.190}}>Enigma</span>
+                                <span class="conflict-card-aptitude" {{i18n:tpl.164}}>Reflection</span>
+                                <p class="conflict-card-object" {{i18n:tpl.191}}>Find the Object elsewhere</p>
+                                <p class="conflict-card-obstacle" {{i18n:tpl.192}}>Find a solution to the Obstacle</p>
+                            </div>
+                            <div class="conflict-card">
+                                <span class="conflict-card-type" {{i18n:tpl.193}}>Investigation</span>
+                                <span class="conflict-card-aptitude" {{i18n:tpl.165}}>Detection</span>
+                                <p class="conflict-card-object" {{i18n:tpl.194}}>Pillage a cache of the Object</p>
+                                <p class="conflict-card-obstacle" {{i18n:tpl.195}}>Find a flaw in the Obstacle</p>
+                            </div>
+                            <div class="conflict-card">
+                                <span class="conflict-card-type" {{i18n:tpl.196}}>Debate</span>
+                                <span class="conflict-card-aptitude" {{i18n:tpl.156}}>Domination</span>
+                                <p class="conflict-card-object" {{i18n:tpl.197}}>Convince to give the Object</p>
+                                <p class="conflict-card-obstacle" {{i18n:tpl.198}}>Convince the Obstacle of passage</p>
+                            </div>
+                        </div>
+                    </section>
                 </div>
-                <div class="worldlore-center-block worldlore-coin-block">
-                    <figure class="worldlore-figure worldlore-figure-coin"><img src="assets/images/2024/11/symbolcoin.png" alt="Symbol coin" loading="lazy" width="193" height="193"/></figure>
-                    <h4 class="worldlore-h4" {{i18n:tpl.130}}>…eternally returning over ever increasing struggles…</h4>
-                    <p class="worldlore-p" {{i18n:tpl.131}}><strong>Embrace suffering to ASSERT YOUR WILL</strong>, for you will grow through your recovery.<br/>Ailments organically shape and refresh gameplay as well as gamemastering, presenting different <strong>burdens</strong> (<em>a wound impacts physical tasks heavily, while resentment hinders mental focus</em>) in varied <strong>conditions</strong> (<em>from floods and landslides to firestorms and snow blindness, or suffocating darkness and abysmal pressures</em>).</p>
-                    <h4 class="worldlore-h4" {{i18n:tpl.132}}>– of One against Many, and Many against One –</h4>
-                    <p class="worldlore-p" {{i18n:tpl.133}}>Alignments have been thought anew for <strong>a world beyond relativism and dogmatism</strong> :</p>
-                    <p class="worldlore-p worldlore-mint" {{i18n:tpl.134}}><strong>The Discording Tales of many Goods and Evils.</strong></p>
-                </div>
-                <div class="worldlore-wheels">
-                    <figure class="worldlore-figure worldlore-figure-wheel"><img src="assets/images/2024/11/people-english-v2.png" alt="People" loading="lazy" width="1024" height="1024"/></figure>
-                    <figure class="worldlore-figure worldlore-figure-wheel"><img src="assets/images/2024/11/things-english.png" alt="Things" loading="lazy" width="1024" height="1024"/></figure>
-                </div>
-                <div class="worldlore-center-block">
-                    <p class="worldlore-p" {{i18n:tpl.135}}><em>Everyone and Everymany have their own perspective about <strong>People</strong> and <strong>Things</strong>, the world studded with countless power struggles across kinds and kingdoms all seeking to rule over one another.</em></p>
-                    <p class="worldlore-p" {{i18n:tpl.136}}>From suicidal generosity to sustainable cannibalism, these kings and beggars proliferate and flourish… <strong>Because their reasons to be</strong> (by fate or not) <strong>Exult life beyond mere survival.</strong></p>
-                    <h4 class="worldlore-h4 worldlore-mint" {{i18n:tpl.137}}>Traits &amp; Values</h4>
-                    <p class="worldlore-p" {{i18n:tpl.138}}>Traits &amp; Values are <strong>clear one-liners</strong> (<em>acted upon oneself up to a whole nation</em>) for your character to keep it all together when the world alienates him through its enmaddening suffering.</p>
-                    <p class="worldlore-p" {{i18n:tpl.139}}>There are 8 discordant perspectives (from Success or Faith to Generosity or Survival), through which you can (optionally) heal your insanity and resentment, but other Traits &amp; Values can be found as well (<em>through your estranging racial morality, your growing personality, or perceived social roles for example</em>).</p>
-                    <p class="worldlore-p" {{i18n:tpl.140}}><strong>Reward the strong, Spend on pleasures, Share to the weak, or Test a weapon</strong>…<br/>You'll suffer from your actions upon the world,<br/>But recover from what it did to you.<br/><em>You may want to change…</em><br/><strong>But without a scar ?</strong></p>
-                </div>
-                <div class="worldlore-center-block worldlore-much-more">
-                    <p class="worldlore-p worldlore-large" {{i18n:tpl.141}}><strong>And MUCH, much more !</strong></p>
-                    <p class="worldlore-p" {{i18n:tpl.142}}>Such as swiftly generating and playing through different <strong>scales</strong> of…</p>
-                    <ul class="worldlore-list">
-                        <li {{i18n:tpl.143}}><strong>TIME</strong> <em>(from second-by-second to year-by-year)</em></li>
-                        <li {{i18n:tpl.144}}><strong>SPACE</strong> <em>(from anywhere to wherever and for however time)</em></li>
-                        <li {{i18n:tpl.145}}><strong>ENCOUNTERS</strong> <em>(from a lone creature to a walking army, admiring or hating you, in opulence or the most dire situation, and holding the keys to your quest or secretly working against you)</em></li>
-                    </ul>
-                </div>
-                <figure class="worldlore-figure worldlore-figure-rencontres"><img src="assets/images/2024/11/rencontres.jpg" alt="Encounters" loading="lazy" width="1024" height="724"/></figure>
-            </div>
-            
-            <!-- System Overview: two tables full-width, each with title & intro above -->
-            <div class="rules-tables-fullwidth" id="system-overview" aria-label="Attributes and Conflicts tables">
-                    <div class="rules-table-wrapper rules-table-col">
-                        <h4 {{i18n:tpl.146}}>The 8 Attributes</h4>
-                        <p {{i18n:tpl.147}}>Each Attribute links to three Aptitudes (principal +3, secondary +2, +1). <span title="Niv = Level; Niv of Aptitude = first significant digit of total ÷ 10.">Niv</span> of Aptitude = unit of (total Attributs ÷ 10).</p>
-                        <table class="rules-table attributes-table">
-                            <thead>
-                                <tr>
-                                    <th {{i18n:tpl.148}}>Attribute</th>
-                                    <th {{i18n:tpl.149}}>Abbrev</th>
-                                    <th {{i18n:tpl.150}}>Apt +3 (principal)</th>
-                                    <th {{i18n:tpl.151}}>Apt +2</th>
-                                    <th {{i18n:tpl.152}}>Apt +1</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td {{i18n:tpl.153}}>Force</td><td>FOR</td><td {{i18n:tpl.154}}>Power</td><td {{i18n:tpl.155}}>Athletics</td><td {{i18n:tpl.156}}>Domination</td></tr>
-                                <tr><td {{i18n:tpl.157}}>Agility</td><td>AGI</td><td {{i18n:tpl.158}}>Ease</td><td {{i18n:tpl.154}}>Power</td><td {{i18n:tpl.155}}>Athletics</td></tr>
-                                <tr><td {{i18n:tpl.159}}>Dexterity</td><td>DEX</td><td {{i18n:tpl.160}}>Precision</td><td {{i18n:tpl.158}}>Ease</td><td {{i18n:tpl.154}}>Power</td></tr>
-                                <tr><td {{i18n:tpl.161}}>Vigor</td><td>VIG</td><td {{i18n:tpl.155}}>Athletics</td><td {{i18n:tpl.156}}>Domination</td><td {{i18n:tpl.158}}>Ease</td></tr>
-                                <tr><td {{i18n:tpl.162}}>Empathy</td><td>EMP</td><td {{i18n:tpl.163}}>Charisma</td><td {{i18n:tpl.164}}>Reflection</td><td {{i18n:tpl.165}}>Detection</td></tr>
-                                <tr><td {{i18n:tpl.166}}>Perception</td><td>PER</td><td {{i18n:tpl.165}}>Detection</td><td {{i18n:tpl.160}}>Precision</td><td {{i18n:tpl.163}}>Charisma</td></tr>
-                                <tr><td {{i18n:tpl.167}}>Creativity</td><td>CRÉ</td><td {{i18n:tpl.164}}>Reflection</td><td {{i18n:tpl.165}}>Detection</td><td {{i18n:tpl.160}}>Precision</td></tr>
-                                <tr><td {{i18n:tpl.168}}>Willpower</td><td>VOL</td><td {{i18n:tpl.156}}>Domination</td><td {{i18n:tpl.163}}>Charisma</td><td {{i18n:tpl.164}}>Reflection</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="rules-table-wrapper rules-table-col">
-                        <h4 {{i18n:tpl.169}}>The 8 Types of Conflicts (Gameplay)</h4>
-                        <p {{i18n:tpl.170}}>The system proposes <strong>8 types of gameplay</strong> directly linked to the 8 Aptitudes. Use a &quot;Key&quot; (tool, knowledge, contact) to obtain the Object or pass the Obstacle in any conflict type.</p>
-                        <table class="rules-table conflicts-table">
-                            <thead>
-                                <tr>
-                                    <th {{i18n:tpl.171}}>Aptitude</th>
-                                    <th {{i18n:tpl.172}}>Type</th>
-                                    <th {{i18n:tpl.173}}>Object (guarded)</th>
-                                    <th {{i18n:tpl.174}}>Obstacle (guardian)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td {{i18n:tpl.154}}>Power</td><td {{i18n:tpl.175}}>Battle</td><td {{i18n:tpl.176}}>Kill or Destroy and take the Object</td><td {{i18n:tpl.177}}>Kill or Destroy the Obstacle and pass</td></tr>
-                                <tr><td {{i18n:tpl.158}}>Ease</td><td {{i18n:tpl.178}}>Infiltration</td><td {{i18n:tpl.179}}>Steal the Object here and in discretion</td><td {{i18n:tpl.180}}>Slip through the Obstacle</td></tr>
-                                <tr><td {{i18n:tpl.160}}>Precision</td><td {{i18n:tpl.181}}>Craft</td><td {{i18n:tpl.182}}>Make the holder abandon the Object</td><td {{i18n:tpl.183}}>Diversion or lure the Obstacle</td></tr>
-                                <tr><td {{i18n:tpl.155}}>Athletics</td><td {{i18n:tpl.184}}>Feat</td><td {{i18n:tpl.185}}>Take by force the secured Object</td><td {{i18n:tpl.186}}>Dodge or Overcome the Obstacle</td></tr>
-                                <tr><td {{i18n:tpl.163}}>Charisma</td><td {{i18n:tpl.187}}>Corruption</td><td {{i18n:tpl.188}}>Trade the Object for a need</td><td {{i18n:tpl.189}}>Corrupt or Defeat the Obstacle</td></tr>
-                                <tr><td {{i18n:tpl.164}}>Reflection</td><td {{i18n:tpl.190}}>Enigma</td><td {{i18n:tpl.191}}>Find the Object elsewhere</td><td {{i18n:tpl.192}}>Find a solution to the Obstacle</td></tr>
-                                <tr><td {{i18n:tpl.165}}>Detection</td><td {{i18n:tpl.193}}>Investigation</td><td {{i18n:tpl.194}}>Pillage a cache of the Object</td><td {{i18n:tpl.195}}>Find a flaw in the Obstacle</td></tr>
-                                <tr><td {{i18n:tpl.156}}>Domination</td><td {{i18n:tpl.196}}>Debate</td><td {{i18n:tpl.197}}>Convince to give the Object</td><td {{i18n:tpl.198}}>Convince the Obstacle of passage</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
             </div>
             </div>
