@@ -327,6 +327,29 @@
             });
         });
 
+        // Tree: toggle expand/collapse on People nodes (fold/unfold the list of races)
+        peoplesSection.querySelectorAll('.peoples-tree-node[data-peuple]').forEach(function(node) {
+            const toggle = node.querySelector('.peoples-tree-toggle');
+            const racesEl = node.querySelector('.peoples-tree-races');
+            if (!racesEl) return;
+            function expand() {
+                node.setAttribute('aria-expanded', 'true');
+                racesEl.style.display = '';
+            }
+            function collapse() {
+                node.setAttribute('aria-expanded', 'false');
+                racesEl.style.display = 'none';
+            }
+            if (node.getAttribute('aria-expanded') === 'true') expand();
+            else collapse();
+            (toggle || node).addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (node.getAttribute('aria-expanded') === 'true') collapse();
+                else expand();
+            });
+        });
+
     }
 
     // ========================================
