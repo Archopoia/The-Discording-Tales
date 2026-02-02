@@ -1864,6 +1864,22 @@
     background: rgba(139, 115, 85, 0.12);
     color: #3d2e24;
 }
+.peoples-tree-people-content .peoples-competences-table {
+    margin: 0 0 0.15rem;
+    font-size: 0.85em;
+}
+.peoples-tree-people-content .peoples-competences-table th {
+    font-weight: 700;
+    text-align: left;
+    padding: 2px 6px 2px 0;
+    width: 1%;
+    white-space: nowrap;
+    color: #3d2e24;
+}
+.peoples-tree-people-content .peoples-competences-table td {
+    padding: 2px 0;
+    color: #2c2419;
+}
 .peoples-tree-race-row {
     display: block;
     margin-top: 2px;
