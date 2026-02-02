@@ -2353,19 +2353,6 @@
     color: var(--tdt-gold, #c9a227);
 }
 
-/* Origin description panel (inline under origin name in tree) */
-.peoples-tree-origin-content[hidden] {
-    display: none;
-}
-.peoples-tree-origin-content .peoples-tree-origin-body {
-    padding: var(--spacing-sm) var(--spacing-md);
-    margin: var(--spacing-sm) 0 0;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: var(--radius-sm);
-    color: var(--tdt-cream);
-    font-size: 0.95rem;
-    line-height: 1.5;
-}
 
 /* ----- Peuples: intro, tree only, then hidden cards (popover source) ----- */
 .peoples-tree-wrap {
@@ -2444,9 +2431,10 @@
     text-decoration-style: dotted;
     text-underline-offset: 2px;
 }
-/* Inline accordions: people and race content folded in the tree */
+/* Inline accordions: people, race, and origin content folded in the tree */
 .peoples-tree-people-content[hidden],
-.peoples-tree-race-content[hidden] {
+.peoples-tree-race-content[hidden],
+.peoples-tree-origin-content[hidden] {
     display: none !important;
 }
 /* Reset flip-card transform when cloned into tree (avoids mirrored text) */
@@ -2457,7 +2445,9 @@
 .peoples-tree-people-content,
 .peoples-tree-people-content *,
 .peoples-tree-race-content,
-.peoples-tree-race-content * {
+.peoples-tree-race-content *,
+.peoples-tree-origin-content,
+.peoples-tree-origin-content * {
     box-shadow: none !important;
     text-shadow: none !important;
 }
@@ -2569,6 +2559,25 @@
     color: inherit;
 }
 .peoples-tree-race-body p {
+    margin: 0;
+    line-height: 1.5;
+    color: #2c2419;
+}
+/* Origin description panel: same style as people/race unfolded cards */
+.peoples-tree-origin-content {
+    margin-top: var(--spacing-xs);
+    margin-left: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-left: 3px solid var(--tdt-brown);
+    background: var(--tdt-beige-lighter);
+    border-radius: 0 6px 6px 0;
+    font-size: 0.88em;
+    color: #2c2419;
+}
+.peoples-tree-origin-content * {
+    color: inherit;
+}
+.peoples-tree-origin-body {
     margin: 0;
     line-height: 1.5;
     color: #2c2419;
