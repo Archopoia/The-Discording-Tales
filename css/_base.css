@@ -90,25 +90,13 @@ body {
 /* ========================================
    Custom scrollbars (viewport + overflow areas)
    ======================================== */
-/* Firefox */
+/* Hide viewport scrollbar (page still scrollable) */
 html {
-    scrollbar-width: thin;
-    scrollbar-color: var(--tdt-brown) var(--tdt-burgundy);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
-/* WebKit: viewport scrollbar */
 html::-webkit-scrollbar {
-    width: 10px;
-}
-html::-webkit-scrollbar-track {
-    background: var(--tdt-burgundy);
-}
-html::-webkit-scrollbar-thumb {
-    background: var(--tdt-brown);
-    border-radius: var(--radius-sm);
-    border: 2px solid var(--tdt-burgundy);
-}
-html::-webkit-scrollbar-thumb:hover {
-    background: var(--tdt-brown-light);
+    display: none;
 }
 
 /* Custom scrollbars: add .tdt-scrollable to any scrollable area that should use TDT styling */

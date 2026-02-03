@@ -75,6 +75,7 @@
 
     function runEntrance() {
         const staticLoader = document.getElementById('static-loader');
+        const entranceFill = document.getElementById('entrance-fill');
         const enterButton = document.getElementById('enter-portfolio-btn');
 
         document.body.classList.add('entrance-active');
@@ -99,17 +100,15 @@
                 enterButton.style.display = 'none';
             }
             if (staticLoader) {
-                staticLoader.style.animation = 'fadeOut 1.5s ease-in-out forwards';
-                setTimeout(function() {
-                    if (staticLoader && staticLoader.parentNode) {
-                        staticLoader.remove();
-                    }
-                    if (playSound && doorUnlock) {
-                        doorUnlock.currentTime = 0;
-                        doorUnlock.play().catch(function() {});
-                    }
-                    setTimeout(startChimesLoop, 1000);
-                }, 1500);
+                staticLoader.style.pointerEvents = 'none';
+                if (entranceFill) {
+                    entranceFill.style.animation = 'fadeOut 1.5s ease-in-out forwards';
+                }
+                if (playSound && doorUnlock) {
+                    doorUnlock.currentTime = 0;
+                    doorUnlock.play().catch(function() {});
+                }
+                setTimeout(startChimesLoop, 1000);
             } else {
                 if (playSound && doorUnlock) {
                     doorUnlock.currentTime = 0;
@@ -142,13 +141,14 @@
                     document.body.appendChild(flashElement);
                     flashElement.style.animation = 'goldenFlash 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
 
+                    /* Start fading burgundy immediately; never hide the vignette overlay */
+                    if (entranceFill) {
+                        entranceFill.style.animation = 'fadeOut 1.5s ease-in-out forwards';
+                    }
+                    if (enterButton) {
+                        enterButton.style.display = 'none';
+                    }
                     setTimeout(function() {
-                        if (staticLoader) {
-                            staticLoader.style.display = 'none';
-                        }
-                        if (enterButton) {
-                            enterButton.style.display = 'none';
-                        }
                         flashElement.style.animation = 'none';
                         void flashElement.offsetHeight;
                         flashElement.style.width = '3000px';
@@ -156,8 +156,8 @@
                         flashElement.style.animation = 'fadeOut 1.5s ease-in-out forwards';
 
                         setTimeout(function() {
-                            if (staticLoader && staticLoader.parentNode) {
-                                staticLoader.remove();
+                            if (staticLoader) {
+                                staticLoader.style.pointerEvents = 'none';
                             }
                             if (flashElement.parentNode) {
                                 flashElement.parentNode.removeChild(flashElement);

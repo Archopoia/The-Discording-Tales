@@ -10,7 +10,14 @@ body.entrance-active {
     height: 100vh !important;
 }
 
-/* Enter button - simple styling for keyhole image */
+/* Logo rotation (same as site .site-logo logo-idle: 0 → 180 → 0) */
+@keyframes keyholeLogoRotate {
+    0%   { transform: rotate(0deg); }
+    50%  { transform: rotate(180deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* Enter button - styling for logo image */
 #enter-portfolio-btn {
     background: none !important;
     background-color: transparent !important;
@@ -29,16 +36,17 @@ body.entrance-active {
 }
 
 #enter-portfolio-btn img {
-    max-width: 100%;
+    max-width: 250px;
+    width: auto;
     height: auto;
     background: transparent !important;
     border: none !important;
     padding: 0 !important;
     margin: 0 !important;
-    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                 filter 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    animation: keyholePulse 3s ease-in-out infinite;
+    animation: keyholePulse 3s ease-in-out infinite,
+               keyholeLogoRotate 4s ease-in-out infinite;
 }
 
 #enter-portfolio-btn:hover {
@@ -49,11 +57,16 @@ body.entrance-active {
 }
 
 #enter-portfolio-btn:hover img {
-    animation: keyholeDiscovery 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards, keyholeGlow 2s ease-in-out infinite alternate 0.8s;
+    /* Greater glow (keyholeDiscovery + keyholeGlow) and 2x rotation speed (2s instead of 4s) */
+    animation: keyholeDiscovery 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
+               keyholeGlow 2s ease-in-out infinite alternate 0.8s,
+               keyholeLogoRotate 2s ease-in-out infinite 0.8s;
 }
 
 #enter-portfolio-btn.was-hovered:not(:hover) img {
-    animation: keyholeReverse 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards, keyholePulse 3s ease-in-out infinite 0.8s;
+    animation: keyholeReverse 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
+               keyholePulse 3s ease-in-out infinite 0.8s,
+               keyholeLogoRotate 4s ease-in-out infinite 0.8s;
 }
 
 #enter-portfolio-btn:active {
