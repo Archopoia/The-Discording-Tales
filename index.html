@@ -28,7 +28,12 @@
     <!-- Keyhole entrance: vignette always visible; burgundy fill fades on unlock -->
     <div id="static-loader" class="entrance-vignette" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, transparent 0%, transparent 35%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.85) 100%); display: flex; align-items: center; justify-content: center; z-index: 10000;">
         <div id="entrance-fill" class="entrance-fill" style="position: absolute; inset: 0; background: radial-gradient(circle at center, #3d0000 0%, #1a0505 50%, #000000 100%); pointer-events: none;"></div>
-        <button id="enter-portfolio-btn" type="button" style="display: none;" aria-label="Enter site"><img src="assets/images/symbolpur.png" alt="Enter" /></button>
+        <button id="enter-portfolio-btn" type="button" style="display: none;" aria-label="Enter site">
+            <span class="entrance-logo-wrap">
+                <img src="assets/images/symbolpur.png" alt="" class="entrance-logo-base" />
+                <img src="assets/images/SymbolCoin.png" alt="" class="entrance-logo-coin" />
+            </span>
+        </button>
     </div>
     <!-- Skip to content link for accessibility -->
     <a class="skip-link screen-reader-text" href="#main-content" data-en="Skip to content" data-fr="Aller au contenu">Skip to content</a>
@@ -133,14 +138,17 @@
                     <p class="pitch-golden" data-en="Thence the seeds of a <strong>Golden Age Rush</strong> are sown,<br>where every paradise struggles for its overcoming :" data-fr="Là sont semées les graines d'une <strong>RUÉE VERS l'ÂGE D'OR</strong>, <br>où chaque paradis lutte pour son dépassement.">Thence the seeds of a <strong>Golden Age Rush</strong> are sown,<br>where every paradise struggles for its overcoming :</p>
                     <p class="pitch-question" data-en="– Yet will it be <strong>YOUR Golden Age</strong>, quenched and growing by <strong>YOUR Creative Vision</strong> ?" data-fr="Mais sera-ce <strong>VOTRE Âge d'Or</strong>, abreuvé et croissant de <strong>VOTRE Vision Créatrice</strong> ?">– Yet will it be <strong>YOUR</strong> golden age, quenched and growing by <strong>YOUR Creative Vision</strong> ?</p>
                     <p class="pitch-depths" data-en="IN THE BLOSSOMING DEPTHS OF THE FORGOTTEN EARTH," data-fr="DANS LES PROFONDEURS FLORISSANTES DE LA TERRE OUBLIÉE,">IN THE BLOSSOMING DEPTHS OF THE FORGOTTEN EARTH, THERE IS ONLY</p>
-                    <p class="pitch-discord" data-en="THERE IS ONLY DISCORD" data-fr="IL N'Y A QUE LA DISCORDE">DISCORD</p>
                 </div>
             </div>
             
-            <!-- Discovery + Kickstarter: oval-framed picture only (CTA inside) -->
+            <!-- Discovery + Kickstarter: oval overlaps pitch; "DISCORD" + CTA inside -->
             <div class="discovery-kickstarter-wrap">
                 <div class="discovery-kickstarter-oval">
                     <div class="discovery-kickstarter-inner">
+                        <p class="discovery-kickstarter-discord">
+                        <span class="discovery-kickstarter-discord-line1" {{i18n:pitch.discord_line1}}>There is only</span>
+                        <span class="discovery-kickstarter-discord-line2" {{i18n:pitch.discord_line2}}>DISCORD</span>
+                    </p>
                         <a href="https://www.kickstarter.com/projects/1410517588/the-discording-tales-tabletop-rpg-and-worldlore" class="cta-button discovery-kickstarter-cta" target="_blank" rel="noopener noreferrer">
                             <span data-en="Raise your Hand" data-fr="Levez la Main">Raise your Hand</span>
                             <small data-en="(Be notified on launch)" data-fr="(Soyez notifié au lancement)">(Be notified on launch)</small>

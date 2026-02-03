@@ -35,18 +35,37 @@ body.entrance-active {
     outline: none !important;
 }
 
-#enter-portfolio-btn img {
+/* Wrapper so symbol + coin share one glow/rotation (filter on wrapper) */
+#enter-portfolio-btn .entrance-logo-wrap {
+    display: inline-block;
+    position: relative;
     max-width: 250px;
-    width: auto;
-    height: auto;
-    background: transparent !important;
-    border: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
     transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                 filter 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     animation: keyholePulse 3s ease-in-out infinite,
                keyholeLogoRotate 4s ease-in-out infinite;
+}
+
+#enter-portfolio-btn .entrance-logo-wrap img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#enter-portfolio-btn .entrance-logo-coin {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 1;
+    pointer-events: none;
 }
 
 #enter-portfolio-btn:hover {
@@ -56,14 +75,14 @@ body.entrance-active {
     transform: none !important;
 }
 
-#enter-portfolio-btn:hover img {
+#enter-portfolio-btn:hover .entrance-logo-wrap {
     /* Greater glow (keyholeDiscovery + keyholeGlow); rotation speed unchanged */
     animation: keyholeDiscovery 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
                keyholeGlow 2s ease-in-out infinite alternate 0.8s,
                keyholeLogoRotate 4s ease-in-out infinite 0.8s;
 }
 
-#enter-portfolio-btn.was-hovered:not(:hover) img {
+#enter-portfolio-btn.was-hovered:not(:hover) .entrance-logo-wrap {
     animation: keyholeReverse 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
                keyholePulse 3s ease-in-out infinite 0.8s,
                keyholeLogoRotate 4s ease-in-out infinite 0.8s;
@@ -73,52 +92,52 @@ body.entrance-active {
     opacity: 0.6;
 }
 
-/* Keyhole discovery - burgundy to gold */
+/* Keyhole discovery - burgundy to beige (large glow) */
 @keyframes keyholeDiscovery {
     0% {
         filter:
-            drop-shadow(0 0 4px rgba(61, 0, 0, 0.8))
-            drop-shadow(0 0 8px rgba(61, 0, 0, 0.6))
+            drop-shadow(0 0 12px rgba(61, 0, 0, 0.8))
+            drop-shadow(0 0 24px rgba(61, 0, 0, 0.6))
             drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
     }
     20% {
         filter:
-            drop-shadow(0 0 6px rgba(61, 0, 0, 0.7))
-            drop-shadow(0 0 12px rgba(90, 26, 26, 0.5))
-            drop-shadow(0 0 18px rgba(139, 69, 19, 0.3))
+            drop-shadow(0 0 20px rgba(61, 0, 0, 0.7))
+            drop-shadow(0 0 40px rgba(90, 26, 26, 0.5))
+            drop-shadow(0 0 60px rgba(160, 130, 90, 0.3))
             drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
     }
     40% {
         filter:
-            drop-shadow(0 0 8px rgba(90, 26, 26, 0.6))
-            drop-shadow(0 0 16px rgba(139, 69, 19, 0.4))
-            drop-shadow(0 0 24px rgba(218, 165, 32, 0.3))
+            drop-shadow(0 0 28px rgba(90, 26, 26, 0.6))
+            drop-shadow(0 0 56px rgba(160, 130, 90, 0.4))
+            drop-shadow(0 0 80px rgba(222, 184, 135, 0.3))
             drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
     }
     60% {
         filter:
-            drop-shadow(0 0 10px rgba(139, 69, 19, 0.5))
-            drop-shadow(0 0 20px rgba(218, 165, 32, 0.4))
-            drop-shadow(0 0 30px rgba(255, 215, 0, 0.3))
-            drop-shadow(0 0 4px rgba(255, 255, 255, 0.4))
+            drop-shadow(0 0 36px rgba(160, 130, 90, 0.5))
+            drop-shadow(0 0 72px rgba(222, 184, 135, 0.4))
+            drop-shadow(0 0 100px rgba(245, 222, 179, 0.3))
+            drop-shadow(0 0 16px rgba(255, 248, 240, 0.4))
             drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
     }
     80% {
         filter:
-            drop-shadow(0 0 12px rgba(218, 165, 32, 0.6))
-            drop-shadow(0 0 24px rgba(255, 215, 0, 0.5))
-            drop-shadow(0 0 36px rgba(255, 215, 0, 0.3))
-            drop-shadow(0 0 6px rgba(255, 255, 255, 0.5))
-            drop-shadow(0 0 12px rgba(255, 255, 255, 0.2))
+            drop-shadow(0 0 44px rgba(222, 184, 135, 0.6))
+            drop-shadow(0 0 88px rgba(245, 222, 179, 0.5))
+            drop-shadow(0 0 120px rgba(245, 235, 210, 0.3))
+            drop-shadow(0 0 24px rgba(255, 248, 240, 0.5))
+            drop-shadow(0 0 48px rgba(255, 248, 240, 0.2))
             drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.5));
     }
     100% {
         filter:
-            drop-shadow(0 0 12px rgba(255, 215, 0, 0.6))
-            drop-shadow(0 0 24px rgba(255, 215, 0, 0.4))
-            drop-shadow(0 0 36px rgba(255, 215, 0, 0.2))
-            drop-shadow(0 0 6px rgba(255, 255, 255, 0.6))
-            drop-shadow(0 0 12px rgba(255, 255, 255, 0.3))
+            drop-shadow(0 0 48px rgba(245, 222, 179, 0.6))
+            drop-shadow(0 0 96px rgba(245, 235, 210, 0.4))
+            drop-shadow(0 0 140px rgba(255, 248, 240, 0.2))
+            drop-shadow(0 0 24px rgba(255, 248, 240, 0.6))
+            drop-shadow(0 0 48px rgba(255, 248, 240, 0.3))
             drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.5));
     }
 }
@@ -126,38 +145,38 @@ body.entrance-active {
 @keyframes keyholeReverse {
     0% {
         filter:
-            drop-shadow(0 0 12px rgba(255, 215, 0, 0.6))
-            drop-shadow(0 0 24px rgba(255, 215, 0, 0.4))
-            drop-shadow(0 0 36px rgba(255, 215, 0, 0.2))
-            drop-shadow(0 0 6px rgba(255, 255, 255, 0.6))
-            drop-shadow(0 0 12px rgba(255, 255, 255, 0.3))
+            drop-shadow(0 0 48px rgba(245, 222, 179, 0.6))
+            drop-shadow(0 0 96px rgba(245, 235, 210, 0.4))
+            drop-shadow(0 0 140px rgba(255, 248, 240, 0.2))
+            drop-shadow(0 0 24px rgba(255, 248, 240, 0.6))
+            drop-shadow(0 0 48px rgba(255, 248, 240, 0.3))
             drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.5));
     }
     25% {
         filter:
-            drop-shadow(0 0 10px rgba(255, 215, 0, 0.4))
-            drop-shadow(0 0 20px rgba(255, 215, 0, 0.3))
-            drop-shadow(0 0 30px rgba(255, 215, 0, 0.1))
-            drop-shadow(0 0 4px rgba(255, 255, 255, 0.3))
+            drop-shadow(0 0 40px rgba(245, 222, 179, 0.4))
+            drop-shadow(0 0 80px rgba(245, 235, 210, 0.3))
+            drop-shadow(0 0 120px rgba(255, 248, 240, 0.1))
+            drop-shadow(0 0 16px rgba(255, 248, 240, 0.3))
             drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
     }
     50% {
         filter:
-            drop-shadow(0 0 8px rgba(218, 165, 32, 0.3))
-            drop-shadow(0 0 16px rgba(255, 215, 0, 0.2))
-            drop-shadow(0 0 24px rgba(255, 215, 0, 0.1))
+            drop-shadow(0 0 32px rgba(222, 184, 135, 0.3))
+            drop-shadow(0 0 64px rgba(245, 235, 210, 0.2))
+            drop-shadow(0 0 96px rgba(255, 248, 240, 0.1))
             drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
     }
     75% {
         filter:
-            drop-shadow(0 0 6px rgba(139, 69, 19, 0.4))
-            drop-shadow(0 0 12px rgba(218, 165, 32, 0.2))
+            drop-shadow(0 0 24px rgba(160, 130, 90, 0.4))
+            drop-shadow(0 0 48px rgba(222, 184, 135, 0.2))
             drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
     }
     100% {
         filter:
-            drop-shadow(0 0 4px rgba(61, 0, 0, 0.6))
-            drop-shadow(0 0 8px rgba(61, 0, 0, 0.4))
+            drop-shadow(0 0 12px rgba(61, 0, 0, 0.6))
+            drop-shadow(0 0 24px rgba(61, 0, 0, 0.4))
             drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
     }
 }
@@ -165,48 +184,48 @@ body.entrance-active {
 @keyframes keyholeGlow {
     0% {
         filter:
-            drop-shadow(0 0 12px rgba(255, 215, 0, 0.6))
-            drop-shadow(0 0 24px rgba(255, 215, 0, 0.4))
-            drop-shadow(0 0 36px rgba(255, 215, 0, 0.2))
-            drop-shadow(0 0 6px rgba(255, 255, 255, 0.6))
-            drop-shadow(0 0 12px rgba(255, 255, 255, 0.3))
+            drop-shadow(0 0 48px rgba(245, 222, 179, 0.6))
+            drop-shadow(0 0 96px rgba(245, 235, 210, 0.4))
+            drop-shadow(0 0 140px rgba(255, 248, 240, 0.2))
+            drop-shadow(0 0 24px rgba(255, 248, 240, 0.6))
+            drop-shadow(0 0 48px rgba(255, 248, 240, 0.3))
             drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.5));
     }
     100% {
         filter:
-            drop-shadow(0 0 15px rgba(255, 215, 0, 0.7))
-            drop-shadow(0 0 30px rgba(255, 215, 0, 0.5))
-            drop-shadow(0 0 45px rgba(255, 215, 0, 0.3))
-            drop-shadow(0 0 8px rgba(255, 255, 255, 0.7))
-            drop-shadow(0 0 16px rgba(255, 255, 255, 0.4))
+            drop-shadow(0 0 60px rgba(245, 222, 179, 0.7))
+            drop-shadow(0 0 120px rgba(245, 235, 210, 0.5))
+            drop-shadow(0 0 180px rgba(255, 248, 240, 0.3))
+            drop-shadow(0 0 32px rgba(255, 248, 240, 0.7))
+            drop-shadow(0 0 64px rgba(255, 248, 240, 0.4))
             drop-shadow(2px 2px 8px rgba(0, 0, 0, 0.6));
     }
 }
 
 @keyframes keyholePulse {
     0% {
-        filter: drop-shadow(0 0 8px rgba(61, 0, 0, 0.6))
-                drop-shadow(0 0 16px rgba(61, 0, 0, 0.4))
+        filter: drop-shadow(0 0 24px rgba(61, 0, 0, 0.6))
+                drop-shadow(0 0 48px rgba(61, 0, 0, 0.4))
                 drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
     }
     16.67% {
-        filter: drop-shadow(0 0 12px rgba(139, 69, 19, 0.7))
-                drop-shadow(0 0 24px rgba(139, 69, 19, 0.5))
-                drop-shadow(0 0 36px rgba(139, 69, 19, 0.3))
+        filter: drop-shadow(0 0 36px rgba(120, 90, 60, 0.7))
+                drop-shadow(0 0 72px rgba(160, 130, 90, 0.5))
+                drop-shadow(0 0 108px rgba(222, 184, 135, 0.3))
                 drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.6));
     }
     20% {
         filter:
-            drop-shadow(0 0 8px rgba(90, 26, 26, 0.6)) drop-shadow(0 0 16px rgba(139, 69, 19, 0.4)) drop-shadow(0 0 24px rgba(218, 165, 32, 0.3)) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+            drop-shadow(0 0 24px rgba(90, 26, 26, 0.6)) drop-shadow(0 0 48px rgba(160, 130, 90, 0.4)) drop-shadow(0 0 72px rgba(222, 184, 135, 0.3)) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
     }
     33.33% {
-        filter: drop-shadow(0 0 8px rgba(61, 0, 0, 0.6))
-                drop-shadow(0 0 16px rgba(61, 0, 0, 0.4))
+        filter: drop-shadow(0 0 24px rgba(61, 0, 0, 0.6))
+                drop-shadow(0 0 48px rgba(61, 0, 0, 0.4))
                 drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
     }
     100% {
-        filter: drop-shadow(0 0 8px rgba(61, 0, 0, 0.6))
-                drop-shadow(0 0 16px rgba(61, 0, 0, 0.4))
+        filter: drop-shadow(0 0 24px rgba(61, 0, 0, 0.6))
+                drop-shadow(0 0 48px rgba(61, 0, 0, 0.4))
                 drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
     }
 }

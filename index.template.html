@@ -28,7 +28,12 @@
     <!-- Keyhole entrance: vignette always visible; burgundy fill fades on unlock -->
     <div id="static-loader" class="entrance-vignette" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, transparent 0%, transparent 35%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.85) 100%); display: flex; align-items: center; justify-content: center; z-index: 10000;">
         <div id="entrance-fill" class="entrance-fill" style="position: absolute; inset: 0; background: radial-gradient(circle at center, #3d0000 0%, #1a0505 50%, #000000 100%); pointer-events: none;"></div>
-        <button id="enter-portfolio-btn" type="button" style="display: none;" aria-label="Enter site"><img src="assets/images/symbolpur.png" alt="Enter" /></button>
+        <button id="enter-portfolio-btn" type="button" style="display: none;" aria-label="Enter site">
+            <span class="entrance-logo-wrap">
+                <img src="assets/images/symbolpur.png" alt="" class="entrance-logo-base" />
+                <img src="assets/images/SymbolCoin.png" alt="" class="entrance-logo-coin" />
+            </span>
+        </button>
     </div>
     <!-- Skip to content link for accessibility -->
     <a class="skip-link screen-reader-text" href="#main-content" {{i18n:skip_link}}>Skip to content</a>
@@ -133,14 +138,17 @@
                     <p class="pitch-golden" {{i18n:pitch.golden}}>Thence the seeds of a <strong>Golden Age Rush</strong> are sown,<br>where every paradise struggles for its overcoming :</p>
                     <p class="pitch-question" {{i18n:pitch.question}}>– Yet will it be <strong>YOUR</strong> golden age, quenched and growing by <strong>YOUR Creative Vision</strong> ?</p>
                     <p class="pitch-depths" {{i18n:pitch.depths}}>IN THE BLOSSOMING DEPTHS OF THE FORGOTTEN EARTH, THERE IS ONLY</p>
-                    <p class="pitch-discord" {{i18n:pitch.discord}}>DISCORD</p>
                 </div>
             </div>
             
-            <!-- Discovery + Kickstarter: oval-framed picture only (CTA inside) -->
+            <!-- Discovery + Kickstarter: oval overlaps pitch; "DISCORD" + CTA inside -->
             <div class="discovery-kickstarter-wrap">
                 <div class="discovery-kickstarter-oval">
                     <div class="discovery-kickstarter-inner">
+                        <p class="discovery-kickstarter-discord">
+                        <span class="discovery-kickstarter-discord-line1" {{i18n:pitch.discord_line1}}>There is only</span>
+                        <span class="discovery-kickstarter-discord-line2" {{i18n:pitch.discord_line2}}>DISCORD</span>
+                    </p>
                         <a href="https://www.kickstarter.com/projects/1410517588/the-discording-tales-tabletop-rpg-and-worldlore" class="cta-button discovery-kickstarter-cta" target="_blank" rel="noopener noreferrer">
                             <span {{i18n:cta.raise_hand}}>Raise your Hand</span>
                             <small {{i18n:cta.notified}}>(Be notified on launch)</small>
