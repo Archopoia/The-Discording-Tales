@@ -177,6 +177,24 @@
             switchSubTab(tab, hash);
             return;
         }
+        // System overview in-page anchors: system-overview-uncover, -struggle, -traits, -more, -attributes, -conflicts
+        if (hash.indexOf('system-overview') === 0) {
+            switchTab('univers', { skipScrollToTop: true });
+            switchSubTab('univers', 'system-overview');
+            requestAnimationFrame(function() {
+                var target = document.getElementById(hash);
+                if (target) {
+                    var body = target.querySelector('.system-overview-accordion-body');
+                    var head = target.querySelector('.system-overview-accordion-head');
+                    if (body && head) {
+                        body.classList.add('is-open');
+                        head.setAttribute('aria-expanded', 'true');
+                    }
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+            return;
+        }
         switchTab('landing');
     }
 
