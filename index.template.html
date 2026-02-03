@@ -83,46 +83,70 @@
                 </div>
             </div>
             
-            <div class="hero-section">
-                <div class="hero-content">
-                    <h2 class="hero-title" {{i18n:hero.title}}>For those of us who crave DISCOVERY</h2>
-                    <p class="hero-tagline" {{i18n:hero.tagline}}>A journey through exotic cultures, unexplored lands, weird creatures, and untold ways of thinking and being—yearning to experience the vast potentials, technologies and moralities of worlds unlike ours, where the thrill and taste of the unknown shape every choice and consequence.</p>
-                    
-                    <div class="cta-container">
-                        <a href="https://www.kickstarter.com/projects/1410517588/the-discording-tales-tabletop-rpg-and-worldlore" class="cta-button" target="_blank" rel="noopener noreferrer">
+            <!-- Discovery + Kickstarter merged: oval-framed picture with hero border style -->
+            <div class="discovery-kickstarter-wrap">
+                <div class="discovery-kickstarter-oval">
+                    <div class="discovery-kickstarter-inner">
+                        <h2 class="discovery-kickstarter-title" {{i18n:hero.title}}>For those of us who crave DISCOVERY</h2>
+                        <p class="discovery-kickstarter-tagline" {{i18n:hero.tagline}}>A journey through exotic cultures, unexplored lands, weird creatures, and untold ways of thinking and being—yearning to experience the vast potentials, technologies and moralities of worlds unlike ours, where the thrill and taste of the unknown shape every choice and consequence.</p>
+                        <a href="https://www.kickstarter.com/projects/1410517588/the-discording-tales-tabletop-rpg-and-worldlore" class="cta-button discovery-kickstarter-cta" target="_blank" rel="noopener noreferrer">
                             <span {{i18n:cta.raise_hand}}>Raise your Hand</span>
                             <small {{i18n:cta.notified}}>(Be notified on launch)</small>
                         </a>
+                        <p class="discovery-kickstarter-headline" {{i18n:cta.make_path}}>Make path with Kickstarter!</p>
+                        <p class="discovery-kickstarter-subline" {{i18n:cta.caravan}}>Join the Caravan before its Departure…</p>
                     </div>
                 </div>
             </div>
             
-            <!-- Features Section -->
+            <!-- UNIFIED Role-Playing Game (two columns) -->
             <div class="features-section">
                 <div class="container">
-                    <h3 class="section-title" {{i18n:features.title}}>In a UNIFIED Role-Playing Game</h3>
-                    <div class="features-grid">
-                        <div class="genre-card">
-                            <h4 {{i18n:tpl.1}}>8 Paths to Interact</h4>
-                            <p {{i18n:tpl.2}}>Battle & Debate<br/>Infiltration & Investigation<br/>Craft & Enigma<br/>Travel & Feast</p>
+                    <h3 class="section-title" {{i18n:features.unified_title}}>In a UNIFIED Role-Playing Game</h3>
+                    <div class="unified-two-columns">
+                        <div class="unified-col unified-col-paths">
+                            <p class="unified-intro" {{i18n:unified.col1_heading}}>Experience a <strong>groundbreaking</strong> TTRPG through <strong>8 Paths</strong> to interact with its world :</p>
+                            <p class="unified-paths" {{i18n:unified.paths}}><strong>Battle & Debate</strong><br/><strong>Infiltration & Investigation</strong><br/><strong>Craft & Enigma</strong><br/><strong>Travel & Feast</strong></p>
                         </div>
-                        <div class="genre-card">
-                            <h4 {{i18n:tpl.3}}>FREE-FORMING System</h4>
-                            <p {{i18n:tpl.4}}>Each rule is modular, solving a variety of situations in a logical manner. Create your character throughout the first sessions, as if unfolding naturally.</p>
-                        </div>
-                        <div class="genre-card">
-                            <h4 {{i18n:tpl.5}}>Equal Depth & Strategy</h4>
-                            <p {{i18n:tpl.6}}>Every path follows a streamlined progression, from quick single-roll resolutions to intricate, multi-step challenges.</p>
+                        <div class="unified-col unified-col-depth">
+                            <p class="unified-depth-heading" {{i18n:unified.col2_heading}}><strong>Of equal depth and strategic potential:</strong></p>
+                            <p class="unified-depth-p1" {{i18n:unified.p1}}>Every path follows a streamlined and logical progression, from quick single-roll resolutions to intricate, multi-step challenges involving multiple targets and resources.</p>
+                            <p class="unified-depth-p2" {{i18n:unified.p2}}>Every path is balanced through a cohesive experience system equally rewarding your playstyle as deeply as you explore them.</p>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Visual Gallery Section -->
-            <div class="gallery-section">
-                <div class="gallery-carousel" id="hero-carousel">
-                    <!-- Images will be populated via JavaScript -->
+            <!-- Three-column: Lifestyles / Meanings / Stories -->
+            <div class="three-columns-section">
+                <div class="container three-columns-inner">
+                    <div class="three-col">
+                        <div class="gallery-carousel gallery-carousel--small" id="carousel-lifestyles" aria-label="Lifestyles slideshow">
+                            <!-- Populated via JavaScript -->
+                        </div>
+                        <h4 class="three-col-title" {{i18n:landing.lifestyles}}>Encounter curious Lifestyles</h4>
+                        <p class="three-col-subtitle" {{i18n:landing.lifestyles_sub}}>Feel as a local in his strange lands, and discover your alien needs, desires and wills</p>
+                    </div>
+                    <div class="three-col">
+                        <div class="gallery-carousel gallery-carousel--small" id="carousel-meanings" aria-label="Meanings slideshow">
+                            <!-- Populated via JavaScript -->
+                        </div>
+                        <h4 class="three-col-title" {{i18n:landing.meanings}}>Explore new Meanings</h4>
+                        <p class="three-col-subtitle" {{i18n:landing.meanings_sub}}>Express your fanaticism along a permissive and responsive world and ruleset</p>
+                    </div>
+                    <div class="three-col">
+                        <div class="gallery-carousel gallery-carousel--small" id="carousel-stories" aria-label="Stories slideshow">
+                            <!-- Populated via JavaScript -->
+                        </div>
+                        <h4 class="three-col-title" {{i18n:landing.stories}}>Compose unique Stories</h4>
+                        <p class="three-col-subtitle" {{i18n:landing.stories_sub}}>Create new pasts to imagine and old futures to unearth through the seeds of a golden age</p>
+                    </div>
                 </div>
+            </div>
+
+            <!-- Full-width all-creatures image -->
+            <div class="fullwidth-image-wrap">
+                <img src="assets/images/all-creatures-low.png" alt="All creatures of The Discording Tales" class="fullwidth-image" loading="lazy" width="3000" height="1800"/>
             </div>
             
             <!-- Newsletter Section -->

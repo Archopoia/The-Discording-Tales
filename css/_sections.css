@@ -2788,12 +2788,12 @@
         font-size: 14px;
     }
     
-    .hero-title {
-        font-size: 2.5rem;
+    .discovery-kickstarter-title {
+        font-size: 2.25rem;
     }
     
-    .hero-tagline {
-        font-size: 1.1rem;
+    .discovery-kickstarter-tagline {
+        font-size: 1rem;
     }
     
     .menu-toggle {
@@ -2889,12 +2889,12 @@
 }
 
 @media screen and (max-width: 480px) {
-    .hero-title {
-        font-size: 2rem;
+    .discovery-kickstarter-title {
+        font-size: 1.75rem;
     }
     
-    .hero-tagline {
-        font-size: 1rem;
+    .discovery-kickstarter-tagline {
+        font-size: 0.95rem;
     }
     
     .cta-button {

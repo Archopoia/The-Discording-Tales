@@ -34,7 +34,7 @@
         tabContents: document.querySelectorAll('.tab-content'),
         langButtons: document.querySelectorAll('.lang-btn'),
         newsletterForm: document.getElementById('newsletter-form'),
-        carousel: document.getElementById('hero-carousel'),
+        carousel: document.getElementById('hero-carousel'), /* legacy; landing uses carousel-lifestyles, carousel-meanings, carousel-stories */
         siteLogo: document.querySelector('.site-logo')
     };
 
@@ -43,9 +43,9 @@
     let logoBurstTimeout = null;
 
     // ========================================
-    // Image Gallery Data (Hero Carousel)
+    // Image Gallery Data (Landing: three carousels)
     // ========================================
-    const heroImages = [
+    const lifestylesImages = [
         { src: 'assets/images/png.png', alt: 'The Discording Tales Artwork' },
         { src: 'assets/images/all.png', alt: 'All Creatures' },
         { src: 'assets/images/kharde-entre.png', alt: 'Kharde' },
@@ -55,6 +55,26 @@
         { src: 'assets/images/lastvtummattroi.png', alt: 'Lastvtummattroi' },
         { src: 'assets/images/all-copy-1.png', alt: 'All Copy 1' },
         { src: 'assets/images/touteslesraces-2psd-copy.jpg', alt: 'All Races' }
+    ];
+    const meaningsImages = [
+        { src: 'assets/images/title-1-copy-1.png', alt: 'Title' },
+        { src: 'assets/images/essence-english-v2-1.png', alt: 'Essence' },
+        { src: 'assets/images/things-english.png', alt: 'Things' },
+        { src: 'assets/images/roue-desastres.png', alt: 'Roue des astres' }
+    ];
+    const storiesImages = [
+        { src: 'assets/images/iossoluvvaij.png', alt: 'Iossoluvvaij' },
+        { src: 'assets/images/current.png', alt: 'Current' },
+        { src: 'assets/images/adriuhn.png', alt: 'Adriuhn' },
+        { src: 'assets/images/agvalsis.png', alt: 'Agvalsis' },
+        { src: 'assets/images/bruysseliand.png', alt: 'Bruysseliand' },
+        { src: 'assets/images/dalvvaraad.png', alt: 'Dalvvaraad' },
+        { src: 'assets/images/eadryllir.png', alt: 'Eadryllir' },
+        { src: 'assets/images/hatroaj.png', alt: 'Hatroaj' },
+        { src: 'assets/images/mevyriil.png', alt: 'Mevyriil' },
+        { src: 'assets/images/ondusiol.png', alt: 'Ondusiol' },
+        { src: 'assets/images/novoworld.jpg', alt: 'Novoworld' },
+        { src: 'assets/images/geocosmoseng.jpg', alt: 'Geocosmos' }
     ];
 
     // ========================================
@@ -73,6 +93,7 @@
         initProgression();
         initSystemOverview();
         initCarousel();
+        initDiscoveryOvalParallax();
         initMenuToggle();
         initNewsletter();
         initScrollAnimations();
@@ -1102,28 +1123,34 @@
     }
 
     function updateCarouselAriaLabels(lang) {
-        if (!elements.carousel) return;
-        const prevBtn = elements.carousel.querySelector('.carousel-prev');
-        const nextBtn = elements.carousel.querySelector('.carousel-next');
         const prevLabel = lang === 'fr' ? 'Image précédente' : 'Previous image';
         const nextLabel = lang === 'fr' ? 'Image suivante' : 'Next image';
-        if (prevBtn) prevBtn.setAttribute('aria-label', prevLabel);
-        if (nextBtn) nextBtn.setAttribute('aria-label', nextLabel);
-        const indicators = elements.carousel.querySelectorAll('.carousel-indicators button');
         const goToLabel = lang === 'fr' ? 'Aller à la diapositive ' : 'Go to slide ';
-        indicators.forEach((btn, index) => btn.setAttribute('aria-label', goToLabel + (index + 1)));
+        ['carousel-lifestyles', 'carousel-meanings', 'carousel-stories'].forEach(function(id) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const prevBtn = el.querySelector('.carousel-prev');
+            const nextBtn = el.querySelector('.carousel-next');
+            if (prevBtn) prevBtn.setAttribute('aria-label', prevLabel);
+            if (nextBtn) nextBtn.setAttribute('aria-label', nextLabel);
+            if (el) el.querySelectorAll('.carousel-indicators button').forEach((btn, index) => btn.setAttribute('aria-label', goToLabel + (index + 1)));
+        });
     }
     // ========================================
-    // Image Carousel
+    // Image Carousel (per-container: Lifestyles, Meanings, Stories)
     // ========================================
-    function initCarousel() {
-        if (!elements.carousel) return;
+    const carouselStates = {};
 
-        // Create carousel HTML
+    function buildOneCarousel(containerEl, images) {
+        if (!containerEl || !images || images.length === 0) return;
+
+        const id = containerEl.id || 'carousel-' + Math.random().toString(36).slice(2);
+        carouselStates[id] = { index: 0, interval: null };
+
         const carouselHTML = `
             <div class="carousel-wrapper">
                 <div class="carousel-track">
-                    ${heroImages.map((img, index) => `
+                    ${images.map((img, index) => `
                         <div class="carousel-slide ${index === 0 ? 'active' : ''}">
                             <img src="${img.src}" alt="${img.alt}" loading="${index === 0 ? 'eager' : 'lazy'}" />
                         </div>
@@ -1134,71 +1161,63 @@
                 <div class="carousel-indicators"></div>
             </div>
         `;
-        
-        elements.carousel.innerHTML = carouselHTML;
+        containerEl.innerHTML = carouselHTML;
 
-        // Create indicators
-        const indicators = elements.carousel.querySelector('.carousel-indicators');
-        heroImages.forEach((_, index) => {
+        const indicatorsEl = containerEl.querySelector('.carousel-indicators');
+        images.forEach((_, index) => {
             const indicator = document.createElement('button');
             indicator.setAttribute('aria-label', `Go to slide ${index + 1}`);
             indicator.classList.toggle('active', index === 0);
-            indicator.addEventListener('click', () => goToSlide(index));
-            indicators.appendChild(indicator);
+            indicator.addEventListener('click', () => {
+                carouselStates[id].index = index;
+                containerEl.querySelectorAll('.carousel-slide').forEach((s, i) => s.classList.toggle('active', i === index));
+                containerEl.querySelectorAll('.carousel-indicators button').forEach((b, i) => b.classList.toggle('active', i === index));
+                resetCarouselInterval(id, containerEl, images);
+            });
+            indicatorsEl.appendChild(indicator);
         });
 
-        // Add navigation buttons
-        const prevBtn = elements.carousel.querySelector('.carousel-prev');
-        const nextBtn = elements.carousel.querySelector('.carousel-next');
-        
-        if (prevBtn) prevBtn.addEventListener('click', () => previousSlide());
-        if (nextBtn) nextBtn.addEventListener('click', () => nextSlide());
+        const prevBtn = containerEl.querySelector('.carousel-prev');
+        const nextBtn = containerEl.querySelector('.carousel-next');
+        prevBtn.addEventListener('click', () => {
+            const cs = carouselStates[id];
+            cs.index = (cs.index - 1 + images.length) % images.length;
+            containerEl.querySelectorAll('.carousel-slide').forEach((s, i) => s.classList.toggle('active', i === cs.index));
+            containerEl.querySelectorAll('.carousel-indicators button').forEach((b, i) => b.classList.toggle('active', i === cs.index));
+            resetCarouselInterval(id, containerEl, images);
+        });
+        nextBtn.addEventListener('click', () => {
+            const cs = carouselStates[id];
+            cs.index = (cs.index + 1) % images.length;
+            containerEl.querySelectorAll('.carousel-slide').forEach((s, i) => s.classList.toggle('active', i === cs.index));
+            containerEl.querySelectorAll('.carousel-indicators button').forEach((b, i) => b.classList.toggle('active', i === cs.index));
+            resetCarouselInterval(id, containerEl, images);
+        });
 
-        // Set carousel aria-labels to current language
-        if (typeof updateCarouselAriaLabels === 'function') {
-            updateCarouselAriaLabels(state.currentLang);
+        function nextSlide() {
+            const cs = carouselStates[id];
+            cs.index = (cs.index + 1) % images.length;
+            containerEl.querySelectorAll('.carousel-slide').forEach((s, i) => s.classList.toggle('active', i === cs.index));
+            containerEl.querySelectorAll('.carousel-indicators button').forEach((b, i) => b.classList.toggle('active', i === cs.index));
         }
-
-        // Auto-play carousel
-        startCarousel();
-    }
-
-    function goToSlide(index) {
-        const slides = elements.carousel.querySelectorAll('.carousel-slide');
-        const indicators = elements.carousel.querySelectorAll('.carousel-indicators button');
-        
-        state.carouselIndex = index;
-        
-        slides.forEach((slide, i) => {
-            slide.classList.toggle('active', i === index);
-        });
-        
-        indicators.forEach((indicator, i) => {
-            indicator.classList.toggle('active', i === index);
-        });
-    }
-
-    function nextSlide() {
-        const nextIndex = (state.carouselIndex + 1) % heroImages.length;
-        goToSlide(nextIndex);
-        resetCarousel();
-    }
-
-    function previousSlide() {
-        const prevIndex = (state.carouselIndex - 1 + heroImages.length) % heroImages.length;
-        goToSlide(prevIndex);
-        resetCarousel();
-    }
-
-    function startCarousel() {
-        if (state.carouselInterval) {
-            clearInterval(state.carouselInterval);
+        function resetCarouselInterval() {
+            if (carouselStates[id].interval) clearInterval(carouselStates[id].interval);
+            carouselStates[id].interval = setInterval(nextSlide, 5000);
         }
-        state.carouselInterval = setInterval(nextSlide, 5000);
+        resetCarouselInterval();
     }
 
-    function resetCarousel() {
-        startCarousel();
+    function initCarousel() {
+        const lifestylesEl = document.getElementById('carousel-lifestyles');
+        const meaningsEl = document.getElementById('carousel-meanings');
+        const storiesEl = document.getElementById('carousel-stories');
+        if (lifestylesEl) buildOneCarousel(lifestylesEl, lifestylesImages);
+        if (meaningsEl) buildOneCarousel(meaningsEl, meaningsImages);
+        if (storiesEl) buildOneCarousel(storiesEl, storiesImages);
+        // Legacy single hero carousel (if present)
+        if (elements.carousel) {
+            buildOneCarousel(elements.carousel, lifestylesImages);
+        }
     }
 
     // ========================================
@@ -1257,6 +1276,30 @@
     function isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
+    }
+
+    // ========================================
+    // Discovery oval: scroll-linked background (picture scrolls as you scroll)
+    // ========================================
+    function initDiscoveryOvalParallax() {
+        const wrap = document.querySelector('.discovery-kickstarter-wrap');
+        const inner = document.querySelector('.discovery-kickstarter-inner');
+        if (!wrap || !inner) return;
+
+        let ticking = false;
+        function updateOvalBg() {
+            const y = Math.max(0, Math.min(100, 50 + window.scrollY * 0.06));
+            inner.style.setProperty('--oval-bg-y', y + '%');
+            ticking = false;
+        }
+        function onScroll() {
+            if (!ticking) {
+                requestAnimationFrame(updateOvalBg);
+                ticking = true;
+            }
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        updateOvalBg();
     }
 
     // ========================================
