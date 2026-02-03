@@ -119,12 +119,21 @@
     }
 }
 
-/* Discovery blurb: below oval, same container style as "Dans un jeu de rôle unifié" */
-.discovery-blurb-section .discovery-blurb-title {
+/* Discovery + UNIFIED: one section, shared container and layout */
+.discovery-unified-section .container {
+    max-width: 900px;
+}
+
+.discovery-unified-hero {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.discovery-unified-title {
     margin-bottom: var(--spacing-md);
 }
 
-.discovery-blurb-tagline {
+.discovery-unified-tagline {
     font-size: clamp(0.95rem, 2vw, 1.1rem);
     font-style: italic;
     color: var(--tdt-beige-warm);
@@ -133,6 +142,71 @@
     line-height: 1.8;
     text-align: center;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.discovery-unified-game {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid rgba(212, 197, 168, 0.25);
+    text-align: center;
+}
+
+.discovery-unified-game .unified-two-columns {
+    margin-top: var(--spacing-md);
+    text-align: left;
+}
+
+/* Outpost (newsletter) inside same section – same rhythm as discovery-unified-game */
+.discovery-unified-outpost {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid rgba(212, 197, 168, 0.25);
+    text-align: center;
+}
+
+.discovery-unified-outpost .outpost-title {
+    margin-bottom: var(--spacing-md);
+}
+
+.discovery-unified-outpost .outpost-tagline {
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    font-style: italic;
+    color: var(--tdt-beige-warm);
+    max-width: 52ch;
+    margin: 0 auto var(--spacing-lg);
+    line-height: 1.7;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.discovery-unified-outpost .outpost-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    justify-content: center;
+    align-items: center;
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+.section-subtitle {
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--tdt-cream);
+    text-align: center;
+    margin: 0 0 var(--spacing-md);
+    text-decoration: underline;
+    text-decoration-color: var(--tdt-beige-warm);
+    text-underline-offset: 6px;
+    text-shadow: 2px 2px 4px rgba(90, 31, 31, 0.3);
+}
+
+.discovery-unified-intro {
+    margin: 0 auto var(--spacing-md);
+    color: var(--tdt-beige-warm);
+    line-height: 1.6;
+    text-align: center;
+    max-width: 55ch;
 }
 
 .cta-container {
@@ -664,20 +738,6 @@
     opacity: 1;
 }
 
-/* Full-width image (all-creatures-low) */
-.fullwidth-image-wrap {
-    width: 100%;
-    overflow: hidden;
-    margin: var(--spacing-md) 0;
-}
-
-.fullwidth-image {
-    width: 100%;
-    height: auto;
-    display: block;
-    vertical-align: bottom;
-}
-
 /* ========================================
    Gallery Section (legacy / shared carousel styles)
    ======================================== */
@@ -785,86 +845,34 @@
     box-shadow: 0 0 8px rgba(232, 221, 208, 0.6);
 }
 
-/* ========================================
-   Newsletter Section
-   ======================================== */
-.newsletter-section {
-    padding: var(--spacing-lg) var(--spacing-md);
-    background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0) 0%,
-        rgb(56, 0, 0) 11%,
-        rgb(255, 242, 208) 13%,
-        rgb(56, 0, 0) 29%,
-        rgb(85, 32, 32) 64%,
-        rgba(84, 32, 32, 0) 100%
-    );
-    margin: var(--spacing-md) 0;
-    border-radius: var(--radius-lg);
-    text-align: center;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.newsletter-section h3 {
-    font-size: 1.8rem;
-    margin-bottom: var(--spacing-sm);
-}
-
-.newsletter-subtitle {
-    font-size: 1.1rem;
-    font-style: italic;
-    margin-bottom: var(--spacing-md);
-    color: var(--tdt-cream);
-}
-
-.newsletter-form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-sm);
-    justify-content: center;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.newsletter-form input[type="email"] {
+/* Outpost form inputs and CTA (shared: standalone section or inside discovery-unified) */
+.outpost-form input[type="email"],
+.discovery-unified-outpost .outpost-form input[type="email"] {
     flex: 1;
-    min-width: 250px;
+    min-width: 220px;
     padding: var(--spacing-sm) var(--spacing-md);
     background: var(--tdt-cream);
     color: var(--tdt-burgundy);
-    border: 3px solid var(--tdt-burgundy);
-    border-radius: var(--radius-sm);
+    border: 3px solid var(--tdt-burgundy-warm);
+    border-radius: var(--radius-md);
     font-family: var(--font-body);
     font-size: 1rem;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.newsletter-form input[type="email"]:focus {
+.outpost-form input[type="email"]::placeholder {
+    color: var(--tdt-brown-light);
+}
+
+.outpost-form input[type="email"]:focus {
     outline: none;
-    border-color: var(--tdt-beige-light);
-    box-shadow: 0 0 0 3px rgba(217, 205, 184, 0.3), 0 0 15px rgba(217, 205, 184, 0.4);
+    border-color: var(--tdt-beige-warm);
+    box-shadow: 0 0 0 3px rgba(212, 197, 168, 0.35), inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.newsletter-form button {
-    padding: var(--spacing-sm) var(--spacing-lg);
-    background: var(--tdt-burgundy);
-    color: var(--tdt-cream);
-    border: 3px solid var(--tdt-burgundy);
-    border-radius: var(--radius-sm);
-    font-family: var(--font-heading);
-    font-weight: 900;
-    cursor: pointer;
-    transition: all var(--transition-fast);
-}
-
-.newsletter-form button:hover,
-.newsletter-form button:focus {
-    background: var(--tdt-cream);
-    color: var(--tdt-burgundy);
-    border-color: var(--tdt-beige-light);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md), 0 0 20px rgba(255, 245, 221, 0.5);
+.outpost-cta {
+    white-space: nowrap;
 }
 
 /* ========================================

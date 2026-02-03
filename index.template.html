@@ -159,46 +159,37 @@
                 </div>
             </div>
 
-            <!-- Discovery blurb: below oval, same style as "Dans un jeu de rôle unifié" -->
-            <div class="features-section discovery-blurb-section">
+            <!-- Discovery + UNIFIED: one section, one container, shared layout -->
+            <div class="features-section discovery-unified-section">
                 <div class="container">
-                    <h3 class="section-title discovery-blurb-title" {{i18n:hero.title}}>For those of us who crave DISCOVERY</h3>
-                    <p class="discovery-blurb-tagline" {{i18n:hero.tagline}}>A journey through exotic cultures, unexplored lands, weird creatures, and untold ways of thinking and being—yearning to experience the vast potentials, technologies and moralities of worlds unlike ours, where the thrill and taste of the unknown shape every choice and consequence.</p>
-                </div>
-            </div>
-            
-            <!-- UNIFIED Role-Playing Game (two columns) -->
-            <div class="features-section">
-                <div class="container">
-                    <h3 class="section-title" {{i18n:features.unified_title}}>In a UNIFIED Role-Playing Game</h3>
-                    <div class="unified-two-columns">
-                        <div class="unified-col unified-col-paths">
-                            <p class="unified-intro" {{i18n:unified.col1_heading}}>Experience a <strong>groundbreaking</strong> TTRPG through <strong>8 Paths</strong> to interact with its world :</p>
-                            <p class="unified-paths" {{i18n:unified.paths}}><strong>Battle & Debate</strong><br/><strong>Infiltration & Investigation</strong><br/><strong>Craft & Enigma</strong><br/><strong>Travel & Feast</strong></p>
+                    <header class="discovery-unified-hero">
+                        <h2 class="section-title discovery-unified-title" {{i18n:hero.title}}>For those of us who crave DISCOVERY</h2>
+                        <p class="discovery-unified-tagline" {{i18n:hero.tagline}}>A journey through exotic cultures, unexplored lands, weird creatures, and untold ways of thinking and being—yearning to experience the vast potentials, technologies and moralities of worlds unlike ours, where the thrill and taste of the unknown shape every choice and consequence.</p>
+                    </header>
+                    <section class="discovery-unified-game" aria-labelledby="unified-heading">
+                        <h3 id="unified-heading" class="section-subtitle" {{i18n:features.unified_title}}>In a UNIFIED Role-Playing Game</h3>
+                        <p class="discovery-unified-intro" {{i18n:unified.col1_heading}}>Experience a <strong>groundbreaking</strong> TTRPG through <strong>8 Paths</strong> to interact with its world :</p>
+                        <div class="unified-two-columns">
+                            <div class="unified-col unified-col-paths">
+                                <p class="unified-paths" {{i18n:unified.paths}}><strong>Battle &amp; Debate</strong><br/><strong>Infiltration &amp; Investigation</strong><br/><strong>Craft &amp; Enigma</strong><br/><strong>Travel &amp; Feast</strong></p>
+                            </div>
+                            <div class="unified-col unified-col-depth">
+                                <p class="unified-depth-heading" {{i18n:unified.col2_heading}}><strong>Of equal depth and strategic potential:</strong></p>
+                                <p class="unified-depth-p1" {{i18n:unified.p1}}>Every path follows a streamlined and logical progression, from quick single-roll resolutions to intricate, multi-step challenges involving multiple targets and resources.</p>
+                                <p class="unified-depth-p2" {{i18n:unified.p2}}>Every path is balanced through a cohesive experience system equally rewarding your playstyle as deeply as you explore them.</p>
+                            </div>
                         </div>
-                        <div class="unified-col unified-col-depth">
-                            <p class="unified-depth-heading" {{i18n:unified.col2_heading}}><strong>Of equal depth and strategic potential:</strong></p>
-                            <p class="unified-depth-p1" {{i18n:unified.p1}}>Every path follows a streamlined and logical progression, from quick single-roll resolutions to intricate, multi-step challenges involving multiple targets and resources.</p>
-                            <p class="unified-depth-p2" {{i18n:unified.p2}}>Every path is balanced through a cohesive experience system equally rewarding your playstyle as deeply as you explore them.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Full-width all-creatures image -->
-            <div class="fullwidth-image-wrap">
-                <img src="assets/images/all-creatures-low.png" alt="All creatures of The Discording Tales" class="fullwidth-image" loading="lazy" width="3000" height="1800"/>
-            </div>
-            
-            <!-- Newsletter Section -->
-            <div class="newsletter-section">
-                <div class="container">
-                    <h3 {{i18n:tpl.7}}>Join the Outpost to hear the latest rumors…</h3>
-                    <p class="newsletter-subtitle" {{i18n:tpl.8}}>Survive the next euphoric tidal wave!</p>
-                    <form class="newsletter-form" id="newsletter-form">
-                        <input type="email" id="newsletter-email" placeholder="thediscordingtales@gmail.com" required {{i18n-aria:tpl.707}} aria-label="Email address"/>
-                        <button type="submit" {{i18n:tpl.9}}>Sit by the Fireplace (Subscribe – NO Spam)</button>
-                    </form>
+                    </section>
+                    <!-- Outpost (newsletter): same flow as Discovery + UNIFIED -->
+                    <section class="discovery-unified-outpost" aria-labelledby="outpost-heading">
+                        <h2 id="outpost-heading" class="section-subtitle outpost-title" {{i18n:tpl.7}}>Join the Outpost</h2>
+                        <p class="outpost-tagline" {{i18n:tpl.8}}>Hear the latest rumours from the depths.</p>
+                        <form class="outpost-form" id="newsletter-form" action="#" method="post">
+                            <label for="newsletter-email" class="screen-reader-text" {{i18n-aria:tpl.707}}>Email address</label>
+                            <input type="email" id="newsletter-email" name="email" placeholder="thediscordingtales@gmail.com" required {{i18n-aria:tpl.707}} aria-label="Email address"/>
+                            <button type="submit" class="cta-button outpost-cta" {{i18n:tpl.9}}>Sit by the Fireplace (Subscribe – NO Spam)</button>
+                        </form>
+                    </section>
                 </div>
             </div>
         </section>

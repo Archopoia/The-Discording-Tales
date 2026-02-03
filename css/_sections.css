@@ -2814,13 +2814,14 @@
         grid-template-columns: 1fr;
     }
     
-    .newsletter-form {
+    .outpost-form {
         flex-direction: column;
     }
     
-    .newsletter-form input[type="email"],
-    .newsletter-form button {
+    .outpost-form input[type="email"],
+    .outpost-form .outpost-cta {
         width: 100%;
+        min-width: 0;
     }
     
     .site-title {
