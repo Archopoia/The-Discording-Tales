@@ -97,7 +97,8 @@
             if (audioUnlocked) return;
             audioUnlocked = true;
             if (enterButton) {
-                enterButton.style.display = 'none';
+                enterButton.style.pointerEvents = 'none';
+                enterButton.style.animation = 'fadeOut 1.5s ease-in-out forwards';
             }
             if (staticLoader) {
                 staticLoader.style.pointerEvents = 'none';
@@ -141,12 +142,13 @@
                     document.body.appendChild(flashElement);
                     flashElement.style.animation = 'goldenFlash 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
 
-                    /* Start fading burgundy immediately; never hide the vignette overlay */
+                    /* Start fading burgundy and logo at the same speed (1.5s) */
                     if (entranceFill) {
                         entranceFill.style.animation = 'fadeOut 1.5s ease-in-out forwards';
                     }
                     if (enterButton) {
-                        enterButton.style.display = 'none';
+                        enterButton.style.pointerEvents = 'none';
+                        enterButton.style.animation = 'fadeOut 1.5s ease-in-out forwards';
                     }
                     setTimeout(function() {
                         flashElement.style.animation = 'none';

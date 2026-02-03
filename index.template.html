@@ -60,16 +60,32 @@
                         <p class="three-col-subtitle" {{i18n:landing.stories_sub}}>Create new pasts to imagine and old futures to unearth through the seeds of a golden age</p>
                     </div>
                 </div>
-                <div class="site-branding">
-                    <p class="site-tagline site-tagline-muted">
-                        <span {{i18n:site.tagline1}}>Under our steps in a far, far future…</span><br>
-                        <span {{i18n:site.tagline2}}>awoke those mysteries believed to be warring among the stars.</span>
-                    </p>
-                    <a class="site-logo-link" href="#landing" {{i18n-aria:site.logo_aria}} aria-label="Home">
-                        <img alt="The Discording Tales Symbol" class="site-logo" src="assets/images/symbolpur.png" height="100" width="100" decoding="async" {{i18n-alt:site.logo_alt}}/>
-                    </a>
-                    <h1 class="site-title"><a href="#landing" rel="home" {{i18n:site.title}}>THE DISCORDING TALES</a></h1>
-                    <p class="site-genre" {{i18n:site.genre}}>the ETHNO-SCIENCE-FANTASY world</p>
+                <div class="site-branding branding-flip">
+                    <div class="branding-flip-inner">
+                        <div class="branding-flip-front">
+                            <p class="site-tagline site-tagline-muted">
+                                <span {{i18n:site.tagline1}}>Under our steps in a far, far future…</span><br>
+                                <span {{i18n:site.tagline2}}>awoke those mysteries believed to be warring among the stars.</span>
+                            </p>
+                            <a class="site-logo-link" href="#landing" {{i18n-aria:site.logo_aria}} aria-label="Home">
+                                <img alt="The Discording Tales Symbol" class="site-logo" src="assets/images/symbolpur.png" height="100" width="100" decoding="async" {{i18n-alt:site.logo_alt}}/>
+                            </a>
+                            <h1 class="site-title"><a href="#landing" rel="home" {{i18n:site.title}}>THE DISCORDING TALES</a></h1>
+                            <p class="site-genre" {{i18n:site.genre}}>the ETHNO-SCIENCE-FANTASY world</p>
+                        </div>
+                        <div class="branding-flip-back">
+                            <div class="branding-flip-back-oval">
+                                <div class="branding-flip-back-inner">
+                                    <p class="branding-flip-headline" {{i18n:cta.make_path}}>Make path with Kickstarter!</p>
+                                    <a href="https://www.kickstarter.com/projects/1410517588/the-discording-tales-tabletop-rpg-and-worldlore" class="cta-button branding-flip-cta" target="_blank" rel="noopener noreferrer">
+                                        <span {{i18n:cta.raise_hand}}>Raise your Hand</span>
+                                        <small {{i18n:cta.notified}}>(Be notified on launch)</small>
+                                    </a>
+                                    <p class="branding-flip-subline" {{i18n:cta.caravan}}>Join the Caravan before its Departure…</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="soundcloud-cycling-wrap" id="soundcloud-cycling-wrap">
                     <div class="soundcloud-vignette">
@@ -121,12 +137,10 @@
                 </div>
             </div>
             
-            <!-- Discovery + Kickstarter merged: oval-framed picture with hero border style -->
+            <!-- Discovery + Kickstarter: oval-framed picture only (CTA inside) -->
             <div class="discovery-kickstarter-wrap">
                 <div class="discovery-kickstarter-oval">
                     <div class="discovery-kickstarter-inner">
-                        <h2 class="discovery-kickstarter-title" {{i18n:hero.title}}>For those of us who crave DISCOVERY</h2>
-                        <p class="discovery-kickstarter-tagline" {{i18n:hero.tagline}}>A journey through exotic cultures, unexplored lands, weird creatures, and untold ways of thinking and being—yearning to experience the vast potentials, technologies and moralities of worlds unlike ours, where the thrill and taste of the unknown shape every choice and consequence.</p>
                         <a href="https://www.kickstarter.com/projects/1410517588/the-discording-tales-tabletop-rpg-and-worldlore" class="cta-button discovery-kickstarter-cta" target="_blank" rel="noopener noreferrer">
                             <span {{i18n:cta.raise_hand}}>Raise your Hand</span>
                             <small {{i18n:cta.notified}}>(Be notified on launch)</small>
@@ -134,6 +148,14 @@
                         <p class="discovery-kickstarter-headline" {{i18n:cta.make_path}}>Make path with Kickstarter!</p>
                         <p class="discovery-kickstarter-subline" {{i18n:cta.caravan}}>Join the Caravan before its Departure…</p>
                     </div>
+                </div>
+            </div>
+
+            <!-- Discovery blurb: below oval, same style as "Dans un jeu de rôle unifié" -->
+            <div class="features-section discovery-blurb-section">
+                <div class="container">
+                    <h3 class="section-title discovery-blurb-title" {{i18n:hero.title}}>For those of us who crave DISCOVERY</h3>
+                    <p class="discovery-blurb-tagline" {{i18n:hero.tagline}}>A journey through exotic cultures, unexplored lands, weird creatures, and untold ways of thinking and being—yearning to experience the vast potentials, technologies and moralities of worlds unlike ours, where the thrill and taste of the unknown shape every choice and consequence.</p>
                 </div>
             </div>
             
