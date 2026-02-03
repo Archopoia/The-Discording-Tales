@@ -1,11 +1,12 @@
 /**
- * Build zine HTML from ZINE_Regles_De_Base_10_Pages.md.
+ * Build zine HTML from ZINE_Regles_De_Base_10_Pages.md (FR) and ZINE_Regles_De_Base_10_Pages_EN.md (EN).
  * Writes partials/zine-content.html for injection into index.template.html.
  *
  * - Extracts descriptive nav labels from h1/h2
  * - Wraps h2 sections in cards
  * - Detects formula/example blocks for callouts
  * - Transforms Peuples table to card grid
+ * - Outputs data-fr/data-en on nav labels and section content for i18n
  *
  * Usage: node tools/build_zine.js
  */
@@ -16,7 +17,8 @@ import { marked } from 'marked';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
-const zineMdPath = path.join(root, 'reference', 'TTRPG_DRD', 'System_Summary', 'ZINE_Regles_De_Base_10_Pages.md');
+const zineMdPathFr = path.join(root, 'reference', 'TTRPG_DRD', 'System_Summary', 'ZINE_Regles_De_Base_10_Pages.md');
+const zineMdPathEn = path.join(root, 'reference', 'TTRPG_DRD', 'System_Summary', 'ZINE_Regles_De_Base_10_Pages_EN.md');
 const partialsDir = path.join(root, 'partials');
 const outPath = path.join(partialsDir, 'zine-content.html');
 
@@ -37,21 +39,21 @@ function extractLabel(block, index, totalBlocks) {
   return String(index + 1);
 }
 
-/** Wrap content in callout if heading matches */
+/** Wrap content in callout if heading matches (FR or EN) */
 function getCalloutClass(h2Text) {
   const t = (h2Text || '').toLowerCase();
-  if (t.includes('formule')) return 'zine-callout-formula';
-  if (t.includes('exemple')) return 'zine-callout-example';
-  if (t.includes('critiques')) return 'zine-callout-tip';
+  if (t.includes('formule') || t.includes('formula')) return 'zine-callout-formula';
+  if (t.includes('exemple') || t.includes('example')) return 'zine-callout-example';
+  if (t.includes('critiques') || t.includes('critical')) return 'zine-callout-tip';
   return null;
 }
 
 /** Post-process HTML: wrap h2 sections in cards, add callouts, transform Peuples table */
 function processPageHtml(html, pageIndex) {
-  // Transform Peuples table into card grid (page 2)
-  if (pageIndex === 2 && html.includes('Peuples (en un mot)')) {
+  // Transform Peuples/Peoples table into card grid (page 2)
+  if (pageIndex === 2 && (html.includes('Peuples (en un mot)') || html.includes('Peoples (in a word)'))) {
     const peuplesMatch = html.match(
-      /<table>[\s\S]*?<thead>[\s\S]*?<tr>[\s\S]*?<th>Peuple<\/th>[\s\S]*?<th>En bref<\/th>[\s\S]*?<\/tr>[\s\S]*?<\/thead>[\s\S]*?<tbody>([\s\S]*?)<\/tbody>[\s\S]*?<\/table>/
+      /<table>[\s\S]*?<thead>[\s\S]*?<tr>[\s\S]*?<th>(?:Peuple|People)<\/th>[\s\S]*?<th>(?:En bref|In brief)<\/th>[\s\S]*?<\/tr>[\s\S]*?<\/thead>[\s\S]*?<tbody>([\s\S]*?)<\/tbody>[\s\S]*?<\/table>/
     );
     if (peuplesMatch) {
       const tbody = peuplesMatch[1];
@@ -123,40 +125,76 @@ function enhanceDiceCode(html) {
   );
 }
 
-/** Wrap "Sans dés spéciaux ?" paragraph in tip callout (in page 3) */
+/** Wrap "Sans dés spéciaux ?" / "No special dice?" paragraph in tip callout (in page 3) */
 function wrapD6Tip(html, pageIndex) {
   if (pageIndex !== 3) return html;
-  return html.replace(
-    /<p><strong>Sans dés spéciaux \?<\/strong>[\s\S]*?<\/p>/,
-    (match) => `<div class="zine-callout zine-callout-tip">${match}</div>`
-  );
+  return html
+    .replace(
+      /<p><strong>Sans dés spéciaux \?<\/strong>[\s\S]*?<\/p>/,
+      (match) => `<div class="zine-callout zine-callout-tip">${match}</div>`
+    )
+    .replace(
+      /<p><strong>No special dice\?<\/strong>[\s\S]*?<\/p>/,
+      (match) => `<div class="zine-callout zine-callout-tip">${match}</div>`
+    );
+}
+
+/** Escape string for use in HTML attribute (so data-fr/data-en can hold HTML) */
+function escapeAttr(str) {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;');
 }
 
 function build() {
-  const md = fs.readFileSync(zineMdPath, 'utf8');
-  const blocks = md.split(/\n---\n/).filter(Boolean);
-  const totalBlocks = blocks.length;
+  const mdFr = fs.readFileSync(zineMdPathFr, 'utf8').replace(/\r\n/g, '\n');
+  const blocksFr = mdFr.split(/\n---\n/).filter(Boolean);
+  const totalBlocks = blocksFr.length;
 
-  const labels = blocks.map((_, i) => extractLabel(blocks[i], i, totalBlocks));
+  let blocksEn = blocksFr;
+  if (fs.existsSync(zineMdPathEn)) {
+    const mdEn = fs.readFileSync(zineMdPathEn, 'utf8').replace(/\r\n/g, '\n');
+    blocksEn = mdEn.split(/\n---\n/).filter(Boolean);
+  }
+  if (blocksEn.length !== totalBlocks) {
+    console.warn('EN zine block count differs from FR; using FR labels/content where missing.');
+  }
 
-  const navItems = blocks
+  const labelsFr = blocksFr.map((_, i) => extractLabel(blocksFr[i], i, totalBlocks));
+  const labelsEn = blocksEn.map((_, i) => {
+    if (i === totalBlocks - 1) return 'End';
+    return extractLabel(blocksEn[i], i, totalBlocks);
+  });
+
+  const navItems = blocksFr
     .map((_, i) => {
-      const label = labels[i];
+      const labelFr = labelsFr[i];
+      const labelEn = labelsEn[i] ?? labelFr;
       const checked = i === 0 ? ' checked' : '';
-      return `<input type="radio" name="zine-page" id="zine-page-radio-${i}" value="${i}" class="zine-page-radio"${checked} aria-controls="zine-page-${i}"/><label for="zine-page-radio-${i}" class="zine-page-nav-label">${escapeHtml(label)}</label>`;
+      return `<input type="radio" name="zine-page" id="zine-page-radio-${i}" value="${i}" class="zine-page-radio"${checked} aria-controls="zine-page-${i}"/><label for="zine-page-radio-${i}" class="zine-page-nav-label" data-fr="${escapeAttr(labelFr)}" data-en="${escapeAttr(labelEn)}">${escapeHtml(labelFr)}</label>`;
     })
     .join('\n');
 
   const nav = `<nav class="zine-pages-nav" role="tablist" aria-label="Zine pages">\n${navItems}\n</nav>`;
 
-  const sections = blocks.map((block, i) => {
-    const trimmed = block.trim();
-    let html = marked.parse(trimmed);
-    html = processPageHtml(html, i);
-    html = enhanceDiceCode(html);
-    html = wrapD6Tip(html, i);
+  const sections = blocksFr.map((block, i) => {
+    const trimmedFr = block.trim();
+    let htmlFr = marked.parse(trimmedFr);
+    htmlFr = processPageHtml(htmlFr, i);
+    htmlFr = enhanceDiceCode(htmlFr);
+    htmlFr = wrapD6Tip(htmlFr, i);
+
+    let htmlEn = htmlFr;
+    if (blocksEn[i]) {
+      const trimmedEn = blocksEn[i].trim();
+      htmlEn = marked.parse(trimmedEn);
+      htmlEn = processPageHtml(htmlEn, i);
+      htmlEn = enhanceDiceCode(htmlEn);
+      htmlEn = wrapD6Tip(htmlEn, i);
+    }
+
     const activeClass = i === 0 ? ' zine-page-active' : '';
-    return `<section id="zine-page-${i}" class="zine-page zine-page-panel${activeClass}" data-page="${i}" role="tabpanel" aria-labelledby="zine-page-radio-${i}">${html}</section>`;
+    return `<section id="zine-page-${i}" class="zine-page zine-page-panel${activeClass}" data-page="${i}" role="tabpanel" aria-labelledby="zine-page-radio-${i}" data-fr="${escapeAttr(htmlFr)}" data-en="${escapeAttr(htmlEn)}">${htmlFr}</section>`;
   });
 
   const wrapped = `<div class="zine-content tdt-scrollable zine-layout">
@@ -172,7 +210,7 @@ ${sections.join('\n')}
     fs.mkdirSync(partialsDir, { recursive: true });
   }
   fs.writeFileSync(outPath, wrapped, 'utf8');
-  console.log('Built partials/zine-content.html from ZINE_Regles_De_Base_10_Pages.md');
+  console.log('Built partials/zine-content.html from FR + EN zine sources');
 }
 
 build();
