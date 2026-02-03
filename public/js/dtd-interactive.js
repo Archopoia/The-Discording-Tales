@@ -95,6 +95,7 @@
         initCarousel();
         initGalleriesCycling();
         initSoundCloudCycling();
+        initSoundCloudNoteState();
         initDiscoveryOvalParallax();
         initMenuToggle();
         initNewsletter();
@@ -1298,6 +1299,9 @@
         /* Start with first gallery */
         panels.forEach((p, j) => p.classList.toggle('active', j === 0));
 
+        /* Start hidden; first pulse at 5s */
+        slot.classList.add('galleries-slot-hidden');
+
         function showNextPanel() {
             const current = Array.from(panels).findIndex(p => p.classList.contains('active'));
             const next = (current + 1) % panels.length;
@@ -1311,55 +1315,116 @@
             }
         });
 
-        let isHovering = false;
-
-        function tick() {
-            if (isHovering) {
-                slot.classList.remove('galleries-slot-hidden');
-                return;
+        /* Click anywhere on the gallery: next picture, or next gallery if on last picture */
+        slot.addEventListener('click', function() {
+            const activePanel = slot.querySelector('.gallery-panel.active');
+            if (!activePanel) return;
+            const carousel = activePanel.querySelector('.gallery-carousel--small');
+            const nextBtn = activePanel.querySelector('.carousel-next');
+            if (!carousel || !nextBtn) return;
+            const slideCount = carousel.querySelectorAll('.carousel-slide').length;
+            const state = carousel.id && carouselStates[carousel.id];
+            const isOnLastSlide = state && slideCount > 0 && state.index === slideCount - 1;
+            if (isOnLastSlide) {
+                showNextPanel();
+            } else {
+                nextBtn.click();
             }
-            slot.classList.toggle('galleries-slot-hidden');
+        });
+
+        let isHovering = false;
+        let hideTimeout = null;
+
+        function pulse() {
+            if (isHovering) return;
+            slot.classList.remove('galleries-slot-hidden');
+            if (hideTimeout) clearTimeout(hideTimeout);
+            hideTimeout = setTimeout(function() {
+                if (!isHovering) slot.classList.add('galleries-slot-hidden');
+                hideTimeout = null;
+            }, 1000);
         }
 
         slot.addEventListener('mouseenter', function() {
             isHovering = true;
             slot.classList.remove('galleries-slot-hidden');
+            if (hideTimeout) { clearTimeout(hideTimeout); hideTimeout = null; }
         });
         slot.addEventListener('mouseleave', function() {
             isHovering = false;
             slot.classList.add('galleries-slot-hidden');
         });
 
-        setInterval(tick, 10000);
+        setInterval(pulse, 5000);
     }
 
     // ========================================
-    // SoundCloud: visible 10s / hidden 10s. Hover shows it; leave hides it. Timer keeps running.
+    // SoundCloud: pulse visible 1s every 5s (hint). Hover shows it; leave hides it.
     // ========================================
     function initSoundCloudCycling() {
         const wrap = document.getElementById('soundcloud-cycling-wrap');
         if (!wrap) return;
 
-        let isHovering = false;
+        /* Start hidden; first pulse at 5s */
+        wrap.classList.add('soundcloud-hidden');
 
-        function tick() {
-            if (isHovering) {
-                wrap.classList.remove('soundcloud-hidden');
-                return;
-            }
-            wrap.classList.toggle('soundcloud-hidden');
+        let isHovering = false;
+        let hideTimeout = null;
+
+        function pulse() {
+            if (isHovering) return;
+            wrap.classList.remove('soundcloud-hidden');
+            if (hideTimeout) clearTimeout(hideTimeout);
+            hideTimeout = setTimeout(function() {
+                if (!isHovering) wrap.classList.add('soundcloud-hidden');
+                hideTimeout = null;
+            }, 1000);
         }
 
         wrap.addEventListener('mouseenter', function() {
             isHovering = true;
             wrap.classList.remove('soundcloud-hidden');
+            if (hideTimeout) { clearTimeout(hideTimeout); hideTimeout = null; }
         });
         wrap.addEventListener('mouseleave', function() {
             isHovering = false;
             wrap.classList.add('soundcloud-hidden');
         });
 
-        setInterval(tick, 10000);
+        setInterval(pulse, 5000);
+    }
+
+    // ========================================
+    // SoundCloud: cross the note symbol when music is stopped (Widget API)
+    // ========================================
+    function initSoundCloudNoteState() {
+        const iframe = document.querySelector('#soundcloud-cycling-wrap .soundcloud-embed');
+        if (!iframe) return;
+        const vignette = iframe.closest('.soundcloud-vignette');
+        if (!vignette) return;
+
+        function bindWidget() {
+            if (typeof window.SC === 'undefined' || !window.SC.Widget) {
+                setTimeout(bindWidget, 150);
+                return;
+            }
+            var widget = window.SC.Widget(iframe);
+            widget.bind(window.SC.Widget.Events.READY, function() {
+                widget.isPaused(function(paused) {
+                    vignette.classList.toggle('soundcloud-stopped', paused);
+                });
+            });
+            widget.bind(window.SC.Widget.Events.PLAY, function() {
+                vignette.classList.remove('soundcloud-stopped');
+            });
+            widget.bind(window.SC.Widget.Events.PAUSE, function() {
+                vignette.classList.add('soundcloud-stopped');
+            });
+            widget.bind(window.SC.Widget.Events.FINISH, function() {
+                vignette.classList.add('soundcloud-stopped');
+            });
+        }
+        bindWidget();
     }
 
     // ========================================
