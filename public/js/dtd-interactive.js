@@ -252,13 +252,29 @@
         });
     }
 
+    function setArchivedVisible(show) {
+        var key = 'drd_archived_visible';
+        localStorage.setItem(key, show ? 'true' : 'false');
+        if (show) {
+            document.body.classList.remove('archived-hidden');
+        } else {
+            document.body.classList.add('archived-hidden');
+            var activeTab = document.querySelector('.tab-content.active');
+            var tabId = activeTab ? activeTab.id : null;
+            if (tabId && ARCHIVED_SUBTABS[tabId]) {
+                var activeLink = activeTab.querySelector('.tab-sub-nav-link.active');
+                var activeSubId = activeLink && activeLink.getAttribute('href') ? activeLink.getAttribute('href').replace('#', '') : '';
+                if (ARCHIVED_SUBTABS[tabId].indexOf(activeSubId) !== -1) {
+                    switchSubTab(tabId, FIRST_NON_ARCHIVED[tabId]);
+                }
+            }
+        }
+    }
+
     function initArchiveToggle() {
-        var checkbox = document.getElementById('archive-toggle');
-        if (!checkbox) return;
         var key = 'drd_archived_visible';
         var stored = localStorage.getItem(key);
         var showArchived = stored === 'true';
-        checkbox.checked = showArchived;
         if (!showArchived) {
             document.body.classList.add('archived-hidden');
             var activeTab = document.querySelector('.tab-content.active');
@@ -269,22 +285,11 @@
         } else {
             document.body.classList.remove('archived-hidden');
         }
-        checkbox.addEventListener('change', function() {
-            var show = checkbox.checked;
-            localStorage.setItem(key, show ? 'true' : 'false');
-            if (show) {
-                document.body.classList.remove('archived-hidden');
-            } else {
-                document.body.classList.add('archived-hidden');
-                var activeTab = document.querySelector('.tab-content.active');
-                var tabId = activeTab ? activeTab.id : null;
-                if (tabId && ARCHIVED_SUBTABS[tabId]) {
-                    var activeLink = activeTab.querySelector('.tab-sub-nav-link.active');
-                    var activeSubId = activeLink && activeLink.getAttribute('href') ? activeLink.getAttribute('href').replace('#', '') : '';
-                    if (ARCHIVED_SUBTABS[tabId].indexOf(activeSubId) !== -1) {
-                        switchSubTab(tabId, FIRST_NON_ARCHIVED[tabId]);
-                    }
-                }
+        document.addEventListener('keydown', function(e) {
+            if (e.shiftKey && (e.key === 'D' || e.key === 'd')) {
+                e.preventDefault();
+                var archivedHidden = document.body.classList.contains('archived-hidden');
+                setArchivedVisible(archivedHidden);
             }
         });
     }
