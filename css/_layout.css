@@ -55,6 +55,119 @@
     z-index: 2;
 }
 
+/* Top row: galleries (left) | symbol & titles (center) | SoundCloud (right) */
+.header-top-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: var(--spacing-md);
+    align-items: start;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.header-top-row .site-branding {
+    text-align: center;
+    min-width: 280px;
+}
+
+.header-top-row .galleries-cycling-slot {
+    min-height: 200px;
+    min-width: 200px;
+    text-align: center;
+    /* Ensure the whole column area is hoverable to pause cycling */
+    width: 100%;
+}
+
+.header-top-row .galleries-cycling-slot .gallery-carousel--small {
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header-top-row .galleries-cycling-slot .gallery-carousel--small .carousel-wrapper {
+    aspect-ratio: 1 / 1;
+}
+
+.header-top-row .three-col-title {
+    font-size: 1rem;
+    margin: var(--spacing-xs) 0 0;
+}
+
+.header-top-row .three-col-subtitle {
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+.header-top-row .soundcloud-cycling-wrap {
+    max-width: 320px;
+    margin-left: auto;
+    /* Keep a fixed-size hit area when hidden so hover can reveal the player */
+    min-width: 200px;
+    min-height: 200px;
+}
+
+/* Rounded circular container for the music player */
+.header-top-row .soundcloud-vignette {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    max-width: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+/* Music note symbol centered on the circle (dark red) */
+.header-top-row .soundcloud-vignette::after {
+    content: "♪";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--tdt-dark-red);
+    font-size: 3.5rem;
+    line-height: 1;
+    pointer-events: none;
+    z-index: 2;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.header-top-row .soundcloud-embed {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 320px;
+    height: 320px;
+    margin-left: -160px;
+    margin-top: -160px;
+}
+
+@media (max-width: 1024px) {
+    .header-top-row {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+
+    .header-top-row .galleries-cycling-slot {
+        order: 2;
+        min-height: 180px;
+    }
+
+    .header-top-row .site-branding {
+        order: 1;
+        min-width: auto;
+    }
+
+    .header-top-row .soundcloud-cycling-wrap {
+        order: 3;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+    }
+}
+
 /* Decorative container with ornamental borders */
 .decorated-container {
     position: relative;

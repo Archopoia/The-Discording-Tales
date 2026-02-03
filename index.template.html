@@ -37,16 +37,49 @@
         <!-- WebGL canvas for header background texture (gold shader) -->
         <canvas id="header-gold-canvas" class="webgl-header-canvas" aria-hidden="true"></canvas>
         <div class="header-bg decorated-container">
-            <div class="site-branding">
-                <p class="site-tagline site-tagline-muted">
-                    <span {{i18n:site.tagline1}}>Under our steps in a far, far future…</span><br>
-                    <span {{i18n:site.tagline2}}>awoke those mysteries believed to be warring among the stars.</span>
-                </p>
-                <a class="site-logo-link" href="#landing" {{i18n-aria:site.logo_aria}} aria-label="Home">
-                    <img alt="The Discording Tales Symbol" class="site-logo" src="assets/images/symbolpur.png" height="100" width="100" decoding="async" {{i18n-alt:site.logo_alt}}/>
-                </a>
-                <h1 class="site-title"><a href="#landing" rel="home" {{i18n:site.title}}>THE DISCORDING TALES</a></h1>
-                <p class="site-genre" {{i18n:site.genre}}>the ETHNO-SCIENCE-FANTASY world</p>
+            <div class="header-top-row">
+                <div class="galleries-cycling-slot" id="galleries-cycling-slot" aria-live="polite">
+                    <div class="gallery-panel active" data-panel-index="0">
+                        <div class="gallery-carousel gallery-carousel--small" id="carousel-lifestyles" aria-label="Lifestyles slideshow"></div>
+                        <h4 class="three-col-title" {{i18n:landing.lifestyles}}>Encounter curious Lifestyles</h4>
+                        <p class="three-col-subtitle" {{i18n:landing.lifestyles_sub}}>Feel as a local in his strange lands, and discover your alien needs, desires and wills</p>
+                    </div>
+                    <div class="gallery-panel" data-panel-index="1">
+                        <div class="gallery-carousel gallery-carousel--small" id="carousel-meanings" aria-label="Meanings slideshow"></div>
+                        <h4 class="three-col-title" {{i18n:landing.meanings}}>Explore new Meanings</h4>
+                        <p class="three-col-subtitle" {{i18n:landing.meanings_sub}}>Express your fanaticism along a permissive and responsive world and ruleset</p>
+                    </div>
+                    <div class="gallery-panel" data-panel-index="2">
+                        <div class="gallery-carousel gallery-carousel--small" id="carousel-stories" aria-label="Stories slideshow"></div>
+                        <h4 class="three-col-title" {{i18n:landing.stories}}>Compose unique Stories</h4>
+                        <p class="three-col-subtitle" {{i18n:landing.stories_sub}}>Create new pasts to imagine and old futures to unearth through the seeds of a golden age</p>
+                    </div>
+                </div>
+                <div class="site-branding">
+                    <p class="site-tagline site-tagline-muted">
+                        <span {{i18n:site.tagline1}}>Under our steps in a far, far future…</span><br>
+                        <span {{i18n:site.tagline2}}>awoke those mysteries believed to be warring among the stars.</span>
+                    </p>
+                    <a class="site-logo-link" href="#landing" {{i18n-aria:site.logo_aria}} aria-label="Home">
+                        <img alt="The Discording Tales Symbol" class="site-logo" src="assets/images/symbolpur.png" height="100" width="100" decoding="async" {{i18n-alt:site.logo_alt}}/>
+                    </a>
+                    <h1 class="site-title"><a href="#landing" rel="home" {{i18n:site.title}}>THE DISCORDING TALES</a></h1>
+                    <p class="site-genre" {{i18n:site.genre}}>the ETHNO-SCIENCE-FANTASY world</p>
+                </div>
+                <div class="soundcloud-cycling-wrap" id="soundcloud-cycling-wrap">
+                    <div class="soundcloud-vignette">
+                        <iframe
+                            class="soundcloud-embed"
+                            src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fthe-discording-tales%2Funderground-enlightenment&amp;auto_play=true&amp;hide_related=false&amp;visual=true&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;color=740000"
+                            width="100%"
+                            height="166"
+                            frameborder="0"
+                            scrolling="no"
+                            allow="autoplay"
+                            title="Underground Enlightenment – The Discording Tales"
+                        ></iframe>
+                    </div>
+                </div>
             </div>
         </div>
         
@@ -113,33 +146,6 @@
                             <p class="unified-depth-p1" {{i18n:unified.p1}}>Every path follows a streamlined and logical progression, from quick single-roll resolutions to intricate, multi-step challenges involving multiple targets and resources.</p>
                             <p class="unified-depth-p2" {{i18n:unified.p2}}>Every path is balanced through a cohesive experience system equally rewarding your playstyle as deeply as you explore them.</p>
                         </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Three-column: Lifestyles / Meanings / Stories -->
-            <div class="three-columns-section">
-                <div class="container three-columns-inner">
-                    <div class="three-col">
-                        <div class="gallery-carousel gallery-carousel--small" id="carousel-lifestyles" aria-label="Lifestyles slideshow">
-                            <!-- Populated via JavaScript -->
-                        </div>
-                        <h4 class="three-col-title" {{i18n:landing.lifestyles}}>Encounter curious Lifestyles</h4>
-                        <p class="three-col-subtitle" {{i18n:landing.lifestyles_sub}}>Feel as a local in his strange lands, and discover your alien needs, desires and wills</p>
-                    </div>
-                    <div class="three-col">
-                        <div class="gallery-carousel gallery-carousel--small" id="carousel-meanings" aria-label="Meanings slideshow">
-                            <!-- Populated via JavaScript -->
-                        </div>
-                        <h4 class="three-col-title" {{i18n:landing.meanings}}>Explore new Meanings</h4>
-                        <p class="three-col-subtitle" {{i18n:landing.meanings_sub}}>Express your fanaticism along a permissive and responsive world and ruleset</p>
-                    </div>
-                    <div class="three-col">
-                        <div class="gallery-carousel gallery-carousel--small" id="carousel-stories" aria-label="Stories slideshow">
-                            <!-- Populated via JavaScript -->
-                        </div>
-                        <h4 class="three-col-title" {{i18n:landing.stories}}>Compose unique Stories</h4>
-                        <p class="three-col-subtitle" {{i18n:landing.stories_sub}}>Create new pasts to imagine and old futures to unearth through the seeds of a golden age</p>
                     </div>
                 </div>
             </div>

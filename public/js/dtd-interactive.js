@@ -93,6 +93,8 @@
         initProgression();
         initSystemOverview();
         initCarousel();
+        initGalleriesCycling();
+        initSoundCloudCycling();
         initDiscoveryOvalParallax();
         initMenuToggle();
         initNewsletter();
@@ -1196,9 +1198,14 @@
 
         function nextSlide() {
             const cs = carouselStates[id];
+            const prevIndex = cs.index;
             cs.index = (cs.index + 1) % images.length;
             containerEl.querySelectorAll('.carousel-slide').forEach((s, i) => s.classList.toggle('active', i === cs.index));
             containerEl.querySelectorAll('.carousel-indicators button').forEach((b, i) => b.classList.toggle('active', i === cs.index));
+            /* Fired when we wrapped from last slide to first (completed a full cycle) */
+            if (images.length > 1 && prevIndex === images.length - 1 && cs.index === 0) {
+                containerEl.dispatchEvent(new CustomEvent('carouselcyclecomplete', { bubbles: true }));
+            }
         }
         function resetCarouselInterval() {
             if (carouselStates[id].interval) clearInterval(carouselStates[id].interval);
@@ -1276,6 +1283,83 @@
     function isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
+    }
+
+    // ========================================
+    // Galleries: visible 10s / hidden 10s. Hover shows it; leave hides it. Timer keeps running.
+    // When the active gallery's carousel completes a full cycle (all pictures), switch to next gallery+text.
+    // ========================================
+    function initGalleriesCycling() {
+        const slot = document.getElementById('galleries-cycling-slot');
+        if (!slot) return;
+        const panels = slot.querySelectorAll('.gallery-panel');
+        if (panels.length === 0) return;
+
+        /* Start with first gallery */
+        panels.forEach((p, j) => p.classList.toggle('active', j === 0));
+
+        function showNextPanel() {
+            const current = Array.from(panels).findIndex(p => p.classList.contains('active'));
+            const next = (current + 1) % panels.length;
+            panels.forEach((p, j) => p.classList.toggle('active', j === next));
+        }
+
+        slot.addEventListener('carouselcyclecomplete', function(e) {
+            const activePanel = slot.querySelector('.gallery-panel.active');
+            if (activePanel && activePanel.contains(e.target)) {
+                showNextPanel();
+            }
+        });
+
+        let isHovering = false;
+
+        function tick() {
+            if (isHovering) {
+                slot.classList.remove('galleries-slot-hidden');
+                return;
+            }
+            slot.classList.toggle('galleries-slot-hidden');
+        }
+
+        slot.addEventListener('mouseenter', function() {
+            isHovering = true;
+            slot.classList.remove('galleries-slot-hidden');
+        });
+        slot.addEventListener('mouseleave', function() {
+            isHovering = false;
+            slot.classList.add('galleries-slot-hidden');
+        });
+
+        setInterval(tick, 10000);
+    }
+
+    // ========================================
+    // SoundCloud: visible 10s / hidden 10s. Hover shows it; leave hides it. Timer keeps running.
+    // ========================================
+    function initSoundCloudCycling() {
+        const wrap = document.getElementById('soundcloud-cycling-wrap');
+        if (!wrap) return;
+
+        let isHovering = false;
+
+        function tick() {
+            if (isHovering) {
+                wrap.classList.remove('soundcloud-hidden');
+                return;
+            }
+            wrap.classList.toggle('soundcloud-hidden');
+        }
+
+        wrap.addEventListener('mouseenter', function() {
+            isHovering = true;
+            wrap.classList.remove('soundcloud-hidden');
+        });
+        wrap.addEventListener('mouseleave', function() {
+            isHovering = false;
+            wrap.classList.add('soundcloud-hidden');
+        });
+
+        setInterval(tick, 10000);
     }
 
     // ========================================

@@ -431,6 +431,46 @@
 
 
 /* ========================================
+   SoundCloud (Underground Enlightenment) + vignette
+   ======================================== */
+.soundcloud-section {
+    width: 100%;
+    padding: var(--spacing-md) 0;
+    background: var(--tdt-burgundy);
+}
+
+.soundcloud-vignette {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    box-shadow:
+        inset 0 0 80px 50px rgba(0, 0, 0, 0.45),
+        inset 0 0 140px 80px rgba(74, 24, 24, 0.35),
+        0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.soundcloud-vignette::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    box-shadow: inset 0 0 120px 40px rgba(0, 0, 0, 0.25);
+    z-index: 1;
+}
+
+.soundcloud-embed {
+    display: block;
+    width: 100%;
+    height: 450px;
+    border: none;
+    position: relative;
+    z-index: 0;
+}
+
+/* ========================================
    Three-column section (Lifestyles / Meanings / Stories)
    ======================================== */
 .three-columns-section {
@@ -470,22 +510,118 @@
 
 .gallery-carousel--small {
     max-width: 100%;
-    border-radius: var(--radius-md);
+    border-radius: 50%;
     overflow: hidden;
-    box-shadow: var(--shadow-md);
+    box-shadow: none;
+}
+
+/* Circular container: square aspect so border-radius: 50% makes a circle */
+.gallery-carousel--small .carousel-wrapper {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    position: relative;
+    background: transparent;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+/* No arrows or indicators on the small header gallery */
+.gallery-carousel--small .carousel-prev,
+.gallery-carousel--small .carousel-next,
+.gallery-carousel--small .carousel-indicators {
+    display: none !important;
+}
+
+.gallery-carousel--small .carousel-track {
+    position: absolute;
+    inset: 0;
+    display: block;
+}
+
+.gallery-carousel--small .carousel-slide {
+    position: absolute;
+    inset: 0;
+    min-width: auto;
+    display: block;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.gallery-carousel--small .carousel-slide.active {
+    opacity: 1;
+    pointer-events: auto;
+    display: block;
 }
 
 .gallery-carousel--small .carousel-slide img {
     width: 100%;
-    height: auto;
-    max-height: 280px;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
 }
 
 @media (max-width: 768px) {
     .three-columns-inner {
         grid-template-columns: 1fr;
     }
+}
+
+/* ========================================
+   Galleries cycling slot + panels (used in header top row: left column)
+   ======================================== */
+.galleries-cycling-slot {
+    position: relative;
+    min-height: 340px;
+    transition: opacity 0.6s ease;
+}
+
+.galleries-cycling-slot.galleries-slot-hidden {
+    opacity: 0;
+}
+
+.gallery-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.gallery-panel.active {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    z-index: 1;
+}
+
+.galleries-cycling-slot .gallery-carousel--small {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+}
+
+.soundcloud-cycling-wrap {
+    transition: opacity 0.6s ease;
+}
+
+.soundcloud-cycling-wrap.soundcloud-hidden {
+    opacity: 0;
+    /* Keep pointer-events so hovering the (invisible) area still reveals the player */
+}
+
+.soundcloud-cycling-wrap:not(.soundcloud-hidden) {
+    opacity: 1;
 }
 
 /* Full-width image (all-creatures-low) */
