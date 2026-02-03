@@ -94,6 +94,30 @@
     height: auto;
     margin: 0 auto var(--spacing-md);
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+    animation: logo-idle 8s ease-in-out infinite;
+}
+
+/* Logo idle: 1s clockwise, 1s counter-clockwise, repeat */
+@keyframes logo-idle {
+    0%   { transform: rotate(0deg); }
+    50%  { transform: rotate(360deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* Sped-up burst when switching tabs (applied by JS) */
+.site-logo.logo-spin-cw {
+    animation: logo-burst-cw 2s ease-out;
+}
+.site-logo.logo-spin-ccw {
+    animation: logo-burst-ccw 2s ease-out;
+}
+@keyframes logo-burst-cw {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(720deg); }
+}
+@keyframes logo-burst-ccw {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(-720deg); }
 }
 
 .site-tagline {

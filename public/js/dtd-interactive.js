@@ -34,8 +34,13 @@
         tabContents: document.querySelectorAll('.tab-content'),
         langButtons: document.querySelectorAll('.lang-btn'),
         newsletterForm: document.getElementById('newsletter-form'),
-        carousel: document.getElementById('hero-carousel')
+        carousel: document.getElementById('hero-carousel'),
+        siteLogo: document.querySelector('.site-logo')
     };
+
+    /** Main nav tab order (left to right) for logo spin direction */
+    const TAB_ORDER = ['landing', 'lore', 'univers', 'rules', 'play', 'about'];
+    let logoBurstTimeout = null;
 
     // ========================================
     // Image Gallery Data (Hero Carousel)
@@ -92,6 +97,17 @@
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 const tabId = this.getAttribute('data-tab');
+                if (elements.siteLogo && tabId !== state.currentTab) {
+                    const currentIdx = TAB_ORDER.indexOf(state.currentTab);
+                    const clickedIdx = TAB_ORDER.indexOf(tabId);
+                    if (currentIdx >= 0 && clickedIdx >= 0) {
+                        if (clickedIdx > currentIdx) {
+                            triggerLogoBurst('cw');
+                        } else {
+                            triggerLogoBurst('ccw');
+                        }
+                    }
+                }
                 switchTab(tabId);
                 
                 // Update URL hash without scrolling
@@ -108,6 +124,21 @@
                 }
             });
         });
+    }
+
+    function triggerLogoBurst(direction) {
+        if (!elements.siteLogo) return;
+        if (logoBurstTimeout) {
+            clearTimeout(logoBurstTimeout);
+            logoBurstTimeout = null;
+        }
+        elements.siteLogo.classList.remove('logo-spin-cw', 'logo-spin-ccw');
+        elements.siteLogo.offsetHeight;
+        elements.siteLogo.classList.add(direction === 'cw' ? 'logo-spin-cw' : 'logo-spin-ccw');
+        logoBurstTimeout = setTimeout(function() {
+            elements.siteLogo.classList.remove('logo-spin-cw', 'logo-spin-ccw');
+            logoBurstTimeout = null;
+        }, 1000);
     }
 
     function switchTab(tabId, options) {
