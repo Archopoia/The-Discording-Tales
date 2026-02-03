@@ -17,13 +17,15 @@ body.entrance-active {
     100% { transform: rotate(0deg); }
 }
 
-/* Enter button - styling for logo image */
+/* Enter button - styling for logo image; min touch target 44px */
 #enter-portfolio-btn {
     background: none !important;
     background-color: transparent !important;
     border: none !important;
-    padding: 0 !important;
+    padding: 1rem !important;
     margin: 0 !important;
+    min-width: 44px;
+    min-height: 44px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -40,10 +42,12 @@ body.entrance-active {
     display: inline-block;
     position: relative;
     max-width: 250px;
+    opacity: 0;
+    animation: entranceLogoFadeIn 1s ease-out 0.2s forwards,
+               keyholePulse 3s ease-in-out infinite 0.2s,
+               keyholeLogoRotate 4s ease-in-out infinite 0s;
     transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                 filter 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    animation: keyholePulse 3s ease-in-out infinite,
-               keyholeLogoRotate 4s ease-in-out infinite;
 }
 
 #enter-portfolio-btn .entrance-logo-wrap img {
@@ -68,6 +72,11 @@ body.entrance-active {
     pointer-events: none;
 }
 
+@keyframes entranceLogoFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 #enter-portfolio-btn:hover {
     opacity: 1 !important;
     background: none !important;
@@ -76,6 +85,7 @@ body.entrance-active {
 }
 
 #enter-portfolio-btn:hover .entrance-logo-wrap {
+    opacity: 1;
     /* Greater glow (keyholeDiscovery + keyholeGlow); rotation speed unchanged */
     animation: keyholeDiscovery 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
                keyholeGlow 2s ease-in-out infinite alternate 0.8s,
@@ -83,6 +93,7 @@ body.entrance-active {
 }
 
 #enter-portfolio-btn.was-hovered:not(:hover) .entrance-logo-wrap {
+    opacity: 1;
     animation: keyholeReverse 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
                keyholePulse 3s ease-in-out infinite 0.8s,
                keyholeLogoRotate 4s ease-in-out infinite 0.8s;

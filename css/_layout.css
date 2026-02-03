@@ -196,6 +196,45 @@
     }
 }
 
+/* Mobile: header slots flow in document order (no fixed overlap), scroll bg, touch targets */
+@media screen and (max-width: 768px) {
+    .header-bg {
+        background-attachment: scroll;
+    }
+
+    .header-top-row .galleries-cycling-slot,
+    .header-top-row .soundcloud-cycling-wrap {
+        position: static;
+    }
+
+    .menu-toggle,
+    .tab-link,
+    .lang-btn {
+        min-height: var(--touch-min);
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    .menu-toggle {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    .lang-btn {
+        padding: var(--spacing-sm) 1rem;
+    }
+    .archive-toggle-wrap {
+        min-height: var(--touch-min);
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    /* Touch: show Kickstarter back on focus for non-hover devices */
+    .branding-flip:focus-within .branding-flip-front {
+        clip-path: circle(0% at 50% 50%);
+        opacity: 0;
+    }
+    .branding-flip:focus-within .branding-flip-back {
+        clip-path: circle(150% at 50% 50%);
+        opacity: 1;
+    }
+}
+
 /* Decorative container with ornamental borders */
 .decorated-container {
     position: relative;
@@ -621,4 +660,11 @@ body.archived-hidden .archived-section {
     max-width: 900px;
     margin: 0 auto;
     padding: 0 var(--spacing-md);
+}
+
+@media (max-width: 360px) {
+    .container {
+        padding-left: var(--spacing-sm);
+        padding-right: var(--spacing-sm);
+    }
 }

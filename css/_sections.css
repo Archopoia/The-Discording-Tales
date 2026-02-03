@@ -46,6 +46,7 @@
 .creation-table-wrap {
     overflow-x: auto;
     margin: var(--spacing-sm) 0 var(--spacing-md);
+    -webkit-overflow-scrolling: touch;
 }
 
 .creation-table {
@@ -524,13 +525,19 @@
     flex: 1;
     min-height: 0;
 }
-/* Sheet panel */
+/* Sheet panel - scrollable on narrow screens */
 #play-panel-sheet .play-character-sheet-root {
     margin-top: 0;
     flex: 1 1 0;
     min-height: 100%;
     height: 100%;
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+@media screen and (max-width: 768px) {
+    #play-panel-sheet .play-character-sheet-root {
+        overflow-x: auto;
+    }
 }
 
 /* Play tab: Character Sheet (inside sheet panel) */
@@ -749,6 +756,8 @@
 .gm-chat-messages .msg.assistant .gm-chat-body--md code {
     font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, monospace;
     font-size: 0.9em;
+    word-break: break-word;
+    max-width: 100%;
     background: rgba(0,0,0,0.3);
     padding: 0.15em 0.35em;
     border-radius: 4px;
@@ -756,6 +765,8 @@
 .gm-chat-messages .msg.assistant .gm-chat-body--md pre {
     margin: 0.5em 0;
     padding: 0.75em;
+    overflow-x: auto;
+    max-width: 100%;
     background: rgba(0,0,0,0.35);
     border-radius: var(--radius-sm);
     overflow-x: auto;
@@ -1028,6 +1039,7 @@
 }
 .gm-chat-input-row input {
     flex: 1;
+    min-width: 0;
     padding: 0.6rem 0.75rem;
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid var(--tdt-beige-warm);
@@ -2084,6 +2096,7 @@
 .inspirations-table-wrapper {
     overflow-x: auto;
     margin: var(--spacing-md) 0;
+    -webkit-overflow-scrolling: touch;
 }
 
 .inspirations-table {
@@ -2280,6 +2293,7 @@
 .lore-table-wrapper {
     overflow-x: auto;
     margin: var(--spacing-md) 0;
+    -webkit-overflow-scrolling: touch;
 }
 .rules-table-wrapper::-webkit-scrollbar,
 .lore-table-wrapper::-webkit-scrollbar {
@@ -2772,6 +2786,10 @@
 .social-links a {
     color: var(--tdt-beige-warm);
     transition: all var(--transition-normal);
+    padding: var(--spacing-sm);
+    min-height: var(--touch-min);
+    display: inline-flex;
+    align-items: center;
 }
 
 .social-links a:hover {
@@ -2852,6 +2870,9 @@
     .inspirations-expandable summary {
         padding: var(--spacing-sm) var(--spacing-md);
         font-size: 1rem;
+        min-height: var(--touch-min);
+        display: flex;
+        align-items: center;
     }
     .inspirations-table {
         font-size: 0.9rem;
@@ -2883,9 +2904,54 @@
     }
     .zine-page-nav-label {
         white-space: nowrap;
+        min-height: var(--touch-min);
+        padding: var(--spacing-sm) var(--spacing-md);
+        display: inline-flex;
+        align-items: center;
     }
     .zine-peoples-grid {
         grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+    }
+
+    /* Play tab: stack buttons above content on mobile */
+    .play-panels-layout {
+        flex-direction: column;
+    }
+    .play-panels-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--spacing-sm);
+    }
+    .play-panel-btn {
+        flex: 1 1 auto;
+        min-width: 80px;
+        min-height: var(--touch-min);
+    }
+
+    /* GM chat and creation touch targets */
+    .gm-chat-toolbar-btn,
+    .gm-chat-no-character-btn,
+    .gm-chat-kill-create-btn,
+    .gm-roll-inline-btn,
+    .gm-creation-option-btn,
+    .gm-creation-input-submit,
+    .gm-chat-input-row button {
+        min-height: var(--touch-min);
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    /* Outpost submit touch target */
+    .outpost-form .outpost-cta,
+    .outpost-form button[type="submit"] {
+        min-height: var(--touch-min);
+    }
+
+    /* Inspirations/details summary touch target */
+    .inspirations-expandable summary {
+        min-height: var(--touch-min);
+        display: flex;
+        align-items: center;
     }
 }
 
@@ -2901,6 +2967,43 @@
     .cta-button {
         font-size: 1.1rem;
         padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    /* Tab sub-nav: tighter on very narrow */
+    .tab-sub-nav {
+        gap: 0.25rem;
+    }
+    .tab-sub-nav-link {
+        font-size: 0.8rem;
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    /* Tables: slightly smaller padding so more fits on screen */
+    .rules-table th,
+    .rules-table td,
+    .lore-table th,
+    .lore-table td,
+    .inspirations-table th,
+    .inspirations-table td {
+        padding: 0.25rem 0.35rem;
+    }
+    .combat-table th,
+    .combat-table td,
+    .magic-table th,
+    .magic-table td {
+        padding: 0.25rem 0.35rem;
+    }
+
+    /* Typography: critical content min font-size for readability */
+    .lore-content,
+    .rules-content,
+    .inspirations-expandable .inspirations-keywords p,
+    .inspirations-list {
+        font-size: clamp(0.875rem, 1em, 1rem);
+    }
+    .conflict-card-object,
+    .conflict-card-obstacle {
+        font-size: 0.875rem;
     }
 }
 
