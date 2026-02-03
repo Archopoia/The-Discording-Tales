@@ -83,11 +83,6 @@
 
 /* Ornamental border decoration overlay removed - using pure CSS gradients instead */
 
-@media screen and (min-width: 50em) {
-    .header-bg {
-        min-height: 50vh;
-    }
-}
 
 .site-branding {
     position: relative;
