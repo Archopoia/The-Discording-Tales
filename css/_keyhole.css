@@ -1,0 +1,243 @@
+/* ========================================
+   Keyhole entrance (click to enter site)
+   ======================================== */
+
+/* Lock body scrolling when entrance screen is active */
+body.entrance-active {
+    overflow: hidden !important;
+    position: fixed !important;
+    width: 100% !important;
+    height: 100vh !important;
+}
+
+/* Enter button - simple styling for keyhole image */
+#enter-portfolio-btn {
+    background: none !important;
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit !important;
+    font: inherit !important;
+    text-decoration: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+#enter-portfolio-btn img {
+    max-width: 100%;
+    height: auto;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                filter 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation: keyholePulse 3s ease-in-out infinite;
+}
+
+#enter-portfolio-btn:hover {
+    opacity: 1 !important;
+    background: none !important;
+    background-color: transparent !important;
+    transform: none !important;
+}
+
+#enter-portfolio-btn:hover img {
+    animation: keyholeDiscovery 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards, keyholeGlow 2s ease-in-out infinite alternate 0.8s;
+}
+
+#enter-portfolio-btn.was-hovered:not(:hover) img {
+    animation: keyholeReverse 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards, keyholePulse 3s ease-in-out infinite 0.8s;
+}
+
+#enter-portfolio-btn:active {
+    opacity: 0.6;
+}
+
+/* Keyhole discovery - burgundy to gold */
+@keyframes keyholeDiscovery {
+    0% {
+        filter:
+            drop-shadow(0 0 4px rgba(61, 0, 0, 0.8))
+            drop-shadow(0 0 8px rgba(61, 0, 0, 0.6))
+            drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+    }
+    20% {
+        filter:
+            drop-shadow(0 0 6px rgba(61, 0, 0, 0.7))
+            drop-shadow(0 0 12px rgba(90, 26, 26, 0.5))
+            drop-shadow(0 0 18px rgba(139, 69, 19, 0.3))
+            drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+    }
+    40% {
+        filter:
+            drop-shadow(0 0 8px rgba(90, 26, 26, 0.6))
+            drop-shadow(0 0 16px rgba(139, 69, 19, 0.4))
+            drop-shadow(0 0 24px rgba(218, 165, 32, 0.3))
+            drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+    }
+    60% {
+        filter:
+            drop-shadow(0 0 10px rgba(139, 69, 19, 0.5))
+            drop-shadow(0 0 20px rgba(218, 165, 32, 0.4))
+            drop-shadow(0 0 30px rgba(255, 215, 0, 0.3))
+            drop-shadow(0 0 4px rgba(255, 255, 255, 0.4))
+            drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+    }
+    80% {
+        filter:
+            drop-shadow(0 0 12px rgba(218, 165, 32, 0.6))
+            drop-shadow(0 0 24px rgba(255, 215, 0, 0.5))
+            drop-shadow(0 0 36px rgba(255, 215, 0, 0.3))
+            drop-shadow(0 0 6px rgba(255, 255, 255, 0.5))
+            drop-shadow(0 0 12px rgba(255, 255, 255, 0.2))
+            drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.5));
+    }
+    100% {
+        filter:
+            drop-shadow(0 0 12px rgba(255, 215, 0, 0.6))
+            drop-shadow(0 0 24px rgba(255, 215, 0, 0.4))
+            drop-shadow(0 0 36px rgba(255, 215, 0, 0.2))
+            drop-shadow(0 0 6px rgba(255, 255, 255, 0.6))
+            drop-shadow(0 0 12px rgba(255, 255, 255, 0.3))
+            drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.5));
+    }
+}
+
+@keyframes keyholeReverse {
+    0% {
+        filter:
+            drop-shadow(0 0 12px rgba(255, 215, 0, 0.6))
+            drop-shadow(0 0 24px rgba(255, 215, 0, 0.4))
+            drop-shadow(0 0 36px rgba(255, 215, 0, 0.2))
+            drop-shadow(0 0 6px rgba(255, 255, 255, 0.6))
+            drop-shadow(0 0 12px rgba(255, 255, 255, 0.3))
+            drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.5));
+    }
+    25% {
+        filter:
+            drop-shadow(0 0 10px rgba(255, 215, 0, 0.4))
+            drop-shadow(0 0 20px rgba(255, 215, 0, 0.3))
+            drop-shadow(0 0 30px rgba(255, 215, 0, 0.1))
+            drop-shadow(0 0 4px rgba(255, 255, 255, 0.3))
+            drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
+    }
+    50% {
+        filter:
+            drop-shadow(0 0 8px rgba(218, 165, 32, 0.3))
+            drop-shadow(0 0 16px rgba(255, 215, 0, 0.2))
+            drop-shadow(0 0 24px rgba(255, 215, 0, 0.1))
+            drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+    }
+    75% {
+        filter:
+            drop-shadow(0 0 6px rgba(139, 69, 19, 0.4))
+            drop-shadow(0 0 12px rgba(218, 165, 32, 0.2))
+            drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+    }
+    100% {
+        filter:
+            drop-shadow(0 0 4px rgba(61, 0, 0, 0.6))
+            drop-shadow(0 0 8px rgba(61, 0, 0, 0.4))
+            drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+    }
+}
+
+@keyframes keyholeGlow {
+    0% {
+        filter:
+            drop-shadow(0 0 12px rgba(255, 215, 0, 0.6))
+            drop-shadow(0 0 24px rgba(255, 215, 0, 0.4))
+            drop-shadow(0 0 36px rgba(255, 215, 0, 0.2))
+            drop-shadow(0 0 6px rgba(255, 255, 255, 0.6))
+            drop-shadow(0 0 12px rgba(255, 255, 255, 0.3))
+            drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.5));
+    }
+    100% {
+        filter:
+            drop-shadow(0 0 15px rgba(255, 215, 0, 0.7))
+            drop-shadow(0 0 30px rgba(255, 215, 0, 0.5))
+            drop-shadow(0 0 45px rgba(255, 215, 0, 0.3))
+            drop-shadow(0 0 8px rgba(255, 255, 255, 0.7))
+            drop-shadow(0 0 16px rgba(255, 255, 255, 0.4))
+            drop-shadow(2px 2px 8px rgba(0, 0, 0, 0.6));
+    }
+}
+
+@keyframes keyholePulse {
+    0% {
+        filter: drop-shadow(0 0 8px rgba(61, 0, 0, 0.6))
+                drop-shadow(0 0 16px rgba(61, 0, 0, 0.4))
+                drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+    }
+    16.67% {
+        filter: drop-shadow(0 0 12px rgba(139, 69, 19, 0.7))
+                drop-shadow(0 0 24px rgba(139, 69, 19, 0.5))
+                drop-shadow(0 0 36px rgba(139, 69, 19, 0.3))
+                drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.6));
+    }
+    20% {
+        filter:
+            drop-shadow(0 0 8px rgba(90, 26, 26, 0.6)) drop-shadow(0 0 16px rgba(139, 69, 19, 0.4)) drop-shadow(0 0 24px rgba(218, 165, 32, 0.3)) drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+    }
+    33.33% {
+        filter: drop-shadow(0 0 8px rgba(61, 0, 0, 0.6))
+                drop-shadow(0 0 16px rgba(61, 0, 0, 0.4))
+                drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+    }
+    100% {
+        filter: drop-shadow(0 0 8px rgba(61, 0, 0, 0.6))
+                drop-shadow(0 0 16px rgba(61, 0, 0, 0.4))
+                drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+    }
+}
+
+/* Golden flash for page transition (used by JS) */
+@keyframes goldenFlash {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    10% {
+        width: 20px;
+        height: 20px;
+        opacity: 1;
+    }
+    30% {
+        width: 200px;
+        height: 200px;
+        opacity: 1;
+    }
+    60% {
+        width: 800px;
+        height: 800px;
+        opacity: 1;
+    }
+    80% {
+        width: 1500px;
+        height: 1500px;
+        opacity: 1;
+    }
+    100% {
+        width: 3000px;
+        height: 3000px;
+        opacity: 1;
+    }
+}
+
+/* Fade out for flash element (injected by JS; backup if CSS used) */
+@keyframes keyholeFadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}

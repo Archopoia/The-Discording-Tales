@@ -225,13 +225,13 @@
     height: auto;
     margin: 0 auto var(--spacing-md);
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
-    animation: logo-idle 8s ease-in-out infinite;
+    animation: logo-idle 4s ease-in-out infinite;
 }
 
 /* Logo idle: 1s clockwise, 1s counter-clockwise, repeat */
 @keyframes logo-idle {
     0%   { transform: rotate(0deg); }
-    50%  { transform: rotate(360deg); }
+    50%  { transform: rotate(180deg); }
     100% { transform: rotate(0deg); }
 }
 

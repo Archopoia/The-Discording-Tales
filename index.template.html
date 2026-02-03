@@ -25,6 +25,10 @@
     <script type="application/json" id="tdt-i18n-strings">{{i18n:script-json}}</script>
 </head>
 <body>
+    <!-- Keyhole entrance: click to enter (plays sound, then looped chimes) -->
+    <div id="static-loader" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #3d0000 0%, #1a0505 50%, #000000 100%); display: flex; align-items: center; justify-content: center; z-index: 10000;">
+        <button id="enter-portfolio-btn" type="button" style="display: none;" aria-label="Enter site"><img src="assets/images/Keyhole.png" alt="Enter" /></button>
+    </div>
     <!-- Skip to content link for accessibility -->
     <a class="skip-link screen-reader-text" href="#main-content" {{i18n:skip_link}}>Skip to content</a>
     
