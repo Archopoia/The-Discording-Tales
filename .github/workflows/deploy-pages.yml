@@ -39,6 +39,9 @@ jobs:
           cp -r dist site/
           cp -r public/js site/
           [ -f public/drd-rules-lore.txt ] && cp public/drd-rules-lore.txt site/ || true
+          cp sitemap.xml site/
+          cp robots.txt site/
+          cp 404.html site/
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v4

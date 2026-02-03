@@ -5,6 +5,22 @@
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <title>THE DISCORDING TALES – Under our steps awake those mysteries believed to be warring among the stars…</title>
     <meta content="For those of us who crave DISCOVERY. A journey through exotic cultures, unexplored lands, weird creatures, and untold ways of thinking and being—yearning to experience the vast potentials, technologies and moralities of worlds unlike ours." name="description"/>
+    <meta name="robots" content="index, follow"/>
+    <link rel="canonical" href="https://archopoia.github.io/The-Discording-Tales/"/>
+    <!-- Open Graph -->
+    <meta property="og:title" content="THE DISCORDING TALES – Under our steps awake those mysteries believed to be warring among the stars…"/>
+    <meta property="og:description" content="For those of us who crave DISCOVERY. A journey through exotic cultures, unexplored lands, weird creatures, and untold ways of thinking and being—yearning to experience the vast potentials, technologies and moralities of worlds unlike ours."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://archopoia.github.io/The-Discording-Tales/"/>
+    <meta property="og:image" content="https://archopoia.github.io/The-Discording-Tales/assets/images/symbolpur.png"/>
+    <meta property="og:image:width" content="100"/>
+    <meta property="og:image:height" content="100"/>
+    <meta property="og:image:alt" content="The Discording Tales Symbol"/>
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="THE DISCORDING TALES – Under our steps awake those mysteries believed to be warring among the stars…"/>
+    <meta name="twitter:description" content="For those of us who crave DISCOVERY. A journey through exotic cultures, unexplored lands, weird creatures, and untold ways of thinking and being—yearning to experience the vast potentials, technologies and moralities of worlds unlike ours."/>
+    <meta name="twitter:image" content="https://archopoia.github.io/The-Discording-Tales/assets/images/symbolpur.png"/>
     
     <!-- Main Stylesheet (bundled by build_css.js) -->
     <link href="dist/main-site.css" rel="stylesheet" type="text/css"/>
@@ -20,9 +36,16 @@
     <!-- <meta name="gm-api-url" content="https://your-deployed-api.example.com"/> -->
     
     <!-- Favicon -->
-    <link href="assets/images/cropped-symbolpur.png" rel="icon" sizes="32x32"/>
+    <link href="assets/images/cropped-symbolpur.png" rel="icon" type="image/png" sizes="32x32"/>
     <!-- Page title/description for setLanguage (filled by build_i18n) -->
     <script type="application/json" id="tdt-i18n-strings">{{i18n:script-json}}</script>
+    <!-- Structured data (Schema.org JSON-LD) -->
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebSite","name":"THE DISCORDING TALES","url":"https://archopoia.github.io/The-Discording-Tales/"}
+    </script>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"Organization","name":"The Discording Tales","url":"https://archopoia.github.io/The-Discording-Tales/","logo":"https://archopoia.github.io/The-Discording-Tales/assets/images/symbolpur.png","sameAs":["https://www.kickstarter.com/projects/1410517588/the-discording-tales-tabletop-rpg-and-worldlore","https://soundcloud.com/the-discording-tales","https://twitter.com/DiscordingTales"]}
+    </script>
 </head>
 <body>
     <!-- Keyhole entrance: vignette always visible; burgundy fill fades on unlock -->
@@ -30,8 +53,8 @@
         <div id="entrance-fill" class="entrance-fill" style="position: absolute; inset: 0; background: radial-gradient(circle at center, #3d0000 0%, #1a0505 50%, #000000 100%); pointer-events: none;"></div>
         <button id="enter-portfolio-btn" type="button" style="display: none;" aria-label="Enter site">
             <span class="entrance-logo-wrap">
-                <img src="assets/images/symbolpur.png" alt="" class="entrance-logo-base" />
-                <img src="assets/images/SymbolCoin.png" alt="" class="entrance-logo-coin" />
+                <img src="assets/images/symbolpur.png" alt="" class="entrance-logo-base" aria-hidden="true"/>
+                <img src="assets/images/SymbolCoin.png" alt="" class="entrance-logo-coin" aria-hidden="true"/>
             </span>
         </button>
     </div>
