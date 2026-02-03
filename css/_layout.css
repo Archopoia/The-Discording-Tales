@@ -101,19 +101,22 @@
 }
 
 .header-top-row .soundcloud-cycling-wrap {
-    max-width: 320px;
-    margin-left: auto;
+    position: fixed;
+    top: var(--spacing-md, 1rem);
+    right: var(--spacing-md, 1rem);
+    z-index: 1000;
+    max-width: 160px;
     /* Keep a fixed-size hit area when hidden so hover can reveal the player */
-    min-width: 200px;
-    min-height: 200px;
+    min-width: 100px;
+    min-height: 100px;
 }
 
 /* Rounded circular container for the music player */
 .header-top-row .soundcloud-vignette {
     position: relative;
-    width: 200px;
-    height: 200px;
-    max-width: 200px;
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
     border-radius: 50%;
     overflow: hidden;
     margin: 0 auto;
@@ -127,7 +130,7 @@
     top: 50%;
     transform: translate(-50%, -50%);
     color: var(--tdt-dark-red);
-    font-size: 3.5rem;
+    font-size: 1.75rem;
     line-height: 1;
     pointer-events: none;
     z-index: 2;
@@ -141,7 +144,7 @@
     left: 50%;
     top: 50%;
     width: 140%;
-    height: 4px;
+    height: 3px;
     background: var(--tdt-dark-red);
     transform: translate(-50%, -50%) rotate(-45deg);
     pointer-events: none;
@@ -153,10 +156,10 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 320px;
-    height: 320px;
-    margin-left: -160px;
-    margin-top: -160px;
+    width: 160px;
+    height: 160px;
+    margin-left: -80px;
+    margin-top: -80px;
 }
 
 @media (max-width: 1024px) {

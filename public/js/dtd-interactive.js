@@ -1299,7 +1299,7 @@
         /* Start with first gallery */
         panels.forEach((p, j) => p.classList.toggle('active', j === 0));
 
-        /* Start hidden; first pulse at 5s */
+        /* Start hidden; first pulse at 10s */
         slot.classList.add('galleries-slot-hidden');
 
         function showNextPanel() {
@@ -1342,7 +1342,7 @@
             hideTimeout = setTimeout(function() {
                 if (!isHovering) slot.classList.add('galleries-slot-hidden');
                 hideTimeout = null;
-            }, 1000);
+            }, 2000);
         }
 
         slot.addEventListener('mouseenter', function() {
@@ -1355,17 +1355,17 @@
             slot.classList.add('galleries-slot-hidden');
         });
 
-        setInterval(pulse, 5000);
+        setInterval(pulse, 11111);
     }
 
     // ========================================
-    // SoundCloud: pulse visible 1s every 5s (hint). Hover shows it; leave hides it.
+    // SoundCloud: pulse visible 3s every 10s (hint). Hover shows it; leave hides it.
     // ========================================
     function initSoundCloudCycling() {
         const wrap = document.getElementById('soundcloud-cycling-wrap');
         if (!wrap) return;
 
-        /* Start hidden; first pulse at 5s */
+        /* Start hidden; first pulse at 10s */
         wrap.classList.add('soundcloud-hidden');
 
         let isHovering = false;
@@ -1378,7 +1378,7 @@
             hideTimeout = setTimeout(function() {
                 if (!isHovering) wrap.classList.add('soundcloud-hidden');
                 hideTimeout = null;
-            }, 1000);
+            }, 2000);
         }
 
         wrap.addEventListener('mouseenter', function() {
@@ -1391,7 +1391,7 @@
             wrap.classList.add('soundcloud-hidden');
         });
 
-        setInterval(pulse, 5000);
+        setInterval(pulse, 10000);
     }
 
     // ========================================
