@@ -10,6 +10,104 @@ body.entrance-active {
     height: 100vh !important;
 }
 
+/* ----------------------------------------
+   Entrance background layers
+   ---------------------------------------- */
+
+/* Base layer styles - all layers fill the entrance-fill container */
+.entrance-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+/* Layer 1 (bottom): Animated map background - zoomed in, panning */
+.entrance-map-layer {
+    background-image: url("../assets/images/Map_Naked.jpg");
+    background-size: 240%;
+    background-position: 20% 30%;
+    background-repeat: no-repeat;
+    animation: entranceMapPan 60s ease-in-out infinite;
+}
+
+/* Layer 2 (middle): Creusalité frame - stretched to viewport */
+.entrance-creusalite-layer {
+    background-image: url("../assets/images/Creusalité_NoBorders.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Layer 3: 50% transparent burgundy overlay */
+.entrance-overlay-layer {
+    background: radial-gradient(
+        circle at center,
+        rgba(61, 0, 0, 0.5) 0%,
+        rgba(26, 5, 5, 0.5) 50%,
+        rgba(0, 0, 0, 0.5) 100%
+    );
+}
+
+/* Layer 4 (top): Black vignette - above everything */
+.entrance-vignette-layer {
+    background: radial-gradient(
+        circle at center,
+        transparent 0%,
+        transparent 35%,
+        rgba(0, 0, 0, 0.4) 60%,
+        rgba(0, 0, 0, 0.85) 100%
+    );
+}
+
+/* Map panning animation - medium motion, visits multiple areas */
+@keyframes entranceMapPan {
+    0% {
+        background-position: 20% 30%;
+        background-size: 240%;
+    }
+    12.5% {
+        background-position: 70% 25%;
+        background-size: 260%;
+    }
+    25% {
+        background-position: 85% 60%;
+        background-size: 250%;
+    }
+    37.5% {
+        background-position: 50% 80%;
+        background-size: 270%;
+    }
+    50% {
+        background-position: 15% 70%;
+        background-size: 245%;
+    }
+    62.5% {
+        background-position: 30% 40%;
+        background-size: 265%;
+    }
+    75% {
+        background-position: 60% 20%;
+        background-size: 255%;
+    }
+    87.5% {
+        background-position: 80% 50%;
+        background-size: 240%;
+    }
+    100% {
+        background-position: 20% 30%;
+        background-size: 240%;
+    }
+}
+
+/* Accessibility: disable animation for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .entrance-map-layer {
+        animation: none;
+        background-position: 50% 50%;
+        background-size: 200%;
+    }
+}
+
 /* Logo rotation (same as site .site-logo logo-idle: 0 → 180 → 0) */
 @keyframes keyholeLogoRotate {
     0%   { transform: rotate(0deg); }
