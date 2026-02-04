@@ -1048,8 +1048,8 @@
                 id: 'FOR', abbr: 'FOR',
                 name: { en: 'Strength', fr: 'Force' },
                 desc: {
-                    en: 'Physical power and raw might. Determines your ability to exert force, lift heavy objects, and deal damage in melee combat.',
-                    fr: 'Puissance physique et force brute. Détermine votre capacité à exercer une force, soulever des objets lourds et infliger des dégâts au corps à corps.'
+                    en: 'Physical power. Raw bodily might. The ability to lift, move, strike, and damage objects. Strength measures muscular capacity, natural athleticism, and bodily power.',
+                    fr: 'Puissance physique. Puissance corporelle pure. La capacité de soulever des objets, de déplacer des objets, de frapper des objets et des personnes et d\'endommager des objets. La force est une mesure de la capacité musculaire. Athlétisme naturel, Pouvoir corporel.'
                 },
                 aptitudes: ['PUISSANCE', 'ATHLETISME', 'DOMINATION'] // principal first
             },
@@ -1057,8 +1057,8 @@
                 id: 'AGI', abbr: 'AGI',
                 name: { en: 'Agility', fr: 'Agilité' },
                 desc: {
-                    en: 'Speed, flexibility, and coordination. Governs quick movements, reflexes, and the ability to avoid attacks.',
-                    fr: 'Vitesse, souplesse et coordination. Régit les mouvements rapides, les réflexes et la capacité à éviter les attaques.'
+                    en: 'Finesse, delicacy, dexterity, suppleness, and ease of movement. Covers balanced whole-body motion, quickness and grace, as well as physical harmony—part of perceived beauty.',
+                    fr: 'C\'est sa finesse, délicatesse, doigté, souplesse et facilité de mouvement, couvrant à la fois les mouvements équilibrés de tout le corps, la manifestation de la promptitude et grâce dans ses mouvements, ainsi que son harmonie physique, partie de sa beauté perçue.'
                 },
                 aptitudes: ['AISANCE', 'PUISSANCE', 'ATHLETISME']
             },
@@ -1066,8 +1066,8 @@
                 id: 'DEX', abbr: 'DEX',
                 name: { en: 'Dexterity', fr: 'Dextérité' },
                 desc: {
-                    en: 'Fine motor control and precision. Affects accuracy, craftsmanship, and delicate manipulations.',
-                    fr: 'Contrôle moteur fin et précision. Affecte la précision, l\'artisanat et les manipulations délicates.'
+                    en: 'Reflexes. Response time. Coordination. Dexterity indicates how easily and synchronously your character responds to the physical world—the ability to perform manual actions with exactitude.',
+                    fr: 'Réflexes. Temps de réponse. Coordination. La dextérité indique à quelle aisance et synchronisation votre personnage répond à son monde physique, la capacité à accomplir une action manuelle avec exactitude.'
                 },
                 aptitudes: ['PRECISION', 'AISANCE', 'PUISSANCE']
             },
@@ -1075,8 +1075,8 @@
                 id: 'VIG', abbr: 'VIG',
                 name: { en: 'Vigor', fr: 'Vigueur' },
                 desc: {
-                    en: 'Endurance, stamina, and physical resilience. Determines how long you can sustain effort and resist exhaustion.',
-                    fr: 'Endurance, énergie et résilience physique. Détermine combien de temps vous pouvez soutenir un effort et résister à l\'épuisement.'
+                    en: 'Solidity. Firmness. Pure physical resilience. Vigor measures your character\'s physical toughness—how far they can push their body and what physical violence they can endure, as well as health-related physical beauty. Health, Energy, Life force.',
+                    fr: 'Solidité. Fermeté. Résilience physique pure. La vigueur est une mesure de la dureté physique de votre personnage. Cela indique jusqu\'où il peut pousser son corps et quelle violence physique il peut endurer, mais aussi sa beauté physique purement liée à sa santé. Santé, Énergie, Force vitale.'
                 },
                 aptitudes: ['ATHLETISME', 'DOMINATION', 'AISANCE']
             },
@@ -1084,8 +1084,8 @@
                 id: 'EMP', abbr: 'EMP',
                 name: { en: 'Empathy', fr: 'Empathie' },
                 desc: {
-                    en: 'Emotional intelligence and social awareness. Governs understanding others, building rapport, and sensing emotions.',
-                    fr: 'Intelligence émotionnelle et conscience sociale. Régit la compréhension des autres, la création de liens et la perception des émotions.'
+                    en: 'Receptivity. Charm. Persuasive force. The ability to perceive and play on emotions, desires, hopes, and needs to influence or recognize others—knowing when and what to say for best impact. Empathy allows understanding emotions, not necessarily feeling them. Here it\'s neutral identification, not compassion. Eloquence.',
+                    fr: 'Réceptivité. Charme. Force de persuasion. La capacité de percevoir et jouer sur les émotions, désirs, les espoirs et les besoins des autres pour les influencer ou les reconnaître, mais aussi de savoir quand et de quoi parler pour avoir le meilleur impact. L\'Empathie permet de comprendre les émotions, mais pas forcément de les ressentir ou les accepter. Ici, elle n\'est donc pas forcément liée à la compassion, mais plutôt à l\'identification neutre. Éloquence.'
                 },
                 aptitudes: ['CHARISME', 'REFLEXION', 'DETECTION']
             },
@@ -1093,8 +1093,8 @@
                 id: 'PER', abbr: 'PER',
                 name: { en: 'Perception', fr: 'Perception' },
                 desc: {
-                    en: 'Sensory acuity and awareness. Affects your ability to notice details, spot danger, and gather information from your surroundings.',
-                    fr: 'Acuité sensorielle et vigilance. Affecte votre capacité à remarquer les détails, repérer le danger et recueillir des informations de votre environnement.'
+                    en: 'Attention to detail, the ability to determine what\'s happening in the environment and react to events. Also the capacity to notice things and perceive the world through all senses. Speed of thought; how easily you make logical or intuitive leaps. In animals, this encompasses all senses plus hunting, survival, and reproduction instincts. Awareness, Intuition.',
+                    fr: 'Elle comprend le souci du détail, la capacité à déterminer ce qui se passe dans l\'environnement et de réagir aux événements. C\'est aussi la capacité à remarquer des choses, à percevoir le monde qui vous entoure, à travers tous vos sens. La rapidité de penser ; mesure avec quelle facilité vous faites des sauts de logique ou d\'intuition. Chez les animaux cela englobe tous les sens, ainsi que la qualité de l\'instinct de chasse, de survie et de reproduction. Conscience, Intuition.'
                 },
                 aptitudes: ['DETECTION', 'PRECISION', 'CHARISME']
             },
@@ -1102,8 +1102,8 @@
                 id: 'CRE', abbr: 'CRÉ',
                 name: { en: 'Creativity', fr: 'Créativité' },
                 desc: {
-                    en: 'Imagination, ingenuity, and original thinking. Determines your ability to devise novel solutions and artistic expression.',
-                    fr: 'Imagination, ingéniosité et pensée originale. Détermine votre capacité à concevoir des solutions nouvelles et l\'expression artistique.'
+                    en: 'The ability to create, imagine, and innovate—to implement a new concept, a new object, or discover an original solution to a problem. The association of things, ideas, situations, and the unpredictable conjunction of elements enabling discovery. Also cerebral memory—the aptitude to absorb, digest, and memorize information, thus learning more. Mental acuity, Information memory, Analytical capacity.',
+                    fr: 'La capacité à créer, à imaginer et à innover, de mettre en œuvre un concept neuf, un objet nouveau ou à découvrir une solution originale à un problème. L\'association des choses, d\'idées, des situations, ainsi que la conjonction imprévisible d\'éléments permettant la découverte. Mais aussi la mémoire cérébrale. L\'aptitude à absorber, digérer, et mémoriser des informations - et donc à en apprendre davantage. Acuité mentale, Mémoire d\'information, Capacité d\'analyse.'
                 },
                 aptitudes: ['REFLEXION', 'DETECTION', 'PRECISION']
             },
@@ -1111,8 +1111,8 @@
                 id: 'VOL', abbr: 'VOL',
                 name: { en: 'Willpower', fr: 'Volonté' },
                 desc: {
-                    en: 'Mental fortitude and determination. Governs resistance to fear, manipulation, and the ability to push through adversity.',
-                    fr: 'Force mentale et détermination. Régit la résistance à la peur, à la manipulation et la capacité à surmonter l\'adversité.'
+                    en: 'The concentration and determination to see your character\'s resolution through. The ability to stay focused, ignore distractions, and resist coercion or bullying. In animals, it\'s also the life force to fulfill their instincts (not the quality of instincts themselves), plus their sagacity facing instincts and general composure. Firmness, Command.',
+                    fr: 'La concentration et la détermination de voir la résolution de votre personnage s\'accomplir. La capacité de rester concentré, d\'ignorer les distractions et de résister à la coercition ou aux brimades. Chez les animaux, c\'est aussi la force de vie et d\'accomplir leurs instincts, mais pas la qualité des instincts eux-mêmes. C\'est aussi la sagacité face à leurs instincts et leur sang-froid général. Fermeté, Commandement.'
                 },
                 aptitudes: ['DOMINATION', 'CHARISME', 'REFLEXION']
             }
@@ -1122,8 +1122,8 @@
                 id: 'PUISSANCE',
                 name: { en: 'Power', fr: 'Puissance' },
                 desc: {
-                    en: 'The aptitude of raw force and combat prowess. Governs striking, grappling, and ranged attacks.',
-                    fr: 'L\'aptitude de la force brute et des prouesses au combat. Régit les frappes, les saisies et les attaques à distance.'
+                    en: 'Combat Power is the experience and current ability to fight in melee or at range, armed or unarmed. Different weapons require different muscles—a bow uses back muscles while a rapier uses forearm. Other Aptitudes may come into play during battle, but this is the direct link to combat and its styles.',
+                    fr: 'L\'essentiel est que la Puissance au Combat est l\'expérience et capacité actuelle en la matière, afin de combattre au corps à corps ou à distance, armé ou non. Certaines armes requièrent différents muscles, comme un arc utilisant ceux du dos ou une rapière ceux de l\'avant-bras. D\'autres Aptitudes peuvent rentrer en compte lors d\'une bataille, mais ici c\'est le lien direct avec le combat et ses styles dont il est question.'
                 },
                 attributes: ['FOR', 'AGI', 'DEX'], // weights: +3, +2, +1
                 actions: ['FRAPPER', 'NEUTRALISER', 'TIRER']
@@ -1132,8 +1132,8 @@
                 id: 'AISANCE',
                 name: { en: 'Ease', fr: 'Aisance' },
                 desc: {
-                    en: 'The aptitude of fluid movement and deft evasion. Governs reactions, stealth, and coordination.',
-                    fr: 'L\'aptitude du mouvement fluide et de l\'évasion habile. Régit les réactions, la discrétion et la coordination.'
+                    en: 'Ease represents an individual\'s ability to use their body acrobatically: general balance and ability to resist and escape grapples. It\'s your general ability to shove, fall, dodge, plus your flexibility, stability, balance, freedom of action, fluid movements, and positioning. Ease encompasses all skills related to stealth, hiding, moving silently, as well as pickpocketing and assassination.',
+                    fr: 'L\'Aisance d\'un individu représente sa capacité à utiliser son corps de manière acrobatique, et ce qui s\'en suit : l\'équilibre général et la capacité de résister aux étreintes et s\'en évader. C\'est votre aptitude générale à bousculer, chuter, esquiver, ainsi que votre souplesse, stabilité, équilibre, mais aussi votre liberté d\'action, la fluidité de vos mouvements, et votre placement. L\'Aisance englobe toutes les aptitudes liées à l\'art de se faire discret, de se cacher, de marcher silencieusement, mais aussi du vol à la tire et de l\'assassinat.'
                 },
                 attributes: ['AGI', 'DEX', 'VIG'],
                 actions: ['REAGIR', 'DEROBER', 'COORDONNER']
@@ -1142,8 +1142,8 @@
                 id: 'PRECISION',
                 name: { en: 'Precision', fr: 'Précision' },
                 desc: {
-                    en: 'The aptitude of accuracy and fine manipulation. Governs handling tools, crafting, and intricate work.',
-                    fr: 'L\'aptitude de la précision et de la manipulation fine. Régit le maniement des outils, l\'artisanat et le travail minutieux.'
+                    en: 'Precision encompasses all skills related to coordination and analysis. The skill to drive any vehicle or mount on land, sea, or air. The simple ability to work with your hands, plus practical experience allowing production of objects, often linked to a trade—from cobbler to jeweler. Precision also covers lockpicking, trap-setting, disarming. It\'s the capacity for cunning, finesse, and stratagem.',
+                    fr: 'La Précision correspond à toutes les aptitudes liées à la coordination et l\'analyse. L\'habileté pour la conduite de toute sorte de véhicules ou montures sur terre, mer ou dans les airs. La simple capacité à travailler de ses mains, mais aussi la pratique et l\'expérience réelle des connaissances, permettant de produire et/ou fabriquer un objet, souvent en lien avec un métier associé, allant du cordonnier au bijoutier. La Précision englobe aussi toutes les aptitudes liées à l\'art du crochetage, de la trappe, du désamorçage. C\'est la capacité à la ruse, la finesse et au stratagème.'
                 },
                 attributes: ['DEX', 'PER', 'CRE'],
                 actions: ['MANIER', 'FACONNER', 'FIGNOLER']
@@ -1152,8 +1152,8 @@
                 id: 'ATHLETISME',
                 name: { en: 'Athletics', fr: 'Athlétisme' },
                 desc: {
-                    en: 'The aptitude of physical prowess and locomotion. Governs traversal, exertion, and mounted movement.',
-                    fr: 'L\'aptitude des prouesses physiques et de la locomotion. Régit les déplacements, l\'effort et les mouvements à cheval.'
+                    en: 'Athletics is a being\'s aptitude to physically exercise through running, climbing, throwing, swimming, jumping, sprinting, carrying, and all physical work short or long term. Your Athletics defines your mastery of these elements and the ease of practicing them.',
+                    fr: 'L\'Athlétisme, c\'est l\'aptitude d\'un être à s\'exercer physiquement au travers de la course, l\'escalade, le jet, la nage, le saut, le sprint, le transport et tout travail physique sur court et long terme. Votre Athlétisme définit votre maîtrise de ces éléments ainsi que la facilité de les pratiquer.'
                 },
                 attributes: ['VIG', 'FOR', 'AGI'],
                 actions: ['TRAVERSER', 'EFFORCER', 'MANOEUVRER']
@@ -1162,8 +1162,8 @@
                 id: 'CHARISME',
                 name: { en: 'Charisma', fr: 'Charisme' },
                 desc: {
-                    en: 'The aptitude of social influence and persuasion. Governs captivating others, convincing them, and performing.',
-                    fr: 'L\'aptitude de l\'influence sociale et de la persuasion. Régit la capacité à captiver, convaincre et interpréter.'
+                    en: 'Charisma includes social and rhetorical capabilities between perceptive beings—to suggest, insinuate, incite, seduce, dupe, investigate, bargain, or accustom one to another. It\'s presence, aura, and rhetoric. Also uniquely influenced by physical beauty (Agility and Constitution). It\'s all forms of subterfuge: imitating, mimicking, taking or giving a different appearance to oneself, another, or an object, to pass one thing for another. Also artistic or social self-expression.',
+                    fr: 'Le Charisme inclut les capacités sociales et rhétoriques entre êtres perceptifs à suggérer, insinuer, inciter, séduire, duper, investiguer, marchander ou encore accoutumer, de l\'un vers l\'autre. C\'est à la fois la présence, l\'aura et la rhétorique du personnage. Aussi, il est influencé d\'une façon unique par la valeur de Beauté Physique du personnage (son Agilité et sa Constitution). C\'est aussi toutes les formes de subterfuges permettant d\'imiter, de mimer, de prendre ou donner une apparence visuelle, auditive, etc. autre à soi-même, à un autre ou à un objet, afin de faire passer une chose pour une autre. Mais aussi de s\'évoquer artistiquement ou socialement.'
                 },
                 attributes: ['EMP', 'VOL', 'PER'],
                 actions: ['CAPTIVER', 'CONVAINCRE', 'INTERPRETER']
@@ -1172,8 +1172,8 @@
                 id: 'DETECTION',
                 name: { en: 'Detection', fr: 'Détection' },
                 desc: {
-                    en: 'The aptitude of sensory awareness and investigation. Governs discerning, discovering, and tracking.',
-                    fr: 'L\'aptitude de la conscience sensorielle et de l\'investigation. Régit la capacité à discerner, découvrir et pister.'
+                    en: 'Detection includes all senses, from taste to sight, as well as emotional and rational intuition, and finally the aptitude to search and find—deduction. Knowledge of ecosystems and interactions between all things.',
+                    fr: 'La Détection inclut tous les sens, du goûter à la vue, ainsi que l\'intuition émotionnelle et rationnelle, et enfin l\'aptitude à chercher et trouver - la déduction. Le savoir des écosystèmes et des interactions entre tous.'
                 },
                 attributes: ['PER', 'CRE', 'EMP'],
                 actions: ['DISCERNER', 'DECOUVRIR', 'DEPISTER']
@@ -1182,8 +1182,8 @@
                 id: 'REFLEXION',
                 name: { en: 'Reflection', fr: 'Réflexion' },
                 desc: {
-                    en: 'The aptitude of intellectual analysis and knowledge. Governs designing, cultural understanding, and adaptation.',
-                    fr: 'L\'aptitude de l\'analyse intellectuelle et du savoir. Régit la conception, la compréhension culturelle et l\'adaptation.'
+                    en: 'Reflection here is education, erudition, and all forms of non-directly-practical instruction and exercise, from tales to science—theoretical information on any subject. It\'s the ability to prevent, identify, and heal all forms of ailments, whether physical, mental, or chronic. A successful roll means the character remembers; otherwise they don\'t know or can\'t recall. Knowledge of things and social activities.',
+                    fr: 'La Réflexion est ici l\'éducation, l\'érudition et toute forme d\'instruction et exercice non directement pratiques, du conte à la science, ce sont les informations théoriques de n\'importe quel sujet. C\'est la capacité de prévenir, d\'identifier et de soigner toutes formes de maux, qu\'ils soient physiques, mentaux, ou chroniques. Un jet réussi signifie que le personnage se souvient, autrement il ne le sait pas ou alors il ne peut plus s\'en souvenir. Le savoir des choses et des activités sociales.'
                 },
                 attributes: ['CRE', 'EMP', 'VOL'],
                 actions: ['CONCEVOIR', 'ACCULTURER', 'ACCLIMATER']
@@ -1192,8 +1192,8 @@
                 id: 'DOMINATION',
                 name: { en: 'Domination', fr: 'Domination' },
                 desc: {
-                    en: 'The aptitude of mental strength and control. Governs discipline, endurance, and taming.',
-                    fr: 'L\'aptitude de la force mentale et du contrôle. Régit la discipline, l\'endurance et le dressage.'
+                    en: 'Domination encompasses the ability to impose one\'s will, endure physical and mental hardships, and control other creatures. It\'s strength of character, command, and resistance to external influences.',
+                    fr: 'La Domination comprend la capacité à imposer sa volonté, à endurer les épreuves physiques et mentales, et à contrôler les autres créatures. C\'est la force de caractère, le commandement, et la résistance aux influences extérieures.'
                 },
                 attributes: ['VOL', 'VIG', 'FOR'],
                 actions: ['DISCIPLINER', 'ENDURER', 'DOMPTER']
@@ -1204,21 +1204,21 @@
             FRAPPER: {
                 id: 'FRAPPER',
                 name: { en: 'Strike', fr: 'Frapper' },
-                desc: { en: 'Deliver blows with weapons or bare hands.', fr: 'Porter des coups avec des armes ou à mains nues.' },
+                desc: { en: 'The action of delivering offensive blows against an adversary.', fr: 'L\'action de porter des coups offensifs sur un adversaire.' },
                 linkedAttr: 'FOR',
                 competences: ['ARME', 'DESARME', 'IMPROVISE']
             },
             NEUTRALISER: {
                 id: 'NEUTRALISER',
                 name: { en: 'Neutralize', fr: 'Neutraliser' },
-                desc: { en: 'Grapple, restrain, and incapacitate opponents.', fr: 'Saisir, immobiliser et neutraliser les adversaires.' },
+                desc: { en: 'The action of controlling, immobilizing, or disadvantaging an adversary without necessarily injuring them.', fr: 'L\'action de contrôler, immobiliser ou désavantager un adversaire sans nécessairement le blesser.' },
                 linkedAttr: 'AGI',
                 competences: ['LUTTE', 'BOTTES', 'RUSES']
             },
             TIRER: {
                 id: 'TIRER',
                 name: { en: 'Shoot', fr: 'Tirer' },
-                desc: { en: 'Attack from range with bows, crossbows, or thrown weapons.', fr: 'Attaquer à distance avec arcs, arbalètes ou armes de jet.' },
+                desc: { en: 'The action of attacking from range by projecting ammunition.', fr: 'L\'action d\'attaquer à distance en projetant des munitions.' },
                 linkedAttr: 'DEX',
                 competences: ['BANDE', 'PROPULSE', 'JETE']
             },
@@ -1226,21 +1226,21 @@
             REAGIR: {
                 id: 'REAGIR',
                 name: { en: 'React', fr: 'Réagir' },
-                desc: { en: 'Respond quickly to threats and opportunities.', fr: 'Répondre rapidement aux menaces et opportunités.' },
+                desc: { en: 'The action of responding quickly to events and threats.', fr: 'L\'action de répondre rapidement aux événements et menaces.' },
                 linkedAttr: 'AGI',
                 competences: ['FLUIDITE', 'ESQUIVE', 'EVASION']
             },
             DEROBER: {
                 id: 'DEROBER',
                 name: { en: 'Steal', fr: 'Dérober' },
-                desc: { en: 'Take things without being noticed.', fr: 'Prendre des choses sans être remarqué.' },
+                desc: { en: 'The action of taking discreetly or concealing oneself.', fr: 'L\'action de prendre discrètement ou de se dissimuler.' },
                 linkedAttr: 'DEX',
                 competences: ['ESCAMOTAGE', 'ILLUSIONS', 'DISSIMULATION']
             },
             COORDONNER: {
                 id: 'COORDONNER',
                 name: { en: 'Coordinate', fr: 'Coordonner' },
-                desc: { en: 'Synchronize movements and maintain balance.', fr: 'Synchroniser les mouvements et maintenir l\'équilibre.' },
+                desc: { en: 'The action of precisely controlling one\'s body and movements.', fr: 'L\'action de contrôler précisément son corps et ses mouvements.' },
                 linkedAttr: 'VIG',
                 competences: ['GESTUELLE', 'MINUTIE', 'EQUILIBRE']
             },
@@ -1248,21 +1248,21 @@
             MANIER: {
                 id: 'MANIER',
                 name: { en: 'Handle', fr: 'Manier' },
-                desc: { en: 'Operate tools, weapons, and vehicles with skill.', fr: 'Manipuler outils, armes et véhicules avec habileté.' },
+                desc: { en: 'The action of manipulating tools, weapons, and vehicles with precision.', fr: 'L\'action de manipuler des outils, armes et véhicules avec précision.' },
                 linkedAttr: 'DEX',
                 competences: ['VISEE', 'CONDUITE', 'HABILETE']
             },
             FACONNER: {
                 id: 'FACONNER',
                 name: { en: 'Shape', fr: 'Façonner' },
-                desc: { en: 'Create and modify objects through craftsmanship.', fr: 'Créer et modifier des objets par l\'artisanat.' },
+                desc: { en: 'The action of creating, repairing, and modifying objects.', fr: 'L\'action de créer, réparer et modifier des objets.' },
                 linkedAttr: 'PER',
                 competences: ['DEBROUILLARDISE', 'BRICOLAGE', 'SAVOIR_FAIRE']
             },
             FIGNOLER: {
                 id: 'FIGNOLER',
                 name: { en: 'Refine', fr: 'Fignoler' },
-                desc: { en: 'Perfect details and solve intricate problems.', fr: 'Perfectionner les détails et résoudre des problèmes complexes.' },
+                desc: { en: 'The action of working with extreme precision on complex mechanisms.', fr: 'L\'action de travailler avec une précision extrême sur des mécanismes complexes.' },
                 linkedAttr: 'CRE',
                 competences: ['ARTIFICES', 'SECURITE', 'CASSE_TETES']
             },
@@ -1270,87 +1270,87 @@
             TRAVERSER: {
                 id: 'TRAVERSER',
                 name: { en: 'Traverse', fr: 'Traverser' },
-                desc: { en: 'Move across terrain by walking, running, or climbing.', fr: 'Se déplacer sur le terrain en marchant, courant ou grimpant.' },
+                desc: { en: 'The action of moving through different environments.', fr: 'L\'action de se déplacer à travers différents milieux.' },
                 linkedAttr: 'VIG',
-                competences: ['PAS', 'GRIMPE', 'ACROBATIE']
+                competences: ['PAS', 'GRIMPE', 'NATATION']
             },
             EFFORCER: {
                 id: 'EFFORCER',
                 name: { en: 'Exert', fr: 'Efforcer' },
-                desc: { en: 'Apply physical strength for lifting, jumping, or swimming.', fr: 'Appliquer la force physique pour soulever, sauter ou nager.' },
+                desc: { en: 'The action of providing intense physical effort.', fr: 'L\'action de fournir un effort physique intense.' },
                 linkedAttr: 'FOR',
-                competences: ['POID', 'SAUT', 'NATATION']
+                competences: ['PORT', 'SAUT', 'FOUISSAGE']
             },
             MANOEUVRER: {
                 id: 'MANOEUVRER',
                 name: { en: 'Maneuver', fr: 'Manœuvrer' },
-                desc: { en: 'Navigate unusual environments: flying, burrowing, riding.', fr: 'Naviguer dans des environnements inhabituels : voler, creuser, chevaucher.' },
+                desc: { en: 'The action of controlling one\'s body in complex situations or on a mount.', fr: 'L\'action de contrôler son corps dans des situations complexes ou sur une monture.' },
                 linkedAttr: 'AGI',
-                competences: ['VOL', 'FOUISSAGE', 'CHEVAUCHEMENT']
+                competences: ['VOL', 'ACROBATIE', 'CHEVAUCHEMENT']
             },
             // Charisme actions
             CAPTIVER: {
                 id: 'CAPTIVER',
                 name: { en: 'Captivate', fr: 'Captiver' },
-                desc: { en: 'Draw attention and inspire admiration.', fr: 'Attirer l\'attention et inspirer l\'admiration.' },
+                desc: { en: 'The action of attracting and holding the attention of others.', fr: 'L\'action d\'attirer et retenir l\'attention des autres.' },
                 linkedAttr: 'EMP',
-                competences: ['SEDUCTION', 'MIMETISME', 'CHANT']
+                competences: ['SEDUCTION', 'MIMETISME', 'PRESENTATION']
             },
             CONVAINCRE: {
                 id: 'CONVAINCRE',
                 name: { en: 'Convince', fr: 'Convaincre' },
-                desc: { en: 'Persuade others through argument or deception.', fr: 'Persuader les autres par l\'argumentation ou la tromperie.' },
+                desc: { en: 'The action of persuading others to act according to your wishes.', fr: 'L\'action de persuader les autres d\'agir selon vos souhaits.' },
                 linkedAttr: 'VOL',
-                competences: ['NEGOCIATION', 'TROMPERIE', 'PRESENTATION']
+                competences: ['NEGOCIATION', 'TROMPERIE', 'INSPIRATION']
             },
             INTERPRETER: {
                 id: 'INTERPRETER',
                 name: { en: 'Perform', fr: 'Interpréter' },
-                desc: { en: 'Express through music, stories, and artistic performance.', fr: 'S\'exprimer par la musique, les histoires et la performance artistique.' },
+                desc: { en: 'The action of expressing oneself artistically.', fr: 'L\'action de s\'exprimer artistiquement.' },
                 linkedAttr: 'PER',
-                competences: ['INSTRUMENTAL', 'INSPIRATION', 'NARRATION']
+                competences: ['INSTRUMENTAL', 'CHANT', 'NARRATION']
             },
             // Détection actions
             DISCERNER: {
                 id: 'DISCERNER',
                 name: { en: 'Discern', fr: 'Discerner' },
-                desc: { en: 'Notice details through careful observation.', fr: 'Remarquer les détails par l\'observation attentive.' },
+                desc: { en: 'The action of perceiving precisely through the primary senses.', fr: 'L\'action de percevoir avec précision par les sens principaux.' },
                 linkedAttr: 'PER',
-                competences: ['VISION', 'ESTIMATION', 'TOUCHER']
+                competences: ['VISION', 'AUDITION', 'TOUCHER']
             },
             DECOUVRIR: {
                 id: 'DECOUVRIR',
                 name: { en: 'Discover', fr: 'Découvrir' },
-                desc: { en: 'Uncover hidden information through investigation.', fr: 'Découvrir des informations cachées par l\'investigation.' },
+                desc: { en: 'The action of finding hidden or unknown information.', fr: 'L\'action de trouver des informations cachées ou inconnues.' },
                 linkedAttr: 'CRE',
-                competences: ['INVESTIGATION', 'GOUT', 'RESSENTI']
+                competences: ['INVESTIGATION', 'ESTIMATION', 'RESSENTI']
             },
             DEPISTER: {
                 id: 'DEPISTER',
                 name: { en: 'Track', fr: 'Dépister' },
-                desc: { en: 'Follow trails and sense the environment.', fr: 'Suivre des pistes et percevoir l\'environnement.' },
+                desc: { en: 'The action of perceiving through secondary and internal senses.', fr: 'L\'action de percevoir par les sens secondaires et internes.' },
                 linkedAttr: 'EMP',
-                competences: ['ODORAT', 'AUDITION', 'INTEROCEPTION']
+                competences: ['ODORAT', 'GOUT', 'INTEROCEPTION']
             },
             // Réflexion actions
             CONCEVOIR: {
                 id: 'CONCEVOIR',
                 name: { en: 'Design', fr: 'Concevoir' },
-                desc: { en: 'Plan and create through intellectual effort.', fr: 'Planifier et créer par l\'effort intellectuel.' },
+                desc: { en: 'The action of creating and planning with technical expertise.', fr: 'L\'action de créer et planifier avec expertise technique.' },
                 linkedAttr: 'CRE',
                 competences: ['ARTISANAT', 'MEDECINE', 'INGENIERIE']
             },
             ACCULTURER: {
                 id: 'ACCULTURER',
                 name: { en: 'Acculturate', fr: 'Acculturer' },
-                desc: { en: 'Understand and navigate cultural knowledge.', fr: 'Comprendre et naviguer les savoirs culturels.' },
+                desc: { en: 'The action of knowing and understanding cultures and social activities.', fr: 'L\'action de connaître et comprendre les cultures et activités sociales.' },
                 linkedAttr: 'EMP',
                 competences: ['JEUX', 'SOCIETE', 'GEOGRAPHIE']
             },
             ACCLIMATER: {
                 id: 'ACCLIMATER',
                 name: { en: 'Acclimate', fr: 'Acclimater' },
-                desc: { en: 'Adapt to natural environments and work with nature.', fr: 'S\'adapter aux environnements naturels et travailler avec la nature.' },
+                desc: { en: 'The action of knowing and managing natural environments.', fr: 'L\'action de connaître et gérer les environnements naturels.' },
                 linkedAttr: 'VOL',
                 competences: ['NATURE', 'PASTORALISME', 'AGRONOMIE']
             },
@@ -1358,122 +1358,662 @@
             DISCIPLINER: {
                 id: 'DISCIPLINER',
                 name: { en: 'Discipline', fr: 'Discipliner' },
-                desc: { en: 'Command others and maintain self-control.', fr: 'Commander les autres et maintenir la maîtrise de soi.' },
+                desc: { en: 'The action of commanding, obeying, and resisting through willpower.', fr: 'L\'action de commander, obéir et résister par la force de volonté.' },
                 linkedAttr: 'VOL',
                 competences: ['COMMANDEMENT', 'OBEISSANCE', 'OBSTINANCE']
             },
             ENDURER: {
                 id: 'ENDURER',
                 name: { en: 'Endure', fr: 'Endurer' },
-                desc: { en: 'Withstand physical hardship and deprivation.', fr: 'Résister aux épreuves physiques et aux privations.' },
+                desc: { en: 'The action of physically resisting needs and substances.', fr: 'L\'action de résister physiquement aux besoins et aux substances.' },
                 linkedAttr: 'VIG',
                 competences: ['GLOUTONNERIE', 'BEUVERIE', 'ENTRAILLES']
             },
             DOMPTER: {
                 id: 'DOMPTER',
                 name: { en: 'Tame', fr: 'Dompter' },
-                desc: { en: 'Control and train creatures and people.', fr: 'Contrôler et dresser créatures et personnes.' },
+                desc: { en: 'The action of controlling other creatures through force or gentleness.', fr: 'L\'action de contrôler les autres créatures par la force ou la douceur.' },
                 linkedAttr: 'FOR',
                 competences: ['INTIMIDATION', 'APPRIVOISEMENT', 'DRESSAGE']
             }
         },
         competences: {
             // Puissance - Frapper
-            ARME: { id: 'ARME', name: { en: '[Armed]', fr: '[Armé]' }, desc: { en: 'Fighting with melee weapons.', fr: 'Combat avec des armes de mêlée.' }, masteries: ['Arme de Poigne', "d'Antipôle", 'de Parade', 'de Garde', 'Équilibrées', 'Flexibles'] },
-            DESARME: { id: 'DESARME', name: { en: '[Unarmed]', fr: '[Désarmé]' }, desc: { en: 'Fighting with bare hands and feet.', fr: 'Combat à mains et pieds nus.' }, masteries: ['Coup sans espace', 'Poings', 'Pieds', 'Coude', 'Genou', 'Corps'] },
-            IMPROVISE: { id: 'IMPROVISE', name: { en: '[Improvised]', fr: '[Improvisé]' }, desc: { en: 'Using makeshift weapons.', fr: 'Utilisation d\'armes de fortune.' }, masteries: ['Arme à coupures', 'à pieds', 'rondes', 'de mains', 'de paume', 'de lien', "Jet d'arme improvisée"] },
+            ARME: { id: 'ARME', name: { en: '[Armed]', fr: '[Armé]' }, desc: { en: 'All hand-held melee weapons. Includes grip weapons (on hands/fingers), antipole weapons (heavy heads like axes/maces), parry weapons (shields), guard weapons (swords), balanced weapons (spears/staffs), and flexible weapons (flails/whips).', fr: 'Toutes les armes de mêlée portées à la main. Inclut les armes de poigne (sur les mains/doigts), d\'antipôle (tête lourde comme haches/masses), de parade (boucliers), de garde (épées), équilibrées (lances/bâtons) et flexibles (fléaux/fouets).' }, masteries: [
+                { name: 'Arme de Poigne', desc: { en: 'Weapons on hands, fingers, or replacing the limb - bare fists included', fr: 'Armes sur les mains, doigts, ou remplaçant le membre - poings nus inclus' } },
+                { name: "Arme d'Antipôle", desc: { en: 'Heavy-headed weapons (axes, maces, hammers, halberds)', fr: 'Armes à tête lourde (haches, masses, marteaux, hallebardes)' } },
+                { name: 'Arme de Parade', desc: { en: 'Defensive weapons (shields, targes, bucklers, parrying daggers)', fr: 'Armes défensives (boucliers, targes, écus, dagues de parade)' } },
+                { name: 'Arme de Garde', desc: { en: 'Guard weapons', fr: 'Armes de garde' } },
+                { name: 'Armes Équilibrées', desc: { en: 'Blades (swords, rapiers), staffs, weapons with low center of gravity', fr: 'Lames (épées, rapières), bâtons, armes au centre de gravité bas' } },
+                { name: 'Armes Flexibles', desc: { en: 'Flexible-body weapons (chains, flails, whips, ropes)', fr: 'Armes à corps flexible (chaînes, fléaux, fouets, cordes)' } }
+            ] },
+            DESARME: { id: 'DESARME', name: { en: '[Unarmed]', fr: '[Désarmé]' }, desc: { en: 'All blows struck without weapons: fists, feet, elbows, knees, head, whole body. Includes close combat techniques and strikes without room to move.', fr: 'Tous les coups portés sans arme : poings, pieds, coudes, genoux, tête, corps entier. Inclut les techniques de combat rapproché et les coups sans espace pour se déplacer.' }, masteries: [
+                { name: 'Coup sans espace', desc: { en: 'Impulsive strikes without momentum, using the whole body in restricted space', fr: 'Coups impulsifs sans élan, utilisant le corps entier dans un espace restreint' } },
+                { name: 'Poings', desc: { en: 'All kinds of punches', fr: 'Coups de poing de toutes sortes' } },
+                { name: 'Pieds', desc: { en: 'Kicks, heel strikes, sweeps', fr: 'Coups de pied, de talon, balayages' } },
+                { name: 'Coude', desc: { en: 'Elbow strikes', fr: 'Coups de coude' } },
+                { name: 'Genou', desc: { en: 'Knee strikes', fr: 'Coups de genou' } },
+                { name: 'Corps', desc: { en: 'Headbutts, shoulder strikes, body charges', fr: 'Coups de tête, d\'épaule, charges corporelles' } }
+            ] },
+            IMPROVISE: { id: 'IMPROVISE', name: { en: '[Improvised]', fr: '[Improvisé]' }, desc: { en: 'Fighting with anything that isn\'t a conventional weapon: benches, beer mugs, bottles, tools, furniture, etc.', fr: 'Se battre avec tout ce qui n\'est pas une arme conventionnelle : bancs, chopes de bière, bouteilles, outils, mobilier, etc.' }, masteries: [
+                { name: 'Arme à coupures', desc: { en: 'Improvised cutting objects (broken glass, etc.)', fr: 'Objets tranchants improvisés (verre brisé, etc.)' } },
+                { name: 'Arme à pieds', desc: { en: 'Objects used with feet', fr: 'Objets utilisés avec les pieds' } },
+                { name: 'Arme rondes', desc: { en: 'Round or spherical objects', fr: 'Objets ronds ou sphériques' } },
+                { name: 'Arme de mains', desc: { en: 'Objects held in hand', fr: 'Objets tenus en main' } },
+                { name: 'Arme de paume', desc: { en: 'Flat objects held in palm', fr: 'Objets plats tenus dans la paume' } },
+                { name: 'Arme de lien', desc: { en: 'Ropes, chains, improvised bindings', fr: 'Cordes, chaînes, liens improvisés' } },
+                { name: "Jet d'arme improvisée", desc: { en: 'Throwing improvised objects', fr: 'Lancer des objets improvisés' } }
+            ] },
             // Puissance - Neutraliser
-            LUTTE: { id: 'LUTTE', name: { en: '[Wrestling]', fr: '[Lutte]' }, desc: { en: 'Grappling and ground fighting.', fr: 'Saisies et combat au sol.' }, masteries: ['Saisie', 'Bousculade', 'Mise à Terre', 'Projection', 'Soumission'] },
-            BOTTES: { id: 'BOTTES', name: { en: '[Techniques]', fr: '[Bottes]' }, desc: { en: 'Special combat techniques.', fr: 'Techniques de combat spéciales.' }, masteries: ['Bloquer', 'Agrippement', 'Entravement', 'Désarmement', "Prise d'arme", "Retournement d'arme"] },
-            RUSES: { id: 'RUSES', name: { en: '[Tricks]', fr: '[Ruses]' }, desc: { en: 'Deceptive combat maneuvers.', fr: 'Manœuvres de combat trompeuses.' }, masteries: ['Enchaînement', 'Feinter', 'Contre', 'Hébétement', 'Essouffler', 'Battement', 'Destruction', 'Postures', "Prises d'arme"] },
+            LUTTE: { id: 'LUTTE', name: { en: '[Wrestling]', fr: '[Lutte]' }, desc: { en: 'All armed or unarmed wrestling maneuver techniques: grabs, shoves, takedowns, immobilizations, submissions, disarms, weapon destruction, beats, etc.', fr: 'Toutes les techniques des manœuvres de lutte armée ou non : saisies, bousculades, mises à terre, immobilisations, soumissions, désarmements, destruction d\'arme, battements, etc.' }, masteries: [
+                { name: 'Saisie', desc: { en: 'Grabbing and holding an adversary or their limbs', fr: 'Attraper et maintenir un adversaire ou ses membres' } },
+                { name: 'Bousculade', desc: { en: 'Pushing, shoving, unbalancing', fr: 'Pousser, repousser, déséquilibrer' } },
+                { name: 'Mise à Terre', desc: { en: 'Knocking the adversary to the ground', fr: 'Faire tomber l\'adversaire au sol' } },
+                { name: 'Projection', desc: { en: 'Throwing the adversary over oneself or at distance', fr: 'Lancer l\'adversaire par-dessus soi ou à distance' } },
+                { name: 'Soumission', desc: { en: 'Painful immobilization techniques forcing surrender', fr: 'Techniques d\'immobilisation douloureuses forçant l\'abandon' } }
+            ] },
+            BOTTES: { id: 'BOTTES', name: { en: '[Techniques]', fr: '[Bottes]' }, desc: { en: 'Special combat techniques using the weapon in particular ways, beyond simple attacks.', fr: 'Techniques spéciales de combat utilisant l\'arme de manière particulière, au-delà des simples attaques.' }, masteries: [
+                { name: 'Bloquer', desc: { en: 'Stopping an attack with your weapon', fr: 'Arrêter une attaque avec son arme' } },
+                { name: 'Agrippement', desc: { en: 'Using weapon to hook adversary or their equipment', fr: 'Utiliser l\'arme pour accrocher l\'adversaire ou son équipement' } },
+                { name: 'Entravement', desc: { en: 'Hindering adversary\'s movements with weapon', fr: 'Gêner les mouvements de l\'adversaire avec l\'arme' } },
+                { name: 'Désarmement', desc: { en: 'Making adversary drop their weapon', fr: 'Faire lâcher son arme à l\'adversaire' } },
+                { name: "Prise d'arme", desc: { en: 'Seizing adversary\'s weapon', fr: 'S\'emparer de l\'arme de l\'adversaire' } },
+                { name: "Retournement d'arme", desc: { en: 'Using adversary\'s weapon against them', fr: 'Utiliser l\'arme de l\'adversaire contre lui' } }
+            ] },
+            RUSES: { id: 'RUSES', name: { en: '[Tricks]', fr: '[Ruses]' }, desc: { en: 'Feints, deceptions, and combat tactics to gain the advantage.', fr: 'Feintes, tromperies et tactiques de combat pour gagner l\'avantage.' }, masteries: [
+                { name: 'Enchaînement', desc: { en: 'Bonus when chaining assault actions', fr: 'Bonus en enchaînant les actions d\'assaut' } },
+                { name: 'Feinter', desc: { en: 'Deceiving with false movements', fr: 'Induire en erreur par de faux mouvements' } },
+                { name: 'Contre', desc: { en: 'Responding to an attack with an attack', fr: 'Répondre à une attaque par une attaque' } },
+                { name: 'Hébétement', desc: { en: 'Stunning or mentally destabilizing adversary', fr: 'Étourdir ou déstabiliser mentalement l\'adversaire' } },
+                { name: 'Essouffler', desc: { en: 'Tiring adversary through combat', fr: 'Fatiguer l\'adversaire par le combat' } },
+                { name: 'Battement', desc: { en: 'Striking opposing weapon to deflect it', fr: 'Frapper l\'arme adverse pour la dévier' } },
+                { name: 'Destruction', desc: { en: 'Damaging or breaking enemy weapon/equipment', fr: 'Abîmer ou briser l\'arme/équipement ennemi' } },
+                { name: 'Postures', desc: { en: 'Advantageous combat positions', fr: 'Positions de combat avantageuses' } },
+                { name: "Prises d'arme", desc: { en: 'Techniques for seizing a weapon in combat', fr: 'Techniques pour saisir une arme en combat' } }
+            ] },
             // Puissance - Tirer
-            BANDE: { id: 'BANDE', name: { en: '[Strung]', fr: '[Bandé]' }, desc: { en: 'Using bows and similar weapons.', fr: 'Utilisation d\'arcs et armes similaires.' }, masteries: ['Encordage (mettre la corde)', 'Surbandé', 'en Tirs Courbés', 'Tirs multiples'] },
-            PROPULSE: { id: 'PROPULSE', name: { en: '[Propelled]', fr: '[Propulsé]' }, desc: { en: 'Using crossbows and mechanical launchers.', fr: 'Utilisation d\'arbalètes et lanceurs mécaniques.' }, masteries: ['Tirs Rapprochés', 'Tirs Longue Distance', 'Tirs Imprévisibles', 'Tirs sur 360'] },
-            JETE: { id: 'JETE', name: { en: '[Thrown]', fr: '[Jeté]' }, desc: { en: 'Throwing weapons and objects.', fr: 'Lancer d\'armes et d\'objets.' }, masteries: ['de Paume', 'à Manche', 'Rattrapage de jet', 'Jets multiples'] },
+            BANDE: { id: 'BANDE', name: { en: '[Strung]', fr: '[Bandé]' }, desc: { en: 'All hand-drawn ranged weapons firing pellets or arrows: shortbows, longbows, recurve bows, repeating pendulum bows, etc.', fr: 'Toutes les armes à distance bandées à la main et tirant des billes ou flèches : arcs courts, longs, réfléchis, pendules à répétition, etc.' }, masteries: [
+                { name: 'Encordage', desc: { en: 'Quickly stringing the bow', fr: 'Mettre la corde rapidement' } },
+                { name: 'Surbandé', desc: { en: 'Drawing bow beyond limit for more power', fr: 'Bander l\'arc au-delà de sa limite pour plus de puissance' } },
+                { name: 'Tirs Courbés', desc: { en: 'Making arrow curve to avoid obstacles', fr: 'Faire courber la flèche pour éviter des obstacles' } },
+                { name: 'Tirs multiples', desc: { en: 'Firing multiple arrows simultaneously', fr: 'Tirer plusieurs flèches simultanément' } }
+            ] },
+            PROPULSE: { id: 'PROPULSE', name: { en: '[Propelled]', fr: '[Propulsé]' }, desc: { en: 'All ranged weapons using a propulsion mechanism: slings, atlatls, slingshots.', fr: 'Toutes les armes à distance utilisant un mécanisme de propulsion : frondes, propulseurs, lance-pierres.' }, masteries: [
+                { name: 'Tirs Rapprochés', desc: { en: 'Spinning vertically to shoot at close range', fr: 'Tournoyer verticalement pour tirer à courte distance' } },
+                { name: 'Tirs Longue Distance', desc: { en: 'Spinning laterally to shoot at long range', fr: 'Tournoyer latéralement pour tirer à longue distance' } },
+                { name: 'Tirs Imprévisibles', desc: { en: 'Spinning in figure-8 so targets don\'t know who\'s aimed at', fr: 'Tournoyer en figure de 8 pour que les cibles ne sachent pas qui est visé' } },
+                { name: 'Tirs sur 360', desc: { en: 'Spinning overhead to shoot in any direction', fr: 'Tournoyer au-dessus de soi pour tirer dans n\'importe quelle direction' } }
+            ] },
+            JETE: { id: 'JETE', name: { en: '[Thrown]', fr: '[Jeté]' }, desc: { en: 'All weapons thrown directly from the hand: knives, stars, axes, throwing javelins.', fr: 'Toutes les armes jetées directement de la main : couteaux, étoiles, haches, javelots de lancer.' }, masteries: [
+                { name: 'de Paume', desc: { en: 'Throwing weapons using fingers or palm (knives, stars, discs)', fr: 'Armes de jet tirées avec les doigts ou la paume (couteaux, étoiles, disques)' } },
+                { name: 'à Manche', desc: { en: 'Throwing weapons with handles (javelins, boomerangs, hatchets)', fr: 'Armes de jet ayant un manche (javelots, boomerangs, hachettes)' } },
+                { name: 'Rattrapage de jet', desc: { en: 'Catching projectiles or objects in flight', fr: 'Rattraper des projectiles ou objets en vol' } },
+                { name: 'Jets multiples', desc: { en: 'Throwing multiple projectiles simultaneously', fr: 'Lancer plusieurs projectiles simultanément' } }
+            ] },
             // Aisance - Réagir
-            FLUIDITE: { id: 'FLUIDITE', name: { en: '[Fluidity]', fr: '[Fluidité]' }, desc: { en: 'Smooth, flowing movements.', fr: 'Mouvements fluides et coulants.' }, masteries: ['Réactivité', 'Spontanéité', 'Rythmique', 'Feinter', 'Contrer'] },
-            ESQUIVE: { id: 'ESQUIVE', name: { en: '[Dodge]', fr: '[Esquive]' }, desc: { en: 'Avoiding attacks.', fr: 'Éviter les attaques.' }, masteries: ['Repositionnante', 'en Roulade', 'Préparée', 'Instinctive'] },
-            EVASION: { id: 'EVASION', name: { en: '[Evasion]', fr: '[Évasion]' }, desc: { en: 'Escaping from restraints.', fr: 'S\'échapper des entraves.' }, masteries: ['(Dés)Engagement', 'Faufilage', 'Déliement', 'Délivrement'] },
+            FLUIDITE: { id: 'FLUIDITE', name: { en: '[Fluidity]', fr: '[Fluidité]' }, desc: { en: 'Performing actions more quickly when pressed or limited by time or situation. Reactivity, timing, and perfect rhythm of actions.', fr: 'Faire les actions plus rapidement lorsque pressé ou limité par le temps ou la situation. La réactivité, le timing et le rythme parfait des actions.' }, masteries: [
+                { name: 'Réactivité', desc: { en: 'Adds dice to Reactivity roll giving first moments in Conflict', fr: 'Ajoute des dés au jet de Réactivité donnant les 1ers éclats d\'un Conflit' } },
+                { name: 'Spontanéité', desc: { en: 'Reduce stagger following Over-reactions', fr: 'Réduire le nombre d\'ébranlements suite à des Surréactions' } },
+                { name: 'Rythmique', desc: { en: 'Performing actions with perfect timing and rhythm, synchronizing moments', fr: 'Effectuer des actions avec un timing et un rythme parfaits, synchroniser ses éclats' } },
+                { name: 'Feinter', desc: { en: 'Deceiving with false movements to gain advantage', fr: 'Induire en erreur par de faux mouvements pour obtenir un avantage' } },
+                { name: 'Contrer', desc: { en: 'Immediately responding to an opposing action', fr: 'Répondre immédiatement à une action adverse' } }
+            ] },
+            ESQUIVE: { id: 'ESQUIVE', name: { en: '[Dodge]', fr: '[Esquive]' }, desc: { en: 'Avoidance of accidental or sudden damage through reflex, dexterity, and flair.', fr: 'Évitement des dégâts accidentels ou soudains par réflexe, doigté et flair.' }, masteries: [
+                { name: 'Repositionnante', desc: { en: 'Dodge that repositions you advantageously', fr: 'Esquive qui vous replace avantageusement' } },
+                { name: 'en Roulade', desc: { en: 'Dodge by rolling on the ground', fr: 'Esquive en roulant au sol' } },
+                { name: 'Préparée', desc: { en: 'Anticipated and planned dodge', fr: 'Esquive anticipée et planifiée' } },
+                { name: 'Instinctive', desc: { en: 'Pure reflex dodge', fr: 'Esquive purement réflexe' } }
+            ] },
+            EVASION: { id: 'EVASION', name: { en: '[Evasion]', fr: '[Évasion]' }, desc: { en: 'Freeing oneself from a grapple, an embrace, a grab, from beings climbing on us, etc.', fr: 'Se libérer d\'une lutte, d\'une étreinte, d\'une saisie, d\'êtres nous grimpant dessus, etc.' }, masteries: [
+                { name: '(Dés)Engagement', desc: { en: 'Quickly entering or exiting through enemy weapon range', fr: 'Sortir ou entrer rapidement à travers la portée de l\'arme ennemie' } },
+                { name: 'Faufilage', desc: { en: 'Maneuvering in complex environments, tight spaces, crowded rooms', fr: 'Manœuvrer dans des environnements complexes, espaces restreints, pièces bondées' } },
+                { name: 'Déliement', desc: { en: 'Untangling or freeing from bindings (ropes, vines)', fr: 'Se démêler ou se libérer des liens (cordes, lianes, vignes)' } },
+                { name: 'Délivrement', desc: { en: 'Untangling or freeing from others\' force and holds (wrestling)', fr: 'Se démêler ou se libérer de la force et des prises d\'autrui (lutte)' } }
+            ] },
             // Aisance - Dérober
-            ESCAMOTAGE: { id: 'ESCAMOTAGE', name: { en: '[Sleight]', fr: '[Escamotage]' }, desc: { en: 'Pickpocketing and palming.', fr: 'Vol à la tire et escamotage.' }, masteries: ['Espionnant', "d'Objets portés", 'de Véhicules', 'de Créatures'] },
-            ILLUSIONS: { id: 'ILLUSIONS', name: { en: '[Illusions]', fr: '[Illusions]' }, desc: { en: 'Creating visual deceptions.', fr: 'Créer des illusions visuelles.' }, masteries: ['Trichantes', 'Spectaculaires', 'de Diversion', 'de Disparition'] },
-            DISSIMULATION: { id: 'DISSIMULATION', name: { en: '[Concealment]', fr: '[Dissimulation]' }, desc: { en: 'Hiding oneself and objects.', fr: 'Se cacher soi-même et cacher des objets.' }, masteries: ['Se cacher', 'Cacher des Choses', 'Déplacement silencieux', 'Embuscades/Filatures'] },
+            ESCAMOTAGE: { id: 'ESCAMOTAGE', name: { en: '[Sleight]', fr: '[Escamotage]' }, desc: { en: 'Pickpocketing, diverting attention when close to target, hiding objects on oneself or others, emptying pockets, etc.', fr: 'Vol à la tire, diversion de l\'attention lorsque proche de la cible, cache d\'objet sur soi ou autrui, faire les poches, etc.' }, masteries: [
+                { name: 'Espionnant', desc: { en: 'Discreetly stealing important information', fr: 'Voler des informations importantes de façon discrète' } },
+                { name: "d'Objets portés", desc: { en: 'Stealing objects from a person', fr: 'Dérober des objets sur une personne' } },
+                { name: 'de Véhicules', desc: { en: 'Taking discreet control of a vehicle', fr: 'Prendre le contrôle discret d\'un véhicule' } },
+                { name: 'de Créatures', desc: { en: 'Stealing a creature or person without being discovered', fr: 'Voler une créature ou une personne sans être découvert' } }
+            ] },
+            ILLUSIONS: { id: 'ILLUSIONS', name: { en: '[Illusions]', fr: '[Illusions]' }, desc: { en: 'Prestidigitation, cheating, sleight of hand, stage magic. The ability to deceive the observer using illusion techniques.', fr: 'Prestidigitation, tricherie, passe-passe, magie de scène. La capacité à tromper l\'observateur en utilisant des techniques d\'illusion.' }, masteries: [
+                { name: 'Trichantes', desc: { en: 'Using illusions to cheat at games', fr: 'Utiliser des illusions pour tricher aux jeux' } },
+                { name: 'Spectaculaires', desc: { en: 'Staging stunning visual shows', fr: 'Mise en scène de spectacles visuels époustouflants' } },
+                { name: 'de Diversion', desc: { en: 'Creating non-existent images or sounds to distract attention', fr: 'Créer des images ou sons inexistants pour distraire l\'attention' } },
+                { name: 'de Disparition', desc: { en: 'Making an object or person appear to disappear', fr: 'Faire croire à la disparition d\'un objet ou d\'une personne' } }
+            ] },
+            DISSIMULATION: { id: 'DISSIMULATION', name: { en: '[Concealment]', fr: '[Dissimulation]' }, desc: { en: 'Camouflage in shadows and silence, the art of not being noticed.', fr: 'Camouflage dans les ombres et le silence, l\'art de ne pas se faire remarquer.' }, masteries: [
+                { name: 'Se cacher', desc: { en: 'Becoming invisible using environmental cover', fr: 'Se rendre invisible en utilisant la couverture de l\'environnement' } },
+                { name: 'Cacher des Choses', desc: { en: 'Hiding objects or information', fr: 'Masquer des objets ou des informations' } },
+                { name: 'Déplacement silencieux', desc: { en: 'Moving without being spotted, without making noise', fr: 'Se déplacer sans être repéré, sans faire de bruits' } },
+                { name: 'Embuscades/Filatures', desc: { en: 'Planning and executing ambushes or discreet tails', fr: 'Planifier et exécuter des embuscades ou filatures discrètes' } }
+            ] },
             // Aisance - Coordonner
-            GESTUELLE: { id: 'GESTUELLE', name: { en: '[Gestures]', fr: '[Gestuelle]' }, desc: { en: 'Expressive body movements.', fr: 'Mouvements corporels expressifs.' }, masteries: ['Danse', 'Posture (au combat)', 'Pantomime', 'Rituelle', 'Athlétique', 'Improvisée'] },
-            MINUTIE: { id: 'MINUTIE', name: { en: '[Meticulousness]', fr: '[Minutie]' }, desc: { en: 'Careful, precise handling.', fr: 'Manipulation soigneuse et précise.' }, masteries: ['Délicatesse', 'Doigté', 'Impact', 'Impulsion'] },
-            EQUILIBRE: { id: 'EQUILIBRE', name: { en: '[Balance]', fr: '[Équilibre]' }, desc: { en: 'Maintaining stability.', fr: 'Maintenir l\'équilibre.' }, masteries: ['Stabilisant', 'en Sols difficiles', 'Funambule', 'Jonglage', 'Surchargé'] },
+            GESTUELLE: { id: 'GESTUELLE', name: { en: '[Gestures]', fr: '[Gestuelle]' }, desc: { en: 'Graceful or imposing movements, acrobatic, rhythmic. Body expression and dance.', fr: 'Mouvements grâcieux ou imposants, acrobatiques, rythmiques. Expression corporelle et danse.' }, masteries: [
+                { name: 'Danse', desc: { en: 'Graceful and attractive movements, dance performance', fr: 'Mouvements gracieux et attractifs, performance de danse' } },
+                { name: 'Posture (au combat)', desc: { en: 'Advantageous body positions in combat', fr: 'Positions corporelles avantageuses en combat' } },
+                { name: 'Pantomime', desc: { en: 'Expression without words, mime', fr: 'Expression sans paroles, mime' } },
+                { name: 'Rituelle', desc: { en: 'Dancing according to religious or spiritual traditions', fr: 'Danser selon des traditions religieuses ou spirituelles' } },
+                { name: 'Athlétique', desc: { en: 'Dancing with quick and dynamic movements', fr: 'Danser avec des mouvements rapides et dynamiques' } },
+                { name: 'Improvisée', desc: { en: 'Dancing without preestablished plan, with fluidity and creativity', fr: 'Danser sans plan préétabli, avec fluidité et créativité' } }
+            ] },
+            MINUTIE: { id: 'MINUTIE', name: { en: '[Meticulousness]', fr: '[Minutie]' }, desc: { en: 'The ability to direct power in a graceful and precise way.', fr: 'La capacité à diriger la puissance d\'une façon grâcieuse et précise.' }, masteries: [
+                { name: 'Délicatesse', desc: { en: 'Working with extreme delicacy, handling fragile objects', fr: 'Travailler avec extrême délicatesse, manier des objets fragiles' } },
+                { name: 'Doigté', desc: { en: 'Controlling applied force with great finger precision', fr: 'Contrôler la force exercée avec une grande précision des doigts' } },
+                { name: 'Impact', desc: { en: 'Controlling or adapting blow power to inflict desired force', fr: 'Contrôler ou adapter la puissance d\'un coup pour infliger la force désirée' } },
+                { name: 'Impulsion', desc: { en: 'Synchronizing all muscles to produce greatest force with minimum movement', fr: 'Faire concorder tous ses muscles pour produire la plus grande force avec le minimum de mouvement' } }
+            ] },
+            EQUILIBRE: { id: 'EQUILIBRE', name: { en: '[Balance]', fr: '[Équilibre]' }, desc: { en: 'Tightrope walking, stability, mountaineering, maintaining balance in all circumstances.', fr: 'Marche sur fil, stabilité, alpinisme, maintien de l\'équilibre en toutes circonstances.' }, masteries: [
+                { name: 'Stabilisant', desc: { en: 'Maintaining balance to stabilize after being knocked down, shoved', fr: 'Maintenir l\'équilibre pour se stabiliser après avoir été renversé, bousculé' } },
+                { name: 'en Sols difficiles', desc: { en: 'Keeping balance on difficult, sloped, slippery surfaces', fr: 'Garder l\'équilibre sur surfaces difficiles, pentues, glissantes' } },
+                { name: 'Funambule', desc: { en: 'Performing acrobatics on rope, wire, or very narrow ground', fr: 'Effectuer des acrobaties sur une corde, un fil, ou un sol très étroit' } },
+                { name: 'Jonglage', desc: { en: 'Manipulating multiple objects at once without dropping them', fr: 'Manipuler plusieurs objets en même temps sans les faire tomber' } },
+                { name: 'Surchargé', desc: { en: 'Carrying loads with balance using entire body', fr: 'Porter des charges avec équilibre en utilisant tout son corps' } }
+            ] },
             // Précision - Manier
-            VISEE: { id: 'VISEE', name: { en: '[Aim]', fr: '[Visée]' }, desc: { en: 'Precise aiming and targeting.', fr: 'Visée et ciblage précis.' }, masteries: ["Mécanismes d'armement", 'Tir à longue distance', 'Tir de soutien', 'en Position difficile', 'Visée multiple'] },
-            CONDUITE: { id: 'CONDUITE', name: { en: '[Driving]', fr: '[Conduite]' }, desc: { en: 'Operating vehicles.', fr: 'Conduite de véhicules.' }, masteries: ['Propulsion personnelle', 'Tirée par créatures', 'dans le Risque', 'la Terre', 'les Liquides', 'les Airs', 'le Vide', 'sur Terrain difficile', 'sur Pistes/Rails', 'sur Liquides (glisse)'] },
-            HABILETE: { id: 'HABILETE', name: { en: '[Deftness]', fr: '[Habileté]' }, desc: { en: 'Skillful weapon handling.', fr: 'Maniement habile des armes.' }, masteries: ['Une main', 'Deux mains', 'Ambidextrie', 'Recharge/Réarmement', 'Munition en Main', 'Parade'] },
+            VISEE: { id: 'VISEE', name: { en: '[Aim]', fr: '[Visée]' }, desc: { en: 'Aiming and firing all ranged weapons using a mechanism (crossbows, blowguns, firearms, etc.), light or heavy, simple or repeating.', fr: 'La visée et le tir de toutes les armes à distance utilisant un mécanisme (arbalètes, sarbacanes, fusils, etc.), légères ou lourdes, simples ou à répétition.' }, masteries: [
+                { name: "Mécanismes d'armement", desc: { en: 'Reduce inertia needed for weapon rearming', fr: 'Réduire l\'inertie nécessaire au réarmement de l\'arme' } },
+                { name: 'Tir à longue distance', desc: { en: 'Aiming beyond Range factor', fr: 'Viser au-delà du facteur de Portée' } },
+                { name: 'Tir de soutien', desc: { en: 'Covering an ally effortlessly, shooting in reaction', fr: 'Couvrir un allié sans efforts, tirer en réaction' } },
+                { name: 'en Position difficile', desc: { en: 'Shooting crouched, prone, through arrow slits', fr: 'Tirer accroupi, couché, dans des meurtrières' } },
+                { name: 'Visée multiple', desc: { en: 'Firing multiple munitions simultaneously', fr: 'Tirer plusieurs munitions simultanément' } }
+            ] },
+            CONDUITE: { id: 'CONDUITE', name: { en: '[Driving]', fr: '[Conduite]' }, desc: { en: 'Vehicles, carriages, or others. Aerial stability, gliding, twirling. Everything concerning vehicle piloting.', fr: 'Véhicules, carrosses ou autres. Stabilité aérienne, planer, virevolter. Tout ce qui concerne le pilotage de véhicules.' }, masteries: [
+                { name: 'Propulsion personnelle', desc: { en: 'Pedals, skis, boards, oars', fr: 'À pédales, sur skis, sur planches, à rames' } },
+                { name: 'Tirée par créatures', desc: { en: 'Carts, wagons, carriages, chariots', fr: 'Chariots, wagons, carrosses, chars' } },
+                { name: 'dans le Risque', desc: { en: 'Risky driving, shortcuts, races', fr: 'Conduire de façon risquée, raccourcis, courses' } },
+                { name: 'la Terre', desc: { en: 'Drilling, boring, in tunnels, caves', fr: 'Creusant, forant, dans les tunnels, cavernes' } },
+                { name: 'les Liquides', desc: { en: 'Navigation on liquid surfaces (lakes, rivers)', fr: 'Navigation sur surfaces liquides (lacs, rivières)' } },
+                { name: 'les Airs', desc: { en: 'High altitude flight and in winds', fr: 'Vol en haute altitude et dans les vents' } },
+                { name: 'le Vide', desc: { en: 'Piloting in space with gravity and propulsion knowledge', fr: 'Piloter dans l\'espace avec connaissance de la gravité et propulsion' } },
+                { name: 'sur Terrain difficile', desc: { en: 'All-terrain, mountainous, steep', fr: 'Tout-terrains, montagnards, escarpé' } },
+                { name: 'sur Pistes/Rails', desc: { en: 'Wagons, trains, guided vehicles', fr: 'Wagons, trains, véhicules guidés' } },
+                { name: 'sur Liquides (glisse)', desc: { en: 'Gliding on water, mud, sand', fr: 'Glisser sur l\'eau, la boue, le sable' } }
+            ] },
+            HABILETE: { id: 'HABILETE', name: { en: '[Deftness]', fr: '[Habileté]' }, desc: { en: 'The simple ability to manipulate and master all things in hands or other forms of prehension.', fr: 'La simple capacité à manipuler et maîtriser toutes les choses en mains ou autres formes de préhension.' }, masteries: [
+                { name: 'Une main', desc: { en: 'Handling a tool or weapon in one hand', fr: 'Manier un outil ou une arme dans une seule main' } },
+                { name: 'Deux mains', desc: { en: 'Tools and weapons with handle just long enough for two hands', fr: 'Outils et armes avec un manche juste assez long pour deux mains' } },
+                { name: 'Ambidextrie', desc: { en: 'Using both hands equally', fr: 'Utiliser les deux mains de façon égale' } },
+                { name: 'Recharge/Réarmement', desc: { en: 'Reloading ammunition and rearming ranged weapons', fr: 'Recharger les munitions et réarmer les armes à distance' } },
+                { name: 'Munition en Main', desc: { en: 'Increasing ammunition carried in hand', fr: 'Augmenter le nombre de munitions portées en main' } },
+                { name: 'Parade', desc: { en: 'Using object to block', fr: 'Utiliser l\'objet pour bloquer' } }
+            ] },
             // Précision - Façonner
-            DEBROUILLARDISE: { id: 'DEBROUILLARDISE', name: { en: '[Resourcefulness]', fr: '[Débrouillardise]' }, desc: { en: 'Making do with what\'s available.', fr: 'Se débrouiller avec ce qui est disponible.' }, masteries: ['Monte de camp', 'Orientation', 'Allumage/Extinction', 'Camouflage'] },
-            BRICOLAGE: { id: 'BRICOLAGE', name: { en: '[Tinkering]', fr: '[Bricolage]' }, desc: { en: 'Repairing and modifying items.', fr: 'Réparer et modifier des objets.' }, masteries: ['Contrefaçon', 'Raccommodage', 'Amélioration', 'Improvisation'] },
-            SAVOIR_FAIRE: { id: 'SAVOIR_FAIRE', name: { en: '[Know-How]', fr: '[Savoir-Faire]' }, desc: { en: 'Specialized crafting knowledge.', fr: 'Connaissances artisanales spécialisées.' }, masteries: ['Alimentaire', 'des Graisses', 'du Papier', 'des Plantes', 'du Textile', 'du Cuir', 'du Verre', 'de la Construction', 'des Métaux', 'des Richesses', 'du Bois', 'de la Lutherie', 'des Arts plastiques', 'des Arts de dessein', 'de la Récolte'] },
+            DEBROUILLARDISE: { id: 'DEBROUILLARDISE', name: { en: '[Resourcefulness]', fr: '[Débrouillardise]' }, desc: { en: 'Preparation and survival methods for any journey\'s needs: setting up camp, orientation, precautions.', fr: 'Méthodes de préparation et de survie pour les besoins de tout voyage : monter le camp, orientation, précautions.' }, masteries: [
+                { name: 'Monte de camp', desc: { en: 'Setting up an efficient camp', fr: 'Établir un campement efficace' } },
+                { name: 'Orientation', desc: { en: 'Finding your bearings and way', fr: 'Se repérer et trouver son chemin' } },
+                { name: 'Allumage/Extinction', desc: { en: 'Creating and controlling fire', fr: 'Créer et contrôler le feu' } },
+                { name: 'Camouflage', desc: { en: 'Concealing a place or objects', fr: 'Dissimuler un lieu ou des objets' } }
+            ] },
+            BRICOLAGE: { id: 'BRICOLAGE', name: { en: '[Tinkering]', fr: '[Bricolage]' }, desc: { en: 'Counterfeiting, improvement, repair, and improvisation of objects and tools.', fr: 'Contrefaçon, amélioration, réparation et improvisation d\'objets et d\'outils.' }, masteries: [
+                { name: 'Contrefaçon', desc: { en: 'Creating copies of objects', fr: 'Créer des copies d\'objets' } },
+                { name: 'Raccommodage', desc: { en: 'Repairing damaged objects', fr: 'Réparer des objets endommagés' } },
+                { name: 'Amélioration', desc: { en: 'Improving an object\'s capabilities', fr: 'Améliorer les capacités d\'un objet' } },
+                { name: 'Improvisation', desc: { en: 'Creating objects with makeshift materials', fr: 'Créer des objets avec des matériaux de fortune' } }
+            ] },
+            SAVOIR_FAIRE: { id: 'SAVOIR_FAIRE', name: { en: '[Know-How]', fr: '[Savoir-Faire]' }, desc: { en: 'All physical and manual practice of an art. Knowing how to do things, without necessarily knowing why it works—the descriptive and active technique. Linked to repair, maintenance, quality, precision, and craftsmanship consistency.', fr: 'Toute pratique physique et manuelle d\'un art. Savoir-faire ces choses, sans pour autant connaître les vraies raisons de pourquoi une telle chose fonctionne - la technique, descriptive et active. Lié à la réparation, l\'entretien, la qualité, la précision et la constance de l\'artisanat.' }, masteries: [
+                { name: 'Alimentaire', desc: { en: 'Food preparation', fr: 'Préparation de nourriture' } },
+                { name: 'des Graisses', desc: { en: 'Working with oils and fats', fr: 'Travail des huiles et graisses' } },
+                { name: 'du Papier', desc: { en: 'Paper manufacture and work', fr: 'Fabrication et travail du papier' } },
+                { name: 'des Plantes', desc: { en: 'Plant work', fr: 'Travail des végétaux' } },
+                { name: 'du Textile', desc: { en: 'Weaving, sewing', fr: 'Tissage, couture' } },
+                { name: 'du Cuir', desc: { en: 'Tanning and leatherwork', fr: 'Tannage et travail du cuir' } },
+                { name: 'du Verre', desc: { en: 'Glassblowing and glasswork', fr: 'Soufflage et travail du verre' } },
+                { name: 'de la Construction', desc: { en: 'Building, masonry', fr: 'Bâtiment, maçonnerie' } },
+                { name: 'des Métaux', desc: { en: 'Forging, metallurgy', fr: 'Forge, métallurgie' } },
+                { name: 'des Richesses', desc: { en: 'Jewelry, goldsmithing', fr: 'Joaillerie, orfèvrerie' } },
+                { name: 'du Bois', desc: { en: 'Carpentry, cabinetmaking', fr: 'Menuiserie, ébénisterie' } },
+                { name: 'de la Lutherie', desc: { en: 'Instrument making', fr: 'Fabrication d\'instruments' } },
+                { name: 'des Arts plastiques', desc: { en: 'Sculpture, modeling', fr: 'Sculpture, modelage' } },
+                { name: 'des Arts de dessein', desc: { en: 'Drawing, painting', fr: 'Dessin, peinture' } },
+                { name: 'de la Récolte', desc: { en: 'Gathering and harvesting techniques', fr: 'Techniques de cueillette et récolte' } }
+            ] },
             // Précision - Fignoler
-            ARTIFICES: { id: 'ARTIFICES', name: { en: '[Devices]', fr: '[Artifices]' }, desc: { en: 'Working with explosive devices.', fr: 'Manipulation d\'engins explosifs.' }, masteries: ['Amorçage', 'Désamorçage', 'Enfumants', 'Explosifs'] },
-            SECURITE: { id: 'SECURITE', name: { en: '[Security]', fr: '[Sécurité]' }, desc: { en: 'Locks and security systems.', fr: 'Serrures et systèmes de sécurité.' }, masteries: ['Dévérouillage', 'Verrouillage', 'Copie de serrure', 'Copie de Clef'] },
-            CASSE_TETES: { id: 'CASSE_TETES', name: { en: '[Puzzles]', fr: '[Casse-Têtes]' }, desc: { en: 'Solving complex puzzles.', fr: 'Résoudre des casse-têtes complexes.' }, masteries: ["Nœuds d'Attelage", 'de Saisine', 'de Coude', 'de Boucle', 'Épissure de corde', 'Casse-têtes', 'Craque-coffre', 'Puzzles'] },
+            ARTIFICES: { id: 'ARTIFICES', name: { en: '[Devices]', fr: '[Artifices]' }, desc: { en: 'Priming and defusing traps or bombs, setting snares.', fr: 'Amorçage et désamorçage de pièges ou de bombes, pose de trappes.' }, masteries: [
+                { name: 'Amorçage', desc: { en: 'Triggering devices in controlled manner', fr: 'Déclencher des dispositifs de manière contrôlée' } },
+                { name: 'Désamorçage', desc: { en: 'Neutralizing explosive devices', fr: 'Neutraliser les dispositifs explosifs' } },
+                { name: 'Enfumants', desc: { en: 'Using substances to generate smoke', fr: 'Utiliser des substances pour générer de la fumée' } },
+                { name: 'Explosifs', desc: { en: 'Making and handling explosive substances', fr: 'Fabriquer et manipuler des substances explosives' } }
+            ] },
+            SECURITE: { id: 'SECURITE', name: { en: '[Security]', fr: '[Sécurité]' }, desc: { en: 'Lockpicking, locking, unlocking, and all locksmithing or copying of keys or locks.', fr: 'Crochetage, verrouillage, déverrouillage et toute serrurerie ou copie de clefs ou de serrures.' }, masteries: [
+                { name: 'Déverrouillage', desc: { en: 'Opening doors and locks without key', fr: 'Ouvrir des portes et verrous sans clé' } },
+                { name: 'Verrouillage', desc: { en: 'Securing a closure with a lock', fr: 'Sécuriser une fermeture à l\'aide d\'un verrou' } },
+                { name: 'Copie de serrure', desc: { en: 'Duplicating a lock', fr: 'Dupliquer une serrure' } },
+                { name: 'Copie de Clef', desc: { en: 'Duplicating a key', fr: 'Dupliquer une clé' } }
+            ] },
+            CASSE_TETES: { id: 'CASSE_TETES', name: { en: '[Puzzles]', fr: '[Casse-Têtes]' }, desc: { en: 'Solving knots, puzzles, and other enigmas requiring both dexterity and intellect.', fr: 'Résolution des nœuds, des puzzles et autres énigmes nécessitant autant un doigté qu\'une forme d\'intellect.' }, masteries: [
+                { name: "Nœuds d'Attelage", desc: { en: 'Knots for attaching rope to an object', fr: 'Nœuds pour attacher une corde à un objet' } },
+                { name: 'de Saisine', desc: { en: 'Knots for attaching objects together', fr: 'Nœuds pour attacher des objets ensemble' } },
+                { name: 'de Coude', desc: { en: 'Knots for attaching ropes together', fr: 'Nœuds pour attacher des cordes ensemble' } },
+                { name: 'de Boucle', desc: { en: 'Knots to create attachment point or grip', fr: 'Nœuds pour créer un point d\'attache ou une prise' } },
+                { name: 'Épissure de corde', desc: { en: 'Forming semi-permanent joints between ropes', fr: 'Formation de joints semi-permanents entre cordes' } },
+                { name: 'Casse-têtes', desc: { en: 'Understanding complex puzzle mechanisms', fr: 'Comprendre les mécanismes complexes des casse-têtes' } },
+                { name: 'Craque-coffre', desc: { en: 'Understanding safe security mechanisms', fr: 'Comprendre les mécanismes de sécurité des coffres' } },
+                { name: 'Puzzles', desc: { en: 'Solving physical puzzles', fr: 'Résoudre des puzzles physiques' } }
+            ] },
             // Athlétisme - Traverser
-            PAS: { id: 'PAS', name: { en: '[Step]', fr: '[Pas]' }, desc: { en: 'Walking and running.', fr: 'Marcher et courir.' }, masteries: ['Ramper', 'Marcher', 'Courir', 'Charger', 'Pédaler'] },
-            GRIMPE: { id: 'GRIMPE', name: { en: '[Climb]', fr: '[Grimpe]' }, desc: { en: 'Scaling surfaces.', fr: 'Escalader des surfaces.' }, masteries: ['Montagnard', 'Glaciaire', 'Descendant', 'en Rappel', 'sur Créature'] },
-            ACROBATIE: { id: 'ACROBATIE', name: { en: '[Acrobatics]', fr: '[Acrobatie]' }, desc: { en: 'Aerial maneuvers and tumbling.', fr: 'Manœuvres aériennes et acrobaties.' }, masteries: ['Aérienne', 'Sauts périlleux', 'Chuter', 'Contorsionniste'] },
+            PAS: { id: 'PAS', name: { en: '[Step]', fr: '[Pas]' }, desc: { en: 'Walking, running, jogging, crawling, marathon. Also flight for airborne beings or movement without intermediaries (space).', fr: 'Marche, course, jogging, rampe, marathon. Aussi le vol pour ceux dans les airs ou le déplacement sans intermédiaires (espace).' }, masteries: [
+                { name: 'Ramper', desc: { en: 'Crawling on belly to avoid obstacles and enemies', fr: 'Se déplacer à plat ventre pour éviter les obstacles et ennemis' } },
+                { name: 'Marcher', desc: { en: 'Walking stably to cover long distances', fr: 'Se déplacer en marchant de manière stable pour parcourir de longues distances' } },
+                { name: 'Courir', desc: { en: 'Moving quickly to reach destinations or pursue', fr: 'Se déplacer rapidement pour atteindre des destinations ou poursuivre' } },
+                { name: 'Charger', desc: { en: 'Moving at maximum speed for brief emergencies', fr: 'Se déplacer à vitesse maximale pour de brèves périodes d\'urgence' } },
+                { name: 'Pédaler', desc: { en: 'Moving using rotating mechanisms and pedals', fr: 'Se déplacer en utilisant des mécanismes rotatifs et pédales' } }
+            ] },
+            GRIMPE: { id: 'GRIMPE', name: { en: '[Climb]', fr: '[Grimpe]' }, desc: { en: 'Climbing trees, mountains, glaciers, or other more or less smooth, sticky surfaces, even on beings themselves.', fr: 'Grimpe dans les arbres, montagnes, glaciers ou autres surfaces plus ou moins lisses, collantes, voire sur des êtres eux-mêmes.' }, masteries: [
+                { name: 'Montagnard', desc: { en: 'Mountain climbing', fr: 'Escalade en montagne' } },
+                { name: 'Glaciaire', desc: { en: 'Ice climbing', fr: 'Escalade sur glace' } },
+                { name: 'Descendant', desc: { en: 'Controlled descent', fr: 'Descente contrôlée' } },
+                { name: 'en Rappel', desc: { en: 'Rope descent', fr: 'Descente avec corde' } },
+                { name: 'sur Créature', desc: { en: 'Climbing on a living being', fr: 'Grimper sur un être vivant' } }
+            ] },
+            NATATION: { id: 'NATATION', name: { en: '[Swimming]', fr: '[Natation]' }, desc: { en: 'Swimming, marine rescue, drowning prevention, floating in place for extended periods.', fr: 'Nager, secourisme marin, prévention de la noyade, flotter sur place et longtemps.' }, masteries: [
+                { name: 'Plongeant', desc: { en: 'Underwater diving', fr: 'Plongée sous-marine' } },
+                { name: 'Contre-courant', desc: { en: 'Swimming against the current', fr: 'Nager contre le courant' } },
+                { name: 'de Compétition', desc: { en: 'Fast and technical swimming', fr: 'Nage rapide et technique' } },
+                { name: 'Flotter surplace', desc: { en: 'Staying still at the surface', fr: 'Rester immobile à la surface' } },
+                { name: 'Secourisme', desc: { en: 'Water rescue', fr: 'Sauvetage en milieu aquatique' } },
+                { name: 'Bataille immergée', desc: { en: 'Underwater combat', fr: 'Combat sous l\'eau' } }
+            ] },
             // Athlétisme - Efforcer
-            POID: { id: 'POID', name: { en: '[Weight]', fr: '[Poid]' }, desc: { en: 'Lifting and carrying.', fr: 'Soulever et porter.' }, masteries: ['Tirer & Pousser', 'Soulever & Ouvrir', 'Porter', 'Lancer', 'Supporter (Équiper)'] },
-            SAUT: { id: 'SAUT', name: { en: '[Jump]', fr: '[Saut]' }, desc: { en: 'Leaping and jumping.', fr: 'Sauter et bondir.' }, masteries: ['Sans élan', 'Précis', 'en Longueur', 'en Hauteur', 'de Paroi', 'à la Perche'] },
-            NATATION: { id: 'NATATION', name: { en: '[Swimming]', fr: '[Natation]' }, desc: { en: 'Moving through water.', fr: 'Se déplacer dans l\'eau.' }, masteries: ['Plongeant', 'Contre-courant', 'de Compétition', 'Flotter surplace', 'Secourisme', 'Bataille immergée'] },
+            PORT: { id: 'PORT', name: { en: '[Carry]', fr: '[Port]' }, desc: { en: 'Carrying, equipping, pushing, pulling, lifting, pressing, opening, closing, throwing any weight or thing with force.', fr: 'Porter, équiper, pousser, tirer, soulever, appuyer, ouvrir, fermer, jeter tout poids ou chose avec force.' }, masteries: [
+                { name: 'Tirer & Pousser', desc: { en: 'Handling heavy objects with controlled force', fr: 'Manier les objets lourds avec force contrôlée' } },
+                { name: 'Soulever & Ouvrir', desc: { en: 'Lifting and opening heavy objects with maximum efficiency', fr: 'Soulever et ouvrir les objets pesants avec efficacité maximale' } },
+                { name: 'Porter', desc: { en: 'Carrying heavy loads over long distances', fr: 'Transporter des charges lourdes sur de longues distances' } },
+                { name: 'Lancer', desc: { en: 'Throwing objects with precision and force', fr: 'Jeter des objets avec précision et force' } },
+                { name: 'Supporter (Équiper)', desc: { en: 'Wearing heavy equipment comfortably, minimizing movement restrictions', fr: 'Porter des équipements lourds confortablement, minimiser les restrictions de mouvements' } }
+            ] },
+            SAUT: { id: 'SAUT', name: { en: '[Jump]', fr: '[Saut]' }, desc: { en: 'High jump, long jump, standing jump, etc.', fr: 'Saut en hauteur, en longueur, à pieds joints, etc.' }, masteries: [
+                { name: 'Sans élan', desc: { en: 'Jumping without running start', fr: 'Effectuer des sauts sans départ, sans courir' } },
+                { name: 'Précis', desc: { en: 'Precise and controlled jumps, landing exactly where desired', fr: 'Faire des sauts précis et contrôlés, atterrir exactement où souhaité' } },
+                { name: 'en Longueur', desc: { en: 'Covering long distance in a single jump', fr: 'Couvrir une longue distance en un seul saut' } },
+                { name: 'en Hauteur', desc: { en: 'Jumping high in the air', fr: 'Sauter haut dans les airs' } },
+                { name: 'de Paroi', desc: { en: 'Wall jumping to reach new heights', fr: 'Sauter des murs pour atteindre de nouvelles hauteurs' } },
+                { name: 'à la Perche', desc: { en: 'Jumping using a pole for support', fr: 'Saut en prenant appui sur une perche' } }
+            ] },
+            FOUISSAGE: { id: 'FOUISSAGE', name: { en: '[Burrowing]', fr: '[Fouissage]' }, desc: { en: 'Digging and moving through ground, or through liquids too dense for normal swimming.', fr: 'Creuser et se déplacer dans les sols, ou dans les liquides trop denses pour y nager normalement.' }, masteries: [
+                { name: 'Viscosité & Liquides', desc: { en: 'Moving through thick liquids', fr: 'Se déplacer dans des liquides épais' } },
+                { name: 'Sables & Granulaires', desc: { en: 'Digging in sand and granular materials', fr: 'Creuser dans le sable et matériaux granulaires' } },
+                { name: 'Terres & Gravats', desc: { en: 'Digging in earth and rubble', fr: 'Creuser dans la terre et les gravats' } },
+                { name: 'Roches & Solides', desc: { en: 'Digging in rock and solid materials', fr: 'Creuser dans la roche et matériaux solides' } }
+            ] },
             // Athlétisme - Manœuvrer
-            VOL: { id: 'VOL', name: { en: '[Flight]', fr: '[Vol]' }, desc: { en: 'Flying and gliding.', fr: 'Voler et planer.' }, masteries: ['Planer', 'Piquer', 'Flotter', 'Poussée'] },
-            FOUISSAGE: { id: 'FOUISSAGE', name: { en: '[Burrowing]', fr: '[Fouissage]' }, desc: { en: 'Digging and tunneling.', fr: 'Creuser et faire des tunnels.' }, masteries: ['Viscosité & Liquides', 'Sables & Granulaires', 'Terres & Gravats', 'Roches & Solides'] },
-            CHEVAUCHEMENT: { id: 'CHEVAUCHEMENT', name: { en: '[Riding]', fr: '[Chevauchement]' }, desc: { en: 'Mounted movement.', fr: 'Déplacement à cheval.' }, masteries: ['Montée en selle', 'Déplacement monté', 'Manœuvres montées', 'Agissement monté'] },
+            VOL: { id: 'VOL', name: { en: '[Flight]', fr: '[Vol]' }, desc: { en: 'Ability to move through the air, whether by wings, magical, or mechanical means.', fr: 'Capacité de se déplacer dans les airs, que ce soit par des ailes, des moyens magiques ou mécaniques.' }, masteries: [
+                { name: 'Planer', desc: { en: 'Gliding through air without flapping', fr: 'Glisser dans les airs sans battement d\'ailes' } },
+                { name: 'Piquer', desc: { en: 'Diving at high speed', fr: 'Descendre en piqué à grande vitesse' } },
+                { name: 'Flotter', desc: { en: 'Staying still in the air', fr: 'Rester immobile dans les airs' } },
+                { name: 'Poussée', desc: { en: 'Accelerating in the air', fr: 'Accélérer dans les airs' } }
+            ] },
+            ACROBATIE: { id: 'ACROBATIE', name: { en: '[Acrobatics]', fr: '[Acrobatie]' }, desc: { en: 'Rolls, contortionism, falls, pirouettes, somersaults, show performance.', fr: 'Roulades, contorsionnisme, chutes, pirouettes, sauts périlleux, performance de spectacle.' }, masteries: [
+                { name: 'Aérienne', desc: { en: 'Aerial acrobatics', fr: 'Acrobaties en l\'air' } },
+                { name: 'Sauts périlleux', desc: { en: 'Rotations in the air', fr: 'Rotations en l\'air' } },
+                { name: 'Chuter', desc: { en: 'Falling in controlled manner', fr: 'Tomber de manière contrôlée' } },
+                { name: 'Contorsionniste', desc: { en: 'Extreme body flexibility', fr: 'Flexibilité extrême du corps' } }
+            ] },
+            CHEVAUCHEMENT: { id: 'CHEVAUCHEMENT', name: { en: '[Riding]', fr: '[Chevauchement]' }, desc: { en: 'Riding any beast to make it move, fight, maneuver, in order to fight oneself while mounted.', fr: 'Chevauchement de toute bête afin de la faire se déplacer, se battre, manœuvrer, afin de s\'y battre soi-même tout en la montant.' }, masteries: [
+                { name: 'Montée en selle', desc: { en: 'Quickly mounting a ride', fr: 'Monter rapidement sur une monture' } },
+                { name: 'Déplacement monté', desc: { en: 'Moving efficiently on a mount', fr: 'Se déplacer efficacement sur une monture' } },
+                { name: 'Manœuvres montées', desc: { en: 'Performing complex maneuvers on a mount', fr: 'Effectuer des manœuvres complexes à dos de monture' } },
+                { name: 'Agissement monté', desc: { en: 'Acting (fighting, etc.) while mounted', fr: 'Agir (combattre, etc.) tout en étant monté' } }
+            ] },
             // Charisme - Captiver
-            SEDUCTION: { id: 'SEDUCTION', name: { en: '[Seduction]', fr: '[Séduction]' }, desc: { en: 'Attracting and charming.', fr: 'Attirer et charmer.' }, masteries: ['Attirer', 'faire Émouvoir', 'faire Admirer', 'faire Reconnaître', 'Avoir une Faveur', 'Subvertir à la Déloyauté'] },
-            MIMETISME: { id: 'MIMETISME', name: { en: '[Mimicry]', fr: '[Mimétisme]' }, desc: { en: 'Imitating others.', fr: 'Imiter les autres.' }, masteries: ['Sons naturels', 'Êtres sauvages', 'Accents & Dialectes', 'Mimique', 'Interprétation de rôle', 'Déguisement'] },
-            CHANT: { id: 'CHANT', name: { en: '[Singing]', fr: '[Chant]' }, desc: { en: 'Vocal performance.', fr: 'Performance vocale.' }, masteries: ['de Poitrine', "de Tête/d'Appel", 'Diphonique', 'Improvisée', 'de Mélodie', 'en Chœur', 'Ventriloque', 'Sifflée'] },
+            SEDUCTION: { id: 'SEDUCTION', name: { en: '[Seduction]', fr: '[Séduction]' }, desc: { en: 'Convincing to disobey or be disloyal, generally through persuasion or false promises, often through sexual excitement. Physical or psychological attraction, grace, health.', fr: 'Convaincre de désobéir ou de déloyauté généralement par la persuasion ou de fausses promesses, souvent à travers l\'excitation sexuelle. Attraction physique ou psychologique, grâce, santé.' }, masteries: [
+                { name: 'Attirer', desc: { en: 'Arousing interest and attraction', fr: 'Susciter de l\'intérêt et de l\'attraction' } },
+                { name: 'faire Émouvoir', desc: { en: 'Manipulating others\' emotions', fr: 'Manipuler les émotions des autres' } },
+                { name: 'faire Admirer', desc: { en: 'Arousing admiration and respect', fr: 'Susciter l\'admiration et le respect' } },
+                { name: 'faire Reconnaître', desc: { en: 'Persuading others to recognize your value', fr: 'Persuader les autres de reconnaître votre valeur' } },
+                { name: 'Avoir une Faveur', desc: { en: 'Convincing others to do a favor', fr: 'Convaincre les autres de faire une faveur' } },
+                { name: 'Subvertir à la Déloyauté', desc: { en: 'Arousing disloyalty toward a third party', fr: 'Susciter la déloyauté envers un tiers' } }
+            ] },
+            MIMETISME: { id: 'MIMETISME', name: { en: '[Mimicry]', fr: '[Mimétisme]' }, desc: { en: 'Physical imitation and disguises, costumes, roles, animals, social statuses, accents, dialects of a known language.', fr: 'Imitation physique et déguisements, costumes, des rôles, des animaux, et des statuts sociaux, des accents, des dialectes d\'une langue connue.' }, masteries: [
+                { name: 'Sons naturels', desc: { en: 'Imitating nature sounds', fr: 'Imiter des sons de la nature' } },
+                { name: 'Êtres sauvages', desc: { en: 'Imitating animals', fr: 'Imiter des animaux' } },
+                { name: 'Accents & Dialectes', desc: { en: 'Imitating ways of speaking', fr: 'Imiter des façons de parler' } },
+                { name: 'Mimique', desc: { en: 'Imitating expressions and gestures', fr: 'Imiter des expressions et gestes' } },
+                { name: 'Interprétation de rôle', desc: { en: 'Playing a character convincingly', fr: 'Jouer un personnage de manière convaincante' } },
+                { name: 'Déguisement', desc: { en: 'Physically disguising oneself', fr: 'Se travestir physiquement' } }
+            ] },
+            PRESENTATION: { id: 'PRESENTATION', name: { en: '[Presentation]', fr: '[Présentation]' }, desc: { en: 'Etiquette, formalities, customs, assimilation, respect, networking, fashion, teaching.', fr: 'Étiquette, formalités, coutumes, assimilation, respects, réseautage, mode, enseignement.' }, masteries: [
+                { name: 'Première impression', desc: { en: 'Making good impression from first contact', fr: 'Faire bonne impression dès le premier contact' } },
+                { name: 'Bienséance', desc: { en: 'Respecting social codes and protocols', fr: 'Respecter les codes sociaux et protocoles' } },
+                { name: 'Enseigner', desc: { en: 'Transmitting knowledge', fr: 'Transmettre des connaissances' } },
+                { name: 'Réseauter', desc: { en: 'Creating and maintaining contacts', fr: 'Créer et maintenir des contacts' } },
+                { name: 'Mode', desc: { en: 'Following or influencing clothing trends', fr: 'Suivre ou influencer les tendances vestimentaires' } },
+                { name: 'Rumeurs', desc: { en: 'Spreading or controlling rumors', fr: 'Répandre ou contrôler les rumeurs' } }
+            ] },
             // Charisme - Convaincre
-            NEGOCIATION: { id: 'NEGOCIATION', name: { en: '[Negotiation]', fr: '[Négociation]' }, desc: { en: 'Bargaining and deal-making.', fr: 'Négocier et conclure des accords.' }, masteries: ['Marchandage', 'Corrompre', 'Diplomatie', 'Débattre', 'Enchèrir', 'Renseignement'] },
-            TROMPERIE: { id: 'TROMPERIE', name: { en: '[Deception]', fr: '[Tromperie]' }, desc: { en: 'Lying and deceiving.', fr: 'Mentir et tromper.' }, masteries: ['Belles-paroles', 'Bobards', 'Distraire', 'Escroquer', 'Railleries', 'Troller'] },
-            PRESENTATION: { id: 'PRESENTATION', name: { en: '[Presentation]', fr: '[Présentation]' }, desc: { en: 'Making good impressions.', fr: 'Faire bonne impression.' }, masteries: ['Première impression', 'Bienséance', 'Enseigner', 'Réseauter', 'Mode', 'Rumeurs'] },
+            NEGOCIATION: { id: 'NEGOCIATION', name: { en: '[Negotiation]', fr: '[Négociation]' }, desc: { en: 'Bargaining, rhetoric, diplomacy, for auctions, gathering information, corrupting.', fr: 'Marchandage, rhétorique, diplomatie, pour des enchères, se renseigner, corrompre.' }, masteries: [
+                { name: 'Marchandage', desc: { en: 'Negotiating prices and exchanges', fr: 'Négocier des prix et des échanges' } },
+                { name: 'Corrompre', desc: { en: 'Buying others\' complicity', fr: 'Acheter la complicité d\'autrui' } },
+                { name: 'Diplomatie', desc: { en: 'Negotiating agreements between parties', fr: 'Négocier des accords entre parties' } },
+                { name: 'Débattre', desc: { en: 'Arguing to convince', fr: 'Argumenter pour convaincre' } },
+                { name: 'Enchèrir', desc: { en: 'Participating in auctions', fr: 'Participer à des enchères' } },
+                { name: 'Renseignement', desc: { en: 'Obtaining information through conversation', fr: 'Obtenir des informations par la conversation' } }
+            ] },
+            TROMPERIE: { id: 'TROMPERIE', name: { en: '[Deception]', fr: '[Tromperie]' }, desc: { en: 'Lies, manipulations, scams, trolling, mockery, tall tales, diverting conversation to other subjects.', fr: 'Mensonges, manipulations, escroqueries, troll, railleries, bobards, distraction de la conversation vers d\'autres sujets.' }, masteries: [
+                { name: 'Belles-paroles', desc: { en: 'Speaking in flattering and persuasive manner', fr: 'Parler de manière flatteuse et persuasive' } },
+                { name: 'Bobards', desc: { en: 'Telling credible lies', fr: 'Raconter des mensonges crédibles' } },
+                { name: 'Distraire', desc: { en: 'Diverting conversation attention', fr: 'Détourner l\'attention de la conversation' } },
+                { name: 'Escroquer', desc: { en: 'Deceiving to obtain something', fr: 'Tromper pour obtenir quelque chose' } },
+                { name: 'Railleries', desc: { en: 'Mocking to destabilize', fr: 'Moquer pour déstabiliser' } },
+                { name: 'Troller', desc: { en: 'Provoking emotional reactions', fr: 'Provoquer des réactions émotionnelles' } }
+            ] },
+            INSPIRATION: { id: 'INSPIRATION', name: { en: '[Inspiration]', fr: '[Inspiration]' }, desc: { en: 'The ability to raise morale and confidence of those around you. Moving hearts, lifting spirits, toward revelry, anger, or even learning.', fr: 'La capacité d\'élever le moral et la confiance de ceux qui vous entourent. Mouvance des cœurs, remonter le moral, vers la fêtardise, la colère voire l\'apprentissage.' }, masteries: [
+                { name: 'Apaiser', desc: { en: 'Calming tensions and emotions', fr: 'Calmer les tensions et les émotions' } },
+                { name: 'Captiver', desc: { en: 'Holding a group\'s attention', fr: 'Retenir l\'attention d\'un groupe' } },
+                { name: 'Éduquer', desc: { en: 'Motivating to learn', fr: 'Motiver à l\'apprentissage' } },
+                { name: 'Camaraderie', desc: { en: 'Creating sense of belonging', fr: 'Créer un sentiment d\'appartenance' } },
+                { name: 'Festivité', desc: { en: 'Creating party atmosphere', fr: 'Créer une ambiance de fête' } },
+                { name: 'Fanatisme', desc: { en: 'Arousing intense devotion', fr: 'Susciter une dévotion intense' } }
+            ] },
             // Charisme - Interpréter
-            INSTRUMENTAL: { id: 'INSTRUMENTAL', name: { en: '[Instrumental]', fr: '[Instrumental]' }, desc: { en: 'Playing musical instruments.', fr: 'Jouer des instruments de musique.' }, masteries: ['Attirer', 'faire Émouvoir', 'faire Admirer', 'faire Reconnaître', 'Avoir une Faveur', 'Subvertir à la Déloyauté'] },
-            INSPIRATION: { id: 'INSPIRATION', name: { en: '[Inspiration]', fr: '[Inspiration]' }, desc: { en: 'Motivating and inspiring.', fr: 'Motiver et inspirer.' }, masteries: ['Apaiser', 'Captiver', 'Éduquer', 'Camaraderie', 'Festivité', 'Fanatisme'] },
-            NARRATION: { id: 'NARRATION', name: { en: '[Narration]', fr: '[Narration]' }, desc: { en: 'Telling stories.', fr: 'Raconter des histoires.' }, masteries: ['Fabuleuse & Poétique', 'Banalités', 'Ragots & Rumeurs', 'Propagande', 'Plaisanteries', 'Énigmes'] },
+            INSTRUMENTAL: { id: 'INSTRUMENTAL', name: { en: '[Instrumental]', fr: '[Instrumental]' }, desc: { en: 'Practice of various musical instruments—whether percussion, wind, vibrating, or improvised.', fr: 'Pratique d\'instruments de musique divers et variés - qu\'ils soient à percussion, à souffle, vibratoire voire improvisés.' }, masteries: [
+                { name: 'Attirer', desc: { en: 'Attracting attention through music', fr: 'Attirer l\'attention par la musique' } },
+                { name: 'faire Émouvoir', desc: { en: 'Arousing emotions through music', fr: 'Susciter des émotions par la musique' } },
+                { name: 'faire Admirer', desc: { en: 'Impressing with virtuosity', fr: 'Impressionner par sa virtuosité' } },
+                { name: 'faire Reconnaître', desc: { en: 'Being recognized by musical style', fr: 'Se faire reconnaître par son style musical' } },
+                { name: 'Avoir une Faveur', desc: { en: 'Obtaining favors through music', fr: 'Obtenir des faveurs grâce à sa musique' } },
+                { name: 'Subvertir à la Déloyauté', desc: { en: 'Influencing through music', fr: 'Influencer par la musique' } }
+            ] },
+            CHANT: { id: 'CHANT', name: { en: '[Singing]', fr: '[Chant]' }, desc: { en: 'Creation and practice of sung or whistled melodies and/or lyrics, in choir, etc. Copying sounds, cries, and voices, repetition and ventriloquism.', fr: 'Création et pratique de mélodies et/ou paroles chantées ou sifflées, en chœur, etc. Copies des sons, cris et voix, répétition et ventriloquie.' }, masteries: [
+                { name: 'de Poitrine', desc: { en: 'Singing using chest voice', fr: 'Chant utilisant la voix de poitrine' } },
+                { name: "de Tête/d'Appel", desc: { en: 'Yodel, Kulning, for calling and gathering', fr: 'Yodel, Kulning, pour appeler et rassembler' } },
+                { name: 'Diphonique', desc: { en: 'Harmonic and throat singing, resonance manipulation', fr: 'Chants harmoniques et de gorge, manipulation des résonances' } },
+                { name: 'Improvisée', desc: { en: 'Spontaneous singing without preparation', fr: 'Chant spontané sans préparation' } },
+                { name: 'de Mélodie', desc: { en: 'Singing melodious sounds', fr: 'Chanter des sons mélodieux' } },
+                { name: 'en Chœur', desc: { en: 'Group singing in different rhythms', fr: 'Chanter en groupe et en différents rythmes' } },
+                { name: 'Ventriloque', desc: { en: 'Voice production seeming to come from elsewhere', fr: 'Production de la voix semblant venir d\'ailleurs' } },
+                { name: 'Sifflée', desc: { en: 'All whistling and whistled songs', fr: 'Tous les sifflements et chants sifflés' } }
+            ] },
+            NARRATION: { id: 'NARRATION', name: { en: '[Narration]', fr: '[Narration]' }, desc: { en: 'Creation, transmission, and writing of stories, riddles, legends, poetry, orally or in writing.', fr: 'Création, transmission et écriture d\'histoire, énigmes, légendes, de poésies, à l\'oral ou à l\'écrit.' }, masteries: [
+                { name: 'Fabuleuse & Poétique', desc: { en: 'Telling eloquent and poetic stories with grandiose style', fr: 'Raconter des histoires éloquentes et poétiques avec un style grandiose' } },
+                { name: 'Banalités', desc: { en: 'Talking about everyday things to fit in', fr: 'Parler de choses de tous les jours pour s\'intégrer' } },
+                { name: 'Ragots & Rumeurs', desc: { en: 'Transmitting rumors intriguingly', fr: 'Transmettre des rumeurs de manière intrigante' } },
+                { name: 'Propagande', desc: { en: 'Shaping public opinion through rhetoric', fr: 'Façonner l\'opinion publique par la rhétorique' } },
+                { name: 'Plaisanteries', desc: { en: 'Making laugh with humorous stories', fr: 'Faire rire avec des histoires humoristiques' } },
+                { name: 'Énigmes', desc: { en: 'Creating captivating mysteries with hidden clues', fr: 'Créer des mystères captivants avec des indices cachés' } }
+            ] },
             // Détection - Discerner
-            VISION: { id: 'VISION', name: { en: '[Vision]', fr: '[Vision]' }, desc: { en: 'Seeing and observing.', fr: 'Voir et observer.' }, masteries: ['Précise & Distante', 'Écritures', 'Lecture sur lèvre', 'Langage corporel'] },
-            ESTIMATION: { id: 'ESTIMATION', name: { en: '[Estimation]', fr: '[Estimation]' }, desc: { en: 'Judging value and quality.', fr: 'Évaluer la valeur et la qualité.' }, masteries: ['Valeur des Objets', 'des Aptitudes', 'des Arts', 'de Contrebande', 'de Recélage', 'Fraude fiscale', 'Comptabilité', 'Administration'] },
-            TOUCHER: { id: 'TOUCHER', name: { en: '[Touch]', fr: '[Toucher]' }, desc: { en: 'Feeling through touch.', fr: 'Percevoir par le toucher.' }, masteries: ['Textures', 'Températures', 'Lectures à froid', 'Reconnaissance aveugle'] },
+            VISION: { id: 'VISION', name: { en: '[Vision]', fr: '[Vision]' }, desc: { en: 'Sight itself, near or at long distance, shape recognition, through mist, sense of images of all kinds, lip reading, night vision, thermal, etc.', fr: 'La vue elle-même, de proche ou à longue distance, reconnaissance des formes, à travers la brume, sens des images de toutes sortes, lecture sur les lèvres, vision dans le noir, thermique, etc.' }, masteries: [
+                { name: 'Précise & Distante', desc: { en: 'Seeing with precision at great distance', fr: 'Voir avec précision à grande distance' } },
+                { name: 'Écritures', desc: { en: 'Reading and analyzing texts', fr: 'Lire et analyser les textes' } },
+                { name: 'Lecture sur lèvre', desc: { en: 'Understanding speech by watching lips', fr: 'Comprendre les paroles en observant les lèvres' } },
+                { name: 'Langage corporel', desc: { en: 'Interpreting gestures and postures', fr: 'Interpréter les gestes et postures' } }
+            ] },
+            AUDITION: { id: 'AUDITION', name: { en: '[Hearing]', fr: '[Audition]' }, desc: { en: 'Sense of sounds of all kinds, whispers, animals, language recognition and learning, blind movement.', fr: 'Sens des sons de toutes sortes, murmures, animaux, reconnaissance et apprentissage des langues, déplacement aveugle.' }, masteries: [
+                { name: 'Écoute & Murmures', desc: { en: 'Hearing discreet conversations', fr: 'Entendre les conversations discrètes' } },
+                { name: 'Sons naturels', desc: { en: 'Recognizing nature sounds', fr: 'Reconnaître les sons de la nature' } },
+                { name: 'Apprentissage du parlé', desc: { en: 'Learning languages by listening', fr: 'Apprendre les langues par l\'écoute' } },
+                { name: 'Écholocation', desc: { en: 'Navigating by sound', fr: 'Se repérer par le son' } }
+            ] },
+            TOUCHER: { id: 'TOUCHER', name: { en: '[Touch]', fr: '[Toucher]' }, desc: { en: 'Sense of textures of all kinds, facial recognition, blind movement, softness, roughness, solidity, temperatures.', fr: 'Sens des textures de toutes sortes, reconnaissance faciale, déplacement aveugle, douceur, rugosités, solidités, températures.' }, masteries: [
+                { name: 'Textures', desc: { en: 'Recognizing materials by touch', fr: 'Reconnaître les matériaux par le toucher' } },
+                { name: 'Températures', desc: { en: 'Perceiving temperature variations', fr: 'Percevoir les variations de température' } },
+                { name: 'Lectures à froid', desc: { en: 'Obtaining information by contact', fr: 'Obtenir des informations par contact' } },
+                { name: 'Reconnaissance aveugle', desc: { en: 'Identifying things without seeing', fr: 'Identifier des choses sans voir' } }
+            ] },
             // Détection - Découvrir
-            INVESTIGATION: { id: 'INVESTIGATION', name: { en: '[Investigation]', fr: '[Investigation]' }, desc: { en: 'Searching and analyzing.', fr: 'Rechercher et analyser.' }, masteries: ['Fouille', 'Pistage', 'Autopsie', 'Décryptage', 'Profilage', 'Découverte', 'Prospective'] },
-            GOUT: { id: 'GOUT', name: { en: '[Taste]', fr: '[Goût]' }, desc: { en: 'Tasting and identifying.', fr: 'Goûter et identifier.' }, masteries: ['Du Salé', "De l'Acide", 'Du Sucré', "De l'Umami", "De l'Amer", 'Culinaires', 'Malaises', 'Secrétions'] },
-            RESSENTI: { id: 'RESSENTI', name: { en: '[Feeling]', fr: '[Ressenti]' }, desc: { en: 'Sensing emotions and intent.', fr: 'Percevoir les émotions et intentions.' }, masteries: ['Temps & Climat', 'Êtres sauvages', 'Vérité', 'Mentalisme', 'Émotions & Motivations', 'Se relater'] },
+            INVESTIGATION: { id: 'INVESTIGATION', name: { en: '[Investigation]', fr: '[Investigation]' }, desc: { en: 'Thorough search of things or individuals, tracking. Long-term forced research following clues, evidence, marks, and deposits.', fr: 'Recherche de fond en comble des choses ou individus, traque. Recherche forcée sur long terme en suivant des indices, preuves, marques et dépôts.' }, masteries: [
+                { name: 'Fouille', desc: { en: 'Methodically searching a place', fr: 'Rechercher méthodiquement dans un lieu' } },
+                { name: 'Pistage', desc: { en: 'Following tracks', fr: 'Suivre des traces' } },
+                { name: 'Autopsie', desc: { en: 'Examining a body for clues', fr: 'Examiner un corps pour trouver des indices' } },
+                { name: 'Décryptage', desc: { en: 'Deciphering codes and messages', fr: 'Déchiffrer des codes et messages' } },
+                { name: 'Profilage', desc: { en: 'Establishing psychological profile', fr: 'Établir un profil psychologique' } },
+                { name: 'Découverte', desc: { en: 'Finding hidden things', fr: 'Trouver des choses cachées' } },
+                { name: 'Prospective', desc: { en: 'Anticipating future events', fr: 'Anticiper les événements futurs' } }
+            ] },
+            ESTIMATION: { id: 'ESTIMATION', name: { en: '[Estimation]', fr: '[Estimation]' }, desc: { en: 'Mathematics of sums and such. Estimation of raw materials, manufactured products, value of work, of an individual or beast, their values, worth, strengths, weaknesses, price.', fr: 'Mathématiques des sommes et autres. Estimation des matières premières, des produits manufacturés, valeur du travail, de l\'individu ou la bête, ses valeurs, sa valeur, ses forces, faiblesses, son prix.' }, masteries: [
+                { name: 'Valeur des Objets', desc: { en: 'Estimating market value', fr: 'Estimer la valeur marchande' } },
+                { name: 'des Aptitudes', desc: { en: 'Evaluating a person\'s capabilities', fr: 'Évaluer les capacités d\'une personne' } },
+                { name: 'des Arts', desc: { en: 'Evaluating artistic value', fr: 'Évaluer la valeur artistique' } },
+                { name: 'de Contrebande', desc: { en: 'Knowing the black market', fr: 'Connaître le marché noir' } },
+                { name: 'de Recélage', desc: { en: 'Evaluating stolen goods', fr: 'Évaluer les biens volés' } },
+                { name: 'Fraude fiscale', desc: { en: 'Detecting or performing fraud', fr: 'Détecter ou réaliser des fraudes' } },
+                { name: 'Comptabilité', desc: { en: 'Managing and analyzing accounts', fr: 'Gérer et analyser des comptes' } },
+                { name: 'Administration', desc: { en: 'Managing organizations', fr: 'Gérer des organisations' } }
+            ] },
+            RESSENTI: { id: 'RESSENTI', name: { en: '[Feeling]', fr: '[Ressenti]' }, desc: { en: 'Sensing, animal empathy, primitive truths, lies, feelings, sensing, mentalism.', fr: 'Sens, empathie animale, primitivisme des vérités, mensonges, sentiments, ressentis, mentalisme.' }, masteries: [
+                { name: 'Temps & Climat', desc: { en: 'Sensing weather changes', fr: 'Pressentir les changements météorologiques' } },
+                { name: 'Êtres sauvages', desc: { en: 'Understanding animals', fr: 'Comprendre les animaux' } },
+                { name: 'Vérité', desc: { en: 'Detecting lies', fr: 'Détecter les mensonges' } },
+                { name: 'Mentalisme', desc: { en: 'Perceiving superficial thoughts', fr: 'Percevoir les pensées superficielles' } },
+                { name: 'Émotions & Motivations', desc: { en: 'Understanding what others feel', fr: 'Comprendre ce que ressentent les autres' } },
+                { name: 'Se relater', desc: { en: 'Creating empathic connection', fr: 'Créer une connexion empathique' } }
+            ] },
             // Détection - Dépister
-            ODORAT: { id: 'ODORAT', name: { en: '[Smell]', fr: '[Odorat]' }, desc: { en: 'Detecting by scent.', fr: 'Détecter par l\'odorat.' }, masteries: ['Parfums mélangés', 'Airs sains & malsains', 'Pistage', 'Détection aveugle'] },
-            AUDITION: { id: 'AUDITION', name: { en: '[Hearing]', fr: '[Audition]' }, desc: { en: 'Listening and sound detection.', fr: 'Écouter et détecter les sons.' }, masteries: ['Écoute & Murmures', 'Sons naturels', 'Apprentissage du parlé', 'Écholocation'] },
-            INTEROCEPTION: { id: 'INTEROCEPTION', name: { en: '[Interoception]', fr: '[Interoception]' }, desc: { en: 'Internal body awareness.', fr: 'Conscience corporelle interne.' }, masteries: ['Équilibroception', 'Proprioception', 'Faim', 'Soif', 'Suffocation', 'Empoisonnement', 'Émotions', 'Temporalité'] },
+            ODORAT: { id: 'ODORAT', name: { en: '[Smell]', fr: '[Odorat]' }, desc: { en: 'Sense of smells of all kinds, detection of healthy/unhealthy air, perfumes, blind movement.', fr: 'Sens des odeurs de toutes sortes, détection des airs sains, malsains, des parfums, déplacement aveugle.' }, masteries: [
+                { name: 'Parfums mélangés', desc: { en: 'Distinguishing components of a smell', fr: 'Distinguer les composants d\'une odeur' } },
+                { name: 'Airs sains & malsains', desc: { en: 'Detecting air quality', fr: 'Détecter la qualité de l\'air' } },
+                { name: 'Pistage', desc: { en: 'Following a trail by smell', fr: 'Suivre une piste par l\'odeur' } },
+                { name: 'Détection aveugle', desc: { en: 'Navigating by smell', fr: 'Se repérer par l\'odorat' } }
+            ] },
+            GOUT: { id: 'GOUT', name: { en: '[Taste]', fr: '[Goût]' }, desc: { en: 'Sense of tastes of all kinds, poison detection, cooking recipes, remedies.', fr: 'Sens des goûts de toutes sortes, détection du poison, recettes de cuisine, des remèdes.' }, masteries: [
+                { name: 'Du Salé/Acide/Sucré/Umami/Amer', desc: { en: 'Distinguishing basic flavors', fr: 'Distinguer les saveurs de base' } },
+                { name: 'Culinaires', desc: { en: 'Recognizing ingredients and recipes', fr: 'Reconnaître les ingrédients et recettes' } },
+                { name: 'Malaises', desc: { en: 'Detecting harmful substances or poisons', fr: 'Détecter les substances nocives ou poisons' } },
+                { name: 'Secrétions', desc: { en: 'Analyzing bodily fluids', fr: 'Analyser les fluides corporels' } }
+            ] },
+            INTEROCEPTION: { id: 'INTEROCEPTION', name: { en: '[Interoception]', fr: '[Interoception]' }, desc: { en: 'Internal body senses: balance, distance to limbs, self-poisoning, hunger, thirst, suffocation, or precise recognition of one\'s own emotions.', fr: 'Sens internes à son corps, sens de l\'équilibre, de la distance à ses membres, de l\'empoisonnement de soi, de la faim, de la soif, la suffocation, voire la reconnaissance précise de ses propres émotions.' }, masteries: [
+                { name: 'Équilibroception', desc: { en: 'Internal sense of balance', fr: 'Sens de l\'équilibre interne' } },
+                { name: 'Proprioception', desc: { en: 'Awareness of limb positions', fr: 'Conscience de la position de ses membres' } },
+                { name: 'Faim', desc: { en: 'Perceiving and controlling hunger sensation', fr: 'Percevoir et contrôler la sensation de faim' } },
+                { name: 'Soif', desc: { en: 'Perceiving and controlling thirst sensation', fr: 'Percevoir et contrôler la sensation de soif' } },
+                { name: 'Suffocation', desc: { en: 'Perceiving lack of air', fr: 'Percevoir le manque d\'air' } },
+                { name: 'Empoisonnement', desc: { en: 'Detecting toxins in body', fr: 'Détecter les toxines dans son corps' } },
+                { name: 'Émotions', desc: { en: 'Precisely recognizing own emotions', fr: 'Reconnaître précisément ses propres émotions' } },
+                { name: 'Temporalité', desc: { en: 'Sense of passing time', fr: 'Sens du temps qui passe' } }
+            ] },
             // Réflexion - Concevoir
-            ARTISANAT: { id: 'ARTISANAT', name: { en: '[Craftsmanship]', fr: '[Artisanat]' }, desc: { en: 'Creating quality goods.', fr: 'Créer des biens de qualité.' }, masteries: ['Alimentaire', 'des Graisses', 'du Papier', 'des Plantes', 'du Textile', 'du Cuir', 'du Verre', 'de la Construction', 'des Métaux', 'des Richesses', 'du Bois', 'de la Lutherie', 'des Arts plastiques', 'des Arts de dessein', 'de la Récolte'] },
-            MEDECINE: { id: 'MEDECINE', name: { en: '[Medicine]', fr: '[Médecine]' }, desc: { en: 'Healing and medical knowledge.', fr: 'Soins et connaissances médicales.' }, masteries: ['Diagnostiquer', 'Thérapie', 'Premiers soins', 'Chirurgie', 'Folies', 'Poisons/Antipoisons'] },
-            INGENIERIE: { id: 'INGENIERIE', name: { en: '[Engineering]', fr: '[Ingénierie]' }, desc: { en: 'Technical and mechanical design.', fr: 'Conception technique et mécanique.' }, masteries: ['Civil', 'Mécanique', 'Chimique', 'Énergique', 'Mathématique', 'Recherche académique'] },
+            ARTISANAT: { id: 'ARTISANAT', name: { en: '[Craftsmanship]', fr: '[Artisanat]' }, desc: { en: 'The theoretical knowledge of arts and trades. Knowing why something works, not just how to do it—the explanatory science rather than descriptive technique.', fr: 'La connaissance théorique des arts et métiers. Savoir pourquoi une chose fonctionne, pas seulement comment la faire - la science explicative plutôt que la technique descriptive.' }, masteries: [
+                { name: 'Alimentaire', desc: { en: 'Science of cooking and preservation', fr: 'Science de la cuisine et conservation' } },
+                { name: 'des Graisses', desc: { en: 'Science of oils and lubricants', fr: 'Science des huiles et lubrifiants' } },
+                { name: 'du Papier', desc: { en: 'Science of paper-making', fr: 'Science de la papeterie' } },
+                { name: 'des Plantes', desc: { en: 'Applied botanical science', fr: 'Science botanique appliquée' } },
+                { name: 'du Textile', desc: { en: 'Science of weaving and fibers', fr: 'Science du tissage et des fibres' } },
+                { name: 'du Cuir', desc: { en: 'Science of tanning', fr: 'Science du tannage' } },
+                { name: 'du Verre', desc: { en: 'Science of glasswork', fr: 'Science de la verrerie' } },
+                { name: 'de la Construction', desc: { en: 'Architectural science', fr: 'Science architecturale' } },
+                { name: 'des Métaux', desc: { en: 'Metallurgical science', fr: 'Science métallurgique' } },
+                { name: 'des Richesses', desc: { en: 'Science of precious stones', fr: 'Science des pierres précieuses' } },
+                { name: 'du Bois', desc: { en: 'Science of woodworking', fr: 'Science du travail du bois' } },
+                { name: 'de la Lutherie', desc: { en: 'Science of musical instruments', fr: 'Science des instruments de musique' } },
+                { name: 'des Arts plastiques', desc: { en: 'Science of sculpture', fr: 'Science de la sculpture' } },
+                { name: 'des Arts de dessein', desc: { en: 'Science of drawing and painting', fr: 'Science du dessin et de la peinture' } },
+                { name: 'de la Récolte', desc: { en: 'Agricultural harvest science', fr: 'Science agricole de la récolte' } }
+            ] },
+            MEDECINE: { id: 'MEDECINE', name: { en: '[Medicine]', fr: '[Médecine]' }, desc: { en: 'Theoretical knowledge on analysis, fabrication, mixing, and application of remedies, antidotes, and poisons. Physical chronic diseases, mental disorders, traumas. Care and diagnosis of physical injuries, from scratches to amputations, suturing.', fr: 'Connaissances théoriques sur l\'analyse, la fabrication, mélanges et applications des remèdes, antidotes et poisons. Des maladies chroniques physiques, des troubles mentaux, des traumas. Soins et diagnostics des blessures physiques, de l\'égratignure à l\'amputation, couture.' }, masteries: [
+                { name: 'Diagnostiquer', desc: { en: 'Identifying diseases and injuries', fr: 'Identifier les maladies et blessures' } },
+                { name: 'Thérapie', desc: { en: 'Treatment of mental disorders', fr: 'Traitement des troubles mentaux' } },
+                { name: 'Premiers soins', desc: { en: 'Emergency care', fr: 'Soins d\'urgence' } },
+                { name: 'Chirurgie', desc: { en: 'Medical operations', fr: 'Opérations médicales' } },
+                { name: 'Folies', desc: { en: 'Treatment of psychological disorders', fr: 'Traitement des troubles psychologiques' } },
+                { name: 'Poisons/Antipoisons', desc: { en: 'Knowledge of toxins and antidotes', fr: 'Connaissance des toxines et antidotes' } }
+            ] },
+            INGENIERIE: { id: 'INGENIERIE', name: { en: '[Engineering]', fr: '[Ingénierie]' }, desc: { en: 'Mechanics, alchemy or cooking processes, forging, construction of machines and structures, buildings, aqueducts, bridges, fortifications, innovations, technology-related.', fr: 'Mécanique, processus d\'alchimie ou cuisine, forge, construction de machines et structures, bâtiments, aqueducs, ponts, fortifications, innovations, ce qui est lié à la technologie.' }, masteries: [
+                { name: 'Civil', desc: { en: 'Building construction and infrastructure', fr: 'Construction de bâtiments et infrastructures' } },
+                { name: 'Mécanique', desc: { en: 'Machines and mechanisms', fr: 'Machines et mécanismes' } },
+                { name: 'Chimique', desc: { en: 'Chemical reactions and alchemy', fr: 'Réactions chimiques et alchimie' } },
+                { name: 'Énergique', desc: { en: 'Energy sources and transfers', fr: 'Sources et transferts d\'énergie' } },
+                { name: 'Mathématique', desc: { en: 'Calculations and modeling', fr: 'Calculs et modélisation' } },
+                { name: 'Recherche académique', desc: { en: 'Research methodology', fr: 'Méthodologie de recherche' } }
+            ] },
             // Réflexion - Acculturer
-            JEUX: { id: 'JEUX', name: { en: '[Games]', fr: '[Jeux]' }, desc: { en: 'Playing and understanding games.', fr: 'Jouer et comprendre les jeux.' }, masteries: ["Jeux d'Ambiance", 'de Société', 'de Hasard', "d'Esprit", 'de Rôle', 'Guide de jeu', 'Arbitrage', 'Conceptualisation', 'Parier & Défier', 'Compétition'] },
-            SOCIETE: { id: 'SOCIETE', name: { en: '[Society]', fr: '[Société]' }, desc: { en: 'Understanding social structures.', fr: 'Comprendre les structures sociales.' }, masteries: ['Rilique', 'Préhistorique', 'Folklorique', 'Traditionnelle', 'Internationale', 'Linguistique', 'Artistique', 'Légale', 'Illégale', 'Entrepreneurial', 'Économique', 'des Équipements', 'Militaire'] },
-            GEOGRAPHIE: { id: 'GEOGRAPHIE', name: { en: '[Geography]', fr: '[Géographie]' }, desc: { en: 'Knowledge of places and lands.', fr: 'Connaissance des lieux et des terres.' }, masteries: ['Localités', 'Astronomie', 'Climats', 'Dangers naturels', 'Milieux Désertiques', 'Humides', 'Tempérés', 'Habités', 'Souterrains', 'Aquatiques', 'Arboricoles', 'Célestes'] },
+            JEUX: { id: 'JEUX', name: { en: '[Games]', fr: '[Jeux]' }, desc: { en: 'The very ability to play games by their rules, not cheating. Card games, dice games, physical games, ball games.', fr: 'La capacité même de jouer aux jeux en leurs règles, et non la triche. Jeux de cartes, de dés, jeux physiques, de ballon.' }, masteries: [
+                { name: "Jeux d'Ambiance", desc: { en: 'Light and social games', fr: 'Jeux légers et sociaux' } },
+                { name: 'de Société', desc: { en: 'Board and strategy games', fr: 'Jeux de plateau et stratégie' } },
+                { name: 'de Hasard', desc: { en: 'Chance-based games', fr: 'Jeux basés sur la chance' } },
+                { name: "d'Esprit", desc: { en: 'Thinking games', fr: 'Jeux de réflexion' } },
+                { name: 'de Rôle', desc: { en: 'Role-playing games', fr: 'Jeux d\'interprétation' } },
+                { name: 'Guide de jeu', desc: { en: 'Running a game session', fr: 'Animer une partie' } },
+                { name: 'Arbitrage', desc: { en: 'Judging rules', fr: 'Juger les règles' } },
+                { name: 'Conceptualisation', desc: { en: 'Creating new games', fr: 'Créer de nouveaux jeux' } },
+                { name: 'Parier & Défier', desc: { en: 'Organizing bets', fr: 'Organiser des paris' } },
+                { name: 'Compétition', desc: { en: 'Participating in tournaments', fr: 'Participer à des tournois' } }
+            ] },
+            SOCIETE: { id: 'SOCIETE', name: { en: '[Society]', fr: '[Société]' }, desc: { en: 'Customs, traditions, moralities, religions, legalities, values, arts, populations, nobility, personalities, current and worldwide.', fr: 'Coutumes, traditions, moralités, religions, légalités, valeurs, arts, populations, noblesse, personnalités, actuelles et de par le monde.' }, masteries: [
+                { name: 'Rilique', desc: { en: 'Knowledge of magical/religious traditions', fr: 'Connaissance des traditions magiques/religieuses' } },
+                { name: 'Préhistorique', desc: { en: 'Ancient history', fr: 'Histoire ancienne' } },
+                { name: 'Folklorique', desc: { en: 'Popular traditions', fr: 'Traditions populaires' } },
+                { name: 'Traditionnelle', desc: { en: 'Established customs', fr: 'Coutumes établies' } },
+                { name: 'Internationale', desc: { en: 'Relations between peoples', fr: 'Relations entre peuples' } },
+                { name: 'Linguistique', desc: { en: 'Languages and dialects', fr: 'Langues et dialectes' } },
+                { name: 'Artistique', desc: { en: 'Art history', fr: 'Histoire des arts' } },
+                { name: 'Légale', desc: { en: 'Laws and jurisdiction', fr: 'Lois et juridiction' } },
+                { name: 'Illégale', desc: { en: 'Criminal underworld', fr: 'Monde criminel' } },
+                { name: 'Entrepreneurial', desc: { en: 'Commerce and business', fr: 'Commerce et entreprises' } },
+                { name: 'Économique', desc: { en: 'Economic systems', fr: 'Systèmes économiques' } },
+                { name: 'des Équipements', desc: { en: 'Equipment knowledge', fr: 'Connaissance du matériel' } },
+                { name: 'Militaire', desc: { en: 'Strategy and armies', fr: 'Stratégie et armées' } }
+            ] },
+            GEOGRAPHIE: { id: 'GEOGRAPHIE', name: { en: '[Geography]', fr: '[Géographie]' }, desc: { en: 'Aerial, terrestrial, maritime, and other environments. Location of countries, cities, villages. Natural dangers, climates, resources. Astronomy.', fr: 'Environnements et milieux aériens, terrestres, marins et autres. Localisation des pays, villes, villages. Dangers naturels, climats, ressources. Astronomie.' }, masteries: [
+                { name: 'Localités', desc: { en: 'Knowledge of inhabited places', fr: 'Connaissance des lieux habités' } },
+                { name: 'Astronomie', desc: { en: 'Science of celestial bodies', fr: 'Science des astres' } },
+                { name: 'Climats', desc: { en: 'Meteorological knowledge', fr: 'Connaissance météorologique' } },
+                { name: 'Dangers naturels', desc: { en: 'Environmental risks', fr: 'Risques environnementaux' } },
+                { name: 'Milieux Désertiques', desc: { en: 'Arid environments', fr: 'Environnements arides' } },
+                { name: 'Humides', desc: { en: 'Swamps and wetlands', fr: 'Marécages et zones humides' } },
+                { name: 'Tempérés', desc: { en: 'Temperate zones', fr: 'Zones tempérées' } },
+                { name: 'Habités', desc: { en: 'Urban and rural areas', fr: 'Zones urbaines et rurales' } },
+                { name: 'Souterrains', desc: { en: 'Caves and caverns', fr: 'Grottes et cavernes' } },
+                { name: 'Aquatiques', desc: { en: 'Underwater environments', fr: 'Milieux sous-marins' } },
+                { name: 'Arboricoles', desc: { en: 'Forests and canopies', fr: 'Forêts et canopées' } },
+                { name: 'Célestes', desc: { en: 'High altitude and skies', fr: 'Haute altitude et cieux' } }
+            ] },
             // Réflexion - Acclimater
-            NATURE: { id: 'NATURE', name: { en: '[Nature]', fr: '[Nature]' }, desc: { en: 'Understanding the natural world.', fr: 'Comprendre le monde naturel.' }, masteries: ['Airs', 'Minéraux', 'Granulaires', 'Eaux', 'Neiges', 'Arbres', 'Herbes', 'Racines', 'Fungi', 'Créatures Volatiles', 'Terrestres', 'Marines', 'Infimes'] },
-            PASTORALISME: { id: 'PASTORALISME', name: { en: '[Pastoralism]', fr: '[Pastoralisme]' }, desc: { en: 'Herding and animal husbandry.', fr: 'Élevage et garde de troupeaux.' }, masteries: ['Gouvernance', 'Pâturage', 'Manutention', 'Marquage', 'Traite', 'Tonte', 'Élevage', 'Croisement', 'Abattage', 'Dressage'] },
-            AGRONOMIE: { id: 'AGRONOMIE', name: { en: '[Agronomy]', fr: '[Agronomie]' }, desc: { en: 'Farming and agriculture.', fr: 'Agriculture et culture.' }, masteries: ['Labourage', 'Semailles', 'Cultivation', 'Moisson', 'Produits', 'Approvisionnement'] },
+            NATURE: { id: 'NATURE', name: { en: '[Nature]', fr: '[Nature]' }, desc: { en: 'Knowing the products one seeks to hunt, trap, fish, or gather. General and deep knowledge of crystals, metals, rocks, earth, sand. Trees, plants, herbs, roots, all non-mobile organic beings. Fungi included. Flying, terrestrial, marine animals, insects, all mobile organic beings.', fr: 'Permet de connaître les produits que l\'on cherche à chasser, trapper, pêcher ou cueillir. Connaissance générale et profonde des cristaux, métaux, roches, terres, sables. Arbres, plantes, herbes, racines, tout être organique ne pouvant se déplacer. Champignons inclus. Animaux volants, terrestres, marins, insectes, ou tout être organique pouvant se déplacer.' }, masteries: [
+                { name: 'Airs', desc: { en: 'Knowledge of atmosphere', fr: 'Connaissance de l\'atmosphère' } },
+                { name: 'Minéraux', desc: { en: 'Rocks, crystals, metals', fr: 'Roches, cristaux, métaux' } },
+                { name: 'Granulaires', desc: { en: 'Sands, earths, gravels', fr: 'Sables, terres, graviers' } },
+                { name: 'Eaux', desc: { en: 'Hydrology', fr: 'Hydrologie' } },
+                { name: 'Neiges', desc: { en: 'Frozen environments', fr: 'Environnements gelés' } },
+                { name: 'Arbres', desc: { en: 'Tree knowledge', fr: 'Connaissance des arbres' } },
+                { name: 'Herbes', desc: { en: 'Herbaceous plants', fr: 'Plantes herbacées' } },
+                { name: 'Racines', desc: { en: 'Underground plants', fr: 'Plantes souterraines' } },
+                { name: 'Fungi', desc: { en: 'Mushrooms and molds', fr: 'Champignons et moisissures' } },
+                { name: 'Créatures Volatiles', desc: { en: 'Birds and flying insects', fr: 'Oiseaux et insectes volants' } },
+                { name: 'Terrestres', desc: { en: 'Land animals', fr: 'Animaux terrestres' } },
+                { name: 'Marines', desc: { en: 'Aquatic fauna', fr: 'Faune aquatique' } },
+                { name: 'Infimes', desc: { en: 'Micro-organisms and small creatures', fr: 'Micro-organismes et petites créatures' } }
+            ] },
+            PASTORALISME: { id: 'PASTORALISME', name: { en: '[Pastoralism]', fr: '[Pastoralisme]' }, desc: { en: 'Breeding, handling, and transporting animals, shepherding, marking, grazing, watching, milking, shearing.', fr: 'Élevage, manutention et transport d\'animaux, bergerie, marquage, pâturage, surveillance, traite, tonte.' }, masteries: [
+                { name: 'Gouvernance', desc: { en: 'Herd management', fr: 'Gestion d\'un troupeau' } },
+                { name: 'Pâturage', desc: { en: 'Finding and managing pastures', fr: 'Trouver et gérer les pâturages' } },
+                { name: 'Manutention', desc: { en: 'Animal handling', fr: 'Manipulation des animaux' } },
+                { name: 'Marquage', desc: { en: 'Animal identification', fr: 'Identification des bêtes' } },
+                { name: 'Traite', desc: { en: 'Milk extraction', fr: 'Extraction du lait' } },
+                { name: 'Tonte', desc: { en: 'Wool harvesting', fr: 'Récolte de la laine' } },
+                { name: 'Élevage', desc: { en: 'Controlled breeding', fr: 'Reproduction contrôlée' } },
+                { name: 'Croisement', desc: { en: 'Genetic selection', fr: 'Sélection génétique' } },
+                { name: 'Abattage', desc: { en: 'Controlled slaughter', fr: 'Mise à mort contrôlée' } },
+                { name: 'Dressage', desc: { en: 'Training work animals', fr: 'Formation des animaux de travail' } }
+            ] },
+            AGRONOMIE: { id: 'AGRONOMIE', name: { en: '[Agronomy]', fr: '[Agronomie]' }, desc: { en: 'Plowing, sowing, supplying soils and plants, harvesting, maintenance.', fr: 'Labourage, semailles, approvisionnements des sols et plants, récoltes, maintenance.' }, masteries: [
+                { name: 'Labourage', desc: { en: 'Soil preparation', fr: 'Préparation des sols' } },
+                { name: 'Semailles', desc: { en: 'Seed planting', fr: 'Plantation des graines' } },
+                { name: 'Cultivation', desc: { en: 'Crop maintenance', fr: 'Entretien des cultures' } },
+                { name: 'Moisson', desc: { en: 'Crop harvesting', fr: 'Récolte des cultures' } },
+                { name: 'Produits', desc: { en: 'Harvest transformation', fr: 'Transformation des récoltes' } },
+                { name: 'Approvisionnement', desc: { en: 'Agricultural resource management', fr: 'Gestion des ressources agricoles' } }
+            ] },
             // Domination - Discipliner
-            COMMANDEMENT: { id: 'COMMANDEMENT', name: { en: '[Command]', fr: '[Commandement]' }, desc: { en: 'Leading and giving orders.', fr: 'Diriger et donner des ordres.' }, masteries: ['Coup de fouet', "Se jeter à l'eau", 'Retourner les poches', 'Tirer les ficelles', 'Lever les bâtons', 'Dans le chaos', 'La corde au cou', 'Cracher les ordres', 'Roi nu', 'Duelliste'] },
-            OBEISSANCE: { id: 'OBEISSANCE', name: { en: '[Obedience]', fr: '[Obéissance]' }, desc: { en: 'Following orders faithfully.', fr: 'Suivre les ordres fidèlement.' }, masteries: ["Courber l'échine", 'Se plier en quatre', 'Lèche-botte', 'Sauter sur la grenade', 'Bouffer dans la main', 'Suivre le troupeau', 'Marquer sa chair', "S'adapter", 'Mimer la bête'] },
-            OBSTINANCE: { id: 'OBSTINANCE', name: { en: '[Stubbornness]', fr: '[Obstinance]' }, desc: { en: 'Persistent determination.', fr: 'Détermination persistante.' }, masteries: ['Mains propres (Moralité)', 'Ambitieuse (Motivation)', 'Tête de mule (Personnalité)', 'Respectueuse (Socialité)', 'Fidèle (Disposition)', 'Obsédée (Passion)', 'Martyr'] },
+            COMMANDEMENT: { id: 'COMMANDEMENT', name: { en: '[Command]', fr: '[Commandement]' }, desc: { en: 'The ability to give orders and be obeyed. Leadership, natural authority, ability to mobilize and direct others.', fr: 'La capacité de donner des ordres et de se faire obéir. Leadership, autorité naturelle, capacité à mobiliser et diriger les autres.' }, masteries: [
+                { name: 'Coup de fouet', desc: { en: 'Direct and authoritarian orders', fr: 'Ordres directs et autoritaires' } },
+                { name: "Se jeter à l'eau", desc: { en: 'Leading by example', fr: 'Mener par l\'exemple' } },
+                { name: 'Retourner les poches', desc: { en: 'Inspiring generosity/sacrifice', fr: 'Inspirer la générosité/sacrifice' } },
+                { name: 'Tirer les ficelles', desc: { en: 'Group manipulation', fr: 'Manipulation de groupe' } },
+                { name: 'Lever les bâtons', desc: { en: 'Mobilizing against an enemy', fr: 'Mobiliser contre un ennemi' } },
+                { name: 'Dans le chaos', desc: { en: 'Commanding in critical situations', fr: 'Commander en situation critique' } },
+                { name: 'La corde au cou', desc: { en: 'Maintaining discipline', fr: 'Maintenir la discipline' } },
+                { name: 'Cracher les ordres', desc: { en: 'Quick combat orders', fr: 'Ordres rapides en combat' } },
+                { name: 'Roi nu', desc: { en: 'Authority without title', fr: 'Autorité sans titre' } },
+                { name: 'Duelliste', desc: { en: 'Commanding in duels', fr: 'Commander en duel' } }
+            ] },
+            OBEISSANCE: { id: 'OBEISSANCE', name: { en: '[Obedience]', fr: '[Obéissance]' }, desc: { en: 'The ability to strategically submit, follow orders, and adapt to a hierarchy.', fr: 'La capacité de se soumettre stratégiquement, de suivre les ordres et de s\'adapter à une hiérarchie.' }, masteries: [
+                { name: "Courber l'échine", desc: { en: 'Submitting with dignity', fr: 'Se soumettre avec dignité' } },
+                { name: 'Se plier en quatre', desc: { en: 'Obeying with zeal', fr: 'Obéir avec zèle' } },
+                { name: 'Lèche-botte', desc: { en: 'Flattering superiors', fr: 'Flatter les supérieurs' } },
+                { name: 'Sauter sur la grenade', desc: { en: 'Sacrificing for the group', fr: 'Se sacrifier pour le groupe' } },
+                { name: 'Bouffer dans la main', desc: { en: 'Gaining trust', fr: 'Gagner la confiance' } },
+                { name: 'Suivre le troupeau', desc: { en: 'Integrating into a group', fr: 'S\'intégrer à un groupe' } },
+                { name: 'Marquer sa chair', desc: { en: 'Showing loyalty', fr: 'Montrer sa loyauté' } },
+                { name: "S'adapter", desc: { en: 'Adjusting behavior', fr: 'Ajuster son comportement' } },
+                { name: 'Mimer la bête', desc: { en: 'Imitating to integrate', fr: 'Imiter pour s\'intégrer' } }
+            ] },
+            OBSTINANCE: { id: 'OBSTINANCE', name: { en: '[Stubbornness]', fr: '[Obstinance]' }, desc: { en: 'Mental resistance against addictions, withdrawals, fears, crises, and upheavals. The ability to maintain one\'s will against adversity.', fr: 'Résistance mentale face aux addictions, sevrages, peurs, crises, et bouleversements. La capacité de maintenir sa volonté face à l\'adversité.' }, masteries: [
+                { name: 'Mains propres (Moralité)', desc: { en: 'Maintaining moral principles', fr: 'Maintenir ses principes moraux' } },
+                { name: 'Ambitieuse (Motivation)', desc: { en: 'Pursuing goals despite obstacles', fr: 'Poursuivre ses objectifs malgré les obstacles' } },
+                { name: 'Tête de mule (Personnalité)', desc: { en: 'Resisting pressures to change', fr: 'Résister aux pressions de changement' } },
+                { name: 'Respectueuse (Socialité)', desc: { en: 'Maintaining propriety under pressure', fr: 'Maintenir les convenances sous pression' } },
+                { name: 'Fidèle (Disposition)', desc: { en: 'Staying loyal despite temptations', fr: 'Rester loyal malgré les tentations' } },
+                { name: 'Obsédée (Passion)', desc: { en: 'Pursuing passion despite costs', fr: 'Poursuivre une passion malgré les coûts' } },
+                { name: 'Martyr', desc: { en: 'Enduring suffering for a cause', fr: 'Endurer la souffrance pour une cause' } }
+            ] },
             // Domination - Endurer
-            GLOUTONNERIE: { id: 'GLOUTONNERIE', name: { en: '[Gluttony]', fr: '[Gloutonnerie]' }, desc: { en: 'Consuming large quantities.', fr: 'Consommer de grandes quantités.' }, masteries: ["Capacité d'Aspiration", "Contrôle d'Aspiration", "Capacité d'Inhalation", "Contrôle d'Inhalation", "Capacité d'Expiration", "Contrôle d'Expiration", 'Aspiration continue (sans reflux)'] },
-            BEUVERIE: { id: 'BEUVERIE', name: { en: '[Drinking]', fr: '[Beuverie]' }, desc: { en: 'Drinking and alcohol tolerance.', fr: 'Boire et tolérance à l\'alcool.' }, masteries: ['Capacité des Mâchoires', "d'Avalement d'Ingurgitation", 'Capacité/Contrôle de Déglutition', 'Résistance au textures Visqueuses', 'Résistance au textures Granuleuses', 'Résistance au textures Épineuses'] },
-            ENTRAILLES: { id: 'ENTRAILLES', name: { en: '[Guts]', fr: '[Entrailles]' }, desc: { en: 'Stomach fortitude.', fr: 'Force intestinale.' }, masteries: ['Résistance interne', 'aux Inconfort', 'à la Saleté', "Capacité d'Absorption cutanée", "d'Estomac", 'Pulmonaire', 'Vésicale', 'Rectale'] },
+            GLOUTONNERIE: { id: 'GLOUTONNERIE', name: { en: '[Gluttony]', fr: '[Gloutonnerie]' }, desc: { en: 'Ability to absorb, suck, and retain substances efficiently. Breath and aspiration control.', fr: 'Capacité à absorber, aspirer et retenir les substances avec efficacité. Contrôle de la respiration et de l\'aspiration.' }, masteries: [
+                { name: "Capacité/Contrôle d'Aspiration", desc: { en: 'Sucking large quantities of air or liquid', fr: 'Aspirer de grandes quantités d\'air ou de liquide' } },
+                { name: "Capacité/Contrôle d'Inspiration", desc: { en: 'Holding breath', fr: 'Retenir sa respiration' } },
+                { name: "Capacité/Contrôle d'Expiration", desc: { en: 'Controlled exhaling', fr: 'Expirer de manière contrôlée' } },
+                { name: 'Aspiration continue (sans reflux)', desc: { en: 'Sucking without interruption', fr: 'Aspirer sans interruption' } }
+            ] },
+            BEUVERIE: { id: 'BEUVERIE', name: { en: '[Drinking]', fr: '[Beuverie]' }, desc: { en: 'Ability to ingest large quantities of food and drink, to chew and swallow difficult substances.', fr: 'Capacité à ingérer de grandes quantités de nourriture et de boisson, à mâcher et avaler des substances difficiles.' }, masteries: [
+                { name: 'Capacité des Mâchoires', desc: { en: 'Jaw strength and endurance', fr: 'Force et endurance de la mâchoire' } },
+                { name: "d'Avalement", desc: { en: 'Swallowing large quantities', fr: 'Avaler de grosses quantités' } },
+                { name: "d'Ingurgitation", desc: { en: 'Eating quickly', fr: 'Manger rapidement' } },
+                { name: 'Capacité/Contrôle de Déglutition', desc: { en: 'Swallowing difficult substances', fr: 'Avaler des substances difficiles' } },
+                { name: 'Résistance aux textures Visqueuses', desc: { en: 'Handling slimy textures', fr: 'Supporter les textures gluantes' } },
+                { name: 'Résistance aux textures Granuleuses', desc: { en: 'Handling rough textures', fr: 'Supporter les textures rugueuses' } },
+                { name: 'Résistance aux textures Épineuses', desc: { en: 'Handling prickly textures', fr: 'Supporter les textures piquantes' } }
+            ] },
+            ENTRAILLES: { id: 'ENTRAILLES', name: { en: '[Guts]', fr: '[Entrailles]' }, desc: { en: 'Internal body resistance: organ capacity, tolerance to discomfort, dirt, skin absorption.', fr: 'Résistance interne du corps : capacité des organes, tolérance aux inconforts, à la saleté, absorption cutanée.' }, masteries: [
+                { name: 'Résistance interne', desc: { en: 'Facing internal problems without damage', fr: 'Faire face aux problèmes internes sans dommages' } },
+                { name: 'aux Inconfort', desc: { en: 'Adapting to uncomfortable conditions', fr: 'S\'adapter aux conditions inconfortables' } },
+                { name: 'à la Saleté', desc: { en: 'Surviving in unhealthy environments', fr: 'Survivre dans un environnement malsain' } },
+                { name: "Capacité d'Absorption cutanée", desc: { en: 'Absorbing through skin efficiently', fr: 'Absorber à travers la peau efficacement' } },
+                { name: "Capacité d'Estomac", desc: { en: 'Resisting digestive problems', fr: 'Résister aux problèmes digestifs' } },
+                { name: 'Capacité Pulmonaire', desc: { en: 'Breathing efficiently', fr: 'Respirer efficacement' } },
+                { name: 'Capacité Vésicale', desc: { en: 'Bladder control', fr: 'Contrôler sa vessie' } },
+                { name: 'Capacité Rectale', desc: { en: 'Maintaining good digestion', fr: 'Maintenir une bonne digestion' } }
+            ] },
             // Domination - Dompter
-            INTIMIDATION: { id: 'INTIMIDATION', name: { en: '[Intimidation]', fr: '[Intimidation]' }, desc: { en: 'Frightening others.', fr: 'Effrayer les autres.' }, masteries: ['Par la Force (coup de pression)', 'Torture', 'Insulte', 'Chantage', 'Terreur', 'Interrogatoire', 'Tête-à-tête', 'Regard noir', 'Voix grave'] },
-            APPRIVOISEMENT: { id: 'APPRIVOISEMENT', name: { en: '[Taming]', fr: '[Apprivoisement]' }, desc: { en: 'Calming and befriending.', fr: 'Calmer et apprivoiser.' }, masteries: ['Caresse', 'Apaisement', 'Friandise', 'Main tendue', 'Lire par le regard', 'Habitude', 'Apaiser', 'Motiver', 'Être Monté & Transporter', 'Ordonnée', 'à Combattre'] },
-            DRESSAGE: { id: 'DRESSAGE', name: { en: '[Training]', fr: '[Dressage]' }, desc: { en: 'Teaching and conditioning.', fr: 'Enseigner et conditionner.' }, masteries: ['Par Répétition', 'Par Fouet', 'Par Récompense', 'Par Imitation', "en un(e) Bête/Être de jeu", "en un(e) Bête/Être de spectacle", "en un(e) Bête/Être de monte", "en un(e) Bête/Être de travail", "en un(e) Bête/Être de combat", "en un(e) Bête/Être de noblesse", 'Marquage', 'Esclavage', "Briser l'âme"] }
+            INTIMIDATION: { id: 'INTIMIDATION', name: { en: '[Intimidation]', fr: '[Intimidation]' }, desc: { en: 'Knowing where to press to cause pain, fear, or simple physical or psychological terror.', fr: 'Savoir où appuyer pour faire mal, peur, ou la simple terreur physique ou psychologique.' }, masteries: [
+                { name: 'Par la Force (coup de pression)', desc: { en: 'Showing physical force to impress', fr: 'Faire preuve de force physique pour impressionner' } },
+                { name: 'Torture', desc: { en: 'Using pain to obtain information', fr: 'Utiliser la douleur pour obtenir des informations' } },
+                { name: 'Insulte', desc: { en: 'Saying hurtful words to destabilize', fr: 'Dire des paroles blessantes pour déstabiliser' } },
+                { name: 'Chantage', desc: { en: 'Threatening to reveal information', fr: 'Menacer de révéler des informations' } },
+                { name: 'Terreur', desc: { en: 'Sowing terror to make bend', fr: 'Semer la terreur pour faire plier' } },
+                { name: 'Interrogatoire', desc: { en: 'Conducting interrogation for information', fr: 'Mener un interrogatoire pour obtenir des informations' } },
+                { name: 'Tête-à-tête', desc: { en: 'Intimidating face to face', fr: 'Intimider en face à face' } },
+                { name: 'Regard noir', desc: { en: 'Intimidating by look', fr: 'Intimider par le regard' } },
+                { name: 'Voix grave', desc: { en: 'Intimidating by voice', fr: 'Intimider par la voix' } }
+            ] },
+            APPRIVOISEMENT: { id: 'APPRIVOISEMENT', name: { en: '[Taming]', fr: '[Apprivoisement]' }, desc: { en: 'Gentle approach to gain creatures\' trust, calm them, and pacify them.', fr: 'Approche douce pour gagner la confiance des créatures, les calmer et les pacifier.' }, masteries: [
+                { name: 'Caresse', desc: { en: 'Soothing touch', fr: 'Toucher apaisant' } },
+                { name: 'Apaisement', desc: { en: 'Calming and pacifying a creature', fr: 'Calmer et pacifier une créature' } },
+                { name: 'Friandise', desc: { en: 'Using food to gain trust', fr: 'Utiliser de la nourriture pour gagner la confiance' } },
+                { name: 'Main tendue', desc: { en: 'Non-threatening approach', fr: 'Approche non menaçante' } },
+                { name: 'Lire par le regard', desc: { en: 'Understanding creature\'s state', fr: 'Comprendre l\'état d\'une créature' } },
+                { name: 'Habitude', desc: { en: 'Creating reassuring routine', fr: 'Créer une routine rassurante' } },
+                { name: 'Apaiser', desc: { en: 'Calming agitated creature', fr: 'Calmer une créature agitée' } },
+                { name: 'Motiver', desc: { en: 'Encouraging a creature', fr: 'Encourager une créature' } },
+                { name: 'Être Monté & Transporter', desc: { en: 'Allowing to be ridden', fr: 'Permettre d\'être chevauché' } },
+                { name: 'Ordonnée', desc: { en: 'Responding to simple orders', fr: 'Répondre aux ordres simples' } },
+                { name: 'à Combattre', desc: { en: 'Fighting alongside master', fr: 'Participer à un combat aux côtés du maître' } }
+            ] },
+            DRESSAGE: { id: 'DRESSAGE', name: { en: '[Training]', fr: '[Dressage]' }, desc: { en: 'Strict training of creatures through different methods: repetition, reward, punishment, imitation.', fr: 'Formation stricte des créatures par différentes méthodes : répétition, récompense, punition, imitation.' }, masteries: [
+                { name: 'Par Répétition', desc: { en: 'Teaching through repeated practice', fr: 'Enseigner par la pratique répétée' } },
+                { name: 'Par Fouet', desc: { en: 'Teaching through punishment', fr: 'Enseigner par la punition' } },
+                { name: 'Par Récompense', desc: { en: 'Teaching through reward', fr: 'Enseigner par la récompense' } },
+                { name: 'Par Imitation', desc: { en: 'Teaching by example', fr: 'Enseigner par l\'exemple' } },
+                { name: 'Bête de jeu', desc: { en: 'Training for entertainment', fr: 'Dresser pour le divertissement' } },
+                { name: 'Bête de spectacle', desc: { en: 'Training for performances', fr: 'Dresser pour les performances' } },
+                { name: 'Bête de monte', desc: { en: 'Training to be ridden', fr: 'Dresser pour être chevauché' } },
+                { name: 'Bête de travail', desc: { en: 'Training for labor', fr: 'Dresser pour le labeur' } },
+                { name: 'Bête de combat', desc: { en: 'Training for combat', fr: 'Dresser pour le combat' } },
+                { name: 'Bête de noblesse', desc: { en: 'Training for prestige', fr: 'Dresser pour le prestige' } },
+                { name: 'Marquage', desc: { en: 'Physically marking ownership', fr: 'Marquer physiquement l\'appartenance' } },
+                { name: 'Esclavage', desc: { en: 'Total submission', fr: 'Soumettre totalement' } },
+                { name: "Briser l'âme", desc: { en: 'Destroying creature\'s will', fr: 'Détruire la volonté d\'une créature' } }
+            ] }
         }
     };
 
@@ -1548,7 +2088,19 @@
 
                                 // Masteries for this competence
                                 comp.masteries.forEach(function(mastery) {
-                                    html += '<span class="attributes-tree-mastery">' + mastery + '</span>';
+                                    if (typeof mastery === 'string') {
+                                        // Legacy string format
+                                        html += '<span class="attributes-tree-mastery">' + mastery + '</span>';
+                                    } else {
+                                        // New object format with description
+                                        var masteryName = mastery.name;
+                                        var masteryDesc = mastery.desc ? (lang === 'fr' ? mastery.desc.fr : mastery.desc.en) : '';
+                                        if (masteryDesc) {
+                                            html += '<span class="attributes-tree-mastery has-tooltip" data-tooltip-en="' + (mastery.desc.en || '').replace(/"/g, '&quot;') + '" data-tooltip-fr="' + (mastery.desc.fr || '').replace(/"/g, '&quot;') + '" title="' + masteryDesc.replace(/"/g, '&quot;') + '">' + masteryName + '</span>';
+                                        } else {
+                                            html += '<span class="attributes-tree-mastery">' + masteryName + '</span>';
+                                        }
+                                    }
                                 });
 
                                 html += '</div>'; // masteries
@@ -1847,6 +2399,13 @@
                 if (!comp) return;
                 var p = panel.querySelector('p');
                 if (p) p.textContent = comp.desc[newLang] || comp.desc.en;
+            });
+            // Update mastery tooltips for language
+            treeEl.querySelectorAll('.attributes-tree-mastery.has-tooltip').forEach(function(mastery) {
+                var tooltipAttr = 'data-tooltip-' + newLang;
+                var fallbackAttr = 'data-tooltip-en';
+                var tooltipText = mastery.getAttribute(tooltipAttr) || mastery.getAttribute(fallbackAttr) || '';
+                mastery.setAttribute('title', tooltipText);
             });
         });
     }

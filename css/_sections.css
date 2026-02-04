@@ -2185,6 +2185,71 @@
     color: var(--tdt-beige);
     border-radius: var(--radius-sm);
     border: 1px solid rgba(212, 197, 168, 0.2);
+    position: relative;
+    cursor: default;
+}
+
+/* Mastery with tooltip - visual indicator */
+.attributes-tree-mastery.has-tooltip {
+    cursor: help;
+    border-bottom: 1px dotted var(--tdt-beige);
+}
+
+/* Mastery tooltip on hover */
+.attributes-tree-mastery.has-tooltip:hover {
+    background: rgba(212, 197, 168, 0.25);
+}
+
+.attributes-tree-mastery.has-tooltip::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.4rem 0.6rem;
+    background: rgba(31, 31, 31, 0.95);
+    color: var(--tdt-beige);
+    font-size: 0.7rem;
+    line-height: 1.3;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--tdt-gold);
+    white-space: nowrap;
+    max-width: 250px;
+    white-space: normal;
+    text-align: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    pointer-events: none;
+    margin-bottom: 0.3rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.attributes-tree-mastery.has-tooltip:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Tooltip arrow */
+.attributes-tree-mastery.has-tooltip::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--tdt-gold);
+    margin-bottom: -6px;
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.attributes-tree-mastery.has-tooltip:hover::before {
+    opacity: 1;
+    visibility: visible;
 }
 
 /* Description panels (accordion content) */
