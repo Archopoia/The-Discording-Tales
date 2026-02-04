@@ -121,6 +121,24 @@ body.entrance-active {
     }
 }
 
+/* Zoom into map when entering (triggered by JS adding class) */
+#static-loader.entrance-revealing .entrance-map-layer {
+    animation: entranceMapZoomIn 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes entranceMapZoomIn {
+    0% {
+        /* Start from current animated position - use a central position */
+        background-size: 240%;
+        background-position: 50% 50%;
+    }
+    100% {
+        /* Zoom way in as if diving into the map */
+        background-size: 800%;
+        background-position: 50% 45%;
+    }
+}
+
 /* Logo rotation (same as site .site-logo logo-idle: 0 → 180 → 0) */
 @keyframes keyholeLogoRotate {
     0%   { transform: rotate(0deg); }
