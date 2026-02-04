@@ -44,9 +44,9 @@ L'action d'attirer et retenir l'attention des autres.
 Convaincre de désobéir ou de déloyauté généralement par la persuasion ou de fausses promesses, souvent à travers l'excitation sexuelle. Attraction physique ou psychologique, grâce, santé.
 
 ### Découvertes
-1. `[MANQUANT]`
-2. `[MANQUANT]`
-3. `[MANQUANT]`
+1. Tout être attiré par votre sexe/type/etc. est (au pire) d’une disposition neutre
+2. Toute séduction dure pendant un NdT = succès obtenus (au lieu d’échanger)
+3. On accède à vos requêtes jusqu’à souffrir d’un Niv égal à votre Niv de CT
 
 ### Maîtrises
 
@@ -67,9 +67,9 @@ Convaincre de désobéir ou de déloyauté généralement par la persuasion ou d
 Imitation physique et déguisements, costumes, des rôles, des animaux, et des statuts sociaux, des accents, des dialectes d'une langue connue.
 
 ### Découvertes
-1. `[MANQUANT]`
-2. `[MANQUANT]`
-3. `[MANQUANT]`
+1. Imitez toute créature au même instant que ses actions, tel un miroir
+2. Tout succès communique avec quoi que ce soit d’un Niv au moins Essentiel
+3. Tout être non-sociable vous accepte comme l’un des siens par mimétisme
 
 ### Maîtrises
 
@@ -90,9 +90,9 @@ Imitation physique et déguisements, costumes, des rôles, des animaux, et des s
 Étiquette, formalités, coutumes, assimilation, respects, réseautage, mode, enseignement.
 
 ### Découvertes
-1. `[MANQUANT]`
-2. `[MANQUANT]`
-3. `[MANQUANT]`
+1. Tout individu sociable rencontré vous est (au pire) hostile (jamais ennemi)
+2. Votre groupe (via un jet de cohésion) partage vos dispositions désirées avec X
+3. On vous attaque en dernier OU on se concentre que sur vous (quand désiré)
 
 ### Maîtrises
 
@@ -119,9 +119,9 @@ L'action de persuader les autres d'agir selon vos souhaits.
 Marchandage, rhétorique, diplomatie, pour des enchères, se renseigner, corrompre.
 
 ### Découvertes
-1. `[MANQUANT]`
-2. `[MANQUANT]`
-3. `[MANQUANT]`
+1. Immunisé contre toute confiscation ou arnaque (ou pire +|-4) de marchandage
+2. Compter chaque NdT de Courtisanat comme celle suivante (Jour -> Pentaine)
+3. Toute valorisation se vaut et peut se marchander en prix idéal
 
 ### Maîtrises
 
@@ -142,9 +142,9 @@ Marchandage, rhétorique, diplomatie, pour des enchères, se renseigner, corromp
 Mensonges, manipulations, escroqueries, troll, railleries, bobards, distraction de la conversation vers d'autres sujets.
 
 ### Découvertes
-1. `[MANQUANT]`
-2. `[MANQUANT]`
-3. `[MANQUANT]`
+1. Échangez 2 succès contre 1 Niv apparent d’utilité/qualité/rareté d’une chose
+2. Utilisez cette grappe de dé en entier sur les jets de présentation ou séduction
+3. Échangez 1 succès par NdT où la tromperie sera telle une vérité pour tous
 
 ### Maîtrises
 
@@ -165,9 +165,9 @@ Mensonges, manipulations, escroqueries, troll, railleries, bobards, distraction 
 La capacité d'élever le moral et la confiance de ceux qui vous entourent. Mouvance des cœurs, remonter le moral, vers la fêtardise, la colère voire l'apprentissage.
 
 ### Découvertes
-1. `[MANQUANT]`
-2. `[MANQUANT]`
-3. `[MANQUANT]`
+1. +1 succès par 2 succès aux jets envers ceux en disposition négative sur vous
+2. Ignorez votre Niv de CT de NdG lors de jet de Cohésion de groupe
+3. Toute inspiration dure pendant un NdT égal aux succès (au lieu d’échanger)
 
 ### Maîtrises
 
@@ -194,9 +194,9 @@ L'action de s'exprimer artistiquement.
 Pratique d'instruments de musique divers et variés - qu'ils soient à percussion, à souffle, vibratoire voire improvisés.
 
 ### Découvertes
-1. `[MANQUANT]`
-2. `[MANQUANT]`
-3. `[MANQUANT]`
+1. Les dés d’ambiance octroyés par succès restent (au lieu de partir après le NdT)
+2. Utilisez cette grappe de dés en entier sur les jets d’inspiration ou présentation
+3. Tout succès peut s’utiliser comme un traitement d’insanité
 
 ### Maîtrises
 
@@ -217,9 +217,9 @@ Pratique d'instruments de musique divers et variés - qu'ils soient à percussio
 Création et pratique de mélodies et/ou paroles chantées ou sifflées, en chœur, etc. Copies des sons, cris et voix, répétition et ventriloquie.
 
 ### Découvertes
-1. `[MANQUANT]`
-2. `[MANQUANT]`
-3. `[MANQUANT]`
+1. Les dés d’ambiance octroyés par succès restent (au lieu de partir après le NdT)
+2. Utilisez cette grappe de dés en entier sur les jets d’inspiration ou séduction
+3. Tout succès peut s’utiliser comme un traitement de rancœurs
 
 ### Maîtrises
 
@@ -242,9 +242,9 @@ Création et pratique de mélodies et/ou paroles chantées ou sifflées, en chœ
 Création, transmission et écriture d'histoire, énigmes, légendes, de poésies, à l'oral ou à l'écrit.
 
 ### Découvertes
-1. `[MANQUANT]`
-2. `[MANQUANT]`
-3. `[MANQUANT]`
+1. Échangez 2 succès contre 1 Niv apparent d’Utilité|Qualité|Rareté d’une chose
+2. Utilisez cette grappe de dés en entier sur les jets d’inspiration ou tromperie
+3. À chaque NdT une narration se propage à +1 NdG jusqu’aux succès obtenus
 
 ### Maîtrises
 

@@ -46,9 +46,9 @@ L'action de commander, obéir et résister par la force de volonté.
 La capacité de donner des ordres et de se faire obéir. Leadership, autorité naturelle, capacité à mobiliser et diriger les autres.
 
 ### Découvertes
-1. `[MANQUANT]`
-2. `[MANQUANT]`
-3. `[MANQUANT]`
+1. Discerner immédiatement la motivation/l’attitude de tout groupe rencontré
+2. Annulez votre Niv de CT de Dés négatifs reçus lors d’un Jet d’Ambiance
+3. Octroyez votre Niv de CT comme Dés bonus sur quelqu’un vous obéissant
 
 ### Maîtrises
 
@@ -73,9 +73,9 @@ La capacité de donner des ordres et de se faire obéir. Leadership, autorité n
 La capacité de se soumettre stratégiquement, de suivre les ordres et de s'adapter à une hiérarchie.
 
 ### Découvertes
-1. `[MANQUANT]`
-2. `[MANQUANT]`
-3. `[MANQUANT]`
+1. Discerner immédiatement qui possède la plus haute Volonté/Domination
+2. Annulez votre Niv de CT de Dés négatifs d’Ambiance lors de jet de Groupe
+3. Ajoutez votre Niv de CT afin de convaincre autrui à suivre le même ordre
 
 ### Maîtrises
 
@@ -99,9 +99,9 @@ La capacité de se soumettre stratégiquement, de suivre les ordres et de s'adap
 Résistance mentale face aux addictions, sevrages, peurs, crises, et bouleversements. La capacité de maintenir sa volonté face à l'adversité.
 
 ### Découvertes
-1. `[MANQUANT]`
-2. `[MANQUANT]`
-3. `[MANQUANT]`
+1. Discerner immédiatement qui (et le NdG) contestera votre obstinance
+2. Ignorez votre Niv de CT de NdG vous contestant lors de tout jet d’Audace
+3. Baisser de votre Niv de CT le chiffre à avoir au D6 pour Guider votre Rage
 
 ### Maîtrises
 
@@ -129,9 +129,9 @@ L'action de résister physiquement aux besoins et aux substances.
 Capacité à absorber, aspirer et retenir les substances avec efficacité. Contrôle de la respiration et de l'aspiration.
 
 ### Découvertes
-1. `[MANQUANT]`
-2. `[MANQUANT]`
-3. `[MANQUANT]`
+1. Engloutir/déglutir vous prend un NdT de moins (taille d’objet = NdT)
+2. Vous savez engloutir/déglutir quoi que ce soit sans vous blesser directement
+3. Vous pouvez engloutir/déglutir des choses de 2 tailles inférieures (au lieu de 3)
 
 ### Maîtrises
 
@@ -150,9 +150,9 @@ Capacité à absorber, aspirer et retenir les substances avec efficacité. Contr
 Capacité à ingérer de grandes quantités de nourriture et de boisson, à mâcher et avaler des substances difficiles.
 
 ### Découvertes
-1. `[MANQUANT]`
-2. `[MANQUANT]`
-3. `[MANQUANT]`
+1. Boire/vomir vous prend un NdT de moins (volume de liquide = NdT)
+2. Sécrétez/crachez/etc. avec une portée = à vos succès (au lieu d’échanger)
+3. Sécrétez/crachez/etc. avec une précision = à vos succès (au lieu d’échanger)
 
 ### Maîtrises
 
@@ -174,9 +174,9 @@ Capacité à ingérer de grandes quantités de nourriture et de boisson, à mâc
 Résistance interne du corps : capacité des organes, tolérance aux inconforts, à la saleté, absorption cutanée.
 
 ### Découvertes
-1. `[MANQUANT]`
-2. `[MANQUANT]`
-3. `[MANQUANT]`
+1. Tout objet rentré dans un organe peut être aussi ressorti sans se tester
+2. Tout objet rentré dans un organe peut y rester sans faire de dégâts directs
+3. Vous pouvez rentrer/sortir des choses de 2 tailles inférieures (au lieu de 3)
 
 ### Maîtrises
 
@@ -205,9 +205,9 @@ L'action de contrôler les autres créatures par la force ou la douceur.
 Savoir où appuyer pour faire mal, peur, ou la simple terreur physique ou psychologique.
 
 ### Découvertes
-1. `[MANQUANT]`
-2. `[MANQUANT]`
-3. `[MANQUANT]`
+1. Utiliser votre réputation négative comme dés positifs à un jet lui étant lié
+2. Toute peur que vous inspirez se propage à votre Niv de CT de cibles désirées
+3. Tout être apeuré vous obéit jusqu’à souffrir un Niv égal à votre Niv de CT
 
 ### Maîtrises
 
@@ -231,9 +231,9 @@ Savoir où appuyer pour faire mal, peur, ou la simple terreur physique ou psycho
 Approche douce pour gagner la confiance des créatures, les calmer et les pacifier.
 
 ### Découvertes
-1. `[MANQUANT]`
-2. `[MANQUANT]`
-3. `[MANQUANT]`
+1. Tout être non-sociable rencontré vous est (au pire) hostile (jamais ennemi)
+2. Vous communiez avec vos bêtes et si possible elles vous aident d’elles-mêmes
+3. Vos bêtes vous protègent jusqu’à souffrir un Niv égal à votre Niv de CT
 
 ### Maîtrises
 
@@ -259,9 +259,9 @@ Approche douce pour gagner la confiance des créatures, les calmer et les pacifi
 Formation stricte des créatures par différentes méthodes : répétition, récompense, punition, imitation.
 
 ### Découvertes
-1. `[MANQUANT]`
-2. `[MANQUANT]`
-3. `[MANQUANT]`
+1. La version opposée de tout ordre dressé est automatiquement apprise
+2. Ordonnez tout être vous étant hostile d’en servir un autre sans ce malus lié
+3. Vos êtres dressés obéissent jusqu’à souffrir un Niv égal à votre Niv de CT
 
 ### Maîtrises
 
