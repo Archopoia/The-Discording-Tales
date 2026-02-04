@@ -166,6 +166,8 @@
                             }
                             audioUnlocked = true;
                             setTimeout(startChimesLoop, 1000);
+                            // Signal SoundCloud player to start after user interaction
+                            window.dispatchEvent(new Event('tdt-entrance-complete'));
                         }, 1500);
                     }, 1200);
                 }, { once: true });
@@ -177,6 +179,8 @@
                     }
                     audioReady = true;
                     unlockAudio(true);
+                    // Signal SoundCloud player to start after user interaction
+                    window.dispatchEvent(new Event('tdt-entrance-complete'));
                 }
             }, { once: true });
         }, 500);

@@ -1409,6 +1409,22 @@
                 return;
             }
             var widget = window.SC.Widget(iframe);
+            var hasStartedFromEntrance = false;
+
+            function startPlayback() {
+                if (!hasStartedFromEntrance) {
+                    hasStartedFromEntrance = true;
+                    widget.play();
+                }
+            }
+
+            // Start playback when user enters through keyhole (user interaction unlocks audio)
+            window.addEventListener('tdt-entrance-complete', startPlayback, { once: true });
+
+            // Fallback: if no keyhole entrance, start on first user click/touch
+            document.addEventListener('click', startPlayback, { once: true });
+            document.addEventListener('touchstart', startPlayback, { once: true });
+
             widget.bind(window.SC.Widget.Events.READY, function() {
                 widget.isPaused(function(paused) {
                     vignette.classList.toggle('soundcloud-stopped', paused);

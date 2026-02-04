@@ -738,8 +738,8 @@
     right: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.5s ease, visibility 0.5s ease;
