@@ -1268,46 +1268,10 @@ Ce document indique **quand** demander quel jet (ou appliquer une règle sans je
 
 # Section: AllBookTables-csv
 
-### Table: (8)_Aptitudes,_(24)_Actions_&_(72)_Compétences.csv
-
-| "﻿(8) Aptitudes | (24) Actions & (72) Compétences" |  |  |  |  |  |  |  |  |  |  |  |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1. Puissance (Fin d’Été {Saison}) |  |  |  | For +3 | ACTIONS |  |  | AGI +2 |  | [Compétences] | Maîtrises | DEX +1 |
-| Frapper | [Armé] | Arme de Poigne, d’Antipôle, de Parade, de Garde, Équilibrées, Flexibles |  |  | Neutraliser | [Lutte] | Saisie, Bousculade, Mise à Terre, Projection, Soumission |  | Tirer | [Bandé] | Encordage (mettre la corde), Surbandé, en Tirs Courbés, Tirs multiples |  |
-|  | [Désarmé] | Coup sans espace, Poings, Pieds, Coude, Genou, Corps |  |  |  | [Bottes] | Bloquer, Agrippement, Entravement, Désarmement, Prise d’arme, Retournement d’arme |  |  | [Propulsé] | Tirs Rapprochés, Tirs Longue Distance, Tirs Imprévisibles, Tirs sur 360 |  |
-|  | [Improvisé] | Arme à coupures, à pieds, rondes, de mains, de paume, de lien, Jet d’arme improvisée |  |  |  | [Ruses] | Enchaînement, Feinter, Contre, Hébétement, Essouffler, Battement, Destruction, Postures, Prises d’arme |  |  | [Jeté] | de Paume, à Manche, Rattrapage de jet, Jets multiples |  |
-| 2. Aisance (Début d’Automne) |  |  | Agi +3 |  |  |  | DEX +2 |  |  |  | VIG +1 |  |
-| Réagir | [Fluidité] | Réactivité, Spontanéité, Rythmique, Feinter, Contrer |  |  | Dérober | [Escamotage] | Espionnant, d’Objets portés, de Véhicules, de Créatures |  | Coordonner | [Gestuelle] | Danse, Posture (au combat), Pantomime, Rituelle, Athlétique, Improvisée |  |
-|  | [Esquive] | Repositionnante, en Roulade, Préparée, Instinctive |  |  |  | [Illusions] | Trichantes, Spectaculaires, de Diversion, de Disparition |  |  | [Minutie] | Délicatesse, Doigté, Impact, Impulsion |  |
-|  | [Évasion] | (Dés)Engagement, Faufilage, Déliement, Délivrement |  |  |  | [Dissimulation] | Se cacher, Cacher des Choses, Déplacement silencieux, Embuscades/Filatures |  |  | [Équilibre] | Stabilisant, en Sols difficiles, Funambule, Jonglage, Surchargé |  |
-| 3. Précision (Fin d’Automne) |  |  | Dex +3 |  |  |  | PER +2 |  |  |  | CRÉ +1 |  |
-| Manier | [Visée] | Mécanismes d’armement, Tir à longue distance, Tir de soutien, en Position difficile, Visée multiple |  |  | Façonner | [Débrouillardise] | Monte de camp, Orientation, Allumage/Extinction, Camouflage |  | Fignoler | [Artifices] | Amorçage, Désamorçage, Enfumants, Explosifs |  |
-|  | [Conduite] | Propulsion personnelle, Tirée par créatures, dans le Risque, la Terre, les Liquides, les Airs, le Vide, sur Terrain difficile, sur Pistes/Rails, sur Liquides (glisse) |  |  |  | [Bricolage] | Contrefaçon, Raccommodage, Amélioration, Improvisation |  |  | [Sécurité] | Dévérouillage, Verrouillage, Copie de serrure, Copie de Clef |  |
-|  | [Habileté] | Une main, Deux mains, Ambidextrie, Recharge/Réarmement, Munition en Main, Parade |  |  |  | [Savoir-Faire] | Alimentaire, des Graisses, du Papier, des Plantes, du Textile, du Cuir, du Verre, de la Construction, des Métaux, des Richesses, du Bois, de la Lutherie, des Arts plastiques, des Arts de dessein, de la Récolte |  |  | [Casse-Têtes] | Nœuds d’Attelage, de Saisine, de Coude, de Boucle, Épissure de corde, Casse-têtes, Craque-coffre, Puzzles |  |
-| 4. Athlétisme (Début d’Hiver) |  |  | Vig +3 |  |  |  | FOR +2 |  |  |  | AGI +1 |  |
-| Traverser | [Pas] | Ramper, Marcher, Courir, Charger, Pédaler |  |  | EfForcer | [Poid] | Tirer & Pousser, Soulever & Ouvrir, Porter, Lancer, Supporter (Équiper) |  | Manœuvrer | [Vol] | Planer, Piquer, Flotter, Poussée, ??? |  |
-|  | [Grimpe] | Montagnard, Glaciaire, Descendant, en Rappel, sur Créature |  |  |  | [Saut] | Sans élan, Précis, en Longueur, en Hauteur, de Paroi, à la Perche |  |  | [Acrobatie] | Aérienne, Sauts périlleux, Chuter, Contorsionniste |  |
-|  | [Natation] | Plongeant, Contre-courant, de Compétition, Flotter surplace, Secourisme, Bataille immergée |  |  |  | [Fouissage] | Viscosité & Liquides, Sables & Granulaires, Terres & Gravats, Roches & Solides |  |  | [Chevauchement] | Montée en selle, Déplacement monté, Manœuvres montées, Agissement monté |  |
-| 5. Charisme (Fin d’Hiver) |  |  | Emp +3 |  |  |  | VOL +2 |  |  |  | PER +1 |  |
-| Captiver | [Séduction] | Attirer, faire Émouvoir, faire Admirer, faire Reconnaître, Avoir une Faveur, Subvertir à la Déloyauté |  |  | ConvAINCRE | [Négociation] | Marchandage, Corrompre, Diplomatie, Débattre, Enchèrir, Renseignement |  | Interpréter | [Instrumental] | Attirer, faire Émouvoir, faire Admirer, faire Reconnaître, Avoir une Faveur, Subvertir à la Déloyauté |  |
-|  | [Mimétisme] | Sons naturels, Êtres sauvages, Accents & Dialectes, Mimique, Interprétation de rôle, Déguisement |  |  |  | [Tromperie] | Belles-paroles, Bobards, Distraire, Escroquer, Railleries, Troller |  |  | [Chant] | de Poitrine, de Tête/d’Appel, Diphonique, Improvisée, de Mélodie, en Chœur, Ventriloque, Sifflée |  |
-|  | [Présentation] | Première impression, Bienséance, Enseigner, Réseauter, Mode, Rumeurs |  |  |  | [Inspiration] | Apaiser, Captiver, Éduquer, Camaraderie, Festivité, Fanatisme |  |  | [Narration] | Fabuleuse & Poétique, Banalités, Ragots & Rumeurs, Propagande, Plaisanteries, Énigmes |  |
-| 6. Détection (Début de Cycle) |  |  | Per +3 |  |  |  | CRÉ +2 |  |  |  | EMP +1 |  |
-| Discerner | [Vision] | Précise & Distante, Écritures, Lecture sur lèvre, Langage corporel |  |  | Découvrir | [Investigation] | Fouille, Pistage, Autopsie, Décryptage, Profilage, Découverte, Prospective |  | Dépister | [Odorat] | Parfums mélangés, Airs sains & malsains, Pistage, Détection aveugle |  |
-|  | [Audition] | Écoute & Murmures, Sons naturels, Apprentissage du parlé, Écholocation |  |  |  | [Estimation] | Valeur des Objets, des Aptitudes, des Arts, de Contrebande, de Recélage, Fraude fiscale, Comptabilité, Administration |  |  | [Goût] | Du Salé/Acide/Sucré/Umami/Amer, Culinaires, Malaises, Secrétions |  |
-|  | [Toucher] | Textures, Températures, Lectures à froid, Reconnaissance aveugle |
-[... truncated ...]
-
 ### Table: (G)uerriers_(M)oînes_(R)ôdeurs_(R)ôdeurs_(B)ardes_(M)ages_(S.csv
 
 | (G)uerriers | (M)oînes | (R)ôdeurs | (R)ôdeurs | (B)ardes | (M)ages | (S)orciers | Illuminés |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-
-### Table: +9_Un_Solstice_-_Un_Équinoxe_...de_”200”_Jours_(en_vrai_180).csv
-
-| +9 | Un Solstice - Un Équinoxe |
-| --- | --- |
-| ...de ”200” Jours (en vrai 180)" | Du plus haut au plus bas point du soleil au fil de l’année. Moitié d’année fêtant le départ/retour du Soleil. - Lié à chaque Solstice seulement, une grande fête. |
 
 ### Table: -_NdT_Annuels,_liés_aux_ères_etaux_époques.csv
 
@@ -1350,41 +1314,6 @@ Ce document indique **quand** demander quel jet (ou appliquer une règle sans je
 | -5 | Un (C)lin - Une Réaction |  |
 | ...de 1 “Tiers-de-seconde” (0.33 seconde)" | Un Clin (d’œil) est le temps de réaction humanoïde, l’instinct et les |  |
 | réflexes | et correspond à un “tiers-de-seconde”." |  |
-
-### Table: 0_Un_(I)nstant_-_Une_Prière_...de_100_Respirations_ou_5_Minu.csv
-
-| 0 | Un (I)nstant - Une Prière |
-| --- | --- |
-| ...de 100 Respirations ou 5 Minutes" | Une Prière dure pendant un instant d’environ 5 minutes et correspond à une série d’actions, ou alors à une action complexe où l’on y prendrait votre temps (“Faire 0” lors d’une action). |
-| -1 | Un Discours - Une Pensée |
-| ...de 30 Respirations ou 100 Secondes" | Un Discours dure 100 secondes, telle une rixe. |
-| -2 | Un Bavardage - Une Idée |
-| ...de 10 Respirations ou 30 Secondes" | Un Bavardage dure 30 secondes, telle une longue salutation. |
-| - NdT Intenses, correspondant directement aux actions elles-mêmes et/ou liées aux réactions dans l'extrême. |  |
-| -3 | Un  Échange  - Une Action Complexe |
-| ...de 3 Respirations ou 10 Secondes" | Un Échange dure 10 secondes, telle une salutation ou un désir. |
-| -4 | Une Respiration - Une Action Simple |
-| ...de 3 Souffles\|Secondes" | Un Respiration dure trois secondes (inspirant ou expirant), tel un besoin. |
-| -5 | Un Souffle - Une Action Libre |
-| ...de 3 Clins d’oeil ou 1 Seconde" | Un Souffle se fait en une seconde ou 3 Clins d’œils tel un instinct ou une réaction. |
-
-### Table: 0_Un_(I)nstant_-_Une_Prière_...de_10_à_100_Respirations_Une.csv
-
-| 0 | Un (I)nstant - Une Prière |
-| --- | --- |
-| ...de 10 à 100 Respirations" | Une Prière dure pendant un instant de 1, 3, 6, 10, 15 minutes, et correspond à une série d’actions, ou alors à une action complexe où l’on y prendrait votre temps (“Faire 0” lors d’une action). |
-| -1 | Un Bavardage - Une Pensée |
-| ...de 10 Respirations ou 100 Clins" | Un Bavardage dure 30 secondes ou 100 Clins, telle une rixe. |
-| -2 | Un  Échange  - Une Idée |
-| ...de 3 Respirations ou 30 Clins" | Un Échange dure 10 secondes ou 30 Clins, telle une salutation. |
-| - NdT Intenses, correspondant directement aux actions elles-mêmes et/ou liées aux réactions dans l'extrême. |  |
-| -3 | Une Respiration - Une Action Simple |
-| ...de 3 Souffles\|Secondes ou 10 Clins" | Un Respiration dure trois secondes (inspirant ou expirant) ou 10 Clins d’oeils, telle un désir ou une Action simple. |
-| -4 | Un Souffle - Une Action Libre |
-| ...de 3 Clins\|Réactions ou 1 Seconde" | Un Souffle se fait en une seconde ou 3 Clins d’œils telle une Action libre ou un besoin |
-| -5 | Un (C)lin - Une Réaction |
-| ...de 1 “Tiers-de-seconde”" | Un Clin (d’œil) est le temps de réaction humanoïde, l’instinct et les |
-| réflexes | et correspond à un “tiers-de-seconde”." |
 
 ### Table: 2dD_(D3)_Société_Paysage_PNIs_Accroches_(D3)_Curiosités.csv
 
@@ -1502,7 +1431,88 @@ Ce document indique **quand** demander quel jet (ou appliquer une règle sans je
 | (Optionnels | les trois premières pouvant s’ajouter plusieurs fois)" |  |  |  |  |  |  |  |  |  |  |  |  |
 |  | MULTITÊTES |  |  |  |  |  |  |  |  |  |  |  |  |
 | ( +X IRT ou -1 Durabilité )" |  |  |  | GARDES |  |  |  |  |  |  |  |  |  |
-| (  +IRT & +GRD )" |  |  |  |
+| (  +IRT & +GRD )" |  |  |  |  | CROCHETS |  |  |  |  |  |  |  |  |
+| ( +MNV & -Durabilité )" |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| +X | Arme à plusieurs faces séparées entre elles |  |  |  |  |  |  |  |  |  |  |  |  |
+| (Si mêlée en une seule face = QUE -1 Durabilité)" |  |  |  | Extension afin de bloquer les attaques |  |  |  |  |  |  |  |  |  |
+| (Les boucliers ont typiquement +2 Gardes)" |  |  |  |  | Accroches permettant de piéger l’ennemi |  |  |  |  |  |  |  |  |
+| (Son arme | son armure | ses membres | etc.)" |  |  |  |  |  |  |  |  |  |  |
+|  | RIGIDE ou FLEXIBLE |  |  |  |  |  |  |  |  |  |  |  |  |
+| ( +ATQ ou +Durabilité )" |  |  |  | AFFINEMENT |  |  |  |  |  |  |  |  |  |
+| ( -IRT & -Durabilité )" |  |  |  |  | FLAMBURE |  |  |  |  |  |  |  |  |
+| ( +GRD & -Durabilité )" |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| +X | Concentrant les dégâts reçus et infligés |  |  |  |  |  |  |  |  |  |  |  |  |
+| (Ex: Masses | katanas | etc.)" |  |  |  | Afin de manier l’arme plus rapidement |  |  |  |  |  |  |  |
+| (Poignard | Rapière | Estoc - ou à l’inverse | l’élargir)" |  |  |  |  | Vaguelettes aggripant les lames ennemies |  |  |  |  |  |
+| (Demande plus d’entretien)" |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| De base une Lame est multitête mais mêlée sur un même corps (épée à double tranchant et pointe) avec une garde, mais sans aucun autre Traits |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| Si les Faces en plus (Multitête) s’harmonisent en un seul tout = -1 Durabilité . Autrement +X IRT par X Faces" |  |  |  |  |  |  |  |  |  |  | 
+[... truncated ...]
+
+### Table: Aliments_Restauration_Description_et_Exemples.csv
+
+| Aliments | Restauration | Description et Exemples |
+| --- | --- | --- |
+| Viandes | Blessures | Riche en substances nourrissantes qui reforgent le sang et les chairs, aidant les plaies à se refermer plus vite (Viandes, Poissons, Fruits‑de‑mer, etc...). |
+| Noix | Entraves | Huiles naturelles et éléments fortifiants lubrifient les jointures et assouplissent les membres raidis. (Noisettes, Amandes, Chataîgnes, etc...). |
+| Céréales | Fatigues | Substances féculentes qui remplissent l’estomac et procurent force durable pour soutenir l’effort prolongé (Blés, Riz, Avoines, etc...). |
+| Pois | Disettes | Protéines végétales et fibres rassasient l’estomac, préviennent l’affaiblissement et soutiennent la vigueur. (Pois, Lentilles, Fèves, etc...). |
+| Laitages | Addictions | Graisses et suc discret tempèrent le creux d’âme, calment les envies pressantes et stabilisent les appétits (Laits, Miels, Œufs, etc...). |
+| Légumes | Maladies | Sucs de racines et de feuilles, riches en sels et forces de la terre, fortifient l’organisme contre les maux (Feuilles, Algues, Bulbes, etc...). |
+| Fruits | Folies | Chair douce et juteuse, pleine de sucs protecteurs, garde l’esprit clair et prévient la confusion (Baies, Fruits à noyaux, Agrumes, etc...). |
+| Champignons | Rancoeurs | Corps terreux porteurs de forces apaisantes, dissipent l’ardeur de la colère et tempèrent les ressentiment (Lichènes, Moisissures, Coraux, etc...). |
+| Préparation de l’Aliment |  |  |
+| Préparer | Restaure +X\|D6 d’une (autre) Souffrance contre X NdT de Préparation ou X Sachet (0.01S) par Portion préparée. |  |
+| Pour chaque +2\|D6 ainsi gagnée | réduire de -1 la Qualité de l’Aliment." |  |
+| Haché / Émincé | Blessures | Favorise l’absorption rapide des sucs réparateurs, essentiels à la cicatrisation. |
+| Acidifié/Mariné | Entraves | Le jus aigre détend les fibres, assouplit muscles et articulations raidis. |
+| Salé | Fatigues | Le sel ranime les humeurs vitales et rétablit l’équilibre des sels corporels, ravigorant les membres. |
+| Séché / Fumé | Disettes | En ôtant l’humidité, on concentre l’énergie nutritive, idéal pour subsister en temps de manque. |
+| Sucré | Addictions | Le miel et les sucres apaisent l’âme troublée et procurent un élan d’énergie rapide. |
+| Épicé | Maladies | Les épices chauffent le corps, purgent les humeurs corrompues et soutiennent la résistance aux infections. |
+| Infusé | Folies | L’eau tire les essences calmantes, dont les sucs apaisent l’esprit agité et tempèrent l’anxiété |
+| Fermenté | Rancoeurs | La lente transformation crée des forces vivantes qui modèrent la colère et favorisent la réconciliation. |
+| Cuisine de l’Aliment |  |  |
+| Cuisiner | +X Niv d’Épreuve au jet de Précision Fabrication] par Qualité de l’Aliment et par Aliments cuisinés simultanéments. |  |
+| Par Échec: -X à la Qualité des Aliments cuisinés. |  |  |
+| Par Succè: +X\|D6 de Restauration de la Souffrance liée au type de cuisine effectuée lors du jet." |  |  |
+| Grillé / Rôti | Blessures | Concentre ses nutriments et durcit les fibres, renforçant muscles et chairs blessés. |
+| Sauté / Poêlé | Entraves | Fixe ses sucs et reste souple, aidant les membres raidis à se délier |
+| Frit | Fatigues | S’imprègne d’un gras énergisant, offrant un regain rapide de vigueur |
+| Poché / Vapeur | Disettes | Hydrate et gonfle, chasse la faim en cas de manque, apaise le ventre. |
+| Crémé / Laité | Addictions | Adoucit et ressource le corps et les senses pour tempérer les envies. |
+| Bouilli / Mijoté | Maladies | Extrait les vertus cachées, fortifie contre la maladie. |
+| Cru | Folies | Tel quel, l’aliment garde ses vertus intactes et soutient la clarté de l’esprit - si il est frais et sein. |
+| Confit | Rancoeurs | La cuisson lente dans la graisse et la présentation elle-même rappelle une ambiance festive et joyeuse. |
+
+### Table: Aristois_Griscribes_Méridiens_Navillis.csv
+
+| Aristois / Griscribes / Méridiens / Navillis |  |
+| --- | --- |
+| Corps Allongé | Afin de passer dans des entrées de toute sorte, l’élongation de lors corps et organes leur donne une Stature d’une catégorie inférieure à celle inscrite. |
+| Socialité Yômme | Les Yômmes sont plus solidaires et échangent plus entre eux. Ils se comprennent mieux et ont +1 Niv aux jets de Groupe afin de travailler ensemble en un but. |
+| Sacrifice collectif | Tout Yômmes rencontré par un autre peut être convaincu de se sacrifier pour défendre les siens (jusque dans la mort) contre une Épreuve de Niv +3 au moins (plutôt que +5). |
+| Nomadisme Yômme | Les Yômmes ont le voyage dans leur sang, l’habitude de camper et décamper, de transporter et traverser, ainsi ils ont +1 Niv aux jets liés aux voyages. |
+
+### Table: Armes_(de...).csv
+
+| Armes (de...) |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Poing | Armes portées sur les mains, doigts, ou les remplaçant, ou les mains nues. |  | Ex: Gantelets, Anneaux-griffes, Boucliers, Pavois, etc. |  |  |  |  |  |  |  |  |  |  |  |  |
+| Pommeau | Typiquement à lame, d'un centre de gravité situé plutôt vers sa base. |  | Ex: Épées, Sabres, Rapières, Machettes, etc. |  |  |  |  |  |  |  |  |  |  |  |  |
+| Manche | D'un poids au centre et équilibré, afin d'être au plus versatile. |  | Ex: Bâtons, Lances, Canes, etc. |  |  |  |  |  |  |  |  |  |  |  |  |
+| Hast | Typiquement à écrasement, ayant un centre d’équilibre vers leur bout. |  | Ex: Marteaux, Hallebardes, Haches, Piolets, etc. |  |  |  |  |  |  |  |  |  |  |  |  |
+| Flexible | Toutes les armes à manche ou corps flexible (chaînes, lames souples, etc.). |  | Ex: Fouets, Chaînes, Fléaux, etc. |  |  |  |  |  |  |  |  |  |  |  |  |
+| Lancer | Toutes les armes lancées directement de la main un fois relâchée. |  | Ex: Javelots, Frondes, Dards de jet, Boomerangs, etc. |  |  |  |  |  |  |  |  |  |  |  |  |
+| Jet | Toutes les armes à distance au mécanisme armé à la main par force. |  | Ex: Arcs, Propulseurs, etc. |  |  |  |  |  |  |  |  |  |  |  |  |
+| Tir | Toutes les armes à distance utilisant un mécanisme de propulsion. |  | Ex: Arbalètes, Sarbacane, Sulfarouelle etc. |  |  |  |  |  |  |  |  |  |  |  |  |
+| ArmURes |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| Matelassage |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| 1ère Classe |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| On peut les porter sur ou sous n’importe quelle Classe" | Peaux (durables contre CTD) |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| Les peaux sont habituellement séparées de la fourrure animale et se porte ou place sur toutes formes d’armures. On peut les bouillir pour les mouler solidifier | et les cémenter avec de la colle animale et roche | sable | ou poudre de métaux/verre." |  |  |  |  |  |  |  |  |  |  |  |  |
+|  | Textiles (durables contre PRF) |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+| Ce sont tout vêtement (gambisons | hoquetons | pourpoints | etc.) fait de couches (18 à 30) de lin | coton | laine | poils | papier | soie | roches fibreuses | etc… protégeant aussi les articulations en offrant une bonne absorption des dégâts. Portés seuls ou par-dessous ou dessus des armures de maille | écailles | laminaires | lamellaires brigandine | plate ou tout autres." |  |
 [... truncated ...]
 
 ---

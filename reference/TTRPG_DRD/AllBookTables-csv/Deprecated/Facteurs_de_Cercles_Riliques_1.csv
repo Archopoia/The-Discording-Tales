@@ -1,0 +1,57 @@
+﻿Facteurs de Cercles Riliques,,,,
+NIV,Distance (de la cible la plus éloignée),Durée (de l’effet le plus long),Quantité (des cibles affectées),Taille (de la plus grande cible)
+-5,"En soi 
+(À l’intérieur)","1 Clin d’Oeil 
+(Instinct)","1 Poudre
+(Plis d’empreinte | Infinitésimal)","Infime
+(En dessous d’1cm)"
+-4,"Sur soi 
+(Équipé)","3 Clins | Souffles 
+(Besoin)","1 Grain
+(Pointe du doigt | 1/1’000’000)","Négligeable
+(1cm à 3cm)"
+-3,"Jusqu’à soi 
+(Au touché)","10 Clins | Respirations 
+(Désir)","1 Fiole
+(Pincée | 1/100’000)","Insignifiante
+(3cm à 6cm)"
+-2,"Proche de soi 
+(À portée)","30 Clins 
+(Idée)","1 Sachet
+(Pouce | 1/10’000)","Minuscule
+(6cm à 12cm)"
+-1,"Autour de soi 
+(Alentours)","100 Clins
+(Pensée)","1 Bourse
+(Paume | 1/1’000)","Minime
+(12cm à 25cm)"
+0,"Au regard 
+(Voyant le détail)","Instant 
+(Prière)","1 Sac
+(Poigne | 1/100)","Réduite
+(25cm à 50cm)"
++1,"A l’horizon 
+(Tout le visible)","Heure
+(Rite)","1 Coffre
+(Bras|Membre | 1/10)","Petite
+(50cm à 1 mètre)"
++2,"Dans les Parages 
+(Carte)","Veillée 
+(Rituel)","1 Charrette
+(1 Individu de taille [M]oyenne)","Moyenne
+(1 à 2 mètres)"
++3,"Dans la Zone 
+(Carte)","Matinée 
+(Festin)","1 Caravane | Troupeau | Ferme
+(10+ Individus M)","Grande
+(2 à 4 mètres)"
++4,"Dans le Lieu 
+(Carte)","Jour 
+(Fête)","1 Tribu | Hameau
+(100+ Individus M)","Énorme
+(4 à 8 mètres)"
++5,"Dans la Localité 
+(Carte)","Pentaine 
+(Festival)","1 Régiment | Village
+(1’000+ Individus M)","Colossale
+(4 à 16 mètres)"

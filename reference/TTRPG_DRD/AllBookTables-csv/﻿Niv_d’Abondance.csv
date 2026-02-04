@@ -1,9 +1,0 @@
-﻿﻿Niv d’Abondance,,,
-"Un... (x1), Quelques... (x3), Beaucoup de... (x10)",,,
--3,1 Fiole,0.001 S,"Quantité de sable, graines, sel, piécettes, 5 grammes, etc…"
--2,1 Sachet,0.01 S,"Sifflet, anneau, clou , cordon d'or, pomme, 50g, etc…"
--1,1 Bourse,0.1 S,"Savon, dague, vivres d'1 jour, jusqu’à 500g, etc…"
-0,1 (S)ac,1,"Épée, pioche, coffre vide, crâne, peau, jusqu’à 5 kg, etc…"
-+1,1 Coffre,10 S,"Animal de taille moyenne, 1 Veillée de récolte, 50kg, etc…"
-+2,1 Charrette,100 S,"Caravane vide, 1 matinée ou labeur de récolte, 500kg, etc…"
-+3,1 Caravane,1000 S,"Un arbre, une centaine d'individus, jusqu’à 5 tonnes, etc…"

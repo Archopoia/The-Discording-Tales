@@ -1,9 +1,10 @@
-﻿Niv d’Épreuve des 8 Souffrances,,,,,,,,,
+﻿﻿Niv d’Épreuve des 8 Souffrances,,,,,,,,,
 ,Force,Agilité,Dextérité,Vigueur,Empathie,Perception,Créativité,Volonté,
 ,Blessures,Entraves,Fatigues,Disettes,Addictions,Maladies,Folies,Rancoeurs,
 Niv d'Épreuve,"Échecs d'Aptitudes liées
 Chute (d'1|2|3m x Niv)
 Saignement","Échecs d'Aptitudes liées
+Environnements
 Encombrement","Échecs d'Aptitudes liées,
 Nuits Blanches
 Labeurs","Échecs d'Aptitudes liées
@@ -17,45 +18,38 @@ Bouleversements","Échecs d'Aptitudes liées
 Situations enrageantes
 Punitions",Niv dÉpreuve
 ,,,,,,,,,
-Niv,Exemples de différentes situations classées par leur Niveaux d'Épreuves causant un type de Souffrance en particulier. A chaque Niveau sont aussi définis les différentes Séquelles et étapes de souffrance.,,,,,,,,Niv
+Niv,Exemples de différentes situations classées par leur Niveaux d'Épreuves causant un type de Souffrance en particulier. A chaque Niveau sont aussi définies les différentes Séquelles et étapes de Rage & d’Inconscience,,,,,,,,Niv
 0,"Blessure Superficielle
 Égratignures
 Échardes
 Bleus
-Tomber par terre","Feu de camp, Courant d’air
-Habits grattant ou sales 
-Sol inconfortable
-1 Couche d’Armure équipée
-Ébranlement en Bataille","Porter +0 Facteur de Sacs sur 1 Matinée
-Porter jusqu’à la limite de ses Sacs (d’habitude 3S.)","1 Matinée sans Manger, tel qu’un petit Creux
-1 Matinée sans Boire, telle qu’une petite Soif","Drogues/Divertissements/Etc. restaurant un Attribut à 0 pendant 1 Instant (NdT0) après 1 Pentaine.
-À assouvir à chaque Année","Nez qui coule
+Tomber alors que debout","Ébranlement en Bataille
+Porter jusqu’à la limite de ses Sacs (d’habitude 3 Sacs) au travers d’un Jour","10 Clins d’efforts en Bataille
+Fatigue d’1 Labeur par Jour","1 Matinée sans Manger, tel qu’un petit Creux
+1 Matinée sans Boire, telle qu’une petite Soif","Drogues dont les NdT d’activation + NdT de durée + Niv d’effet = 0
+","Nez qui coule
 Un seul Vomissement
-Poison infligeant 1d6/2 Souffrances","Rencontrer des valeurs différentes/opposées aux siennes
+Poison causant 1 Dé de Souffrances (DS)","Rencontrer des valeurs différentes/opposées aux siennes
 Découverte soudaine d’une carcasse ou d’un membre
 Surpris par un Danger ","Se faire couper la parole
 Un Regard suspect
 Une Blague ratée
 Etc...",0
-1-2 Dés de Souffrance (DS),,+1 à 2 DS d'un coup n'infilgeant JAMAIS de Séquelles (même en les accumulant à un Niv de Souffrances supérieur),,,,,,1-2Dés de Souffrances (DS),
+1-2 Dés de Souffrance (DS),,+1 à 2 DS d'un coup n'infilgent JAMAIS de Séquelles (même en les accumulant à un Niv de Souffrances supérieur),,,,,,1-2Dés de Souffrances (DS),
 1,"Blessure Légère
 Déboitages
 Luxations
 Coupures inquiétantes
-Chute à 3/2/1m (P/M/G)","Été & Hiver (rappel 1x/Veillée
-Dans la boue/En Pente, 
-1 Jour sans se laver
-+1 É. de Sacs portées
-+1 C. d’Armure/Casque","Fatigue d’1 Nuit blanche
-Fatigue d’1 Labeur par Jour
-10 Clins d’efforts en Bataille
-Porter +1 ÉdS sur 1 Veillée
-1 Essoufflement (superficiel)","1 Jour sans Manger, telle qu’une grosse Faim
-1 Jour sans Boire, telle qu’une grosse Soif","Drogues/Divertissements/Etc. octroyant +1 Dé contre 1 Souffrance pendant 1 Heure après 1 Jour
-À assouvir à chaque Soleil","Petit Rhume
-Blessure infectée après 1J
-Poison de 1d6 Souffrances à un Attributs
-","Ne pas pouvoir agir en ses valeurs.
+Chute à 3/2/1m (P/M/G)","Dans la boue
+En Pente
+Porter +1 NdS sur 1 Matinée","Fatigue d’1 Nuit blanche
+Travailler 2 Labeurs/Jour
+Récupérer après une Rage
+","1 Jour sans Manger, telle qu’une grosse Faim
+1 Jour sans Boire, telle qu’une grosse Soif","Drogues dont les NdT d’activation + NdT de durée + Niv d’effet = 1
+S’assouvir en reprenant X doses pour annuler 1 DS","Petit Rhume
+Blessure de N1 infectée
+Poison causant 1d3 DS sur un type de Souffrance","Ne pas pouvoir agir en ses valeurs.
 Être Surpris par l’ennemi,
 Être Encerclé, ou en Infériorité numérique (3x moins)","Être punis pour ses actes
 Ne pas pouvoir exprimer ce que l’on pense être
@@ -69,15 +63,16 @@ DS"
 2,"Blessure Profonde
 Une Grosse Fracture
 Plusieurs Petites Fractures
-Chute à 6/4/2m (P/M/G)","Eté chaud & Hiver froid (1x/Heure) Bourrasques
-Nage à contre-courant, Trempé, 1 Pentaine sans se laver.","Après 2 Nuits blanches 
-Travailler 2 Labeurs/Jour
-Porter +3 ÉdS sur 1 Heure
-3 Essoufflements (superficiel)","1 Pentaine sans Manger, tel qu’un Jeûne intermittent
+Chute à 6/4/2m (P/M/G)
+-> +1 Saignement à panser","Bourrasques
+Nage à contre-courant
+Porter +2 NdS sur 1 Veillée
+","Fatigue de 2 Nuits blanches 
+Travailler 3 Labeurs/Jour (tout le jour entier sans vraiment s’arrêter)","1 Pentaine sans Manger, tel qu’un Jeûne intermittent
 2 Jours sans Boire, telle qu’une Déshydratation
-","Drogues/Divertissements/Etc. octroyant +3|1  Dés à 1|2 Souffrances pendant 1 Veillée après 1 Veillée
-À assouvir par Cycle","Fièvre, Rougeole
-Poison infligeant 1d6 Souffrances à deux Attributs (maximum)","Être dans l’incapacité d’infliger des dégâts, tel que ne pas ou plus avoir d’arme, un ennemi “invincible”, etc...
+","Drogues dont les NdT d’activation + NdT de durée + Niv d’effet = 3
+S’assouvir en reprenant X doses pour annuler 2 DS","Fièvre, Rougeole
+Poison causant 2d3 DS sur jusqu’à 2 différentes Souffrances","Être dans l’incapacité d’infliger des dégâts, tel que ne pas ou plus avoir d’arme, un ennemi “invincible”, etc...
 Être Blessé en Bataille","Être forcé de prétendre l’opposé de ce que l’on pense être
 Participer à ce que l’on ne veut pas faire ou dire",2
 "6-9
@@ -87,16 +82,15 @@ Durable",,,,"SI 3 Niv d'un coup = Séquelle Psychique
 Durable",,"6-9
 DS"
 3,"Blessure Grave, Vigueur touchés, Os brisés, etc...
--> +1 Saignement à panser
-Chute à 12/8/4m (P/M/G)","Canicule & Hiver Glaçant (rappel 1xInstant), Vent frais
-Embourbé/boueux, 1 Héliorée sans se laver.","Après 3 Nuits blanches
-Travailler 3 Labeurs/Jour
-Porter +6 ÉdS sur 1 Instant
-6 Essoufflements (superficiel)","1 Héliorée sans Manger tel qu’un long Jeûne
+Chute à 12/8/4m (P/M/G)
+-> +2 Saignements à panser","Vent frais
+Embourbé
+Porter +3 NdS sur 1 Heure
+",Après 3 Nuits blanches,"1 Héliorée sans Manger tel qu’un long Jeûne
 Ou 3 Jours sans Boire, telle qu’une une Soif dangereuse
-","Drogues octroyant +6|3|1  Dés à 12|3 Souffrances pendant 1 Matinée après 1 Heure.
-À assouvir à chaque Saison","Petite Peste, Botulisme, Diphtérie
-Poison infligeant 1d6 Souffrances à trois Attributs (maximum)","Être forcé d’agir contre ses valeurs
+","Drogues dont les NdT d’activation + NdT de durée + Niv d’effet = 6
+S’assouvir en reprenant X doses pour annuler 3 DS","Petite Peste, Botulisme, Diphtérie
+Poison causant 3d3 DS sur jusqu’à 3 différentes Souffrances","Être forcé d’agir contre ses valeurs
 Se réveiller enfermé enterré
 Voir la Moitié des Alliés ou votre Chef être Défait","Être ridiculisé ou intimidé pour s’être exprimé intimement
 Parler à un ennemi juré",3
@@ -105,15 +99,14 @@ DS","+1 Niv de Rage par Souffrances Totaux > 10, Peut utiliser ses Souffrances T
 SI 4 Niv d'un coup = Séquelle Permanente",,,,,,,,"10-11
 DS"
 4,"Blessure Incapacitante, Estropiante, Un membre tranché…
--> +2 Saignements à panser
-Chute à 24/16/8m (P/M/G)","Désert Chaud & Froid (rappel 1x/6 minutes), Vent violent 
-Tourbe, 1 Saison sans se laver, Couvert d’entrailles.","Après 4 Nuits blanches
-Travailler 4 Labeurs/Jour
-Porter +10 ÉdS sur 6 Minutes
-10 Essoufflements (superficiel)","1 Saison sans Manger, telle qu’une Grève de la faim
-Ou 4 Jours sans Boire, telle qu’une Grève de la soif","Drogues octroyant +10|6|3|1  Dés à 1|2|3|4 Souffrances pendant 1 Jour après 1 Instant.
-À assouvir à chaque Héliorée","Peste, Tétanos, Variole
-Poison infligeant 1d6 Souffrances à quatre Attributs (maximum)","Voir ses valeurs détruites.
+Chute à 24/16/8m (P/M/G)
+-> +3 Saignements à panser","Vent violent 
+Tourbe
+Porter +4 NdS sur 1 Moment","Après 4 Nuits blanches
+","1 Saison sans Manger, telle qu’une Grève de la faim
+Ou 4 Jours sans Boire, telle qu’une Grève de la soif","Drogues dont les NdT d’activation + NdT de durée + Niv d’effet = 10
+S’assouvir en reprenant X doses pour annuler 4 DS","Peste, Tétanos, Variole
+Poison causant 4d3 DS sur jusqu’à 4 différentes Souffrances","Voir ses valeurs détruites.
 Être témoin de la 1ère mort violente d’un ami ou allié ou votre dévorement (une mort directe et sans espoir)","Être punis, battu ou exilé pour avoir exprimé ce que l’on pense être en vrai ou avoir exprimé ce que l’on pense être soi-même",4
 "15-20
 DS","Tomber dans l'Évanouissament  (échanger 1 Niv de Rage à chaque nouvelle Souffrance)
@@ -121,30 +114,27 @@ DS","Tomber dans l'Évanouissament  (échanger 1 Niv de Rage à chaque nouvelle 
 (Mort instantanée)",,"Tomber dans la Démence (échanger 1 Niv de Rage à chaque nouvelle Souffrance)
 (Jeter 1D6 > Évanouissement pour pouvoir Agir)",,,"15-20
 DS"
-5,"Blessure à Domination, Adrénaline, entre conscience et inconscience 
--> +3 Saignements à panser 
-Chute à 48/32/16m (P/M/G)","Désert Cuisant & Polaire (rappel 1x/3 Minutes), Tempête
-Sables mouvants, 1 Cycle sans se laver","Après 5 Nuits blanches
-Travailler 5 Labeurs/Jour
-Porter +15 ÉdS sur 3 Minutes
-15 Essoufflements (superficiel)","1 Cycle sans Manger
+5,"Blessure à survivre, Adrénaline, entre conscience et inconscience 
+Chute à 48/32/16m (P/M/G)
+-> +4 Saignements à panser ","Tempête
+Sables mouvants
+Porter +5 NdS sur 1 Instant",Après 5 Nuits blanches,"1 Cycle sans Manger
 5 Jours sans Boire
-- Une Famine généralisée","Drogues octroyant +15|10|6|3|1  Dés à 1|2|3|4|5 Souffrances pendant 1 Pentaine après 100 Clins.
-À assouvir à chaque Pentaine","Grande Peste, Rage
-Poison infligeant 1d6 Souffrances à cinq Attributs (maximum)","Subir une torture sévère et traumatisante
+- Une Famine généralisée","Drogues dont les NdT d’activation + NdT de durée + Niv d’effet = 15
+S’assouvir en reprenant X doses pour annuler 5 DS","Grande Peste, Rage
+Poison causant 5d3 DS sur jusqu’à 5 différentes Souffrances","Subir une torture sévère et traumatisante
 Rencontrer quelqu’un que l’on sait être mort",Être torturé ou traumatisé pour avoir exprimé ce que l’on pense être en vrai ou avoir exprimé ce que l’on pense être soi-même,5
 "21+...
 DS",DÉFAITE,,,,,,,,"21+...
 DS"
 6,"Blessure Critique
--> +4 Saignements à panser
-Chute à 96/64/32m (P/M/G)","Désert de Sel & Calotte glaciaire (rappel 1xMinute) Maelström, Tornade
-Paralysie, 1 Solstice sans se laver","Après 6 Nuits blanches
-Travailler 6 Labeurs/jour
-Porter +20 ÉdS sur 1 Minute
-20 Essoufflements (superficiel)","1 Solstice sans Manger
+Chute à 96/64/32m (P/M/G)
+-> +5 Saignements à panser","Maelström
+Tornade
+Paralysie
+Porter +6 NdS sur 100 Clins",Après 6 Nuits blanches,"1 Soleil sans Manger
 6 Jours sans Boire
-- Une Longue Famine","Drogues de +21|15|10|6|3|1 Dés à 1|2|3|4|5|6Maux pendant 1 Héliorée après 30 Clins.
-À assouvir à chaque Jour","Une Infection rare et mortelle
-Poison “mortel” infligeant 1d6 Souffrances à six Attributs (maximum)",Vision de toutes ses peurs et dégoûts irrationnels se manifestant en face de soi,Être forcé d’avoir une relation profondément intime ou opposée avec ses ennemis jurés ou ses incompatibilités les plus profondes,6
+- Une Longue Famine","Drogues dont les NdT d’activation + NdT de durée + Niv d’effet = 20
+S’assouvir en reprenant X doses pour annuler 6 DS","Une Infection rare et mortelle
+Poison “mortel” infligeant 6d3 sur jusqu’à 6 différentes Souffrances",Vision de toutes ses peurs et dégoûts irrationnels se manifestant en face de soi,Être forcé d’avoir une relation profondément intime ou opposée avec ses ennemis jurés ou ses incompatibilités les plus profondes,6
 ,,,,,,,,,
