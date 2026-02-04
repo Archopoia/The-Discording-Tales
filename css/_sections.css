@@ -2036,6 +2036,60 @@
     color: #c0ffe8;
 }
 
+/* Secondary aptitudes (non-principal): no underline, reference style */
+.attributes-tree-aptitude-name-secondary {
+    text-decoration: none !important;
+    color: var(--tdt-beige);
+    opacity: 0.85;
+}
+
+.attributes-tree-aptitude-name-secondary:hover {
+    color: var(--tdt-beige-light);
+}
+
+/* Secondary aptitude toggle: shows link icon instead of arrow */
+.attributes-tree-toggle-link {
+    cursor: pointer;
+}
+
+.attributes-tree-toggle-link::before {
+    content: '↗' !important;
+    font-size: 0.9em;
+}
+
+.attributes-tree-toggle-link:hover {
+    color: var(--tdt-mint);
+}
+
+/* "See X" link for secondary aptitudes */
+.attributes-tree-see-link {
+    font-size: 0.8em;
+    color: var(--tdt-beige);
+    opacity: 0.7;
+    margin-left: var(--spacing-sm);
+    cursor: pointer;
+    transition: color var(--transition-fast), opacity var(--transition-fast);
+}
+
+.attributes-tree-see-link:hover {
+    color: var(--tdt-mint);
+    opacity: 1;
+}
+
+/* Highlight animation when navigating to an attribute */
+.attributes-tree-highlight {
+    animation: attributes-tree-highlight-pulse 1.5s ease-out;
+}
+
+@keyframes attributes-tree-highlight-pulse {
+    0% {
+        background-color: rgba(160, 253, 218, 0.3);
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
 .attributes-tree-weight {
     font-size: 0.75em;
     color: var(--tdt-beige);

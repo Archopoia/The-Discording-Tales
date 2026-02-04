@@ -1029,6 +1029,19 @@
     // Attributes Tree: Interactive hierarchy
     // Attribute -> Aptitude -> Action -> Competence -> Masteries
     // ========================================
+    
+    // Mapping: which attribute has each aptitude as its principal (first/+3)
+    var APTITUDE_PRINCIPAL_ATTR = {
+        PUISSANCE: 'FOR',
+        AISANCE: 'AGI',
+        PRECISION: 'DEX',
+        ATHLETISME: 'VIG',
+        CHARISME: 'EMP',
+        DETECTION: 'PER',
+        REFLEXION: 'CRE',
+        DOMINATION: 'VOL'
+    };
+
     var ATTRIBUTES_TREE_DATA = {
         attributes: {
             FOR: {
@@ -1498,54 +1511,70 @@
                     var isPrincipal = aptIdx === 0;
                     var weight = aptIdx === 0 ? '+3' : (aptIdx === 1 ? '+2' : '+1');
 
-                    html += '<div class="attributes-tree-node attributes-tree-aptitude-node" role="treeitem" aria-expanded="false" data-aptitude="' + aptId + '">';
-                    html += '<span class="attributes-tree-toggle" aria-hidden="true"></span>';
-                    html += '<span class="attributes-tree-aptitude-name' + (isPrincipal ? ' aptitude-principal' : '') + '" data-en="' + apt.name.en + '" data-fr="' + apt.name.fr + '">' + (lang === 'fr' ? apt.name.fr : apt.name.en) + '</span>';
-                    html += '<span class="attributes-tree-weight">' + weight + '</span>';
-                    html += '<div class="attributes-tree-aptitude-content" hidden aria-expanded="false"></div>';
-                    html += '<div class="attributes-tree-children">';
-
-                    // Actions for this aptitude
-                    apt.actions.forEach(function(actId) {
-                        var action = ATTRIBUTES_TREE_DATA.actions[actId];
-                        if (!action) return;
-
-                        var linkedAttrData = ATTRIBUTES_TREE_DATA.attributes[action.linkedAttr];
-                        var linkedAttrAbbr = linkedAttrData ? linkedAttrData.abbr : '';
-
-                        html += '<div class="attributes-tree-node attributes-tree-action-node" role="treeitem" aria-expanded="false" data-action="' + actId + '">';
+                    if (isPrincipal) {
+                        // Principal aptitude: full tree with actions/competences/masteries
+                        html += '<div class="attributes-tree-node attributes-tree-aptitude-node" role="treeitem" aria-expanded="false" data-aptitude="' + aptId + '">';
                         html += '<span class="attributes-tree-toggle" aria-hidden="true"></span>';
-                        html += '<span class="attributes-tree-action-name" data-en="' + action.name.en + '" data-fr="' + action.name.fr + '">' + (lang === 'fr' ? action.name.fr : action.name.en) + '</span>';
-                        html += '<span class="attributes-tree-linked-attr" title="Linked attribute: ' + linkedAttrAbbr + '">[' + linkedAttrAbbr + ']</span>';
-                        html += '<div class="attributes-tree-action-content" hidden aria-expanded="false"></div>';
+                        html += '<span class="attributes-tree-aptitude-name aptitude-principal" data-en="' + apt.name.en + '" data-fr="' + apt.name.fr + '">' + (lang === 'fr' ? apt.name.fr : apt.name.en) + '</span>';
+                        html += '<span class="attributes-tree-weight">' + weight + '</span>';
+                        html += '<div class="attributes-tree-aptitude-content" hidden aria-expanded="false"></div>';
                         html += '<div class="attributes-tree-children">';
 
-                        // Competences for this action
-                        action.competences.forEach(function(compId) {
-                            var comp = ATTRIBUTES_TREE_DATA.competences[compId];
-                            if (!comp) return;
+                        // Actions for this aptitude
+                        apt.actions.forEach(function(actId) {
+                            var action = ATTRIBUTES_TREE_DATA.actions[actId];
+                            if (!action) return;
 
-                            html += '<div class="attributes-tree-node attributes-tree-competence-node" role="treeitem" aria-expanded="false" data-competence="' + compId + '">';
+                            var linkedAttrData = ATTRIBUTES_TREE_DATA.attributes[action.linkedAttr];
+                            var linkedAttrAbbr = linkedAttrData ? linkedAttrData.abbr : '';
+
+                            html += '<div class="attributes-tree-node attributes-tree-action-node" role="treeitem" aria-expanded="false" data-action="' + actId + '">';
                             html += '<span class="attributes-tree-toggle" aria-hidden="true"></span>';
-                            html += '<span class="attributes-tree-competence-name" data-en="' + comp.name.en + '" data-fr="' + comp.name.fr + '">' + (lang === 'fr' ? comp.name.fr : comp.name.en) + '</span>';
-                            html += '<div class="attributes-tree-competence-content" hidden aria-expanded="false"></div>';
-                            html += '<div class="attributes-tree-children attributes-tree-masteries">';
+                            html += '<span class="attributes-tree-action-name" data-en="' + action.name.en + '" data-fr="' + action.name.fr + '">' + (lang === 'fr' ? action.name.fr : action.name.en) + '</span>';
+                            html += '<span class="attributes-tree-linked-attr" title="Linked attribute: ' + linkedAttrAbbr + '">[' + linkedAttrAbbr + ']</span>';
+                            html += '<div class="attributes-tree-action-content" hidden aria-expanded="false"></div>';
+                            html += '<div class="attributes-tree-children">';
 
-                            // Masteries for this competence
-                            comp.masteries.forEach(function(mastery) {
-                                html += '<span class="attributes-tree-mastery">' + mastery + '</span>';
+                            // Competences for this action
+                            action.competences.forEach(function(compId) {
+                                var comp = ATTRIBUTES_TREE_DATA.competences[compId];
+                                if (!comp) return;
+
+                                html += '<div class="attributes-tree-node attributes-tree-competence-node" role="treeitem" aria-expanded="false" data-competence="' + compId + '">';
+                                html += '<span class="attributes-tree-toggle" aria-hidden="true"></span>';
+                                html += '<span class="attributes-tree-competence-name" data-en="' + comp.name.en + '" data-fr="' + comp.name.fr + '">' + (lang === 'fr' ? comp.name.fr : comp.name.en) + '</span>';
+                                html += '<div class="attributes-tree-competence-content" hidden aria-expanded="false"></div>';
+                                html += '<div class="attributes-tree-children attributes-tree-masteries">';
+
+                                // Masteries for this competence
+                                comp.masteries.forEach(function(mastery) {
+                                    html += '<span class="attributes-tree-mastery">' + mastery + '</span>';
+                                });
+
+                                html += '</div>'; // masteries
+                                html += '</div>'; // competence node
                             });
 
-                            html += '</div>'; // masteries
-                            html += '</div>'; // competence node
+                            html += '</div>'; // action children
+                            html += '</div>'; // action node
                         });
 
-                        html += '</div>'; // action children
-                        html += '</div>'; // action node
-                    });
+                        html += '</div>'; // aptitude children
+                        html += '</div>'; // aptitude node
+                    } else {
+                        // Secondary aptitude: no children, just a reference link to principal attribute
+                        var principalAttrId = APTITUDE_PRINCIPAL_ATTR[aptId];
+                        var principalAttr = ATTRIBUTES_TREE_DATA.attributes[principalAttrId];
+                        var principalAttrName = principalAttr ? (lang === 'fr' ? principalAttr.name.fr : principalAttr.name.en) : '';
+                        var seeText = lang === 'fr' ? 'voir ' : 'see ';
 
-                    html += '</div>'; // aptitude children
-                    html += '</div>'; // aptitude node
+                        html += '<div class="attributes-tree-node attributes-tree-aptitude-node attributes-tree-aptitude-secondary" data-aptitude="' + aptId + '" data-see-attribute="' + principalAttrId + '">';
+                        html += '<span class="attributes-tree-toggle attributes-tree-toggle-link" aria-hidden="true" title="' + seeText + principalAttrName + '"></span>';
+                        html += '<span class="attributes-tree-aptitude-name attributes-tree-aptitude-name-secondary" data-en="' + apt.name.en + '" data-fr="' + apt.name.fr + '">' + (lang === 'fr' ? apt.name.fr : apt.name.en) + '</span>';
+                        html += '<span class="attributes-tree-weight">' + weight + '</span>';
+                        html += '<span class="attributes-tree-see-link" data-see-attribute="' + principalAttrId + '">(<span data-en="see ' + principalAttr.name.en + '" data-fr="voir ' + principalAttr.name.fr + '">' + seeText + principalAttrName + '</span>)</span>';
+                        html += '</div>'; // secondary aptitude node (no children)
+                    }
                 });
 
                 html += '</div>'; // attribute children
@@ -1562,6 +1591,9 @@
         // Toggle expand/collapse handlers
         function setupToggles() {
             treeEl.querySelectorAll('.attributes-tree-node').forEach(function(node) {
+                // Skip secondary aptitudes - they have no children to expand
+                if (node.classList.contains('attributes-tree-aptitude-secondary')) return;
+                
                 var toggle = node.querySelector(':scope > .attributes-tree-toggle');
                 var children = node.querySelector(':scope > .attributes-tree-children');
                 if (!toggle || !children) return;
@@ -1587,14 +1619,66 @@
             });
         }
 
+        // Navigate to a principal attribute and expand it
+        function navigateToPrincipalAttribute(attrId) {
+            var targetNode = treeEl.querySelector('.attributes-tree-node[data-attribute="' + attrId + '"]');
+            if (!targetNode) return;
+            
+            // Expand the target attribute node
+            var toggle = targetNode.querySelector(':scope > .attributes-tree-toggle');
+            var children = targetNode.querySelector(':scope > .attributes-tree-children');
+            if (children) {
+                targetNode.setAttribute('aria-expanded', 'true');
+                children.style.display = '';
+            }
+            
+            // Scroll to the target node
+            targetNode.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            // Add a brief highlight effect
+            targetNode.classList.add('attributes-tree-highlight');
+            setTimeout(function() {
+                targetNode.classList.remove('attributes-tree-highlight');
+            }, 1500);
+        }
+
+        // Setup click handlers for secondary aptitude toggles and "see" links
+        function setupSecondaryAptitudeLinks() {
+            // Handle clicks on secondary aptitude toggles
+            treeEl.querySelectorAll('.attributes-tree-aptitude-secondary .attributes-tree-toggle-link').forEach(function(toggle) {
+                toggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var node = toggle.closest('.attributes-tree-aptitude-secondary');
+                    var targetAttrId = node ? node.getAttribute('data-see-attribute') : null;
+                    if (targetAttrId) {
+                        navigateToPrincipalAttribute(targetAttrId);
+                    }
+                });
+            });
+            
+            // Handle clicks on "see X" links
+            treeEl.querySelectorAll('.attributes-tree-see-link').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var targetAttrId = link.getAttribute('data-see-attribute');
+                    if (targetAttrId) {
+                        navigateToPrincipalAttribute(targetAttrId);
+                    }
+                });
+            });
+        }
+
         setupToggles();
+        setupSecondaryAptitudeLinks();
 
         // Click handlers for showing descriptions (event delegation)
         treeEl.addEventListener('click', function(ev) {
             var target = ev.target;
             var lang = document.documentElement.lang || 'en';
 
-            // Attribute name click
+            // Attribute name click - toggle both description AND children
             if (target.closest && target.closest('.attributes-tree-attr-name')) {
                 var nameEl = target.closest('.attributes-tree-attr-name');
                 var node = nameEl.closest('.attributes-tree-node[data-attribute]');
@@ -1605,28 +1689,46 @@
                 var attr = ATTRIBUTES_TREE_DATA.attributes[attrId];
                 if (!attr) return;
                 var panel = node.querySelector(':scope > .attributes-tree-attr-content');
-                if (!panel) return;
-                toggleDescPanel(panel, attr.desc[lang] || attr.desc.en);
+                if (panel) {
+                    toggleDescPanel(panel, attr.desc[lang] || attr.desc.en);
+                }
+                // Also toggle children
+                toggleNodeChildren(node);
                 return;
             }
 
-            // Aptitude name click
+            // Aptitude name click - toggle both description AND children (for principal aptitudes)
             if (target.closest && target.closest('.attributes-tree-aptitude-name')) {
                 var nameEl = target.closest('.attributes-tree-aptitude-name');
                 var node = nameEl.closest('.attributes-tree-node[data-aptitude]');
                 if (!node) return;
+                
+                // For secondary aptitudes, navigate instead of showing description
+                if (node.classList.contains('attributes-tree-aptitude-secondary')) {
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    var targetAttrId = node.getAttribute('data-see-attribute');
+                    if (targetAttrId) {
+                        navigateToPrincipalAttribute(targetAttrId);
+                    }
+                    return;
+                }
+                
                 ev.preventDefault();
                 ev.stopPropagation();
                 var aptId = node.getAttribute('data-aptitude');
                 var apt = ATTRIBUTES_TREE_DATA.aptitudes[aptId];
                 if (!apt) return;
                 var panel = node.querySelector(':scope > .attributes-tree-aptitude-content');
-                if (!panel) return;
-                toggleDescPanel(panel, apt.desc[lang] || apt.desc.en);
+                if (panel) {
+                    toggleDescPanel(panel, apt.desc[lang] || apt.desc.en);
+                }
+                // Also toggle children
+                toggleNodeChildren(node);
                 return;
             }
 
-            // Action name click
+            // Action name click - toggle both description AND children
             if (target.closest && target.closest('.attributes-tree-action-name')) {
                 var nameEl = target.closest('.attributes-tree-action-name');
                 var node = nameEl.closest('.attributes-tree-node[data-action]');
@@ -1637,12 +1739,15 @@
                 var action = ATTRIBUTES_TREE_DATA.actions[actId];
                 if (!action) return;
                 var panel = node.querySelector(':scope > .attributes-tree-action-content');
-                if (!panel) return;
-                toggleDescPanel(panel, action.desc[lang] || action.desc.en);
+                if (panel) {
+                    toggleDescPanel(panel, action.desc[lang] || action.desc.en);
+                }
+                // Also toggle children
+                toggleNodeChildren(node);
                 return;
             }
 
-            // Competence name click
+            // Competence name click - toggle both description AND children (masteries)
             if (target.closest && target.closest('.attributes-tree-competence-name')) {
                 var nameEl = target.closest('.attributes-tree-competence-name');
                 var node = nameEl.closest('.attributes-tree-node[data-competence]');
@@ -1653,8 +1758,11 @@
                 var comp = ATTRIBUTES_TREE_DATA.competences[compId];
                 if (!comp) return;
                 var panel = node.querySelector(':scope > .attributes-tree-competence-content');
-                if (!panel) return;
-                toggleDescPanel(panel, comp.desc[lang] || comp.desc.en);
+                if (panel) {
+                    toggleDescPanel(panel, comp.desc[lang] || comp.desc.en);
+                }
+                // Also toggle children (masteries)
+                toggleNodeChildren(node);
                 return;
             }
         });
@@ -1678,6 +1786,21 @@
                     var p = panel.querySelector('p');
                     if (p) p.textContent = text;
                 }
+            }
+        }
+
+        // Toggle children visibility for a node
+        function toggleNodeChildren(node) {
+            var children = node.querySelector(':scope > .attributes-tree-children');
+            if (!children) return;
+            
+            var isExpanded = node.getAttribute('aria-expanded') === 'true';
+            if (isExpanded) {
+                node.setAttribute('aria-expanded', 'false');
+                children.style.display = 'none';
+            } else {
+                node.setAttribute('aria-expanded', 'true');
+                children.style.display = '';
             }
         }
 
