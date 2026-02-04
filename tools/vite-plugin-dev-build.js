@@ -1,13 +1,13 @@
-/**
+/*
  * Vite plugin for development: watches source files and runs build scripts automatically.
- * 
+ *
  * Watches:
- *   - index.template.html, partials/** -> build_html.js + build_i18n.js
- *   - css/*.css -> build_css.js
- *   - locales/*.json -> build_i18n.js
- *   - reference/TTRPG_DRD/**/ZINE_*.md -> build_zine.js + build_html.js + build_i18n.js
- *   - reference/TTRPG_DRD/** (other) -> build_rules_lore.js
- * 
+ *   - index.template.html, partials -> build_html.js + build_i18n.js
+ *   - css (css files) -> build_css.js
+ *   - locales (json files) -> build_i18n.js
+ *   - reference ZINE markdown -> build_zine.js + build_html.js + build_i18n.js
+ *   - reference TTRPG_DRD (other) -> build_rules_lore.js
+ *
  * Usage: import and add to vite.config.ts plugins array (only runs in dev mode)
  */
 import { spawn } from 'child_process';
