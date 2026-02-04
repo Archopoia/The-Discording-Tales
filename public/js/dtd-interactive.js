@@ -1006,8 +1006,12 @@
     // System Overview (Vue d'ensemble): Accordion
     // ========================================
     function initSystemOverview() {
+        console.log('[DRD] initSystemOverview called');
         var accordionEl = document.getElementById('system-overview-accordion');
-        if (!accordionEl) return;
+        if (!accordionEl) {
+            console.log('[DRD] system-overview-accordion not found');
+            return;
+        }
 
         initAccordion(accordionEl, {
             itemSelector: '.system-overview-accordion-item',
@@ -1015,6 +1019,712 @@
             bodySelector: '.system-overview-accordion-body',
             expandAllSelector: '.system-overview-expand-all',
             collapseAllSelector: '.system-overview-collapse-all'
+        });
+
+        // Initialize the interactive attributes tree
+        initAttributesTree();
+    }
+
+    // ========================================
+    // Attributes Tree: Interactive hierarchy
+    // Attribute -> Aptitude -> Action -> Competence -> Masteries
+    // ========================================
+    var ATTRIBUTES_TREE_DATA = {
+        attributes: {
+            FOR: {
+                id: 'FOR', abbr: 'FOR',
+                name: { en: 'Strength', fr: 'Force' },
+                desc: {
+                    en: 'Physical power and raw might. Determines your ability to exert force, lift heavy objects, and deal damage in melee combat.',
+                    fr: 'Puissance physique et force brute. Détermine votre capacité à exercer une force, soulever des objets lourds et infliger des dégâts au corps à corps.'
+                },
+                aptitudes: ['PUISSANCE', 'ATHLETISME', 'DOMINATION'] // principal first
+            },
+            AGI: {
+                id: 'AGI', abbr: 'AGI',
+                name: { en: 'Agility', fr: 'Agilité' },
+                desc: {
+                    en: 'Speed, flexibility, and coordination. Governs quick movements, reflexes, and the ability to avoid attacks.',
+                    fr: 'Vitesse, souplesse et coordination. Régit les mouvements rapides, les réflexes et la capacité à éviter les attaques.'
+                },
+                aptitudes: ['AISANCE', 'PUISSANCE', 'ATHLETISME']
+            },
+            DEX: {
+                id: 'DEX', abbr: 'DEX',
+                name: { en: 'Dexterity', fr: 'Dextérité' },
+                desc: {
+                    en: 'Fine motor control and precision. Affects accuracy, craftsmanship, and delicate manipulations.',
+                    fr: 'Contrôle moteur fin et précision. Affecte la précision, l\'artisanat et les manipulations délicates.'
+                },
+                aptitudes: ['PRECISION', 'AISANCE', 'PUISSANCE']
+            },
+            VIG: {
+                id: 'VIG', abbr: 'VIG',
+                name: { en: 'Vigor', fr: 'Vigueur' },
+                desc: {
+                    en: 'Endurance, stamina, and physical resilience. Determines how long you can sustain effort and resist exhaustion.',
+                    fr: 'Endurance, énergie et résilience physique. Détermine combien de temps vous pouvez soutenir un effort et résister à l\'épuisement.'
+                },
+                aptitudes: ['ATHLETISME', 'DOMINATION', 'AISANCE']
+            },
+            EMP: {
+                id: 'EMP', abbr: 'EMP',
+                name: { en: 'Empathy', fr: 'Empathie' },
+                desc: {
+                    en: 'Emotional intelligence and social awareness. Governs understanding others, building rapport, and sensing emotions.',
+                    fr: 'Intelligence émotionnelle et conscience sociale. Régit la compréhension des autres, la création de liens et la perception des émotions.'
+                },
+                aptitudes: ['CHARISME', 'REFLEXION', 'DETECTION']
+            },
+            PER: {
+                id: 'PER', abbr: 'PER',
+                name: { en: 'Perception', fr: 'Perception' },
+                desc: {
+                    en: 'Sensory acuity and awareness. Affects your ability to notice details, spot danger, and gather information from your surroundings.',
+                    fr: 'Acuité sensorielle et vigilance. Affecte votre capacité à remarquer les détails, repérer le danger et recueillir des informations de votre environnement.'
+                },
+                aptitudes: ['DETECTION', 'PRECISION', 'CHARISME']
+            },
+            CRE: {
+                id: 'CRE', abbr: 'CRÉ',
+                name: { en: 'Creativity', fr: 'Créativité' },
+                desc: {
+                    en: 'Imagination, ingenuity, and original thinking. Determines your ability to devise novel solutions and artistic expression.',
+                    fr: 'Imagination, ingéniosité et pensée originale. Détermine votre capacité à concevoir des solutions nouvelles et l\'expression artistique.'
+                },
+                aptitudes: ['REFLEXION', 'DETECTION', 'PRECISION']
+            },
+            VOL: {
+                id: 'VOL', abbr: 'VOL',
+                name: { en: 'Willpower', fr: 'Volonté' },
+                desc: {
+                    en: 'Mental fortitude and determination. Governs resistance to fear, manipulation, and the ability to push through adversity.',
+                    fr: 'Force mentale et détermination. Régit la résistance à la peur, à la manipulation et la capacité à surmonter l\'adversité.'
+                },
+                aptitudes: ['DOMINATION', 'CHARISME', 'REFLEXION']
+            }
+        },
+        aptitudes: {
+            PUISSANCE: {
+                id: 'PUISSANCE',
+                name: { en: 'Power', fr: 'Puissance' },
+                desc: {
+                    en: 'The aptitude of raw force and combat prowess. Governs striking, grappling, and ranged attacks.',
+                    fr: 'L\'aptitude de la force brute et des prouesses au combat. Régit les frappes, les saisies et les attaques à distance.'
+                },
+                attributes: ['FOR', 'AGI', 'DEX'], // weights: +3, +2, +1
+                actions: ['FRAPPER', 'NEUTRALISER', 'TIRER']
+            },
+            AISANCE: {
+                id: 'AISANCE',
+                name: { en: 'Ease', fr: 'Aisance' },
+                desc: {
+                    en: 'The aptitude of fluid movement and deft evasion. Governs reactions, stealth, and coordination.',
+                    fr: 'L\'aptitude du mouvement fluide et de l\'évasion habile. Régit les réactions, la discrétion et la coordination.'
+                },
+                attributes: ['AGI', 'DEX', 'VIG'],
+                actions: ['REAGIR', 'DEROBER', 'COORDONNER']
+            },
+            PRECISION: {
+                id: 'PRECISION',
+                name: { en: 'Precision', fr: 'Précision' },
+                desc: {
+                    en: 'The aptitude of accuracy and fine manipulation. Governs handling tools, crafting, and intricate work.',
+                    fr: 'L\'aptitude de la précision et de la manipulation fine. Régit le maniement des outils, l\'artisanat et le travail minutieux.'
+                },
+                attributes: ['DEX', 'PER', 'CRE'],
+                actions: ['MANIER', 'FACONNER', 'FIGNOLER']
+            },
+            ATHLETISME: {
+                id: 'ATHLETISME',
+                name: { en: 'Athletics', fr: 'Athlétisme' },
+                desc: {
+                    en: 'The aptitude of physical prowess and locomotion. Governs traversal, exertion, and mounted movement.',
+                    fr: 'L\'aptitude des prouesses physiques et de la locomotion. Régit les déplacements, l\'effort et les mouvements à cheval.'
+                },
+                attributes: ['VIG', 'FOR', 'AGI'],
+                actions: ['TRAVERSER', 'EFFORCER', 'MANOEUVRER']
+            },
+            CHARISME: {
+                id: 'CHARISME',
+                name: { en: 'Charisma', fr: 'Charisme' },
+                desc: {
+                    en: 'The aptitude of social influence and persuasion. Governs captivating others, convincing them, and performing.',
+                    fr: 'L\'aptitude de l\'influence sociale et de la persuasion. Régit la capacité à captiver, convaincre et interpréter.'
+                },
+                attributes: ['EMP', 'VOL', 'PER'],
+                actions: ['CAPTIVER', 'CONVAINCRE', 'INTERPRETER']
+            },
+            DETECTION: {
+                id: 'DETECTION',
+                name: { en: 'Detection', fr: 'Détection' },
+                desc: {
+                    en: 'The aptitude of sensory awareness and investigation. Governs discerning, discovering, and tracking.',
+                    fr: 'L\'aptitude de la conscience sensorielle et de l\'investigation. Régit la capacité à discerner, découvrir et pister.'
+                },
+                attributes: ['PER', 'CRE', 'EMP'],
+                actions: ['DISCERNER', 'DECOUVRIR', 'DEPISTER']
+            },
+            REFLEXION: {
+                id: 'REFLEXION',
+                name: { en: 'Reflection', fr: 'Réflexion' },
+                desc: {
+                    en: 'The aptitude of intellectual analysis and knowledge. Governs designing, cultural understanding, and adaptation.',
+                    fr: 'L\'aptitude de l\'analyse intellectuelle et du savoir. Régit la conception, la compréhension culturelle et l\'adaptation.'
+                },
+                attributes: ['CRE', 'EMP', 'VOL'],
+                actions: ['CONCEVOIR', 'ACCULTURER', 'ACCLIMATER']
+            },
+            DOMINATION: {
+                id: 'DOMINATION',
+                name: { en: 'Domination', fr: 'Domination' },
+                desc: {
+                    en: 'The aptitude of mental strength and control. Governs discipline, endurance, and taming.',
+                    fr: 'L\'aptitude de la force mentale et du contrôle. Régit la discipline, l\'endurance et le dressage.'
+                },
+                attributes: ['VOL', 'VIG', 'FOR'],
+                actions: ['DISCIPLINER', 'ENDURER', 'DOMPTER']
+            }
+        },
+        actions: {
+            // Puissance actions
+            FRAPPER: {
+                id: 'FRAPPER',
+                name: { en: 'Strike', fr: 'Frapper' },
+                desc: { en: 'Deliver blows with weapons or bare hands.', fr: 'Porter des coups avec des armes ou à mains nues.' },
+                linkedAttr: 'FOR',
+                competences: ['ARME', 'DESARME', 'IMPROVISE']
+            },
+            NEUTRALISER: {
+                id: 'NEUTRALISER',
+                name: { en: 'Neutralize', fr: 'Neutraliser' },
+                desc: { en: 'Grapple, restrain, and incapacitate opponents.', fr: 'Saisir, immobiliser et neutraliser les adversaires.' },
+                linkedAttr: 'AGI',
+                competences: ['LUTTE', 'BOTTES', 'RUSES']
+            },
+            TIRER: {
+                id: 'TIRER',
+                name: { en: 'Shoot', fr: 'Tirer' },
+                desc: { en: 'Attack from range with bows, crossbows, or thrown weapons.', fr: 'Attaquer à distance avec arcs, arbalètes ou armes de jet.' },
+                linkedAttr: 'DEX',
+                competences: ['BANDE', 'PROPULSE', 'JETE']
+            },
+            // Aisance actions
+            REAGIR: {
+                id: 'REAGIR',
+                name: { en: 'React', fr: 'Réagir' },
+                desc: { en: 'Respond quickly to threats and opportunities.', fr: 'Répondre rapidement aux menaces et opportunités.' },
+                linkedAttr: 'AGI',
+                competences: ['FLUIDITE', 'ESQUIVE', 'EVASION']
+            },
+            DEROBER: {
+                id: 'DEROBER',
+                name: { en: 'Steal', fr: 'Dérober' },
+                desc: { en: 'Take things without being noticed.', fr: 'Prendre des choses sans être remarqué.' },
+                linkedAttr: 'DEX',
+                competences: ['ESCAMOTAGE', 'ILLUSIONS', 'DISSIMULATION']
+            },
+            COORDONNER: {
+                id: 'COORDONNER',
+                name: { en: 'Coordinate', fr: 'Coordonner' },
+                desc: { en: 'Synchronize movements and maintain balance.', fr: 'Synchroniser les mouvements et maintenir l\'équilibre.' },
+                linkedAttr: 'VIG',
+                competences: ['GESTUELLE', 'MINUTIE', 'EQUILIBRE']
+            },
+            // Précision actions
+            MANIER: {
+                id: 'MANIER',
+                name: { en: 'Handle', fr: 'Manier' },
+                desc: { en: 'Operate tools, weapons, and vehicles with skill.', fr: 'Manipuler outils, armes et véhicules avec habileté.' },
+                linkedAttr: 'DEX',
+                competences: ['VISEE', 'CONDUITE', 'HABILETE']
+            },
+            FACONNER: {
+                id: 'FACONNER',
+                name: { en: 'Shape', fr: 'Façonner' },
+                desc: { en: 'Create and modify objects through craftsmanship.', fr: 'Créer et modifier des objets par l\'artisanat.' },
+                linkedAttr: 'PER',
+                competences: ['DEBROUILLARDISE', 'BRICOLAGE', 'SAVOIR_FAIRE']
+            },
+            FIGNOLER: {
+                id: 'FIGNOLER',
+                name: { en: 'Refine', fr: 'Fignoler' },
+                desc: { en: 'Perfect details and solve intricate problems.', fr: 'Perfectionner les détails et résoudre des problèmes complexes.' },
+                linkedAttr: 'CRE',
+                competences: ['ARTIFICES', 'SECURITE', 'CASSE_TETES']
+            },
+            // Athlétisme actions
+            TRAVERSER: {
+                id: 'TRAVERSER',
+                name: { en: 'Traverse', fr: 'Traverser' },
+                desc: { en: 'Move across terrain by walking, running, or climbing.', fr: 'Se déplacer sur le terrain en marchant, courant ou grimpant.' },
+                linkedAttr: 'VIG',
+                competences: ['PAS', 'GRIMPE', 'ACROBATIE']
+            },
+            EFFORCER: {
+                id: 'EFFORCER',
+                name: { en: 'Exert', fr: 'Efforcer' },
+                desc: { en: 'Apply physical strength for lifting, jumping, or swimming.', fr: 'Appliquer la force physique pour soulever, sauter ou nager.' },
+                linkedAttr: 'FOR',
+                competences: ['POID', 'SAUT', 'NATATION']
+            },
+            MANOEUVRER: {
+                id: 'MANOEUVRER',
+                name: { en: 'Maneuver', fr: 'Manœuvrer' },
+                desc: { en: 'Navigate unusual environments: flying, burrowing, riding.', fr: 'Naviguer dans des environnements inhabituels : voler, creuser, chevaucher.' },
+                linkedAttr: 'AGI',
+                competences: ['VOL', 'FOUISSAGE', 'CHEVAUCHEMENT']
+            },
+            // Charisme actions
+            CAPTIVER: {
+                id: 'CAPTIVER',
+                name: { en: 'Captivate', fr: 'Captiver' },
+                desc: { en: 'Draw attention and inspire admiration.', fr: 'Attirer l\'attention et inspirer l\'admiration.' },
+                linkedAttr: 'EMP',
+                competences: ['SEDUCTION', 'MIMETISME', 'CHANT']
+            },
+            CONVAINCRE: {
+                id: 'CONVAINCRE',
+                name: { en: 'Convince', fr: 'Convaincre' },
+                desc: { en: 'Persuade others through argument or deception.', fr: 'Persuader les autres par l\'argumentation ou la tromperie.' },
+                linkedAttr: 'VOL',
+                competences: ['NEGOCIATION', 'TROMPERIE', 'PRESENTATION']
+            },
+            INTERPRETER: {
+                id: 'INTERPRETER',
+                name: { en: 'Perform', fr: 'Interpréter' },
+                desc: { en: 'Express through music, stories, and artistic performance.', fr: 'S\'exprimer par la musique, les histoires et la performance artistique.' },
+                linkedAttr: 'PER',
+                competences: ['INSTRUMENTAL', 'INSPIRATION', 'NARRATION']
+            },
+            // Détection actions
+            DISCERNER: {
+                id: 'DISCERNER',
+                name: { en: 'Discern', fr: 'Discerner' },
+                desc: { en: 'Notice details through careful observation.', fr: 'Remarquer les détails par l\'observation attentive.' },
+                linkedAttr: 'PER',
+                competences: ['VISION', 'ESTIMATION', 'TOUCHER']
+            },
+            DECOUVRIR: {
+                id: 'DECOUVRIR',
+                name: { en: 'Discover', fr: 'Découvrir' },
+                desc: { en: 'Uncover hidden information through investigation.', fr: 'Découvrir des informations cachées par l\'investigation.' },
+                linkedAttr: 'CRE',
+                competences: ['INVESTIGATION', 'GOUT', 'RESSENTI']
+            },
+            DEPISTER: {
+                id: 'DEPISTER',
+                name: { en: 'Track', fr: 'Dépister' },
+                desc: { en: 'Follow trails and sense the environment.', fr: 'Suivre des pistes et percevoir l\'environnement.' },
+                linkedAttr: 'EMP',
+                competences: ['ODORAT', 'AUDITION', 'INTEROCEPTION']
+            },
+            // Réflexion actions
+            CONCEVOIR: {
+                id: 'CONCEVOIR',
+                name: { en: 'Design', fr: 'Concevoir' },
+                desc: { en: 'Plan and create through intellectual effort.', fr: 'Planifier et créer par l\'effort intellectuel.' },
+                linkedAttr: 'CRE',
+                competences: ['ARTISANAT', 'MEDECINE', 'INGENIERIE']
+            },
+            ACCULTURER: {
+                id: 'ACCULTURER',
+                name: { en: 'Acculturate', fr: 'Acculturer' },
+                desc: { en: 'Understand and navigate cultural knowledge.', fr: 'Comprendre et naviguer les savoirs culturels.' },
+                linkedAttr: 'EMP',
+                competences: ['JEUX', 'SOCIETE', 'GEOGRAPHIE']
+            },
+            ACCLIMATER: {
+                id: 'ACCLIMATER',
+                name: { en: 'Acclimate', fr: 'Acclimater' },
+                desc: { en: 'Adapt to natural environments and work with nature.', fr: 'S\'adapter aux environnements naturels et travailler avec la nature.' },
+                linkedAttr: 'VOL',
+                competences: ['NATURE', 'PASTORALISME', 'AGRONOMIE']
+            },
+            // Domination actions
+            DISCIPLINER: {
+                id: 'DISCIPLINER',
+                name: { en: 'Discipline', fr: 'Discipliner' },
+                desc: { en: 'Command others and maintain self-control.', fr: 'Commander les autres et maintenir la maîtrise de soi.' },
+                linkedAttr: 'VOL',
+                competences: ['COMMANDEMENT', 'OBEISSANCE', 'OBSTINANCE']
+            },
+            ENDURER: {
+                id: 'ENDURER',
+                name: { en: 'Endure', fr: 'Endurer' },
+                desc: { en: 'Withstand physical hardship and deprivation.', fr: 'Résister aux épreuves physiques et aux privations.' },
+                linkedAttr: 'VIG',
+                competences: ['GLOUTONNERIE', 'BEUVERIE', 'ENTRAILLES']
+            },
+            DOMPTER: {
+                id: 'DOMPTER',
+                name: { en: 'Tame', fr: 'Dompter' },
+                desc: { en: 'Control and train creatures and people.', fr: 'Contrôler et dresser créatures et personnes.' },
+                linkedAttr: 'FOR',
+                competences: ['INTIMIDATION', 'APPRIVOISEMENT', 'DRESSAGE']
+            }
+        },
+        competences: {
+            // Puissance - Frapper
+            ARME: { id: 'ARME', name: { en: '[Armed]', fr: '[Armé]' }, desc: { en: 'Fighting with melee weapons.', fr: 'Combat avec des armes de mêlée.' }, masteries: ['Arme de Poigne', "d'Antipôle", 'de Parade', 'de Garde', 'Équilibrées', 'Flexibles'] },
+            DESARME: { id: 'DESARME', name: { en: '[Unarmed]', fr: '[Désarmé]' }, desc: { en: 'Fighting with bare hands and feet.', fr: 'Combat à mains et pieds nus.' }, masteries: ['Coup sans espace', 'Poings', 'Pieds', 'Coude', 'Genou', 'Corps'] },
+            IMPROVISE: { id: 'IMPROVISE', name: { en: '[Improvised]', fr: '[Improvisé]' }, desc: { en: 'Using makeshift weapons.', fr: 'Utilisation d\'armes de fortune.' }, masteries: ['Arme à coupures', 'à pieds', 'rondes', 'de mains', 'de paume', 'de lien', "Jet d'arme improvisée"] },
+            // Puissance - Neutraliser
+            LUTTE: { id: 'LUTTE', name: { en: '[Wrestling]', fr: '[Lutte]' }, desc: { en: 'Grappling and ground fighting.', fr: 'Saisies et combat au sol.' }, masteries: ['Saisie', 'Bousculade', 'Mise à Terre', 'Projection', 'Soumission'] },
+            BOTTES: { id: 'BOTTES', name: { en: '[Techniques]', fr: '[Bottes]' }, desc: { en: 'Special combat techniques.', fr: 'Techniques de combat spéciales.' }, masteries: ['Bloquer', 'Agrippement', 'Entravement', 'Désarmement', "Prise d'arme", "Retournement d'arme"] },
+            RUSES: { id: 'RUSES', name: { en: '[Tricks]', fr: '[Ruses]' }, desc: { en: 'Deceptive combat maneuvers.', fr: 'Manœuvres de combat trompeuses.' }, masteries: ['Enchaînement', 'Feinter', 'Contre', 'Hébétement', 'Essouffler', 'Battement', 'Destruction', 'Postures', "Prises d'arme"] },
+            // Puissance - Tirer
+            BANDE: { id: 'BANDE', name: { en: '[Strung]', fr: '[Bandé]' }, desc: { en: 'Using bows and similar weapons.', fr: 'Utilisation d\'arcs et armes similaires.' }, masteries: ['Encordage (mettre la corde)', 'Surbandé', 'en Tirs Courbés', 'Tirs multiples'] },
+            PROPULSE: { id: 'PROPULSE', name: { en: '[Propelled]', fr: '[Propulsé]' }, desc: { en: 'Using crossbows and mechanical launchers.', fr: 'Utilisation d\'arbalètes et lanceurs mécaniques.' }, masteries: ['Tirs Rapprochés', 'Tirs Longue Distance', 'Tirs Imprévisibles', 'Tirs sur 360'] },
+            JETE: { id: 'JETE', name: { en: '[Thrown]', fr: '[Jeté]' }, desc: { en: 'Throwing weapons and objects.', fr: 'Lancer d\'armes et d\'objets.' }, masteries: ['de Paume', 'à Manche', 'Rattrapage de jet', 'Jets multiples'] },
+            // Aisance - Réagir
+            FLUIDITE: { id: 'FLUIDITE', name: { en: '[Fluidity]', fr: '[Fluidité]' }, desc: { en: 'Smooth, flowing movements.', fr: 'Mouvements fluides et coulants.' }, masteries: ['Réactivité', 'Spontanéité', 'Rythmique', 'Feinter', 'Contrer'] },
+            ESQUIVE: { id: 'ESQUIVE', name: { en: '[Dodge]', fr: '[Esquive]' }, desc: { en: 'Avoiding attacks.', fr: 'Éviter les attaques.' }, masteries: ['Repositionnante', 'en Roulade', 'Préparée', 'Instinctive'] },
+            EVASION: { id: 'EVASION', name: { en: '[Evasion]', fr: '[Évasion]' }, desc: { en: 'Escaping from restraints.', fr: 'S\'échapper des entraves.' }, masteries: ['(Dés)Engagement', 'Faufilage', 'Déliement', 'Délivrement'] },
+            // Aisance - Dérober
+            ESCAMOTAGE: { id: 'ESCAMOTAGE', name: { en: '[Sleight]', fr: '[Escamotage]' }, desc: { en: 'Pickpocketing and palming.', fr: 'Vol à la tire et escamotage.' }, masteries: ['Espionnant', "d'Objets portés", 'de Véhicules', 'de Créatures'] },
+            ILLUSIONS: { id: 'ILLUSIONS', name: { en: '[Illusions]', fr: '[Illusions]' }, desc: { en: 'Creating visual deceptions.', fr: 'Créer des illusions visuelles.' }, masteries: ['Trichantes', 'Spectaculaires', 'de Diversion', 'de Disparition'] },
+            DISSIMULATION: { id: 'DISSIMULATION', name: { en: '[Concealment]', fr: '[Dissimulation]' }, desc: { en: 'Hiding oneself and objects.', fr: 'Se cacher soi-même et cacher des objets.' }, masteries: ['Se cacher', 'Cacher des Choses', 'Déplacement silencieux', 'Embuscades/Filatures'] },
+            // Aisance - Coordonner
+            GESTUELLE: { id: 'GESTUELLE', name: { en: '[Gestures]', fr: '[Gestuelle]' }, desc: { en: 'Expressive body movements.', fr: 'Mouvements corporels expressifs.' }, masteries: ['Danse', 'Posture (au combat)', 'Pantomime', 'Rituelle', 'Athlétique', 'Improvisée'] },
+            MINUTIE: { id: 'MINUTIE', name: { en: '[Meticulousness]', fr: '[Minutie]' }, desc: { en: 'Careful, precise handling.', fr: 'Manipulation soigneuse et précise.' }, masteries: ['Délicatesse', 'Doigté', 'Impact', 'Impulsion'] },
+            EQUILIBRE: { id: 'EQUILIBRE', name: { en: '[Balance]', fr: '[Équilibre]' }, desc: { en: 'Maintaining stability.', fr: 'Maintenir l\'équilibre.' }, masteries: ['Stabilisant', 'en Sols difficiles', 'Funambule', 'Jonglage', 'Surchargé'] },
+            // Précision - Manier
+            VISEE: { id: 'VISEE', name: { en: '[Aim]', fr: '[Visée]' }, desc: { en: 'Precise aiming and targeting.', fr: 'Visée et ciblage précis.' }, masteries: ["Mécanismes d'armement", 'Tir à longue distance', 'Tir de soutien', 'en Position difficile', 'Visée multiple'] },
+            CONDUITE: { id: 'CONDUITE', name: { en: '[Driving]', fr: '[Conduite]' }, desc: { en: 'Operating vehicles.', fr: 'Conduite de véhicules.' }, masteries: ['Propulsion personnelle', 'Tirée par créatures', 'dans le Risque', 'la Terre', 'les Liquides', 'les Airs', 'le Vide', 'sur Terrain difficile', 'sur Pistes/Rails', 'sur Liquides (glisse)'] },
+            HABILETE: { id: 'HABILETE', name: { en: '[Deftness]', fr: '[Habileté]' }, desc: { en: 'Skillful weapon handling.', fr: 'Maniement habile des armes.' }, masteries: ['Une main', 'Deux mains', 'Ambidextrie', 'Recharge/Réarmement', 'Munition en Main', 'Parade'] },
+            // Précision - Façonner
+            DEBROUILLARDISE: { id: 'DEBROUILLARDISE', name: { en: '[Resourcefulness]', fr: '[Débrouillardise]' }, desc: { en: 'Making do with what\'s available.', fr: 'Se débrouiller avec ce qui est disponible.' }, masteries: ['Monte de camp', 'Orientation', 'Allumage/Extinction', 'Camouflage'] },
+            BRICOLAGE: { id: 'BRICOLAGE', name: { en: '[Tinkering]', fr: '[Bricolage]' }, desc: { en: 'Repairing and modifying items.', fr: 'Réparer et modifier des objets.' }, masteries: ['Contrefaçon', 'Raccommodage', 'Amélioration', 'Improvisation'] },
+            SAVOIR_FAIRE: { id: 'SAVOIR_FAIRE', name: { en: '[Know-How]', fr: '[Savoir-Faire]' }, desc: { en: 'Specialized crafting knowledge.', fr: 'Connaissances artisanales spécialisées.' }, masteries: ['Alimentaire', 'des Graisses', 'du Papier', 'des Plantes', 'du Textile', 'du Cuir', 'du Verre', 'de la Construction', 'des Métaux', 'des Richesses', 'du Bois', 'de la Lutherie', 'des Arts plastiques', 'des Arts de dessein', 'de la Récolte'] },
+            // Précision - Fignoler
+            ARTIFICES: { id: 'ARTIFICES', name: { en: '[Devices]', fr: '[Artifices]' }, desc: { en: 'Working with explosive devices.', fr: 'Manipulation d\'engins explosifs.' }, masteries: ['Amorçage', 'Désamorçage', 'Enfumants', 'Explosifs'] },
+            SECURITE: { id: 'SECURITE', name: { en: '[Security]', fr: '[Sécurité]' }, desc: { en: 'Locks and security systems.', fr: 'Serrures et systèmes de sécurité.' }, masteries: ['Dévérouillage', 'Verrouillage', 'Copie de serrure', 'Copie de Clef'] },
+            CASSE_TETES: { id: 'CASSE_TETES', name: { en: '[Puzzles]', fr: '[Casse-Têtes]' }, desc: { en: 'Solving complex puzzles.', fr: 'Résoudre des casse-têtes complexes.' }, masteries: ["Nœuds d'Attelage", 'de Saisine', 'de Coude', 'de Boucle', 'Épissure de corde', 'Casse-têtes', 'Craque-coffre', 'Puzzles'] },
+            // Athlétisme - Traverser
+            PAS: { id: 'PAS', name: { en: '[Step]', fr: '[Pas]' }, desc: { en: 'Walking and running.', fr: 'Marcher et courir.' }, masteries: ['Ramper', 'Marcher', 'Courir', 'Charger', 'Pédaler'] },
+            GRIMPE: { id: 'GRIMPE', name: { en: '[Climb]', fr: '[Grimpe]' }, desc: { en: 'Scaling surfaces.', fr: 'Escalader des surfaces.' }, masteries: ['Montagnard', 'Glaciaire', 'Descendant', 'en Rappel', 'sur Créature'] },
+            ACROBATIE: { id: 'ACROBATIE', name: { en: '[Acrobatics]', fr: '[Acrobatie]' }, desc: { en: 'Aerial maneuvers and tumbling.', fr: 'Manœuvres aériennes et acrobaties.' }, masteries: ['Aérienne', 'Sauts périlleux', 'Chuter', 'Contorsionniste'] },
+            // Athlétisme - Efforcer
+            POID: { id: 'POID', name: { en: '[Weight]', fr: '[Poid]' }, desc: { en: 'Lifting and carrying.', fr: 'Soulever et porter.' }, masteries: ['Tirer & Pousser', 'Soulever & Ouvrir', 'Porter', 'Lancer', 'Supporter (Équiper)'] },
+            SAUT: { id: 'SAUT', name: { en: '[Jump]', fr: '[Saut]' }, desc: { en: 'Leaping and jumping.', fr: 'Sauter et bondir.' }, masteries: ['Sans élan', 'Précis', 'en Longueur', 'en Hauteur', 'de Paroi', 'à la Perche'] },
+            NATATION: { id: 'NATATION', name: { en: '[Swimming]', fr: '[Natation]' }, desc: { en: 'Moving through water.', fr: 'Se déplacer dans l\'eau.' }, masteries: ['Plongeant', 'Contre-courant', 'de Compétition', 'Flotter surplace', 'Secourisme', 'Bataille immergée'] },
+            // Athlétisme - Manœuvrer
+            VOL: { id: 'VOL', name: { en: '[Flight]', fr: '[Vol]' }, desc: { en: 'Flying and gliding.', fr: 'Voler et planer.' }, masteries: ['Planer', 'Piquer', 'Flotter', 'Poussée'] },
+            FOUISSAGE: { id: 'FOUISSAGE', name: { en: '[Burrowing]', fr: '[Fouissage]' }, desc: { en: 'Digging and tunneling.', fr: 'Creuser et faire des tunnels.' }, masteries: ['Viscosité & Liquides', 'Sables & Granulaires', 'Terres & Gravats', 'Roches & Solides'] },
+            CHEVAUCHEMENT: { id: 'CHEVAUCHEMENT', name: { en: '[Riding]', fr: '[Chevauchement]' }, desc: { en: 'Mounted movement.', fr: 'Déplacement à cheval.' }, masteries: ['Montée en selle', 'Déplacement monté', 'Manœuvres montées', 'Agissement monté'] },
+            // Charisme - Captiver
+            SEDUCTION: { id: 'SEDUCTION', name: { en: '[Seduction]', fr: '[Séduction]' }, desc: { en: 'Attracting and charming.', fr: 'Attirer et charmer.' }, masteries: ['Attirer', 'faire Émouvoir', 'faire Admirer', 'faire Reconnaître', 'Avoir une Faveur', 'Subvertir à la Déloyauté'] },
+            MIMETISME: { id: 'MIMETISME', name: { en: '[Mimicry]', fr: '[Mimétisme]' }, desc: { en: 'Imitating others.', fr: 'Imiter les autres.' }, masteries: ['Sons naturels', 'Êtres sauvages', 'Accents & Dialectes', 'Mimique', 'Interprétation de rôle', 'Déguisement'] },
+            CHANT: { id: 'CHANT', name: { en: '[Singing]', fr: '[Chant]' }, desc: { en: 'Vocal performance.', fr: 'Performance vocale.' }, masteries: ['de Poitrine', "de Tête/d'Appel", 'Diphonique', 'Improvisée', 'de Mélodie', 'en Chœur', 'Ventriloque', 'Sifflée'] },
+            // Charisme - Convaincre
+            NEGOCIATION: { id: 'NEGOCIATION', name: { en: '[Negotiation]', fr: '[Négociation]' }, desc: { en: 'Bargaining and deal-making.', fr: 'Négocier et conclure des accords.' }, masteries: ['Marchandage', 'Corrompre', 'Diplomatie', 'Débattre', 'Enchèrir', 'Renseignement'] },
+            TROMPERIE: { id: 'TROMPERIE', name: { en: '[Deception]', fr: '[Tromperie]' }, desc: { en: 'Lying and deceiving.', fr: 'Mentir et tromper.' }, masteries: ['Belles-paroles', 'Bobards', 'Distraire', 'Escroquer', 'Railleries', 'Troller'] },
+            PRESENTATION: { id: 'PRESENTATION', name: { en: '[Presentation]', fr: '[Présentation]' }, desc: { en: 'Making good impressions.', fr: 'Faire bonne impression.' }, masteries: ['Première impression', 'Bienséance', 'Enseigner', 'Réseauter', 'Mode', 'Rumeurs'] },
+            // Charisme - Interpréter
+            INSTRUMENTAL: { id: 'INSTRUMENTAL', name: { en: '[Instrumental]', fr: '[Instrumental]' }, desc: { en: 'Playing musical instruments.', fr: 'Jouer des instruments de musique.' }, masteries: ['Attirer', 'faire Émouvoir', 'faire Admirer', 'faire Reconnaître', 'Avoir une Faveur', 'Subvertir à la Déloyauté'] },
+            INSPIRATION: { id: 'INSPIRATION', name: { en: '[Inspiration]', fr: '[Inspiration]' }, desc: { en: 'Motivating and inspiring.', fr: 'Motiver et inspirer.' }, masteries: ['Apaiser', 'Captiver', 'Éduquer', 'Camaraderie', 'Festivité', 'Fanatisme'] },
+            NARRATION: { id: 'NARRATION', name: { en: '[Narration]', fr: '[Narration]' }, desc: { en: 'Telling stories.', fr: 'Raconter des histoires.' }, masteries: ['Fabuleuse & Poétique', 'Banalités', 'Ragots & Rumeurs', 'Propagande', 'Plaisanteries', 'Énigmes'] },
+            // Détection - Discerner
+            VISION: { id: 'VISION', name: { en: '[Vision]', fr: '[Vision]' }, desc: { en: 'Seeing and observing.', fr: 'Voir et observer.' }, masteries: ['Précise & Distante', 'Écritures', 'Lecture sur lèvre', 'Langage corporel'] },
+            ESTIMATION: { id: 'ESTIMATION', name: { en: '[Estimation]', fr: '[Estimation]' }, desc: { en: 'Judging value and quality.', fr: 'Évaluer la valeur et la qualité.' }, masteries: ['Valeur des Objets', 'des Aptitudes', 'des Arts', 'de Contrebande', 'de Recélage', 'Fraude fiscale', 'Comptabilité', 'Administration'] },
+            TOUCHER: { id: 'TOUCHER', name: { en: '[Touch]', fr: '[Toucher]' }, desc: { en: 'Feeling through touch.', fr: 'Percevoir par le toucher.' }, masteries: ['Textures', 'Températures', 'Lectures à froid', 'Reconnaissance aveugle'] },
+            // Détection - Découvrir
+            INVESTIGATION: { id: 'INVESTIGATION', name: { en: '[Investigation]', fr: '[Investigation]' }, desc: { en: 'Searching and analyzing.', fr: 'Rechercher et analyser.' }, masteries: ['Fouille', 'Pistage', 'Autopsie', 'Décryptage', 'Profilage', 'Découverte', 'Prospective'] },
+            GOUT: { id: 'GOUT', name: { en: '[Taste]', fr: '[Goût]' }, desc: { en: 'Tasting and identifying.', fr: 'Goûter et identifier.' }, masteries: ['Du Salé', "De l'Acide", 'Du Sucré', "De l'Umami", "De l'Amer", 'Culinaires', 'Malaises', 'Secrétions'] },
+            RESSENTI: { id: 'RESSENTI', name: { en: '[Feeling]', fr: '[Ressenti]' }, desc: { en: 'Sensing emotions and intent.', fr: 'Percevoir les émotions et intentions.' }, masteries: ['Temps & Climat', 'Êtres sauvages', 'Vérité', 'Mentalisme', 'Émotions & Motivations', 'Se relater'] },
+            // Détection - Dépister
+            ODORAT: { id: 'ODORAT', name: { en: '[Smell]', fr: '[Odorat]' }, desc: { en: 'Detecting by scent.', fr: 'Détecter par l\'odorat.' }, masteries: ['Parfums mélangés', 'Airs sains & malsains', 'Pistage', 'Détection aveugle'] },
+            AUDITION: { id: 'AUDITION', name: { en: '[Hearing]', fr: '[Audition]' }, desc: { en: 'Listening and sound detection.', fr: 'Écouter et détecter les sons.' }, masteries: ['Écoute & Murmures', 'Sons naturels', 'Apprentissage du parlé', 'Écholocation'] },
+            INTEROCEPTION: { id: 'INTEROCEPTION', name: { en: '[Interoception]', fr: '[Interoception]' }, desc: { en: 'Internal body awareness.', fr: 'Conscience corporelle interne.' }, masteries: ['Équilibroception', 'Proprioception', 'Faim', 'Soif', 'Suffocation', 'Empoisonnement', 'Émotions', 'Temporalité'] },
+            // Réflexion - Concevoir
+            ARTISANAT: { id: 'ARTISANAT', name: { en: '[Craftsmanship]', fr: '[Artisanat]' }, desc: { en: 'Creating quality goods.', fr: 'Créer des biens de qualité.' }, masteries: ['Alimentaire', 'des Graisses', 'du Papier', 'des Plantes', 'du Textile', 'du Cuir', 'du Verre', 'de la Construction', 'des Métaux', 'des Richesses', 'du Bois', 'de la Lutherie', 'des Arts plastiques', 'des Arts de dessein', 'de la Récolte'] },
+            MEDECINE: { id: 'MEDECINE', name: { en: '[Medicine]', fr: '[Médecine]' }, desc: { en: 'Healing and medical knowledge.', fr: 'Soins et connaissances médicales.' }, masteries: ['Diagnostiquer', 'Thérapie', 'Premiers soins', 'Chirurgie', 'Folies', 'Poisons/Antipoisons'] },
+            INGENIERIE: { id: 'INGENIERIE', name: { en: '[Engineering]', fr: '[Ingénierie]' }, desc: { en: 'Technical and mechanical design.', fr: 'Conception technique et mécanique.' }, masteries: ['Civil', 'Mécanique', 'Chimique', 'Énergique', 'Mathématique', 'Recherche académique'] },
+            // Réflexion - Acculturer
+            JEUX: { id: 'JEUX', name: { en: '[Games]', fr: '[Jeux]' }, desc: { en: 'Playing and understanding games.', fr: 'Jouer et comprendre les jeux.' }, masteries: ["Jeux d'Ambiance", 'de Société', 'de Hasard', "d'Esprit", 'de Rôle', 'Guide de jeu', 'Arbitrage', 'Conceptualisation', 'Parier & Défier', 'Compétition'] },
+            SOCIETE: { id: 'SOCIETE', name: { en: '[Society]', fr: '[Société]' }, desc: { en: 'Understanding social structures.', fr: 'Comprendre les structures sociales.' }, masteries: ['Rilique', 'Préhistorique', 'Folklorique', 'Traditionnelle', 'Internationale', 'Linguistique', 'Artistique', 'Légale', 'Illégale', 'Entrepreneurial', 'Économique', 'des Équipements', 'Militaire'] },
+            GEOGRAPHIE: { id: 'GEOGRAPHIE', name: { en: '[Geography]', fr: '[Géographie]' }, desc: { en: 'Knowledge of places and lands.', fr: 'Connaissance des lieux et des terres.' }, masteries: ['Localités', 'Astronomie', 'Climats', 'Dangers naturels', 'Milieux Désertiques', 'Humides', 'Tempérés', 'Habités', 'Souterrains', 'Aquatiques', 'Arboricoles', 'Célestes'] },
+            // Réflexion - Acclimater
+            NATURE: { id: 'NATURE', name: { en: '[Nature]', fr: '[Nature]' }, desc: { en: 'Understanding the natural world.', fr: 'Comprendre le monde naturel.' }, masteries: ['Airs', 'Minéraux', 'Granulaires', 'Eaux', 'Neiges', 'Arbres', 'Herbes', 'Racines', 'Fungi', 'Créatures Volatiles', 'Terrestres', 'Marines', 'Infimes'] },
+            PASTORALISME: { id: 'PASTORALISME', name: { en: '[Pastoralism]', fr: '[Pastoralisme]' }, desc: { en: 'Herding and animal husbandry.', fr: 'Élevage et garde de troupeaux.' }, masteries: ['Gouvernance', 'Pâturage', 'Manutention', 'Marquage', 'Traite', 'Tonte', 'Élevage', 'Croisement', 'Abattage', 'Dressage'] },
+            AGRONOMIE: { id: 'AGRONOMIE', name: { en: '[Agronomy]', fr: '[Agronomie]' }, desc: { en: 'Farming and agriculture.', fr: 'Agriculture et culture.' }, masteries: ['Labourage', 'Semailles', 'Cultivation', 'Moisson', 'Produits', 'Approvisionnement'] },
+            // Domination - Discipliner
+            COMMANDEMENT: { id: 'COMMANDEMENT', name: { en: '[Command]', fr: '[Commandement]' }, desc: { en: 'Leading and giving orders.', fr: 'Diriger et donner des ordres.' }, masteries: ['Coup de fouet', "Se jeter à l'eau", 'Retourner les poches', 'Tirer les ficelles', 'Lever les bâtons', 'Dans le chaos', 'La corde au cou', 'Cracher les ordres', 'Roi nu', 'Duelliste'] },
+            OBEISSANCE: { id: 'OBEISSANCE', name: { en: '[Obedience]', fr: '[Obéissance]' }, desc: { en: 'Following orders faithfully.', fr: 'Suivre les ordres fidèlement.' }, masteries: ["Courber l'échine", 'Se plier en quatre', 'Lèche-botte', 'Sauter sur la grenade', 'Bouffer dans la main', 'Suivre le troupeau', 'Marquer sa chair', "S'adapter", 'Mimer la bête'] },
+            OBSTINANCE: { id: 'OBSTINANCE', name: { en: '[Stubbornness]', fr: '[Obstinance]' }, desc: { en: 'Persistent determination.', fr: 'Détermination persistante.' }, masteries: ['Mains propres (Moralité)', 'Ambitieuse (Motivation)', 'Tête de mule (Personnalité)', 'Respectueuse (Socialité)', 'Fidèle (Disposition)', 'Obsédée (Passion)', 'Martyr'] },
+            // Domination - Endurer
+            GLOUTONNERIE: { id: 'GLOUTONNERIE', name: { en: '[Gluttony]', fr: '[Gloutonnerie]' }, desc: { en: 'Consuming large quantities.', fr: 'Consommer de grandes quantités.' }, masteries: ["Capacité d'Aspiration", "Contrôle d'Aspiration", "Capacité d'Inhalation", "Contrôle d'Inhalation", "Capacité d'Expiration", "Contrôle d'Expiration", 'Aspiration continue (sans reflux)'] },
+            BEUVERIE: { id: 'BEUVERIE', name: { en: '[Drinking]', fr: '[Beuverie]' }, desc: { en: 'Drinking and alcohol tolerance.', fr: 'Boire et tolérance à l\'alcool.' }, masteries: ['Capacité des Mâchoires', "d'Avalement d'Ingurgitation", 'Capacité/Contrôle de Déglutition', 'Résistance au textures Visqueuses', 'Résistance au textures Granuleuses', 'Résistance au textures Épineuses'] },
+            ENTRAILLES: { id: 'ENTRAILLES', name: { en: '[Guts]', fr: '[Entrailles]' }, desc: { en: 'Stomach fortitude.', fr: 'Force intestinale.' }, masteries: ['Résistance interne', 'aux Inconfort', 'à la Saleté', "Capacité d'Absorption cutanée", "d'Estomac", 'Pulmonaire', 'Vésicale', 'Rectale'] },
+            // Domination - Dompter
+            INTIMIDATION: { id: 'INTIMIDATION', name: { en: '[Intimidation]', fr: '[Intimidation]' }, desc: { en: 'Frightening others.', fr: 'Effrayer les autres.' }, masteries: ['Par la Force (coup de pression)', 'Torture', 'Insulte', 'Chantage', 'Terreur', 'Interrogatoire', 'Tête-à-tête', 'Regard noir', 'Voix grave'] },
+            APPRIVOISEMENT: { id: 'APPRIVOISEMENT', name: { en: '[Taming]', fr: '[Apprivoisement]' }, desc: { en: 'Calming and befriending.', fr: 'Calmer et apprivoiser.' }, masteries: ['Caresse', 'Apaisement', 'Friandise', 'Main tendue', 'Lire par le regard', 'Habitude', 'Apaiser', 'Motiver', 'Être Monté & Transporter', 'Ordonnée', 'à Combattre'] },
+            DRESSAGE: { id: 'DRESSAGE', name: { en: '[Training]', fr: '[Dressage]' }, desc: { en: 'Teaching and conditioning.', fr: 'Enseigner et conditionner.' }, masteries: ['Par Répétition', 'Par Fouet', 'Par Récompense', 'Par Imitation', "en un(e) Bête/Être de jeu", "en un(e) Bête/Être de spectacle", "en un(e) Bête/Être de monte", "en un(e) Bête/Être de travail", "en un(e) Bête/Être de combat", "en un(e) Bête/Être de noblesse", 'Marquage', 'Esclavage', "Briser l'âme"] }
+        }
+    };
+
+    function initAttributesTree() {
+        var treeEl = document.getElementById('attributes-tree');
+        if (!treeEl) {
+            console.log('[DRD] attributes-tree element not found');
+            return;
+        }
+        console.log('[DRD] Building attributes tree...');
+
+        var lang = document.documentElement.lang || 'en';
+
+        // Build the tree HTML
+        function buildTree() {
+            var html = '';
+            var attrOrder = ['FOR', 'AGI', 'DEX', 'VIG', 'EMP', 'PER', 'CRE', 'VOL'];
+
+            attrOrder.forEach(function(attrId) {
+                var attr = ATTRIBUTES_TREE_DATA.attributes[attrId];
+                if (!attr) return;
+
+                html += '<div class="attributes-tree-node" role="treeitem" aria-expanded="false" data-attribute="' + attrId + '">';
+                html += '<span class="attributes-tree-toggle" aria-hidden="true"></span>';
+                html += '<span class="attributes-tree-attr-abbrev">' + attr.abbr + '</span>';
+                html += '<strong class="attributes-tree-attr-name" data-en="' + attr.name.en + '" data-fr="' + attr.name.fr + '">' + (lang === 'fr' ? attr.name.fr : attr.name.en) + '</strong>';
+                html += '<div class="attributes-tree-attr-content" hidden aria-expanded="false"></div>';
+                html += '<div class="attributes-tree-children">';
+
+                // Aptitudes for this attribute
+                attr.aptitudes.forEach(function(aptId, aptIdx) {
+                    var apt = ATTRIBUTES_TREE_DATA.aptitudes[aptId];
+                    if (!apt) return;
+
+                    var isPrincipal = aptIdx === 0;
+                    var weight = aptIdx === 0 ? '+3' : (aptIdx === 1 ? '+2' : '+1');
+
+                    html += '<div class="attributes-tree-node attributes-tree-aptitude-node" role="treeitem" aria-expanded="false" data-aptitude="' + aptId + '">';
+                    html += '<span class="attributes-tree-toggle" aria-hidden="true"></span>';
+                    html += '<span class="attributes-tree-aptitude-name' + (isPrincipal ? ' aptitude-principal' : '') + '" data-en="' + apt.name.en + '" data-fr="' + apt.name.fr + '">' + (lang === 'fr' ? apt.name.fr : apt.name.en) + '</span>';
+                    html += '<span class="attributes-tree-weight">' + weight + '</span>';
+                    html += '<div class="attributes-tree-aptitude-content" hidden aria-expanded="false"></div>';
+                    html += '<div class="attributes-tree-children">';
+
+                    // Actions for this aptitude
+                    apt.actions.forEach(function(actId) {
+                        var action = ATTRIBUTES_TREE_DATA.actions[actId];
+                        if (!action) return;
+
+                        var linkedAttrData = ATTRIBUTES_TREE_DATA.attributes[action.linkedAttr];
+                        var linkedAttrAbbr = linkedAttrData ? linkedAttrData.abbr : '';
+
+                        html += '<div class="attributes-tree-node attributes-tree-action-node" role="treeitem" aria-expanded="false" data-action="' + actId + '">';
+                        html += '<span class="attributes-tree-toggle" aria-hidden="true"></span>';
+                        html += '<span class="attributes-tree-action-name" data-en="' + action.name.en + '" data-fr="' + action.name.fr + '">' + (lang === 'fr' ? action.name.fr : action.name.en) + '</span>';
+                        html += '<span class="attributes-tree-linked-attr" title="Linked attribute: ' + linkedAttrAbbr + '">[' + linkedAttrAbbr + ']</span>';
+                        html += '<div class="attributes-tree-action-content" hidden aria-expanded="false"></div>';
+                        html += '<div class="attributes-tree-children">';
+
+                        // Competences for this action
+                        action.competences.forEach(function(compId) {
+                            var comp = ATTRIBUTES_TREE_DATA.competences[compId];
+                            if (!comp) return;
+
+                            html += '<div class="attributes-tree-node attributes-tree-competence-node" role="treeitem" aria-expanded="false" data-competence="' + compId + '">';
+                            html += '<span class="attributes-tree-toggle" aria-hidden="true"></span>';
+                            html += '<span class="attributes-tree-competence-name" data-en="' + comp.name.en + '" data-fr="' + comp.name.fr + '">' + (lang === 'fr' ? comp.name.fr : comp.name.en) + '</span>';
+                            html += '<div class="attributes-tree-competence-content" hidden aria-expanded="false"></div>';
+                            html += '<div class="attributes-tree-children attributes-tree-masteries">';
+
+                            // Masteries for this competence
+                            comp.masteries.forEach(function(mastery) {
+                                html += '<span class="attributes-tree-mastery">' + mastery + '</span>';
+                            });
+
+                            html += '</div>'; // masteries
+                            html += '</div>'; // competence node
+                        });
+
+                        html += '</div>'; // action children
+                        html += '</div>'; // action node
+                    });
+
+                    html += '</div>'; // aptitude children
+                    html += '</div>'; // aptitude node
+                });
+
+                html += '</div>'; // attribute children
+                html += '</div>'; // attribute node
+            });
+
+            return html;
+        }
+
+        var treeHtml = buildTree();
+        treeEl.innerHTML = treeHtml;
+        console.log('[DRD] Attributes tree built with', treeEl.querySelectorAll('.attributes-tree-node[data-attribute]').length, 'attributes');
+
+        // Toggle expand/collapse handlers
+        function setupToggles() {
+            treeEl.querySelectorAll('.attributes-tree-node').forEach(function(node) {
+                var toggle = node.querySelector(':scope > .attributes-tree-toggle');
+                var children = node.querySelector(':scope > .attributes-tree-children');
+                if (!toggle || !children) return;
+
+                function expand() {
+                    node.setAttribute('aria-expanded', 'true');
+                    children.style.display = '';
+                }
+                function collapse() {
+                    node.setAttribute('aria-expanded', 'false');
+                    children.style.display = 'none';
+                }
+
+                // Start collapsed
+                collapse();
+
+                toggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (node.getAttribute('aria-expanded') === 'true') collapse();
+                    else expand();
+                });
+            });
+        }
+
+        setupToggles();
+
+        // Click handlers for showing descriptions (event delegation)
+        treeEl.addEventListener('click', function(ev) {
+            var target = ev.target;
+            var lang = document.documentElement.lang || 'en';
+
+            // Attribute name click
+            if (target.closest && target.closest('.attributes-tree-attr-name')) {
+                var nameEl = target.closest('.attributes-tree-attr-name');
+                var node = nameEl.closest('.attributes-tree-node[data-attribute]');
+                if (!node) return;
+                ev.preventDefault();
+                ev.stopPropagation();
+                var attrId = node.getAttribute('data-attribute');
+                var attr = ATTRIBUTES_TREE_DATA.attributes[attrId];
+                if (!attr) return;
+                var panel = node.querySelector(':scope > .attributes-tree-attr-content');
+                if (!panel) return;
+                toggleDescPanel(panel, attr.desc[lang] || attr.desc.en);
+                return;
+            }
+
+            // Aptitude name click
+            if (target.closest && target.closest('.attributes-tree-aptitude-name')) {
+                var nameEl = target.closest('.attributes-tree-aptitude-name');
+                var node = nameEl.closest('.attributes-tree-node[data-aptitude]');
+                if (!node) return;
+                ev.preventDefault();
+                ev.stopPropagation();
+                var aptId = node.getAttribute('data-aptitude');
+                var apt = ATTRIBUTES_TREE_DATA.aptitudes[aptId];
+                if (!apt) return;
+                var panel = node.querySelector(':scope > .attributes-tree-aptitude-content');
+                if (!panel) return;
+                toggleDescPanel(panel, apt.desc[lang] || apt.desc.en);
+                return;
+            }
+
+            // Action name click
+            if (target.closest && target.closest('.attributes-tree-action-name')) {
+                var nameEl = target.closest('.attributes-tree-action-name');
+                var node = nameEl.closest('.attributes-tree-node[data-action]');
+                if (!node) return;
+                ev.preventDefault();
+                ev.stopPropagation();
+                var actId = node.getAttribute('data-action');
+                var action = ATTRIBUTES_TREE_DATA.actions[actId];
+                if (!action) return;
+                var panel = node.querySelector(':scope > .attributes-tree-action-content');
+                if (!panel) return;
+                toggleDescPanel(panel, action.desc[lang] || action.desc.en);
+                return;
+            }
+
+            // Competence name click
+            if (target.closest && target.closest('.attributes-tree-competence-name')) {
+                var nameEl = target.closest('.attributes-tree-competence-name');
+                var node = nameEl.closest('.attributes-tree-node[data-competence]');
+                if (!node) return;
+                ev.preventDefault();
+                ev.stopPropagation();
+                var compId = node.getAttribute('data-competence');
+                var comp = ATTRIBUTES_TREE_DATA.competences[compId];
+                if (!comp) return;
+                var panel = node.querySelector(':scope > .attributes-tree-competence-content');
+                if (!panel) return;
+                toggleDescPanel(panel, comp.desc[lang] || comp.desc.en);
+                return;
+            }
+        });
+
+        function toggleDescPanel(panel, text) {
+            var isExpanded = !panel.hasAttribute('hidden');
+            if (isExpanded) {
+                panel.setAttribute('hidden', '');
+                panel.setAttribute('aria-expanded', 'false');
+            } else {
+                panel.removeAttribute('hidden');
+                panel.setAttribute('aria-expanded', 'true');
+                if (!panel.children.length) {
+                    var body = document.createElement('div');
+                    body.className = 'attributes-tree-desc-body';
+                    var p = document.createElement('p');
+                    p.textContent = text;
+                    body.appendChild(p);
+                    panel.appendChild(body);
+                } else {
+                    var p = panel.querySelector('p');
+                    if (p) p.textContent = text;
+                }
+            }
+        }
+
+        // Listen for language changes to update the tree
+        window.addEventListener('tdt-lang-changed', function(e) {
+            var newLang = e.detail || 'en';
+            treeEl.querySelectorAll('[data-en][data-fr]').forEach(function(el) {
+                var text = el.getAttribute('data-' + newLang);
+                if (text) el.textContent = text;
+            });
+            // Update description panels that are open
+            treeEl.querySelectorAll('.attributes-tree-attr-content:not([hidden])').forEach(function(panel) {
+                var node = panel.closest('.attributes-tree-node[data-attribute]');
+                if (!node) return;
+                var attrId = node.getAttribute('data-attribute');
+                var attr = ATTRIBUTES_TREE_DATA.attributes[attrId];
+                if (!attr) return;
+                var p = panel.querySelector('p');
+                if (p) p.textContent = attr.desc[newLang] || attr.desc.en;
+            });
+            treeEl.querySelectorAll('.attributes-tree-aptitude-content:not([hidden])').forEach(function(panel) {
+                var node = panel.closest('.attributes-tree-node[data-aptitude]');
+                if (!node) return;
+                var aptId = node.getAttribute('data-aptitude');
+                var apt = ATTRIBUTES_TREE_DATA.aptitudes[aptId];
+                if (!apt) return;
+                var p = panel.querySelector('p');
+                if (p) p.textContent = apt.desc[newLang] || apt.desc.en;
+            });
+            treeEl.querySelectorAll('.attributes-tree-action-content:not([hidden])').forEach(function(panel) {
+                var node = panel.closest('.attributes-tree-node[data-action]');
+                if (!node) return;
+                var actId = node.getAttribute('data-action');
+                var action = ATTRIBUTES_TREE_DATA.actions[actId];
+                if (!action) return;
+                var p = panel.querySelector('p');
+                if (p) p.textContent = action.desc[newLang] || action.desc.en;
+            });
+            treeEl.querySelectorAll('.attributes-tree-competence-content:not([hidden])').forEach(function(panel) {
+                var node = panel.closest('.attributes-tree-node[data-competence]');
+                if (!node) return;
+                var compId = node.getAttribute('data-competence');
+                var comp = ATTRIBUTES_TREE_DATA.competences[compId];
+                if (!comp) return;
+                var p = panel.querySelector('p');
+                if (p) p.textContent = comp.desc[newLang] || comp.desc.en;
+            });
         });
     }
 

@@ -1,57 +1,57 @@
-﻿﻿Facteurs de Cercles Riliques,,,,
-NIV,Distance (de la cible la plus éloignée),Quantité (des cibles affectées),Taille (de la plus grande cible),Durée (de l’effet le plus long)
--2,"En soi 
-(À l’intérieur)","1 Plis d’empreinte 
-(Infinitésimal)","1 Poudre
-(Jusqu’à une goutte de 0.1mL)","1 Clin d’Oeil
-(Un tiers de Seconde)"
--1,"Sur soi 
-(Équipé)","1 Ongle 
-(1/Millionième)","1 Sachet
-(Jusqu’à une cuillère de 100mL)","30 Clins
-(Jusqu’à 10 secondes)"
-0,"Autour de soi (1m)
-(À portée en s’étendant)","1 Doigt 
-(1/Millième)","1 Sac
-(Jusqu’à une amphore de 10L)","Instant
-(Jusqu’à 5 Minutes)"
-+1,"Au regard (10m)
-(Voyant encore les détails)","1 Main
-(1/Centième)","1 Coffre
-(Jusqu’à un tonneau de 100L)","Heure
-(Jusqu’à 1 Heure)"
-+2,"À travers champ (100m)
-(Reconnaissant les formes)","1 Bras
-(1/Dixième)","1 Charrette
-(1 Tente | 1 Stère | 1m3 | 1’000L)","Matinée 
-(Jusqu’à 8 Heures)"
-+3,"Au loin (1km)
-(Distinguant encore les choses)","1 Entité
-(Individu entier)","1 Caravane | Chariot Bâché
-(1 Grange)","Pentaine
-(Environ 3 à 5 Jours)"
-+4,"À l’horizon (10km)
-(Tout le visible aperçu)","...10 Entités
-(1 Meute | 1 Famille)","10 Caravanes
-(1 Grenier)","Saison 
-(Environ 30 à 50 Jours)"
-+5,"Au bout de la route (100km)
-(Un pèlerinage de plusieurs jours)","...100 Entités
-(1 Troupeau | 1 Bande | 1 Clan)","100 Caravanes
-(1 Entrepôt)","Année 
-(Environ 300 Jours)"
-+6,"Au bout du pays (1’000km)
-(Des pentaines de voyage)","...1’000 Entités
-(1 Tribu | 1 Guilde)","1’000 Caravanes
-(1 Donjon)","Décade
-(Jusqu’à 10 Années)"
-+7,"Au bout du monde
-(Le plus éloigné encore imaginable)","...10’000 Entités
-(1 Peuple)","10’000 Caravanes
-(1 Village)","Centenaire
-(Jusqu’à 100 Années)"
-+8,"Par-delà les étoiles
-(Dans les tréfonds de l’impossible)","...100’000 Entités
-(1 Colonie)","100’000 Caravanes
-(1 Cité)","Millénaire
-(Jusqu’à 1’000 Années)"
+﻿Facteurs de Cercles Riliques,,,,
+NIV,Distance (de la cible la plus éloignée),Durée (de l’effet le plus long),Quantité (des cibles affectées),Taille (de la plus grande cible)
+-5,"En soi 
+(À l’intérieur)","1 Clin d’Oeil 
+(Instinct)","1 Poudre
+(Plis d’empreinte | Infinitésimal)","Infime
+(En dessous d’1cm)"
+-4,"Sur soi 
+(Équipé)","3 Clins | Souffles 
+(Besoin)","1 Grain
+(Pointe du doigt | 1/1’000’000)","Négligeable
+(1cm à 3cm)"
+-3,"Jusqu’à soi 
+(Au touché)","10 Clins | Respirations 
+(Désir)","1 Fiole
+(Pincée | 1/100’000)","Insignifiante
+(3cm à 6cm)"
+-2,"Proche de soi 
+(À portée)","30 Clins 
+(Idée)","1 Sachet
+(Pouce | 1/10’000)","Minuscule
+(6cm à 12cm)"
+-1,"Autour de soi 
+(Alentours)","100 Clins
+(Pensée)","1 Bourse
+(Paume | 1/1’000)","Minime
+(12cm à 25cm)"
+0,"Au regard 
+(Voyant le détail)","Instant 
+(Prière)","1 Sac
+(Poigne | 1/100)","Réduite
+(25cm à 50cm)"
++1,"A l’horizon 
+(Tout le visible)","Heure
+(Rite)","1 Coffre
+(Bras|Membre | 1/10)","Petite
+(50cm à 1 mètre)"
++2,"Dans les Parages 
+(Carte)","Veillée 
+(Rituel)","1 Charrette
+(1 Individu de taille [M]oyenne)","Moyenne
+(1 à 2 mètres)"
++3,"Dans la Zone 
+(Carte)","Matinée 
+(Festin)","1 Caravane | Troupeau | Ferme
+(10+ Individus M)","Grande
+(2 à 4 mètres)"
++4,"Dans le Lieu 
+(Carte)","Jour 
+(Fête)","1 Tribu | Hameau
+(100+ Individus M)","Énorme
+(4 à 8 mètres)"
++5,"Dans la Localité 
+(Carte)","Pentaine 
+(Festival)","1 Régiment | Village
+(1’000+ Individus M)","Colossale
+(4 à 16 mètres)"

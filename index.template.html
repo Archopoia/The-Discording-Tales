@@ -535,78 +535,9 @@
                     <section class="system-overview-cards-block" id="system-overview-attributes">
                         <h4 class="system-overview-cards-title" {{i18n:tpl.146}}>The 8 Attributes</h4>
                         <p class="system-overview-cards-intro" {{i18n:tpl.147}}>Each attribute links to three aptitudes. Together they define what your character can attempt and how far they can go.</p>
-                        <div class="attributes-cards" id="attributes-cards">
-                            <div class="attribute-card" data-attr="Force">
-                                <span class="attribute-card-abbrev" title="Force">FOR</span>
-                                <h5 class="attribute-card-name" {{i18n:tpl.153}}>Force</h5>
-                                <div class="attribute-card-aptitudes">
-                                    <span class="aptitude-badge aptitude-principal" {{i18n:tpl.154}}>Power</span>
-                                    <span class="aptitude-badge" {{i18n:tpl.155}}>Athletics</span>
-                                    <span class="aptitude-badge" {{i18n:tpl.156}}>Domination</span>
-                                </div>
-                            </div>
-                            <div class="attribute-card" data-attr="Agility">
-                                <span class="attribute-card-abbrev" title="Agility">AGI</span>
-                                <h5 class="attribute-card-name" {{i18n:tpl.157}}>Agility</h5>
-                                <div class="attribute-card-aptitudes">
-                                    <span class="aptitude-badge aptitude-principal" {{i18n:tpl.158}}>Ease</span>
-                                    <span class="aptitude-badge" {{i18n:tpl.154}}>Power</span>
-                                    <span class="aptitude-badge" {{i18n:tpl.155}}>Athletics</span>
-                                </div>
-                            </div>
-                            <div class="attribute-card" data-attr="Dexterity">
-                                <span class="attribute-card-abbrev" title="Dexterity">DEX</span>
-                                <h5 class="attribute-card-name" {{i18n:tpl.159}}>Dexterity</h5>
-                                <div class="attribute-card-aptitudes">
-                                    <span class="aptitude-badge aptitude-principal" {{i18n:tpl.160}}>Precision</span>
-                                    <span class="aptitude-badge" {{i18n:tpl.158}}>Ease</span>
-                                    <span class="aptitude-badge" {{i18n:tpl.154}}>Power</span>
-                                </div>
-                            </div>
-                            <div class="attribute-card" data-attr="Vigor">
-                                <span class="attribute-card-abbrev" title="Vigor">VIG</span>
-                                <h5 class="attribute-card-name" {{i18n:tpl.161}}>Vigor</h5>
-                                <div class="attribute-card-aptitudes">
-                                    <span class="aptitude-badge aptitude-principal" {{i18n:tpl.155}}>Athletics</span>
-                                    <span class="aptitude-badge" {{i18n:tpl.156}}>Domination</span>
-                                    <span class="aptitude-badge" {{i18n:tpl.158}}>Ease</span>
-                                </div>
-                            </div>
-                            <div class="attribute-card" data-attr="Empathy">
-                                <span class="attribute-card-abbrev" title="Empathy">EMP</span>
-                                <h5 class="attribute-card-name" {{i18n:tpl.162}}>Empathy</h5>
-                                <div class="attribute-card-aptitudes">
-                                    <span class="aptitude-badge aptitude-principal" {{i18n:tpl.163}}>Charisma</span>
-                                    <span class="aptitude-badge" {{i18n:tpl.164}}>Reflection</span>
-                                    <span class="aptitude-badge" {{i18n:tpl.165}}>Detection</span>
-                                </div>
-                            </div>
-                            <div class="attribute-card" data-attr="Perception">
-                                <span class="attribute-card-abbrev" title="Perception">PER</span>
-                                <h5 class="attribute-card-name" {{i18n:tpl.166}}>Perception</h5>
-                                <div class="attribute-card-aptitudes">
-                                    <span class="aptitude-badge aptitude-principal" {{i18n:tpl.165}}>Detection</span>
-                                    <span class="aptitude-badge" {{i18n:tpl.160}}>Precision</span>
-                                    <span class="aptitude-badge" {{i18n:tpl.163}}>Charisma</span>
-                                </div>
-                            </div>
-                            <div class="attribute-card" data-attr="Creativity">
-                                <span class="attribute-card-abbrev" title="Creativity">CRÉ</span>
-                                <h5 class="attribute-card-name" {{i18n:tpl.167}}>Creativity</h5>
-                                <div class="attribute-card-aptitudes">
-                                    <span class="aptitude-badge aptitude-principal" {{i18n:tpl.164}}>Reflection</span>
-                                    <span class="aptitude-badge" {{i18n:tpl.165}}>Detection</span>
-                                    <span class="aptitude-badge" {{i18n:tpl.160}}>Precision</span>
-                                </div>
-                            </div>
-                            <div class="attribute-card" data-attr="Willpower">
-                                <span class="attribute-card-abbrev" title="Willpower">VOL</span>
-                                <h5 class="attribute-card-name" {{i18n:tpl.168}}>Willpower</h5>
-                                <div class="attribute-card-aptitudes">
-                                    <span class="aptitude-badge aptitude-principal" {{i18n:tpl.156}}>Domination</span>
-                                    <span class="aptitude-badge" {{i18n:tpl.163}}>Charisma</span>
-                                    <span class="aptitude-badge" {{i18n:tpl.164}}>Reflection</span>
-                                </div>
+                        <div class="attributes-tree-wrap">
+                            <div class="attributes-tree" role="tree" aria-label="Attributes, Aptitudes, Actions, Competences and Masteries" id="attributes-tree">
+                                <!-- Tree content will be dynamically generated by JavaScript -->
                             </div>
                         </div>
                     </section>

@@ -1,0 +1,28 @@
+﻿﻿Services,"Prix
+⚖",Description & Effets
+Nettoyeur,1 pO,"Prix par objet nettoyé ou alors, NdV Prix = NdG d’espace nettoyé."
+Information,1 eO,A propos du passé ou présent récent. NdV Prix = NdV de l’information voulue.
+Prédiction météorologique,1 eO,NdV Prix = NdT à l’avance x Niv de précision (1|2|3|4|5 = 1|3|6|10|15 Dés).
+Bains publiques,1,Une zone publique ou n'importe qui peut se baigner.
+Librairie,1,Chercher une information historique. Prix pour la journée entière.
+Soins des blessures,DÉS x NIV,NdV Prix = X Dés guérit x Niv de Mal. Quelqu’un doit aussi en être capable (d’un Niv de MTR équivalent).
+Réparation d’Objet,DÉS x NIV,NdV Prix = X Dés réparés x Niv de Durabilité max (originel) de l’objet.
+ Messagerie postale,1 cO par Pentaine,"Envoyer une lettre à pied en 5 jours, ou avec monture (+1/2/3/4 cO, en 4/3/2/1 jours) vers une autre ville adjacente (multiplié par X par cité/pentaine de distance supplémentaires)."
+… Télénnoéique,1 pO par Pentaine,"Communication par miroirs entre postes interconnectés (ou portables), à travers un code en commun de variantes de réflexions de la lumière, jusqu’à 50-300km par poste. Chaque instrument coûte 100 cO."
+… Téléhydrique,"1 pO par
+Pentaine","Communication par un code de nivellement d’eaux interconnectés ou avec un même flotteur à égaler entre chaque postes (certains systèmes ont un vocabulaire de 15’000 mots voir plus), 200km/h. Coûte 250 cO par km installé."
+… Télétompique,1 eO par Pentaine,"Joueurs de tambours-gongs imitant le ton et la prosodie de la parole, 150km/h par entente de 10km, compréhensible à toute oreille sachant le code"
+… Pyrgopyrique,2 cO par Pentaine,"Tours-balises à feu de signalisation séparées de 50-100km, 1000 km/h"
+… Téléélélizique,25 cO par Pentaine,"Discret, cylindres (Ø 40cm) à moitié enterrés (1m) remplis de sables et autre, réceptionnant les vibrations des stations à 1.5km, “instantané”, inaudible et invisible."
+… Volatiles,1 cO par Pentaine,Animaux messagers volatils faisant des allers retours sur 150km à 150km/h
+Transporteurs terrestres,5 cO par Pentaine,"Envoyer un objet d’1 Sac jusqu’à une autre cité en caravane. 1 Coffre = 50 cO, 1 Caravane = 500 cO, etc."
+… Sous-terrains,10 cO par Pentaine,… par tunnel ou par Tauplarve laineuses (cargo).
+… Aériens,10 cO par Pentaine,… par montgolfières animales (Pléoidées).
+Garde de biens,"10dD % 
+de la somme","Bétails, banque de cO, peaux, peintures, meubles, esclaves, antiquités, etc…"
+Change,2x 10dD % de la somme,Conversion d'une monnaie en une autre.
+Prêt,4x 10dD % de la somme,"Prêt d'une somme, avec une caution (et un taux d'usure annuel)."
+Mercenaire,1 cO par Jour,"Salaire journalier d’un Mercenaire d’Expertise N1, à multiplier par son Expertise. Va du sauvage, aux domestiques, voleurs, terroristes, éclaireurs, guides, pilotes, gardes du corps, etc."
+... Spécialisé,+1 cO par Niv,"... possèdant des talents particuliers (de Niv X), ce qui augmente leur valeur."
+Analyse Rilique,Niv de Cercle,"Identification des objets riliques ou analyse en tout genre de ses capacités. Prix = Cercle rilique de l’objet, où un objet rilique de Cercle 1|2|3|4|5... = 1 pO, 1 eO, 1 cO, 3 cO, 10 cO, ... afin de l’identifier."
+Honoration Rilique,Niv de Cercle +5,"Une illusion, une transformation, un effet défensif, consécrations riliques et manifestation de différents degrés, puissances, etc… 5+Cercle 1|2|3|4|5... = 10|30|100|300|1’000... cO."

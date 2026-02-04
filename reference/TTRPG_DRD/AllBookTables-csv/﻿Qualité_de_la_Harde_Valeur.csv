@@ -1,0 +1,16 @@
+﻿﻿Qualité de la Harde,,Valeur
+"-8, 9, 10",Catastrophique,Infestée (invendable)
+"-6, +7",Effroyable,Putréfaction (invendable)
+-5(0),Dramatique (Mort),"Carcasse décharnée, 1 cO"
+-4(0),Périlleuse,x-1 (vente à perte)
+-3(0),Très Nulle,x 0 (ne vaut rien)
+-2(0),Nulle,x 0.50 (+ la moitié)
+-1(0),Plutôt Nulle,x 0.75 (- le quart)
+0,Habituelle,x 1 ou 100 O
++1(0),Plutôt Bonne,x 1.25 (+ le quart)
++2(0),Bonne,x 1.5 (+ la moitié)
++3(0),Très Bonne,x 2 (+ le prix idéal)
++4(0),Exceptionnelle,x 3 (+ le double)
++5(0),Inouïe,x 10 le Prix
+"+6, +7",Fantastique,x 30 foix le prix
+"+8 ,9 ,10",Légendaire,x 100 fois le prix

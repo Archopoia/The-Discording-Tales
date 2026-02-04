@@ -1,0 +1,29 @@
+﻿"﻿Tableau des Rôles, Devoirs & Pouvoirs",,
+Maîtres des Caravanes,,
+Guide ,Tranche et aide les décisions du groupe de joueur,Double votre vote lors d'un débat entre les Éveilleurs
+Chef,Organise toutes les actions des joueurs au sein d’une expédition,Peut relancer un jet de Cohésion d'Équipe
+Cartographe,"Organise les expéditions du groupe, et dessine les cartes","Trouver un raccourci, une route secrète ou découverte"
+Agriculteur,"Gouverne les règles du bétail, des voyages pastoraux et s'occupe des cultures du groupe",+1 Niv de Qualité d'un (produit de) la Harde ou d'une culture
+Recruteur,Gère et recrute les comparses pour les autre joueurs et le groupe,Inspire les comparses à ne pas consommer de vivres sur un Jour sans effets négatifs
+Diplomate,Prévoit/établit les NIV de disposition entre les factions que le groupe ou un de ses membres rencontre,Ajuster de +/- 1 Niv la disposition de deux partis se rencontrant après s’être présenté à eux
+Quartier-maître,Fait l'inventaire et utilise les ressources pour le groupe,"""Re""découvrir une chose utile/oubliée mais de Rareté commune (Niv 0), au sein de l'inventaire"
+Mécanicien,Gère toutes (les règles des) constructions d'équipement/de foyer/etc. du groupe,"Optimise la construction d'un projet, réduisant votre coût final d’1 NdV"
+Soignant,"Observe, consigne et rappel les Cycles de guérison et les Niv de Souffrances des membres du groupe","Faire automatiquement réussir 1 jet de Guérison de quelqu’un d’autre qui aurait échoué, lui donnant 1 Succès"
+Stratège,Dirige les règles de bataille en jeu pour le groupe,Fait échouer une attaque ennemie par stratégie
+Porte-Étendard,Garde à l'œil tous les éléments temporels des jets du groupe,Réduire de 1 le NdT minimum d’une action d’un allié
+Prêtre,Prépare et gère les Cercles/Sacrifices Riliques du groupe,Réduire une Honoration Rilique du groupe d’1 Cercle
+Maîtres des Lores,,
+Chroniqueur,"Maintien le journal du groupe, ainsi que les temps assoupis et éveillés des joueurs","“Oublie” de rapporter un évènement de la séance, aidant par inadvertance ou changeant un détail (ex: couleur)"
+Exagérateur,Rendre les ennemis et/ou épreuves plus puissant(e)s et épiques,"Donne un +1 NIV à tous les jets d'un ennemi ou à une épreuve, y doublant les Marques gagnées en contrepartie"
+Artiste,Illustre graphiquement les aventures/rencontres du groupe,Découvre/ajoute une faiblesse ou vulnérabilité cohérente à la chose dessinée
+Archiviste,Ecrire et décrire les lieux et choses proches et lointains,Ajoute discrètement une chose utile (Symbolisme de +1 Niv) dans l'environnement décrit
+Maîtres des Règles,,
+Créateur,Aide le Révélateur à la création de personnage des Joueurs,Octroyer une relance d’un jet d'un autre joueur lors de sa création
+Portier,Expliquer les règles aux nouveaux joueurs,Peut se choisir un aspect de l’éveil du personnage plutôt que de la tirer au dé
+Référenceur,Traque et piste la régularité de l'univers,"Changer l'ambiance d’une chose négative en positive, afin d'en faire bénéficier le groupe"
+Nommeur,Inventer les noms des lieux et choses,"Découvrir le vrai nom d'un antagoniste, et donnant +1 afin de résister à tout ses jets néfastes aux joueurs"
+Maîtres des Lieux,,
+Organisateur,Organiser la session,Donner une action gratuite à un autre joueur
+Hospitalier,Être l'hôte de la session,Découvrir un lieu sécurisé ou un PNI qui pourrait les accueillir
+Cuistot,Apporter de la nourriture pour la session,"Cuisiner un met délicieux quel qu’en soit ses ingrédients, guérissant d’1 NIV de Souffrance de Rancœur"
+Hygiéniste,S'assurer du nettoyage,Enlever 1 NIV de Souffrance de Maladie d'un P(N)I

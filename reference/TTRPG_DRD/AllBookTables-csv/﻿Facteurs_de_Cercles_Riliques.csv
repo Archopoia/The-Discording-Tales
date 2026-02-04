@@ -1,0 +1,57 @@
+﻿﻿Facteurs de Cercles Riliques,,,,
+NIV,Distance (de la cible la plus éloignée),Quantité (des cibles affectées),Taille (de la plus grande cible),Durée (de l’effet le plus long)
+-2,"En soi 
+(À l’intérieur)","1 Plis d’empreinte 
+(Infinitésimal)","1 Poudre
+(Jusqu’à une goutte de 0.1mL)","1 Clin d’Oeil
+(Un tiers de Seconde)"
+-1,"Sur soi 
+(Équipé)","1 Ongle 
+(1/Millionième)","1 Sachet
+(Jusqu’à une cuillère de 100mL)","30 Clins
+(Jusqu’à 10 secondes)"
+0,"Autour de soi (1m)
+(À portée en s’étendant)","1 Doigt 
+(1/Millième)","1 Sac
+(Jusqu’à une amphore de 10L)","Instant
+(Jusqu’à 5 Minutes)"
++1,"Au regard (10m)
+(Voyant encore les détails)","1 Main
+(1/Centième)","1 Coffre
+(Jusqu’à un tonneau de 100L)","Heure
+(Jusqu’à 1 Heure)"
++2,"À travers champ (100m)
+(Reconnaissant les formes)","1 Bras
+(1/Dixième)","1 Charrette
+(1 Tente | 1 Stère | 1m3 | 1’000L)","Matinée 
+(Jusqu’à 8 Heures)"
++3,"Au loin (1km)
+(Distinguant encore les choses)","1 Entité
+(Individu entier)","1 Caravane | Chariot Bâché
+(1 Grange)","Pentaine
+(Environ 3 à 5 Jours)"
++4,"À l’horizon (10km)
+(Tout le visible aperçu)","...10 Entités
+(1 Meute | 1 Famille)","10 Caravanes
+(1 Grenier)","Saison 
+(Environ 30 à 50 Jours)"
++5,"Au bout de la route (100km)
+(Un pèlerinage de plusieurs jours)","...100 Entités
+(1 Troupeau | 1 Bande | 1 Clan)","100 Caravanes
+(1 Entrepôt)","Année 
+(Environ 300 Jours)"
++6,"Au bout du pays (1’000km)
+(Des pentaines de voyage)","...1’000 Entités
+(1 Tribu | 1 Guilde)","1’000 Caravanes
+(1 Donjon)","Décade
+(Jusqu’à 10 Années)"
++7,"Au bout du monde
+(Le plus éloigné encore imaginable)","...10’000 Entités
+(1 Peuple)","10’000 Caravanes
+(1 Village)","Centenaire
+(Jusqu’à 100 Années)"
++8,"Par-delà les étoiles
+(Dans les tréfonds de l’impossible)","...100’000 Entités
+(1 Colonie)","100’000 Caravanes
+(1 Cité)","Millénaire
+(Jusqu’à 1’000 Années)"

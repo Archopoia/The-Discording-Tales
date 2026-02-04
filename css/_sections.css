@@ -1914,6 +1914,279 @@
     color: var(--tdt-mint);
 }
 
+/* ========================================
+   Attributes Tree: Interactive hierarchy
+   Attribute -> Aptitude -> Action -> Competence -> Masteries
+   ======================================== */
+.attributes-tree-wrap {
+    min-width: 0;
+    margin: var(--spacing-md) 0;
+}
+
+.attributes-tree {
+    border: 1px solid rgba(212, 197, 168, 0.4);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: rgba(255, 252, 248, 0.05);
+    color: var(--tdt-cream);
+}
+
+/* Tree nodes */
+.attributes-tree-node {
+    margin: var(--spacing-xs) 0;
+    color: var(--tdt-cream);
+}
+
+/* Toggle arrow indicator */
+.attributes-tree-toggle {
+    display: inline-block;
+    width: 1.2em;
+    margin-right: var(--spacing-xs);
+    cursor: pointer;
+    font-size: 0.85em;
+    color: var(--tdt-beige-light);
+    transition: color var(--transition-fast);
+    user-select: none;
+}
+
+.attributes-tree-toggle:hover {
+    color: var(--tdt-mint);
+}
+
+.attributes-tree-node[aria-expanded="true"] > .attributes-tree-toggle::before {
+    content: '▼';
+}
+
+.attributes-tree-node[aria-expanded="false"] > .attributes-tree-toggle::before {
+    content: '▶';
+}
+
+.attributes-tree-node[aria-expanded="false"] > .attributes-tree-children {
+    display: none;
+}
+
+/* Attribute level (top level) */
+.attributes-tree-node[data-attribute] {
+    padding: var(--spacing-xs) 0;
+    border-bottom: 1px solid rgba(212, 197, 168, 0.15);
+}
+
+.attributes-tree-node[data-attribute]:last-child {
+    border-bottom: none;
+}
+
+.attributes-tree-attr-abbrev {
+    display: inline-block;
+    padding: 0.15rem 0.4rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    background: var(--tdt-burgundy-warm);
+    color: var(--tdt-cream);
+    border-radius: var(--radius-sm);
+    margin-right: var(--spacing-xs);
+    vertical-align: middle;
+}
+
+.attributes-tree-attr-name {
+    font-weight: 700;
+    color: var(--tdt-cream);
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 2px;
+    transition: color var(--transition-fast);
+}
+
+.attributes-tree-attr-name:hover {
+    color: var(--tdt-gold);
+}
+
+/* Children containers with indentation */
+.attributes-tree-node[data-attribute] > .attributes-tree-children {
+    margin-left: var(--spacing-md);
+    padding-left: var(--spacing-sm);
+    border-left: 2px solid var(--tdt-burgundy-warm);
+    margin-top: var(--spacing-xs);
+}
+
+/* Aptitude level */
+.attributes-tree-aptitude-node {
+    margin: var(--spacing-xs) 0;
+}
+
+.attributes-tree-aptitude-name {
+    font-weight: 600;
+    color: var(--tdt-beige-light);
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 2px;
+    transition: color var(--transition-fast);
+}
+
+.attributes-tree-aptitude-name:hover {
+    color: var(--tdt-gold);
+}
+
+.attributes-tree-aptitude-name.aptitude-principal {
+    color: var(--tdt-mint);
+}
+
+.attributes-tree-aptitude-name.aptitude-principal:hover {
+    color: #c0ffe8;
+}
+
+.attributes-tree-weight {
+    font-size: 0.75em;
+    color: var(--tdt-beige);
+    opacity: 0.7;
+    margin-left: var(--spacing-xs);
+    font-family: 'Courier New', monospace;
+}
+
+.attributes-tree-aptitude-node > .attributes-tree-children {
+    margin-left: var(--spacing-md);
+    padding-left: var(--spacing-sm);
+    border-left: 2px solid rgba(160, 253, 218, 0.3);
+    margin-top: var(--spacing-xs);
+}
+
+/* Action level */
+.attributes-tree-action-node {
+    margin: var(--spacing-xs) 0;
+}
+
+.attributes-tree-action-name {
+    font-weight: 500;
+    color: var(--tdt-beige-light);
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 2px;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+    transition: color var(--transition-fast);
+}
+
+.attributes-tree-action-name:hover {
+    color: var(--tdt-gold);
+}
+
+.attributes-tree-linked-attr {
+    font-size: 0.7em;
+    color: var(--tdt-beige);
+    opacity: 0.6;
+    margin-left: var(--spacing-xs);
+    font-family: 'Courier New', monospace;
+}
+
+.attributes-tree-action-node > .attributes-tree-children {
+    margin-left: var(--spacing-md);
+    padding-left: var(--spacing-sm);
+    border-left: 2px solid rgba(212, 197, 168, 0.2);
+    margin-top: var(--spacing-xs);
+}
+
+/* Competence level */
+.attributes-tree-competence-node {
+    margin: var(--spacing-xs) 0;
+}
+
+.attributes-tree-competence-name {
+    font-weight: 400;
+    color: var(--tdt-beige-light);
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 2px;
+    font-size: 0.9em;
+    transition: color var(--transition-fast);
+}
+
+.attributes-tree-competence-name:hover {
+    color: var(--tdt-gold);
+}
+
+.attributes-tree-competence-node > .attributes-tree-children {
+    margin-left: var(--spacing-md);
+    padding-left: var(--spacing-sm);
+    border-left: 1px solid rgba(212, 197, 168, 0.15);
+    margin-top: var(--spacing-xs);
+}
+
+/* Masteries (leaf level) */
+.attributes-tree-masteries {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    padding: var(--spacing-xs) 0;
+}
+
+.attributes-tree-mastery {
+    display: inline-block;
+    font-size: 0.75rem;
+    padding: 0.15rem 0.4rem;
+    background: rgba(212, 197, 168, 0.15);
+    color: var(--tdt-beige);
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(212, 197, 168, 0.2);
+}
+
+/* Description panels (accordion content) */
+.attributes-tree-attr-content,
+.attributes-tree-aptitude-content,
+.attributes-tree-action-content,
+.attributes-tree-competence-content {
+    margin-top: var(--spacing-xs);
+    margin-left: 1.7em;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-left: 3px solid var(--tdt-burgundy-warm);
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-size: 0.88em;
+    color: var(--tdt-beige-light);
+}
+
+.attributes-tree-attr-content[hidden],
+.attributes-tree-aptitude-content[hidden],
+.attributes-tree-action-content[hidden],
+.attributes-tree-competence-content[hidden] {
+    display: none !important;
+}
+
+.attributes-tree-desc-body {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.attributes-tree-desc-body p {
+    margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .attributes-tree {
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+    
+    .attributes-tree-node[data-attribute] > .attributes-tree-children,
+    .attributes-tree-aptitude-node > .attributes-tree-children,
+    .attributes-tree-action-node > .attributes-tree-children,
+    .attributes-tree-competence-node > .attributes-tree-children {
+        margin-left: var(--spacing-sm);
+        padding-left: var(--spacing-xs);
+    }
+    
+    .attributes-tree-attr-content,
+    .attributes-tree-aptitude-content,
+    .attributes-tree-action-content,
+    .attributes-tree-competence-content {
+        margin-left: 0.5em;
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+}
+
 /* Conflicts card grid: 4 columns × 2 rows */
 .conflicts-cards {
     display: grid;

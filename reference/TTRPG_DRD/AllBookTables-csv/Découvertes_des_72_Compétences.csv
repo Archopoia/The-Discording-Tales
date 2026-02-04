@@ -1,90 +1,90 @@
-﻿﻿Découvertes des 72 Compétences,,,,,,,,
-Frapper,Puissance,,For +3,Neutraliser,AGI +2,Tirer,,DEX +1
-[Armé],"Votre arme est toujours équipée et dégainée dès que la situation le requière
-Toute attaque Armée réussite octroie aussi +1 Succès de Botte
-Si visant la même cible et après une réussite, ajouter votre Niv à l’attaque",,,[Lutte] ,"Toute Lutte réussie octroie aussi +1 succès de Botte ou Ruse
-Toute Lutte échouée annule tout échec au-delà du premier
-Immunisé face aux Luttes ennemies",[Bandé] ,"Votre arme est toujours équipée et préparée dès que la situation le requière
-Toute attaque Bandée réussite octroie aussi +1 Succès de Visée & Tir
-Si visant la même cible et après une réussite, ajouter votre Niv à l’attaque",
-[Désarmé],"Toute attaque Désarmée échouée peut en même temps Saisir l’ennemi (à +1)
-Toute attaque Désarmée réussite octroie +1 Succès de Ruse
-Pour chaque attaque (Armé/Désarmé/Improvisé), +1 coup désarmé (à tester)",,,[Bottes] ,"Toute Botte réussie octroie aussi +1 succès de Lutte ou Ruse
-Toute Botte échouée annule tout échec au-delà du premier
-Immunisé face aux Bottes ennemies",[Propulsé] ,"Votre arme est toujours équipée et préparée dès que la situation le requière
-Toute attaque Propulsée réussite octroie aussi +1 Succès de Visée & Tir
-Si visant la même cible et après une réussite, ajouter votre Niv à l’attaque",
-[Improvisé],"En entrant dans un lieu, vous y voyez tous les pièges/armes “improvisables”
-Tout objet, si justifié, peut améliorer une autre action (glisser, grimper, etc.)
-Chaque nouvelle utilisation d’une arme improvisée surprend l’ennemi",,,[Ruses] ,"Toute Ruse réussie octroie aussi +1 succès de Lutte ou Botte
-Toute Ruse échouée annule tout échec au-delà du premier
-Immunisé face aux Ruses ennemies",[Jeté] ,"Jeter plus de chose à la fois ne cause aucun malus 
-Toute attaque Jetée réussite octroie aussi +1 Succès de Visée & Tir
-Divisez par deux les échecs d’un rattrapage d’une chose tombante/jetée/etc.",
-Réagir,Aisance,Agi +3,,Dérober,DEX +2,Coordonner,VIG +1,
-[Fluidité],"Tout chose réagissant à vos actions aura votre Niv de fluidité en Dés négatifs
-Immunisé à la surprise
-Toute chose agissant contre vous l’annonce (hors-jeu). Vous pouvez y réagir",,,[Escamotage] ,"Immunisé à toute découverte de ses possessions (tant qu’habillé, c’est caché)
-Peut voler une possession intime (culotte, etc.) sans être directement accusé
-Peut voler un organe (rein, oeil, etc.) sans être directement accusé",[Gestuelle],"Toute gestuelle peut dérouter/créer une diversion, lui donner un sens différent
-Toute action peut être perçue et testée telle une danse (aux effets persuasifs)
-Immunisé à toute charge portée (aucun de ces dés négatifs sur cette Compétence)",
-[Esquive],"Vous pouvez esquivez votre Niv de choses en même temps et sans malus
-Tant que vous pouvez bouger (n’êtes pas immobilisé), vous pouvez esquiver
-Même surpris, vous pouvez esquivez votre Niv de choses en même temps",,,[Illusions] ,"Vos illusions se succédant n’accumulent pas un malus de -1 à chaque fois
-Immunisé aux illusions/diversions/triches ennemies
-Vos illusions/diversions/triches ne sont jamais liées à vous directement",[Minutie] ,"Même si restreint, peut utiliser sa FOR jusqu’à votre Niv de Minutie
-Si désiré, vous ne cassez jamais un outil/arme/etc. que vous utilisez
-Vos échecs ne déclenchent jamais de pièges/fermeture bloquée/etc.",
-[Évasion] ,"Si la tête passe (et le savez), tout le corps passe, sans prendre aucun temps
-Même si entièrement restreint, vous pouvez toujours tester à vous échapper 
-Immunisé à l’engagement de tout ennemi au-delà de 1 (c’est toujours un duel)",,,[Dissimulation] ,"Vos actions (pas, ouverture, etc.) ne font pas de bruit et sont moins visibles
-Même si découvert, on peut se recacher sans malus, autant de fois que désiré
-Tant qu’on se dissimule derrière des obstacles, en sortir relance une surprise",[Équilibre],"Immunisé au ralentissement de tout terrain
-Immunisé au déséquilibre de tout terrain ou situation
-Quelle que soit votre posture, cela n’a aucun effet négatif sur toute action",
-Manier,Précision,Dex +3,,Façonner,PER +2,Fignoler,CRÉ +1,
-[Visée],"Peut viser (mais à tester) n’importe quel point sur une cible à toute distance
-Impossibilité de toucher des cibles désignée comme à éviter lors de votre tir
-Immunisé aux facteurs de distance lorsque l’on vise une cible",,,[Débrouillardise] ,"Immunisé aux malus liés aux ressources et équipements à disposition
-Immunisé aux malus liés aux terrains et à l’endroit à disposition
-Immunisé à la surprise d’une rencontre au sein d’un de vos campements",[Artifices] ,"Vos amorçages fonctionnent ou alors sont récupérables sans inquiétude
-Les désamorçages échouant ne blessent que vous
-+/-1 Niv (général) de tout effet lié à cette Compétence (zone détruite, touchée,...)",
-[Conduite],"Conduite dans le noir et par “l’instinct” possible (mais pas automatique)
-Le fait d’être en train de conduire n’a aucun effet négatif sur toute action
-Immunisé aux effets des terrains sur la conduite",,,[Bricolage] ,"Divisez par deux les échecs investis dans l’Utilité d’un bricolage
-Divisez par deux les échecs investis dans la Qualité d’un bricolage
-Divisez par deux les échecs investis dans  la Rareté d’un bricolage",[Sécurité] ,"Immunisé aux effets de stress lors de tout (dé)verrouillage
-Toute serrure ou clé vue est reconnue et assimilée à sa paire (si connue)
-L’indévérouillable devient possible, une fois par entité liée à cette Compétence",
-[Habileté],"Immunisé au contexte de tout objet (mouillé, gluant, collant, visqueux, etc.)
-Vous manier votre Niv d’objet sans malus
-Aucun malus à utiliser un objet avec une autre préhension que ses mains",,,[Savoir-Faire] ,"Ajoutez 1 succès par 2 succès investis dans l’Utilité d’une fabrication
-Ajoutez 1 succès par 2 succès investis dans la Qualité d’une fabrication
-Ajoutez 1 succès par 2 succès investis dans la Rareté d’une fabrication",[Casse-Têtes] ,"On vous donne toujours un indice lors d’un problème lié à cette Compétence
-Toute énigme/nœud/etc. vue est reconnue et assimilée à sa paire (si connue)
-Tout impasse liée à cette Compétence possède désormais une faille (à trouver)",
-Traverser,Athlétisme,Vig +3,,Efforcer,FOR +2,Manœuvrer,AGI +1,
-[Pas],"Divisez par deux les échecs de fatigue liée à cette Compétence
-Charger/Courir/Ramper/etc. n’a aucun effet négatif sur toute action
-Immunisé à toute charge portée (aucun de ces dés négatifs sur cette Compétence)",,,[Port] ,"Divisez par deux les échecs de fatigue liée à cette Compétence
-Votre équipement est toujours équipé dès que la situation le requière
-Tous les équipements portés ne comptent pas comme dés de charge",[Vol] ,"Tout “moyen” “vole” un niveau au-delà de votre utilité (bras = rien -> planer)
-Le fait d’être en train de voler n’a aucun effet négatif sur toute action
-Immunisé à toute charge portée (aucun de ces dés négatifs sur cette Compétence)",
-[Grimpe],"Immunisé aux effets de parois (mouvante (créature), glissante (mouillé), etc.)
-Le fait d’être en train de grimper n’a aucun effet négatif sur toute action
-Immunisé à toute charge portée (aucun de ces dés négatifs sur cette Compétence)",,,[Saut],"Divisez par deux les échecs de fatigue liée à cette Compétence
-Doublez vos succès à un seul jet lié (1x / NdT) afin de survivre, s’enfuir, etc...
-Immunisé à toute charge portée (aucun de ces dés négatifs sur cette Compétence)",[Acrobatie] ,"Retombe toujours sur ses jambes (mais pouvant blesser), prêt à agir
-Le fait d’être en pleine acrobatie n’a aucun effet négatif sur toute action
-Immunisé à toute charge portée (aucun de ces dés négatifs sur cette Compétence)",
-[Natation],"Immunisé aux effets de milieu (mouvante (flots), visqueux (miel), etc.)
-Le fait d’être en train de nager n’a aucun effet négatif sur toute action
-Immunisé à toute charge portée (aucun de ces dés négatifs sur cette Compétence)",,,[Fouissage],"Tout “moyen” creuse un milieu au-delà de votre utilité (mains = sable -> terre)
-Tout fouissage donné prends deux fois moins de temps
-Vous contrôlez si et quand vos tunnels s’effondrent (sauf situation externe)",[Chevauchement] ,"Peut monter une créature (ou un véhicule) lorsqu’étant à vitesse maximale
-Le fait d’être en chevauchement n’a aucun effet négatif sur toute action
-Immunisé au démontement (tomber de sa monture/sortir de votre véhicule)",
-,,,,,,,,
+﻿Découvertes des 72 Compétences,,,,,,
+Captiver,Charisme,Emp +3,Convaincre,VOL +2,Interpréter,PER +1
+[Séduction],"Tout être attiré par votre sexe/type/etc. est (au pire) d’une disposition neutre
+Toute séduction dure pendant un NdT = succès obtenus (au lieu d’échanger)
+On accède à vos requêtes jusqu’à souffrir d’un Niv égal à votre Niv de CT",,[Négociation] ,"Immunisé contre toute confiscation ou arnaque (ou pire +|-4) de marchandage
+Compter chaque NdT de Courtisanat comme celle suivante (Jour -> Pentaine)
+Toute valorisation se vaut et peut se marchander en prix idéal (via des cO)",[Instrumental],"Les dé d’ambiance octroyés par succès restent (au lieu de partir après le NdT)
+Utilisez cette grappe de dé en entier sur les jets d’inspiration ou présentation
+Tout succès peut s’utiliser comme un traitement d’insanité"
+[Mimétisme],"Imitez toute créature au même instant que ses actions, tel un miroir
+Tout succès communique avec quoi que ce soit d’un Niv au moins Essentiel
+Toute être non-sociable vous accepte comme l’un des siens par mimétisme",,[Tromperie] ,"Échangez 2 succès contre 1 Niv apparent d’utilité/qualité/rareté d’une chose
+Utilisez cette grappe de dé en entier sur les jets de présentation ou séduction
+Échangez 1 succès par NdT où la tromperie sera telle une vérité pour tous",[Chant],"Les dé d’ambiance octroyés par succès restent (au lieu de partir après le NdT)
+Utilisez cette grappe de dé en entier sur les jets d’inspiration ou séduction
+Tout succès peut s’utiliser comme un traitement de rancœurs"
+[Présentation],"Tout individu sociable rencontré vous est (au pire) hostile (jamais ennemi)
+Votre groupe (via un jet de cohésion) partage vos dispositions désirée avec X
+On vous attaque en dernier OU on se concentre que sur vous (quand désiré)",,[Inspiration] ,"+1 succès par 2 succès aux jets envers ceux en disposition négative sur vous
+Ignorez votre Niv de CT de NdG lors de jet de Cohésion de groupe
+Toute inspiration dure pendant un NdT égal aux succès (au lieu d’échanger)",[Narration],"Échangez 2 succès contre 1 Niv apparent d’Utilité|Qualité|Rareté d’une chose
+Utilisez cette grappe de dé en entier sur les jets d’inspiration ou tromperie
+A chaque NdT une narration se propage à +1 NdG jusqu’aux succès obtenus"
+Discerner,Détection,Per +3,Découvrir,CRÉ +2,Dépister,EMP +1
+[Vision],"Peut reconnaître un signe, une écriture, etc. à n’importe quelle distance
+Tout succès comprend la gestuelle d’une chose d’un Niv au moins Essentiel
+Aucune diversion ne fonction sur votre regard qui ne perds jamais sa cible",,[Investigation] ,"Dès que l’on investigue une chose, on sait son origine, sa caste, etc.
+Dès que l’on investigue une chose, on sait sa direction ou type de motivation
+Dès que l’on investigue une chose, on sait où est caché votre plus grand secret",[Odorat] ,"Sentez l’odeur d’une chose un instant avant qu’elle n’arrive physiquement
+Détectez passivement l’odeur des choses dangereuses (pièges, prédateurs, etc.)
+Toute chose laisse une odeur à détecter, quelle qu’en soit sa situation actuelle"
+[Audition],"Vous pouvez tenter retracer l’origine localisée de n’importe quel votre
+Vous pouvez entendre les ultrasons (infimes) et infrasons (tremblements)
+Toute chose faisant du bruit est annoncée (hors-jeu). Vous pouvez y réagir",,[Estimation] ,"Divisez par deux les échecs si estimant l’utilité/qualité/rareté d’une chose
+Vous savez quelle est l’origine de l’aspect que vous venez d’estimer
+Vous savez où une chose estimée serait la plus utile, optimisée, pratique, etc.",[Goût] ,"Échangez 2 succès contre 1 succès d’odorat ou de toucher
+Détectez le mal le plus important qu’une chose possède en la goûtant
+En goûtant une chose connue, elle est reconnue et assimilée à une paire utile"
+[Toucher],"Détectez passivement les mouvements (par l’air) des choses dans le noir
+Détectez le mal le plus important qu’une créature possède en la touchant
+Détectez “l’intangible” (l’étant normalement), les gazes, les esprits, etc.",,[Ressenti] ,"Ressent les tentatives d’inspiration/négociation/tromperie/séduction sur soi
+Ressent les DS d’insanité/rancœurs de toute être qu’il observe
+Ressent la vérité (tel un parlé de Niv Essentiel) derrière tout échange social",[Interoception] ,"Ne peut créer d’accident lié à la portée de tout chose qu’il utilise lui-même
+Sait votre état (orientation, santé, temps, etc.) et ne peut pas croire autrement
+Est toujours prévenu par le Révélateur (sans précision) des dangers possibles"
+Concevoir,Réflexion,Cré +3,Acculturer,EMP +2,Acclimater,VOL +1
+[Artisanat],"Réduisez d’un Niv de valeur le coût en ressources de toute fabrication
+Réduisez d’un Niv de valeur le coût en temps de toute fabrication
+Toute fabrication vous distingue d’un titre (Niv = Réflexion), à accroître",,[Jeux] ,"Divisez par deux les échecs lorsque jouant à quelque chose
+Tous sont prêts à parier avec vous une (NdV (= à leur Disposition)) x Succès
+A chaque NdT votre tradition se propage à +1 NdG jusqu’aux succès obtenus",[Nature] ,"Doublez vos succès afin de connaître l’utilité (pour X) d’une chose naturelle
+Utilisez cette grappe de dé en entier sur les jets d’apprivoisement, de médecine, d’artisanat, de pastoralisme, d’agronomie ou de géographie
+Vos sacrifices riliques comptent comme d’un Niv de valeur supérieure"
+[Médecine],"Divisez par deux les échecs obtenus lors de tout jet de médecine
+Tout créature rencontrée révèle les dés précis de votre plus grand mal
+Tant que vous réussissez un jet vs Niv +6, vous maintenez un mort en vie ",,[Société] ,"Vous connaissez toujours l’origine (d’où ça vient) d’un sujet donné
+Utilisez cette grappe de dé en entier sur les jets d’artisanat, de jeux, de géographie, de narration, de présentation ou de casse-têtes.
+Toute peuple vous prend pour l’un des leurs (ou tel un adopté assimilé)",[Pastoralisme] ,"En voyant une créature, vous savez le chiffre de votre pire et meilleur attribut
+Utilisez cette grappe de dé et avec +1 dé gratuit sur les jets d’apprivoisement
+Votre harde (après l’avoir surveillée une fois) est immunisée contre la fuite"
+[Ingénierie],"+1 dé à toute grappe de dé utilisée ailleurs que sur la même CT
+Lorsque l’on “Fait 0” (ou 1, 2, etc.), cela prends toujours un NdT de moins
+Découvrez immédiatement la faille majeure d’une chose observée/pensée",,[Géographie] ,"Doubler vos succès de quand?/distance/situation/attitude lorsqu’en voyage
+Vous savez s’il vaut la peine ou non de rechercher une ressource/marché ici
+Vous pouvez investir vos succès dans le symbolisme avant toute rencontre",[Agronomie] ,"En voyant une graine/plante/etc. vous connaissez sa facilité à croître (WIP)
+Tout NdT utilisée en lien avec l’agronomie comptent comme NdT+1
+Vos cultures ne meurent jamais, il y a toujours un retour minimum de 10%"
+Discipliner,Domination,Vol +3,Endurer,VIG +2,Dompter,FOR +1
+[Commandement],"Discerner immédiatement la motivation/l’attitude de tout groupe rencontré
+Annulez votre Niv de CT de Dés négatifs reçus lors d’un Jet d’Ambiance
+Octroyez votre Niv de CT comme Dés bonus sur quelqu’un vous obéissant",,[Gloutonnerie] ,"Engloutir/déglutir vous prend un NdT de moins (taille d’objet = NdT)
+Vous savez engloutir/déglutir quoi que ce soit sans vous blesser directement
+Vous pouver engloutir/déglutir des choses de 2 tailles inférieures (au lieu de 3)",[Intimidation] ,"Utiliser votre réputation négative comme dés positifs à un jet lui étant lié
+Toute peur que vous inspirez se propage à votre Niv de Ct de cibles désirées 
+Tout être apeuré vous obéis jusqu’à souffrir un Niv égal à votre Niv de CT"
+[Obéissance],"Discerner immédiatement qui possède la plus haute Volonté/Domination 
+Annulez votre Niv de CT de Dés négatifs d’Ambiance lors de jet de Groupe
+Ajoutez votre Niv de CT afin de convaincre autrui à suivre le même ordre",,[Beuverie] ,"Boire/vomir vous prend un NdT de moins (volume de liquide = NdT)
+Sécrétez/crachez/etc. avec une portée = à vos succès (au lieu d’échanger)
+Sécrétez/crachez/etc. avec une précision = à vos succès (au lieu d’échanger)",[Apprivoisement] ,"Tout être non-sociable rencontré vous est (au pire) hostile (jamais ennemi)
+Vous communiez avec vos bêtes et si possible elles vous aident d’elles-mêmes
+Vos bêtes vous protègent jusqu’à souffrir un Niv égal à votre Niv de CT"
+[Obstinance],"Discerner immédiatement qui (et le NdG) contestera votre obstinance
+Ignorez votre Niv de CT de NdG vous contestant lors de tout jet d’Audace
+Baisser de votre Niv de CT le chiffre à avoir au D6 pour Guider votre Rage",,[Entrailles] ,"Tout objet rentré dans un organe peut être aussi ressortit sans se tester
+Tout objet rentré dans un organe peut y rester sans faire de dégâts directes
+Vous pouver rentrer/sortir des choses de 2 tailles inférieures (au lieu de 3)",[Dressage] ,"La version opposée de tout ordre dressé est automatiquement apprise
+Ordonnez tout être vous étant hostile d’en servir un autre sans ce malus lié
+Vos êtres dressés obéissent jusqu’à souffrir un Niv égal à votre Niv de CT"
+,,,,,,
