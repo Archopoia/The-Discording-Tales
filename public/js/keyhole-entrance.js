@@ -130,6 +130,10 @@
             if (enterButton) {
                 enterButton.addEventListener('click', function() {
                     window.keyholeClickInProgress = true;
+                    // Keep burgundy overlay faded (don't restart if already fading from hover)
+                    if (staticLoader) {
+                        staticLoader.classList.add('entrance-revealing');
+                    }
                     document.body.classList.remove('entrance-active');
                     if (doorUnlock) {
                         doorUnlock.volume = 0.7;
