@@ -30,12 +30,25 @@ body.entrance-active {
     animation: entranceMapPan 60s ease-in-out infinite;
 }
 
-/* Layer 2 (middle): Creusalité frame - stretched to viewport */
+/* Layer 3: Creusalité frame - stretched to viewport, fades in radially */
 .entrance-creusalite-layer {
     background-image: url("../assets/images/Creusalité_NoBorders.png");
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
+    /* Start hidden, animate radial reveal */
+    clip-path: circle(0% at 50% 50%);
+    animation: creusaliteRadialFadeIn 1.5s ease-out 0.3s forwards;
+}
+
+/* Radial fade-in animation for Creusalité frame */
+@keyframes creusaliteRadialFadeIn {
+    0% {
+        clip-path: circle(0% at 50% 50%);
+    }
+    100% {
+        clip-path: circle(75% at 50% 50%);
+    }
 }
 
 /* Layer 2: Burgundy overlay (100% opacity, fades on hover) */
@@ -118,6 +131,10 @@ body.entrance-active {
         animation: none;
         background-position: 50% 50%;
         background-size: 200%;
+    }
+    .entrance-creusalite-layer {
+        animation: none;
+        clip-path: circle(75% at 50% 50%);
     }
 }
 
