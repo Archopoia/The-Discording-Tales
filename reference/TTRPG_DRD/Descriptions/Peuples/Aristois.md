@@ -22,10 +22,10 @@ Les Aristois sont un peuple fier et noble, héritiers d'une longue tradition d'a
 
 ---
 
-### Sufflicoles (alias: Des Souffles)
+### Des Souffles
 
 - **Physique** : Ils sont de taille moyenne, de teint gris-bleu et aux yeux bleus profonds.
-- **Traits** : Les Aristois Sufflicoles sont d'une grande acuité mentale et perceptive, mais sont physiquement plus fragiles.
+- **Traits** : Les Aristois Des Souffles sont d'une grande acuité mentale et perceptive, mais sont physiquement plus fragiles.
 - **Occupation traditionnelle** : Leurs souffleurs maîtrisent les vents et les courants d'air pour communiquer à distance.
 
 ---

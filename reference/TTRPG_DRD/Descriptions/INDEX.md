@@ -45,7 +45,7 @@ ATTRIBUTS (8)
 
 | Peuple | Races | Fichier |
 |--------|-------|---------|
-| **Aristois** | Monte-Foudres, Fleuris, Sufflicoles, Ambrés | [Peuples/Aristois.md](./Peuples/Aristois.md) |
+| **Aristois** | Monte-Foudres, Fleuris, Des Souffles, Ambrés | [Peuples/Aristois.md](./Peuples/Aristois.md) |
 | **Griscribes** | Arboricoles, Saute-Brumes, Limnicoles, d'Eau | [Peuples/Griscribes.md](./Peuples/Griscribes.md) |
 | **Navillis** | Carmins, Pétricoles, Perces-vagues | [Peuples/Navillis.md](./Peuples/Navillis.md) |
 | **Méridiens** | Sylvains, Marche-Rêves, des Monts | [Peuples/Meridiens.md](./Peuples/Meridiens.md) |
