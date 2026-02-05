@@ -37,6 +37,11 @@
     
     <!-- Favicon -->
     <link href="assets/images/cropped-symbolpur.png" rel="icon" type="image/png" sizes="32x32"/>
+    <!-- Preload entrance-critical images for instant first paint -->
+    <link rel="preload" href="assets/images/Map_Naked.jpg" as="image" fetchpriority="high"/>
+    <link rel="preload" href="assets/images/Creusalité_NoBorders.png" as="image" fetchpriority="high"/>
+    <link rel="preload" href="assets/images/symbolpur.png" as="image" fetchpriority="high"/>
+    <link rel="preload" href="assets/images/SymbolCoin.png" as="image" fetchpriority="high"/>
     <!-- Page title/description for setLanguage (filled by build_i18n) -->
     <script type="application/json" id="tdt-i18n-strings">{"title":{"en":"THE DISCORDING TALES – Under our steps awake those mysteries believed to be warring among the stars…","fr":"DES RÉCITS DISCORDANTS – Sous nos pas s'éveillent ces mystères que l'on croyait se battre parmi les étoiles…"},"description":{"en":"For those of us who crave DISCOVERY. A journey through exotic cultures, unexplored lands, weird creatures, and untold ways of thinking and being—yearning to experience the vast potentials, technologies and moralities of worlds unlike ours.","fr":"Pour ceux d'entre nous qui aspirent à la DÉCOUVERTE. Un voyage à travers des cultures exotiques, des terres inexplorées, des créatures étranges et des façons inédites de penser et d'être—aspirant à expérimenter les vastes potentiels, technologies et moralités de mondes différents du nôtre."}}</script>
     <!-- Structured data (Schema.org JSON-LD) -->
@@ -47,7 +52,7 @@
     {"@context":"https://schema.org","@type":"Organization","name":"The Discording Tales","url":"https://archopoia.github.io/The-Discording-Tales/","logo":"https://archopoia.github.io/The-Discording-Tales/assets/images/symbolpur.png","sameAs":["https://www.kickstarter.com/projects/1410517588/the-discording-tales-tabletop-rpg-and-worldlore","https://soundcloud.com/the-discording-tales","https://twitter.com/DiscordingTales"]}
     </script>
 </head>
-<body>
+<body class="entrance-active">
     <!-- Keyhole entrance: vignette always visible; burgundy fill fades on unlock -->
     <div id="static-loader" class="entrance-vignette" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; z-index: 10000;">
         <div id="entrance-fill" class="entrance-fill" style="position: absolute; inset: 0; pointer-events: none;">
@@ -62,10 +67,10 @@
         </div>
         <!-- Invisible hover zone - large central area triggers hover effects -->
         <div id="entrance-hover-zone" aria-hidden="true"></div>
-        <button id="enter-portfolio-btn" type="button" style="display: none;" aria-label="Enter site">
+        <button id="enter-portfolio-btn" type="button" aria-label="Enter site">
             <span class="entrance-logo-wrap">
-                <img src="assets/images/symbolpur.png" alt="" class="entrance-logo-base" aria-hidden="true"/>
-                <img src="assets/images/SymbolCoin.png" alt="" class="entrance-logo-coin" aria-hidden="true"/>
+                <img src="assets/images/symbolpur.png" alt="" class="entrance-logo-base" aria-hidden="true" fetchpriority="high"/>
+                <img src="assets/images/SymbolCoin.png" alt="" class="entrance-logo-coin" aria-hidden="true" fetchpriority="high"/>
             </span>
         </button>
     </div>
@@ -390,7 +395,39 @@
                                 <span class="peoples-origin-badge" data-en="Yômmes" data-fr="Yômmes">Yômmes</span>
                                 <h5 data-en="Aristois" data-fr="Aristois">Aristois</h5>
                                 <p class="peoples-morality-line"><span data-en="Trèpharchie" data-fr="Trèpharchie">Trèpharchie</span> <em data-en="(Sovereign Growth)" data-fr="(Croissance Souveraine)">(Sovereign Growth)</em></p>
-                                <ul class="peoples-races-mini"><li data-title-en="They would have lost their emotions to their muscles during their longest, most warlike rugged transhumance. Their nomapalais mercenaries lost across the hostile far lands. Their wrestler-riders defend our archives with their pavoises growing with every clash." data-title-fr="Auraient perdu leurs émotions contre leurs muscles lors de leur plus longue et guerrière transhumance escarpée. Leurs nomapalais mercenaires perdus au travers des lointaines terres hostiles. Leurs lutteurs-cavaliers défendent nos archives de leurs pavois grandissant à chaque fracas.">Monte-Foudres</li><li data-title-en="They would descend from the lost colony of Uyahel. Their artisans aligned their sails, planks and rails with the world's attractive forces to send these Bêstres afar." data-title-fr="Descendraient de la colonie perdue d'Uyahel. Leurs artisans associèrent et alignèrent leurs voiles, planches et rails sur les forces attractives du monde afin d'envoyer au loin ces Bêstres.">Fleuris</li><li data-title-en="Their juice sommeliers delight all, and their buried drums make the tubules of our mastodons vibrate to one rhythm, inaudible to any who do not possess them." data-title-fr="Leurs sommeliers de sucs ravissent tous, et leurs tambours enterrés font vibrer les tubules de nos mastodontes d'un même rythme bien qu'inaudible à quiconque n'en possédant pas.">Des Souffles</li><li data-title-en="Their tamer-healers convince fauna and flora to revive each spring through the musicality of their tromoroches." data-title-fr="Leurs dompteurs-guérisseurs savent convaincre par la musicalité de leurs tromoroches, nos faunes et flores de se raviver à chaque printemps.">Ambrés</li></ul>
+                                <ul class="peoples-races-mini"><li data-title-en="They would have lost their emotions to their muscles during their longest, most warlike rugged transhumance. Their nomapalais mercenaries lost across the hostile far lands. Their wrestler-riders defend our archives with their pavoises growing with every clash.
+
+• Physique: Taller and sturdier, with marbled complexion and brown or amber eyes.
+• Traits: Physically resistant and vigorous, but less perceptive and observant.
+• Traditions: Their tier-defenders guard archives with shields growing with each clash." data-title-fr="Auraient perdu leurs émotions contre leurs muscles lors de leur plus longue et guerrière transhumance escarpée. Leurs nomapalais mercenaires perdus au travers des lointaines terres hostiles. Leurs lutteurs-cavaliers défendent nos archives de leurs pavois grandissant à chaque fracas.
+
+• Physique : Plus grands et solides, de teint marbré et aux yeux bruns ou ambrés.
+• Traits : Physiquement résistants et vigoureux, mais moins perspicaces et observateurs.
+• Traditions : Leurs paliers défendent les archives de leurs pavois grandissant à chaque fracas.">Monte-Foudres</li><li data-title-en="They would descend from the lost colony of Uyahel. Their artisans aligned their sails, planks and rails with the world's attractive forces to send these Bêstres afar.
+
+• Physique: Thinner and more agile, with rosy complexion and green eyes.
+• Traits: More agile and quick, but less robust against the elements.
+• Traditions: Their lookouts keep watch from trees, spotting Bêstres from afar." data-title-fr="Descendraient de la colonie perdue d'Uyahel. Leurs artisans associèrent et alignèrent leurs voiles, planches et rails sur les forces attractives du monde afin d'envoyer au loin ces Bêstres.
+
+• Physique : Plus minces et agiles, de teint rosé et d'yeux verts.
+• Traits : Plus agiles et rapides, mais moins robustes face aux éléments.
+• Traditions : Leurs vigies montent la garde dans les arbres, détectant au loin les Bêstres.">Fleuris</li><li data-title-en="Their juice sommeliers delight all, and their buried drums make the tubules of our mastodons vibrate to one rhythm, inaudible to any who do not possess them.
+
+• Physique: Medium height, grey-blue complexion with deep blue eyes.
+• Traits: Great mental and perceptive acuity, but physically more fragile.
+• Traditions: Their blowers master the winds to communicate over long distances." data-title-fr="Leurs sommeliers de sucs ravissent tous, et leurs tambours enterrés font vibrer les tubules de nos mastodontes d'un même rythme bien qu'inaudible à quiconque n'en possédant pas.
+
+• Physique : Taille moyenne, de teint gris-bleu et aux yeux bleus profonds.
+• Traits : Grande acuité mentale et perceptive, mais physiquement plus fragiles.
+• Traditions : Leurs souffleurs maîtrisent les vents pour communiquer à distance.">Des Souffles</li><li data-title-en="Their tamer-healers convince fauna and flora to revive each spring through the musicality of their tromoroches.
+
+• Physique: Medium stature, golden complexion with yellow-amber eyes.
+• Traits: Charismatic and persuasive, but less physically enduring.
+• Traditions: Their embalmers preserve bodies and memories, reviving their knowledge each spring." data-title-fr="Leurs dompteurs-guérisseurs savent convaincre par la musicalité de leurs tromoroches, nos faunes et flores de se raviver à chaque printemps.
+
+• Physique : Stature moyenne, de teint doré et aux yeux jaune-ambré.
+• Traits : Charismatiques et persuasifs, mais moins endurants physiquement.
+• Traditions : Leurs embaumeurs préservent les corps et les souvenirs, ravivant leur savoir à chaque printemps.">Ambrés</li></ul>
                                 <p class="peoples-hook" data-en="Sovereign warriors; growth and archives." data-fr="Guerriers souverains ; croissance et archives.">Sovereign warriors; growth and archives.</p>
                                 <button type="button" class="peoples-flip-btn" aria-label="See details"><span data-en="See details" data-fr="Voir détails">See details</span></button>
                             </div>
@@ -428,7 +465,39 @@
                                 <span class="peoples-origin-badge" data-en="Yômmes" data-fr="Yômmes">Yômmes</span>
                                 <h5 data-en="Griscribes" data-fr="Griscribes">Griscribes</h5>
                                 <p class="peoples-morality-line"><span data-en="Mignusophie" data-fr="Mignusophie">Mignusophie</span> <em data-en="(Nested Wisdom)" data-fr="(Sagesse Imbriquée)">(Nested Wisdom)</em></p>
-                                <ul class="peoples-races-mini"><li data-title-en="The first shamans are said to have all died in the misty passes of Izkaraï. They invented mount-rails for their mad deminers who defuse the exponential growth bubbles from those deadly mists." data-title-fr="Les premiers chamanes seraient tous mort dans les passes brouillardeuses d'Izkaraï. Ils inventèrent les rails à montures pour leurs démineurs-déments qui désamorcent les bulles d'accroissement exponentielles issues de ces brumes meurtrières.">Arboricoles</li><li data-title-en="They are said to have seen from their highest tree a city of light in their sky before it vanished. Their caravanners with mastodons raised in and born of gold navigate even upside down on the walls." data-title-fr="Auraient vu depuis leur plus haut arbre une cité de lumière dans leur ciel avant qu'elle ne disparaissent. Leurs caravaniers aux mastodontes élevés dans et nés par l'or naviguant même à l'envers sur les parois.">Saute-Brumes</li><li data-title-en="They are said to have survived in secret cities within the chasms. Their mired inventors produce inventions such as aerial or aquatic physiosemy that react to change colour and texture to reveal secrets." data-title-fr="Auraient survécu dans des cités secrètes au sein des gouffres. Leurs inventeurs-enlisés produisent des inventions telles que la physiosèmie aérienne ou aquatique réagissant pour changer de couleur, texture afin d'y révéler des secrets.">Limnicoles</li><li data-title-en="Their sophisto-perfumers raised these volatiles that recognise any marked individual or thing, communicating through special waters for study or political ends." data-title-fr="Leurs sophisto-parfumeurs élevèrent ces volatiles reconnaissant tout individu ou chose marquée, communiquant au travers des eaux spéciales à des fins d'étude ou politiques.">D'Eau</li></ul>
+                                <ul class="peoples-races-mini"><li data-title-en="The first shamans are said to have all died in the misty passes of Izkaraï. They invented mount-rails for their mad deminers who defuse the exponential growth bubbles from those deadly mists.
+
+• Physique: Medium height and agile, with greenish skin and yellow eyes.
+• Traits: More agile and supple with an affinity for heights, but less resistant to direct attacks.
+• Traditions: Their wing-makers craft flight mechanisms to traverse the deadly mists." data-title-fr="Les premiers chamanes seraient tous mort dans les passes brouillardeuses d'Izkaraï. Ils inventèrent les rails à montures pour leurs démineurs-déments qui désamorcent les bulles d'accroissement exponentielles issues de ces brumes meurtrières.
+
+• Physique : Taille moyenne et agiles, de peau verdâtre et aux yeux jaunes.
+• Traits : Plus agiles et souples avec une affinité pour les hauteurs, mais moins résistants aux attaques directes.
+• Traditions : Leurs faiseurs-d'ailes fabriquent des mécanismes de vol pour traverser les brumes meurtrières.">Arboricoles</li><li data-title-en="They are said to have seen from their highest tree a city of light in their sky before it vanished. Their caravanners with mastodons raised in and born of gold navigate even upside down on the walls.
+
+• Physique: Smaller and stocky, with grey skin and silver eyes.
+• Traits: Resistant to toxins and hostile conditions, but less sharp vision.
+• Traditions: Their mist-gatherers harvest resources from the most dangerous zones." data-title-fr="Auraient vu depuis leur plus haut arbre une cité de lumière dans leur ciel avant qu'elle ne disparaissent. Leurs caravaniers aux mastodontes élevés dans et nés par l'or naviguant même à l'envers sur les parois.
+
+• Physique : Plus petits et trapus, de peau grise et aux yeux argentés.
+• Traits : Résistants aux toxines et conditions hostiles, mais vision moins perçante.
+• Traditions : Leurs cueilleurs-de-brumes récoltent les ressources dans les zones les plus dangereuses.">Saute-Brumes</li><li data-title-en="They are said to have survived in secret cities within the chasms. Their mired inventors produce inventions such as aerial or aquatic physiosemy that react to change colour and texture to reveal secrets.
+
+• Physique: Slender and graceful, with bluish skin and sea-green eyes.
+• Traits: Excellent swimmers with aquatic affinity, but less comfortable on land.
+• Traditions: Their abyss-divers explore the depths to reveal their secrets." data-title-fr="Auraient survécu dans des cités secrètes au sein des gouffres. Leurs inventeurs-enlisés produisent des inventions telles que la physiosèmie aérienne ou aquatique réagissant pour changer de couleur, texture afin d'y révéler des secrets.
+
+• Physique : Élancés et gracieux, de peau bleutée et aux yeux vert d'eau.
+• Traits : Excellents nageurs avec une affinité aquatique, mais moins à l'aise sur terre ferme.
+• Traditions : Leurs plongeurs-d'abîmes explorent les profondeurs pour en révéler leurs secrets.">Limnicoles</li><li data-title-en="Their sophisto-perfumers raised these volatiles that recognise any marked individual or thing, communicating through special waters for study or political ends.
+
+• Physique: Variable height, translucent skin with pale eyes.
+• Traits: Mystical and connected to waters, but emotionally more fragile.
+• Traditions: Their spring-guardians protect sacred water points." data-title-fr="Leurs sophisto-parfumeurs élevèrent ces volatiles reconnaissant tout individu ou chose marquée, communiquant au travers des eaux spéciales à des fins d'étude ou politiques.
+
+• Physique : Taille variable, de peau translucide et aux yeux pâles.
+• Traits : Mystiques et connectés aux eaux, mais plus fragiles émotionnellement.
+• Traditions : Leurs gardiens-des-sources protègent les points d'eau sacrés.">D'Eau</li></ul>
                                 <p class="peoples-hook" data-en="Nested sages; mangroves and truths." data-fr="Sages imbriqués ; mangroves et vérités.">Nested sages; mangroves and truths.</p>
                                 <button type="button" class="peoples-flip-btn" aria-label="See details"><span data-en="See details" data-fr="Voir détails">See details</span></button>
                             </div>
@@ -466,7 +535,31 @@
                                 <span class="peoples-origin-badge" data-en="Yômmes" data-fr="Yômmes">Yômmes</span>
                                 <h5 data-en="Navillis" data-fr="Navillis">Navillis</h5>
                                 <p class="peoples-morality-line"><span data-en="Olbôphélie" data-fr="Olbôphélie">Olbôphélie</span> <em data-en="(Devoted Felicity)" data-fr="(Félicité Dévouée)">(Devoted Felicity)</em></p>
-                                <ul class="peoples-races-mini"><li data-title-en="They claimed to have discovered these living beings in the greatest depths of the oceans; today they produce our communications through their lights, smokes and shifting colours that we grow, arrange and send." data-title-fr="Auraient prétendu avoir découvert ces êtres vivants dans les plus grandes profondeurs des océans et qui aujourd'hui produisent nos communications par leurs lumières, fumées et couleurs changeantes qu'on fait croître, arrange et s'envoie.">Carmin</li><li data-title-en="With their eat-alls in their courts and kitchens they discovered the medicinal falsehoods of consuming our lifeless bodies. They understood the harmony between beasts and ourselves to fulfil our needs together, down to lighting the depths of the oceans." data-title-fr="Avec leurs mangent-tout au sein de leurs cours et cuisines ils découvrirent les faussetés médicinales de la consommation de nos corps sans vie. Ils comprirent l'harmonie entre les bêtes et nous-mêmes afin d'accomplir ensemble nos besoins jusqu'à éclairer les tréfonds des océans.">Pétricole</li><li data-title-en="Their marine confectioners know how to fulfil anyone's desire, even to open the way between all things with their bridges growing beyond any terrain, pit or river." data-title-fr="Leurs confectionneurs marins savent réaliser le désir de quiconque, jusqu'à pouvoir établir la voie entre toute chose de leurs ponts croissants au-delà entre tout terrain, toute fosse ou toute rivière.">Perce-Vague</li></ul>
+                                <ul class="peoples-races-mini"><li data-title-en="They claimed to have discovered these living beings in the greatest depths of the oceans; today they produce our communications through their lights, smokes and shifting colours that we grow, arrange and send.
+
+• Physique: Medium stature, reddish skin with black eyes.
+• Traits: Passionate and determined with great endurance, but impulsive and stubborn.
+• Traditions: Their blood-navigators trace maritime routes passed down through generations." data-title-fr="Auraient prétendu avoir découvert ces êtres vivants dans les plus grandes profondeurs des océans et qui aujourd'hui produisent nos communications par leurs lumières, fumées et couleurs changeantes qu'on fait croître, arrange et s'envoie.
+
+• Physique : Stature moyenne, de peau rougeâtre et aux yeux noirs.
+• Traits : Passionnés et déterminés avec une grande endurance, mais impulsifs et têtus.
+• Traditions : Leurs navigateurs-de-sang tracent des routes maritimes transmises de génération en génération.">Carmin</li><li data-title-en="With their eat-alls in their courts and kitchens they discovered the medicinal falsehoods of consuming our lifeless bodies. They understood the harmony between beasts and ourselves to fulfil our needs together, down to lighting the depths of the oceans.
+
+• Physique: Taller and sturdier, with rocky grey skin and grey eyes.
+• Traits: Resistant and unshakeable like stone, but less agile and quick.
+• Traditions: Their reef-builders construct underwater structures that shape the currents." data-title-fr="Avec leurs mangent-tout au sein de leurs cours et cuisines ils découvrirent les faussetés médicinales de la consommation de nos corps sans vie. Ils comprirent l'harmonie entre les bêtes et nous-mêmes afin d'accomplir ensemble nos besoins jusqu'à éclairer les tréfonds des océans.
+
+• Physique : Plus grands et robustes, de peau grise rocailleuse et aux yeux gris.
+• Traits : Résistants et imperturbables comme la pierre, mais moins agiles et rapides.
+• Traditions : Leurs bâtisseurs-de-récifs construisent des structures sous-marines façonnant les courants.">Pétricole</li><li data-title-en="Their marine confectioners know how to fulfil anyone's desire, even to open the way between all things with their bridges growing beyond any terrain, pit or river.
+
+• Physique: Slender and hydrodynamic, with blue skin and turquoise eyes.
+• Traits: Exceptional agility in water, can swim up any river, but less comfortable in land combat.
+• Traditions: Their current-scouts map rivers and navigable waterways." data-title-fr="Leurs confectionneurs marins savent réaliser le désir de quiconque, jusqu'à pouvoir établir la voie entre toute chose de leurs ponts croissants au-delà entre tout terrain, toute fosse ou toute rivière.
+
+• Physique : Élancés et hydrodynamiques, de peau bleue et aux yeux turquoise.
+• Traits : Agilité exceptionnelle dans l'eau, peuvent remonter toute rivière, mais moins à l'aise en combat terrestre.
+• Traditions : Leurs éclaireurs-de-courants cartographient les rivières et les voies navigables.">Perce-Vague</li></ul>
                                 <p class="peoples-hook" data-en="Maritime tribes; boat-gardens, joy." data-fr="Tribus maritimes ; bateaux-jardins, joie.">Maritime tribes; boat-gardens, joy.</p>
                                 <button type="button" class="peoples-flip-btn" aria-label="See details"><span data-en="See details" data-fr="Voir détails">See details</span></button>
                             </div>
@@ -504,7 +597,31 @@
                                 <span class="peoples-origin-badge" data-en="Yômmes" data-fr="Yômmes">Yômmes</span>
                                 <h5 data-en="Méridiens" data-fr="Méridiens">Méridiens</h5>
                                 <p class="peoples-morality-line"><span data-en="Etéathlie" data-fr="Etéathlie">Etéathlie</span> <em data-en="(Competitive Authenticity)" data-fr="(Authenticité Compétitrice)">(Competitive Authenticity)</em></p>
-                                <ul class="peoples-races-mini"><li data-title-en="They are said to have inherited their animal grace and delicacy by sacrificing those monsters in their arboreal springs, where their doctors climb with their adhesive gloves and whose armour vanishes in the reflections of the waters." data-title-fr="Auraient hérité de leur adresse et délicatesse animale en sacrifiant ces monstres dans leurs sources arboricoles où leurs docteurs grimpent de leurs gants adhésifs et dont l'armure disparaît dans les reflets des eaux.">Sylvains</li><li data-title-en="In their joviality they danced their prophecies with their fingers on the corpses of the vanquished to torment storms upon their enemies. Each danced body was for them a chance to reach their ancestors, whom they seek to rejoin by their crystal chariots." data-title-fr="Dans leur jovialité dansaient leurs prophéties de leurs doigts sur les cadavres de leurs vaincus pour y tourmenter les tempêtes sur leurs ennemis. Chaque corps dansé serait pour eux une possibilité de recontacter leurs ancêtres qu'ils tentent de rejoindre par leurs chariots cristallins.">Des Monts</li><li data-title-en="Through divination of their floating, alienating rocks, their spiritual guides with blades that cut all hid or revealed our words to everyone during the purge by reading with their fingers the precious changing textures and forms of these stones." data-title-fr="Par la divination de leurs roches flottantes et aliénantes, leurs guides spirituels aux lames tranchant tout, cachèrent ou élucidèrent nos paroles à tous lors de la purge en lisant de leurs doigts les précieuses textures et formes changeantes de ces pierres.">Marche-Rêves</li></ul>
+                                <ul class="peoples-races-mini"><li data-title-en="They are said to have inherited their animal grace and delicacy by sacrificing those monsters in their arboreal springs, where their doctors climb with their adhesive gloves and whose armour vanishes in the reflections of the waters.
+
+• Physique: Medium height, olive skin with leaf-green eyes.
+• Traits: In harmony with nature and forests, but reluctant in urban environments.
+• Traditions: Their reflection-guardians protect sacred clearings where waters reflect." data-title-fr="Auraient hérité de leur adresse et délicatesse animale en sacrifiant ces monstres dans leurs sources arboricoles où leurs docteurs grimpent de leurs gants adhésifs et dont l'armure disparaît dans les reflets des eaux.
+
+• Physique : Taille moyenne, de peau olivâtre et aux yeux verts feuille.
+• Traits : En harmonie avec la nature et les forêts, mais réticents face aux environnements urbains.
+• Traditions : Leurs gardiens-des-reflets protègent les clairières sacrées où se reflètent les eaux.">Sylvains</li><li data-title-en="In their joviality they danced their prophecies with their fingers on the corpses of the vanquished to torment storms upon their enemies. Each danced body was for them a chance to reach their ancestors, whom they seek to rejoin by their crystal chariots.
+
+• Physique: Taller and sturdier, earthy skin with mountain-grey eyes.
+• Traits: Stable and enduring like the peaks they inhabit, but may lack flexibility.
+• Traditions: Their peak-sculptors shape mountains in perpetual motion." data-title-fr="Dans leur jovialité dansaient leurs prophéties de leurs doigts sur les cadavres de leurs vaincus pour y tourmenter les tempêtes sur leurs ennemis. Chaque corps dansé serait pour eux une possibilité de recontacter leurs ancêtres qu'ils tentent de rejoindre par leurs chariots cristallins.
+
+• Physique : Plus grands et robustes, de peau terreuse et aux yeux gris montagne.
+• Traits : Stables et endurants comme les sommets qu'ils habitent, mais peuvent manquer de flexibilité.
+• Traditions : Leurs sculpteurs-de-pics façonnent les montagnes en perpétuel mouvement.">Des Monts</li><li data-title-en="Through divination of their floating, alienating rocks, their spiritual guides with blades that cut all hid or revealed our words to everyone during the purge by reading with their fingers the precious changing textures and forms of these stones.
+
+• Physique: Variable stature, pale skin with often veiled eyes.
+• Traits: Can navigate between dreams and reality, but sometimes disconnected from the waking world.
+• Traditions: Their dream-weavers work stones whose patterns guide dreamers." data-title-fr="Par la divination de leurs roches flottantes et aliénantes, leurs guides spirituels aux lames tranchant tout, cachèrent ou élucidèrent nos paroles à tous lors de la purge en lisant de leurs doigts les précieuses textures et formes changeantes de ces pierres.
+
+• Physique : Stature variable, de peau pâle et aux yeux souvent voilés.
+• Traits : Peuvent naviguer entre les rêves et la réalité, mais parfois déconnectés du monde éveillé.
+• Traditions : Leurs tisserands-d'onirisme travaillent les pierres dont les motifs guident les rêveurs.">Marche-Rêves</li></ul>
                                 <p class="peoples-hook" data-en="Prove worth by action; austèles, Labyrinthe." data-fr="Prouver sa valeur par l'action ; austèles, Labyrinthe.">Prove worth by action; austèles, Labyrinthe.</p>
                                 <button type="button" class="peoples-flip-btn" aria-label="See details"><span data-en="See details" data-fr="Voir détails">See details</span></button>
                             </div>
@@ -542,7 +659,23 @@
                                 <span class="peoples-origin-badge" data-en="Yôrres" data-fr="Yôrres">Yôrres</span>
                                 <h5 data-en="Hauts Ylfes" data-fr="Hauts Ylfes">Hauts Ylfes</h5>
                                 <p class="peoples-morality-line"><span data-en="Edapoèsie" data-fr="Edapoèsie">Edapoèsie</span> <em data-en="(Creative Competence)" data-fr="(Compétence Créative)">(Creative Competence)</em></p>
-                                <ul class="peoples-races-mini"><li data-title-en="Blessed by the eight moons in their fertility of spirits, their white or grey eyes shine at night when they set out eightfold, resonating their tymbafrons to revulse the unwanted, so as to welcome the ninth moon from which they would originate." data-title-fr="Bénis par les huit lunes en leur fertilité d'esprits, leurs yeux blancs ou gris brillent la nuit lorsqu'ils partent à huit en résonnant leur tymbafrons pour révulser les indésirables, afin d'accueillir la neuvième lune d'où ils seraient originaires.">De Lunes</li><li data-title-en="Born of the warlike conquest of their singing statue, they still sing when they slaughter in peace and harmony through their téléséismes vibrating across the plains, amplifying their words and relaying their knowledge." data-title-fr="Naquirent de la conquête guerrière de leur statue chantante, et dont ils chantent encore lorsqu'ils massacrent dans la paix et l'harmonie à travers leur téléséismes vibrant au travers des plaines en amplifiant leurs paroles et relayant leurs savoirs.">Des Plaines</li></ul>
+                                <ul class="peoples-races-mini"><li data-title-en="Blessed by the eight moons in their fertility of spirits, their white or grey eyes shine at night when they set out eightfold, resonating their tymbafrons to revulse the unwanted, so as to welcome the ninth moon from which they would originate.
+
+• Physique: Thinner, with bluish fur and white or grey eyes.
+• Traits: Great fertility of mind, but reduced strength.
+• Traditions: Their fortune-hunters venture in groups of eight and shine on full moon nights." data-title-fr="Bénis par les huit lunes en leur fertilité d'esprits, leurs yeux blancs ou gris brillent la nuit lorsqu'ils partent à huit en résonnant leur tymbafrons pour révulser les indésirables, afin d'accueillir la neuvième lune d'où ils seraient originaires.
+
+• Physique : Plus fins, à la fourrure bleuie et aux yeux blancs ou gris.
+• Traits : Grande fertilité d'esprit, en contrepartie d'une force amoindrie.
+• Traditions : Leurs chasse-richesses sortent en groupe de huit et brillent les nuits de pleines lunes.">De Lunes</li><li data-title-en="Born of the warlike conquest of their singing statue, they still sing when they slaughter in peace and harmony through their téléséismes vibrating across the plains, amplifying their words and relaying their knowledge.
+
+• Physique: Very fluffy and slightly smaller, white fur with blue or green eyes.
+• Traits: Greater sympathy, but less sharp instincts.
+• Traditions: Their whispering monks sing to fight in peace and harmony." data-title-fr="Naquirent de la conquête guerrière de leur statue chantante, et dont ils chantent encore lorsqu'ils massacrent dans la paix et l'harmonie à travers leur téléséismes vibrant au travers des plaines en amplifiant leurs paroles et relayant leurs savoirs.
+
+• Physique : Très touffus et un peu plus petits, de fourrure blanche et aux yeux bleus ou verts.
+• Traits : Sympathie plus poussée, mais instinct moins affûté.
+• Traditions : Leurs moines des murmures chantent pour se battre dans la paix et l'harmonie.">Des Plaines</li></ul>
                                 <p class="peoples-hook" data-en="Tall Ylfes; mastery and creation." data-fr="Grands Ylfes ; maîtrise et création.">Tall Ylfes; mastery and creation.</p>
                                 <button type="button" class="peoples-flip-btn" aria-label="See details"><span data-en="See details" data-fr="Voir détails">See details</span></button>
                             </div>
@@ -580,7 +713,31 @@
                                 <span class="peoples-origin-badge" data-en="Yôrres" data-fr="Yôrres">Yôrres</span>
                                 <h5 data-en="Ylfes pâles" data-fr="Ylfes pâles">Ylfes pâles</h5>
                                 <p class="peoples-morality-line"><span data-en="Hiéragogie" data-fr="Hiéragogie">Hiéragogie</span> <em data-en="(Sacred Direction)" data-fr="(Direction Sacrée)">(Sacred Direction)</em></p>
-                                <ul class="peoples-races-mini"><li data-title-en="Born in the mountains overlooking the hills, they held their vast fairs inside their mastodons. Their breeder-lenders created the kingdoms of cattle and the Golden Cord. Their cratocorax lever-armours increase their strength." data-title-fr="Nés au sein des montagnes surplombant les collines, c'est à l'intérieur de leurs mastodontes qu'ils organisaient leurs immenses foires. Leurs éleveurs-prêteurs créèrent les royaumes de bétail et les Cordon d'Or. Leurs armures cratocoraxes à leviers accroissent leurs forces.">Collinicoles</li><li data-title-en="Ancient masters of lands once decorated with their giant symbols marking the hills' soils that change colour with the seasons. Their gemmologist-locksmiths wield rolling strongboxes, téléstoles towers and mechanical télécordions." data-title-fr="Anciens maîtres des terres autrefois décorées de leurs gigantesques symboles marqués les sols des collines changeant leurs couleurs avec les saisons. Leurs gemmologistes-serruriers manient des coffres-forts roulants, tours téléstoles et télécordions mécaniques.">Chromatiques</li><li data-title-en="They are said to have returned to life from a past that had once petrified them like an army, emerging from a great nécribunal. They brought back from the past their hypsébole catapults and tensodrome rails to send carriages and supplies to their cities." data-title-fr="Auraient repris vie d'un passé les ayant autrefois pétrifiés telle armée, sortant alors d'un grand nécribunal. Ils rapportèrent du passé leurs catapultes hypséboles et leurs rails tensodromes pour envoyer carrosses et vivres vers leurs cités.">Pastoraux</li></ul>
+                                <ul class="peoples-races-mini"><li data-title-en="Born in the mountains overlooking the hills, they held their vast fairs inside their mastodons. Their breeder-lenders created the kingdoms of cattle and the Golden Cord. Their cratocorax lever-armours increase their strength.
+
+• Physique: Stronger and more imposing, sandy curly fur, deep brown eyes sometimes blue or green.
+• Traits: Resistant physically and to mental attacks, but lower graces.
+• Traditions: They invented currency and maintain a tradition of herder-lenders." data-title-fr="Nés au sein des montagnes surplombant les collines, c'est à l'intérieur de leurs mastodontes qu'ils organisaient leurs immenses foires. Leurs éleveurs-prêteurs créèrent les royaumes de bétail et les Cordon d'Or. Leurs armures cratocoraxes à leviers accroissent leurs forces.
+
+• Physique : Plus forts et imposants, de fourrure sable et frisée, aux yeux brun profond parfois bleus ou verts.
+• Traits : Résistants au physique comme aux attaques mentales, mais grâces plus basses.
+• Traditions : Ils inventèrent la monnaie et entretiennent une tradition d'éleveurs-prêteurs.">Collinicoles</li><li data-title-en="Ancient masters of lands once decorated with their giant symbols marking the hills' soils that change colour with the seasons. Their gemmologist-locksmiths wield rolling strongboxes, téléstoles towers and mechanical télécordions.
+
+• Physique: Broader build, bluish fur with piercing azure eyes.
+• Traits: Radiant health resistant to elements, but less observant and attentive.
+• Traditions: Their gemologist-locksmiths wield rolling safes and protective gems." data-title-fr="Anciens maîtres des terres autrefois décorées de leurs gigantesques symboles marqués les sols des collines changeant leurs couleurs avec les saisons. Leurs gemmologistes-serruriers manient des coffres-forts roulants, tours téléstoles et télécordions mécaniques.
+
+• Physique : Corpulence plus large, à la fourrure bleutée et aux yeux d'un azur perçant.
+• Traits : Santé éclatante résistant aux éléments, mais moins observateurs et attentifs.
+• Traditions : Leurs gemmologistes-serruriers manient des coffres-forts roulants et des gemmes protectrices.">Chromatiques</li><li data-title-en="They are said to have returned to life from a past that had once petrified them like an army, emerging from a great nécribunal. They brought back from the past their hypsébole catapults and tensodrome rails to send carriages and supplies to their cities.
+
+• Physique: Smaller build, dark brown fur with green or hazel eyes.
+• Traits: Sharp judgment and observation skills, but frail constitution.
+• Traditions: Their herdmaster-preachers direct domesticated trees that cultivate or fight." data-title-fr="Auraient repris vie d'un passé les ayant autrefois pétrifiés telle armée, sortant alors d'un grand nécribunal. Ils rapportèrent du passé leurs catapultes hypséboles et leurs rails tensodromes pour envoyer carrosses et vivres vers leurs cités.
+
+• Physique : Hauts mais fins, à la fourrure rose capucine et aux yeux verts comme leurs prairies.
+• Traits : Instinct plus affûté, mais moins résistants aux attaques physiques.
+• Traditions : Leurs archers-guetteurs sont projetés depuis des catapultes dans des œufs amortis.">Pastoraux</li></ul>
                                 <p class="peoples-hook" data-en="Pale Ylfes; gain and regency." data-fr="Ylfes pâles ; gain et régence.">Pale Ylfes; gain and regency.</p>
                                 <button type="button" class="peoples-flip-btn" aria-label="See details"><span data-en="See details" data-fr="Voir détails">See details</span></button>
                             </div>
@@ -618,7 +775,31 @@
                                 <span class="peoples-origin-badge" data-en="Yôrres" data-fr="Yôrres">Yôrres</span>
                                 <h5 data-en="Ylfes des lacs" data-fr="Ylfes des lacs">Ylfes des lacs</h5>
                                 <p class="peoples-morality-line"><span data-en="Mellophrônie" data-fr="Mellophrônie">Mellophrônie</span> <em data-en="(Ingenious Volition)" data-fr="(Volition Ingénieuse)">(Ingenious Volition)</em></p>
-                                <ul class="peoples-races-mini"><li data-title-en="Isolated and omitted by others, they pursued an ancient war they believed eternal. Their officer-jugglers, masters of martial poetry, one day made their hydrobèle trebuchets dance on their hydropyrgue siege towers far beyond hope." data-title-fr="Isolés et omis des autres, ils poursuivaient une guerre ancienne qu'ils croyaient éternelle. Leurs officiers-jongleurs maîtres de la poésie martiale firent un jour danser leurs trébuchets hydrobèles sur leurs tours de siège hydropyrgues bien au-delà des espérances.">Mâche-Troncs</li><li data-title-en="They led ritual clashes where every gesture of their tale-singer masters resonated in harmony with the aquatic echoes. Their hydrosemic aires conformed the waters to their words. Their canal and valve téléhydrie pressing water into words." data-title-fr="Ils menaient des affrontements rituels où chaque geste de leurs maîtres chante-contes résonnait en harmonie avec les échos aquatiques. Leurs aires hydrosèmiques conformaient les eaux en leurs paroles. Leur téléhydrie de canaux et de valves pressant l'eau en paroles.">Troglodytes</li><li data-title-en="Once seized by a collective dance frenzy, they were swept into the uncontrollable rhythms of leaves in the wind, which marked their souls. They developed diplo-traumas and hydrore elevators to glide through their branch-canals and trunk-canals." data-title-fr="Jadis saisis par une frénésie de danse collective, ils furent emportés dans des rythmes incontrôlables des feuilles dans le vent qui marquèrent leurs âmes. Ils développèrent les diplo-traumas et les ascenseurs hydrores pour glisser dans leurs branche-canaux et tronc-canaux.">Danse-Feuilles</li></ul>
+                                <ul class="peoples-races-mini"><li data-title-en="Isolated and omitted by others, they pursued an ancient war they believed eternal. Their officer-jugglers, masters of martial poetry, one day made their hydrobèle trebuchets dance on their hydropyrgue siege towers far beyond hope.
+
+• Physique: Shorter but agile, brownish-grey fur with yellow or amber eyes.
+• Traits: Great agility, but more fragile.
+• Traditions: Their poison-spitters make toxins useful to all, and their thorn-cutters sculpt bark." data-title-fr="Isolés et omis des autres, ils poursuivaient une guerre ancienne qu'ils croyaient éternelle. Leurs officiers-jongleurs maîtres de la poésie martiale firent un jour danser leurs trébuchets hydrobèles sur leurs tours de siège hydropyrgues bien au-delà des espérances.
+
+• Physique : Imposants, à la fourrure noire et frisée, et aux yeux verts et perçants.
+• Traits : Plus solides et endurants, mais moins sympathiques.
+• Traditions : Leurs officiers-jongleurs sont maîtres de la poésie martiale.">Mâche-Troncs</li><li data-title-en="They led ritual clashes where every gesture of their tale-singer masters resonated in harmony with the aquatic echoes. Their hydrosemic aires conformed the waters to their words. Their canal and valve téléhydrie pressing water into words.
+
+• Physique: Compact and sturdy, grey or black fur with glowing amber or red eyes.
+• Traits: See well in darkness, but disadvantaged by bright light.
+• Traditions: Their crystallizer-smugglers grow crystals to build or seal caves." data-title-fr="Ils menaient des affrontements rituels où chaque geste de leurs maîtres chante-contes résonnait en harmonie avec les échos aquatiques. Leurs aires hydrosèmiques conformaient les eaux en leurs paroles. Leur téléhydrie de canaux et de valves pressant l'eau en paroles.
+
+• Physique : Hauts et maigres, à la fourrure grise et épaisse, et aux yeux bleus perçants ou vert émeraude.
+• Traits : Esprit plus vif et affûté, mais aura et grâces plus ternes.
+• Traditions : Leurs maîtres chante-contes menaient des affrontements rituels en harmonie avec les échos aquatiques.">Troglodytes</li><li data-title-en="Once seized by a collective dance frenzy, they were swept into the uncontrollable rhythms of leaves in the wind, which marked their souls. They developed diplo-traumas and hydrore elevators to glide through their branch-canals and trunk-canals.
+
+• Physique: Slender, dark green or ochre fur with golden or light brown eyes.
+• Traits: Able to communicate with the dead, but often morbidly inclined.
+• Traditions: Their surgeon-embalmers take grafts with the consent of the dead, and make cadaverine walkers." data-title-fr="Jadis saisis par une frénésie de danse collective, ils furent emportés dans des rythmes incontrôlables des feuilles dans le vent qui marquèrent leurs âmes. Ils développèrent les diplo-traumas et les ascenseurs hydrores pour glisser dans leurs branche-canaux et tronc-canaux.
+
+• Physique : Élégance fluide, à la fourrure bleutée et aux yeux verts perçants.
+• Traits : Grâce plus vive et lumineuse, mais plus fragiles physiquement.
+• Traditions : Leurs diplo-traumas pratiquent des rituels capables de soigner l'esprit en le bouleversant.">Danse-Feuilles</li></ul>
                                 <p class="peoples-hook" data-en="Semi-sedentary; lake and forest, ingenuity." data-fr="Semi-sédentaires ; lacs et forêts, ingéniosité.">Semi-sedentary; lake and forest, ingenuity.</p>
                                 <button type="button" class="peoples-flip-btn" aria-label="See details"><span data-en="See details" data-fr="Voir détails">See details</span></button>
                             </div>
@@ -656,7 +837,23 @@
                                 <span class="peoples-origin-badge" data-en="Yôrres" data-fr="Yôrres">Yôrres</span>
                                 <h5 data-en="Iqqars" data-fr="Iqqars">Iqqars</h5>
                                 <p class="peoples-morality-line"><span data-en="Égonexie" data-fr="Égonexie">Égonexie</span> <em data-en="(Extrinsic Intimism)" data-fr="(Intimisme Extrinsèque)">(Extrinsic Intimism)</em></p>
-                                <ul class="peoples-races-mini"><li data-title-en="Unlike other separated and forgotten Races, the High and Low Iqqars possessed themselves as one in a great wind-guided surge. Together they descended upon the lands of the Bêstres to celebrate their union through an ecstatic triumph of every body." data-title-fr="Les Hauts et Bas Iqqars, contrairement aux autres Races séparées et oubliées, se possédèrent en un seul tout dans un grand élan guidé par les vents. Ensemble, ils descendirent sur les terres des Bêstres afin de célébrer leur union au travers un triomphe extatique de chaque corps.">Hauts</li><li data-title-en="The High and Low Iqqars possessed themselves as one in a great wind-guided surge. Together they descended upon the lands of the Bêstres to celebrate their union through an ecstatic triumph of every body." data-title-fr="Les Hauts et Bas Iqqars se possédèrent en un seul tout dans un grand élan guidé par les vents. Ensemble, ils descendirent sur les terres des Bêstres afin de célébrer leur union au travers un triomphe extatique de chaque corps.">Bas</li></ul>
+                                <ul class="peoples-races-mini"><li data-title-en="Unlike other separated and forgotten Races, the High and Low Iqqars possessed themselves as one in a great wind-guided surge. Together they descended upon the lands of the Bêstres to celebrate their union through an ecstatic triumph of every body.
+
+• Physique: Taller and slender, vibrant plumage with keen eyes.
+• Traits: Exceptional reflexes and sharp sight, but light-boned.
+• Traditions: Their ballistics-choreographers orchestrate dances of arrows to the rhythm of songs." data-title-fr="Les Hauts et Bas Iqqars, contrairement aux autres Races séparées et oubliées, se possédèrent en un seul tout dans un grand élan guidé par les vents. Ensemble, ils descendirent sur les terres des Bêstres afin de célébrer leur union au travers un triomphe extatique de chaque corps.
+
+• Physique : Grande stature, sculptés comme la roche, fourrure blanche ou grise, yeux gris profond.
+• Traits : Puissants physiquement avec une grande résistance, mais intelligence et sagesse moindres.
+• Traditions : Leurs voyageurs-passepartouts traversent les monts et les cieux sur leurs nephoptiques tranchants.">Hauts</li><li data-title-en="The High and Low Iqqars possessed themselves as one in a great wind-guided surge. Together they descended upon the lands of the Bêstres to celebrate their union through an ecstatic triumph of every body.
+
+• Physique: Shorter and stocky, bluish-grey fur with pale eyes.
+• Traits: Great agility and excellent sight, but frail.
+• Traditions: Their ventriloquist-lighters use airship winds to carry secrets." data-title-fr="Les Hauts et Bas Iqqars se possédèrent en un seul tout dans un grand élan guidé par les vents. Ensemble, ils descendirent sur les terres des Bêstres afin de célébrer leur union au travers un triomphe extatique de chaque corps.
+
+• Physique : Stature moyenne, fourrure blonde ou grise, yeux bleu glacé ou gris perçant.
+• Traits : Plus intelligents et raisonnés, mais plus fragiles physiquement et charisme moindre.
+• Traditions : Leurs maîtres-d'êtres connaissent tous les travers de ce qui croise leur chemin d'un coup d'œil.">Bas</li></ul>
                                 <p class="peoples-hook" data-en="Inner experience; reduced dimorphism." data-fr="Expérience intérieure ; dimorphisme réduit.">Inner experience; reduced dimorphism.</p>
                                 <button type="button" class="peoples-flip-btn" aria-label="See details"><span data-en="See details" data-fr="Voir détails">See details</span></button>
                             </div>
@@ -694,7 +891,47 @@
                                 <span class="peoples-origin-badge" data-en="Bêstres" data-fr="Bêstres">Bêstres</span>
                                 <h5 data-en="Slaadéens" data-fr="Slaadéens">Slaadéens</h5>
                                 <p class="peoples-morality-line"><span data-en="Thrasonirie" data-fr="Thrasonirie">Thrasonirie</span> <em data-en="(Dreaming Audacity)" data-fr="(Audace Rêveuse)">(Dreaming Audacity)</em></p>
-                                <ul class="peoples-races-mini"><li data-title-en="They are said to have once been exhumed from their snowy graves before being redressed to resume their danced lives. The Sydru-kal glide-breaths would be so skilled they could float dancing on the cutting winds." data-title-fr="Auraient autrefois été exhumées de leurs tombes enneigées avant d'être rhabillés afin de reprendre leurs vies dansées. Les glisse-souffles Sydru-kal seraient d'une telle adresse qui pourraient flotter en dansant sur les vents tailladant.">Sydru-kal</li><li data-title-en="The guttural chants of the Wijriol musk-howlers, who would control the snows of perfumes produced by their voices to steer their atmonaute boats floating in the air, will be heard." data-title-fr="On entendra les chants gutturaux des hurle-muscs Wijriol qui contrôleraient les neiges des parfums produit de leurs voix jusqu'à en diriger leurs bateaux atmonautes flottant dans les airs.">Wijriol</li><li data-title-en="Awakened from the snows by the mysterious tremors of the sky. Armed with pneumocorax armour whose vapours melt all snow, the Hlabayan wall-walls are said to have formed the first walls guarding every bastion." data-title-fr="Auraient été éveillés des neiges par les mystérieux tremblements du ciel. Munis des armures pneumocoraxes dont les vapeurs fondent toute neige, les mur-murs Hlabayans auraient formé les premières parois gardant tout bastion.">Hlabayan</li><li data-title-en="The dream-tamers Felichrem, through their téléatmique network crossing the dunes while burning them, are said to have given all the habits, desires and needs—wild or not—of nearby beings through their tubed words reaching them all." data-title-fr="Les dompte-rêves Felichrem par leur réseau téléatmique traversant les dunes en les brûlant, auraient donné toutes les habitudes, désirs et besoins farfelus ou non des êtres aux alentours par leurs paroles entubées les atteignant tous.">Felichrem</li><li data-title-en="They are said to have once cultivated the thermal oases. Their burn-sages still meditate in the depths of their golden scorching oases, using cryothermic cannons whose projections pump all heat." data-title-fr="Auraient autrefois cultivé les oasis thermales. Leurs brûle-sages méditant dans les profondeurs de leurs cuisantes oasis d'or utilisent encore les cannons cryothermiques dont les projections pompe toute chaleur.">Iossolam</li></ul>
+                                <ul class="peoples-races-mini"><li data-title-en="They are said to have once been exhumed from their snowy graves before being redressed to resume their danced lives. The Sydru-kal glide-breaths would be so skilled they could float dancing on the cutting winds.
+
+• Physique: Tall, pale fur with icy-blue eyes.
+• Traits: Resistant to cold, but uncomfortable in heat.
+• Traditions: Their glide-breaths float dancing on the cutting winds." data-title-fr="Auraient autrefois été exhumées de leurs tombes enneigées avant d'être rhabillés afin de reprendre leurs vies dansées. Les glisse-souffles Sydru-kal seraient d'une telle adresse qui pourraient flotter en dansant sur les vents tailladant.
+
+• Physique : Élancés à la peau d'ivoire, rares plumes vertes, rosées ou bleues, yeux noirs, bruns ou verts.
+• Traits : Adresse incomparable, mais plus fragiles physiquement.
+• Traditions : Leurs glisse-souffles peuvent flotter en dansant sur les vents tailladants.">Sydru-kal</li><li data-title-en="The guttural chants of the Wijriol musk-howlers, who would control the snows of perfumes produced by their voices to steer their atmonaute boats floating in the air, will be heard.
+
+• Physique: Stocky with thick white fur and deep brown eyes.
+• Traits: Powerful voice, but limited fine motor skills.
+• Traditions: Their musk-howlers control scented snows to pilot atmonaute boats." data-title-fr="On entendra les chants gutturaux des hurle-muscs Wijriol qui contrôleraient les neiges des parfums produit de leurs voix jusqu'à en diriger leurs bateaux atmonautes flottant dans les airs.
+
+• Physique : Plus pileux et plumés, peau marron à noire, yeux verts ou ambres.
+• Traits : Plus vigoureux et résistants, mais moins agiles et adroits.
+• Traditions : Leurs hurle-muscs contrôlent les neiges des parfums produits de leurs voix.">Wijriol</li><li data-title-en="Awakened from the snows by the mysterious tremors of the sky. Armed with pneumocorax armour whose vapours melt all snow, the Hlabayan wall-walls are said to have formed the first walls guarding every bastion.
+
+• Physique: Massive and resistant, grey or black fur with orange or red eyes.
+• Traits: Extremely hardy, but less agile.
+• Traditions: Their wall-walls form the first ramparts guarding every bastion." data-title-fr="Auraient été éveillés des neiges par les mystérieux tremblements du ciel. Munis des armures pneumocoraxes dont les vapeurs fondent toute neige, les mur-murs Hlabayans auraient formé les premières parois gardant tout bastion.
+
+• Physique : Peau et plumes rousse-feu parfois striées de bleu, yeux verts ou bleus.
+• Traits : Plus perspicaces et réactifs, mais aura et grâces plus ternes.
+• Traditions : Leurs mur-murs forment les premières parois gardant tout bastion.">Hlabayan</li><li data-title-en="The dream-tamers Felichrem, through their téléatmique network crossing the dunes while burning them, are said to have given all the habits, desires and needs—wild or not—of nearby beings through their tubed words reaching them all.
+
+• Physique: Slender and agile, sandy fur with golden or amber eyes.
+• Traits: Excellent reflexes, but sensitive to cold.
+• Traditions: Their dream-tamers influence habits and desires through tubed words." data-title-fr="Les dompte-rêves Felichrem par leur réseau téléatmique traversant les dunes en les brûlant, auraient donné toutes les habitudes, désirs et besoins farfelus ou non des êtres aux alentours par leurs paroles entubées les atteignant tous.
+
+• Physique : Mêmes stries que les Mangroviens sur une peau plus saumonée.
+• Traits : Esprit dominateur et persuasif, mais moins résistants aux éléments.
+• Traditions : Leurs dompte-rêves perçoivent les habitudes, désirs et besoins de tous les êtres aux alentours.">Felichrem</li><li data-title-en="They are said to have once cultivated the thermal oases. Their burn-sages still meditate in the depths of their golden scorching oases, using cryothermic cannons whose projections pump all heat.
+
+• Physique: Smaller and lean, golden fur with amber or red eyes.
+• Traits: Heat resistant, but less enduring in cold.
+• Traditions: Their burn-sages cultivate thermal oases using cryothermic cannons." data-title-fr="Auraient autrefois cultivé les oasis thermales. Leurs brûle-sages méditant dans les profondeurs de leurs cuisantes oasis d'or utilisent encore les cannons cryothermiques dont les projections pompe toute chaleur.
+
+• Physique : Peau turquoise, longues plumes rouges à vertes, yeux verts, marrons ou noirs.
+• Traits : Plus intelligents et sages, mais moins vigoureux physiquement.
+• Traditions : Leurs brûle-sages méditent dans les profondeurs de leurs cuisantes oasis d'or.">Iossolam</li></ul>
                                 <p class="peoples-hook" data-en="Bold dreamers; life 2–115 years." data-fr="Rêveurs audacieux ; vie 2–115 ans.">Bold dreamers; life 2–115 years.</p>
                                 <button type="button" class="peoples-flip-btn" aria-label="See details"><span data-en="See details" data-fr="Voir détails">See details</span></button>
                             </div>
@@ -732,7 +969,47 @@
                                 <span class="peoples-origin-badge" data-en="Bêstres" data-fr="Bêstres">Bêstres</span>
                                 <h5 data-en="Tchalkchaïs" data-fr="Tchalkchaïs">Tchalkchaïs</h5>
                                 <p class="peoples-morality-line"><span data-en="Echothysie" data-fr="Echothysie">Echothysie</span> <em data-en="(Sacrificial Altruism)" data-fr="(Altruisme Sacrificiel)">(Sacrificial Altruism)</em></p>
-                                <ul class="peoples-races-mini"><li data-title-en="Born under a sky where the stars seemed to align in ancient auguries, they became guardians of the secrets of time; their time-seers see through blue rocks and desert pink sands, and the echoes of ages past and future." data-title-fr="Nés sous un ciel où les astres semblaient s'aligner en d'anciennes augures, ils devinrent les gardiens des secrets des temps, leurs perce-temps voyant au travers roches-bleues et sables roses désertiques, mais aussi les échos des âges passés et futurs.">Elesihin</li><li data-title-en="Marked by a mysterious knowledge from the farthest skies, they often speak of the invisible stars that guided their ancestors. Their ludo-rhetors are known for their extravagant stakes. Their navhélion boats capture solar rays to propel their vessels across the dunes." data-title-fr="Marqués par un savoir mystérieux venu des cieux les plus lointains, ils parlent souvent des étoiles invisibles qui guidèrent leurs ancêtres. Leurs ludo-rhéteurs sont connus pour leurs mises extravagantes. Leurs bateaux navhélions captent les rayons solaires pour propulser leurs vaisseaux à travers les dunes.">Ordol</li><li data-title-en="Heirs of a glorious past of hallucinated cities, they saw their most precious artefacts scattered. The dream-labourers now cultivate spectacular mirages that shimmer on the horizon. Héliergonic tools capturing the sun's energy and the river's water." data-title-fr="Héritiers d'un passé glorieux aux cités hallucinées, ils virent leurs plus précieux artefacts dispersés. Les labour-rêves cultivent désormais des mirages spectaculaires qui scintillent à l'horizon. Outils héliergoniques captant l'énergie du soleil et l'eau du fleuve.">Îohadam</li><li data-title-en="Formerly guided by the luminous apparitions of beings with strange silhouettes who crossed their misty marshes. Their river-pullers built unshakeable citadels on mountains and flows." data-title-fr="Anciennement guidés par les apparitions lumineuses d'êtres à la silhouette étrange qui traversaient leurs marais brumeux. Leurs tire-rivières construisirent des citadelles inébranlables sur les montagnes et flots.">Nuôtarjoy</li><li data-title-en="Ancient adepts of a secret order that emerged from the dunes of intoxicating dust, masters of concealment. Their shadow-walk would be at the origin of all mirages. Their téléhélique networks allow coded messages to be sent in a furtive flash." data-title-fr="Anciens adeptes d'un ordre secret qui émergea des dunes aux poussières enivrantes, maîtres de la dissimulation. Leur marche-ombres serait à l'origine de tous les mirages. Leurs réseaux téléhéliques permettent d'envoyer des messages codés en un éclat furtif.">Ikrayad</li></ul>
+                                <ul class="peoples-races-mini"><li data-title-en="Born under a sky where the stars seemed to align in ancient auguries, they became guardians of the secrets of time; their time-seers see through blue rocks and desert pink sands, and the echoes of ages past and future.
+
+• Physique: Tall and slender, sand-colored fur with pale blue or grey eyes.
+• Traits: Perceptive of time, but often detached from the present.
+• Traditions: Their time-seers read through blue rocks and pink sands echoes of ages." data-title-fr="Nés sous un ciel où les astres semblaient s'aligner en d'anciennes augures, ils devinrent les gardiens des secrets des temps, leurs perce-temps voyant au travers roches-bleues et sables roses désertiques, mais aussi les échos des âges passés et futurs.
+
+• Physique : Haute stature, peau pistache sans contraste, yeux ambrés ou verts perçants.
+• Traits : Endurance et santé inaltérables, mais moins charismatiques et persuasifs.
+• Traditions : Leurs perce-temps voient au travers les roches-bleues et sables roses, ainsi que les échos des âges.">Elesihin</li><li data-title-en="Marked by a mysterious knowledge from the farthest skies, they often speak of the invisible stars that guided their ancestors. Their ludo-rhetors are known for their extravagant stakes. Their navhélion boats capture solar rays to propel their vessels across the dunes.
+
+• Physique: Average build, brown fur with bright green or blue eyes.
+• Traits: Luck often favors them, but impulsive.
+• Traditions: Their ludo-rhetors are known for extravagant stakes and navhélion boats." data-title-fr="Marqués par un savoir mystérieux venu des cieux les plus lointains, ils parlent souvent des étoiles invisibles qui guidèrent leurs ancêtres. Leurs ludo-rhéteurs sont connus pour leurs mises extravagantes. Leurs bateaux navhélions captent les rayons solaires pour propulser leurs vaisseaux à travers les dunes.
+
+• Physique : Chitine turquoise, yeux verts étincelants, pilosité également verte.
+• Traits : Détermination à toute épreuve, mais moins agiles et adroits.
+• Traditions : Leurs ludo-rhéteurs sont maîtres du verbe et du pari, connus pour leurs mises extravagantes.">Ordol</li><li data-title-en="Heirs of a glorious past of hallucinated cities, they saw their most precious artefacts scattered. The dream-labourers now cultivate spectacular mirages that shimmer on the horizon. Héliergonic tools capturing the sun's energy and the river's water.
+
+• Physique: Slender and tall, with golden or copper fur and dark eyes.
+• Traits: Creative and visionary, but often lost in illusions.
+• Traditions: Their dream-labourers cultivate mirages shimmering on the horizon." data-title-fr="Héritiers d'un passé glorieux aux cités hallucinées, ils virent leurs plus précieux artefacts dispersés. Les labour-rêves cultivent désormais des mirages spectaculaires qui scintillent à l'horizon. Outils héliergoniques captant l'énergie du soleil et l'eau du fleuve.
+
+• Physique : Taille moyenne, peau pêche, yeux ambrés ou verts.
+• Traits : Innovations visionnaires et intelligence, mais moins résistants physiquement.
+• Traditions : Leurs labour-rêves cultivent des mirages spectaculaires qui scintillent à l'horizon.">Îohadam</li><li data-title-en="Formerly guided by the luminous apparitions of beings with strange silhouettes who crossed their misty marshes. Their river-pullers built unshakeable citadels on mountains and flows.
+
+• Physique: Sturdy and muscular, greenish-grey fur with blue or grey eyes.
+• Traits: Exceptional strength near water, but diminished in arid zones.
+• Traditions: Their river-pullers built unshakeable citadels on mountains and flows." data-title-fr="Anciennement guidés par les apparitions lumineuses d'êtres à la silhouette étrange qui traversaient leurs marais brumeux. Leurs tire-rivières construisirent des citadelles inébranlables sur les montagnes et flots.
+
+• Physique : Larges et musclés, peau chitineuse couleur pistache, fines branchies bleutées.
+• Traits : Puissants et résistants, mais moins perspicaces et attentifs.
+• Traditions : Leurs tire-rivières construisent des citadelles inébranlables sur les montagnes et flots.">Nuôtarjoy</li><li data-title-en="Ancient adepts of a secret order that emerged from the dunes of intoxicating dust, masters of concealment. Their shadow-walk would be at the origin of all mirages. Their téléhélique networks allow coded messages to be sent in a furtive flash.
+
+• Physique: Lithe and agile, dark fur with pale or golden eyes.
+• Traits: Masters of stealth, but uncomfortable in bright light.
+• Traditions: Their shadow-walkers create mirages and send coded flashes." data-title-fr="Anciens adeptes d'un ordre secret qui émergea des dunes aux poussières enivrantes, maîtres de la dissimulation. Leur marche-ombres serait à l'origine de tous les mirages. Leurs réseaux téléhéliques permettent d'envoyer des messages codés en un éclat furtif.
+
+• Physique : Corps gracieux de teinte sable, yeux noirs ou verts brillants dans la pénombre.
+• Traits : Extrêmement agiles et discrets, maîtres de la dissimulation, mais moins résistants aux attaques frontales.
+• Traditions : Leurs marche-ombres seraient à l'origine de tous les mirages qui traînent derrière eux.">Ikrayad</li></ul>
                                 <p class="peoples-hook" data-en="Sacrificial altruists; life 10–27 years." data-fr="Altruistes sacrificiels ; vie 10–27 ans.">Sacrificial altruists; life 10–27 years.</p>
                                 <button type="button" class="peoples-flip-btn" aria-label="See details"><span data-en="See details" data-fr="Voir détails">See details</span></button>
                             </div>

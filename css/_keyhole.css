@@ -39,12 +39,20 @@ body.entrance-active {
 /* Entrance fill - visible immediately on page load */
 #entrance-fill {
     /* No fade-in - entrance is visible from start */
+    opacity: 1;
 }
 
 
 /* Layer 1 (bottom): Animated map background - zoomed in, panning */
+/* Uses image-set() for WebP with fallback to JPG for older browsers */
 .entrance-map-layer {
+    /* Fallback for browsers that don't support image-set() */
     background-image: url("../assets/images/Map_Naked.jpg");
+    /* Modern browsers: prefer WebP if available */
+    background-image: image-set(
+        url("../assets/images/Map_Naked.webp") type("image/webp"),
+        url("../assets/images/Map_Naked.jpg") type("image/jpeg")
+    );
     background-size: 240%;
     background-position: 20% 30%;
     background-repeat: no-repeat;
@@ -52,8 +60,15 @@ body.entrance-active {
 }
 
 /* Layer 3: Creusalité frame - stretched to viewport */
+/* Uses image-set() for WebP with fallback to PNG for older browsers */
 .entrance-creusalite-layer {
+    /* Fallback for browsers that don't support image-set() */
     background-image: url("../assets/images/Creusalité_NoBorders.png");
+    /* Modern browsers: prefer WebP if available */
+    background-image: image-set(
+        url("../assets/images/Creusalité_NoBorders.webp") type("image/webp"),
+        url("../assets/images/Creusalité_NoBorders.png") type("image/png")
+    );
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -186,8 +201,8 @@ body.entrance-active {
     text-decoration: none !important;
     box-shadow: none !important;
     outline: none !important;
-    /* Eye iris movement controlled by JS - use transition for smooth random movement */
-    transition: transform 1.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+    /* Eye iris movement - calm, observing (default state) - pure CSS, no JS */
+    animation: eyeIrisCalm 12s ease-in-out infinite;
 }
 
 /* Wrapper so symbol + coin share one glow/rotation (filter on wrapper) */
@@ -227,8 +242,8 @@ body.entrance-active {
 #static-loader:has(#entrance-hover-zone:hover) #enter-portfolio-btn,
 #static-loader.touch-hovering #enter-portfolio-btn {
     opacity: 1 !important;
-    /* Eye iris movement controlled by JS - faster transition for restless state */
-    transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+    /* Eye iris movement - restless, searching (hover state) - faster, wider movements */
+    animation: eyeIrisRestless 6s ease-in-out infinite;
 }
 
 #static-loader:has(#entrance-hover-zone:hover) #enter-portfolio-btn .entrance-logo-wrap,
@@ -250,6 +265,21 @@ body.entrance-active {
 
 #enter-portfolio-btn:active {
     opacity: 0.6;
+}
+
+/* Exit animation: fade out button and logo smoothly when clicked */
+/* High specificity to override hover state selectors */
+#static-loader #enter-portfolio-btn.entrance-exiting,
+#static-loader.touch-hovering #enter-portfolio-btn.entrance-exiting {
+    animation: fadeOut 1.5s ease-in-out forwards !important;
+    pointer-events: none !important;
+    opacity: 1; /* Ensure we start visible before animation */
+}
+
+#static-loader #enter-portfolio-btn.entrance-exiting .entrance-logo-wrap,
+#static-loader.touch-hovering #enter-portfolio-btn.entrance-exiting .entrance-logo-wrap {
+    animation: fadeOut 1.5s ease-in-out forwards !important;
+    transition: none !important; /* Prevent transition from interfering */
 }
 
 /* Keyhole discovery - burgundy to beige (large glow) */
@@ -422,6 +452,12 @@ body.entrance-active {
     to {
         opacity: 0;
     }
+}
+
+/* Generic fade out animation (used for button/logo exit) */
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
 }
 
 /* Eye iris movement - calm, observing (default state) */

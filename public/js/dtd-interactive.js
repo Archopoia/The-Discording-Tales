@@ -80,9 +80,18 @@
     // ========================================
     // Initialize on DOM Load
     // ========================================
-    document.addEventListener('DOMContentLoaded', function() {
-        initLanguage();
-        initTabs();
+    
+    // Track whether deferred init has run (to avoid double-init)
+    let deferredInitDone = false;
+    
+    /**
+     * Deferred initialization: heavy work that should wait until after entrance click.
+     * Called either on tdt-entrance-complete event or on load (fallback safety).
+     */
+    function initDeferred() {
+        if (deferredInitDone) return;
+        deferredInitDone = true;
+        
         initSubTabs();
         initArchiveToggle();
         initZinePages();
@@ -97,11 +106,20 @@
         initSoundCloudCycling();
         initSoundCloudNoteState();
         initDiscoveryOvalParallax();
-        initMenuToggle();
         initNewsletter();
         initScrollAnimations();
         initCharacterSheet();
         initWebGLShaders(); // Initialize procedural texture shaders
+        
+        // Handle window resize for WebGL canvases
+        window.addEventListener('resize', handleWebGLResize);
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        // Essential: language, tabs, menu (needed even during entrance for deep-links)
+        initLanguage();
+        initTabs();
+        initMenuToggle();
         
         // Handle hash changes (for deep linking)
         window.addEventListener('hashchange', handleHashChange);
@@ -109,8 +127,14 @@
         // Check for initial hash
         handleHashChange();
         
-        // Handle window resize for WebGL canvases
-        window.addEventListener('resize', handleWebGLResize);
+        // Listen for entrance complete to run deferred init
+        window.addEventListener('tdt-entrance-complete', initDeferred, { once: true });
+        
+        // Fallback: if entrance was bypassed or doesn't exist, run after load
+        window.addEventListener('load', function() {
+            // Give entrance a chance to fire first (it fires on click)
+            setTimeout(initDeferred, 100);
+        }, { once: true });
     });
 
     // ========================================

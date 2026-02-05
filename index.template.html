@@ -37,6 +37,11 @@
     
     <!-- Favicon -->
     <link href="assets/images/cropped-symbolpur.png" rel="icon" type="image/png" sizes="32x32"/>
+    <!-- Preload entrance-critical images for instant first paint -->
+    <link rel="preload" href="assets/images/Map_Naked.jpg" as="image" fetchpriority="high"/>
+    <link rel="preload" href="assets/images/Creusalité_NoBorders.png" as="image" fetchpriority="high"/>
+    <link rel="preload" href="assets/images/symbolpur.png" as="image" fetchpriority="high"/>
+    <link rel="preload" href="assets/images/SymbolCoin.png" as="image" fetchpriority="high"/>
     <!-- Page title/description for setLanguage (filled by build_i18n) -->
     <script type="application/json" id="tdt-i18n-strings">{{i18n:script-json}}</script>
     <!-- Structured data (Schema.org JSON-LD) -->
@@ -47,7 +52,7 @@
     {"@context":"https://schema.org","@type":"Organization","name":"The Discording Tales","url":"https://archopoia.github.io/The-Discording-Tales/","logo":"https://archopoia.github.io/The-Discording-Tales/assets/images/symbolpur.png","sameAs":["https://www.kickstarter.com/projects/1410517588/the-discording-tales-tabletop-rpg-and-worldlore","https://soundcloud.com/the-discording-tales","https://twitter.com/DiscordingTales"]}
     </script>
 </head>
-<body>
+<body class="entrance-active">
     <!-- Keyhole entrance: vignette always visible; burgundy fill fades on unlock -->
     <div id="static-loader" class="entrance-vignette" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; z-index: 10000;">
         <div id="entrance-fill" class="entrance-fill" style="position: absolute; inset: 0; pointer-events: none;">
@@ -62,10 +67,10 @@
         </div>
         <!-- Invisible hover zone - large central area triggers hover effects -->
         <div id="entrance-hover-zone" aria-hidden="true"></div>
-        <button id="enter-portfolio-btn" type="button" style="display: none;" aria-label="Enter site">
+        <button id="enter-portfolio-btn" type="button" aria-label="Enter site">
             <span class="entrance-logo-wrap">
-                <img src="assets/images/symbolpur.png" alt="" class="entrance-logo-base" aria-hidden="true"/>
-                <img src="assets/images/SymbolCoin.png" alt="" class="entrance-logo-coin" aria-hidden="true"/>
+                <img src="assets/images/symbolpur.png" alt="" class="entrance-logo-base" aria-hidden="true" fetchpriority="high"/>
+                <img src="assets/images/SymbolCoin.png" alt="" class="entrance-logo-coin" aria-hidden="true" fetchpriority="high"/>
             </span>
         </button>
     </div>

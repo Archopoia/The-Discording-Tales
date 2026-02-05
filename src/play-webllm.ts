@@ -56,14 +56,25 @@ function init(): void {
     return enginePromise;
   };
 
-  // Start loading the model as soon as the page loads so it's ready (or partly loaded) when the user opens Play.
-  // Uses requestIdleCallback to avoid blocking first paint; falls back to setTimeout(0).
+  // Defer model preload until after entrance click to avoid competing with entrance animations.
+  // Uses requestIdleCallback once entrance is complete; falls back to setTimeout.
   const startPreload = () => window.getWebLLMEngine().catch(() => {});
-  if (typeof requestIdleCallback !== 'undefined') {
-    requestIdleCallback(startPreload, { timeout: 2000 });
-  } else {
-    setTimeout(startPreload, 0);
-  }
+  
+  const schedulePreload = () => {
+    if (typeof requestIdleCallback !== 'undefined') {
+      requestIdleCallback(startPreload, { timeout: 2000 });
+    } else {
+      setTimeout(startPreload, 100);
+    }
+  };
+  
+  // Wait for entrance to complete before starting heavy model download
+  window.addEventListener('tdt-entrance-complete', schedulePreload, { once: true });
+  
+  // Fallback: if entrance doesn't fire (e.g., deep-link bypass), start after load + delay
+  window.addEventListener('load', () => {
+    setTimeout(schedulePreload, 3000); // Give entrance a chance first
+  }, { once: true });
 }
 
 init();
