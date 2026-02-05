@@ -8,7 +8,7 @@
 
 ### Bien que certaines rumeurs prétendent affirmer le contraire, il est impossible pour différentes Origines ( Yômmes, Yôrres, Bêstres, etc. ) de se reproduire entre elles, que cela soit dû à des raisons physiques, géographiques ou voir mêmes culturelles ou encore mentales.
 
-- Entre les Races d’un même Peuple ( parmis le peuple Aristois par exemple, entre les races Monte - Foudres, Fleuris, Sufflicoles et Ambrés ) cela semble le plus souvent possible, avec des résultats allant de particulièrement vigoureux à parfaitement sain, mais parfois aussi inadaptés ou un peu plus souffreteux que d’habitude, et ce, d’une façon générale et non pas individuelle.
+- Entre les Races d’un même Peuple ( parmis le peuple Aristois par exemple, entre les races Monte - Foudres, Fleuris, Des Souffles et Ambrés ) cela semble le plus souvent possible, avec des résultats allant de particulièrement vigoureux à parfaitement sain, mais parfois aussi inadaptés ou un peu plus souffreteux que d’habitude, et ce, d’une façon générale et non pas individuelle.
 - Ces résultats tendent à dépendre de la distance générale ( générationnelle, géographique, psychologique, etc… ) entre les Races et de leur Niv d’Endogamie ( consanguinité ) respective, mais aussi d’autres facteurs encore inconnus voir hasardeux.
 - Ces enfants auront - au hasard - un des deux Attributs raciaux positifs ( + 1 | + 1 ) et négatifs ( - 1 | - 1 ) hérités de leurs parents.
 - Entre les Peuples d’une même Origine, il est parfois conté qu’il y eu ou est des croisements:

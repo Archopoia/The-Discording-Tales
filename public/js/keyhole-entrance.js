@@ -77,8 +77,71 @@
         const staticLoader = document.getElementById('static-loader');
         const entranceFill = document.getElementById('entrance-fill');
         const enterButton = document.getElementById('enter-portfolio-btn');
+        const hoverZone = document.getElementById('entrance-hover-zone');
 
         document.body.classList.add('entrance-active');
+
+        /* Random iris movement - moves the button randomly like an eye looking around */
+        let irisMovementInterval = null;
+        let isHovering = false;
+        let entranceComplete = false;
+
+        function randomInRange(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        function moveIrisRandomly() {
+            if (!enterButton || entranceComplete) return;
+            
+            // Different ranges for calm vs restless (hover) state
+            let xRange, yRange;
+            if (isHovering) {
+                // Restless: larger, wider movements
+                xRange = 25; // vw
+                yRange = 12; // vh
+            } else {
+                // Calm: smaller, gentler movements
+                xRange = 10; // vw
+                yRange = 5;  // vh
+            }
+            
+            const x = randomInRange(-xRange, xRange);
+            const y = randomInRange(-yRange, yRange);
+            enterButton.style.transform = 'translate(' + x + 'vw, ' + y + 'vh)';
+        }
+
+        function startIrisMovement() {
+            // Move immediately, then at intervals
+            moveIrisRandomly();
+            // Interval: faster when hovering (400-800ms), slower when calm (1200-2000ms)
+            const interval = isHovering ? randomInRange(400, 800) : randomInRange(1200, 2000);
+            irisMovementInterval = setTimeout(function() {
+                if (!entranceComplete) {
+                    startIrisMovement();
+                }
+            }, interval);
+        }
+
+        function stopIrisMovement() {
+            if (irisMovementInterval) {
+                clearTimeout(irisMovementInterval);
+                irisMovementInterval = null;
+            }
+            entranceComplete = true;
+        }
+
+        // Track hover state on the hover zone
+        if (hoverZone) {
+            hoverZone.addEventListener('mouseenter', function() {
+                isHovering = true;
+            });
+            hoverZone.addEventListener('mouseleave', function() {
+                isHovering = false;
+            });
+        }
+
+        // Start the random movement
+        startIrisMovement();
 
         var styleEl = document.createElement('style');
         styleEl.textContent = '@keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }';
@@ -121,15 +184,71 @@
 
         /* Always show the keyhole and require a click (no autoplay auto-unlock) */
         setTimeout(function() {
+            var hoverZone = document.getElementById('entrance-hover-zone');
             if (enterButton) {
                 enterButton.style.display = 'flex';
-                enterButton.addEventListener('mouseenter', function() {
+            }
+            /* Track hover on the larger central zone */
+            if (hoverZone && enterButton) {
+                hoverZone.addEventListener('mouseenter', function() {
                     enterButton.classList.add('was-hovered');
                 }, { once: false });
+            }
+            
+            /* Touch support: press = hover, release = enter */
+            var touchActive = false;
+            if (hoverZone) {
+                hoverZone.addEventListener('touchstart', function(e) {
+                    e.preventDefault(); // Prevent mouse events from firing
+                    touchActive = true;
+                    isHovering = true;
+                    if (enterButton) {
+                        enterButton.classList.add('was-hovered');
+                    }
+                    // Add visual class for touch hover state
+                    if (staticLoader) {
+                        staticLoader.classList.add('touch-hovering');
+                    }
+                }, { passive: false });
+                
+                hoverZone.addEventListener('touchend', function(e) {
+                    if (touchActive) {
+                        e.preventDefault();
+                        touchActive = false;
+                        isHovering = false;
+                        if (staticLoader) {
+                            staticLoader.classList.remove('touch-hovering');
+                        }
+                        // Trigger entrance on release
+                        if (enterButton && !window.keyholeClickInProgress) {
+                            enterButton.click();
+                        }
+                    }
+                }, { passive: false });
+                
+                hoverZone.addEventListener('touchcancel', function() {
+                    touchActive = false;
+                    isHovering = false;
+                    if (staticLoader) {
+                        staticLoader.classList.remove('touch-hovering');
+                    }
+                });
+            }
+            
+            /* Click on hover zone triggers entrance (desktop) */
+            if (hoverZone) {
+                hoverZone.addEventListener('click', function(e) {
+                    // Only handle if not a touch event (touch handles its own flow)
+                    if (!touchActive && enterButton) {
+                        enterButton.click();
+                    }
+                }, { once: true });
             }
             if (enterButton) {
                 enterButton.addEventListener('click', function() {
                     window.keyholeClickInProgress = true;
+                    // Stop random iris movement
+                    stopIrisMovement();
                     // Keep burgundy overlay faded (don't restart if already fading from hover)
                     if (staticLoader) {
                         staticLoader.classList.add('entrance-revealing');

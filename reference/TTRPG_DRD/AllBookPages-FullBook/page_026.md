@@ -48,13 +48,13 @@ Et vous les Fleuris ( Hullur ), descen- dez-vous réellement de la colonie perdu
 - **Occupation traditionnelle** : Il serait impossible d'échapper à l'affût et aux tirs d'un de leurs côchers-de-titans lorsqu'ils vagabonderaient avec leur bétail.
 ---
 
-Nos chers Sufflicoles ( Dhrâix ), vous qui de votre saine rondeur et poil clair et touffu s'enivrez trop aisé- ment des sécrétions de notre bétail jusqu'à agir dans le secret pervers de vos fêtes débauchées voire conspiratrices et scandaleuses... Vos sommeliers de sucs nous ravissent tous, et vos tambours enterrés font vibrer les tubules de nos mastodontes d'un même rythme bien qu'inau- dible à quiconque n'en possédant pas. Enfin vous voici les Ambrés ( Sguth ) dont les yeux de même couleur semblent aveugles alors que pourtant l'éclat de votre génie nous emporte vers des lendemains émerveillant. Vous niez l'existence de nos générations les plus sombres afin de justifier la votre, tels que vos dompteurs-guérisseurs savent convaincre par la musicalité de vos tromoroches, nos faunes et flores de se raviver à chaque printemps.
+Nos chers Des Souffles ( Dhrâix ), vous qui de votre saine rondeur et poil clair et touffu s'enivrez trop aisé- ment des sécrétions de notre bétail jusqu'à agir dans le secret pervers de vos fêtes débauchées voire conspiratrices et scandaleuses... Vos sommeliers de sucs nous ravissent tous, et vos tambours enterrés font vibrer les tubules de nos mastodontes d'un même rythme bien qu'inau- dible à quiconque n'en possédant pas. Enfin vous voici les Ambrés ( Sguth ) dont les yeux de même couleur semblent aveugles alors que pourtant l'éclat de votre génie nous emporte vers des lendemains émerveillant. Vous niez l'existence de nos générations les plus sombres afin de justifier la votre, tels que vos dompteurs-guérisseurs savent convaincre par la musicalité de vos tromoroches, nos faunes et flores de se raviver à chaque printemps.
 
 ---
-**Sufflicoles**
+**Des Souffles**
 - **Physique** : Ils sont d'un poil plus touffu et d'une corpulence proportionnée, et leur fourrure plus claire que celles des autres tribus.
-- **Traits** : Les Aristois Sufflicoles sont résistants et bien constitués physiquement à travers les vents et labeurs, mais leur imagination et leur sens inventif semblent moins fertiles.
-- **Occupation traditionnelle** : Rares sont ceux qui auraient été capables d'entourlouper un sommelier de sécrétion venant des Sufflicoles.
+- **Traits** : Les Aristois Des Souffles sont résistants et bien constitués physiquement à travers les vents et labeurs, mais leur imagination et leur sens inventif semblent moins fertiles.
+- **Occupation traditionnelle** : Rares sont ceux qui auraient été capables d'entourlouper un sommelier de sécrétion venant des Des Souffles.
 
 **Ambrés**
 - **Physique** : Ils possèdent tous ou presque des yeux ambrés et une pilosité d'un ton plus ou moins similaire.

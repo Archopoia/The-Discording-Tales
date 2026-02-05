@@ -10,6 +10,21 @@ body.entrance-active {
     height: 100vh !important;
 }
 
+/* Large invisible hover zone in center of screen */
+#entrance-hover-zone {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vmin;
+    height: 60vmin;
+    border-radius: 50%;
+    z-index: 1;
+    cursor: pointer;
+    /* Invisible but captures hover */
+    background: transparent;
+}
+
 /* ----------------------------------------
    Entrance background layers
    ---------------------------------------- */
@@ -56,8 +71,9 @@ body.entrance-active {
     transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Fade burgundy overlay when hovering the enter button */
-#static-loader:has(#enter-portfolio-btn:hover) .entrance-overlay-layer {
+/* Fade burgundy overlay when hovering the central zone (desktop) or touch-pressing (mobile) */
+#static-loader:has(#entrance-hover-zone:hover) .entrance-overlay-layer,
+#static-loader.touch-hovering .entrance-overlay-layer {
     opacity: 0;
 }
 
@@ -170,6 +186,8 @@ body.entrance-active {
     text-decoration: none !important;
     box-shadow: none !important;
     outline: none !important;
+    /* Eye iris movement controlled by JS - use transition for smooth random movement */
+    transition: transform 1.5s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 /* Wrapper so symbol + coin share one glow/rotation (filter on wrapper) */
@@ -205,14 +223,16 @@ body.entrance-active {
     pointer-events: none;
 }
 
-#enter-portfolio-btn:hover {
+/* Hover styles triggered by the central hover zone (desktop) or touch-pressing (mobile) */
+#static-loader:has(#entrance-hover-zone:hover) #enter-portfolio-btn,
+#static-loader.touch-hovering #enter-portfolio-btn {
     opacity: 1 !important;
-    background: none !important;
-    background-color: transparent !important;
-    transform: none !important;
+    /* Eye iris movement controlled by JS - faster transition for restless state */
+    transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-#enter-portfolio-btn:hover .entrance-logo-wrap {
+#static-loader:has(#entrance-hover-zone:hover) #enter-portfolio-btn .entrance-logo-wrap,
+#static-loader.touch-hovering #enter-portfolio-btn .entrance-logo-wrap {
     opacity: 1;
     /* Greater glow (keyholeDiscovery + keyholeGlow); rotation speed unchanged */
     animation: keyholeDiscovery 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
@@ -220,7 +240,8 @@ body.entrance-active {
                keyholeLogoRotate 4s ease-in-out infinite 0.8s;
 }
 
-#enter-portfolio-btn.was-hovered:not(:hover) .entrance-logo-wrap {
+/* Reverse glow when leaving hover zone (was-hovered class added by JS) */
+#static-loader:not(:has(#entrance-hover-zone:hover)) #enter-portfolio-btn.was-hovered .entrance-logo-wrap {
     opacity: 1;
     animation: keyholeReverse 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
                keyholePulse 2s ease-in-out infinite 0.8s,
@@ -401,4 +422,35 @@ body.entrance-active {
     to {
         opacity: 0;
     }
+}
+
+/* Eye iris movement - calm, observing (default state) */
+/* Uses vw/vh for screen-proportional movement, wider horizontal range */
+@keyframes eyeIrisCalm {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(8vw, -3vh); }
+    25% { transform: translate(-6vw, -4vh); }
+    35% { transform: translate(-10vw, 2vh); }
+    50% { transform: translate(-4vw, 5vh); }
+    65% { transform: translate(9vw, 4vh); }
+    80% { transform: translate(7vw, -2vh); }
+    90% { transform: translate(-3vw, -4vh); }
+}
+
+/* Eye iris movement - restless, searching (hover state) */
+/* Wider, faster movements - stays well within viewport edges */
+@keyframes eyeIrisRestless {
+    0% { transform: translate(0, 0); }
+    8% { transform: translate(20vw, -8vh); }
+    16% { transform: translate(-18vw, -10vh); }
+    24% { transform: translate(-25vw, 4vh); }
+    32% { transform: translate(-12vw, 12vh); }
+    40% { transform: translate(18vw, 10vh); }
+    48% { transform: translate(25vw, -4vh); }
+    56% { transform: translate(10vw, -12vh); }
+    64% { transform: translate(-22vw, -6vh); }
+    72% { transform: translate(-24vw, 8vh); }
+    80% { transform: translate(6vw, 11vh); }
+    88% { transform: translate(22vw, 5vh); }
+    100% { transform: translate(0, 0); }
 }

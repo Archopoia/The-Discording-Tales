@@ -4135,13 +4135,13 @@ Et vous les Fleuris ( Hullur ), descen- dez-vous réellement de la colonie perdu
 - **Occupation traditionnelle** : Il serait impossible d'échapper à l'affût et aux tirs d'un de leurs côchers-de-titans lorsqu'ils vagabonderaient avec leur bétail.
 ---
 
-Nos chers Sufflicoles ( Dhrâix ), vous qui de votre saine rondeur et poil clair et touffu s’enivrez trop aisé- ment des sécrétions de notre bétail jusqu’à agir dans le secret pervers de vos fêtes débauchées voire conspiratrices et scandaleuses... Vos sommeliers de sucs nous ravissent tous, et vos tambours enterrés font vibrer les tubules de nos mastodontes d’un même rythme bien qu’inau- dible à quiconque n’en possédant pas. Enfin vous voici les Ambrés ( Sguth ) dont les yeux de même couleur semblent aveugles alors que pourtant l’éclat de votre génie nous emporte vers des lendemains émerveillant. Vous niez l’existence de nos générations les plus sombres afin de justifier la votre, tels que vos dompteurs-guérisseurs savent convaincre par la musicalité de vos tromoroches, nos faunes et flores de se raviver à chaque printemps.
+Nos chers Des Souffles ( Dhrâix ), vous qui de votre saine rondeur et poil clair et touffu s’enivrez trop aisé- ment des sécrétions de notre bétail jusqu’à agir dans le secret pervers de vos fêtes débauchées voire conspiratrices et scandaleuses... Vos sommeliers de sucs nous ravissent tous, et vos tambours enterrés font vibrer les tubules de nos mastodontes d’un même rythme bien qu’inau- dible à quiconque n’en possédant pas. Enfin vous voici les Ambrés ( Sguth ) dont les yeux de même couleur semblent aveugles alors que pourtant l’éclat de votre génie nous emporte vers des lendemains émerveillant. Vous niez l’existence de nos générations les plus sombres afin de justifier la votre, tels que vos dompteurs-guérisseurs savent convaincre par la musicalité de vos tromoroches, nos faunes et flores de se raviver à chaque printemps.
 
 ---
-**Sufflicoles**
+**Des Souffles**
 - **Physique** : Ils sont d'un poil plus touffu et d'une corpulence proportionnée, et leur fourrure plus claire que celles des autres tribus.
-- **Traits** : Les Aristois Sufflicoles sont résistants et bien constitués physiquement à travers les vents et labeurs, mais leur imagination et leur sens inventif semblent moins fertiles.
-- **Occupation traditionnelle** : Rares sont ceux qui auraient été capables d'entourlouper un sommelier de sécrétion venant des Sufflicoles.
+- **Traits** : Les Aristois Des Souffles sont résistants et bien constitués physiquement à travers les vents et labeurs, mais leur imagination et leur sens inventif semblent moins fertiles.
+- **Occupation traditionnelle** : Rares sont ceux qui auraient été capables d'entourlouper un sommelier de sécrétion venant des Des Souffles.
 
 **Ambrés**
 - **Physique** : Ils possèdent tous ou presque des yeux ambrés et une pilosité d'un ton plus ou moins similaire.
@@ -7456,7 +7456,7 @@ En toute situation, - M| + G vs froid & satiété ET + M| - G vs chaud & famine
 
 ### Bien que certaines rumeurs prétendent affirmer le contraire, il est impossible pour différentes Origines ( Yômmes, Yôrres, Bêstres, etc. ) de se reproduire entre elles, que cela soit dû à des raisons physiques, géographiques ou voir mêmes culturelles ou encore mentales.
 
-- Entre les Races d’un même Peuple ( parmis le peuple Aristois par exemple, entre les races Monte - Foudres, Fleuris, Sufflicoles et Ambrés ) cela semble le plus souvent possible, avec des résultats allant de particulièrement vigoureux à parfaitement sain, mais parfois aussi inadaptés ou un peu plus souffreteux que d’habitude, et ce, d’une façon générale et non pas individuelle.
+- Entre les Races d’un même Peuple ( parmis le peuple Aristois par exemple, entre les races Monte - Foudres, Fleuris, Des Souffles et Ambrés ) cela semble le plus souvent possible, avec des résultats allant de particulièrement vigoureux à parfaitement sain, mais parfois aussi inadaptés ou un peu plus souffreteux que d’habitude, et ce, d’une façon générale et non pas individuelle.
 - Ces résultats tendent à dépendre de la distance générale ( générationnelle, géographique, psychologique, etc… ) entre les Races et de leur Niv d’Endogamie ( consanguinité ) respective, mais aussi d’autres facteurs encore inconnus voir hasardeux.
 - Ces enfants auront - au hasard - un des deux Attributs raciaux positifs ( + 1 | + 1 ) et négatifs ( - 1 | - 1 ) hérités de leurs parents.
 - Entre les Peuples d’une même Origine, il est parfois conté qu’il y eu ou est des croisements:
