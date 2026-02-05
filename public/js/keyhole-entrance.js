@@ -141,6 +141,13 @@
                         doorUnlock.play().catch(function() {});
                     }
 
+                    /* Create beige/golden flash that expands from center */
+                    var flashElement = document.createElement('div');
+                    flashElement.id = 'golden-flash';
+                    flashElement.style.cssText = 'position: fixed; top: 47%; left: 50%; width: 0; height: 0; background: radial-gradient(circle, rgba(255, 235, 198, 1) 0%, rgba(255, 235, 198, 0.8) 20%, rgba(255, 235, 198, 0.4) 35%, rgba(255, 235, 198, 0.1) 50%, transparent 70%); transform: translate(-50%, -50%); border-radius: 50%; pointer-events: none; z-index: 10001; opacity: 1;';
+                    document.body.appendChild(flashElement);
+                    flashElement.style.animation = 'goldenFlash 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
+
                     /* Fade out entrance while map zooms in (zoom triggered by CSS via entrance-revealing class) */
                     if (entranceFill) {
                         entranceFill.style.animation = 'fadeOut 2s ease-in-out forwards';
@@ -150,15 +157,27 @@
                         enterButton.style.animation = 'fadeOut 1.5s ease-in-out forwards';
                     }
 
+                    /* After flash expands, fade it out */
+                    setTimeout(function() {
+                        flashElement.style.animation = 'none';
+                        void flashElement.offsetHeight;
+                        flashElement.style.width = '3000px';
+                        flashElement.style.height = '3000px';
+                        flashElement.style.animation = 'fadeOut 1.5s ease-in-out forwards';
+                    }, 1200);
+
                     setTimeout(function() {
                         if (staticLoader) {
                             staticLoader.style.pointerEvents = 'none';
+                        }
+                        if (flashElement.parentNode) {
+                            flashElement.parentNode.removeChild(flashElement);
                         }
                         audioUnlocked = true;
                         setTimeout(startChimesLoop, 1000);
                         // Signal SoundCloud player to start after user interaction
                         window.dispatchEvent(new Event('tdt-entrance-complete'));
-                    }, 2000);
+                    }, 2700);
                 }, { once: true });
             }
             document.addEventListener('click', function(e) {

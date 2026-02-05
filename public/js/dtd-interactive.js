@@ -2751,45 +2751,38 @@
     }
 
     // ========================================
-    // SoundCloud: pulse visible 3s every 10s (hint). Hover shows it; leave hides it.
+    // SoundCloud: visible while playing; hover reveals when paused
     // ========================================
     function initSoundCloudCycling() {
         const wrap = document.getElementById('soundcloud-cycling-wrap');
         if (!wrap) return;
 
-        /* Start hidden; first pulse at 10s */
+        /* Start hidden; hover reveals it. When playing, it stays visible. */
         wrap.classList.add('soundcloud-hidden');
 
-        let isHovering = false;
-        let hideTimeout = null;
-
-        function pulse() {
-            if (isHovering) return;
-            wrap.classList.remove('soundcloud-hidden');
-            if (hideTimeout) clearTimeout(hideTimeout);
-            hideTimeout = setTimeout(function() {
-                if (!isHovering) wrap.classList.add('soundcloud-hidden');
-                hideTimeout = null;
-            }, 2000);
-        }
-
         wrap.addEventListener('mouseenter', function() {
-            isHovering = true;
             wrap.classList.remove('soundcloud-hidden');
-            if (hideTimeout) { clearTimeout(hideTimeout); hideTimeout = null; }
         });
         wrap.addEventListener('mouseleave', function() {
-            isHovering = false;
-            wrap.classList.add('soundcloud-hidden');
+            if (!wrap.classList.contains('soundcloud-playing')) {
+                wrap.classList.add('soundcloud-hidden');
+            }
         });
-
-        setInterval(pulse, 10000);
+        wrap.addEventListener('focusin', function() {
+            wrap.classList.remove('soundcloud-hidden');
+        });
+        wrap.addEventListener('focusout', function() {
+            if (!wrap.classList.contains('soundcloud-playing')) {
+                wrap.classList.add('soundcloud-hidden');
+            }
+        });
     }
 
     // ========================================
     // SoundCloud: cross the note symbol when music is stopped (Widget API)
     // ========================================
     function initSoundCloudNoteState() {
+        const wrap = document.getElementById('soundcloud-cycling-wrap');
         const iframe = document.querySelector('#soundcloud-cycling-wrap .soundcloud-embed');
         if (!iframe) return;
         const vignette = iframe.closest('.soundcloud-vignette');
@@ -2802,6 +2795,18 @@
             }
             var widget = window.SC.Widget(iframe);
             var hasStartedFromEntrance = false;
+
+            function setPlaying(isPlaying) {
+                if (!wrap) return;
+                wrap.classList.toggle('soundcloud-playing', isPlaying);
+                if (isPlaying) {
+                    wrap.classList.remove('soundcloud-hidden');
+                } else {
+                    // Hide when paused unless user is hovering/focusing the container.
+                    const isHovering = wrap.matches(':hover');
+                    if (!isHovering) wrap.classList.add('soundcloud-hidden');
+                }
+            }
 
             function startPlayback() {
                 if (!hasStartedFromEntrance) {
@@ -2820,16 +2825,20 @@
             widget.bind(window.SC.Widget.Events.READY, function() {
                 widget.isPaused(function(paused) {
                     vignette.classList.toggle('soundcloud-stopped', paused);
+                    setPlaying(!paused);
                 });
             });
             widget.bind(window.SC.Widget.Events.PLAY, function() {
                 vignette.classList.remove('soundcloud-stopped');
+                setPlaying(true);
             });
             widget.bind(window.SC.Widget.Events.PAUSE, function() {
                 vignette.classList.add('soundcloud-stopped');
+                setPlaying(false);
             });
             widget.bind(window.SC.Widget.Events.FINISH, function() {
                 vignette.classList.add('soundcloud-stopped');
+                setPlaying(false);
             });
         }
         bindWidget();
