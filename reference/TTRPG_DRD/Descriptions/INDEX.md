@@ -41,6 +41,23 @@ ATTRIBUTS (8)
 
 ---
 
+## Les 8 Peuples Jouables
+
+| Peuple | Races | Fichier |
+|--------|-------|---------|
+| **Aristois** | Monte-Foudres, Fleuris, Sufflicoles, Ambrés | [Peuples/Aristois.md](./Peuples/Aristois.md) |
+| **Griscribes** | Arboricoles, Saute-Brumes, Limnicoles, d'Eau | [Peuples/Griscribes.md](./Peuples/Griscribes.md) |
+| **Navillis** | Carmins, Pétricoles, Perces-vagues | [Peuples/Navillis.md](./Peuples/Navillis.md) |
+| **Méridiens** | Sylvains, Marche-Rêves, des Monts | [Peuples/Meridiens.md](./Peuples/Meridiens.md) |
+| **Ylfes** | 8 races (3 sous-peuples) | [Peuples/Ylfes.md](./Peuples/Ylfes.md) |
+| **Iqqars** | Bas-Iqqars, Hauts-Iqqars | [Peuples/Iqqars.md](./Peuples/Iqqars.md) |
+| **Slaadéens** | Sablevents, Chante-Neiges, Mangroviens, Rosebrousses, d'Oasis | [Peuples/Slaadeens.md](./Peuples/Slaadeens.md) |
+| **Tchalkchaïs** | Elesihin, Ordol, Îohadam, Nuôtarjoy, Ikrayad | [Peuples/Tchalkhchais.md](./Peuples/Tchalkhchais.md) |
+
+**Index complet :** [Peuples/INDEX.md](./Peuples/INDEX.md)
+
+---
+
 ## Les 8 Aptitudes et leurs Actions
 
 ### 1. Puissance (FOR +3, AGI +2, DEX +1)
