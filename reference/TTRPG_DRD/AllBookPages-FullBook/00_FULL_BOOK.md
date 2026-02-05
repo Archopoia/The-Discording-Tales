@@ -4121,9 +4121,33 @@ Ils sont déterminés et perceptifs, au prix d’un physique réduit. Les hommes
 - Ainsi vous voici, les Races fidèles de notre Peuple Aristois qui négocièrent le nettoyage à leur manière nos terres regrettées de l’infestation Bêstre qui y pullulait, les extirpant dans les provinces aussi basses qu’eux qui n’y abandonnèrent que leurs carcasses malades, affamées ou exténuées.
 Vous les Monte-foudres ( Mykkên ) auriez perdu vos émotions contre vos muscles en vous égarant lors de votre plus longue et guerrière transhumance escarpée… Combien de vos noma- palais mercenaires y aviez-vous perdu au travers de ces lointaines terres hostiles et de vos souf- frances succombant aux trahisons ? Des centaines ? Des milliers ? Ô votre taille sculptée et remontée embellissent vos poils assombris et honorent vos lutteurs-cava- liers défendant nos archives de vos pavois grandissant à chaque fracas.
 
+---
+- **Physique** : Ils sont plus sculptés, plus grands et leur poil est d'un brun plus foncé.
+- **Traits** : Les Aristois Monte-Foudres forment la tribu la plus forte physiquement, au prix d'une empathie entamée par leur besoin d'exprimer leur puissance.
+- **Occupation traditionnelle** : On les reconnaîtrait au sein des lutteurs-cavaliers des archives mouvantes.
+---
+
 Et vous les Fleuris ( Hullur ), descen- dez-vous réellement de la colonie perdue d’Uyahel ? Êtes-vous les descendants de ceux-là y ayant sculpté ces mots pointant les terres où vous résidez aujourd’hui ? Cela expliquerait l’habileté de vos artisans qui bien que d’un corps pourtant plus affaibli et frisé tel qu’issus d’une souffrance oubliée, a ssocièrent et alignèrent leurs voiles, planches et rails sur les forces attractives du monde afin d’envoyer au loin ces Bêstres.
 
+---
+- **Physique** : Ils sont d'une stature plus large et d'un poil plus frisé.
+- **Traits** : Les Fleuris sont aux réflexes précis mais à la contrepartie étonnante d'un manque d'élégance.
+- **Occupation traditionnelle** : Il serait impossible d'échapper à l'affût et aux tirs d'un de leurs côchers-de-titans lorsqu'ils vagabonderaient avec leur bétail.
+---
+
 Nos chers Sufflicoles ( Dhrâix ), vous qui de votre saine rondeur et poil clair et touffu s’enivrez trop aisé- ment des sécrétions de notre bétail jusqu’à agir dans le secret pervers de vos fêtes débauchées voire conspiratrices et scandaleuses... Vos sommeliers de sucs nous ravissent tous, et vos tambours enterrés font vibrer les tubules de nos mastodontes d’un même rythme bien qu’inau- dible à quiconque n’en possédant pas. Enfin vous voici les Ambrés ( Sguth ) dont les yeux de même couleur semblent aveugles alors que pourtant l’éclat de votre génie nous emporte vers des lendemains émerveillant. Vous niez l’existence de nos générations les plus sombres afin de justifier la votre, tels que vos dompteurs-guérisseurs savent convaincre par la musicalité de vos tromoroches, nos faunes et flores de se raviver à chaque printemps.
+
+---
+**Sufflicoles**
+- **Physique** : Ils sont d'un poil plus touffu et d'une corpulence proportionnée, et leur fourrure plus claire que celles des autres tribus.
+- **Traits** : Les Aristois Sufflicoles sont résistants et bien constitués physiquement à travers les vents et labeurs, mais leur imagination et leur sens inventif semblent moins fertiles.
+- **Occupation traditionnelle** : Rares sont ceux qui auraient été capables d'entourlouper un sommelier de sécrétion venant des Sufflicoles.
+
+**Ambrés**
+- **Physique** : Ils possèdent tous ou presque des yeux ambrés et une pilosité d'un ton plus ou moins similaire.
+- **Traits** : Les plus lucides des Aristois, les Ambrés tendent à en être aussi plus prudents, voire lâches ou indécis.
+- **Occupation traditionnelle** : Leurs dompteurs-guérisseurs musicaux sauraient convaincre et régénérer faunes et flores à travers leurs instruments.
+---
 
 
 **46**
@@ -4227,11 +4251,35 @@ D’une vigueur et inventivité élevée, ils sont empotés physiquement et soci
 - Ainsi jon s’unissa ensemble dans la mélancolie, mses Races qui par leurs volontés régaliennes et les armes des Aïars retrouvées, nettoya tout Bêstres ou autres voulant enchaîner nos désirs par les leurs et leurs sanctuaires. Jon les écartela et brûla leurs arts à nouveau et en cérémonie sur nos anciens forts. Jon laissa les restes des autres à pourrir afin que leurs odeurs fasse s’enfuir les derniers, eux - mêmes marquant leur voie dans leur famélie libérée...
 Les premiers chamanes de nos Arboricoles ( B’hel ), aux teints de vif feu percés d’yeux ambres ou bleus et dont le gras n’empotent pas leur dextérité, seraient tous mort laissant leurs corps sans yeux, langues et sourcils dans les passes brouillardeuses d’Izkaraï. Dès lors ils inventèrent les rails à montures tirant premièrement l’équipement de leurs démineurs-déments qui y désa- morcent les bulles d’accroissement exponentielles issues de ces brumes meurtrières.
 
+---
+- **Physique** : Ils sont plus gras, et arborant des couleurs feu vives aux yeux d'ambre ou bleus.
+- **Traits** : D'une rapidité et précision supérieures aux autres, ils sont en revanche moins forts.
+- **Occupation traditionnelle** : Il serait impossible de poursuivre leurs caravaniers d'or-mou qui sauraient naviguer même à l'envers sur les parois, se dissimuler partout, et survivre aux brouillards étrangleurs.
+---
+
 Les chamanes des Saute-Brumes ( Sklowot ), aux mêmes yeux mais gracieux plus fins et grands et au teint plus rouge et clair, auraient vu depuis leur plus haut arbre une cité de lumière dans leur ciel avant qu’elle ne disparaissent pour tous. Avant cela, tous rejoignaient en pèlerinage cet arbre par leurs caravaniers aux mastodontes élevés dans et nés par l’or naviguant même à l’envers sur les parois, voyageant dissimulées, et survivant face à leurs brumes étrangleuses.
+
+---
+- **Physique** : Ils sont plus fins et grands, et d'un teint rougeoyant mais plus clair que chez les autres et aux yeux d'ambre ou bleus.
+- **Traits** : Aux pas discrets et délicats, par prudence ou peur, les Griscribes Saute-Brumes sont plus gracieux que leurs confrères, mais ce semblant de précaution est peut-être à l'origine de leur plus faible vitalité.
+- **Occupation traditionnelle** : On reconnaîtrait leurs démineurs-déments lorsqu'ils s'affairent à désamorcer les bulles d'accroissement exponentielles issues de leurs brumes.
+---
 
 Dans les teints auburn et d’yeux bleus, les Limnicoles ( Prus’sg ) ayant presque disparus - moins lucides mais plus ingénieux - auraient survécu dans des cités secrètes et florissantes tels un paradis au sein des gouffres au-des- sous de nous. C’est de là que leurs inventeurs-enlisés se nourrissent de brumes digérées à travers la boue les empoignant afin de produire leurs inventions telles que leur physiosèmie aérienne ou aquatique réagissant à certaines choses afin de changer de couleur, de texture ou autre afin d’y révéler leurs secrets.
 
+---
+- **Physique** : Ils possèdent des teints auburn et autres rouges foncés, aux yeux habituellement bleus.
+- **Traits** : Les Griscribes Limnicoles ont un instinct lucide mais paraissent moins ingénieux que la plupart des leurs.
+- **Occupation traditionnelle** : On dit que leurs inventeurs-enlisés se nourrissent de brumes digérées à travers la boue les empoignant afin de produire leurs si grandes ingéniosités.
+---
+
 Bruns aux yeux bleus et tous rasé et tressé de la même façon, ceux d’Eau ( Wendd )sont accueillants et chaleureux tant qu’ils n’ont pas besoin d’audace, comme lorsque leurs sophisto-parfumeurs élevèrent ces volatiles reconnaissant tout indi- vidu ou chose marquée, et avec qui ils communiquaient au travers des eaux spéciales à des fins d’étude ou poli- tiques. Ainsi ils convainquaient les uns à la traîtrise en ouvrant les fron- tières à leurs armées, aux trésoriers de drainer leur richesse, ou encore à propager des rumeurs amenant une fois leurs ennemis jusqu’au suicide collectif.
+
+---
+- **Physique** : Ils sont de taille et corpulence moyenne d'un Griscribe, d'une fourrure aux couleurs brunes, et aux yeux bleus.
+- **Traits** : Les Griscribes d'Eau sont accueillants et chaleureux tant que cela n'en coûte pas de faire preuve d'audace.
+- **Occupation traditionnelle** : De nombreux sophisto-parfumeurs se baladeraient dans les eaux, convainquant quiconque les intéresserait pour leurs études, ou seraient recrutés pour s'en protéger.
+---
 
 
 **50**
@@ -4333,9 +4381,27 @@ Ils sont très lucides et empathiques, en contre- partie d’un manque d’audac
 - Dans l’unité de notre amitié enjouée, chaque Race Navillie aujourd’hui encore rigolant, survécu au dernier naufrage massacreur, les testant dans leur bonheurs jusqu’à triompher des esclavages et tortures de nos ennemis nourrissant désormais nos bateaux - jardins, en l’honneur partagé pour nos mêmes ancêtres.
 Les Carmins ( Gweidhel ), ont une carrure plus trapue leur donnant leur force mais aussi leur inflexibilité, et de leurs teints sombres roux voir auburn aux yeux bruns. C’est avec eux que’vous aurez prétendu avoir découvert ces êtres vivants dans les plus grandes profondeurs de nos océans et qui aujourd’hui produisent nos communications par leurs lumières, fumées et couleurs chan- geantes quel’on fait croître, arrange et s’envoie. Tous pensent que cela n’était qu’un ancien mensonge de leurs buveurs d’histoires aux larges estomacs afin d’en garder leurs secrets, et qu’ils les élevèrent plutôt simplement en ces tâches au fil des âges et des générations.
 
+---
+- **Physique** : Ils sont naturellement encore plus trapus que la norme (Massifs), et dans les teints sombres roux voir auburn, ainsi qu'aux yeux marrons.
+- **Traits** : Les Navillis Carmins sont les plus forts et cette même force semble les restreindre dans leur souplesse et grâce.
+- **Occupation traditionnelle** : Ils possèderaient des buveurs d'histoires aux connaissances et aux estomacs étendus.
+---
+
 Les Pétricoles ( Galnad ) ont des traits sculptés et tenaces telle de la roche et des yeux ambrés peut-être moins réactifs bien que parfois variant du bleu au brun. C’est avec leurs mangent-tout au sein de leurs cours et cuisines qu’ils découvrirent les faussetés médicinales de la consom- mation de nos corps sans vie. Au lieu de cela ils comprirent l’harmonie entre les bêtes et nous-mêmes afin d’accomplir ensemble nos besoins jusqu’à éclairer les tréfonds de nos océans.
 
+---
+- **Physique** : Ils sont larges et sculptés telle la roche, aux yeux habituellement ambrés mais pouvant varier du bleu au brun.
+- **Traits** : Tenaces face à leurs éléments, les Navillis Pétricoles semblent aussi avoir hérité d'un manque de réactivité.
+- **Occupation traditionnelle** : Leurs mangent-tous sont utilisés dans de nombreuses cours et cuisines, bien que toujours gardés à l'œil.
+---
+
 Enfin, les élancés Perces-vagues ( Kallad ), aux yeux créatifs et bleus dans leurs teints de paille sont les moins sympathiques - comme l’atteste leur passé où ils jugèrent les bêtes tels des Navillis jusqu’à les punir dans leurs méfaits ainsi établis. Leurs confectionneurs marins savent réaliser le désire de quiconque, jusqu’à pouvoir établir la voie entre toute chose de leurs ponts croissants au-delà entre tout terrain, toute fosse ou toute rivière.
+
+---
+- **Physique** : Ils sont un peu plus grands et fins, en plus d'avoir les yeux bleus et des teints de paille.
+- **Traits** : D'une plus haute détermination par rapport aux autres tribus, dont ils semblent aussi se détacher de leur sympathie commune.
+- **Occupation traditionnelle** : Leurs confectionneurs marins savent réaliser le désir de quiconque, soit en un objet, ou alors en les guidant à bon port.
+---
 
 
 **54**
@@ -4438,9 +4504,27 @@ Pleins d’ambition, de vie et de bons instincts, c’est leur aspect social et 
 - Les Races Méridiennes s’unirent un jour contre ces larves - là aujourd’hui presque disparues, qui furent placées au - dessus des nôtres par notre honte. À travers un seul hiver et sous la guidance de notre sang ayant grimpé sur les plus hautes tours de nos cités, nous purgeâmes ces couards sans âme de nos terres, ainsi que nos traîtres infestant ces idées jusque dans nos propres familles. Chacun agit chez soi, partout et pour tous quel qu’en fut ses moyens, des poings aux couperets, partageant nos faits d’armes par à travers nos autels parlants.
 Les fins et blonds Sylvains ( Tewtehn ) aux yeux gris auraient hérités de leurs adresse et délicatesse animale en sacrifiant ces monstres dans leurs sources arboricoles où leurs docteurs grimpent de leurs gants adhé- sifs et dont l’armure disparaît dans les reflets des eaux.
 
+---
+- **Physique** : Ils sont plus fins que les autres et leur teint typique se retrouve autour de la blondeur et aux yeux gris.
+- **Traits** : Les Méridiens Sylvains ont échangé leur force typique pour l'adresse et la délicatesse.
+- **Occupation traditionnelle** : Il y a une tradition de docteurs soignant dans et à travers les liquides de leurs sources arboricoles.
+---
+
 Les ivoires Marche-Rêve ( Tkhim-ro ) aux yeux glacés seraient d’un sang oublié à l’écriture inconnue et aux mœurs perdues, mais ayant préservé leur imagination supérieure. Par la divination de leurs roches flottantes et aliénantes, leurs guides spiri- tuels aux lames tranchant tout, cachèrent ou élucidèrent nos paroles à tous et pour tous lors de la purge en lisant de leurs doigts les précieuses textures et formes chan- geantes de ces pierres.
 
+---
+- **Physique** : Ils sont de fourrures de couleurs ivoires et aux yeux d'un bleu glacé.
+- **Traits** : Les Méridiens Marche-Rêve ont l'imagination la plus haute de leur famille, mais cela semble les préoccuper jusqu'à en affecter leur synchronisation avec le monde les entourant.
+- **Occupation traditionnelle** : Leurs guides spirituels seraient capables d'utiliser une roche flottante et aliénante comme source de divination.
+---
+
 Les haut, larges, gras et marrons Méridiens des Monts ( Guthiud ) aux yeux bleus, dans leur jovialité dansaient leurs prophéties de leurs doigts sur les cadavres de leurs vaincus pour y tourmenter les tempêtes sur leurs ennemis voir nous guider de fumées colorées. Chaque corps dansé serait pour eux une possibilité de recontacter leurs ancêtres qui seraient venus des abysses, qu’ils tentent de rejoindre par leurs chariots cristallins se chargeant de leur mouvement.
+
+---
+- **Physique** : Ils sont hauts et larges voire gras, plutôt à la fourrure marron et aux yeux bleus.
+- **Traits** : Plus joviaux et agréables que leurs cousins, les Méridiens des Monts ont en revanche une constitution plus fragile que ceux-ci.
+- **Occupation traditionnelle** : Ils danseraient pendant des heures sur leurs doigts des mains afin de révéler des prophéties ou d'y tourmenter les vents.
+---
 
 
 **58**
@@ -4687,7 +4771,19 @@ Forts, et téméraires, ils n’ont que peu de capa- cité pour percevoir et com
 - Lors de la grande Purge les meilleurs Races Hautes Ylfes étaient pourchas- sées pour leur savoir éclatant tandis que d’autres subissaient la destruction de leurs cœurs verdoyant. La volonté d’un visionnaire sans nom révéla à chaque lignée une même vision, purifiant le chaos incontrôlé.
 Blueuis par les huit lunes et bénis par elles en leur fertilité d’esprits, les yeux blancs ou gris des chasse-richesses Hauts Ylfes de Lune ( Yngvyôr ) brillent la nuit lorsqu’ils partent à huit en réson- nant leur tymbafrons pour révulser les indé- sirables, afin d’accueillir la neuvième lune d’où ils seraient originaires.
 
+---
+- **Physique** : Ils sont plus fins, à la fourrure bleuie et aux yeux blancs ou gris.
+- **Traits** : Les Hauts Ylfes de Lune (Ôbaald'Yrod en Noscois) sont d'une grande fertilité d'esprit, en contrepartie d'une force amoindrie au vu des autres Hauts Ylfes.
+- **Occupation traditionnelle** : Leurs chasse-richesses sortiraient en groupe de huit et brilleraient les nuits de pleines lunes.
+---
+
 Les pâles et touffus moines des murmures Hauts Ylfes des Plaines ( Yrmnyôrs ) aux yeux verts-bleus naquirent de la conquête guerrière de leur statue chantante, et dont ils chantent encore lorsqu’ils massacrent dans la paix et l’harmonie à travers leur téléséismes vibrant au travers des plaines en amplifiant leurs paroles et relayant leurs savoirs priés là où ils le méritent.
+
+---
+- **Physique** : Ils sont très touffus et un peu plus petits, de fourrure blanche et aux yeux bleus ou verts.
+- **Traits** : D'une sympathie plus poussée que chez les autres, les Hauts Ylfes des Plaines (Öbaald'Eiold en Noscois) semblent d'un instinct moins affûté.
+- **Occupation traditionnelle** : Leurs moines des murmures chanteraient afin de se battre dans la paix et l'harmonie, mais aussi afin de localiser leurs proies.
+---
 
 
 **66**
@@ -4788,9 +4884,27 @@ Ils sont typiquement précis, agiles, et imagi- natifs en contrepartie d’une f
 - Ce qu’aujourd’hui ils appellent un désert, était autrefois un grand lac, dont le centre était percé d’une île de richesses que nous chérissions. Là se rebellaient des monstres au - delà de nos propositions qu’ils ne pouvaient raisonner. Ainsi donc les Races Ylfes pâles s’allièrent afin d’en exterminer les plus aliénés sous les cris des autres Peuples par l’avidité qui les consumait.
 Les Ylfes pâles Collinicoles ( Skanyôr ), plus forts et encore plus lorsqu’habitant leurs armures crato- coraxes à leviers accroissant leurs forces et moyens, ont la fourrure sable et frisée, leurs yeux d’un brun profond parfois verts ou d’un bleu rare comme leurs falaises. Nés au sein des montagnes surplombant les collines, c’est à l’intérieur de leurs mastodontes, qu’ils organisaient leurs immenses foires, leurs éleveurs-prêteurs ainsi créant leurs royaumes de bétail en encodant mécaniquement leurs marchandages dans leurs logomates à travers la monnaie qu’ils créèrent, les Cordon d’Or - ayant financés les nombreuses guerres à venir.
 
+---
+- **Physique** : Ils sont plus forts et imposants, de fourrure sable et frisée, aux yeux brun profond parfois bleus ou verts.
+- **Traits** : Les Ylfes pâles Collinicoles (Montagnards) (Yalnadd'Nädim en Noscois) sont résistants et solides au physique comme aux attaques mentales, mais cela n'augure en rien de l'aspect de leurs grâces bien plus basses que chez la plupart des Ylfes.
+- **Occupation traditionnelle** : Ils inventèrent la monnaie et entretiennent depuis une tradition d'éleveurs-prêteurs.
+---
+
 Les Ylfes pâles Chromatiques ( Palasgyôr ), se distinguent par leur fourrure bleutée et leurs yeux d’un azur perçant, symboles d’une santé éclatante. Anciens maîtres des terres autrefois décorées de leurs gigan- tesques symboles marqués les sols des collines changeant leurs couleurs avec les saisons, ils n’hésitèrent pas à y fragmenter et reformer leurs propres œuvres pour y incruster les gemmes protectrices qui les ornaient. Leurs gemmologistes-serruriers manient des coffres-forts roulants à travers ces sentiers-symboles, dont ils annoncent et escortent la traversé par leur réseau de tours téléstoles à drapeaux surplombant les collines aux drapeaux visibles sur des lieues, et leurs réseaux télécordions mécaniques, permettant des échanges secrets entre leurs cités encordées.
 
+---
+- **Physique** : Ils sont d'une corpulence plus large, à la fourrure bleutée et aux yeux d'un azur perçant.
+- **Traits** : D'une santé éclatante résistant aux éléments, les Ylfes pâles Chromatiques (Yalnadd'Eiss en Noscois) semblent cependant bien moins observateurs et attentifs que leurs confrères.
+- **Occupation traditionnelle** : Leurs gemmologistes-serruriers manient des coffres-forts roulants et sont réputés pour leur savoir-faire en matière de gemmes protectrices.
+---
+
 Les Ylfes pâles Pastoraux ( Mindyôr ), à la fourrure d’un rose capucine et aux yeux verts comme les prairies qu’ils chérissent, sont des observateurs attentifs de toute vie autour d’eux, comprenant les désirs de leurs dange- reux troupeaux. Ils auraient repris vie d’un passé les ayant autrefois pétrifiés telle armée, sortant alors d’un grand nécribunal autrefois protégé d’un or liquide et mortel. Ils rapportèrent du passé leurs catapultes hypséboles d’où ils projettent leurs archers-guet- teurs dans des œufs soigneusement amortis vers les pâtures bafouées, ainsi que leurs rails tensodromes, dont les rampes, d’un seul élan, envoie à travers les arbres leurs carrosses chargés de bétail et de vivres en leurs cités.
+
+---
+- **Physique** : Ils sont hauts mais fin, à la fourrure d'un rose capucine et aux yeux verts comme leurs prairies.
+- **Traits** : Les Ylfes pâles Pastoraux (Yalnadd'Imeld en Noscois) sont d'un instinct plus affûté que leurs confrères, mais semblent moins résistants aux attaques physiques.
+- **Occupation traditionnelle** : Leurs archers-guetteurs sont projetés depuis des catapultes dans des œufs amortis vers les pâtures à surveiller.
+---
 
 
 **70**
@@ -4889,9 +5003,27 @@ Tenace, forts et à l’imagination fertile, ils sont autrement disgracieux et t
 - Les Races des Ylfes des lacs s’unirent dans leur retrait d’un terri- toire dominé, mais si discordant en ses nouvelles et anciennes visions qu’il en était trop coûteux de les régler. Ils accordèrent aux têtes des Bêstres les divisions arbitraires de leurs croyances, afin que leur sépa- ration en épure les incohérences de tous ces peuples, qui s’entre - tuèrent envers deux visions plus dirigées aux tensions bien plus énergisantes.
 Les Ylfes des lacs Mâche- Troncs ( Trurhsyôr ), sont imposant, noirs et frisés, aux yeux verts et perçants comme les eaux profondes dont ils broyaient autre- fois les troncs encroués. Isolés et omis des autres, ils poursuivaient une guerre ancienne qu’ils croyaient éternelle, bien après que les autres l’avaient oubliée. Leurs offi- ciers-jongleurs maîtres de la poésie martiale firent un jour danser leurs trébuchets hydrobèles sur leurs plus agrandie tours de siège hydropyr- gues bien-au-delà des espérances, fascinant les autres races qu’ils les redécouvrirent.
 
+---
+- **Physique** : Ils sont imposants, à la fourrure noire et frisée, et aux yeux verts et perçants.
+- **Traits** : Les Ylfes des lacs Mâche-Troncs (Yalnadd'Dald en Noscois) sont plus solides et endurants, au détriment d'une moindre sympathie.
+- **Occupation traditionnelle** : Leurs officiers-jongleurs sont maîtres de la poésie martiale.
+---
+
 Les Ylfes des lacs Troglodytes ( Rhaïtyôr ), se distinguent par leur haute stature maigre, drapée d’une fourrure grise et épaisse, avec des yeux d’un bleu perçant ou d’un vert émeraude semblable aux reflets secrets de leurs cavernes inondées des piliers rocheux. Ils y menaient des affrontements rituels où chaque geste de leurs maîtres chante-contes résonnait en harmonie avec les échos aquatiques. Ainsi ils chantèrent chaque bataille en des mélodies codées dont les aires hydrosèmiques conformaient les eaux en leurs paroles jusqu’aux autres races, tout comme leur téléhydrie de canaux et de valves pressant l’eau en paroles.
 
+---
+- **Physique** : Ils sont hauts et maigres, à la fourrure grise et épaisse, et aux yeux bleus perçants ou d'un vert émeraude.
+- **Traits** : Les Ylfes des lacs Troglodytes (Yalnadd'Rald en Noscois) possèdent un esprit plus vif et affûté, mais leur aura et leurs grâces semblent plus ternes que chez les autres Ylfes.
+- **Occupation traditionnelle** : Leurs maîtres chante-contes menaient des affrontements rituels en harmonie avec les échos aquatiques.
+---
+
 Les Ylfes des lacs Danse-Feuilles ( Lpondyôr ) sont d’une élégance fluide, avec leur fourrure bleutée et leurs yeux verts perçants comme des émeraudes perdues dans les sur-bois. Jadis saisis par une frénésie de danse collective, ils furent emportés dans des rythmes incontrôlables des feuilles dans le vent qui marquèrent leurs âmes et les unifièrent dans une conscience nouvelle, forgeant ainsi les premiers diplo-traumas, aux rituels capables de soigner l’esprit en le bouleversant. Ils en développèrent des ascenseurs hydrores pour glisser dans leurs branche-canaux et tronc-canaux, et des réseaux de canaux pota- miques aux barges traversant les aux ainsi contrôlées, permettant de transporter marchandises ou races alliés à travers leurs domaines comme des chemins initiatiques dans la mouvance des eaux arboricoles.
+
+---
+- **Physique** : Ils sont d'une élégance fluide, à la fourrure bleutée et aux yeux verts perçants.
+- **Traits** : Les Ylfes des lacs Danse-Feuilles (Yalnadd'Nold en Noscois) sont d'une grâce plus vive et lumineuse, mais semblent plus fragiles physiquement.
+- **Occupation traditionnelle** : Leurs diplo-traumas pratiquent des rituels capables de soigner l'esprit en le bouleversant.
+---
 
 
 **74**
@@ -4994,7 +5126,19 @@ Aux bons réflexes et instincts ainsi que très sociaux, ils ont autrement une f
 - Les Hauts et Bas Iqqars, contrairement aux autres Races séparées et oubliées, se possédèrent en un seul tout dans un grand élan guidé par les vents. Ensemble, ils descendirent sur les terres des Bestres afin de célébrer leur union au travers un triomphe extatique de chaque corps.
 Les Bas-Iqqars ( Sää’m ), à la fourrure blonde ou grise, aux yeux d’un bleu glacé ou d’un gris perçant, descendent des anciens qui vécurent isolés dans les profondeurs arides de tes falaises oubliées, ignorant nos autres. Grâce à leurs pneu- mophones transmettant des messages à travers tes vents sur de longues distances et leurs petit méchaères ( messa- gers à ressort ), ils sortirent de leur inconnu - montrant leurs “maîtres-d’êtres” en premier, connaissant tous les travers de ce qui croisait leur chemin d’un coup d’œil, juste avant des amener à eux, comme enchantés.
 
+---
+- **Physique** : Ils sont de stature moyenne, à la fourrure blonde ou grise, et aux yeux d'un bleu glacé ou d'un gris perçant.
+- **Traits** : Les Bas-Iqqars (anciennement Bas-Erispiles) sont plus intelligents et raisonnés, mais ont tendance à être plus fragiles physiquement et d'un charisme moindre.
+- **Occupation traditionnelle** : Leurs maîtres-d'êtres connaissent tous les travers de ce qui croise leur chemin d'un coup d'œil.
+---
+
 Les Hauts-Iqqars ( Ûtmart ), de grande stature et sculptés comme ta roche elle-même, arborent une fourrure blanche ou grise et des yeux d’un gris profond qui reflètent de leur force brute. Venant de tes plus hautes falaises qu’ils protégeaient farouche- ment, ils vécurent longtemps isolés, repoussant violemment quiconque escaladait tes pics. Leurs voyageurs-passepar- touts ne laissant aucune trace, traversaient tes monts et tes cieux sur leurs nephoptiques tranchants, colorés et propulsés par les vents tels des cerfs-vo- lants, dessinant leurs messages cryptés dans les nuages, tandis qu’il surfait sur les tourbillons invisibles de tes airs par leurs aèroclydes planeurs afin d’an- noncer leurs ennemis. Il sortir ultimement leur farouche soli- tude, laissant derrière eux des terres conquises et des peuples subjugués, aplatis par leur passage.
+
+---
+- **Physique** : Ils sont de grande stature et sculptés comme la roche elle-même, à la fourrure blanche ou grise, et aux yeux d'un gris profond.
+- **Traits** : Les Hauts-Iqqars (anciennement Hauts-Erispiles) sont puissants physiquement avec une grande résistance, mais possèdent une intelligence et une sagesse moindres.
+- **Occupation traditionnelle** : Leurs voyageurs-passepartouts ne laissaient aucune trace, traversant les monts et les cieux sur leurs nephoptiques tranchants.
+---
 
 
 **78**
@@ -5225,9 +5369,37 @@ D’une grande force et au mental harmonieu- sement développé, ils n’ont en 
 - Toutes les Races Slaadéennes s’unirent dans la castration de nos ennemis de toujours, qui sans leurs maris et leurs garçons ne purent plus perpétuer leurs médiocres rites au sein de nos rêves. Mêmes les autres furent incapables d’empêcher la défense et l’efficacité de nos visions unies.
 Les Slaadéens Sydru-kal ( Sablevents ) élancés à la peau d’ivoire et aux rares plumes vertes, rosées ou bleues et parée d’yeux noirs bruns ou verts, tout comme les plus pileux et plumés Slaadéens Wijriol ( Chante-neiges ) à la peau marronne à noire en plus d’yeux verts ou ambres auraient autrefois été tous deux exhumées de leurs tombes enneigées avant d’être rhabillés afin de reprendre leurs vies dansées. Les glisse-souf- fles Sydru-kal seraient d’une telle adresse qui pourraient flotter en dansant sur les vents tailladant, notamment avec leurs marcheurs pneumopodes dont les pas rythment avec sa chaleur. On entendra les chants gutturaux des hurle-muscs Wijriol qui contrôleraient les neiges des parfums produit de leurs voix jusqu’à en diriger leurs bateaux atmonautes flottant dans les airs aux gré des tempéra- tures guidées dans leurs extrêmes.
 
+---
+- **Physique (Sydru-kal/Sablevents)** : Ils sont élancés à la peau d'ivoire et aux rares plumes vertes, rosées ou bleues, et aux yeux noirs, bruns ou verts.
+- **Traits (Sydru-kal/Sablevents)** : Les Slaadéens Sablevents sont d'une adresse incomparable, mais semblent plus fragiles physiquement.
+- **Occupation traditionnelle (Sydru-kal/Sablevents)** : Leurs glisse-souffles peuvent flotter en dansant sur les vents tailladant.
+---
+---
+- **Physique (Wijriol/Chante-Neiges)** : Ils sont plus pileux et plumés, à la peau marron à noire, et aux yeux verts ou ambres.
+- **Traits (Wijriol/Chante-Neiges)** : Les Slaadéens Chante-Neiges sont plus vigoureux et résistants, mais moins agiles et adroits.
+- **Occupation traditionnelle (Wijriol/Chante-Neiges)** : Leurs hurle-muscs contrôlent les neiges des parfums produits de leurs voix.
+---
+
 Les Slaadéens Hlabayan ( Mangroviens ) à la peau et aux plumes rousse-feu parfois striées de bleu, ornées d’yeux verts ou bleus, ainsi que les Slaadéens Felichrem ( Rosebrousses ) aux mêmes stries sur une peau plus saumonée, aurait été éveillés des neiges par les mysté- rieux tremblements du ciel autrefois entendus dans tout le désert. Munis des leurs armures et boucliers pneumocoraxes dont les vapeurs fondent toute neige, les mur-murs Hlabayans, réactifs et entièrement protégés, auraient formé les premières parois gardant tout bastion. Similairement, les dompte-rêves Feli- chrem par leur réseau téléatmique traversant les dunes en les brûlant, auraient donné toutes les habitudes, désirs et besoins farfelus ou non des êtres aux alentours par leurs paroles entubées les atteignant tous.
 
+---
+- **Physique (Hlabayan/Mangroviens)** : Ils ont la peau et les plumes rousse-feu parfois striées de bleu, ornées d'yeux verts ou bleus.
+- **Traits (Hlabayan/Mangroviens)** : Les Slaadéens Mangroviens sont plus perspicaces et réactifs, mais leur aura et leurs grâces semblent plus ternes.
+- **Occupation traditionnelle (Hlabayan/Mangroviens)** : Leurs mur-murs, réactifs et entièrement protégés, forment les premières parois gardant tout bastion.
+---
+---
+- **Physique (Felichrem/Rosebrousses)** : Ils ont les mêmes stries sur une peau plus saumonée.
+- **Traits (Felichrem/Rosebrousses)** : Les Slaadéens Rosebrousses sont d'un esprit dominateur et persuasif, mais semblent moins résistants aux éléments.
+- **Occupation traditionnelle (Felichrem/Rosebrousses)** : Leurs dompte-rêves perçoivent les habitudes, désirs et besoins de tous les êtres aux alentours.
+---
+
 Enfin, les Slaadéens Iossolam ( d’Oasis ) de peau turquoise aux longues plumes rouges à vertes et d’yeux verts, marrons ou noirs, auraient autrefois cultivé les oasis thermales ( hérésie ! ). C’est de là où leurs rils sortait la nuit afin d’en combattre ceux-là tentant de les en empêcher en les gelant de leur cannons cryothermiques dont les projections pompe toute chaleur et qu’utilisent encore leurs brûle-sages méditant dans les profondeurs de leurs cuisantes oasis d’or d’où ils en peignent ainsi leurs larges connaissances sur les parois ainsi refroidies.
+
+---
+- **Physique** : Ils ont la peau turquoise aux longues plumes rouges à vertes, et des yeux verts, marrons ou noirs.
+- **Traits** : Les Slaadéens d'Oasis sont plus intelligents et sages, mais semblent moins vigoureux physiquement.
+- **Occupation traditionnelle** : Leurs brûle-sages méditent dans les profondeurs de leurs cuisantes oasis d'or.
+---
 
 
 **86**
@@ -5327,13 +5499,43 @@ D’une haute lucidité par rapport à son envi- ronnement et à l’intention d
 - Toutes les Races Tchalkchaïs unirent leur gouvernance afin de tout résoudre à la fois dans la plus grande efficacité. Pour maintenir leur identité, intégrité et stabilité, les Tchalk- chaïs relocalisèrent partout à la fois les arrivistes infidèles si prompt à la trahison hors de nos batailles, alors marchant à travers les dunes, leurs rites et bâtisses ensevelies sous les sables bienfaiteurs.
 Les Tchalkchaïs Elesihin ( Sablevents ), d’une haute stature et d’une peau pistache sans contraste, arborent des yeux ambrés ou verts perçants, symboles de leur endurance et santé inaltérables. Nés sous un ciel où les astres semblaient s’aligner en d’anciennes augures, ils devinrent les gardiens des secrets des temps, leurs perce-temps voyant non seulement au travers roches-bleues et sables roses désertiques, mais aussi les échos des âges passés et futurs. Ils développèrent les catapultes hélioboles, gigantesques machines projetant des projectiles sur des lieues grâce à la chaleur concentrée du soleil, en harmonie avec leur capacité à déchiffrer les rythmes secrets de la nature.
 
+---
+- **Physique** : Ils sont de haute stature, à la peau pistache sans contraste, et aux yeux ambrés ou verts perçants.
+- **Traits** : Les Tchalkchaïs Elesihin (Sable-Guide) sont d'une endurance et santé inaltérables, mais semblent moins charismatiques et persuasifs.
+- **Occupation traditionnelle** : Leurs perce-temps voient au travers les roches-bleues et sables roses désertiques, ainsi que les échos des âges passés et futurs.
+---
+
 Les Tchalkchaïs Ordol ( Bleuis ), à la chitine turquoise et aux yeux verts étincelants, sont d’une détermination à toute épreuve, leur pilosité également verte vibrant aux brises de leurs contrées. Marqués par un savoir mystérieux venu des cieux les plus lointains, ils parlent souvent des étoiles invisibles qui guidèrent leurs ancêtres jusqu’à une terre promise cachée au-delà de l’horizon. Leurs ludo-rhéteurs, maîtres du verbe et du pari, sont connus pour leurs mises extravagantes, ayant un jour convaincu tout un peuple de risquer leur destin sur la promesse d’un royaume entier en un grain de sable espiègle. Grâce à leurs bateaux navhélions, aux vastes voiles captant les rayons solaires percutants pour propulser leurs vaisseaux à travers les dunes, les Ordol naviguent entre les sables, semant légendes et paris audacieux dans leur sillage.
+
+---
+- **Physique** : Ils ont la chitine turquoise et les yeux verts étincelants, leur pilosité également verte.
+- **Traits** : Les Tchalkchaïs Ordol (Bleuis) sont d'une détermination à toute épreuve, mais semblent moins agiles et adroits.
+- **Occupation traditionnelle** : Leurs ludo-rhéteurs sont maîtres du verbe et du pari, connus pour leurs mises extravagantes.
+---
 
 Les Tchalkchaïs Îohadam ( Ensoleilleurs ), d’une peau pêche et aux yeux ambrés ou verts, sont de taille moyenne et reconnus pour leurs innovations visionnaires. Héritiers d’un passé glorieux aux cités hallucinées, ils virent leurs plus précieux artefacts dispersés lors d’un assaut destructeur venu d’au-delà des dunes. Les labour-rêves, maîtres de l’éphé- mère, cultiveraient désormais des mirages spectaculaires qui scintillent à l’horizon eux-mêmes. Ayant mis au point des outils héliergoniques, captant l’énergie du soleil l’eau du fleuve pour en animer leurs labours.
 
+---
+- **Physique** : Ils sont de taille moyenne, à la peau pêche et aux yeux ambrés ou verts.
+- **Traits** : Les Tchalkchaïs Îohadam (Ensoleilleurs) sont reconnus pour leurs innovations visionnaires et leur intelligence, mais semblent moins résistants physiquement.
+- **Occupation traditionnelle** : Leurs labour-rêves cultivent des mirages spectaculaires qui scintillent à l'horizon.
+---
+
 Les Tchalkchaïs Nuôtarjoy ( Porte-Rocailles ), larges et musclés, arborent une peau chitineuse couleur pistache, marquée de fines branchies bleutées qui vibrent aux marées des fleuves souterrains qu’ils dominent. Anciennement guidés par les apparitions lumineuses d’êtres à la silhouette étrange et éthérée qui traversaient leurs marais brumeux, ils inter- prétèrent ces visions comme des guides sacrés, montrant la voie vers leurs architectures inaccessibles. Leurs tire-rivières, manipulateurs de cours d’eau, construisirent ainsi des cita- delles inébranlables sur les montagnes et flots, des édifices que nul envahisseur n’a jamais su atteindre. Grâce à leurs armures héliocoraxes les renforçant et qu’ils développèrent à partir des reflets éphémères de ces visiteurs spectraux, ils devinrent une puissance respectée, se mouvant avec agilité et force parmi les rivages où leurs maîtres bâtisseurs dressent encore des montagnes de pierre et d’eau.
 
+---
+- **Physique** : Ils sont larges et musclés, à la peau chitineuse couleur pistache, marquée de fines branchies bleutées.
+- **Traits** : Les Tchalkchaïs Nuôtarjoy (Porte-Rocailles) sont puissants et résistants, mais semblent moins perspicaces et attentifs.
+- **Occupation traditionnelle** : Leurs tire-rivières, manipulateurs de cours d'eau, construisent des citadelles inébranlables sur les montagnes et flots.
+---
+
 Les Tchalkchaïs Ikrayad ( Court-Dunes ), aux corps gracieux et de teinte sable, leurs yeux noirs ou verts brillants dans la pénombre, se déplacent en silence avec une délicatesse extrême, laissant derrière eux des mirages flottants, comme des ombres imprenables. Anciens adeptes d’un ordre secret qui émergea des dunes aux poussières enivrantes, ils devinrent maîtres de la dissimulation et des manœuvres éthérées, traquant leurs cibles avec une loyauté insondable. Leur marche-ombres seraient à l’origine de tous les mirages qui traîneraient derrière-eux tout en y disparaissant, tandis que leurs réseaux téléhéliques - assemblages de miroirs réfléchis- sants qui manipulent les rayons de soleil ou de lune - leur permettent d’envoyer des messages codés en un éclat furtif.
+
+---
+- **Physique** : Ils ont les corps gracieux et de teinte sable, leurs yeux noirs ou verts brillants dans la pénombre.
+- **Traits** : Les Tchalkchaïs Ikrayad (Court-Dunes) sont extrêmement agiles et discrets, maîtres de la dissimulation, mais semblent moins résistants aux attaques frontales.
+- **Occupation traditionnelle** : Leurs marche-ombres seraient à l'origine de tous les mirages qui traînent derrière eux tout en y disparaissant.
+---
 
 
 **90**
