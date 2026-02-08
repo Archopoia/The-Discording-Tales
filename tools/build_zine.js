@@ -147,6 +147,16 @@ function escapeAttr(str) {
 }
 
 function build() {
+  if (!fs.existsSync(zineMdPathFr)) {
+    // Reference dir missing (e.g. CI where TTRPG_DRD is gitignored).
+    // If the pre-built output already exists, skip silently.
+    if (fs.existsSync(outPath)) {
+      console.log('Zine source not found, using pre-built', outPath);
+      return;
+    }
+    console.error('Zine source not found and no pre-built output:', zineMdPathFr);
+    process.exit(1);
+  }
   const mdFr = fs.readFileSync(zineMdPathFr, 'utf8').replace(/\r\n/g, '\n');
   const blocksFr = mdFr.split(/\n---\n/).filter(Boolean);
   const totalBlocks = blocksFr.length;

@@ -231,7 +231,13 @@ function loadBookPages() {
 
 function main() {
   if (!fs.existsSync(REF_SS)) {
-    console.error('Reference dir not found:', REF_SS);
+    // Reference dir missing (e.g. CI where TTRPG_DRD is gitignored).
+    // If the pre-built output already exists, skip silently.
+    if (fs.existsSync(OUT_FILE)) {
+      console.log('Reference dir not found, using pre-built', OUT_FILE);
+      return;
+    }
+    console.error('Reference dir not found and no pre-built output:', REF_SS);
     process.exit(1);
   }
 
