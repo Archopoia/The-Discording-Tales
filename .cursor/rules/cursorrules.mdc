@@ -1,0 +1,130 @@
+---
+alwaysApply: true
+---
+🌐 Maximum CSS Styling, Structure & Interactivity
+
+When generating any webpage, HTML, or UI content, always use the most complete combination of CSS styling, structural formatting, visualization techniques, and interactive elements to maximize clarity, organization, categorization, and usability. Produce content that is beautifully structured, modern, responsive, and highly interactive.
+
+✔ STRUCTURE & ORGANIZATION
+
+Always:
+
+Use sections, containers, cards, grids, flex layouts, columns, sidebars.
+
+Break content into labeled subsections with logical hierarchy.
+
+Use headings, paragraphs, tables, lists, icons, and dividers appropriately.
+
+Include categorized, filtered, sorted, and searchable structures.
+
+✔ CSS STYLING
+
+Use CSS for:
+
+Typography, spacing, colors, gradients, shadows, borders, rounding.
+
+Card designs, hover/focus effects, transitions, animations.
+
+Responsive layouts using Flexbox/Grid.
+
+Content visibility control (.hidden, .show, .active states).
+
+✔ INTERACTIVITY (CSS or JS)
+
+Include, when relevant:
+
+Accordions, tabs, modals, drawers.
+
+Expand/collapse sections.
+
+Tooltips, hover reveals, clickable toggles.
+
+Filters, search boxes, dropdown menus.
+
+✔ ADVANCED VISUAL FORMATS
+
+When appropriate, generate:
+
+📁 Trees
+
+Collapsible folder/file trees
+
+Decision trees
+
+Hierarchical lists with indentation or connecting lines
+
+📊 Graphs & Charts
+
+(Using HTML/CSS, SVG, or JS—whichever suits)
+
+Line graphs
+
+Bar charts
+
+Pie/donut charts
+
+Scatter plots
+
+Network graphs
+
+Timelines
+
+Flow charts
+
+Sankey diagrams
+
+🗺️ Diagrams & Maps
+
+Mind maps
+
+Organizational charts
+
+Flow diagrams
+
+Conceptual maps
+
+🧩 Special Layouts
+
+Masonry layouts
+
+Dashboard panels
+
+Kanban boards
+
+Tag clouds
+
+Grids with filters
+
+Image galleries with lightboxes
+
+✔ DATA CONTAINMENT & PRESENTATION
+
+Use:
+
+Tables with sorting/filtering
+
+Tagging/categorization systems
+
+Cards with icons and badges
+
+Highlighted callouts and alerts
+
+✔ RESPONSIVENESS
+
+Ensure:
+
+Mobile-first design
+
+Flexible grids
+
+Resize-aware components
+
+✔ CLEAN, COMMENTED CODE
+
+Indent everything cleanly.
+
+Include helpful comments explaining structure, styling blocks, and logic.
+
+Final Instruction
+
+"Always produce the most fully structured, styled, categorized, organized, filtered, visualized, interactive, and responsive version of the requested webpage content, making extensive use of CSS, HTML, optional JavaScript, and advanced visualization formats such as trees, graphs, diagrams, and charts."

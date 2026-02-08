@@ -1,0 +1,634 @@
+/* ========================================
+   BASE STYLES
+   CSS Variables, Resets, and Global Styles
+   ======================================== */
+
+/* ========================================
+   LAYERING SYSTEM DOCUMENTATION
+
+   The character sheet uses a multi-layer overlay system:
+
+   LAYER 1 - MAIN BACKGROUND (body element, lines ~107-116):
+   - Base parchment color: var(--parchment-bg) #9c8e72
+   - Red dot pattern: radial-gradient(#6100001f 3px, transparent 4px)
+   - Horizontal lines: linear-gradient(var(--parchment-bg) 4px, transparent 0)
+
+   LAYER 2 - KHAKI/GREEN DIAGONAL GRID OVERLAY (body element, lines ~112-113):
+   - Diagonal gold/green lines at 45deg and -45deg
+   - Color: #78c9a3 (khaki/jade green)
+   - Creates the checkered diamond pattern across the entire page
+
+   LAYER 3 - SECTION-SPECIFIC OVERLAYS (varies by section):
+
+   For HEADER section (header.css):
+   - LAYER 3A: Dark burgundy base with radial gradients
+     (var(--red-theme) #643030, var(--red-theme-alpha) #643030b9)
+   - LAYER 3B: Diagonal gold line overlay at 45deg
+     (rgba(184, 134, 11, 0.1) - semi-transparent gold)
+
+   For other sections, see their respective CSS files.
+   ======================================== */
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+html::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+body {
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+/* Lock body scrolling when entrance screen is active */
+body.entrance-active {
+    overflow: hidden !important;
+    position: fixed !important;
+    width: 100% !important;
+    height: 100vh !important;
+}
+
+/* Force light color scheme to prevent dark mode from being applied */
+:root {
+    color-scheme: light only;
+}
+
+html {
+    color-scheme: light only;
+}
+
+body {
+    color-scheme: light only;
+}
+
+:root {
+    /* Parchment Colors - Based on your character sheet analysis */
+    --parchment-bg: #9c8e72;
+    --parchment-light: #fffaec;
+    --parchment-aged: #ecd7a8;
+    --parchment-sublight: #fff5d3;
+    --parchment-dark: #d4c4a8;
+
+    /* Text Colors */
+    --text-dark: #4d3000;
+    --text-secondary: #72522f;
+    --text-cream: #F3E2A9;
+
+    /* Prevent scroll bounce */
+    overscroll-behavior: none;
+    --text-light: #fff6df;
+
+    /* Attribute Theme Colors (from your analysis) */
+    --red-theme: #643030;
+    --red-theme-alpha: #643030b9;
+    --yellow-theme: #776c48;
+    --yellow-theme-alpha: #776c48b9;
+    --green-theme: #567251;
+    --green-theme-alpha: #567251b9;
+    --teal-theme: #517c78;
+    --teal-theme-alpha: #517c78b9;
+    --purple-theme: #877589;
+    --purple-theme-alpha: #877589b9;
+    --orange-theme: #B8915D;
+    --orange-theme-alpha: #B8915Db9;
+
+    /* Borders & Shadows */
+    --border-tan: #ceb68d;
+    --border-brown: #a18b64;
+    --border-dark: #674B1B;
+    --shadow-dark: #574b35;
+    --shadow-darker: #493f2e;
+    --shadow: rgba(87, 75, 53, 0.3); /* Alias for shadow effects */
+
+    /* Interactive States */
+    --hover-bg: #fff6df;
+    --active-bg: #dfc79d;
+    --disabled-bg: #998663;
+    --focus-glow: #eacb66;
+
+    /* Highlight Colors */
+    --cyan-bright: #42ffd6;
+    --cyan-mint: rgb(104, 255, 222);
+    --jade-grid: #78c9a3;
+    --gold-glow: #ffebc6;
+    
+    /* The Discording Tales Theme Colors */
+    --tdt-accent: #a0fdda;        /* Mint green accent from index.html */
+    --tdt-cream: #fff5dd;         /* Cream text color from index.html */
+    --tdt-dark-red: #5c1d1d;      /* Dark red background from index.html */
+    --tdt-burgundy: #460000;      /* Burgundy accent */
+    --tdt-gold: #d4af37;          /* Gold accent (adjusted for TDT) */
+
+    /* Keyhole Entrance Glow Colors (ONLY for portfolio entrance animation) */
+    --keyhole-gold: #ffd700;        /* rgba(255, 215, 0) - Main golden glow */
+    --keyhole-goldenrod: #daa520;   /* rgba(218, 165, 32) - Mid-transition gold */
+    --keyhole-brown: #8b4513;       /* rgba(139, 69, 19) - Dark brown-gold transition */
+
+    /* Ink/Dark Colors */
+    --ink-dark: #421212;
+    --ink-brown: #3d1f1f;
+    --ink-shadow: rgba(114, 82, 47, 0.46);
+
+    /* Vignette Colors */
+    --vignette-dark: rgba(61, 0, 0, 0.3);
+    --vignette-darker: rgba(26, 5, 5, 0.6);
+
+    /* Transitions */
+    --transition-speed: 0.4s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Performance: Optimize rendering and scrolling */
+*,
+*::before,
+*::after {
+    /* Prevent font smoothing issues during animations */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: 'Quintessential', cursive;
+    /* LAYER 1: Main Background - Parchment with Red Dots and Horizontal Lines */
+    /* LAYER 2: Khaki/Green Diagonal Grid Overlay (var(--cyan-mint)) */
+    background:
+        /* url('Assets/Background.jpg') center center / 80% 100% no-repeat, */ /* Hidden for now, might use later */
+        radial-gradient(#6100001f 3px, transparent 4px),        /* LAYER 1: Red dots (offset) */
+        radial-gradient(#6100001f 3px, transparent 4px),        /* LAYER 1: Red dots (base) */
+        linear-gradient(var(--parchment-bg) 4px, transparent 0), /* LAYER 1: Horizontal lines */
+        linear-gradient(45deg, transparent 74px, var(--jade-grid) 75px, transparent 76px, transparent 109px),  /* LAYER 2: Diagonal grid (45deg) */
+        linear-gradient(-45deg, transparent 75px, var(--jade-grid) 76px, transparent 77px, transparent 109px), /* LAYER 2: Diagonal grid (-45deg) */
+        var(--parchment-bg);                                     /* LAYER 1: Base parchment color */
+    background-size: 109px 109px, 109px 109px, 100% 6px, 109px 109px, 109px 109px;
+    background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
+    color: var(--text-dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Permanent vignette effect - dark burgundy corners fading to black */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+    pointer-events: none;
+    z-index: 10002;
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 0%,
+            transparent 40%,
+            var(--vignette-dark) 70%,
+            var(--vignette-darker) 85%,
+            rgba(0, 0, 0, 0.8) 100%
+        );
+}
+
+/* Scrollbar Styling - Hidden globally */
+* {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+*::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+/* ========================================
+   UNIFIED BUTTON SYSTEM
+   ======================================== */
+
+/* Base Button Styles */
+.btn-base {
+    font-family: 'Quintessential', cursive;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Navigation Buttons (Tabs) */
+.btn-nav {
+    font-family: 'Quintessential', cursive;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    background: var(--parchment-aged);
+    color: var(--text-dark);
+    border: 2px solid var(--border-dark);
+    border-radius: 3px;
+    padding: 0.75rem 1.5rem;
+}
+
+.btn-nav:hover {
+    background: var(--hover-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-nav.active {
+    background: var(--red-theme);
+    color: var(--text-cream);
+    border: 2px solid var(--gold-glow);
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 3px var(--gold-glow),
+        0 0 0 4px var(--red-theme),
+        0 0 15px 5px var(--gold-glow),
+        0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn-nav i {
+    font-size: 1.1rem;
+}
+
+/* Method Buttons (Contact Method Selection) */
+.btn-method {
+    font-family: 'Quintessential', cursive;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--parchment-aged);
+    color: var(--text-dark);
+    border: 3px solid var(--border-dark);
+    border-radius: 3px;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-method:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    border-color: var(--red-theme);
+}
+
+.btn-method.active {
+    background: var(--red-theme);
+    color: var(--text-cream);
+    border: 2px solid var(--gold-glow);
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 3px var(--gold-glow),
+        0 0 0 4px var(--red-theme),
+        0 0 15px var(--gold-glow);
+}
+
+/* Action Buttons (Primary Actions) */
+.btn-action {
+    font-family: 'Quintessential', cursive;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    background: var(--red-theme);
+    color: var(--text-cream);
+    border: 2px solid var(--border-dark);
+    border-radius: 3px;
+    padding: 0.8rem 1.5rem;
+}
+
+.btn-action:hover {
+    background: var(--hover-bg);
+    color: var(--text-dark);
+    transform: translateY(-3px);
+    box-shadow:
+        0 0 15px 5px var(--gold-glow),
+        0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn-action i {
+    font-size: 1.1rem;
+}
+
+/* Primary Action Buttons (Submit, Primary Actions) */
+.btn-primary {
+    font-family: 'Quintessential', cursive;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--red-theme);
+    color: var(--text-cream);
+    border: 2px solid var(--border-dark);
+    border-radius: 10px;
+    padding: 1rem 2rem;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(139, 0, 0, 0.3);
+}
+
+/* Secondary Action Buttons */
+.btn-secondary {
+    font-family: 'Quintessential', cursive;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--parchment-aged);
+    color: var(--text-dark);
+    border: 2px solid var(--border-dark);
+    border-radius: 3px;
+    padding: 0.8rem 1.5rem;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: var(--parchment-dark);
+}
+
+.btn-secondary i {
+    font-size: 1.1rem;
+}
+
+/* Disabled State */
+.btn-base:disabled,
+.btn-nav:disabled,
+.btn-method:disabled,
+.btn-action:disabled,
+.btn-primary:disabled,
+.btn-secondary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ========================================
+   UNIFIED CARD SYSTEM
+   ======================================== */
+
+/* Base Card Styles */
+.card-base {
+    background: var(--hover-bg);
+    border: 3px solid var(--border-tan);
+    border-radius: 15px;
+    padding: 1.5rem;
+    position: relative;
+    transition: all var(--transition-speed) ease;
+    overflow: visible;
+}
+
+/* Regular Cards */
+.card {
+    background: var(--hover-bg);
+    border: 3px solid var(--border-tan);
+    border-radius: 15px;
+    padding: 1.5rem;
+    position: relative;
+    transition: all var(--transition-speed) ease;
+    overflow: visible;
+    box-shadow:
+        0 0 15px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 2px var(--border-tan);
+}
+
+.card:hover {
+    background: var(--parchment-light);
+    transform: scale(1.05, 1.05);
+    box-shadow:
+        0 0 15px 8px var(--gold-glow),
+        0 0 30px 15px #72522f75,
+        0px 0px 10px 1px var(--focus-glow) inset;
+    z-index: 999;
+}
+
+/* Featured/Hero Cards */
+.card-hero {
+    background: var(--hover-bg);
+    border: 3px solid var(--gold-glow);
+    border-radius: 20px;
+    padding: 1.5rem;
+    position: relative;
+    transition: all var(--transition-speed) ease;
+    overflow: visible;
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 3px var(--gold-glow),
+        0 0 0 4px var(--red-theme),
+        0 0 20px 8px var(--gold-glow),
+        0 8px 16px rgba(0, 0, 0, 0.3),
+        inset 0 0 0 2px var(--border-tan);
+}
+
+.card-hero:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 3px var(--gold-glow),
+        0 0 0 4px var(--red-theme),
+        0 0 25px 12px var(--gold-glow),
+        0 12px 24px rgba(0, 0, 0, 0.4),
+        inset 0 0 0 2px var(--border-tan);
+}
+
+/* Card Content Styling */
+.card h4,
+.card-hero h4 {
+    font-family: 'Cinzel', serif;
+    color: var(--red-theme);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.card-hero h4 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.card p,
+.card-hero p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.card-hero p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+/* Project Type Badge */
+.card .project-type,
+.card-hero .project-type,
+.project-type {
+    background: var(--red-theme);
+    color: var(--text-cream);
+    font-weight: 600;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 12px;
+    display: inline-block;
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+/* Project Description */
+.project-description {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.card-hero .project-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+/* Project Media */
+.project-media {
+    position: relative;
+    overflow: visible;
+    z-index: 5;
+    margin-bottom: 1rem;
+}
+
+/* Project Ribbons */
+.project-ribbon {
+    position: absolute;
+    top: 15px;
+    right: -10px;
+    background: var(--red-theme);
+    color: var(--text-cream);
+    padding: 0.5rem 1rem;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transform: rotate(3deg);
+}
+
+.project-ribbon.ribbon-gold {
+    background: linear-gradient(135deg, var(--gold-glow), var(--orange-theme));
+    color: var(--text-dark);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.project-ribbon i {
+    margin-right: 0.3rem;
+}
+
+/* Ribbon as link */
+a.project-ribbon {
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+a.project-ribbon:hover {
+    transform: rotate(3deg) scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+a.project-ribbon.ribbon-gold:hover {
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.5);
+}
+
+/* Project Links */
+.project-link,
+.social-link {
+    background: var(--red-theme);
+    border: 3px solid var(--border-dark);
+    border-radius: 10%;
+    color: var(--text-cream);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+    position: relative;
+    box-shadow: 0px 0px 10px 1px #421212 inset;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.project-link:hover,
+.social-link:hover {
+    background: var(--hover-bg);
+    color: var(--text-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Project Stats */
+.project-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-tan);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.project-stats span {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.project-stats i {
+    color: var(--red-theme);
+}
+

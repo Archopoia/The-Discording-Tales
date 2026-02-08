@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Backup files
+backup/
+
+# Reference materials (documentation, extracted book pages, etc.)
+# CRITICAL: Never commit copyrighted book source files to a public repository
+reference/TTRPG_DRD/
+reference/DRD/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Cache
+.cache/
+*.tsbuildinfo
+
+# Backend
+backend/faiss_drd/
+backend/.env
+backend/__pycache__/

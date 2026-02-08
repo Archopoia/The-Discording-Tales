@@ -1,0 +1,59 @@
+/* ========================================
+   LAZY LOADING STYLES
+   Performance optimizations for media loading
+   ======================================== */
+
+/* Images and videos with data-src are hidden until loaded */
+img[data-src],
+video[data-src] {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Fade in when loaded */
+img.lazy-loaded,
+video.lazy-loaded {
+    opacity: 1;
+}
+
+/* Background images */
+[data-bg] {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Optional: Blur placeholder effect */
+img[data-src].with-placeholder {
+    filter: blur(10px);
+    transform: scale(1.05);
+}
+
+img.lazy-loaded.with-placeholder {
+    filter: blur(0);
+    transform: scale(1);
+    transition: opacity 0.3s ease-in-out, filter 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Loading skeleton for images */
+img[data-src]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s ease-in-out infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+

@@ -1,0 +1,1276 @@
+/* ========================================
+   CONTACT TAB STYLES
+   Contact Forms, Quest System, Social Platforms
+   ======================================== */
+
+.contact-method-content {
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* Top Section: Contact Buttons + Public Appearances Side by Side */
+.contact-top-section {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    align-items: flex-start;
+}
+
+.contact-methods-wrapper {
+    flex: 0 0 auto;
+    min-width: 200px;
+    display: flex;
+    align-items: flex-start;
+}
+
+/* Stack contact buttons vertically */
+.contact-method-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-self: flex-start;
+}
+
+.contact-method-selector .method-btn {
+    width: 100%;
+    min-width: 180px;
+}
+
+/* Media & Public Appearances Section - Stacked Gallery */
+.media-appearances-section {
+    flex: 1;
+    padding: 0;
+    background: transparent;
+    border-radius: 8px;
+    overflow: visible;
+    display: flex;
+    align-items: flex-start;
+    margin-top: -60px;
+}
+
+/* Show desktop gallery only on larger screens */
+.desktop-only {
+    display: flex;
+}
+
+/* Hide mobile gallery on larger screens */
+.mobile-only {
+    display: none;
+}
+
+.media-appearances-section .section-header {
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.media-appearances-section .section-header h3 {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-bottom: 0.25rem;
+}
+
+.media-appearances-section .section-header h3 i {
+    color: var(--gold-glow);
+    margin-right: 0.5rem;
+}
+
+.media-appearances-section .section-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-style: italic;
+    opacity: 0.8;
+}
+
+/* Stacked Gallery Layout */
+.media-grid {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0;
+    height: 450px;
+    perspective: 1000px;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+    overflow: visible;
+    z-index: 10;
+    align-self: flex-start;
+}
+
+.media-item {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%;
+    max-width: 500px;
+    display: block;
+    text-decoration: none;
+    background: var(--hover-bg);
+    border: 2px solid var(--border-tan);
+    border-radius: 0px;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    will-change: transform;
+    outline: none !important;
+}
+
+.media-item:focus {
+    outline: none !important;
+}
+
+/* Stack positioning - each item slightly offset */
+.media-item:nth-child(1) {
+    z-index: 7;
+    transform: translate(-50%, -50%) rotate(-3deg) translateY(0px);
+}
+.media-item:nth-child(2) {
+    z-index: 6;
+    transform: translate(-50%, -50%) rotate(2deg) translateY(10px);
+}
+.media-item:nth-child(3) {
+    z-index: 5;
+    transform: translate(-50%, -50%) rotate(-2deg) translateY(20px);
+}
+.media-item:nth-child(4) {
+    z-index: 4;
+    transform: translate(-50%, -50%) rotate(3deg) translateY(30px);
+}
+.media-item:nth-child(5) {
+    z-index: 3;
+    transform: translate(-50%, -50%) rotate(-2deg) translateY(40px);
+}
+.media-item:nth-child(6) {
+    z-index: 2;
+    transform: translate(-50%, -50%) rotate(2deg) translateY(50px);
+}
+.media-item:nth-child(7) {
+    z-index: 1;
+    transform: translate(-50%, -50%) rotate(-3deg) translateY(60px);
+}
+
+/* Hover - fan out to the right - all same z-index to prevent flicker */
+.media-grid:hover .media-item:nth-child(1) {
+    transform: translate(-50%, -50%) translateX(-300px) rotate(-8deg) scale(0.95);
+    z-index: 20;
+}
+.media-grid:hover .media-item:nth-child(2) {
+    transform: translate(-50%, -50%) translateX(-180px) rotate(-5deg) scale(0.95);
+    z-index: 20;
+}
+.media-grid:hover .media-item:nth-child(3) {
+    transform: translate(-50%, -50%) translateX(-90px) rotate(-2deg) scale(0.95);
+    z-index: 20;
+}
+.media-grid:hover .media-item:nth-child(4) {
+    transform: translate(-50%, -50%) translateX(0px) rotate(0deg) scale(1);
+    z-index: 20;
+}
+.media-grid:hover .media-item:nth-child(5) {
+    transform: translate(-50%, -50%) translateX(90px) rotate(2deg) scale(0.95);
+    z-index: 20;
+}
+.media-grid:hover .media-item:nth-child(6) {
+    transform: translate(-50%, -50%) translateX(180px) rotate(5deg) scale(0.95);
+    z-index: 20;
+}
+.media-grid:hover .media-item:nth-child(7) {
+    transform: translate(-50%, -50%) translateX(300px) rotate(8deg) scale(0.95);
+    z-index: 20;
+}
+
+/* Individual item hover - bring to front and enlarge, but stay in position */
+.media-grid:hover .media-item:nth-child(1):hover {
+    transform: translate(-50%, -50%) translateX(-300px) rotate(-8deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.media-grid:hover .media-item:nth-child(2):hover {
+    transform: translate(-50%, -50%) translateX(-180px) rotate(-5deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.media-grid:hover .media-item:nth-child(3):hover {
+    transform: translate(-50%, -50%) translateX(-90px) rotate(-2deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.media-grid:hover .media-item:nth-child(4):hover {
+    transform: translate(-50%, -50%) translateX(0px) rotate(0deg) scale(1.15) !important;
+    z-index: 100 !important;
+}
+.media-grid:hover .media-item:nth-child(5):hover {
+    transform: translate(-50%, -50%) translateX(90px) rotate(2deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.media-grid:hover .media-item:nth-child(6):hover {
+    transform: translate(-50%, -50%) translateX(180px) rotate(5deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+.media-grid:hover .media-item:nth-child(7):hover {
+    transform: translate(-50%, -50%) translateX(300px) rotate(8deg) scale(1.1) !important;
+    z-index: 100 !important;
+}
+
+/* Add glow and border on individual hover - matches active button style */
+.media-grid:hover .media-item:hover {
+    border-color: var(--gold-glow);
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 3px var(--gold-glow),
+        0 0 0 4px var(--red-theme),
+        0px 0px 15px 5px var(--gold-glow),
+        0px 0px 10px 1px var(--focus-glow) inset;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+}
+
+.media-thumbnail {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background: var(--red-theme);
+}
+
+.media-thumbnail img,
+.media-thumbnail video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    transition: transform 0.4s ease;
+}
+
+/* Adjust Vilnius street photo to show head better */
+.media-item:nth-child(1) .media-thumbnail img {
+    object-position: center 35%;
+}
+
+.media-item:hover .media-thumbnail img,
+.media-item:hover .media-thumbnail video {
+    transform: scale(1.03);
+}
+
+.media-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.media-item:hover .media-overlay {
+    opacity: 0;
+}
+
+.media-overlay i {
+    font-size: 2.5rem;
+    color: var(--gold-glow);
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    display: none;
+}
+
+.media-caption {
+    padding: 1rem;
+    background: rgba(239, 235, 225, 0.98);
+    backdrop-filter: blur(5px);
+    border-top: 2px solid var(--border-tan);
+    position: relative;
+    z-index: 2;
+}
+
+.media-caption h4 {
+    font-size: 1rem;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.media-caption p {
+    font-size: 0.85rem;
+    color: var(--text-dark);
+    line-height: 1.4;
+    margin: 0;
+    opacity: 0.85;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+/* Video item specific styles */
+.media-item.video-item .media-overlay i {
+    font-size: 3rem;
+}
+
+.media-video {
+    pointer-events: none;
+}
+
+/* Compact Contact Image - Legacy (keeping for backward compatibility) */
+.contact-compact-image {
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+.compact-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 3px solid var(--border-tan);
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 2px var(--border-tan);
+    transition: all var(--transition-speed);
+    object-fit: cover;
+}
+
+.compact-img:hover {
+    transform: scale(1.05);
+    box-shadow:
+        0 6px 16px rgba(0, 0, 0, 0.15),
+        0 0 20px var(--gold-glow),
+        inset 0 0 0 2px var(--border-tan);
+}
+
+.compact-caption {
+    font-size: 0.85rem;
+    color: var(--text-dark);
+    margin-top: 0.5rem;
+    font-style: italic;
+    opacity: 0.8;
+}
+
+/* Full Image Modal */
+.full-image-container {
+    text-align: center;
+}
+
+.full-image {
+    max-width: 100%;
+    max-height: calc(95vh - 150px);
+    border-radius: 15px;
+    border: 3px solid var(--border-tan);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    object-fit: contain;
+}
+
+.full-image-caption {
+    font-size: 1rem;
+    color: var(--text-dark);
+    margin-top: 1rem;
+    font-style: italic;
+    opacity: 0.9;
+    padding: 0 1rem;
+}
+
+/* Interactive Quest Form */
+.contact-quest-intro {
+    background: var(--hover-bg);
+    border: 3px solid var(--border-dark);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.contact-quest-intro h3 {
+    color: var(--red-theme);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    font-family: 'Quintessential', cursive;
+}
+
+.contact-quest-intro p {
+    color: var(--text-dark);
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.contact-quest-form {
+    position: relative;
+    min-height: 400px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Desktop Form Layout */
+.desktop-form-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1.5fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Hide navigation buttons on desktop */
+@media (min-width: 769px) {
+    .quest-navigation {
+        display: none !important;
+    }
+}
+
+.desktop-question {
+    display: block !important;
+}
+
+.mobile-form-layout {
+    display: none;
+}
+
+/* Vertical options layout for desktop */
+.quest-options.vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.quest-options.vertical .quest-option {
+    width: 100%;
+}
+
+/* Desktop button styling - compact and square */
+@media (min-width: 769px) {
+    .desktop-question .question-header,
+    .quest-message-area .question-header {
+        margin-bottom: 0.8rem;
+    }
+
+    .desktop-question .question-header h4,
+    .quest-message-area .question-header h4 {
+        font-size: 0.9rem;
+        line-height: 1.3;
+        margin: 0;
+    }
+
+    .quest-options.vertical .option-card {
+        padding: 0.6rem;
+        border-radius: 0;
+        min-height: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.3rem;
+        font-size: 0.8rem;
+        text-align: center;
+        flex: 1;
+    }
+
+    .quest-options.vertical .option-card i {
+        font-size: 1.2rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .quest-options.vertical .option-card span {
+        font-size: 0.75rem;
+        line-height: 1.2;
+    }
+}
+
+/* Message area styling */
+.quest-message-area {
+    display: flex;
+    flex-direction: column;
+}
+
+.quest-message-area .quest-text-input {
+    flex: 1;
+}
+
+.quest-message-area textarea {
+    height: 100%;
+    min-height: 200px;
+    resize: vertical;
+}
+
+/* Contact info section */
+.quest-contact-section {
+    margin-top: 2rem;
+}
+
+/* Hide desktop contact section on mobile */
+@media (max-width: 768px) {
+    .quest-contact-section {
+        display: none !important;
+    }
+}
+
+.quest-contact-inputs.horizontal {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+}
+
+/* Contact submit section */
+.contact-submit-section {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.contact-submit-section .quest-btn {
+    width: 100%;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+}
+
+/* Quest Questions */
+.quest-question {
+    display: none;
+    animation: fadeIn 0.4s ease-in;
+}
+
+.quest-question.active {
+    display: block;
+}
+
+.question-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.question-number {
+    display: inline-block;
+    background: var(--red-theme);
+    color: var(--text-cream);
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.question-header h4 {
+    font-family: 'Quintessential', cursive;
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+/* Quest Options (Radio Cards) */
+.quest-options {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.quest-option {
+    cursor: pointer;
+}
+
+.quest-option input[type="radio"] {
+    display: none;
+}
+
+.option-card {
+    background: var(--hover-bg);
+    border: 3px solid var(--border-dark);
+    border-radius: 15px;
+    padding: 2rem 1rem;
+    text-align: center;
+    transition: all var(--transition-speed);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.option-card i {
+    font-size: 2.5rem;
+    color: var(--red-theme);
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.option-card span {
+    font-family: 'Quintessential', cursive;
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.option-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    border-color: var(--red-theme);
+}
+
+.quest-option input[type="radio"]:checked + .option-card {
+    background: var(--red-theme);
+    color: var(--text-cream);
+    border-color: var(--red-theme);
+    box-shadow: 0 0 20px rgba(139, 0, 0, 0.3);
+}
+
+.quest-option input[type="radio"]:checked + .option-card i,
+.quest-option input[type="radio"]:checked + .option-card span {
+    color: var(--text-cream);
+}
+
+/* Text Input Section */
+.quest-text-input {
+    margin-bottom: 2rem;
+}
+
+.quest-text-input textarea {
+    width: 100%;
+    padding: 1.5rem;
+    border: 3px solid var(--border-dark);
+    border-radius: 15px;
+    background: var(--hover-bg);
+    color: var(--text-dark);
+    font-family: 'Quintessential', cursive;
+    font-size: 1.05rem;
+    resize: vertical;
+    transition: all var(--transition-speed);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.quest-text-input textarea:focus {
+    outline: none;
+    border-color: var(--red-theme);
+    box-shadow: 0 0 15px rgba(139, 0, 0, 0.2), inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Contact Inputs Section */
+.quest-contact-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-group label {
+    font-family: 'Quintessential', cursive;
+    font-size: 1rem;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.input-group label i {
+    margin-right: 0.5rem;
+    color: var(--red-theme);
+}
+
+.input-group input {
+    padding: 1rem 1.5rem;
+    border: 3px solid var(--border-dark);
+    border-radius: 10px;
+    background: var(--hover-bg);
+    color: var(--text-dark);
+    font-family: 'Quintessential', cursive;
+    font-size: 1rem;
+    transition: all var(--transition-speed);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--red-theme);
+    box-shadow: 0 0 15px rgba(139, 0, 0, 0.2), inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Quest Navigation */
+.quest-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--border-dark);
+}
+
+/* Quest Buttons */
+/* Uses unified .btn-primary and .btn-secondary classes from base.css */
+
+.quest-progress {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.progress-dots {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.progress-dots .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--border-dark);
+    transition: all var(--transition-speed);
+}
+
+.progress-dots .dot.active {
+    background: var(--red-theme);
+    box-shadow: 0 0 10px rgba(139, 0, 0, 0.5);
+}
+
+/* Quest Success Message */
+.quest-success {
+    text-align: center;
+    padding: 3rem 2rem;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.success-icon {
+    font-size: 5rem;
+    color: var(--green-theme);
+    margin-bottom: 1.5rem;
+}
+
+.quest-success h3 {
+    font-family: 'Quintessential', cursive;
+    font-size: 2rem;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+.quest-success p {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin-bottom: 2rem;
+}
+
+/* Direct Contact Section */
+.direct-contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.contact-card {
+    background: var(--hover-bg);
+    border: 3px solid var(--border-dark);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    transition: all var(--transition-speed);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.contact-card.primary {
+    border-color: var(--red-theme);
+    background: linear-gradient(135deg, var(--hover-bg) 0%, var(--parchment-aged) 100%);
+}
+
+.card-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--red-theme);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 4px 12px rgba(139, 0, 0, 0.3);
+}
+
+.card-icon i {
+    font-size: 2.5rem;
+    color: var(--text-cream);
+}
+
+.contact-card h3 {
+    font-family: 'Quintessential', cursive;
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+.contact-value {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    word-break: break-word;
+}
+
+.contact-sublocation {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    opacity: 0.8;
+    margin-bottom: 1rem;
+}
+
+.contact-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--red-theme);
+    color: var(--text-cream);
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-family: 'Quintessential', cursive;
+    font-weight: 600;
+    transition: all var(--transition-speed);
+    margin-bottom: 1rem;
+}
+
+.contact-action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 0, 0, 0.3);
+}
+
+.contact-note {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    opacity: 0.7;
+    font-style: italic;
+}
+
+/* Location Showcase */
+.location-showcase {
+    margin-top: 2rem;
+}
+
+.location-showcase h3 {
+    font-family: 'Quintessential', cursive;
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Social Platforms Section */
+.social-platforms-intro {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.social-platforms-intro h3 {
+    font-family: 'Quintessential', cursive;
+    font-size: 1.8rem;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.social-platforms-intro p {
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    opacity: 0.8;
+}
+
+.social-platforms-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.3rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+    max-width: 100%;
+}
+
+.social-platform-card {
+    background: transparent;
+    border: none;
+    padding: 0.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.social-platform-card:hover {
+    transform: translateY(-3px) scale(1.05);
+}
+
+.social-platform-card i {
+    font-size: 2rem;
+    color: var(--red-theme);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.social-platform-card:hover i {
+    transform: rotate(360deg) scale(1.2);
+    color: var(--gold-glow);
+}
+
+.platform-name {
+    font-family: 'Quintessential', cursive;
+    font-size: 0.75rem;
+    color: var(--text-dark);
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+    line-height: 1.1;
+    transition: all 0.3s ease;
+}
+
+.social-platform-card:hover .platform-name {
+    color: var(--gold-glow);
+}
+
+/* Platform-specific icon colors on hover */
+.social-platform-card.linkedin:hover i {
+    color: #0077b5;
+}
+
+.social-platform-card.github:hover i {
+    color: #333;
+}
+
+.social-platform-card.itch:hover i {
+    color: #fa5c5c;
+}
+
+.social-platform-card.twitter:hover i {
+    color: #1da1f2;
+}
+
+.social-platform-card.instagram:hover i {
+    color: #e4405f;
+}
+
+.social-platform-card.wordpress:hover i {
+    color: #21759b;
+}
+
+/* Discord Community Callout */
+.community-callout {
+    background: linear-gradient(135deg, #5865F2 0%, #4752C4 100%);
+    border-radius: 20px;
+    padding: 3rem;
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    box-shadow: 0 8px 20px rgba(88, 101, 242, 0.3);
+    color: white;
+}
+
+.callout-icon {
+    font-size: 5rem;
+    color: white;
+    opacity: 0.9;
+}
+
+.callout-content h3 {
+    font-family: 'Quintessential', cursive;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.callout-content p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    opacity: 0.95;
+}
+
+.discord-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: white;
+    color: #5865F2;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-family: 'Quintessential', cursive;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all var(--transition-speed);
+}
+
+.discord-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Contact Info */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--hover-bg);
+    border: 2px solid var(--parchment-dark);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+    border-color: var(--gold-glow);
+    box-shadow: 0 4px 8px var(--shadow);
+}
+
+.contact-item i {
+    color: var(--gold-glow);
+    font-size: 1.2rem;
+    width: 20px;
+}
+
+.social-links h3 {
+    font-family: 'Cinzel', serif;
+    color: var(--red-theme);
+    margin-bottom: 1rem;
+}
+
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.social-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: var(--hover-bg);
+    border: 2px solid var(--parchment-dark);
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.social-link:hover {
+    border-color: var(--gold-glow);
+    background: var(--gold-glow);
+    color: var(--red-theme);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px var(--shadow);
+}
+
+.social-link i {
+    font-size: 1.5rem;
+}
+
+/* Contact Content */
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+/* Mobile and touch-friendly behavior */
+@media (max-width: 768px) {
+    /* Stack contact buttons and appearances vertically on mobile */
+    .contact-top-section {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .contact-methods-wrapper {
+        min-width: unset;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    /* On mobile, center the contact buttons horizontally */
+    .contact-method-selector {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        gap: 0.8rem;
+    }
+
+    .contact-method-selector .method-btn {
+        flex: 0 0 auto;
+        min-width: 100px;
+        font-size: 0.85rem;
+        padding: 0.6rem 0.8rem;
+    }
+
+    /* Hide desktop gallery on mobile */
+    .desktop-only {
+        display: none !important;
+    }
+
+    /* Show mobile gallery at bottom on mobile */
+    .mobile-only {
+        display: block !important;
+        margin-top: 2rem;
+        width: 100%;
+    }
+
+    /* Hide desktop form layout on mobile */
+    .desktop-form-layout {
+        display: none !important;
+    }
+
+    /* Show mobile form layout on mobile */
+    .mobile-form-layout {
+        display: block !important;
+    }
+
+    /* Mobile form questions */
+    .mobile-question {
+        display: none !important;
+    }
+
+    .mobile-question.active {
+        display: block !important;
+    }
+
+    /* Mobile contact inputs */
+    .quest-contact-inputs.horizontal {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* Social media buttons - stack in 2 rows on mobile */
+    .social-platforms-grid {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        max-width: 100%;
+    }
+
+    .social-platform-card {
+        flex: 0 0 calc(33.333% - 0.4rem);
+        min-width: 0;
+    }
+
+    .media-grid {
+        height: 400px;
+        /* On mobile, show items in a more accessible way */
+    }
+
+    .media-item {
+        /* Make items more touch-friendly on mobile */
+        min-height: 200px;
+        cursor: pointer;
+        pointer-events: none; /* Disable individual item clicks on mobile */
+        touch-action: none; /* Disable touch gestures on mobile */
+        transition: none !important; /* Disable all transitions on mobile */
+        animation: none !important; /* Disable all animations on mobile */
+    }
+
+    /* Disable ALL hover effects on mobile to prevent horizontal accordion */
+    .media-grid:hover .media-item {
+        transform: none !important;
+    }
+
+    .media-grid:hover::before {
+        opacity: 0 !important;
+    }
+
+    /* Disable ALL hover effects on mobile - comprehensive */
+    .media-grid:hover .media-item:hover {
+        transform: none !important;
+        background: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Disable scroll-active effects on mobile */
+    .media-grid.scroll-active .media-item {
+        transform: none !important;
+    }
+
+    /* On mobile, show all items fanned out by default for better interaction */
+    .media-grid.mobile-active .media-item:nth-child(1) {
+        transform: translate(-50%, -50%) rotate(-3deg) translateY(0px) !important;
+        z-index: 7;
+        transition: none !important;
+        animation: none !important;
+    }
+    .media-grid.mobile-active .media-item:nth-child(2) {
+        transform: translate(-50%, -50%) rotate(2deg) translateY(10px) !important;
+        z-index: 6;
+        transition: none !important;
+        animation: none !important;
+    }
+    .media-grid.mobile-active .media-item:nth-child(3) {
+        transform: translate(-50%, -50%) rotate(-2deg) translateY(20px) !important;
+        z-index: 5;
+        transition: none !important;
+        animation: none !important;
+    }
+    .media-grid.mobile-active .media-item:nth-child(4) {
+        transform: translate(-50%, -50%) rotate(3deg) translateY(30px) !important;
+        z-index: 4;
+        transition: none !important;
+        animation: none !important;
+    }
+    .media-grid.mobile-active .media-item:nth-child(5) {
+        transform: translate(-50%, -50%) rotate(-2deg) translateY(40px) !important;
+        z-index: 3;
+        transition: none !important;
+        animation: none !important;
+    }
+    .media-grid.mobile-active .media-item:nth-child(6) {
+        transform: translate(-50%, -50%) rotate(2deg) translateY(50px) !important;
+        z-index: 2;
+        transition: none !important;
+        animation: none !important;
+    }
+    .media-grid.mobile-active .media-item:nth-child(7) {
+        transform: translate(-50%, -50%) rotate(-3deg) translateY(60px) !important;
+        z-index: 1;
+        transition: none !important;
+        animation: none !important;
+    }
+
+    /* Individual item selection on mobile */
+    .media-grid.mobile-active .media-item.selected {
+        transform: translate(-50%, -50%) translateX(0px) rotate(0deg) scale(1.1) !important;
+        z-index: 100;
+    }
+}
+
+/* Scroll navigation states */
+.media-grid.scroll-active .media-item:nth-child(1) {
+    transform: translate(-50%, -50%) translateX(-300px) rotate(-8deg) scale(0.95);
+    z-index: 20;
+}
+.media-grid.scroll-active .media-item:nth-child(2) {
+    transform: translate(-50%, -50%) translateX(-180px) rotate(-5deg) scale(0.95);
+    z-index: 20;
+}
+.media-grid.scroll-active .media-item:nth-child(3) {
+    transform: translate(-50%, -50%) translateX(-90px) rotate(-2deg) scale(0.95);
+    z-index: 20;
+}
+.media-grid.scroll-active .media-item:nth-child(4) {
+    transform: translate(-50%, -50%) translateX(0px) rotate(0deg) scale(1);
+    z-index: 20;
+}
+.media-grid.scroll-active .media-item:nth-child(5) {
+    transform: translate(-50%, -50%) translateX(90px) rotate(2deg) scale(0.95);
+    z-index: 20;
+}
+.media-grid.scroll-active .media-item:nth-child(6) {
+    transform: translate(-50%, -50%) translateX(180px) rotate(5deg) scale(0.95);
+    z-index: 20;
+}
+.media-grid.scroll-active .media-item:nth-child(7) {
+    transform: translate(-50%, -50%) translateX(300px) rotate(8deg) scale(0.95);
+    z-index: 20;
+}

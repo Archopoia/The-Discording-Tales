@@ -1,0 +1,35 @@
+{
+  "name": "tdt-web-character-sheet",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "node tools/build_rules_lore.js && node tools/build_zine.js && node tools/build_html.js && node tools/build_css.js && node tools/build_i18n.js && tsc && vite build && vite build --config vite.main-site.config.ts && vite build --config vite.play-webllm.config.ts",
+    "build:rules": "node tools/build_rules_lore.js",
+    "build:zine": "node tools/build_zine.js",
+    "build:html": "node tools/build_html.js",
+    "build:css": "node tools/build_css.js",
+    "build:i18n": "node tools/build_i18n.js",
+    "build:images": "node tools/optimize_entrance_images.js",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@mlc-ai/web-llm": "^0.2.80",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.9",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.17",
+    "marked": "^9.1.6",
+    "postcss": "^8.4.33",
+    "sharp": "^0.34.5",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.1.0"
+  }
+}

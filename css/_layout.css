@@ -1,0 +1,917 @@
+/* ========================================
+   Skip Link (Accessibility)
+   ======================================== */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--tdt-burgundy);
+    color: var(--tdt-cream);
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 10000;
+    border-radius: var(--radius-sm);
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+.screen-reader-text {
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+}
+
+/* ========================================
+   Header & Navigation
+   ======================================== */
+.site-header {
+    position: relative;
+    z-index: 100;
+    margin-bottom: var(--spacing-md);
+}
+
+.header-bg {
+    /* Multi-layer background: map image + gradient overlay for readability */
+    background: 
+        linear-gradient(
+            to bottom,
+            rgba(74, 24, 24, 0.75) 0%,
+            rgba(58, 20, 20, 0.6) 50%,
+            rgba(74, 24, 24, 0.85) 100%
+        ),
+        url('../assets/images/cropped-site-background-1.jpg');
+    background-repeat: no-repeat, no-repeat;
+    background-position: center center, center top;
+    background-size: cover, cover;
+    background-attachment: fixed, fixed;
+    padding: var(--spacing-md) var(--spacing-md);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+}
+
+/* Top row: galleries (left) | symbol & titles (center) | SoundCloud (right) */
+.header-top-row {
+    display: grid;
+    grid-template-columns: 1fr minmax(560px, 1fr) 1fr;
+    gap: var(--spacing-md);
+    align-items: start;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.header-top-row .site-branding {
+    grid-column: 2;
+    min-width: 560px;
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    justify-self: center;
+    box-sizing: border-box;
+}
+
+.header-top-row .galleries-cycling-slot {
+    position: fixed;
+    top: var(--spacing-md, 1rem);
+    left: var(--spacing-md, 1rem);
+    z-index: 1000;
+    min-height: 200px;
+    min-width: 200px;
+    text-align: left;
+    /* Ensure the whole column area is hoverable to pause cycling */
+    width: auto;
+}
+
+.header-top-row .galleries-cycling-slot .gallery-carousel--small {
+    max-width: 200px;
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.header-top-row .galleries-cycling-slot .gallery-carousel--small .carousel-wrapper {
+    aspect-ratio: 1 / 1;
+}
+
+.header-top-row .three-col-title {
+    font-size: 1rem;
+    margin: var(--spacing-xs) 0 0;
+}
+
+.header-top-row .three-col-subtitle {
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+.header-top-row .soundcloud-cycling-wrap {
+    position: fixed;
+    top: var(--spacing-md, 1rem);
+    right: var(--spacing-md, 1rem);
+    z-index: 1000;
+    max-width: 160px;
+    /* Keep a fixed-size hit area when hidden so hover can reveal the player */
+    min-width: 100px;
+    min-height: 100px;
+}
+
+/* Rounded circular container for the music player */
+.header-top-row .soundcloud-vignette {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+@keyframes tdt-soundcloud-beige-glow {
+    0%,
+    100% {
+        box-shadow:
+            0 0 0 0 rgba(245, 230, 196, 0.0),
+            0 0 10px 2px rgba(245, 230, 196, 0.14);
+    }
+    50% {
+        box-shadow:
+            0 0 18px 4px rgba(245, 230, 196, 0.32),
+            0 0 40px 10px rgba(245, 230, 196, 0.16);
+    }
+}
+
+/* While playing: keep visible + subtle beige pulsating glow every 2s */
+.header-top-row .soundcloud-cycling-wrap.soundcloud-playing .soundcloud-vignette {
+    animation: tdt-soundcloud-beige-glow 2s ease-in-out infinite;
+}
+
+/* Music note symbol centered on the circle (dark red) */
+.header-top-row .soundcloud-vignette::after {
+    content: "♪";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--tdt-dark-red);
+    font-size: 1.75rem;
+    line-height: 1;
+    pointer-events: none;
+    z-index: 2;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* When music is stopped: diagonal line through the note */
+.header-top-row .soundcloud-vignette.soundcloud-stopped::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 140%;
+    height: 3px;
+    background: var(--tdt-dark-red);
+    transform: translate(-50%, -50%) rotate(-45deg);
+    pointer-events: none;
+    z-index: 3;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.header-top-row .soundcloud-embed {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 160px;
+    height: 160px;
+    margin-left: -80px;
+    margin-top: -80px;
+}
+
+/* Transparent overlay so the entire circle toggles play / pause */
+.soundcloud-click-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 4;               /* above iframe, ♪ note (2) and stop-line (3) */
+    cursor: pointer;
+    border-radius: 50%;
+    background: transparent;
+}
+
+@media (max-width: 1024px) {
+    .header-top-row {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+
+    .header-top-row .galleries-cycling-slot {
+        order: 2;
+        min-height: 180px;
+    }
+
+    .header-top-row .site-branding {
+        order: 1;
+        min-width: auto;
+    }
+
+    .header-top-row .soundcloud-cycling-wrap {
+        order: 3;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+    }
+}
+
+/* Mobile: header shows only branding (title/tagline/logo); gallery relocated by JS, SoundCloud fixed bottom-right */
+@media screen and (max-width: 768px) {
+    .header-bg {
+        background-attachment: scroll;
+    }
+
+    /* Hide gallery from header — JS moves it before the discovery section */
+    .header-top-row .galleries-cycling-slot {
+        display: none !important;
+    }
+
+    /* SoundCloud: hide from header (JS moves it to <body> for proper fixed positioning) */
+    .header-top-row .soundcloud-cycling-wrap {
+        display: none !important;
+    }
+
+    /* Branding takes full width — reset grid-column from desktop "2" to span the single column */
+    .header-top-row .site-branding {
+        grid-column: 1;
+        min-width: auto;
+        width: 100%;
+    }
+
+    .menu-toggle,
+    .tab-link,
+    .lang-btn {
+        min-height: var(--touch-min);
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    .menu-toggle {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    .lang-btn {
+        padding: var(--spacing-sm) 1rem;
+    }
+    .archive-toggle-wrap {
+        min-height: var(--touch-min);
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    /* Touch: show Kickstarter back on focus for non-hover devices */
+    .branding-flip:focus-within .branding-flip-front {
+        clip-path: circle(0% at 50% 50%);
+        opacity: 0;
+    }
+    .branding-flip:focus-within .branding-flip-back {
+        clip-path: circle(150% at 50% 50%);
+        opacity: 1;
+    }
+}
+
+/* Mobile: no fade in/out on gallery or SoundCloud — always fully visible */
+@media screen and (max-width: 768px) {
+    .galleries-cycling-slot,
+    .galleries-cycling-slot.galleries-slot-hidden {
+        opacity: 1 !important;
+        transition: none !important;
+    }
+
+    .gallery-panel,
+    .gallery-panel.active {
+        transition: none !important;
+    }
+
+    .soundcloud-cycling-wrap,
+    .soundcloud-cycling-wrap.soundcloud-hidden {
+        opacity: 1 !important;
+        transition: none !important;
+    }
+}
+
+/* Gallery when relocated outside header by mobile JS */
+.galleries-cycling-slot.mobile-relocated {
+    display: block !important;
+    position: static !important;
+    text-align: center;
+    padding: var(--spacing-md, 1rem) var(--spacing-sm, 0.5rem);
+    min-height: auto;
+    min-width: auto;
+    width: 100%;
+    z-index: auto;
+}
+
+.galleries-cycling-slot.mobile-relocated .gallery-carousel--small {
+    max-width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.galleries-cycling-slot.mobile-relocated .three-col-title,
+.galleries-cycling-slot.mobile-relocated .three-col-subtitle {
+    text-align: center;
+}
+
+/* SoundCloud when relocated to <body> by mobile JS — fixed bottom-right */
+.soundcloud-cycling-wrap.mobile-relocated {
+    display: block !important;
+    position: fixed !important;
+    top: auto !important;
+    bottom: var(--spacing-md, 1rem);
+    right: var(--spacing-md, 1rem);
+    left: auto;
+    z-index: 1000;
+    max-width: 160px;
+    min-width: 100px;
+    min-height: 100px;
+    opacity: 1 !important;
+    transition: none !important;
+}
+
+/* Relocated SoundCloud: keep circular vignette + child styles (no longer inside .header-top-row) */
+.soundcloud-cycling-wrap.mobile-relocated .soundcloud-vignette {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.soundcloud-cycling-wrap.mobile-relocated.soundcloud-playing .soundcloud-vignette {
+    animation: tdt-soundcloud-beige-glow 2s ease-in-out infinite;
+}
+
+.soundcloud-cycling-wrap.mobile-relocated .soundcloud-vignette::after {
+    content: "♪";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--tdt-dark-red);
+    font-size: 1.75rem;
+    line-height: 1;
+    pointer-events: none;
+    z-index: 2;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.soundcloud-cycling-wrap.mobile-relocated .soundcloud-vignette.soundcloud-stopped::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 140%;
+    height: 3px;
+    background: var(--tdt-dark-red);
+    transform: translate(-50%, -50%) rotate(-45deg);
+    pointer-events: none;
+    z-index: 3;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.soundcloud-cycling-wrap.mobile-relocated .soundcloud-embed {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 160px;
+    height: 160px;
+    margin-left: -80px;
+    margin-top: -80px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .header-top-row .soundcloud-cycling-wrap.soundcloud-playing .soundcloud-vignette {
+        animation: none;
+    }
+}
+
+/* Decorative container with ornamental borders */
+.decorated-container {
+    position: relative;
+    /* Multi-layer shadow for depth */
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4)) 
+            drop-shadow(0 8px 24px rgba(90, 31, 31, 0.3))
+            drop-shadow(0 0 40px rgba(245, 230, 196, 0.1));
+}
+
+.header-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(
+            ellipse at center top,
+            rgba(245, 230, 196, 0.15) 0%,
+            transparent 60%
+        );
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Ornamental border decoration overlay removed - using pure CSS gradients instead */
+
+
+.site-branding {
+    position: relative;
+    z-index: 2;
+}
+
+.site-logo {
+    max-width: 100px;
+    height: auto;
+    margin: 0 auto var(--spacing-md);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+    animation: logo-idle 4s ease-in-out infinite;
+}
+
+/* Logo idle: 1s clockwise, 1s counter-clockwise, repeat */
+@keyframes logo-idle {
+    0%   { transform: rotate(0deg); }
+    50%  { transform: rotate(180deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* Sped-up burst when switching tabs (applied by JS) */
+.site-logo.logo-spin-cw {
+    animation: logo-burst-cw 2s ease-out;
+}
+.site-logo.logo-spin-ccw {
+    animation: logo-burst-ccw 2s ease-out;
+}
+@keyframes logo-burst-cw {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(720deg); }
+}
+@keyframes logo-burst-ccw {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(-720deg); }
+}
+
+.site-tagline {
+    max-width: 75ch;
+    margin: 0 auto var(--spacing-xs);
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.site-tagline-muted {
+    font-size: 1rem;
+    color: var(--tdt-beige-warm);
+}
+
+.site-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.site-title a {
+    color: var(--tdt-cream);
+    text-decoration: none;
+}
+
+.site-genre {
+    font-size: 1.1rem;
+    color: var(--tdt-beige-warm);
+    font-style: italic;
+    max-width: 75ch;
+    margin: 0 auto;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* ========================================
+   Branding radial fade: hover logo → show Kickstarter CTA in oval
+   ======================================== */
+.branding-flip {
+    min-height: 320px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.branding-flip-inner {
+    position: relative;
+    width: 100%;
+    min-height: 320px;
+}
+
+.branding-flip-front,
+.branding-flip-back {
+    position: absolute;
+    inset: 0;
+    transition: clip-path 0.6s ease, opacity 0.6s ease;
+}
+
+.branding-flip-front {
+    z-index: 2;
+    clip-path: circle(150% at 50% 50%);
+    opacity: 1;
+}
+
+.branding-flip:hover .branding-flip-front {
+    clip-path: circle(0% at 50% 50%);
+    opacity: 0;
+}
+
+.branding-flip-back {
+    z-index: 1;
+    clip-path: circle(0% at 50% 50%);
+    opacity: 0;
+}
+
+.branding-flip:hover .branding-flip-back {
+    clip-path: circle(150% at 50% 50%);
+    opacity: 1;
+}
+
+.branding-flip-back-oval {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    border: 4px solid var(--tdt-beige-warm);
+    box-shadow:
+        0 0 0 2px var(--tdt-burgundy-warm),
+        0 0 0 4px var(--tdt-beige-warm),
+        0 0 60px 8px rgba(212, 197, 168, 0.45),
+        inset 0 0 60px 15px rgba(74, 24, 24, 0.6);
+}
+
+.branding-flip-back-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--spacing-md);
+    background-image:
+        linear-gradient(135deg, rgba(84, 32, 32, 0.5) 0%, rgba(46, 28, 28, 0.3) 40%, rgba(45, 28, 28, 0.88) 70%, rgba(54, 0, 1, 0.92) 100%),
+        url('../assets/images/kickstarter-copy.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.branding-flip-headline {
+    font-family: var(--font-heading);
+    font-size: clamp(1rem, 2.5vw, 1.35rem);
+    font-weight: 700;
+    color: var(--tdt-cream);
+    margin: 0 0 var(--spacing-xs);
+    text-shadow: 0 0 4px rgba(0, 0, 0, 1), 0 1px 4px rgba(0, 0, 0, 1), 0 3px 10px rgba(0, 0, 0, 0.9);
+}
+
+.branding-flip-cta {
+    margin: var(--spacing-xs) 0;
+}
+
+.branding-flip-subline {
+    font-size: clamp(0.85rem, 1.8vw, 1rem);
+    font-style: italic;
+    color: var(--tdt-beige-warm);
+    margin: 0;
+    line-height: 1.6;
+    text-shadow: 0 0 4px rgba(0, 0, 0, 1), 0 1px 4px rgba(0, 0, 0, 1), 0 3px 10px rgba(0, 0, 0, 0.9);
+}
+
+.main-navigation {
+    background: 
+        linear-gradient(to bottom, var(--tdt-dark-red) 0%, var(--tdt-burgundy-warm) 100%),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 20px,
+            rgba(212, 197, 168, 0.05) 20px,
+            rgba(212, 197, 168, 0.05) 40px
+        );
+    border-top: 4px double var(--tdt-beige-warm);
+    border-bottom: 4px double var(--tdt-beige-warm);
+    padding: var(--spacing-sm) 0;
+    position: relative;
+    z-index: 99;
+    /* Multi-layer ornate shadows */
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.3),
+        0 4px 16px rgba(90, 31, 31, 0.4),
+        inset 0 2px 0 rgba(245, 230, 196, 0.15),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.3);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+    position: relative;
+}
+
+/* Decorative navigation border overlay */
+.main-navigation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--tdt-gold) 20%,
+        var(--tdt-gold) 80%,
+        transparent
+    );
+    opacity: 0.6;
+}
+
+.main-navigation::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--tdt-gold) 20%,
+        var(--tdt-gold) 80%,
+        transparent
+    );
+    opacity: 0.4;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    padding: 0 var(--spacing-md);
+}
+
+.menu-item {
+    margin: 0;
+}
+
+.tab-link {
+    display: block;
+    padding: var(--spacing-xs) var(--spacing-md);
+    color: var(--tdt-beige-warm);
+    font-family: var(--font-heading);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-normal);
+    position: relative;
+}
+
+.tab-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 80%;
+    height: 2px;
+    background: var(--tdt-beige-warm);
+    transition: transform var(--transition-normal);
+    box-shadow: 0 0 8px rgba(232, 221, 208, 0.5);
+}
+
+.tab-link:hover,
+.tab-link:focus {
+    color: var(--tdt-cream);
+    background: 
+        linear-gradient(135deg, rgba(232, 221, 208, 0.3), rgba(245, 230, 196, 0.2)),
+        rgba(232, 221, 208, 0.15);
+    box-shadow: 
+        0 0 20px rgba(232, 221, 208, 0.5),
+        0 0 40px rgba(245, 230, 196, 0.3),
+        inset 0 1px 2px rgba(255, 248, 232, 0.4),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.2);
+    text-shadow: 
+        0 0 8px rgba(255, 248, 232, 0.6),
+        0 0 16px rgba(245, 230, 196, 0.4),
+        2px 2px 4px rgba(0, 0, 0, 0.3);
+    transform: translateY(-1px);
+}
+
+.tab-link.active {
+    color: var(--tdt-cream);
+    background: rgba(232, 221, 208, 0.35);
+    text-shadow: 0 0 10px rgba(255, 248, 232, 0.5);
+    box-shadow: inset 0 2px 4px rgba(255, 248, 232, 0.3);
+}
+
+.tab-link.active::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+.menu-toggle {
+    display: none;
+    background: var(--tdt-burgundy);
+    color: var(--tdt-cream);
+    border: 2px solid var(--tdt-beige);
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-family: var(--font-heading);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    margin: 0 auto var(--spacing-sm);
+    transition: all var(--transition-normal);
+}
+
+.menu-toggle:hover,
+.menu-toggle:focus {
+    box-shadow: 0 0 15px rgba(217, 205, 184, 0.5);
+    text-shadow: 0 0 8px rgba(255, 245, 221, 0.5);
+}
+
+.language-toggle {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-top: 1px solid rgba(217, 205, 184, 0.3);
+}
+
+.lang-btn {
+    background: transparent;
+    color: var(--tdt-beige-warm);
+    border: 1px solid var(--tdt-beige-warm);
+    padding: 4px 12px;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-normal);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.lang-btn:hover,
+.lang-btn.active {
+    background: var(--tdt-beige-warm);
+    color: var(--tdt-burgundy-warm);
+    border-color: var(--tdt-beige-warm);
+    box-shadow: 
+        0 0 12px rgba(232, 221, 208, 0.6),
+        inset 0 1px 3px rgba(255, 248, 232, 0.4);
+}
+
+/* Archive toggle: show/hide archived subtabs (Cosmology, World Context, Character Creation, Progression, Combat, Magic) */
+.archive-toggle-wrap {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-top: 1px solid rgba(217, 205, 184, 0.3);
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--tdt-beige-warm);
+    white-space: nowrap;
+}
+.archive-toggle-wrap:hover {
+    color: var(--tdt-cream);
+}
+.archive-toggle {
+    margin: 0;
+    cursor: pointer;
+}
+
+/* When archived sections are hidden, hide .archived-section links and panels */
+body.archived-hidden .archived-section {
+    display: none !important;
+}
+
+/* ========================================
+   Tab Content System
+   ======================================== */
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease-in;
+    min-height: 60vh;
+    position: relative;
+    z-index: 2;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+@media (max-width: 360px) {
+    .container {
+        padding-left: var(--spacing-sm);
+        padding-right: var(--spacing-sm);
+    }
+}
+
+/* ========================================
+   COPYRIGHT PROTECTION
+   ======================================== */
+
+/* Prevent text selection on protected game content */
+.section-content,
+.lore-section,
+.rules-content,
+.discovery-unified-section {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Allow selection on interactive/input elements inside protected areas */
+.section-content input,
+.section-content textarea,
+.section-content [contenteditable="true"],
+.rules-content input,
+.rules-content textarea {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+/* Prevent image dragging */
+img {
+    -webkit-user-drag: none;
+    pointer-events: auto;
+}
+
+/* Print protection: show copyright watermark when printing */
+@media print {
+    body::before {
+        content: "© 2020-2026 The Discording Tales / Des Récits Discordants — All Rights Reserved — Unauthorized reproduction prohibited";
+        display: block;
+        text-align: center;
+        font-size: 10pt;
+        color: #740000;
+        padding: 10px;
+        border-bottom: 2px solid #740000;
+        margin-bottom: 20px;
+    }
+    body::after {
+        content: "This document is copyrighted. Reproduction, distribution, or derivative works are prohibited without express written permission.";
+        display: block;
+        text-align: center;
+        font-size: 9pt;
+        color: #740000;
+        padding: 10px;
+        border-top: 2px solid #740000;
+        margin-top: 20px;
+    }
+    /* Hide interactive elements in print */
+    .soundcloud-cycling-wrap,
+    .cta-button,
+    nav,
+    .tab-nav {
+        display: none !important;
+    }
+}
+
+/* ========================================
+   FOOTER COPYRIGHT NOTICE
+   ======================================== */
+.copyright-notice {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(244, 225, 169, 0.2);
+    text-align: center;
+}
+
+.copyright-notice p {
+    font-size: 0.75rem;
+    color: rgba(244, 225, 169, 0.7);
+    line-height: 1.5;
+    margin: 0.25rem 0;
+}
+
+.copyright-notice .copyright-legal {
+    font-size: 0.65rem;
+    color: rgba(244, 225, 169, 0.4);
+    max-width: 600px;
+    margin: 0.5rem auto 0;
+}

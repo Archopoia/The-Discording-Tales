@@ -1,0 +1,1487 @@
+/* ========================================
+   WORKSHOP SECTION & SEAL BUTTON
+   Game Development Workshop Service Page
+   ======================================== */
+
+/* Workshop Tab Background Override - Applied when workshop is active */
+.sheet-content.workshop-active {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(100, 48, 48, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(100, 48, 48, 0.3) 0%, transparent 50%),
+        linear-gradient(135deg, var(--red-theme-alpha) 0%, var(--red-theme) 100%) !important;
+    box-shadow: inset 0 0 0 2px var(--border-tan) !important;
+}
+
+/* Hatched lines overlay like character header */
+.sheet-content.workshop-active::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background:
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 20px,
+            rgba(184, 134, 11, 0.1) 20px,
+            rgba(184, 134, 11, 0.1) 21px
+        ) !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+    display: block !important;
+}
+
+/* Inner border frame like character header */
+.sheet-content.workshop-active::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 1rem !important;
+    left: 1rem !important;
+    right: 1rem !important;
+    bottom: 1rem !important;
+    border: 2px solid var(--border-brown) !important;
+    border-radius: 8px !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+    display: block !important;
+}
+
+/* Ensure seal button is always visible on all tabs */
+.character-sheet {
+    overflow: visible !important;
+}
+
+#workshop.tab-content {
+    background: transparent;
+    padding: 2rem;
+    min-height: calc(100vh - 250px);
+    position: relative;
+    z-index: 2;
+    animation: workshop-entrance 1s ease-out;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+@keyframes workshop-entrance {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Workshop Seal Button - Moves with Character Sheet */
+.workshop-seal-button {
+    position: absolute;
+    left: -70px;
+    top: 310px;
+    width: 140px;
+    height: 140px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10003; /* Above vignette effect (10002) */
+    pointer-events: auto;
+    user-select: none;
+    -webkit-user-select: none;
+    background: transparent;
+    opacity: 0; /* Hidden initially until entrance screen is dismissed */
+    transition: opacity 1s ease-in-out;
+}
+
+/* Show button after entrance */
+.workshop-seal-button.visible {
+    opacity: 1;
+}
+
+/* Background image layer - darkened */
+.workshop-seal-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../Assets/sceal.png') center center / cover no-repeat;
+    border-radius: 50%;
+    filter: brightness(1.0) saturate(0.5) drop-shadow(0 8px 12px rgba(0, 0, 0, 0.6)) drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
+    z-index: -1;
+    transition: filter 0.3s ease-out; /* Smooth shadow transition */
+}
+
+
+
+.seal-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    position: relative;
+}
+
+.seal-icon {
+    font-size: 2.5rem;
+    color: var(--gold-glow);
+    margin-bottom: 5px;
+    text-shadow:
+        0 0 10px rgba(255, 215, 0, 0.6),
+        0 0 20px rgba(255, 215, 0, 0.4),
+        2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.seal-text {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.seal-line1,
+.seal-line2 {
+    display: block;
+    font-family: 'Quintessential', cursive;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-cream);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1;
+    text-shadow:
+        1px 1px 2px rgba(0, 0, 0, 0.8),
+        0 0 5px rgba(255, 215, 0, 0.3);
+}
+
+.seal-ribbon {
+    display: none; /* Hidden since sceal.png has its own design */
+}
+
+.workshop-seal-button:hover {
+    filter: brightness(1.1);
+}
+
+.workshop-seal-button:active {
+    filter: brightness(0.95);
+}
+
+/* Remove shadow when pressing */
+.workshop-seal-button.pressing::before {
+    filter: brightness(1.0) saturate(0.5) !important; /* Remove drop-shadow during press */
+}
+
+/* Disable button when on workshop tab (invisible and unclickable) */
+.workshop-seal-button.on-workshop-tab {
+    pointer-events: none !important;
+    cursor: default !important;
+}
+
+/* Constant pulsating glow behind button (always visible) */
+.workshop-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+        rgba(255, 239, 201, 0.8) 0%,
+        rgba(255, 239, 161, 0.6) 30%,
+        rgba(255, 245, 180, 0.4) 50%,
+        rgba(255, 235, 198, 0.2) 70%,
+        transparent 85%);
+    animation: constantGlowPulse 2s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -2; /* Behind the PNG image (which is at -1) */
+    filter: blur(8px);
+}
+
+@keyframes constantGlowPulse {
+    0%, 100% {
+        opacity: 0.7;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+}
+
+/* Pulse effect when pressing (white flash) */
+.workshop-seal-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 70%);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.workshop-seal-button.pressing::after {
+    animation: whitePulse var(--pulse-speed, 1s) ease-out infinite;
+}
+
+@keyframes whitePulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0;
+    }
+    50% {
+        opacity: var(--pulse-opacity, 0.6);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(var(--pulse-scale, 1.5));
+        opacity: 0;
+    }
+}
+
+
+
+/* ========================================
+   WORKSHOP SECTION CONTENT
+   ======================================== */
+
+/* Workshop Hero - Enhanced with animations */
+.workshop-hero {
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.workshop-hero::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(184, 134, 11, 0.1) 0%, transparent 70%);
+    animation: pulse-glow 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.6; transform: translate(-50%, -50%) scale(1.2); }
+}
+
+.workshop-badge {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1rem;
+    background: var(--gold-glow);
+    border: 2px solid var(--red-theme);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 2px var(--gold-glow),
+        0 0 15px rgba(184, 134, 11, 0.5);
+    position: relative;
+    z-index: 1;
+    animation: scale-badge 3s ease-in-out infinite;
+}
+
+@keyframes scale-badge {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
+.workshop-badge i {
+    font-size: 2.5rem;
+    color: var(--red-theme);
+    animation: icon-rotate 20s linear infinite;
+}
+
+@keyframes icon-rotate {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    25% { transform: rotate(-5deg) scale(1.05); }
+    50% { transform: rotate(0deg) scale(1); }
+    75% { transform: rotate(5deg) scale(1.05); }
+}
+
+.workshop-title {
+    font-family: 'Quintessential', cursive;
+    font-size: 2.5rem;
+    color: var(--gold-glow);
+    margin-bottom: 0.5rem;
+    text-shadow:
+        2px 2px 4px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(184, 134, 11, 0.3);
+    position: relative;
+    z-index: 1;
+    animation: title-glow 3s ease-in-out infinite;
+}
+
+@keyframes title-glow {
+    0%, 100% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 20px rgba(184, 134, 11, 0.3); }
+    50% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(184, 134, 11, 0.5); }
+}
+
+.workshop-subtitle {
+    font-family: 'Quintessential', cursive;
+    font-size: 1.2rem;
+    color: var(--text-cream);
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+    animation: fade-in-up 1s ease-out;
+}
+
+@keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Workshop Mission - Parchment style like other tabs */
+.workshop-mission {
+    background: linear-gradient(135deg, var(--hover-bg) 0%, var(--parchment-aged) 100%);
+    border: 2px solid var(--gold-glow);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 2px var(--gold-glow),
+        0 4px 8px rgba(0, 0, 0, 0.2),
+        inset 0 0 0 1px var(--border-tan);
+    position: relative;
+    overflow: hidden;
+    animation: fade-in-up 0.8s ease-out;
+}
+
+.workshop-mission::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg,
+        transparent 30%,
+        rgba(184, 134, 11, 0.3) 50%,
+        transparent 70%);
+    background-size: 200% 200%;
+    border-radius: 12px;
+    animation: border-flow 3s linear infinite;
+    z-index: -1;
+}
+
+@keyframes border-flow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+.workshop-mission h3 {
+    font-family: 'Quintessential', cursive;
+    font-size: 2rem;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.mission-benefits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.8rem;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    opacity: 0;
+    animation: fade-in-left 0.6s ease-out forwards;
+}
+
+@keyframes fade-in-left {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.benefit-item:nth-child(1) { animation-delay: 0.1s; }
+.benefit-item:nth-child(2) { animation-delay: 0.2s; }
+.benefit-item:nth-child(3) { animation-delay: 0.3s; }
+.benefit-item:nth-child(4) { animation-delay: 0.4s; }
+
+.benefit-item:hover {
+    background: rgba(184, 134, 11, 0.1);
+    transform: translateX(5px);
+}
+
+/* All benefit icons in burgundy/red theme */
+.benefit-item i {
+    font-size: 1.3rem;
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+    color: var(--red-theme);
+}
+
+.benefit-item:hover i {
+    transform: scale(1.2) rotate(10deg);
+    filter: drop-shadow(0 0 8px rgba(184, 134, 11, 0.6));
+}
+
+.benefit-item p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--text-dark);
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.benefit-item:hover p {
+    color: var(--red-theme);
+}
+
+/* Section Dividers - Enhanced with decorative elements */
+.section-divider {
+    font-family: 'Quintessential', cursive;
+    font-size: 1.8rem;
+    color: var(--gold-glow);
+    text-align: center;
+    margin: 2.5rem 0 1.5rem 0;
+    padding: 1rem 0;
+    position: relative;
+    z-index: 2;
+    overflow: visible;
+}
+
+.section-divider::before,
+.section-divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 20%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold-glow), transparent);
+    transform: translateY(-50%);
+}
+
+.section-divider::before {
+    left: 0;
+    background: linear-gradient(to right, transparent, var(--gold-glow) 80%);
+}
+
+.section-divider::after {
+    right: 0;
+    background: linear-gradient(to left, transparent, var(--gold-glow) 80%);
+}
+
+.section-divider i {
+    margin-right: 0.5rem;
+    font-size: 1.5rem;
+    display: inline-block;
+    animation: icon-pulse 2s ease-in-out infinite;
+    color: var(--gold-glow);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+@keyframes icon-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Formats Grid */
+.formats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 320px); /* Fixed width, auto-fit for columns */
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+    perspective: 1000px;
+    justify-content: center; /* Center the grid */
+}
+
+/* Format Cards - Exact copy of expertise-card structure */
+.format-card {
+    position: relative;
+    cursor: pointer;
+    height: 400px;
+    perspective: 1000px;
+    transition: height 0.6s ease;
+}
+
+/* Format card-inner - rotates on hover */
+.format-card .card-inner {
+    width: 100%;
+    height: 100%;
+    background: var(--parchment-aged);
+    border: 3px solid var(--border-dark);
+    border-radius: 15px;
+    padding: 1.5rem;
+    transition: all 0.6s ease;
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.2),
+        inset 0 0 0 2px var(--border-tan);
+    position: relative;
+    transform-style: preserve-3d;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Theme-specific backgrounds for unflipped format cards */
+.format-card.theme-red .card-inner {
+    background: var(--red-theme);
+    border-color: var(--red-theme);
+}
+
+.format-card.theme-yellow .card-inner {
+    background: var(--yellow-theme);
+    border-color: var(--yellow-theme);
+}
+
+.format-card.theme-green .card-inner {
+    background: var(--green-theme);
+    border-color: var(--green-theme);
+}
+
+.format-card.theme-teal .card-inner {
+    background: var(--teal-theme);
+    border-color: var(--teal-theme);
+}
+
+.format-card:hover .card-inner,
+.format-card.flipped .card-inner {
+    transform: rotateY(180deg) scale(1.05);
+    background: var(--parchment-aged);
+    border-color: var(--border-dark);
+    box-shadow:
+        0 0 25px rgba(0, 0, 0, 0.2),
+        0 0 15px var(--gold-glow),
+        inset 0 0 0 2px var(--border-tan);
+}
+
+/* Card Front and Back Faces */
+.format-card .card-front {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+    backface-visibility: hidden;
+    transform: rotateY(0deg);
+}
+
+.format-card .card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    opacity: 0;
+    padding: 1.5rem;
+    overflow-y: auto;
+    transition: opacity 0.3s ease;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    border-radius: 15px;
+    background: var(--hover-bg);
+}
+
+.format-card:hover .card-front,
+.format-card.flipped .card-front {
+    opacity: 0;
+}
+
+.format-card:hover .card-back,
+.format-card.flipped .card-back {
+    opacity: 1;
+}
+
+/* Expand card when flipped to accommodate content */
+.format-card.flipped {
+    height: auto;
+    min-height: 500px;
+}
+
+.format-card.flipped .card-inner {
+    height: auto;
+    min-height: 500px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 2rem;
+}
+
+/* Front face text colors for colored backgrounds */
+.format-card .card-front h4 {
+    color: var(--text-cream);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.format-card .card-front .format-icon {
+    background: var(--text-cream);
+    border: 3px solid var(--border-dark);
+}
+
+.format-card .card-front .format-badge {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.format-card .card-back p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    position: relative;
+    padding-left: 1.2rem;
+    width: 100%;
+}
+
+.format-card .card-back p:last-child {
+    margin-bottom: 0;
+}
+
+.format-card .card-back p::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--red-theme);
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+
+.format-card .card-back .format-details {
+    background: linear-gradient(135deg, rgba(184, 134, 11, 0.1), rgba(139, 105, 20, 0.05));
+    border-left: 3px solid var(--gold-glow);
+    padding: 0.8rem;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+}
+
+/* Format tags - matching about tab expertise-tags */
+.format-tags {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.format-tags span {
+    background: var(--red-theme);
+    color: var(--gold-glow);
+    padding: 0.3rem 0.7rem;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: 2px solid var(--border-dark);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all var(--transition-speed);
+}
+
+.format-tags span:hover {
+    background: var(--yellow-theme);
+    color: var(--text-dark);
+    transform: scale(1.1);
+}
+
+/* Tags on flipped card-back */
+.card-back .format-tags span {
+    background: var(--red-theme);
+    border: 2px solid var(--border-dark);
+    color: var(--gold-glow);
+    backdrop-filter: blur(5px);
+}
+
+.card-back .format-tags span:hover {
+    background: var(--text-cream);
+    color: var(--text-dark);
+}
+
+/* Format pricing styling */
+.format-pricing {
+    margin-top: 1rem;
+    padding: 0.8rem;
+    background: linear-gradient(135deg, rgba(184, 134, 11, 0.15), rgba(139, 105, 20, 0.1));
+    border: 2px solid var(--gold-glow);
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Quintessential', cursive;
+}
+
+.format-pricing strong {
+    color: var(--red-theme);
+    font-size: 1rem;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+.format-pricing span {
+    color: var(--text-dark);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.format-card h4 {
+    font-family: 'Quintessential', cursive;
+    font-size: 1.8rem;
+    color: var(--text-cream);
+    margin: 1.2rem 0;
+    text-align: center;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.format-card .format-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: var(--text-cream);
+    margin: 0 auto 1.5rem auto;
+    background: var(--text-cream);
+    border: 3px solid var(--border-dark);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.format-card .format-icon i {
+    font-size: 2.5rem;
+}
+
+/* Theme-specific icon colors */
+.format-card.theme-red .format-icon i {
+    color: var(--red-theme);
+}
+
+.format-card.theme-yellow .format-icon i {
+    color: var(--yellow-theme);
+}
+
+.format-card.theme-green .format-icon i {
+    color: var(--green-theme);
+}
+
+.format-card.theme-teal .format-icon i {
+    color: var(--teal-theme);
+}
+
+.format-card .format-badge {
+    display: inline-block;
+    color: var(--text-cream);
+    padding: 0.6rem 1.5rem;
+    border-radius: 15px;
+    font-family: 'Quintessential', cursive;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    border: 2px solid var(--border-dark);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Values Grid - List style with enhanced interactivity */
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.value-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.2rem;
+    background: var(--hover-bg);
+    border: 2px solid var(--border-tan);
+    border-left: 4px solid var(--red-theme);
+    border-radius: 8px;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    animation: slide-in-right 0.6s ease-out forwards;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes slide-in-right {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.value-item:nth-child(1) { animation-delay: 0.1s; }
+.value-item:nth-child(2) { animation-delay: 0.15s; }
+.value-item:nth-child(3) { animation-delay: 0.2s; }
+.value-item:nth-child(4) { animation-delay: 0.25s; }
+.value-item:nth-child(5) { animation-delay: 0.3s; }
+.value-item:nth-child(6) { animation-delay: 0.35s; }
+
+.value-item:hover {
+    background: var(--parchment-aged);
+    transform: translateX(8px);
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.2),
+        0 0 15px rgba(184, 134, 11, 0.3);
+    border-color: var(--gold-glow);
+}
+
+.value-item i {
+    font-size: 1.8rem;
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+    color: var(--red-theme);
+}
+
+.value-item:hover i {
+    transform: scale(1.2) rotate(5deg);
+    filter: drop-shadow(0 0 8px rgba(184, 134, 11, 0.6));
+}
+
+.value-item h4 {
+    font-family: 'Quintessential', cursive;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin-bottom: 0.4rem;
+}
+
+.value-item p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+/* Game Development Elements - Responsive grid layout */
+.game-elements-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns on desktop */
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+    perspective: 1000px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    justify-content: center; /* Center the grid */
+}
+
+/* Responsive breakpoints - cards maintain fixed size, just change column count */
+@media screen and (max-width: 1200px) {
+    .game-elements-grid {
+        grid-template-columns: repeat(4, 1fr); /* Keep 4 columns on laptop screens */
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .game-elements-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns on tablets */
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .game-elements-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+    }
+}
+
+.game-element {
+    position: relative;
+    cursor: pointer;
+    perspective: 1000px;
+    aspect-ratio: 1 / 1.1;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    min-height: 180px;
+}
+
+/* Game element card-inner - rotates on hover */
+.game-element .card-inner {
+    width: 100%;
+    height: 100%;
+    background: var(--parchment-aged);
+    border: 2px solid var(--border-dark);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.6s ease;
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.2),
+        inset 0 0 0 2px var(--border-tan);
+    position: relative;
+    transform-style: preserve-3d;
+    box-sizing: border-box;
+}
+
+.game-element:hover .card-inner,
+.game-element.flipped .card-inner {
+    transform: rotateY(180deg) scale(1.05);
+    box-shadow:
+        0 0 25px rgba(0, 0, 0, 0.2),
+        0 0 15px var(--gold-glow),
+        inset 0 0 0 2px var(--border-tan);
+}
+
+/* Card Front and Back Faces */
+.game-element .card-front {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+    backface-visibility: hidden;
+    transform: rotateY(0deg);
+}
+
+.game-element .card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-sizing: border-box;
+}
+
+.game-element:hover .card-front,
+.game-element.flipped .card-front {
+    opacity: 0;
+}
+
+.game-element:hover .card-back,
+.game-element.flipped .card-back {
+    opacity: 1;
+}
+
+/* Theme-specific hover backgrounds for game elements */
+.game-element.theme-red:hover .card-inner,
+.game-element.theme-red.flipped .card-inner {
+    background: var(--red-theme);
+}
+
+.game-element.theme-yellow:hover .card-inner,
+.game-element.theme-yellow.flipped .card-inner {
+    background: var(--yellow-theme);
+}
+
+.game-element.theme-green:hover .card-inner,
+.game-element.theme-green.flipped .card-inner {
+    background: var(--green-theme);
+}
+
+.game-element.theme-teal:hover .card-inner,
+.game-element.theme-teal.flipped .card-inner {
+    background: var(--teal-theme);
+}
+
+.game-element .card-back p {
+    font-size: 1.2rem;
+    line-height: 1.4;
+    color: var(--text-cream);
+    margin: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.game-element .game-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: var(--text-cream);
+    margin: 0 auto 1rem auto;
+    box-shadow:
+        0 0 15px var(--gold-glow),
+        inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.game-element.theme-red .game-icon { background: var(--red-theme); }
+.game-element.theme-yellow .game-icon { background: var(--yellow-theme); }
+.game-element.theme-green .game-icon { background: var(--green-theme); }
+.game-element.theme-teal .game-icon { background: var(--teal-theme); }
+
+.game-element .game-icon i {
+    font-size: 2.5rem;
+}
+
+.game-element h4 {
+    font-family: 'Quintessential', cursive;
+    font-size: 1.8rem;
+    color: var(--text-dark);
+    margin: 0;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Workshop Tools - 4 color-coded items */
+.tools-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+}
+
+.tool-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: var(--hover-bg);
+    padding: 0.9rem;
+    border-radius: 6px;
+    border: 2px solid var(--border-tan);
+    border-left: 4px solid var(--red-theme);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.tool-item:hover {
+    background: var(--parchment-aged);
+    transform: translateX(5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tool-item i {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    color: var(--red-theme);
+}
+
+.tool-item span {
+    font-family: 'Quintessential', cursive;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+}
+
+/* Specialized Workshops - Interactive tag style */
+.specialties-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+/* All specialty tags in burgundy with gold text */
+.specialty-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--red-theme);
+    border: 2px solid var(--border-dark);
+    border-radius: 20px;
+    padding: 0.7rem 1.3rem;
+    font-family: 'Quintessential', cursive;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--gold-glow);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    animation: bounce-in 0.6s ease-out forwards;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+@keyframes bounce-in {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(-180deg);
+    }
+    80% {
+        opacity: 1;
+        transform: scale(1.1) rotate(10deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+.specialty-tag:nth-child(1) { animation-delay: 0.1s; }
+.specialty-tag:nth-child(2) { animation-delay: 0.15s; }
+.specialty-tag:nth-child(3) { animation-delay: 0.2s; }
+.specialty-tag:nth-child(4) { animation-delay: 0.25s; }
+.specialty-tag:nth-child(5) { animation-delay: 0.3s; }
+
+.specialty-tag:hover {
+    border-color: var(--gold-glow);
+    transform: translateY(-5px) scale(1.1);
+    box-shadow:
+        0 8px 16px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(184, 134, 11, 0.5);
+    filter: brightness(1.2);
+    color: var(--text-cream);
+}
+
+.specialty-tag i {
+    color: var(--gold-glow);
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.specialty-tag:hover i {
+    transform: rotate(360deg) scale(1.2);
+    color: var(--text-cream);
+}
+
+.specialty-tag span {
+    position: relative;
+    z-index: 1;
+}
+
+/* Call to Action - Parchment style */
+.workshop-cta {
+    text-align: center;
+    background: linear-gradient(135deg, var(--hover-bg) 0%, var(--parchment-aged) 100%);
+    border: 2px solid var(--gold-glow);
+    border-radius: 12px;
+    padding: 3rem 2rem;
+    margin-top: 3rem;
+    box-shadow:
+        0 0 0 1px var(--red-theme),
+        0 0 0 2px var(--gold-glow),
+        0 4px 8px rgba(0, 0, 0, 0.2),
+        inset 0 0 0 1px var(--border-tan);
+}
+
+.workshop-cta h3 {
+    font-family: 'Quintessential', cursive;
+    font-size: 2.2rem;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.workshop-cta p {
+    font-family: 'Quintessential', cursive;
+    font-size: 1.2rem;
+    color: var(--red-theme);
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    background: linear-gradient(135deg, var(--gold-glow) 0%, var(--parchment-aged) 100%);
+    color: var(--red-theme);
+    border: 3px solid var(--red-theme);
+    border-radius: 0;
+    padding: 1.2rem 3rem;
+    font-family: 'Quintessential', cursive;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.cta-button:hover {
+    background: linear-gradient(135deg, var(--text-cream) 0%, var(--gold-glow) 100%);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow:
+        0 12px 24px rgba(0, 0, 0, 0.5),
+        0 0 40px rgba(184, 134, 11, 0.8),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    border-color: var(--red-theme);
+}
+
+.cta-button:hover::before {
+    width: 400px;
+    height: 400px;
+}
+
+.cta-button:active {
+    transform: translateY(-3px) scale(1.03);
+}
+
+.cta-button i {
+    font-size: 1.3rem;
+    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.cta-button:hover i {
+    transform: translateX(5px);
+    animation: icon-bounce 0.6s ease infinite;
+}
+
+@keyframes icon-bounce {
+    0%, 100% { transform: translateX(5px); }
+    50% { transform: translateX(10px); }
+}
+
+/* Responsive Design for Seal Button - Keep original position until mobile */
+
+/* Tablet screens - Adjust layouts */
+@media screen and (max-width: 968px) {
+    /* Workshop seal button - FIXED to screen on mobile/tablet at bottom-left corner edge (sticks and follows scroll) */
+    .workshop-seal-button {
+        position: fixed !important;
+        left: 0px !important;
+        top: auto !important;
+        bottom: 0 !important;
+        right: auto !important;
+        /* transform: none !important; */ /* REMOVED - was blocking rotation animation */
+        width: 140px !important; /* Keep original size */
+        height: 140px !important; /* Keep original size */
+        z-index: 10003 !important; /* Above vignette effect (10002) on mobile */
+    }
+
+    .seal-icon {
+        font-size: 1.8rem;
+    }
+
+    .seal-main {
+        font-size: 0.6rem;
+    }
+
+    #workshop.tab-content {
+        padding: 1.5rem 1rem;
+    }
+
+    .section-divider {
+        font-size: 1.6rem;
+    }
+
+    .formats-grid {
+        grid-template-columns: repeat(auto-fit, 300px); /* Fixed width on tablet */
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .game-elements-grid {
+        grid-template-columns: repeat(auto-fit, 200px);
+    }
+}
+
+/* Extra small mobile screens - adjust sizing */
+@media screen and (max-width: 600px) {
+    .workshop-seal-button {
+        width: 140px !important; /* Keep original size */
+        height: 140px !important; /* Keep original size */
+    }
+
+    .seal-icon {
+        font-size: 1.6rem;
+    }
+
+    .seal-line1,
+    .seal-line2 {
+        font-size: 0.55rem;
+    }
+
+    .workshop-title {
+        font-size: 1.8rem;
+    }
+
+    .workshop-subtitle {
+        font-size: 1rem;
+    }
+
+    .section-divider {
+        font-size: 1.4rem;
+        margin: 1.5rem 0 1rem 0;
+    }
+
+    .section-divider i {
+        font-size: 1.2rem;
+    }
+
+    .formats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .format-card {
+        height: 320px;
+        transition: height 0.6s ease;
+    }
+
+    .format-card .card-inner {
+        height: 100%;
+        padding: 1.2rem;
+    }
+
+    /* Expand flipped cards on mobile */
+    .format-card.flipped {
+        height: auto;
+        min-height: 400px;
+    }
+
+    .format-card.flipped .card-inner {
+        height: auto;
+        min-height: 400px;
+        padding: 1.5rem;
+    }
+
+    .format-card .format-icon {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 1rem;
+    }
+
+    .format-card .format-icon i {
+        font-size: 2rem;
+    }
+
+    .format-card h4 {
+        font-size: 1.5rem;
+    }
+
+    .format-card .card-back p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+
+    .value-item {
+        padding: 0.8rem;
+    }
+
+    .game-elements-grid {
+        gap: 0.6rem;
+        margin-bottom: 1rem;
+    }
+
+    .game-element {
+        aspect-ratio: 1 / 1.1;
+        min-height: 180px;
+    }
+
+    /* Keep icon and title sizes consistent - don't shrink */
+    .game-element .game-icon {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 1rem;
+    }
+
+    .game-element .game-icon i {
+        font-size: 2.5rem;
+    }
+
+    .game-element h4 {
+        font-size: 1.8rem;
+        text-align: center;
+        margin: 0;
+    }
+
+    .game-element .card-back p {
+        font-size: 1.2rem;
+        line-height: 1.4;
+        width: 100%;
+        text-align: center;
+    }
+
+    .tools-list {
+        grid-template-columns: 1fr;
+    }
+
+    .specialties-grid {
+        gap: 0.6rem;
+    }
+
+    .specialty-tag {
+        font-size: 0.85rem;
+        padding: 0.6rem 1rem;
+    }
+
+    #workshop.tab-content {
+        padding: 1rem 0.5rem;
+    }
+
+    .workshop-hero {
+        padding: 1.5rem 0.5rem;
+    }
+
+    .workshop-mission {
+        padding: 1.2rem;
+    }
+}
+
+
+
+

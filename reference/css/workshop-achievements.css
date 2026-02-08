@@ -1,0 +1,104 @@
+/* Workshop Card Pattern Achievements */
+/* Location: /home/hullivan/Hugues.W.B.dePingon/css/workshop-achievements.css */
+
+.workshop-achievement-notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    z-index: 10000;
+    background: linear-gradient(135deg, #1e3a5f 0%, #2d5f3e 100%);
+    border: 3px solid var(--gold);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(184, 134, 11, 0.4),
+        inset 0 0 20px rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    max-width: 500px;
+    min-width: 400px;
+}
+
+.workshop-achievement-notification.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.achievement-icon {
+    font-size: 4rem;
+    line-height: 1;
+    animation: achievementIconBounce 0.6s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
+}
+
+@keyframes achievementIconBounce {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-10px) scale(1.1);
+    }
+}
+
+.achievement-content {
+    flex: 1;
+}
+
+.achievement-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.achievement-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: var(--text-cream);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.achievement-desc {
+    font-family: 'Quintessential', cursive;
+    font-size: 1rem;
+    color: var(--orange-theme);
+    font-style: italic;
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 600px) {
+    .workshop-achievement-notification {
+        min-width: 300px;
+        max-width: 90vw;
+        padding: 1.5rem;
+        gap: 1rem;
+    }
+
+    .achievement-icon {
+        font-size: 3rem;
+    }
+
+    .achievement-title {
+        font-size: 0.875rem;
+    }
+
+    .achievement-name {
+        font-size: 1.25rem;
+    }
+
+    .achievement-desc {
+        font-size: 0.875rem;
+    }
+}
+

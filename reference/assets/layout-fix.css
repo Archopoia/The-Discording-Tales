@@ -1,0 +1,67 @@
+
+/* Layout fixes to ensure proper display */
+.site {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.header-bg {
+    width: 100%;
+    position: relative;
+}
+
+.site-branding {
+    text-align: center;
+    padding: 2em 0;
+}
+
+.site-title {
+    margin: 0.5em 0;
+}
+
+.main-navigation {
+    width: 100%;
+    text-align: center;
+}
+
+.menu-main-tabs-container {
+    display: block;
+}
+
+.site-content {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 1em;
+}
+
+.content-area {
+    width: 100%;
+}
+
+.entry-content {
+    max-width: 100%;
+}
+
+/* Ensure images are responsive */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Ensure proper centering */
+.wp-block-heading.has-text-align-center,
+.has-text-align-center {
+    text-align: center !important;
+}
+
+/* Fix column layouts */
+.wp-block-columns {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media (min-width: 782px) {
+    .wp-block-columns {
+        flex-wrap: nowrap;
+    }
+}
