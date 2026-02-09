@@ -52,15 +52,8 @@ body.entrance-active > :not(#static-loader) {
 
 
 /* Layer 1 (bottom): Animated map background - zoomed in, panning */
-/* Uses image-set() for WebP with fallback to JPG for older browsers */
 .entrance-map-layer {
-    /* Fallback for browsers that don't support image-set() */
-    background-image: url("../assets/images/Map_Naked.jpg");
-    /* Modern browsers: prefer WebP if available */
-    background-image: image-set(
-        url("../assets/images/Map_Naked.webp") type("image/webp"),
-        url("../assets/images/Map_Naked.jpg") type("image/jpeg")
-    );
+    background-image: url("../assets/images/Map_Naked.webp");
     background-size: 240%;
     background-position: 20% 30%;
     background-repeat: no-repeat;
@@ -68,15 +61,8 @@ body.entrance-active > :not(#static-loader) {
 }
 
 /* Layer 3: Creusalité frame - stretched to viewport */
-/* Uses image-set() for WebP with fallback to PNG for older browsers */
 .entrance-creusalite-layer {
-    /* Fallback for browsers that don't support image-set() */
-    background-image: url("../assets/images/Creusalité_NoBorders.png");
-    /* Modern browsers: prefer WebP if available */
-    background-image: image-set(
-        url("../assets/images/Creusalité_NoBorders.webp") type("image/webp"),
-        url("../assets/images/Creusalité_NoBorders.png") type("image/png")
-    );
+    background-image: url("../assets/images/Creusalité_NoBorders.webp");
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;

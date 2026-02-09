@@ -38,8 +38,8 @@ const MEDIUM_WIDTH  = 1200;   // Good for most 1080p screens
 const LQIP_WIDTH    = 32;     // Tiny placeholder (< 1 KB)
 
 const ENTRANCE_IMAGES = [
-    { src: 'Map_Naked.jpg',               baseName: 'Map_Naked',               quality: 85 },
-    { src: 'Creusalité_NoBorders.png',     baseName: 'Creusalité_NoBorders',    quality: 90 },
+    { src: 'Map_Naked.webp',               baseName: 'Map_Naked',               quality: 85 },
+    { src: 'Creusalité_NoBorders.webp',    baseName: 'Creusalité_NoBorders',    quality: 90 },
 ];
 
 /** Pretty-print file size. */
