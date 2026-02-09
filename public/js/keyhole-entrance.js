@@ -76,6 +76,26 @@
         playChimesWithFade();
     }
 
+    // Pause chimes when user switches away (e.g. another app on mobile),
+    // resume when they come back.
+    var chimesWasPlaying = false;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            // Page is now hidden — remember state and pause
+            chimesWasPlaying = chimesPlaying;
+            if (chimes && chimesPlaying) {
+                chimesPlaying = false;   // stops the re-queue loop
+                chimes.pause();
+            }
+        } else {
+            // Page is visible again — resume if it was playing before
+            if (chimesWasPlaying && chimes && !chimesPlaying) {
+                chimesPlaying = true;
+                playChimesWithFade();
+            }
+        }
+    });
+
     function runEntrance() {
         const staticLoader = document.getElementById('static-loader');
         const entranceFill = document.getElementById('entrance-fill');

@@ -2912,6 +2912,27 @@
                 vignette.classList.add('soundcloud-stopped');
                 setPlaying(false);
             });
+
+            // Pause SoundCloud when user switches away (e.g. another app on mobile),
+            // resume when they come back.
+            var scWasPlaying = false;
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden) {
+                    // Page hidden — check if playing, then pause
+                    widget.isPaused(function(paused) {
+                        scWasPlaying = !paused;
+                        if (!paused) {
+                            widget.pause();
+                        }
+                    });
+                } else {
+                    // Page visible again — resume if it was playing before
+                    if (scWasPlaying) {
+                        widget.play();
+                        scWasPlaying = false;
+                    }
+                }
+            });
         }
         bindWidget();
     }

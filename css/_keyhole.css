@@ -472,8 +472,10 @@ body.entrance-active > :not(#static-loader) {
    Mobile: always show "hovered" state
    No eye wandering, map visible, golden glow on logo.
    Tap anywhere on hover zone = enter directly.
+   Uses both capability detection AND screen-width fallback
+   so it works on all mobile browsers reliably.
    ---------------------------------------- */
-@media (hover: none) and (pointer: coarse) {
+@media (hover: none) and (pointer: coarse), (max-width: 768px) {
     /* Eye stays centered - no wandering animation */
     #enter-portfolio-btn {
         animation: none !important;
@@ -483,13 +485,26 @@ body.entrance-active > :not(#static-loader) {
     /* Burgundy overlay always hidden - map background visible and panning */
     .entrance-overlay-layer {
         opacity: 0 !important;
+        transition: none !important;
     }
 
     /* Logo uses golden glow + rotation (hovered state) instead of burgundy pulse */
     /* Also halve the symbol size on mobile */
     #enter-portfolio-btn .entrance-logo-wrap {
         max-width: 125px;
+        opacity: 1 !important;
         animation: keyholeGlow 2s ease-in-out infinite alternate,
                    keyholeLogoRotate 4s ease-in-out infinite !important;
+    }
+
+    /* Vignette layer slightly softer so the map + glow shine through more */
+    .entrance-vignette-layer {
+        background: radial-gradient(
+            circle at center,
+            transparent 0%,
+            transparent 30%,
+            rgba(0, 0, 0, 0.3) 55%,
+            rgba(0, 0, 0, 0.8) 100%
+        );
     }
 }
