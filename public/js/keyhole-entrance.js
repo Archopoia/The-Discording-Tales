@@ -114,6 +114,10 @@
                     doorUnlock.play().catch(function() {});
                 }
                 setTimeout(startChimesLoop, 1000);
+                // Fully hide the overlay after fade-out completes so it can't block clicks
+                setTimeout(function() {
+                    staticLoader.style.display = 'none';
+                }, 2000);
             } else {
                 if (playSound && doorUnlock) {
                     doorUnlock.currentTime = 0;
@@ -271,6 +275,7 @@
                 setTimeout(function() {
                     if (staticLoader) {
                         staticLoader.style.pointerEvents = 'none';
+                        staticLoader.style.display = 'none';
                     }
                     if (flashElement.parentNode) {
                         flashElement.parentNode.removeChild(flashElement);
