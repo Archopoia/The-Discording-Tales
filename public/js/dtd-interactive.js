@@ -358,12 +358,31 @@
         if (!container) return;
         var radios = container.querySelectorAll('.zine-page-radio');
         var panels = container.querySelectorAll('.zine-page.zine-page-panel');
+
+        function showPage(value) {
+            panels.forEach(function(panel) {
+                panel.classList.toggle('zine-page-active', panel.getAttribute('data-page') === value);
+            });
+        }
+
+        // Desktop: radio change event (fires when label checks a radio via 'for')
         radios.forEach(function(radio) {
             radio.addEventListener('change', function() {
-                var value = this.getAttribute('value');
-                panels.forEach(function(panel) {
-                    panel.classList.toggle('zine-page-active', panel.getAttribute('data-page') === value);
-                });
+                showPage(this.getAttribute('value'));
+            });
+        });
+
+        // Mobile fallback: direct click on labels — ensures page switch even when
+        // the label→radio 'for' mechanism doesn't fire 'change' on some mobile browsers.
+        var labels = container.querySelectorAll('.zine-page-nav-label');
+        labels.forEach(function(label) {
+            label.addEventListener('click', function(e) {
+                var radioId = this.getAttribute('for');
+                var radio = radioId && document.getElementById(radioId);
+                if (radio) {
+                    radio.checked = true;
+                    showPage(radio.getAttribute('value'));
+                }
             });
         });
     }
