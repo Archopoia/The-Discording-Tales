@@ -2411,6 +2411,10 @@
     .worldlore-figure-strip img {
         max-height: 320px;
     }
+    .worldlore-col {
+        flex: 1 1 100%;
+        min-width: 0;
+    }
     .worldlore-col-images,
     .worldlore-col-text,
     .worldlore-col-narrow {
@@ -3353,6 +3357,58 @@
         min-height: var(--touch-min);
         display: flex;
         align-items: center;
+    }
+
+    /* Peoples tree: reduce indentation on mobile so content fits */
+    .peoples-tree-races {
+        margin-left: var(--spacing-sm);
+        padding-left: var(--spacing-xs);
+    }
+    .peoples-tree-people-content,
+    .peoples-tree-race-content,
+    .peoples-tree-origin-content {
+        margin-left: var(--spacing-sm);
+        padding: 0.3rem 0.4rem;
+    }
+    .peoples-tree-people-content .lore-table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    .peoples-tree-people-content .peoples-competences-table th {
+        white-space: normal;
+    }
+
+    /* System overview accordion: allow wide content to scroll */
+    .system-overview-accordion-body {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Attributes tree mastery tooltips: keep within viewport */
+    .attributes-tree-mastery.has-tooltip::after {
+        max-width: min(250px, calc(100vw - 2rem));
+        left: 0;
+        transform: none;
+    }
+    .attributes-tree-mastery.has-tooltip::before {
+        left: 1rem;
+        transform: none;
+    }
+
+    /* Creation pillars: stack to single column on mobile */
+    .creation-pillars {
+        grid-template-columns: 1fr;
+    }
+
+    /* GM chat no-character buttons: allow wrapping */
+    .gm-chat-no-character-buttons {
+        flex-wrap: wrap;
+    }
+
+    /* Worldlore coin image: fluid width */
+    .worldlore-figure-coin img {
+        width: min(193px, 100%);
+        max-width: 100%;
     }
 }
 

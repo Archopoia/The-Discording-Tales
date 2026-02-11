@@ -263,6 +263,7 @@
     .archive-toggle-wrap {
         min-height: var(--touch-min);
         padding: var(--spacing-sm) var(--spacing-md);
+        white-space: normal;
     }
 
     /* Touch: show Kickstarter back on focus for non-hover devices */

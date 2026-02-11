@@ -2080,4 +2080,28 @@
     .magic-cercles-initiaux {
         grid-template-columns: 1fr;
     }
+
+    /* Popover: constrain to viewport on narrow screens */
+    .tdt-popover {
+        max-width: calc(100vw - 1.5rem);
+    }
+
+    /* Outpost form: fluid input and allow CTA text to wrap */
+    .outpost-form input[type="email"] {
+        min-width: 0;
+        width: 100%;
+    }
+    .outpost-cta {
+        white-space: normal;
+    }
+
+    /* Genre cards: allow overflow so tables inside can scroll */
+    .genre-card {
+        overflow: visible;
+    }
+
+    /* Tab header: reduce heading size on mobile */
+    .tab-header h2 {
+        font-size: 2rem;
+    }
 }
