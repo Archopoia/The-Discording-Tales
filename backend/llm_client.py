@@ -1,6 +1,6 @@
 """
 LLM provider abstraction for DRD GM backend.
-Supports: openai, grok (xAI), ollama, openai_compatible (e.g. vLLM).
+Supports: gemini (Google, free tier), openai, grok (xAI), ollama, openai_compatible (e.g. vLLM).
 """
 import os
 from typing import Any
@@ -17,6 +17,8 @@ def create_client(
     """
     Create an OpenAI-compatible client and the model name to use.
     Returns (client, model_name).
+    - gemini: Google Gemini via OpenAI-compatible endpoint; uses GEMINI_API_KEY, LLM_MODEL.
+              Free tier: ~250 RPD (Flash), ~1000 RPD (Flash-Lite). Get key at https://ai.google.dev
     - openai: uses OPENAI_API_KEY, OPENAI_MODEL; base_url default.
     - grok: xAI Grok at https://api.x.ai/v1; uses XAI_API_KEY, LLM_MODEL.
     - ollama: base_url typically http://localhost:11434/v1, model e.g. llama3.2.
@@ -25,6 +27,17 @@ def create_client(
     provider = (provider or os.getenv("LLM_PROVIDER", "openai")).strip().lower()
     base_url = base_url or os.getenv("LLM_BASE_URL", "").strip()
     model = model or os.getenv("LLM_MODEL", "").strip()
+
+    if provider == "gemini":
+        key = api_key or os.getenv("GEMINI_API_KEY", "")
+        if not key:
+            raise ValueError(
+                "GEMINI_API_KEY is required when LLM_PROVIDER=gemini. "
+                "Get a free key at https://ai.google.dev (no credit card needed)."
+            )
+        url = base_url or "https://generativelanguage.googleapis.com/v1beta/openai/"
+        m = model or "gemini-2.5-flash"
+        return OpenAI(base_url=url, api_key=key), m
 
     if provider == "openai":
         key = api_key or os.getenv("OPENAI_API_KEY", "")
@@ -52,7 +65,7 @@ def create_client(
         # OpenAI client with base_url works with Ollama and vLLM
         return OpenAI(base_url=url, api_key=os.getenv("OPENAI_API_KEY") or "ollama"), model
 
-    raise ValueError(f"Unknown LLM_PROVIDER: {provider}. Use openai, grok, ollama, or openai_compatible.")
+    raise ValueError(f"Unknown LLM_PROVIDER: {provider}. Use gemini, openai, grok, ollama, or openai_compatible.")
 
 
 def chat_completion(

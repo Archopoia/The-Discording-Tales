@@ -354,9 +354,15 @@ def _error_response(status: int, detail: str) -> JSONResponse:
 
 def _require_llm_config() -> JSONResponse | None:
     """Return error response if LLM config is invalid; else None."""
-    if LLM_PROVIDER == "openai":
+    if LLM_PROVIDER == "gemini":
+        if not os.getenv("GEMINI_API_KEY", "").strip():
+            return _error_response(500, "GEMINI_API_KEY not set. Get a free key at https://ai.google.dev")
+    elif LLM_PROVIDER == "openai":
         if not OPENAI_API_KEY:
             return _error_response(500, "OPENAI_API_KEY not set")
+    elif LLM_PROVIDER == "grok":
+        if not os.getenv("XAI_API_KEY", "").strip() and not OPENAI_API_KEY:
+            return _error_response(500, "XAI_API_KEY not set")
     else:
         if not LLM_MODEL:
             return _error_response(500, "LLM_MODEL is required when LLM_PROVIDER is ollama or openai_compatible")

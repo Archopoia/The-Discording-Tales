@@ -15,11 +15,13 @@
     const CHARACTER_INFO_KEY = 'drd_character_info';
     const MARKS_TO_EPROUVER = 10;
 
-    /* ── WebLLM readiness tracking ────────────────────────────── */
-    var llmReady = false;
-    var llmError = null;
-    var llmProgress = 0;     // 0-100
-    var llmStatusEl = null;  // banner DOM node (created in init)
+    /* ── LLM source tracking ────────────────────────────────── */
+    var llmReady = false;       // WebLLM engine loaded
+    var llmError = null;        // WebLLM load error message
+    var llmProgress = 0;        // 0-100 WebLLM load progress
+    var llmStatusEl = null;     // loading banner DOM node (created in init)
+    var backendQuotaExhausted = false; // true when backend returns 429 / quota error
+    var currentLlmSource = 'none';     // 'backend' | 'webllm' | 'none'
 
     /** Peuples by origin (for hardcoded creation script). */
     var PEUPLES_BY_ORIGIN = {
@@ -312,11 +314,17 @@
         var fillEl = llmStatusEl.querySelector('.gm-llm-status-bar-fill');
         var trackEl = llmStatusEl.querySelector('.gm-llm-status-bar-track');
 
+        // When backend is primary and quota is fine, hide the WebLLM banner entirely.
+        // Only show it when quota is exhausted and we need WebLLM, or when there's no backend.
+        if (GM_API_URL && !backendQuotaExhausted) {
+            llmStatusEl.style.display = 'none';
+            return;
+        }
+
         if (llmReady) {
             llmStatusEl.className = 'gm-llm-status gm-llm-status--ready';
-            if (textEl) textEl.textContent = isFr ? 'IA prête.' : 'AI ready.';
+            if (textEl) textEl.textContent = isFr ? 'IA locale prête.' : 'Local AI ready.';
             if (trackEl) trackEl.style.display = 'none';
-            // Fade out after 2s
             setTimeout(function () {
                 if (llmStatusEl && llmReady && !llmError) {
                     llmStatusEl.style.display = 'none';
@@ -334,13 +342,13 @@
             return;
         }
 
-        // Loading state
+        // Loading state — only visible when we need WebLLM (quota exhausted or no backend)
         llmStatusEl.className = 'gm-llm-status gm-llm-status--loading';
         llmStatusEl.style.display = '';
         var pct = Math.min(100, Math.max(0, Math.round(llmProgress)));
         if (textEl) textEl.textContent = (isFr
-            ? 'Chargement de l\'IA dans le navigateur… '
-            : 'Loading AI in browser… ') + pct + '%';
+            ? 'Chargement de l\'IA locale… '
+            : 'Loading local AI… ') + pct + '%';
         if (fillEl) fillEl.style.width = pct + '%';
         if (trackEl) trackEl.style.display = '';
     }
@@ -358,10 +366,56 @@
         });
     }
 
+    /**
+     * Update the toolbar disclaimer to show which LLM is currently active.
+     * Sets data-en / data-fr so the i18n system doesn't overwrite our text.
+     * Call whenever currentLlmSource or backendQuotaExhausted changes.
+     */
+    function updateDisclaimerStatus() {
+        var el = document.querySelector('.gm-chat-disclaimer');
+        if (!el) return;
+        var isFr = getLang() === 'fr';
+        var en, fr, cls;
+
+        if (backendQuotaExhausted && currentLlmSource === 'webllm') {
+            en = '⚠ Using local AI (limited context) — Server quota reached, come back later for full rules & lore.';
+            fr = '⚠ IA locale active (contexte limité) — Quota serveur atteint, revenez plus tard pour les règles et le lore complets.';
+            cls = 'gm-chat-disclaimer gm-chat-disclaimer--fallback';
+        } else if (backendQuotaExhausted) {
+            en = '⚠ Server quota reached. Loading local AI…';
+            fr = '⚠ Quota serveur atteint. Chargement de l\'IA locale…';
+            cls = 'gm-chat-disclaimer gm-chat-disclaimer--fallback';
+        } else if (currentLlmSource === 'backend') {
+            en = '✦ Using Gemini AI (full rules & lore)';
+            fr = '✦ IA Gemini active (règles et lore complets)';
+            cls = 'gm-chat-disclaimer gm-chat-disclaimer--backend';
+        } else if (currentLlmSource === 'webllm') {
+            en = '⚠ Using local AI (limited context, less accurate)';
+            fr = '⚠ IA locale active (contexte limité, moins précis)';
+            cls = 'gm-chat-disclaimer gm-chat-disclaimer--fallback';
+        } else {
+            en = '✦ Connecting to Gemini AI…';
+            fr = '✦ Connexion à l\'IA Gemini…';
+            cls = 'gm-chat-disclaimer gm-chat-disclaimer--backend';
+        }
+
+        el.setAttribute('data-en', en);
+        el.setAttribute('data-fr', fr);
+        el.textContent = isFr ? fr : en;
+        el.className = cls;
+    }
+
+    /**
+     * Returns true if an error looks like a rate-limit / quota exhaustion.
+     */
+    function isQuotaError(err) {
+        if (!err) return false;
+        var msg = (err.message || String(err)).toLowerCase();
+        return /429|quota|rate.?limit|resource.?exhausted|too many request/i.test(msg);
+    }
+
     /** Wire up WebLLM progress/ready/error events. Call once in init(). */
     function initLlmStatusListeners(container) {
-        var isLocalhost = !GM_API_URL || /localhost|127\.0\.0\.1/.test(GM_API_URL);
-
         // ── Always register event listeners first ──────────────────
         // (play-webllm.js is type="module" and runs AFTER defer scripts,
         //  so window.getWebLLMEngine may not exist yet when this runs.)
@@ -369,7 +423,7 @@
         window.addEventListener('webllm-progress', function (ev) {
             var d = ev.detail || {};
             llmProgress = typeof d.progress === 'number' ? Math.round(d.progress * 100) : llmProgress;
-            llmError = null; // clear any "not available" message once progress starts
+            llmError = null;
             updateLlmStatusBanner();
         });
 
@@ -378,8 +432,13 @@
             llmProgress = 100;
             llmError = null;
             updateLlmStatusBanner();
-            setLlmButtonsDisabled(false);
-            console.log('[GM Chat] WebLLM engine ready.');
+            // If backend quota is exhausted, enable buttons now that WebLLM is ready
+            if (backendQuotaExhausted) {
+                currentLlmSource = 'webllm';
+                updateDisclaimerStatus();
+                setLlmButtonsDisabled(false);
+            }
+            console.log('[GM Chat] WebLLM engine ready (fallback available).');
         });
 
         window.addEventListener('webllm-error', function (ev) {
@@ -387,12 +446,8 @@
             llmError = detail.message || 'Unknown error';
             llmReady = false;
             updateLlmStatusBanner();
-            if (isLocalhost) {
-                setLlmButtonsDisabled(true);
-            } else {
-                setLlmButtonsDisabled(false);
-            }
-            console.error('[GM Chat] WebLLM error:', llmError);
+            // Don't disable buttons — backend is the primary LLM
+            console.warn('[GM Chat] WebLLM fallback error:', llmError);
         });
 
         // ── Check current state (engine may already be loaded) ─────
@@ -400,71 +455,12 @@
             llmReady = true;
             llmProgress = 100;
             updateLlmStatusBanner();
-            setLlmButtonsDisabled(false);
-            return;
         }
 
         if (window.WebLLMError) {
             llmError = window.WebLLMError;
             updateLlmStatusBanner();
-            return;
         }
-
-        // If getWebLLMEngine exists already, we're loading — show progress
-        if (typeof window.getWebLLMEngine === 'function') {
-            updateLlmStatusBanner(); // shows "Loading… 0%"
-            return;
-        }
-
-        // ── WebLLM script hasn't run yet — wait for it ─────────────
-        // play-webllm.js (type="module") runs after defer scripts.
-        // Give it a generous window before declaring it unavailable.
-        var checkCount = 0;
-        var maxChecks = 20; // 20 × 500ms = 10 seconds
-        var checkTimer = setInterval(function () {
-            checkCount++;
-            // Engine became ready while we waited
-            if (window.WebLLMEngine || llmReady) {
-                clearInterval(checkTimer);
-                if (!llmReady) {
-                    llmReady = true;
-                    llmProgress = 100;
-                    updateLlmStatusBanner();
-                    setLlmButtonsDisabled(false);
-                }
-                return;
-            }
-            // getWebLLMEngine appeared — module loaded, engine is initializing
-            if (typeof window.getWebLLMEngine === 'function') {
-                clearInterval(checkTimer);
-                updateLlmStatusBanner(); // shows "Loading… 0%"
-                return;
-            }
-            // WebLLM error was set
-            if (window.WebLLMError) {
-                clearInterval(checkTimer);
-                llmError = window.WebLLMError;
-                updateLlmStatusBanner();
-                return;
-            }
-            // Timed out waiting
-            if (checkCount >= maxChecks) {
-                clearInterval(checkTimer);
-                if (!isLocalhost) {
-                    // Remote backend exists — allow chat via backend
-                    llmReady = true;
-                    updateLlmStatusBanner();
-                    setLlmButtonsDisabled(false);
-                } else {
-                    var isFr = getLang() === 'fr';
-                    llmError = isFr
-                        ? 'WebLLM non disponible. Utilisez Chrome ou Edge avec WebGPU activé.'
-                        : 'WebLLM not available. Use Chrome or Edge with WebGPU enabled.';
-                    updateLlmStatusBanner();
-                    console.warn('[GM Chat] WebLLM did not appear after ' + (maxChecks * 500) + 'ms');
-                }
-            }
-        }, 500);
     }
 
     /* ── Sliding context window: trim old messages to fit token budget ─── */
@@ -1160,116 +1156,22 @@
             if (sendBtn) sendBtn.disabled = false;
         }
 
-        function runBackendChat() {
-            // Trim conversation history for backend context window safety
-            var backendBody = Object.assign({}, body, {
-                messages: trimMessagesForBudget(body.messages, BACKEND_HISTORY_BUDGET)
-            });
-            fetch(GM_API_URL + '/chat/stream', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(backendBody)
-            })
-                .then(function (r) {
-                    if (!r.ok) {
-                        return r.text().then(function (t) {
-                            try {
-                                var j = JSON.parse(t);
-                                throw new Error(j.detail || r.statusText);
-                            } catch (e) {
-                                if (e instanceof Error && e.message !== undefined) throw e;
-                                throw new Error(r.statusText);
-                            }
-                        });
-                    }
-                    if (!r.body) {
-                        throw new Error('No response body');
-                    }
-                    return r.body.getReader();
-                })
-                .then(function (reader) {
-                    var decoder = new TextDecoder();
-                    var buffer = '';
-                    var fullText = '';
-
-                    function processChunk(chunk) {
-                        buffer += decoder.decode(chunk, { stream: true });
-                        var parts = buffer.split('\n\n');
-                        buffer = parts.pop() || '';
-                        for (var i = 0; i < parts.length; i++) {
-                            var line = parts[i].trim();
-                            if (line.indexOf('data: ') === 0) {
-                                var jsonStr = line.slice(5).trim();
-                                if (jsonStr === '[DONE]' || jsonStr === '') continue;
-                                try {
-                                    var data = JSON.parse(jsonStr);
-                                    if (data.error) {
-                                        throw new Error(data.error);
-                                    }
-                                    if (data.done) return true;
-                                    if (data.delta) {
-                                        fullText += data.delta;
-                                        stopThinking();
-                                        renderMessages(container, null, fullText);
-                                    }
-                                } catch (e) {
-                                    if (e instanceof SyntaxError) continue;
-                                    throw e;
-                                }
-                            }
-                        }
-                        return false;
-                    }
-
-                    function readNext() {
-                        return reader.read().then(function (result) {
-                            if (result.done) {
-                                finishReply(fullText.trim());
-                                return;
-                            }
-                            var done = processChunk(result.value);
-                            if (done) {
-                                finishReply(fullText.trim());
-                                return;
-                            }
-                            return readNext();
-                        });
-                    }
-
-                    return readNext();
-                })
-                .catch(function (e) {
-                    fetch(GM_API_URL + '/chat', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(backendBody)
-                    })
-                        .then(function (r) {
-                            if (!r.ok) {
-                                return r.json().catch(function () { return {}; }).then(function (j) {
-                                    var d = j.detail;
-                                    throw new Error(typeof d === 'string' ? d : (Array.isArray(d) ? d.map(function (x) { return x.msg || JSON.stringify(x); }).join('; ') : r.statusText));
-                                });
-                            }
-                            return r.json();
-                        })
-                        .then(function (data) {
-                            var reply = (data && data.reply) ? data.reply : '';
-                            finishReply(reply);
-                        })
-                        .catch(function (fallbackErr) {
-                            var isFr = getLang() === 'fr';
-                            var friendly = isFr
-                                ? 'Notre serveur est injoignable. Ceci est un problème de notre côté, pas du vôtre. Réessayez plus tard.'
-                                : 'Our server is unreachable. This is an issue on our end, not yours. Please try again later.';
-                            console.error('[GM Chat] Backend also failed:', fallbackErr);
-                            failReply(new Error(friendly));
-                        });
-                })
-                .finally(doneSending);
-        }
-
-        if (typeof window.getWebLLMEngine === 'function' && window.GM_SYSTEM_PROMPT) {
+        /* ── WebLLM fallback path ────────────────────────────── */
+        function runWebLLMChat() {
+            if (typeof window.getWebLLMEngine !== 'function' || !window.GM_SYSTEM_PROMPT) {
+                var isFr = getLang() === 'fr';
+                if (backendQuotaExhausted) {
+                    failReply(new Error(isFr
+                        ? 'Quota serveur atteint et l\'IA locale n\'est pas disponible. Revenez plus tard ou utilisez Chrome/Edge avec WebGPU.'
+                        : 'Server quota reached and local AI is not available. Come back later or use Chrome/Edge with WebGPU.'));
+                } else {
+                    failReply(new Error(isFr
+                        ? 'L\'IA nécessite un navigateur compatible WebGPU (Chrome, Edge, Safari 17+).'
+                        : 'The AI requires a WebGPU-capable browser (Chrome, Edge, Safari 17+).'));
+                }
+                doneSending();
+                return;
+            }
             var progressListener = function (ev) {
                 var p = (ev.detail && ev.detail.progress != null) ? Math.round(ev.detail.progress * 100) : 0;
                 var phrases = getLang() === 'fr' ? LOADING_PHRASES_FR : LOADING_PHRASES_EN;
@@ -1277,11 +1179,12 @@
                 var phrase = phrases[Math.max(0, idx)];
                 renderMessages(container, phrase + ' ' + p + '%');
             };
-            var skipDoneSending = false;
             window.addEventListener('webllm-progress', progressListener);
             window.getWebLLMEngine()
                 .then(function (engine) {
                     window.removeEventListener('webllm-progress', progressListener);
+                    currentLlmSource = 'webllm';
+                    updateDisclaimerStatus();
                     var systemPrompt = body.creationMode
                         ? window.GM_SYSTEM_PROMPT.buildCreationSystemPrompt({ lang: body.lang, compact: true })
                         : window.GM_SYSTEM_PROMPT.buildChatSystemPrompt({
@@ -1324,36 +1227,163 @@
                     return readStream();
                 })
                 .catch(function (err) {
-                    console.error('[GM Chat] WebLLM failed, falling back to backend:', err);
+                    console.error('[GM Chat] WebLLM also failed:', err);
                     window.removeEventListener('webllm-progress', progressListener);
-                    var isLocalhost = !GM_API_URL || /localhost|127\.0\.0\.1/.test(GM_API_URL);
-                    if (GM_API_URL && !isLocalhost) {
-                        skipDoneSending = true;
-                        runBackendChat();
-                    } else {
-                        var isFr = getLang() === 'fr';
-                        var userMsg = isFr
-                            ? 'L\'IA locale n\'a pas pu répondre. Erreur : ' + (err && err.message ? err.message : String(err))
-                            : 'The local AI could not respond. Error: ' + (err && err.message ? err.message : String(err));
-                        failReply(new Error(userMsg));
-                    }
+                    var isFrW = getLang() === 'fr';
+                    var msg = isFrW
+                        ? 'L\'IA locale n\'a pas pu répondre. Erreur : ' + (err && err.message ? err.message : String(err))
+                        : 'The local AI could not respond. Error: ' + (err && err.message ? err.message : String(err));
+                    failReply(new Error(msg));
                 })
-                .finally(function () {
-                    if (!skipDoneSending) doneSending();
-                });
-            return;
+                .finally(doneSending);
         }
 
-        if (GM_API_URL) {
+        /* ── Backend (Gemini) primary path ───────────────────── */
+        function runBackendChat() {
+            var backendBody = Object.assign({}, body, {
+                messages: trimMessagesForBudget(body.messages, BACKEND_HISTORY_BUDGET)
+            });
+
+            function handleBackendError(err) {
+                console.error('[GM Chat] Backend error:', err);
+                // Detect quota / rate-limit errors → permanent fallback to WebLLM
+                if (isQuotaError(err)) {
+                    backendQuotaExhausted = true;
+                    currentLlmSource = 'webllm';
+                    updateDisclaimerStatus();
+                    console.warn('[GM Chat] Backend quota exhausted, switching to WebLLM fallback.');
+                }
+                // Try WebLLM fallback
+                runWebLLMChat();
+            }
+
+            fetch(GM_API_URL + '/chat/stream', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(backendBody)
+            })
+                .then(function (r) {
+                    if (!r.ok) {
+                        return r.text().then(function (t) {
+                            var errObj;
+                            try {
+                                var j = JSON.parse(t);
+                                errObj = new Error(j.detail || r.statusText);
+                            } catch (e) {
+                                errObj = new Error(r.statusText);
+                            }
+                            // Attach status code for quota detection
+                            errObj.statusCode = r.status;
+                            if (r.status === 429) errObj.message = '429 ' + errObj.message;
+                            throw errObj;
+                        });
+                    }
+                    // Backend responded OK — mark as active source
+                    currentLlmSource = 'backend';
+                    updateDisclaimerStatus();
+                    if (!r.body) {
+                        throw new Error('No response body');
+                    }
+                    return r.body.getReader();
+                })
+                .then(function (reader) {
+                    var decoder = new TextDecoder();
+                    var buffer = '';
+                    var fullText = '';
+
+                    function processChunk(chunk) {
+                        buffer += decoder.decode(chunk, { stream: true });
+                        var parts = buffer.split('\n\n');
+                        buffer = parts.pop() || '';
+                        for (var i = 0; i < parts.length; i++) {
+                            var line = parts[i].trim();
+                            if (line.indexOf('data: ') === 0) {
+                                var jsonStr = line.slice(5).trim();
+                                if (jsonStr === '[DONE]' || jsonStr === '') continue;
+                                try {
+                                    var data = JSON.parse(jsonStr);
+                                    if (data.error) {
+                                        var streamErr = new Error(data.error);
+                                        if (isQuotaError(streamErr)) streamErr.statusCode = 429;
+                                        throw streamErr;
+                                    }
+                                    if (data.done) return true;
+                                    if (data.delta) {
+                                        fullText += data.delta;
+                                        stopThinking();
+                                        renderMessages(container, null, fullText);
+                                    }
+                                } catch (e) {
+                                    if (e instanceof SyntaxError) continue;
+                                    throw e;
+                                }
+                            }
+                        }
+                        return false;
+                    }
+
+                    function readNext() {
+                        return reader.read().then(function (result) {
+                            if (result.done) {
+                                finishReply(fullText.trim());
+                                return;
+                            }
+                            var done = processChunk(result.value);
+                            if (done) {
+                                finishReply(fullText.trim());
+                                return;
+                            }
+                            return readNext();
+                        });
+                    }
+
+                    return readNext();
+                })
+                .catch(function (e) {
+                    // If stream failed, try non-stream endpoint before giving up to WebLLM
+                    if (isQuotaError(e)) {
+                        handleBackendError(e);
+                        return;
+                    }
+                    fetch(GM_API_URL + '/chat', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(backendBody)
+                    })
+                        .then(function (r) {
+                            if (!r.ok) {
+                                return r.json().catch(function () { return {}; }).then(function (j) {
+                                    var d = j.detail;
+                                    var errMsg = typeof d === 'string' ? d : (Array.isArray(d) ? d.map(function (x) { return x.msg || JSON.stringify(x); }).join('; ') : r.statusText);
+                                    var errObj = new Error(errMsg);
+                                    errObj.statusCode = r.status;
+                                    if (r.status === 429) errObj.message = '429 ' + errObj.message;
+                                    throw errObj;
+                                });
+                            }
+                            currentLlmSource = 'backend';
+                            updateDisclaimerStatus();
+                            return r.json();
+                        })
+                        .then(function (data) {
+                            var reply = (data && data.reply) ? data.reply : '';
+                            finishReply(reply);
+                        })
+                        .catch(function (fallbackErr) {
+                            handleBackendError(fallbackErr);
+                        });
+                })
+                .finally(doneSending);
+        }
+
+        /* ── Dispatch: backend first, WebLLM fallback ────────── */
+        if (GM_API_URL && !backendQuotaExhausted) {
             runBackendChat();
             return;
         }
 
-        var isFrFinal = getLang() === 'fr';
-        failReply(new Error(isFrFinal
-            ? 'L\'IA nécessite un navigateur compatible WebGPU (Chrome, Edge, Safari 17+). Ceci est un problème de compatibilité côté navigateur.'
-            : 'The AI requires a WebGPU-capable browser (Chrome, Edge, Safari 17+). This is a browser compatibility issue.'));
-        doneSending();
+        // Backend unavailable or quota exhausted → use WebLLM directly
+        runWebLLMChat();
     }
 
     function init() {
@@ -1366,10 +1396,17 @@
         var inputWrap = input ? input.closest('.gm-chat-input-wrap') : null;
         var hintEl = null;
 
-        /* ── LLM status banner + button gating ── */
+        /* ── LLM status + disclaimer ── */
         createLlmStatusBanner(container);
-        setLlmButtonsDisabled(true);   // disabled until WebLLM or backend is confirmed
         initLlmStatusListeners(container);
+        // Backend is primary → enable buttons immediately; WebLLM is just a fallback
+        if (GM_API_URL) {
+            currentLlmSource = 'backend';
+            setLlmButtonsDisabled(false);
+        } else {
+            setLlmButtonsDisabled(true); // no backend, wait for WebLLM
+        }
+        updateDisclaimerStatus();
         if (inputWrap) {
             hintEl = document.createElement('div');
             hintEl.className = 'gm-pending-roll-hint';
