@@ -386,16 +386,16 @@
             fr = '⚠ Quota serveur atteint. Chargement de l\'IA locale…';
             cls = 'gm-chat-disclaimer gm-chat-disclaimer--fallback';
         } else if (currentLlmSource === 'backend') {
-            en = '✦ Using Gemini AI (full rules & lore)';
-            fr = '✦ IA Gemini active (règles et lore complets)';
+            en = '✦ Gemini AI — WIP, may contain inaccuracies';
+            fr = '✦ IA Gemini — WIP, peut contenir des inexactitudes';
             cls = 'gm-chat-disclaimer gm-chat-disclaimer--backend';
         } else if (currentLlmSource === 'webllm') {
-            en = '⚠ Using local AI (limited context, less accurate)';
-            fr = '⚠ IA locale active (contexte limité, moins précis)';
+            en = '⚠ Local AI — WIP, limited context & less accurate';
+            fr = '⚠ IA locale — WIP, contexte limité & moins précis';
             cls = 'gm-chat-disclaimer gm-chat-disclaimer--fallback';
         } else {
-            en = '✦ Connecting to Gemini AI…';
-            fr = '✦ Connexion à l\'IA Gemini…';
+            en = '✦ Connecting to AI…';
+            fr = '✦ Connexion à l\'IA…';
             cls = 'gm-chat-disclaimer gm-chat-disclaimer--backend';
         }
 

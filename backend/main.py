@@ -417,7 +417,7 @@ def chat(req: ChatRequest):
             openai_messages.append({"role": m.role, "content": m.content})
 
         r = chat_completion(
-            client, model, openai_messages, max_tokens=1024, stream=False,
+            client, model, openai_messages, max_tokens=4096, stream=False,
             temperature=LLM_TEMPERATURE, top_p=LLM_TOP_P,
         )
         reply = (r.choices[0].message.content or "").strip()
@@ -485,7 +485,7 @@ def _stream_chat_sse(req: ChatRequest):
             openai_messages.append({"role": m.role, "content": m.content})
 
         stream = chat_completion(
-            client, model, openai_messages, max_tokens=1024, stream=True,
+            client, model, openai_messages, max_tokens=4096, stream=True,
             temperature=LLM_TEMPERATURE, top_p=LLM_TOP_P,
         )
         full_text: list[str] = []
