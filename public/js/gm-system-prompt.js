@@ -156,7 +156,7 @@
     }
 
     function getLangInstruction(lang) {
-        if (lang && lang.toLowerCase() === 'en') return '**Language**: You MUST respond in English. All narrative and dialogue in English. Keep competence names in brackets in French (e.g. Roll [Grimpe]) as required by the UI.\n\n';
+        if (lang && lang.toLowerCase() === 'en') return '**Language**: You MUST respond ENTIRELY in English. Refer to the game as "The Discording Tales" (not "Des Récits Discordants"). When quoting or paraphrasing from the rules/lore, TRANSLATE the content into English — do NOT paste French quotes directly. The only French words allowed are proper nouns (character names, place names like Iäoduneï, Hael, Féos), people names (Yômmes, Yôrres, Bêstres, Aristois, etc.), and competence names in brackets (e.g. Roll [Grimpe]).\n\n';
         if (lang && lang.toLowerCase() === 'fr') return '**Langue** : Réponds en français. Tout le récit, les descriptions et les dialogues doivent être en français.\n\n';
         return '';
     }

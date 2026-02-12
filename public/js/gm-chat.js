@@ -10,6 +10,16 @@
         if (meta && meta.getAttribute('content')) return meta.getAttribute('content').trim();
         return 'http://localhost:8000';
     })();
+
+    /* ── Gemini direct (browser → Gemini API, no backend needed) ── */
+    var GEMINI_API_KEY = (function () {
+        var meta = document.querySelector('meta[name="gemini-api-key"]');
+        return (meta && meta.getAttribute('content')) ? meta.getAttribute('content').trim() : '';
+    })();
+    var GEMINI_MODEL = 'gemini-2.5-flash';
+    var GEMINI_API_BASE = 'https://generativelanguage.googleapis.com/v1beta/openai/';
+    var geminiQuotaExhausted = false;
+
     const CHAT_STORAGE_KEY = 'drd_gm_chat_messages';
     const CHAR_STORAGE_KEY = 'drd_simulation_character';
     const CHARACTER_INFO_KEY = 'drd_character_info';
@@ -21,7 +31,7 @@
     var llmProgress = 0;        // 0-100 WebLLM load progress
     var llmStatusEl = null;     // loading banner DOM node (created in init)
     var backendQuotaExhausted = false; // true when backend returns 429 / quota error
-    var currentLlmSource = 'none';     // 'backend' | 'webllm' | 'none'
+    var currentLlmSource = 'none';     // 'backend' | 'webllm' | 'gemini-direct' | 'none'
 
     /** Peuples by origin (for hardcoded creation script). */
     var PEUPLES_BY_ORIGIN = {
@@ -385,7 +395,7 @@
             en = '⚠ Server quota reached. Loading local AI…';
             fr = '⚠ Quota serveur atteint. Chargement de l\'IA locale…';
             cls = 'gm-chat-disclaimer gm-chat-disclaimer--fallback';
-        } else if (currentLlmSource === 'backend') {
+        } else if (currentLlmSource === 'backend' || currentLlmSource === 'gemini-direct') {
             en = '✦ Gemini AI — WIP, may contain inaccuracies';
             fr = '✦ IA Gemini — WIP, peut contenir des inexactitudes';
             cls = 'gm-chat-disclaimer gm-chat-disclaimer--backend';
@@ -410,6 +420,7 @@
      */
     function isQuotaError(err) {
         if (!err) return false;
+        if (err.statusCode === 429) return true;
         var msg = (err.message || String(err)).toLowerCase();
         return /429|quota|rate.?limit|resource.?exhausted|too many request/i.test(msg);
     }
@@ -1246,15 +1257,19 @@
 
             function handleBackendError(err) {
                 console.error('[GM Chat] Backend error:', err);
-                // Detect quota / rate-limit errors → permanent fallback to WebLLM
                 if (isQuotaError(err)) {
                     backendQuotaExhausted = true;
+                    console.warn('[GM Chat] Backend quota exhausted.');
+                }
+                // Try Gemini direct before WebLLM
+                if (GEMINI_API_KEY && !geminiQuotaExhausted) {
+                    console.log('[GM Chat] Falling back to Gemini direct.');
+                    runGeminiDirectChat();
+                } else {
                     currentLlmSource = 'webllm';
                     updateDisclaimerStatus();
-                    console.warn('[GM Chat] Backend quota exhausted, switching to WebLLM fallback.');
+                    runWebLLMChat();
                 }
-                // Try WebLLM fallback
-                runWebLLMChat();
             }
 
             fetch(GM_API_URL + '/chat/stream', {
@@ -1376,13 +1391,110 @@
                 .finally(doneSending);
         }
 
-        /* ── Dispatch: backend first, WebLLM fallback ────────── */
+        /* ── Gemini Direct (browser → Gemini API, no backend) ── */
+        function runGeminiDirectChat() {
+            if (!GEMINI_API_KEY || !window.GM_SYSTEM_PROMPT) {
+                runWebLLMChat();
+                return;
+            }
+            var sysPrompt = window.GM_SYSTEM_PROMPT.buildChatSystemPrompt({
+                characterSnapshot: hasCharacter() ? getCharacterSnapshot() : null,
+                gameState: getGameState(),
+                rulesOnly: (!hasCharacter() && !creationMode && askWorldInputRevealed),
+                lang: getLang(),
+                compact: false
+            });
+            var geminiMessages = [{ role: 'system', content: sysPrompt }];
+            var trimmed = trimMessagesForBudget(body.messages, BACKEND_HISTORY_BUDGET);
+            for (var i = 0; i < trimmed.length; i++) {
+                geminiMessages.push({ role: trimmed[i].role, content: trimmed[i].content });
+            }
+
+            fetch(GEMINI_API_BASE + 'chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + GEMINI_API_KEY
+                },
+                body: JSON.stringify({
+                    model: GEMINI_MODEL,
+                    messages: geminiMessages,
+                    max_tokens: 4096,
+                    stream: true
+                })
+            }).then(function (r) {
+                if (!r.ok) {
+                    return r.text().then(function (t) {
+                        var errObj;
+                        try { var j = JSON.parse(t); errObj = new Error(j.error && j.error.message ? j.error.message : r.statusText); }
+                        catch (e) { errObj = new Error(r.statusText); }
+                        errObj.statusCode = r.status;
+                        throw errObj;
+                    });
+                }
+                currentLlmSource = 'gemini-direct';
+                updateDisclaimerStatus();
+                return r.body.getReader();
+            }).then(function (reader) {
+                var decoder = new TextDecoder();
+                var buffer = '';
+                var fullText = '';
+
+                function readNext() {
+                    return reader.read().then(function (result) {
+                        if (result.done) {
+                            try { reader.cancel(); } catch (e) {}
+                            finishReply(fullText.trim());
+                            doneSending();
+                            return;
+                        }
+                        buffer += decoder.decode(result.value, { stream: true });
+                        var parts = buffer.split('\n');
+                        buffer = parts.pop() || '';
+                        for (var i = 0; i < parts.length; i++) {
+                            var line = parts[i].trim();
+                            if (line.indexOf('data: ') === 0) {
+                                var jsonStr = line.slice(5).trim();
+                                if (jsonStr === '[DONE]' || jsonStr === '') continue;
+                                try {
+                                    var data = JSON.parse(jsonStr);
+                                    var delta = data.choices && data.choices[0] && data.choices[0].delta && data.choices[0].delta.content;
+                                    if (delta) {
+                                        fullText += delta;
+                                        stopThinking();
+                                        renderMessages(container, null, fullText);
+                                    }
+                                } catch (e) { /* skip parse errors */ }
+                            }
+                        }
+                        return readNext();
+                    });
+                }
+                return readNext();
+            }).catch(function (err) {
+                console.error('[GM Chat] Gemini direct error:', err);
+                if (isQuotaError(err)) {
+                    geminiQuotaExhausted = true;
+                    currentLlmSource = 'webllm';
+                    updateDisclaimerStatus();
+                }
+                // Fallback to WebLLM
+                runWebLLMChat();
+            });
+        }
+
+        /* ── Dispatch: backend → Gemini direct → WebLLM ────────── */
         if (GM_API_URL && !backendQuotaExhausted) {
             runBackendChat();
             return;
         }
 
-        // Backend unavailable or quota exhausted → use WebLLM directly
+        if (GEMINI_API_KEY && !geminiQuotaExhausted) {
+            runGeminiDirectChat();
+            return;
+        }
+
+        // Last resort → use WebLLM
         runWebLLMChat();
     }
 
@@ -1399,14 +1511,31 @@
         /* ── LLM status + disclaimer ── */
         createLlmStatusBanner(container);
         initLlmStatusListeners(container);
-        // Backend is primary → enable buttons immediately; WebLLM is just a fallback
-        if (GM_API_URL) {
-            currentLlmSource = 'backend';
+        // If Gemini key available → enable buttons immediately, probe backend in background
+        if (GEMINI_API_KEY) {
+            currentLlmSource = 'gemini-direct';
             setLlmButtonsDisabled(false);
         } else {
-            setLlmButtonsDisabled(true); // no backend, wait for WebLLM
+            setLlmButtonsDisabled(true); // no Gemini key → wait for WebLLM
         }
         updateDisclaimerStatus();
+
+        // Probe backend — if reachable, upgrade to backend source (has RAG)
+        if (GM_API_URL) {
+            fetch(GM_API_URL + '/health', { method: 'GET', mode: 'cors' })
+                .then(function (r) {
+                    if (r.ok) {
+                        currentLlmSource = 'backend';
+                        setLlmButtonsDisabled(false);
+                        updateDisclaimerStatus();
+                        console.log('[GM Chat] Backend is reachable, using backend.');
+                    }
+                })
+                .catch(function () {
+                    console.log('[GM Chat] Backend unreachable, using Gemini direct.');
+                    backendQuotaExhausted = true; // mark backend as unavailable so dispatch skips it
+                });
+        }
         if (inputWrap) {
             hintEl = document.createElement('div');
             hintEl.className = 'gm-pending-roll-hint';
@@ -2016,54 +2145,80 @@
                 rulesOnly: true
             };
 
-            if (!GM_API_URL) {
-                /* No backend — try WebLLM if available */
-                if (typeof window.getWebLLMEngine === 'function' && window.GM_SYSTEM_PROMPT) {
-                    var compact = window.GM_SYSTEM_PROMPT.getCompactRulesBlock
-                        ? window.GM_SYSTEM_PROMPT.getCompactRulesBlock() : '';
-                    var sysMsg = window.GM_SYSTEM_PROMPT.buildChatSystemPrompt
-                        ? window.GM_SYSTEM_PROMPT.buildChatSystemPrompt(compact) : compact;
-                    window.getWebLLMEngine().then(function (engine) {
-                        var llmMsgs = [{ role: 'system', content: sysMsg }];
-                        for (var i = 0; i < miniMessages.length; i++) {
-                            llmMsgs.push({ role: miniMessages[i].role, content: miniMessages[i].content });
-                        }
-                        return engine.chat.completions.create({ messages: llmMsgs, stream: true });
-                    }).then(function (stream) {
-                        var fullText = '';
-                        function readStream() {
-                            return stream.next().then(function (r) {
-                                if (r.done) {
-                                    miniMessages.push({ role: 'assistant', content: fullText.trim() });
-                                    saveMiniMessages();
-                                    renderMiniMessages(container);
-                                    done();
-                                    return;
-                                }
-                                var delta = r.value && r.value.choices && r.value.choices[0] && r.value.choices[0].delta && r.value.choices[0].delta.content;
-                                if (delta) { fullText += delta; renderMiniMessages(container, null, fullText); }
-                                return readStream();
-                            });
-                        }
-                        return readStream();
-                    }).catch(function (err) {
-                        miniMessages.push({ role: 'assistant', content: '⚠ ' + (err.message || String(err)) });
-                        saveMiniMessages();
-                        renderMiniMessages(container);
-                        done();
-                    });
-                } else {
+            /* ── Gemini direct for mini-chat ── */
+            function miniGeminiDirect() {
+                if (!GEMINI_API_KEY || !window.GM_SYSTEM_PROMPT) {
                     miniMessages.push({ role: 'assistant', content: getLang() === 'fr'
-                        ? '⚠ Aucun serveur configuré. Allez sur la page Play pour l\'IA locale.'
-                        : '⚠ No server configured. Go to the Play page for local AI.' });
+                        ? '⚠ IA non disponible. Allez sur la page Play.'
+                        : '⚠ AI not available. Go to the Play page.' });
                     saveMiniMessages();
                     renderMiniMessages(container);
                     done();
+                    return;
                 }
-                return;
+                var sysPrompt = window.GM_SYSTEM_PROMPT.buildChatSystemPrompt({
+                    rulesOnly: true,
+                    lang: getLang(),
+                    compact: false
+                });
+                var geminiMsgs = [{ role: 'system', content: sysPrompt }];
+                for (var i = 0; i < miniMessages.length; i++) {
+                    geminiMsgs.push({ role: miniMessages[i].role, content: miniMessages[i].content });
+                }
+                fetch(GEMINI_API_BASE + 'chat/completions', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + GEMINI_API_KEY },
+                    body: JSON.stringify({ model: GEMINI_MODEL, messages: geminiMsgs, max_tokens: 4096, stream: true })
+                }).then(function (r) {
+                    if (!r.ok) throw new Error(r.statusText);
+                    return r.body.getReader();
+                }).then(function (reader) {
+                    var decoder = new TextDecoder();
+                    var buf = '';
+                    var fullText = '';
+                    function read() {
+                        return reader.read().then(function (result) {
+                            if (result.done) {
+                                try { reader.cancel(); } catch (e) {}
+                                miniMessages.push({ role: 'assistant', content: fullText.trim() });
+                                saveMiniMessages();
+                                renderMiniMessages(container);
+                                done();
+                                return;
+                            }
+                            buf += decoder.decode(result.value, { stream: true });
+                            var lines = buf.split('\n');
+                            buf = lines.pop() || '';
+                            for (var j = 0; j < lines.length; j++) {
+                                var ln = lines[j].trim();
+                                if (ln.indexOf('data: ') === 0) {
+                                    var js = ln.slice(5).trim();
+                                    if (js === '[DONE]' || js === '') continue;
+                                    try {
+                                        var d = JSON.parse(js);
+                                        var delta = d.choices && d.choices[0] && d.choices[0].delta && d.choices[0].delta.content;
+                                        if (delta) {
+                                            fullText += delta;
+                                            clearInterval(thinkInterval);
+                                            renderMiniMessages(container, null, fullText);
+                                        }
+                                    } catch (e) { /* skip */ }
+                                }
+                            }
+                            return read();
+                        });
+                    }
+                    return read();
+                }).catch(function (err) {
+                    clearInterval(thinkInterval);
+                    miniMessages.push({ role: 'assistant', content: '⚠ ' + (err.message || String(err)) });
+                    saveMiniMessages();
+                    renderMiniMessages(container);
+                    done();
+                });
             }
 
-            /* Backend available — call /chat/stream */
+            /* ── Try backend first, then Gemini direct ── */
             fetch(GM_API_URL + '/chat/stream', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -2120,12 +2275,9 @@
                     });
                 }
                 return readNext();
-            }).catch(function (err) {
-                clearInterval(thinkInterval);
-                miniMessages.push({ role: 'assistant', content: '⚠ ' + (err.message || String(err)) });
-                saveMiniMessages();
-                renderMiniMessages(container);
-                done();
+            }).catch(function () {
+                /* Backend unreachable → try Gemini direct */
+                miniGeminiDirect();
             });
         }
 
