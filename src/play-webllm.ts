@@ -39,8 +39,20 @@ function init(): void {
         window.dispatchEvent(new CustomEvent('webllm-progress', { detail: window.WebLLMProgress }));
       };
       try {
+        // Increase context window from default 4096 → 8192 to fit
+        // compact system prompt (~2300 tokens) + conversation history + reply.
         const engine = await CreateMLCEngine(DEFAULT_MODEL, {
           initProgressCallback,
+          appConfig: {
+            model_list: [{
+              model: 'https://huggingface.co/mlc-ai/Qwen3-4B-q4f16_1-MLC',
+              model_id: DEFAULT_MODEL,
+              model_lib: 'https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_80/Qwen3-4B-q4f16_1-ctx4k_cs1k-webgpu.wasm',
+              overrides: {
+                context_window_size: 8192,
+              },
+            }],
+          },
         });
         window.WebLLMEngine = engine;
         window.dispatchEvent(new Event('webllm-ready'));

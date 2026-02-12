@@ -467,6 +467,51 @@
         }, 500);
     }
 
+    /* ── Sliding context window: trim old messages to fit token budget ─── */
+    /**
+     * Rough char→token estimate (≈4 chars/token for English/French mixed text).
+     * @param {string} text
+     * @returns {number} estimated token count
+     */
+    function estimateTokens(text) {
+        return Math.ceil((text || '').length / 4);
+    }
+
+    /**
+     * Trim messages array to fit within a token budget, keeping the most
+     * recent messages. Always keeps at least the last user message.
+     * @param {Array} msgs - array of { role, content }
+     * @param {number} tokenBudget - max tokens for conversation history
+     * @returns {Array} trimmed messages (most recent that fit)
+     */
+    function trimMessagesForBudget(msgs, tokenBudget) {
+        if (!msgs || msgs.length === 0) return msgs;
+        // Walk backward, summing tokens, stop when budget exceeded
+        var total = 0;
+        var startIdx = msgs.length; // will become the first message index to include
+        for (var i = msgs.length - 1; i >= 0; i--) {
+            var msgTokens = estimateTokens(msgs[i].content);
+            if (total + msgTokens > tokenBudget && i < msgs.length - 1) {
+                break; // don't include this message or earlier ones
+            }
+            total += msgTokens;
+            startIdx = i;
+        }
+        var trimmed = msgs.slice(startIdx);
+        if (trimmed.length < msgs.length) {
+            console.log('[GM Chat] Context window: trimmed ' + (msgs.length - trimmed.length) + ' old messages (' + msgs.length + ' → ' + trimmed.length + ')');
+        }
+        return trimmed;
+    }
+
+    /** Token budgets for conversation history (excluding system prompt and reply). */
+    var WEBLLM_CONTEXT_WINDOW = 8192;
+    var WEBLLM_SYSTEM_TOKENS = 2500;  // expanded compact prompt (~2300 tokens) + margin
+    var WEBLLM_REPLY_TOKENS = 1024;   // max_tokens for response
+    var WEBLLM_HISTORY_BUDGET = WEBLLM_CONTEXT_WINDOW - WEBLLM_SYSTEM_TOKENS - WEBLLM_REPLY_TOKENS; // ~4668
+
+    var BACKEND_HISTORY_BUDGET = 100000; // backend models have 128K+ context; generous safety net
+
     function markdownToHtml(text) {
         if (typeof marked !== 'undefined' && typeof DOMPurify !== 'undefined') {
             marked.setOptions({ gfm: true, breaks: true, tables: true });
@@ -1116,10 +1161,14 @@
         }
 
         function runBackendChat() {
+            // Trim conversation history for backend context window safety
+            var backendBody = Object.assign({}, body, {
+                messages: trimMessagesForBudget(body.messages, BACKEND_HISTORY_BUDGET)
+            });
             fetch(GM_API_URL + '/chat/stream', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(body)
+                body: JSON.stringify(backendBody)
             })
                 .then(function (r) {
                     if (!r.ok) {
@@ -1193,7 +1242,7 @@
                     fetch(GM_API_URL + '/chat', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(body)
+                        body: JSON.stringify(backendBody)
                     })
                         .then(function (r) {
                             if (!r.ok) {
@@ -1234,16 +1283,19 @@
                 .then(function (engine) {
                     window.removeEventListener('webllm-progress', progressListener);
                     var systemPrompt = body.creationMode
-                        ? window.GM_SYSTEM_PROMPT.buildCreationSystemPrompt({ lang: body.lang })
+                        ? window.GM_SYSTEM_PROMPT.buildCreationSystemPrompt({ lang: body.lang, compact: true })
                         : window.GM_SYSTEM_PROMPT.buildChatSystemPrompt({
                             characterSnapshot: body.characterSnapshot,
                             gameState: body.gameState,
                             rulesOnly: body.rulesOnly,
-                            lang: body.lang
+                            lang: body.lang,
+                            compact: true
                         });
-                    var apiMessages = [{ role: 'system', content: systemPrompt }].concat(
-                        body.messages.map(function (m) { return { role: m.role, content: m.content }; })
+                    var historyMessages = trimMessagesForBudget(
+                        body.messages.map(function (m) { return { role: m.role, content: m.content }; }),
+                        WEBLLM_HISTORY_BUDGET
                     );
+                    var apiMessages = [{ role: 'system', content: systemPrompt }].concat(historyMessages);
                     return engine.chat.completions.create({
                         messages: apiMessages,
                         temperature: 1,

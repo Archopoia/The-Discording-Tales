@@ -57,11 +57,23 @@
         'Keep each reply concise. Use the rules below for flavour.'
     ].join('\n');
 
-    /** Static fallback when full rules file is not loaded (no RAG in browser). */
+    /** Compact rules for in-browser LLM (small context window). Covers the essentials the GM needs. */
     var LORE_SUMMARY = [
-        '**World (Iäoduneï):** Cytocosmism: concave universe, infinite continuity. Cords braided from two strands; Rils as knots. Ô (World), WÔM (Time), HISM (Forces). Four Tetrarchs: iôHôi (Whirling), sôIôs (Tension), môSôm (Alignment), hôMôh (Torsion). 10 Peoples (e.g. Aristois, Griscribes, Slaadéens, Tchalkchaïs) with distinct moralities and traits.',
-        '**Dice:** 3-sided dD: +, -, 0. Result = number of + minus number of -.',
-        '**Souffrances:** 8 types (Blessures, Fatigues, etc.). 10+ total = Rage; 15+ = Unconsciousness; 21+ = Defeated.'
+        '**World (Iäoduneï):** Cytocosmism: concave universe, infinite continuity. Cords braided from two strands (Éo, oÀ); Rils as knots in the cord of ÉoÀ. Ô (World), WÔM (Time), HISM (Forces). Four Tetrarchs: iôHôi (Whirling), sôIôs (Tension), môSôm (Alignment), hôMôh (Torsion). 10 Peoples across 3 Origins: Yômmes (Aristois, Griscribes, Navillis, Méridiens), Yôrres (Hauts Ylfes, Ylfes pâles, Ylfes des lacs, Iqqars), Bêstres (Slaadéens, Tchalkchaïs). Each has distinct moralities, physiologies, and traits. Setting tone: extreme territories, exaggerated creatures, eccentric societies, techno-traditionalism, animatheist religiosities. Perspectivism: no absolute good/evil; moralities are cultural.',
+        '**Rilie (magic):** Honoring a Ril grants Rilique Degrees (dice) and Levels. Serments, Sacrifices (victims, offerings), Harmonies. 8 Rilique Orders animate everything. The Rilie explains attraction/repulsion, falling/rising, appearance/disappearance, change/persistence. Fantastique and the supernatural operate through Rils.',
+        '**Dice (dD):** 3-sided: + (5-6 on d6), 0 (3-4), - (1-2). Chance = always 5dD. Raw result = count of + minus count of - (range -5 to +5). Final result = (sum of 5 kept dice) + Niv.',
+        '**Niv & Degrés:** Niv (Level) is added to the roll result; comes from Aptitudes + situational modifiers. Degrés (Degrees/Dice) are extra dice from Compétences (positive) or Souffrances (negative). Positive: keep 5 highest among (5+D). Negative: keep 5 lowest among (5+|D|). Result capped at Aptitude Niv + 5.',
+        '**Épreuves (Tests):** Success = final result >= Niv d\'Épreuve. Failure = result < Niv. Possible if within ±5 Niv. Extreme (6-10 difference): only Astragale (critical) can succeed/fail. Impossible: >10 difference.',
+        '**Astragale (Criticals):** On 00000 (five zeros on Chance), reroll 1 die: + = Critical Success, - = Critical Failure, 0 = normal. Critical effect doubles the action (+10 or -10 Niv equivalent). Porte-Bonheur/Porte-Malheur: personal lucky/unlucky numbers can also trigger Astragale.',
+        '**Compétence levels:** N0 (0D) Néophyte, N1 (1-2D) Initié, N2 (3-5D) Disciple, N3 (6-9D) Adepte, N4 (10-14D) Expert, N5 (15D+) Maître. Each has Maîtrises (specialties) and Découvertes. Compétences must be Révélées before use. Marques (10 marks) → Éprouver → +1 Dé.',
+        '**8 Conflict types (Gameplay):** Each Aptitude maps to a conflict type: Puissance→Bataille (frontal combat), Aisance→Infiltration (stealth), Précision→Artisanat (subterfuge/crafting), Athlétisme→Prouesse (physical feats), Charisme→Corrompre (social manipulation), Détection→Enquête (investigation), Réflexion→Énigme (puzzles/logic), Domination→Débat (persuasion/will). Each conflict has Objet (gardé) and Obstacle (gardien) approaches. Multiple solutions always exist for any conflict.',
+        '**8 Souffrances:** Blessures (FOR), Fatigues (AGI), Entraves (DEX), Disettes (VIG), Addictions (EMP), Maladies (PER), Folies (CRÉ), Rancœurs (VOL). Each has a passive Resistance competence R[Souffrance] — NO roll to resist, just subtract Niv. Séquelles: 3DS=Passagère, 6DS=Durable (-1 ATB), 10DS=Permanente (-2 ATB), 15DS=Fatale (death). Thresholds: 10+ total DS → Rage (1d6 instinct check); 15+ → Évanouissement; 21+ → Vaincu/Mort.',
+        '**Combat:** Real-time in Clins (1/3 second). No turns — all act simultaneously. Proactions (multi-Clin actions: attack, move, manipulate) accumulate Niv d\'Ébranlement from Reactions (Bloquer, Parer, Esquiver). Ébranlement subtracts from all rolls. Multiple simultaneous Proactions multiply Ébranlement. Initiative via [Fluidité]. Postures: Offensive, Défensive, Harrassante, Protectrice.',
+        '**Characters:** PI (Personnage Inspiré) = player character. PNI = NPC. Révélateur (RV) = GM. Éveilleur (EV) = Player. Each PI has a Récit (personal narrative) determining Caste and doubling competence dice in relevant situations.',
+        '**Time (NdT):** Clin (1/3s) → Souffle (1s) → Respiration (3s) → Échange (30s) → Instant/Prière (5min) → Moment (20min) → Heure → Veillée (3h) → Matinée/Nuitée (8h=1 Labeur) → Jour → Pentaine (5-6 days) → Héliorée (15d) → Saison (45d) → Cycle (120d) → Soleil (365d). "Faire 0" = no roll, use levels. More time = lower difficulty.',
+        '**Potentiels d\'Action:** Each Compétence Niv grants expendable extra dice. Cost to borrow from other Compétences: 1D same Action, 2D same Aptitude, 3D same principal ATB, 4D unrelated. Recovered per rest period.',
+        '**Groupe & Ambiance:** Group cohesion affects collective actions. Dés d\'Ambiance add to group rolls and consume -1 per use. Jet d\'Ambiance: Roll [Ambiance] vs Niv +X. Jet de Repos: Roll [Repos] vs Niv +X for healing.',
+        '**Guérison:** Jet de Repos (daily) determines Jours de souffrance healed. Modified by Resistance, current DS, environment. Treatments Niv 1-5 (simple remedies → exceptional care). Folies treated via Valeurs sacrifice; Rancœurs via Traits sacrifice.'
     ].join('\n\n');
 
     /** Full rules/lore loaded from public/drd-rules-lore.txt (built from reference/TTRPG_DRD/System_Summary). */
@@ -70,6 +82,11 @@
     /** Returns the rules block: mechanics + (loaded full rules or short fallback). */
     function getRulesBlock() {
         return GM_MECHANICS_REFERENCE + '\n\n---\n\n' + (LOADED_RULES_TEXT || LORE_SUMMARY);
+    }
+
+    /** Compact rules block for in-browser LLM (small context window): lore only (mechanics already in prompt template). */
+    function getCompactRulesBlock() {
+        return LORE_SUMMARY;
     }
 
     /**
@@ -146,7 +163,8 @@
 
     /**
      * Build system prompt for GM (play) mode.
-     * @param {Object} opts - { characterSnapshot, gameState, rulesOnly, lang }
+     * @param {Object} opts - { characterSnapshot, gameState, rulesOnly, lang, compact }
+     * compact: true → use short LORE_SUMMARY only (for in-browser LLM with small context window).
      */
     function buildChatSystemPrompt(opts) {
         opts = opts || {};
@@ -154,23 +172,27 @@
         var rulesOnlyBlock = formatRulesOnlyBlurb(opts.rulesOnly);
         var charBlock = formatCharacterBlurb(opts.characterSnapshot);
         var gameStateBlock = formatGameState(opts.gameState);
-        return (langInstr + GM_INSTRUCTIONS + '\n\n' + GM_MECHANICS_REFERENCE + '\n\n' + rulesOnlyBlock + '---\n\nRules and lore (use only these):\n\n' + getRulesBlock() + '\n\nBase your response on the rules and lore above. Do not add external facts.\n\n' + charBlock + gameStateBlock).trim();
+        var rules = opts.compact ? getCompactRulesBlock() : getRulesBlock();
+        return (langInstr + GM_INSTRUCTIONS + '\n\n' + GM_MECHANICS_REFERENCE + '\n\n' + rulesOnlyBlock + '---\n\nRules and lore (use only these):\n\n' + rules + '\n\nBase your response on the rules and lore above. Do not add external facts.\n\n' + charBlock + gameStateBlock).trim();
     }
 
     /**
      * Build system prompt for character creation mode.
-     * @param {Object} opts - { lang }
+     * @param {Object} opts - { lang, compact }
+     * compact: true → use short LORE_SUMMARY only.
      */
     function buildCreationSystemPrompt(opts) {
         opts = opts || {};
         var langInstr = getLangInstruction(opts.lang);
-        return (langInstr + GM_CREATION_PROMPT + '\n\n---\n\nRules (character creation):\n\n' + getRulesBlock()).trim();
+        var rules = opts.compact ? getCompactRulesBlock() : getRulesBlock();
+        return (langInstr + GM_CREATION_PROMPT + '\n\n---\n\nRules (character creation):\n\n' + rules).trim();
     }
 
     window.GM_SYSTEM_PROMPT = {
         buildChatSystemPrompt: buildChatSystemPrompt,
         buildCreationSystemPrompt: buildCreationSystemPrompt,
         loadRulesFromUrl: loadRulesFromUrl,
-        getRulesBlock: getRulesBlock
+        getRulesBlock: getRulesBlock,
+        getCompactRulesBlock: getCompactRulesBlock
     };
 })();
