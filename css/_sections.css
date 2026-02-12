@@ -1218,9 +1218,73 @@
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
 }
+/* ── LLM Loading / Status Banner ─────────────────────────────── */
+.gm-llm-status {
+    padding: 0.6rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-bottom: 0.35rem;
+    transition: opacity 0.4s ease, background 0.3s ease;
+}
+.gm-llm-status--loading {
+    background: rgba(160, 253, 218, 0.10);
+    border: 1px solid rgba(160, 253, 218, 0.25);
+    color: var(--tdt-mint);
+}
+.gm-llm-status--loading .gm-llm-status-text {
+    animation: gm-thinking-pulse 1.6s ease-in-out infinite;
+}
+.gm-llm-status--ready {
+    background: rgba(160, 253, 218, 0.12);
+    border: 1px solid rgba(160, 253, 218, 0.3);
+    color: var(--tdt-mint);
+    opacity: 1;
+    transition: opacity 0.6s ease 1.8s;
+}
+.gm-llm-status--error {
+    background: rgba(200, 60, 60, 0.15);
+    border: 1px solid rgba(200, 60, 60, 0.35);
+    color: #f0a0a0;
+}
+/* Progress bar track */
+.gm-llm-status-bar-track {
+    margin-top: 0.35rem;
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+}
+.gm-llm-status-bar-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--tdt-mint) 0%, rgba(160, 253, 218, 0.6) 100%);
+    transition: width 0.4s ease;
+}
+
+/* Disabled buttons while LLM is loading */
+.gm-chat-no-character-btn:disabled,
+.gm-chat-no-character-btn.gm-btn-llm-loading {
+    opacity: 0.5;
+    cursor: wait;
+    pointer-events: none;
+}
+.gm-chat-input-row button:disabled.gm-btn-llm-loading,
+.gm-chat-input-row button.gm-btn-llm-loading {
+    opacity: 0.5;
+    cursor: wait;
+}
+
+/* Error message in chat — more visible */
 .gm-chat-messages .error {
-    color: #e88;
-    padding: 0.5rem;
+    background: rgba(200, 60, 60, 0.12);
+    border: 1px solid rgba(200, 60, 60, 0.3);
+    border-radius: var(--radius-sm);
+    padding: 0.6rem 0.75rem;
+    color: #f0a0a0;
+    font-size: 0.9rem;
+    line-height: 1.4;
 }
 
 .rules-content ul {
