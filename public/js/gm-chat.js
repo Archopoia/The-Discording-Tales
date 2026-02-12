@@ -1882,9 +1882,275 @@
         }
     }
 
+    /* ══════════════════════════════════════════════════════════════
+     *  Mini Chat Preview (Landing page) — standalone lightweight chat
+     *  Shares the backend + renderMessages helper but has its own
+     *  message history (doesn't interfere with creation / character flow).
+     * ══════════════════════════════════════════════════════════════ */
+    var MINI_STORAGE_KEY = 'drd_mini_chat_messages';
+    var miniMessages = [];
+
+    function loadMiniMessages() {
+        try {
+            var raw = sessionStorage.getItem(MINI_STORAGE_KEY);
+            if (raw) miniMessages = JSON.parse(raw);
+        } catch (e) { miniMessages = []; }
+    }
+    function saveMiniMessages() {
+        try { sessionStorage.setItem(MINI_STORAGE_KEY, JSON.stringify(miniMessages)); } catch (e) {}
+    }
+
+    function renderMiniMessages(container, thinkingText, streamingContent) {
+        if (!container) return;
+        var lang = getLang();
+        var youLabel = lang === 'fr' ? 'Toi' : 'You';
+        var gmLabel = lang === 'fr' ? 'Éveilleur' : 'GM';
+
+        /* Streaming update (just patch the existing bubble) */
+        if (typeof streamingContent === 'string') {
+            var existing = container.querySelector('.gm-msg-streaming');
+            if (existing) {
+                var body = existing.querySelector('.gm-chat-body');
+                if (body) {
+                    var html = markdownToHtml(streamingContent);
+                    if (html != null) body.innerHTML = html;
+                    else body.textContent = streamingContent;
+                }
+                container.scrollTop = container.scrollHeight;
+                return;
+            }
+        }
+
+        container.innerHTML = '';
+        for (var i = 0; i < miniMessages.length; i++) {
+            var m = miniMessages[i];
+            var div = document.createElement('div');
+            div.className = 'msg ' + m.role;
+            var roleSpan = document.createElement('span');
+            roleSpan.className = 'role';
+            roleSpan.textContent = m.role === 'user' ? youLabel : gmLabel;
+            var bodyDiv = document.createElement('div');
+            var html2 = markdownToHtml(m.content);
+            if (html2 != null) { bodyDiv.className = 'gm-chat-body gm-chat-body--md'; bodyDiv.innerHTML = html2; }
+            else { bodyDiv.className = 'gm-chat-body'; bodyDiv.textContent = m.content; }
+            div.appendChild(roleSpan);
+            div.appendChild(bodyDiv);
+            container.appendChild(div);
+        }
+
+        /* Thinking / streaming bubble */
+        if (thinkingText || typeof streamingContent === 'string') {
+            var streamDiv = document.createElement('div');
+            streamDiv.className = 'msg assistant gm-msg-streaming';
+            var roleS = document.createElement('span');
+            roleS.className = 'role';
+            roleS.textContent = gmLabel;
+            streamDiv.appendChild(roleS);
+            var bDiv = document.createElement('div');
+            bDiv.className = 'gm-chat-body';
+            if (typeof streamingContent === 'string') {
+                var h = markdownToHtml(streamingContent);
+                if (h != null) { bDiv.className = 'gm-chat-body gm-chat-body--md'; bDiv.innerHTML = h; }
+                else bDiv.textContent = streamingContent;
+            } else {
+                bDiv.innerHTML = '<em class="gm-thinking">' + thinkingText + '</em>';
+            }
+            streamDiv.appendChild(bDiv);
+            container.appendChild(streamDiv);
+        }
+
+        container.scrollTop = container.scrollHeight;
+    }
+
+    function initMiniChat() {
+        var container = document.getElementById('mini-gm-chat-messages');
+        var input = document.getElementById('mini-gm-chat-input');
+        var sendBtn = document.getElementById('mini-gm-chat-send');
+        var clearBtn = document.getElementById('mini-gm-chat-clear');
+        if (!container || !input || !sendBtn) return;
+
+        /* Set pre-filled value based on current language */
+        function applyMiniInputLang() {
+            var lang = getLang();
+            var valEn = input.getAttribute('data-value-en');
+            var valFr = input.getAttribute('data-value-fr');
+            if (valEn && valFr) {
+                /* Only overwrite if the user hasn't typed something custom */
+                var cur = input.value.trim();
+                if (!cur || cur === valEn || cur === valFr) {
+                    input.value = lang === 'fr' ? valFr : valEn;
+                }
+            }
+        }
+        applyMiniInputLang();
+        /* Re-apply when language changes */
+        window.addEventListener('tdt-lang-changed', applyMiniInputLang);
+
+        loadMiniMessages();
+        renderMiniMessages(container);
+
+        function sendMiniMessage() {
+            var text = input.value.trim();
+            if (!text) return;
+            miniMessages.push({ role: 'user', content: text });
+            input.value = '';
+            saveMiniMessages();
+            sendBtn.disabled = true;
+
+            var thinkIdx = 0;
+            renderMiniMessages(container, getThinkingPhrase());
+            var thinkInterval = setInterval(function () {
+                thinkIdx++;
+                thinkingPhraseIndex = thinkIdx;
+                renderMiniMessages(container, getThinkingPhrase());
+            }, 2200);
+
+            function done() {
+                clearInterval(thinkInterval);
+                sendBtn.disabled = false;
+            }
+
+            var body = {
+                messages: miniMessages.map(function (m) { return { role: m.role, content: m.content }; }),
+                lang: getLang(),
+                rulesOnly: true
+            };
+
+            if (!GM_API_URL) {
+                /* No backend — try WebLLM if available */
+                if (typeof window.getWebLLMEngine === 'function' && window.GM_SYSTEM_PROMPT) {
+                    var compact = window.GM_SYSTEM_PROMPT.getCompactRulesBlock
+                        ? window.GM_SYSTEM_PROMPT.getCompactRulesBlock() : '';
+                    var sysMsg = window.GM_SYSTEM_PROMPT.buildChatSystemPrompt
+                        ? window.GM_SYSTEM_PROMPT.buildChatSystemPrompt(compact) : compact;
+                    window.getWebLLMEngine().then(function (engine) {
+                        var llmMsgs = [{ role: 'system', content: sysMsg }];
+                        for (var i = 0; i < miniMessages.length; i++) {
+                            llmMsgs.push({ role: miniMessages[i].role, content: miniMessages[i].content });
+                        }
+                        return engine.chat.completions.create({ messages: llmMsgs, stream: true });
+                    }).then(function (stream) {
+                        var fullText = '';
+                        function readStream() {
+                            return stream.next().then(function (r) {
+                                if (r.done) {
+                                    miniMessages.push({ role: 'assistant', content: fullText.trim() });
+                                    saveMiniMessages();
+                                    renderMiniMessages(container);
+                                    done();
+                                    return;
+                                }
+                                var delta = r.value && r.value.choices && r.value.choices[0] && r.value.choices[0].delta && r.value.choices[0].delta.content;
+                                if (delta) { fullText += delta; renderMiniMessages(container, null, fullText); }
+                                return readStream();
+                            });
+                        }
+                        return readStream();
+                    }).catch(function (err) {
+                        miniMessages.push({ role: 'assistant', content: '⚠ ' + (err.message || String(err)) });
+                        saveMiniMessages();
+                        renderMiniMessages(container);
+                        done();
+                    });
+                } else {
+                    miniMessages.push({ role: 'assistant', content: getLang() === 'fr'
+                        ? '⚠ Aucun serveur configuré. Allez sur la page Play pour l\'IA locale.'
+                        : '⚠ No server configured. Go to the Play page for local AI.' });
+                    saveMiniMessages();
+                    renderMiniMessages(container);
+                    done();
+                }
+                return;
+            }
+
+            /* Backend available — call /chat/stream */
+            fetch(GM_API_URL + '/chat/stream', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body)
+            }).then(function (r) {
+                if (!r.ok) throw new Error(r.statusText);
+                return r.body.getReader();
+            }).then(function (reader) {
+                var decoder = new TextDecoder();
+                var buffer = '';
+                var fullText = '';
+
+                function readNext() {
+                    return reader.read().then(function (result) {
+                        if (result.done) {
+                            try { reader.cancel(); } catch (e) {}
+                            miniMessages.push({ role: 'assistant', content: fullText.trim() });
+                            saveMiniMessages();
+                            renderMiniMessages(container);
+                            done();
+                            return;
+                        }
+                        buffer += decoder.decode(result.value, { stream: true });
+                        var parts = buffer.split('\n\n');
+                        buffer = parts.pop() || '';
+                        for (var i = 0; i < parts.length; i++) {
+                            var line = parts[i].trim();
+                            if (line.indexOf('data: ') === 0) {
+                                var jsonStr = line.slice(5).trim();
+                                if (jsonStr === '[DONE]' || jsonStr === '') continue;
+                                try {
+                                    var data = JSON.parse(jsonStr);
+                                    if (data.done) {
+                                        try { reader.cancel(); } catch (e) {}
+                                        miniMessages.push({ role: 'assistant', content: fullText.trim() });
+                                        saveMiniMessages();
+                                        renderMiniMessages(container);
+                                        done();
+                                        return;
+                                    }
+                                    if (data.delta) {
+                                        fullText += data.delta;
+                                        clearInterval(thinkInterval);
+                                        renderMiniMessages(container, null, fullText);
+                                    }
+                                    if (data.error) throw new Error(data.error);
+                                } catch (e) {
+                                    if (e instanceof SyntaxError) continue;
+                                    throw e;
+                                }
+                            }
+                        }
+                        return readNext();
+                    });
+                }
+                return readNext();
+            }).catch(function (err) {
+                clearInterval(thinkInterval);
+                miniMessages.push({ role: 'assistant', content: '⚠ ' + (err.message || String(err)) });
+                saveMiniMessages();
+                renderMiniMessages(container);
+                done();
+            });
+        }
+
+        sendBtn.addEventListener('click', sendMiniMessage);
+        input.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMiniMessage();
+            }
+        });
+
+        if (clearBtn) {
+            clearBtn.addEventListener('click', function () {
+                miniMessages = [];
+                saveMiniMessages();
+                renderMiniMessages(container);
+            });
+        }
+    }
+
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
+        document.addEventListener('DOMContentLoaded', initMiniChat);
     } else {
         init();
+        initMiniChat();
     }
 })();

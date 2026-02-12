@@ -210,6 +210,24 @@
                 </div>
             </div>
 
+            <!-- Mini Chat Preview -->
+            <div class="mini-chat-preview">
+                <div class="mini-chat-widget gm-chat-wrapper">
+                    <div class="gm-chat-toolbar">
+                        <button type="button" id="mini-gm-chat-clear" class="gm-chat-toolbar-btn gm-chat-clear-btn" data-aria-label-en="Clear chat" data-aria-label-fr="Effacer le tchat" aria-label="Clear chat" title="Clear chat">
+                            <svg class="gm-chat-icon-brush" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M20.71 4.63l-1.34-1.34c-.39-.39-1.02-.39-1.41 0L9 12.25 11.75 15l8.96-8.96c.39-.39.39-1.02 0-1.41zM7 14a3 3 0 0 0 3 3c.5 0 .97-.15 1.36-.41l-1.95-1.95-.41.41V14z"/></svg>
+                        </button>
+                        <span class="gm-chat-disclaimer gm-chat-disclaimer--backend" role="note" data-en="✦ Gemini AI — WIP, may contain inaccuracies" data-fr="✦ IA Gemini — WIP, peut contenir des inexactitudes">✦ Gemini AI — WIP, may contain inaccuracies</span>
+                    </div>
+                    <div class="gm-chat-messages mini-gm-chat-messages tdt-scrollable" id="mini-gm-chat-messages" role="log" aria-live="polite"></div>
+                    <div class="mini-gm-chat-input-row">
+                        <input type="text" id="mini-gm-chat-input" data-value-en="Which of the peoples is the most insane, bizarre, immoral, horrible?" data-value-fr="Lequels des peuples est le plus fou, bizarre, immoral, horrible ?" value="Which of the peoples is the most insane, bizarre, immoral, horrible?" data-aria-label-en="Ask the AI" data-aria-label-fr="Poser une question à l'IA" aria-label="Ask the AI" autocomplete="off"/>
+                        <button type="button" id="mini-gm-chat-send" data-en="Send" data-fr="Envoyer">Send</button>
+                    </div>
+                </div>
+                <a href="#play" class="mini-chat-play-btn tab-link" data-tab="play" data-en="▶ Play — Full Chat &amp; Character Sheet" data-fr="▶ Jouer — Tchat complet &amp; Feuille de Personnage">▶ Play — Full Chat &amp; Character Sheet</a>
+            </div>
+
             <!-- Discovery + UNIFIED: one section, one container, shared layout -->
             <div class="features-section discovery-unified-section">
                 <div class="container">

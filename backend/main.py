@@ -440,12 +440,15 @@ def _chat_system_prompt(req: ChatRequest, rules_block: str) -> str:
         "Base your response solely on the retrieved rules and lore above. Do not add external facts or opinions. "
         "If the rules and lore above do not contain the answer, say that you do not have that information and do not invent mechanics or lore.\n\n"
     )
-    lang_instruction = ""
+    lang_instruction_top = ""
+    lang_instruction_end = ""
     if req.lang and req.lang.lower() == "en":
-        lang_instruction = "**Language**: You MUST respond in English. All narrative, descriptions, and dialogue must be in English. Keep competence names in brackets in French (e.g. Roll [Grimpe]) as required by the UI.\n\n"
+        lang_instruction_top = "**Language**: You MUST respond in English. All narrative, descriptions, and dialogue must be in English. Keep competence names in brackets in French (e.g. Roll [Grimpe]) as required by the UI.\n\n"
+        lang_instruction_end = "\n\n**REMINDER — LANGUAGE**: You MUST reply ENTIRELY in English. The rules/lore above are in French but your answer must be in English."
     elif req.lang and req.lang.lower() == "fr":
-        lang_instruction = "**Langue** : Réponds en français. Tout le récit, les descriptions et les dialogues doivent être en français.\n\n"
-    return f"{lang_instruction}{GM_INSTRUCTIONS}\n\n{GM_MECHANICS_REFERENCE}\n\n{rules_only_block}---\n\nRules and lore (use only these):\n\n{rules_block}\n\n{rag_instruction}{char_block}{game_state_block}".strip()
+        lang_instruction_top = "**Langue** : Réponds en français. Tout le récit, les descriptions et les dialogues doivent être en français.\n\n"
+        lang_instruction_end = "\n\n**RAPPEL — LANGUE** : Tu DOIS répondre entièrement en français."
+    return f"{lang_instruction_top}{GM_INSTRUCTIONS}\n\n{GM_MECHANICS_REFERENCE}\n\n{rules_only_block}---\n\nRules and lore (use only these):\n\n{rules_block}\n\n{rag_instruction}{char_block}{game_state_block}{lang_instruction_end}".strip()
 
 
 def _creation_system_prompt(rules_block: str, lang: str | None = None) -> str:

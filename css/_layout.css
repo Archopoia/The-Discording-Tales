@@ -214,6 +214,7 @@
 
     .header-top-row .site-branding {
         order: 1;
+        grid-column: 1;
         min-width: auto;
     }
 
