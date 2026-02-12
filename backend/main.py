@@ -443,8 +443,8 @@ def _chat_system_prompt(req: ChatRequest, rules_block: str) -> str:
     lang_instruction_top = ""
     lang_instruction_end = ""
     if req.lang and req.lang.lower() == "en":
-        lang_instruction_top = "**Language**: You MUST respond in English. All narrative, descriptions, and dialogue must be in English. Keep competence names in brackets in French (e.g. Roll [Grimpe]) as required by the UI.\n\n"
-        lang_instruction_end = "\n\n**REMINDER — LANGUAGE**: You MUST reply ENTIRELY in English. The rules/lore above are in French but your answer must be in English."
+        lang_instruction_top = "**Language**: You MUST respond in English. All narrative, descriptions, and dialogue must be in English. Refer to the game as \"The Discording Tales\" (not \"Des Récits Discordants\"). When quoting or paraphrasing from the rules/lore, TRANSLATE the content into English — do NOT paste French quotes directly. The only French words allowed are proper nouns (character names, place names like Iäoduneï, Hael, Féos), people names (Yômmes, Yôrres, Bêstres, Aristois, etc.), and competence names in brackets (e.g. Roll [Grimpe]).\n\n"
+        lang_instruction_end = "\n\n**REMINDER — LANGUAGE**: You MUST reply ENTIRELY in English. The rules/lore above are in French — you must TRANSLATE all quotes and descriptions into English. Do NOT include French sentences or phrases except for proper nouns and competence names. The game is called \"The Discording Tales\" in English."
     elif req.lang and req.lang.lower() == "fr":
         lang_instruction_top = "**Langue** : Réponds en français. Tout le récit, les descriptions et les dialogues doivent être en français.\n\n"
         lang_instruction_end = "\n\n**RAPPEL — LANGUE** : Tu DOIS répondre entièrement en français."
