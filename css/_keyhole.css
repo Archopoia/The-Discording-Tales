@@ -271,7 +271,7 @@ body.entrance-active > :not(#static-loader) {
 
 #static-loader #enter-portfolio-btn.entrance-exiting .entrance-logo-wrap,
 #static-loader.touch-hovering #enter-portfolio-btn.entrance-exiting .entrance-logo-wrap {
-    animation: fadeOut 1.5s ease-in-out forwards !important;
+    animation: spinFadeOut 1.5s ease-in-out forwards !important;
     transition: none !important; /* Prevent transition from interfering */
 }
 
@@ -451,6 +451,12 @@ body.entrance-active > :not(#static-loader) {
 @keyframes fadeOut {
     from { opacity: 1; }
     to { opacity: 0; }
+}
+
+/* Spin 360° + fade out (used for logo on entrance click) */
+@keyframes spinFadeOut {
+    from { opacity: 1; transform: rotate(0deg); }
+    to   { opacity: 0; transform: rotate(360deg); }
 }
 
 /* Eye iris movement - calm, observing (default state) */
