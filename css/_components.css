@@ -14,8 +14,7 @@
 .discovery-kickstarter-oval {
     width: 85%;
     max-width: 520px;
-    aspect-ratio: 4 / 3;
-    min-height: 420px;
+    aspect-ratio: 1 / 1;
     border-radius: 50%;
     overflow: hidden;
     position: relative;
