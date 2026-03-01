@@ -2712,10 +2712,14 @@
     function initNewsletter() {
         if (!elements.newsletterForm) return;
 
-        elements.newsletterForm.addEventListener('submit', function(e) {
+        elements.newsletterForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             const emailInput = document.getElementById('newsletter-email');
             const email = emailInput ? emailInput.value : '';
+            const honeypotInput = elements.newsletterForm.querySelector('input[name="website"]');
+            const honeypot = honeypotInput ? honeypotInput.value : '';
+            const submitBtn = elements.newsletterForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn ? submitBtn.textContent : '';
 
             if (!email || !isValidEmail(email)) {
                 alert(state.currentLang === 'en' 
@@ -2724,14 +2728,61 @@
                 return;
             }
 
-            // Here you would normally send the email to your server
-            // For now, just show a success message
-            alert(state.currentLang === 'en'
-                ? 'Thank you for subscribing! You will be notified when The Discording Tales launches.'
-                : 'Merci de vous être abonné ! Vous serez notifié au lancement de The Discording Tales.');
+            function getApiBaseUrl() {
+                if (typeof window.GM_API_URL !== 'undefined' && window.GM_API_URL) {
+                    return String(window.GM_API_URL).trim();
+                }
+                var meta = document.querySelector('meta[name="gm-api-url"]');
+                if (meta && meta.getAttribute('content')) {
+                    return meta.getAttribute('content').trim();
+                }
+                return 'http://localhost:8000';
+            }
 
-            // Reset form
-            if (emailInput) emailInput.value = '';
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = state.currentLang === 'en' ? 'Subscribing…' : 'Abonnement…';
+            }
+
+            try {
+                const res = await fetch(getApiBaseUrl() + '/newsletter/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: String(email).trim(),
+                        lang: state.currentLang,
+                        source: 'homepage_outpost',
+                        honeypot: honeypot || ''
+                    })
+                });
+
+                if (!res.ok) {
+                    let detail = '';
+                    try {
+                        const data = await res.json();
+                        detail = data && data.detail ? String(data.detail) : '';
+                    } catch (err) {
+                        /* ignore parse errors */
+                    }
+                    throw new Error(detail || ('HTTP ' + res.status));
+                }
+
+                alert(state.currentLang === 'en'
+                    ? 'Thank you for subscribing! You will be notified when The Discording Tales launches.'
+                    : 'Merci de vous être abonné ! Vous serez notifié au lancement de The Discording Tales.');
+                if (emailInput) emailInput.value = '';
+                if (honeypotInput) honeypotInput.value = '';
+            } catch (err) {
+                alert(state.currentLang === 'en'
+                    ? 'Subscription is temporarily unavailable. Please try again later.'
+                    : 'L’abonnement est temporairement indisponible. Veuillez réessayer plus tard.');
+                console.error('[Newsletter] subscribe error:', err);
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalBtnText;
+                }
+            }
         });
     }
 
