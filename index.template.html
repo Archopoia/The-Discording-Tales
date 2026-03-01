@@ -38,17 +38,15 @@
     
     <!-- Theme Color -->
     <meta content="#5a1f1f" name="theme-color"/>
-    <!-- GM API (Play tab): set for production so visitors/phones use your backend.
-         Without this, the site uses http://localhost:8000 — which only works on the machine running uvicorn; phones and other devices get ERR_CONNECTION_REFUSED. -->
-    <!-- <meta name="gm-api-url" content="https://your-deployed-api.example.com"/> -->
+    <!-- GM API (Play tab): public backend for all visitors -->
+    <meta name="gm-api-url" content="https://the-discording-tales.onrender.com"/>
     
     <!-- Favicon -->
     <link href="assets/images/cropped-symbolpur.png" rel="icon" type="image/png" sizes="32x32"/>
     <!-- Prefetch entrance backdrop images so they're cached when the keyhole opens -->
     <link rel="prefetch" href="assets/images/Map_Naked.webp" as="image"/>
     <link rel="prefetch" href="assets/images/Creusalité_NoBorders.webp" as="image"/>
-    <!-- Gemini API key for direct browser→Gemini calls (free tier) -->
-    <meta name="gemini-api-key" content="AIzaSyAUcAPvrG520i3Ffdvl0jLs9uNXpPiSrPc"/>
+    <!-- Gemini API key intentionally not exposed in frontend; use backend env vars -->
     <!-- Preload entrance-critical images for instant first paint -->
     <link rel="preload" href="assets/images/symbolpur.png" as="image" fetchpriority="high"/>
     <link rel="preload" href="assets/images/SymbolCoin.png" as="image" fetchpriority="high"/>
