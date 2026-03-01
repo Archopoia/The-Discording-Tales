@@ -43,9 +43,9 @@
     
     <!-- Favicon -->
     <link href="assets/images/cropped-symbolpur.png" rel="icon" type="image/png" sizes="32x32"/>
-    <!-- Prefetch entrance backdrop images so they're cached when the keyhole opens -->
-    <link rel="prefetch" href="assets/images/Map_Naked.webp" as="image"/>
-    <link rel="prefetch" href="assets/images/Creusalité_NoBorders.webp" as="image"/>
+    <!-- Entrance-critical backdrop images should be requested at high priority -->
+    <link rel="preload" href="assets/images/Map_Naked.webp" as="image" fetchpriority="high"/>
+    <link rel="preload" href="assets/images/Creusalité_NoBorders.webp" as="image" fetchpriority="high"/>
     <!-- Gemini API key intentionally not exposed in frontend; use backend env vars -->
     <!-- Preload entrance-critical images for instant first paint -->
     <link rel="preload" href="assets/images/symbolpur.png" as="image" fetchpriority="high"/>
@@ -3399,6 +3399,74 @@
     <!-- Markdown + sanitizer for GM chat formatted replies -->
     <script src="https://cdn.jsdelivr.net/npm/marked@9.1.6/marked.min.js" crossorigin="anonymous" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.9/dist/purify.min.js" crossorigin="anonymous" defer></script>
+    <script>
+    // Warm image cache in the background so later sections feel instant.
+    (function () {
+        function normalizeUrl(raw) {
+            if (!raw) return '';
+            var v = String(raw).trim().replace(/^['"]|['"]$/g, '');
+            if (!v) return '';
+            if (/^(data:|blob:|https?:\/\/|\/\/)/i.test(v)) return '';
+            if (v.charAt(0) === '/') v = v.slice(1);
+            if (v.indexOf('assets/images/') !== 0) return '';
+            return v;
+        }
+
+        function collectImageUrls() {
+            var out = new Set();
+            out.add('assets/images/Map_Naked.webp');
+            out.add('assets/images/Creusalité_NoBorders.webp');
+            out.add('assets/images/symbolpur.png');
+            out.add('assets/images/SymbolCoin.png');
+
+            var imgs = document.querySelectorAll('img[src], img[srcset], source[srcset]');
+            for (var i = 0; i < imgs.length; i++) {
+                var src = imgs[i].getAttribute('src');
+                var s = normalizeUrl(src);
+                if (s) out.add(s);
+
+                var srcset = imgs[i].getAttribute('srcset');
+                if (srcset) {
+                    var parts = srcset.split(',');
+                    for (var j = 0; j < parts.length; j++) {
+                        var candidate = parts[j].trim().split(/\s+/)[0];
+                        var ss = normalizeUrl(candidate);
+                        if (ss) out.add(ss);
+                    }
+                }
+            }
+            return Array.from(out);
+        }
+
+        function warmSequentially(urls, index) {
+            if (index >= urls.length) return;
+            var img = new Image();
+            img.decoding = 'async';
+            try { img.fetchPriority = 'low'; } catch (e) {}
+            img.loading = 'eager';
+            img.src = urls[index];
+            var next = function () { setTimeout(function () { warmSequentially(urls, index + 1); }, 25); };
+            img.onload = next;
+            img.onerror = next;
+        }
+
+        function runWarmup() {
+            var urls = collectImageUrls();
+            if (!urls.length) return;
+            warmSequentially(urls, 0);
+        }
+
+        if (window.requestIdleCallback) {
+            window.addEventListener('load', function () {
+                requestIdleCallback(runWarmup, { timeout: 3000 });
+            }, { once: true });
+        } else {
+            window.addEventListener('load', function () {
+                setTimeout(runWarmup, 1200);
+            }, { once: true });
+        }
+    })();
+    </script>
     <!-- WebLLM: in-browser GM -->
     <script type="module" src="dist/play-webllm.js"></script>
     <!-- React Character Sheet Bundle (built with Vite) -->
