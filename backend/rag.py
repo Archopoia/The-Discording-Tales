@@ -132,7 +132,22 @@ def build_or_get_index(
 
 
 def retrieve(vectorstore, query: str, k: int = 6) -> list[Document]:
-    """Return top-k chunks for query."""
+    """Return top-k chunks for query with optional MMR diversity.
+
+    Env tuning:
+    - RAG_USE_MMR=true|false (default true)
+    - RAG_FETCH_K=<int> (candidate pool size for MMR; default max(20, 4*k))
+    """
+    use_mmr = os.getenv("RAG_USE_MMR", "true").strip().lower() in ("1", "true", "yes")
+    fetch_k_raw = os.getenv("RAG_FETCH_K", "").strip()
+    fetch_k = int(fetch_k_raw) if fetch_k_raw else max(20, 4 * max(1, k))
+
+    if use_mmr:
+        try:
+            # Prefer diverse evidence chunks across the rulebook rather than near-duplicates.
+            return vectorstore.max_marginal_relevance_search(query, k=k, fetch_k=fetch_k)
+        except Exception:
+            pass
     return vectorstore.similarity_search(query, k=k)
 
 

@@ -43,7 +43,13 @@ If Ollama is not installed or not running, you’ll get a connection error; star
 
 - The index is built from **System_Summary**, **AllBookPages-FullBook**, and **AllBookTables-csv** under `reference/TTRPG_DRD` (or any `reference/` subdir whose name contains `TTRPG`, e.g. `TTRPG - Des Récits Discordants`). You can rename the folder to `TTRPG_DRD` for simpler paths.
 - **Rebuild index** after adding or changing any `.md` or `.csv` in those dirs: (1) delete the `backend/faiss_drd` folder, or (2) set `RAG_FORCE_REBUILD=1` (or `true`/`yes`) in `.env` and restart the backend — the index is rebuilt on the next `/chat` (one-time per process when using `RAG_FORCE_REBUILD`). You can also prebuild from project root: `python backend/build_rag_index.py` (requires `OPENAI_API_KEY` in `backend/.env`).
-- Optional: set `FAISS_PATH` (default `./faiss_drd`), `RAG_TOP_K` (default 12), `RAG_FORCE_REBUILD`, and `RAG_SOURCE_DIR` in `.env`. `RAG_SOURCE_DIR` is a **root** path that must contain the three subdirs `System_Summary`, `AllBookPages-FullBook`, and `AllBookTables-csv`; if unset, defaults are used.
+- Optional: set `FAISS_PATH` (default `./faiss_drd`), `RAG_TOP_K` (default 20), `RAG_FORCE_REBUILD`, and `RAG_SOURCE_DIR` in `.env`. `RAG_SOURCE_DIR` is a **root** path that must contain the three subdirs `System_Summary`, `AllBookPages-FullBook`, and `AllBookTables-csv`; if unset, defaults are used.
+- Retrieval quality knobs:
+  - `RAG_USE_MMR=true` (default): diversify chunks to reduce near-duplicate excerpts.
+  - `RAG_FETCH_K` (default auto): candidate pool size for MMR.
+- Response quality knobs:
+  - `LLM_TEMPERATURE` (default `0.2`): lower = stricter grounding.
+  - `LLM_MAX_TOKENS` (default `6144`): higher = fuller responses (more cost/latency).
 
 ## Run
 
@@ -95,6 +101,16 @@ So: **for a public website, run the backend (and Ollama) on a server**, and poin
    The script `gm-chat.js` reads this and uses it instead of `http://localhost:8000`. If you use a build step (e.g. Vite), you can inject this URL from an env var.
 4. **CORS:** On the server, set `CORS_ORIGINS` in `.env` to your website’s origin(s) (e.g. `https://yoursite.com`) and `CORS_WILDCARD=false`, so the browser allows requests from your domain.
 5. **RAG:** The server needs `reference/.../TTRPG` with **System_Summary**, **AllBookPages-FullBook**, and **AllBookTables-csv**, plus `FAISS_PATH`, so the backend can build/load the index. RAG embeddings still use `OPENAI_API_KEY` unless you switch to local embeddings.
+
+### Render quick setup (free tier)
+
+- A root `render.yaml` is provided in this repo. If you create the service from that blueprint, it auto-sets:
+  - `rootDir=backend`, build/start commands, Python 3.11, and quality-oriented defaults.
+- If configuring manually in the Render dashboard:
+  - **Root Directory**: `backend`
+  - **Build Command**: `pip install -r requirements.txt`
+  - **Start Command**: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+  - Set secret env vars: `GEMINI_API_KEY`, `OPENAI_API_KEY`
 
 **Alternative:** If you don’t want to run Ollama on a server (e.g. no GPU, or you prefer not to maintain it), use **OpenAI** for the public site: set `LLM_PROVIDER=openai` and `OPENAI_API_KEY` on the server. Then deploy the backend anywhere (e.g. a serverless or small VPS) and point the frontend at it; no Ollama on the server.
 

@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: the-discording-tales
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.11
+      - key: LLM_PROVIDER
+        value: gemini
+      - key: LLM_MODEL
+        value: gemini-2.5-flash
+      - key: CORS_WILDCARD
+        value: "false"
+      - key: CORS_ORIGINS
+        value: https://archopoia.github.io
+      - key: RAG_TOP_K
+        value: "20"
+      - key: RAG_USE_MMR
+        value: "true"
+      - key: LLM_TEMPERATURE
+        value: "0.2"
+      - key: LLM_MAX_TOKENS
+        value: "6144"
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false

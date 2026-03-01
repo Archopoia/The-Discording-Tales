@@ -39,12 +39,13 @@ _raw = os.getenv("CORS_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173,ht
 CORS_ORIGINS = [o.strip() for o in _raw.split(",") if o.strip()]
 # Use * for local dev when no credentials (Play chat doesn't send cookies)
 CORS_USE_WILDCARD = os.getenv("CORS_WILDCARD", "true").lower() in ("1", "true", "yes")
-RAG_TOP_K = int(os.getenv("RAG_TOP_K", "12"))
+RAG_TOP_K = int(os.getenv("RAG_TOP_K", "20"))
 # Lower temperature = less hallucination when grounding on rulebook (especially for local models)
 _t = os.getenv("LLM_TEMPERATURE", "").strip()
-LLM_TEMPERATURE = float(_t) if _t else 0.3
+LLM_TEMPERATURE = float(_t) if _t else 0.2
 _tp = os.getenv("LLM_TOP_P", "").strip()
 LLM_TOP_P = float(_tp) if _tp else None
+LLM_MAX_TOKENS = int(os.getenv("LLM_MAX_TOKENS", "6144"))
 
 app = FastAPI(title="DRD GM API", version="0.1.0")
 
@@ -417,7 +418,7 @@ def chat(req: ChatRequest):
             openai_messages.append({"role": m.role, "content": m.content})
 
         r = chat_completion(
-            client, model, openai_messages, max_tokens=4096, stream=False,
+            client, model, openai_messages, max_tokens=LLM_MAX_TOKENS, stream=False,
             temperature=LLM_TEMPERATURE, top_p=LLM_TOP_P,
         )
         reply = (r.choices[0].message.content or "").strip()
@@ -488,7 +489,7 @@ def _stream_chat_sse(req: ChatRequest):
             openai_messages.append({"role": m.role, "content": m.content})
 
         stream = chat_completion(
-            client, model, openai_messages, max_tokens=4096, stream=True,
+            client, model, openai_messages, max_tokens=LLM_MAX_TOKENS, stream=True,
             temperature=LLM_TEMPERATURE, top_p=LLM_TOP_P,
         )
         full_text: list[str] = []
