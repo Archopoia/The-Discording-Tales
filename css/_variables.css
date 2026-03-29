@@ -47,6 +47,8 @@
     --header-creature-strip-min: clamp(10rem, 26vh, 20rem);
     /* Hero minimum height (branding + creature strip) */
     --header-bg-min-height: clamp(28rem, 68vh, 50rem);
+    /* Panoramic creature art: soften left/right (mask gradient; larger = narrower visible band) */
+    --header-creature-side-fade: 33%;
     
     /* Transitions - Smoother and longer */
     --transition-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1);

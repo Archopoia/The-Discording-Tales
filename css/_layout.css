@@ -115,25 +115,42 @@
     transition:
         opacity 0.55s ease,
         transform 0.55s ease;
-    /* Soft edge fade (single mask layer — reliable; does not follow PNG alpha silhouette) */
-    -webkit-mask-image: radial-gradient(
-        ellipse 100% 92% at 50% 55%,
-        #000 38%,
-        #000 60%,
-        transparent 100%
-    );
-    mask-image: radial-gradient(
-        ellipse 100% 92% at 50% 55%,
-        #000 38%,
-        #000 60%,
-        transparent 100%
-    );
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
-    -webkit-mask-position: center bottom;
-    mask-position: center bottom;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
+    /* Oval vignette + left/right soft clip (intersect) */
+    -webkit-mask-image:
+        radial-gradient(
+            ellipse 100% 92% at 50% 55%,
+            #000 38%,
+            #000 60%,
+            transparent 100%
+        ),
+        linear-gradient(
+            to right,
+            transparent 0%,
+            #000 var(--header-creature-side-fade),
+            #000 calc(100% - var(--header-creature-side-fade)),
+            transparent 100%
+        );
+    mask-image:
+        radial-gradient(
+            ellipse 100% 92% at 50% 55%,
+            #000 38%,
+            #000 60%,
+            transparent 100%
+        ),
+        linear-gradient(
+            to right,
+            transparent 0%,
+            #000 var(--header-creature-side-fade),
+            #000 calc(100% - var(--header-creature-side-fade)),
+            transparent 100%
+        );
+    -webkit-mask-size: 100% 100%, 100% 100%;
+    mask-size: 100% 100%, 100% 100%;
+    -webkit-mask-position: center bottom, center center;
+    mask-position: center bottom, center center;
+    -webkit-mask-repeat: no-repeat, no-repeat;
+    mask-repeat: no-repeat, no-repeat;
+    mask-composite: intersect;
 }
 
 /* People1 baseline; People2 reveals top → bottom on .branding-flip hover (Kickstarter oval) */
@@ -168,6 +185,13 @@
             transparent 100%
         ),
         linear-gradient(
+            to right,
+            transparent 0%,
+            #000 var(--header-creature-side-fade),
+            #000 calc(100% - var(--header-creature-side-fade)),
+            transparent 100%
+        ),
+        linear-gradient(
             to bottom,
             #000 0%,
             #000
@@ -189,6 +213,13 @@
             transparent 100%
         ),
         linear-gradient(
+            to right,
+            transparent 0%,
+            #000 var(--header-creature-side-fade),
+            #000 calc(100% - var(--header-creature-side-fade)),
+            transparent 100%
+        ),
+        linear-gradient(
             to bottom,
             #000 0%,
             #000
@@ -202,13 +233,13 @@
                     max(0%, (var(--tdt-creature-wipe) + var(--tdt-creature-wipe-feather)) * 1%)
                 )
         );
-    -webkit-mask-size: 100% 100%, 100% 100%;
-    mask-size: 100% 100%, 100% 100%;
-    -webkit-mask-position: center bottom, 0 0;
-    mask-position: center bottom, 0 0;
-    -webkit-mask-repeat: no-repeat, no-repeat;
-    mask-repeat: no-repeat, no-repeat;
-    mask-composite: intersect;
+    -webkit-mask-size: 100% 100%, 100% 100%, 100% 100%;
+    mask-size: 100% 100%, 100% 100%, 100% 100%;
+    -webkit-mask-position: center bottom, center center, 0 0;
+    mask-position: center bottom, center center, 0 0;
+    -webkit-mask-repeat: no-repeat, no-repeat, no-repeat;
+    mask-repeat: no-repeat, no-repeat, no-repeat;
+    mask-composite: intersect, intersect;
 }
 
 .header-bg:has(.branding-flip:hover) .header-creature-banner-img--base,
