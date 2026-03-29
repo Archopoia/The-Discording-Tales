@@ -3386,20 +3386,6 @@
         font-size: 1rem;
     }
     
-    .menu-toggle {
-        display: block;
-    }
-    
-    .menu {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-    }
-    
-    .menu.active {
-        display: flex;
-    }
-    
     .features-grid {
         grid-template-columns: 1fr;
     }

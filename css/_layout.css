@@ -89,8 +89,8 @@
     max-height: none;
     overflow-x: clip;
     overflow-y: visible;
-    /* Below .header-top-row so gallery / branding / SoundCloud sit on top when they overlap */
-    z-index: 2;
+    /* Above .header-top-row (10): People1/2 sit over the Kickstarter oval on hover; pointer-events still none so clicks pass through */
+    z-index: 12;
     pointer-events: none;
     display: flex;
     align-items: flex-end;
@@ -421,9 +421,25 @@
 @media screen and (max-width: 768px) {
     .header-bg {
         background-attachment: scroll;
-        /* Same hero + creature strip spacing as desktop (_variables: --header-bg-min-height, --header-creature-strip-min, --header-main-nav-height) */
-        min-height: var(--header-bg-min-height, clamp(28rem, 68vh, 50rem));
-        padding-bottom: calc(var(--spacing-md) + var(--header-creature-strip-min, clamp(10rem, 26vh, 20rem)));
+        /*
+         * Desktop packs gallery + SoundCloud beside the title, so content fills height naturally.
+         * Here only the center column remains — keep the same *look* (cropped map, tight hero) by not
+         * forcing 68vh + full strip min; that exposed nearly the full JPG between title and creatures.
+         */
+        /* ~½ previous mobile hero: tight band under branding + shorter creature reserve */
+        min-height: clamp(9rem, 22vh, 15rem);
+        padding-bottom: calc(
+            var(--spacing-sm) + clamp(2.75rem, 7vh, 5rem)
+        );
+    }
+
+    @supports (height: 1svh) {
+        .header-bg {
+            min-height: clamp(9rem, 22svh, 15rem);
+            padding-bottom: calc(
+                var(--spacing-sm) + clamp(2.75rem, 7svh, 5rem)
+            );
+        }
     }
 
     /* Hide gallery from header — JS moves it before the discovery section */
@@ -798,7 +814,7 @@
     padding: var(--spacing-sm) 0;
     position: relative;
     /* Sticking is handled in dtd-interactive.js (.main-navigation--fixed) — CSS sticky is unreliable here */
-    /* Above .header-creature-banner (2) and .header-bg (2) */
+    /* Above .header-creature-banner (12) and .header-bg (2) */
     z-index: 120;
     /* Multi-layer ornate shadows */
     box-shadow: 
