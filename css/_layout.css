@@ -421,8 +421,9 @@
 @media screen and (max-width: 768px) {
     .header-bg {
         background-attachment: scroll;
-        min-height: min(82vh, 40rem);
-        padding-bottom: calc(var(--spacing-md) + clamp(8rem, 34vh, 16rem));
+        /* Same hero + creature strip spacing as desktop (_variables: --header-bg-min-height, --header-creature-strip-min, --header-main-nav-height) */
+        min-height: var(--header-bg-min-height, clamp(28rem, 68vh, 50rem));
+        padding-bottom: calc(var(--spacing-md) + var(--header-creature-strip-min, clamp(10rem, 26vh, 20rem)));
     }
 
     /* Hide gallery from header — JS moves it before the discovery section */
