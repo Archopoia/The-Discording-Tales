@@ -75,7 +75,7 @@
     max-width: 1400px;
     margin: 0 auto;
     position: relative;
-    z-index: 2;
+    z-index: 10;
 }
 
 /* Panoramic creature line-up: inside .header-bg; bottom offset tunable via --header-main-nav-height in _variables.css */
@@ -87,8 +87,10 @@
     width: 100vw;
     max-width: none;
     max-height: none;
-    overflow: visible;
-    z-index: 80;
+    overflow-x: clip;
+    overflow-y: visible;
+    /* Below .header-top-row so gallery / branding / SoundCloud sit on top when they overlap */
+    z-index: 2;
     pointer-events: none;
     display: flex;
     align-items: flex-end;
@@ -98,7 +100,9 @@
 
 .header-creature-banner-stack {
     position: relative;
-    width: 100%;
+    width: var(--header-creature-banner-width, 160vw);
+    max-width: none;
+    flex-shrink: 0;
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -793,7 +797,7 @@
     padding: var(--spacing-sm) 0;
     position: relative;
     /* Sticking is handled in dtd-interactive.js (.main-navigation--fixed) — CSS sticky is unreliable here */
-    /* Above .header-creature-banner (80) and .header-bg (2) */
+    /* Above .header-creature-banner (2) and .header-bg (2) */
     z-index: 120;
     /* Multi-layer ornate shadows */
     box-shadow: 

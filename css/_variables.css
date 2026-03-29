@@ -42,13 +42,15 @@
     --spacing-lg: 2.5rem;
     --spacing-xl: 3.5rem;
     /* Creature strip: distance from bottom of .header-bg (larger = picture sits higher; 0 = flush with hero bottom) */
-    --header-main-nav-height: 2.25rem;
+    --header-main-nav-height: 3.25rem;
     /* Reserve vertical room for Height-Centered.png above the nav */
     --header-creature-strip-min: clamp(10rem, 26vh, 20rem);
     /* Hero minimum height (branding + creature strip) */
     --header-bg-min-height: clamp(28rem, 68vh, 50rem);
     /* Panoramic creature art: soften left/right (mask gradient; larger = narrower visible band) */
     --header-creature-side-fade: 33%;
+    /* Wider than viewport so left/right of the lineup crop off; centered in the hero */
+    --header-creature-banner-width: min(122vw, 3200px);
     
     /* Transitions - Smoother and longer */
     --transition-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
