@@ -42,7 +42,7 @@
     --spacing-lg: 2.5rem;
     --spacing-xl: 3.5rem;
     /* Creature strip: distance from bottom of .header-bg (larger = picture sits higher; 0 = flush with hero bottom) */
-    --header-main-nav-height: 3.25rem;
+    --header-main-nav-height: 0rem;
     /* Reserve vertical room for Height-Centered.png above the nav */
     --header-creature-strip-min: clamp(10rem, 26vh, 20rem);
     /* Hero minimum height (branding + creature strip) */
@@ -51,6 +51,11 @@
     --header-creature-side-fade: 33%;
     /* Wider than viewport so left/right of the lineup crop off; centered in the hero */
     --header-creature-banner-width: min(122vw, 3200px);
+    /*
+     * People1/2 nudge: % tracks narrow layouts; max caps wide screens — plain translateY(20%) scaled
+     * with image height and pushed feet into the nav on large monitors.
+     */
+    --header-creature-translate-y: clamp(0.5rem, 10%, 4.25rem);
     
     /* Transitions - Smoother and longer */
     --transition-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
