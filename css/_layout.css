@@ -114,7 +114,7 @@
     height: auto;
     display: block;
     flex-shrink: 0;
-    transform: translateY(20%);
+    transform: translateY(var(--header-creature-img-nudge-y, max(3.25rem, 20%)));
     pointer-events: none;
     transition:
         opacity 0.55s ease,
@@ -162,7 +162,7 @@
     position: relative;
     z-index: 1;
     opacity: 0.5;
-    transform: translateY(20%);
+    transform: translateY(var(--header-creature-img-nudge-y, max(3.25rem, 20%)));
 }
 
 .header-creature-banner-img--kick {
@@ -173,7 +173,7 @@
     z-index: 2;
     margin: 0 auto;
     opacity: 1;
-    transform: translateY(20%);
+    transform: translateY(var(--header-creature-img-nudge-y, max(3.25rem, 20%)));
     /* Feathered top→bottom wipe (variable), intersected with same radial mask as base */
     --tdt-creature-wipe: -18;
     transition:
