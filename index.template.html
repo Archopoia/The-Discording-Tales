@@ -49,8 +49,7 @@
     <!-- Gemini API key intentionally not exposed in frontend; use backend env vars -->
     <!-- Preload entrance-critical images for instant first paint -->
     <link rel="preload" href="assets/images/symbolpur.png" as="image" fetchpriority="high"/>
-    <link rel="preload" href="assets/images/People1.png" as="image"/>
-    <link rel="preload" href="assets/images/People2.png" as="image"/>
+    <!-- People banner PNGs are large: load with the document / lazy, not competing with entrance -->
     <link rel="preload" href="assets/images/SymbolCoin.png" as="image" fetchpriority="high"/>
     <!-- Page title/description for setLanguage (filled by build_i18n) -->
     <script type="application/json" id="tdt-i18n-strings">{{i18n:script-json}}</script>
@@ -163,8 +162,8 @@
             </div>
             <div class="header-creature-banner">
                 <div class="header-creature-banner-stack">
-                    <img class="header-creature-banner-img header-creature-banner-img--base" src="assets/images/People1.png" alt="" width="2400" height="400" decoding="async"/>
-                    <img class="header-creature-banner-img header-creature-banner-img--kick" src="assets/images/People2.png" alt="" width="2400" height="400" decoding="async" loading="lazy"/>
+                    <img class="header-creature-banner-img header-creature-banner-img--base" src="assets/images/People1.png" alt="" width="2400" height="400" decoding="async" loading="lazy" fetchpriority="low"/>
+                    <img class="header-creature-banner-img header-creature-banner-img--kick" src="assets/images/People2.png" alt="" width="2400" height="400" decoding="async" loading="lazy" fetchpriority="low"/>
                 </div>
             </div>
         </div>
@@ -2129,8 +2128,11 @@
     <script src="https://cdn.jsdelivr.net/npm/marked@9.1.6/marked.min.js" crossorigin="anonymous" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.9/dist/purify.min.js" crossorigin="anonymous" defer></script>
     <script>
-    // Warm image cache in the background so later sections feel instant.
+    // Warm image cache after entrance (or immediately if no entrance) so warmup never
+    // competes with the loader, map, or click-to-enter responsiveness.
     (function () {
+        var warmupStarted = false;
+
         function normalizeUrl(raw) {
             if (!raw) return '';
             var v = String(raw).trim().replace(/^['"]|['"]$/g, '');
@@ -2143,18 +2145,18 @@
 
         function collectImageUrls() {
             var out = new Set();
-            out.add('assets/images/Map_Naked.webp');
-            out.add('assets/images/Creusalité_NoBorders.webp');
-            out.add('assets/images/symbolpur.png');
-            out.add('assets/images/SymbolCoin.png');
 
             var imgs = document.querySelectorAll('img[src], img[srcset], source[srcset]');
             for (var i = 0; i < imgs.length; i++) {
-                var src = imgs[i].getAttribute('src');
+                var el = imgs[i];
+                if (el.getAttribute('loading') === 'lazy') {
+                    continue;
+                }
+                var src = el.getAttribute('src');
                 var s = normalizeUrl(src);
                 if (s) out.add(s);
 
-                var srcset = imgs[i].getAttribute('srcset');
+                var srcset = el.getAttribute('srcset');
                 if (srcset) {
                     var parts = srcset.split(',');
                     for (var j = 0; j < parts.length; j++) {
@@ -2174,26 +2176,36 @@
             try { img.fetchPriority = 'low'; } catch (e) {}
             img.loading = 'eager';
             img.src = urls[index];
-            var next = function () { setTimeout(function () { warmSequentially(urls, index + 1); }, 25); };
+            var next = function () { setTimeout(function () { warmSequentially(urls, index + 1); }, 40); };
             img.onload = next;
             img.onerror = next;
         }
 
         function runWarmup() {
+            if (warmupStarted) return;
+            warmupStarted = true;
             var urls = collectImageUrls();
             if (!urls.length) return;
             warmSequentially(urls, 0);
         }
 
-        if (window.requestIdleCallback) {
-            window.addEventListener('load', function () {
-                requestIdleCallback(runWarmup, { timeout: 3000 });
-            }, { once: true });
-        } else {
-            window.addEventListener('load', function () {
-                setTimeout(runWarmup, 1200);
-            }, { once: true });
+        function scheduleWarmup() {
+            if (window.requestIdleCallback) {
+                requestIdleCallback(runWarmup, { timeout: 5000 });
+            } else {
+                setTimeout(runWarmup, 400);
+            }
         }
+
+        window.addEventListener('tdt-entrance-complete', scheduleWarmup, { once: true });
+
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                if (!document.body.classList.contains('entrance-active')) {
+                    scheduleWarmup();
+                }
+            }, 200);
+        }, { once: true });
     })();
     </script>
     <!-- WebLLM: in-browser GM -->

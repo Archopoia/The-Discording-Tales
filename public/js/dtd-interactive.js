@@ -243,11 +243,39 @@
         // Listen for entrance complete to run deferred init
         window.addEventListener('tdt-entrance-complete', initDeferred, { once: true });
         
-        // Fallback: if entrance was bypassed or doesn't exist, run after load
+        // Fallback: run after load only if the entrance overlay is not active.
+        // Otherwise WebGL and heavy init would run while the site is display:none behind
+        // the loader, wasting GPU/CPU and competing with the entrance animation.
         window.addEventListener('load', function() {
-            // Give entrance a chance to fire first (it fires on click)
-            setTimeout(initDeferred, 100);
+            setTimeout(function() {
+                if (document.body.classList.contains('entrance-active')) {
+                    return;
+                }
+                initDeferred();
+            }, 100);
         }, { once: true });
+
+        (function initHeaderCreatureBannerReveal() {
+            function revealHeaderCreatureBanner() {
+                var banner = document.querySelector('.header-creature-banner');
+                if (!banner || banner.classList.contains('header-creature-banner--revealed')) {
+                    return;
+                }
+                requestAnimationFrame(function() {
+                    requestAnimationFrame(function() {
+                        banner.classList.add('header-creature-banner--revealed');
+                    });
+                });
+            }
+            window.addEventListener('tdt-entrance-complete', revealHeaderCreatureBanner, { once: true });
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    if (!document.body.classList.contains('entrance-active')) {
+                        revealHeaderCreatureBanner();
+                    }
+                }, 120);
+            }, { once: true });
+        })();
     });
 
     // ========================================

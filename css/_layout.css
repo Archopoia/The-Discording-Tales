@@ -157,12 +157,85 @@
     mask-composite: intersect;
 }
 
-/* People1 baseline; People2 reveals top → bottom on .branding-flip hover (Kickstarter oval) */
+/* People1: same soft top→bottom mask wipe as People2; hidden until .header-creature-banner--revealed (after entrance) */
 .header-creature-banner-img--base {
     position: relative;
     z-index: 1;
     opacity: 0.5;
     transform: translateY(var(--header-creature-translate-y));
+    --tdt-creature-wipe-base: -18;
+    --tdt-creature-wipe-feather: 20;
+    transition:
+        opacity 0.55s ease,
+        transform 0.55s ease,
+        --tdt-creature-wipe-base 0.7s cubic-bezier(0.33, 0.12, 0.09, 1);
+    -webkit-mask-image:
+        radial-gradient(
+            ellipse 100% 92% at 50% 55%,
+            #000 38%,
+            #000 60%,
+            transparent 100%
+        ),
+        linear-gradient(
+            to right,
+            transparent 0%,
+            #000 var(--header-creature-side-fade),
+            #000 calc(100% - var(--header-creature-side-fade)),
+            transparent 100%
+        ),
+        linear-gradient(
+            to top,
+            #000 0%,
+            #000
+                min(
+                    100%,
+                    max(0%, (var(--tdt-creature-wipe-base) - var(--tdt-creature-wipe-feather)) * 1%)
+                ),
+            transparent
+                min(
+                    100%,
+                    max(0%, (var(--tdt-creature-wipe-base) + var(--tdt-creature-wipe-feather)) * 1%)
+                )
+        );
+    mask-image:
+        radial-gradient(
+            ellipse 100% 92% at 50% 55%,
+            #000 38%,
+            #000 60%,
+            transparent 100%
+        ),
+        linear-gradient(
+            to right,
+            transparent 0%,
+            #000 var(--header-creature-side-fade),
+            #000 calc(100% - var(--header-creature-side-fade)),
+            transparent 100%
+        ),
+        linear-gradient(
+            to top,
+            #000 0%,
+            #000
+                min(
+                    100%,
+                    max(0%, (var(--tdt-creature-wipe-base) - var(--tdt-creature-wipe-feather)) * 1%)
+                ),
+            transparent
+                min(
+                    100%,
+                    max(0%, (var(--tdt-creature-wipe-base) + var(--tdt-creature-wipe-feather)) * 1%)
+                )
+        );
+    -webkit-mask-size: 100% 100%, 100% 100%, 100% 100%;
+    mask-size: 100% 100%, 100% 100%, 100% 100%;
+    -webkit-mask-position: center bottom, center center, 0 0;
+    mask-position: center bottom, center center, 0 0;
+    -webkit-mask-repeat: no-repeat, no-repeat, no-repeat;
+    mask-repeat: no-repeat, no-repeat, no-repeat;
+    mask-composite: intersect, intersect;
+}
+
+.header-creature-banner--revealed .header-creature-banner-img--base {
+    --tdt-creature-wipe-base: 120;
 }
 
 .header-creature-banner-img--kick {
@@ -603,6 +676,11 @@
 @media (prefers-reduced-motion: reduce) {
     .header-top-row .soundcloud-cycling-wrap.soundcloud-playing .soundcloud-vignette {
         animation: none;
+    }
+
+    .header-creature-banner-img--base {
+        --tdt-creature-wipe-base: 120;
+        transition: opacity 0.55s ease, transform 0.55s ease;
     }
 }
 

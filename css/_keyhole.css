@@ -13,9 +13,45 @@ body.entrance-active {
 /* Hide ALL site content behind the entrance overlay to save performance.
    The browser skips rendering/layout for hidden elements (no WebGL,
    no layout, no paint).  Instantly re-enabled when JS removes
-   entrance-active on click (line runs before any animation). */
-body.entrance-active > :not(#static-loader) {
+   entrance-active on click.
+   #golden-flash must stay visible: it is appended before entrance-active is removed,
+   so the flash can paint immediately (otherwise full-page unhide runs first and delays it). */
+body.entrance-active > :not(#static-loader):not(#golden-flash) {
     display: none !important;
+}
+
+/* Full-screen burst: transform-only (width/height keyframes force layout every frame = hitch). */
+#golden-flash {
+    position: fixed;
+    top: 47%;
+    left: 50%;
+    width: min(3600px, 220vmin);
+    height: min(3600px, 220vmin);
+    margin: 0;
+    padding: 0;
+    border: none;
+    transform: translate(-50%, -50%) scale(0);
+    transform-origin: center center;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10001;
+    opacity: 1;
+    background: radial-gradient(
+        circle,
+        rgba(255, 235, 198, 1) 0%,
+        rgba(255, 235, 198, 0.8) 20%,
+        rgba(255, 235, 198, 0.4) 35%,
+        rgba(255, 235, 198, 0.1) 50%,
+        transparent 70%
+    );
+    will-change: transform;
+    contain: paint;
+    backface-visibility: hidden;
+}
+
+#golden-flash.golden-flash--fading {
+    will-change: opacity;
+    animation: goldenFlashDissolve 0.42s cubic-bezier(0.33, 0, 0.2, 1) forwards !important;
 }
 
 /* Large invisible hover zone in center of screen */
@@ -29,6 +65,7 @@ body.entrance-active > :not(#static-loader) {
     border-radius: 50%;
     z-index: 1;
     cursor: pointer;
+    touch-action: manipulation;
     /* Invisible but captures hover */
     background: transparent;
 }
@@ -58,7 +95,7 @@ body.entrance-active > :not(#static-loader) {
 }
 
 #static-loader.entrance-revealing .entrance-click-hint {
-    animation: fadeOut 1.5s ease-in-out forwards;
+    animation: fadeOut 0.55s cubic-bezier(0.33, 0, 0.2, 1) forwards;
 }
 
 /* ----------------------------------------
@@ -76,6 +113,8 @@ body.entrance-active > :not(#static-loader) {
 #entrance-fill {
     /* No fade-in - entrance is visible from start */
     opacity: 1;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 
@@ -86,6 +125,8 @@ body.entrance-active > :not(#static-loader) {
     background-position: 20% 30%;
     background-repeat: no-repeat;
     animation: entranceMapPan 60s ease-in-out infinite;
+    transform-origin: 50% 45%;
+    backface-visibility: hidden;
 }
 
 /* Layer 3: Creusalité frame - stretched to viewport */
@@ -178,23 +219,31 @@ body.entrance-active > :not(#static-loader) {
         background-position: 50% 50%;
         background-size: 200%;
     }
+
+    #static-loader.entrance-revealing .entrance-map-layer {
+        animation: none;
+        transform: scale(2.85);
+    }
+
+    #enter-portfolio-btn .entrance-logo-wrap {
+        animation: none !important;
+        filter: drop-shadow(0 0 16px rgba(245, 222, 179, 0.45))
+            drop-shadow(0 0 28px rgba(61, 0, 0, 0.35));
+    }
 }
 
-/* Zoom into map when entering (triggered by JS adding class) */
+/* Zoom: transform scale (GPU) — background-size keyframes repaint the map every frame and hitch. */
 #static-loader.entrance-revealing .entrance-map-layer {
-    animation: entranceMapZoomIn 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation: entranceMapZoomInGpu 1.35s cubic-bezier(0.25, 0.46, 0.35, 1) forwards;
+    will-change: transform;
 }
 
-@keyframes entranceMapZoomIn {
+@keyframes entranceMapZoomInGpu {
     0% {
-        /* Start from current animated position - use a central position */
-        background-size: 240%;
-        background-position: 50% 50%;
+        transform: scale(1);
     }
     100% {
-        /* Zoom way in as if diving into the map */
-        background-size: 800%;
-        background-position: 50% 45%;
+        transform: scale(2.85);
     }
 }
 
@@ -215,6 +264,8 @@ body.entrance-active > :not(#static-loader) {
     min-width: 44px;
     min-height: 44px;
     cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -262,13 +313,14 @@ body.entrance-active > :not(#static-loader) {
 
 /* Hover styles triggered by the central hover zone (desktop) or touch-pressing (mobile) */
 /* Eye centering on hover is handled by JS for a smooth transition from current position */
-#static-loader:has(#entrance-hover-zone:hover) #enter-portfolio-btn,
-#static-loader.touch-hovering #enter-portfolio-btn {
+/* :not(.entrance-exiting): hover kept :hover true after click — opacity 1 !important blocked the fade */
+#static-loader:has(#entrance-hover-zone:hover) #enter-portfolio-btn:not(.entrance-exiting),
+#static-loader.touch-hovering #enter-portfolio-btn:not(.entrance-exiting) {
     opacity: 1 !important;
 }
 
-#static-loader:has(#entrance-hover-zone:hover) #enter-portfolio-btn .entrance-logo-wrap,
-#static-loader.touch-hovering #enter-portfolio-btn .entrance-logo-wrap {
+#static-loader:has(#entrance-hover-zone:hover) #enter-portfolio-btn:not(.entrance-exiting) .entrance-logo-wrap,
+#static-loader.touch-hovering #enter-portfolio-btn:not(.entrance-exiting) .entrance-logo-wrap {
     opacity: 1;
     /* Greater glow (keyholeDiscovery + keyholeGlow); rotation speed unchanged */
     animation: keyholeDiscovery 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
@@ -277,7 +329,7 @@ body.entrance-active > :not(#static-loader) {
 }
 
 /* Reverse glow when leaving hover zone (was-hovered class added by JS) */
-#static-loader:not(:has(#entrance-hover-zone:hover)) #enter-portfolio-btn.was-hovered .entrance-logo-wrap {
+#static-loader:not(:has(#entrance-hover-zone:hover)) #enter-portfolio-btn.was-hovered:not(.entrance-exiting) .entrance-logo-wrap {
     opacity: 1;
     animation: keyholeReverse 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards,
                keyholePulse 2s ease-in-out infinite 0.8s,
@@ -288,19 +340,22 @@ body.entrance-active > :not(#static-loader) {
     opacity: 0.6;
 }
 
-/* Exit animation: fade out button and logo smoothly when clicked */
-/* High specificity to override hover state selectors */
+/* Exit: quick, readable opacity fade (no long spin — glow/rotate made the logo linger visually) */
 #static-loader #enter-portfolio-btn.entrance-exiting,
 #static-loader.touch-hovering #enter-portfolio-btn.entrance-exiting {
-    animation: fadeOut 1.5s ease-in-out forwards !important;
+    animation: entranceLogoFadeOut 0.55s cubic-bezier(0.33, 0, 0.2, 1) forwards !important;
     pointer-events: none !important;
-    opacity: 1; /* Ensure we start visible before animation */
+    opacity: 1;
 }
 
+/* Include :has(:hover) so post-click hover glow rules cannot restart (higher specificity than hover block) */
 #static-loader #enter-portfolio-btn.entrance-exiting .entrance-logo-wrap,
-#static-loader.touch-hovering #enter-portfolio-btn.entrance-exiting .entrance-logo-wrap {
-    animation: spinFadeOut 1.5s ease-in-out forwards !important;
-    transition: none !important; /* Prevent transition from interfering */
+#static-loader.touch-hovering #enter-portfolio-btn.entrance-exiting .entrance-logo-wrap,
+#static-loader:has(#entrance-hover-zone:hover) #enter-portfolio-btn.entrance-exiting .entrance-logo-wrap {
+    animation: none !important;
+    filter: none !important;
+    transition: none !important;
+    opacity: 1 !important;
 }
 
 /* Keyhole discovery - burgundy to beige (large glow) */
@@ -392,6 +447,20 @@ body.entrance-active > :not(#static-loader) {
     }
 }
 
+/* Lighter glow for touch / small screens — fewer stacked filters, much cheaper to paint */
+@keyframes keyholeGlowMobile {
+    0%, 100% {
+        filter:
+            drop-shadow(0 0 14px rgba(245, 222, 179, 0.55))
+            drop-shadow(0 0 32px rgba(255, 235, 210, 0.35));
+    }
+    50% {
+        filter:
+            drop-shadow(0 0 20px rgba(255, 245, 220, 0.8))
+            drop-shadow(0 0 44px rgba(255, 248, 230, 0.45));
+    }
+}
+
 @keyframes keyholeGlow {
     0%, 100% {
         filter:
@@ -431,37 +500,24 @@ body.entrance-active > :not(#static-loader) {
     }
 }
 
-/* Golden flash for page transition (used by JS) */
-@keyframes goldenFlash {
-    0% {
-        width: 0;
-        height: 0;
+/* Bloom: only transform (composited). */
+@keyframes goldenFlashBloom {
+    from {
+        transform: translate(-50%, -50%) scale(0);
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes goldenFlashDissolve {
+    from {
+        transform: translate(-50%, -50%) scale(1);
         opacity: 1;
     }
-    10% {
-        width: 20px;
-        height: 20px;
-        opacity: 1;
-    }
-    30% {
-        width: 200px;
-        height: 200px;
-        opacity: 1;
-    }
-    60% {
-        width: 800px;
-        height: 800px;
-        opacity: 1;
-    }
-    80% {
-        width: 1500px;
-        height: 1500px;
-        opacity: 1;
-    }
-    100% {
-        width: 3000px;
-        height: 3000px;
-        opacity: 1;
+    to {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
     }
 }
 
@@ -481,10 +537,16 @@ body.entrance-active > :not(#static-loader) {
     to { opacity: 0; }
 }
 
-/* Spin 360° + fade out (used for logo on entrance click) */
-@keyframes spinFadeOut {
-    from { opacity: 1; transform: rotate(0deg); }
-    to   { opacity: 0; transform: rotate(360deg); }
+/* Entrance logo / button exit: smooth fade (opacity + slight soft scale for clarity) */
+@keyframes entranceLogoFadeOut {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.96);
+    }
 }
 
 /* Eye iris movement - calm, observing (default state) */
@@ -510,8 +572,8 @@ body.entrance-active > :not(#static-loader) {
    so it works on all mobile browsers reliably.
    ---------------------------------------- */
 @media (hover: none) and (pointer: coarse), (max-width: 768px) {
-    /* Eye stays centered - no wandering animation */
-    #enter-portfolio-btn {
+    /* Eye stays centered — exclude exit so fade+scale animation can run */
+    #enter-portfolio-btn:not(.entrance-exiting) {
         animation: none !important;
         transform: translate(0, 0) !important;
     }
@@ -524,11 +586,17 @@ body.entrance-active > :not(#static-loader) {
 
     /* Logo uses golden glow + rotation (hovered state) instead of burgundy pulse */
     /* Also halve the symbol size on mobile */
-    #enter-portfolio-btn .entrance-logo-wrap {
+    #enter-portfolio-btn:not(.entrance-exiting) .entrance-logo-wrap {
         max-width: 125px;
         opacity: 1 !important;
-        animation: keyholeGlow 2s ease-in-out infinite alternate,
+        animation: keyholeGlowMobile 2s ease-in-out infinite alternate,
                    keyholeLogoRotate 4s ease-in-out infinite !important;
+    }
+
+    #enter-portfolio-btn.entrance-exiting .entrance-logo-wrap {
+        max-width: 125px;
+        animation: none !important;
+        filter: none !important;
     }
 
     /* Vignette layer slightly softer so the map + glow shine through more */
