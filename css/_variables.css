@@ -41,6 +41,12 @@
     --spacing-md: 1.5rem;
     --spacing-lg: 2.5rem;
     --spacing-xl: 3.5rem;
+    /* Creature strip: distance from bottom of .header-bg (larger = picture sits higher; 0 = flush with hero bottom) */
+    --header-main-nav-height: 2.25rem;
+    /* Reserve vertical room for Height-Centered.png above the nav */
+    --header-creature-strip-min: clamp(10rem, 26vh, 20rem);
+    /* Hero minimum height (branding + creature strip) */
+    --header-bg-min-height: clamp(28rem, 68vh, 50rem);
     
     /* Transitions - Smoother and longer */
     --transition-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -83,4 +89,11 @@
 
     /* Touch targets - minimum 44px for mobile accessibility */
     --touch-min: 44px;
+}
+
+/* Animated creature-line wipe (soft top→bottom); used in _layout.css */
+@property --tdt-creature-wipe {
+    syntax: '<number>';
+    inherits: false;
+    initial-value: -18;
 }

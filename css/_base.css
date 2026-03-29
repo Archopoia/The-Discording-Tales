@@ -62,8 +62,15 @@
 
 html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
+    /* clip avoids horizontal scroll without breaking position:sticky like overflow-x:hidden often does */
+    overflow-x: clip;
     font-size: 16px;
+}
+
+@supports not (overflow-x: clip) {
+    html {
+        overflow-x: hidden;
+    }
 }
 
 body {
@@ -82,9 +89,15 @@ body {
     background-attachment: scroll;
     color: var(--tdt-cream);
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: clip;
     min-height: 100vh;
     position: relative;
+}
+
+@supports not (overflow-x: clip) {
+    body {
+        overflow-x: hidden;
+    }
 }
 
 /* ========================================

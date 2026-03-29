@@ -83,6 +83,98 @@
     
     // Track whether deferred init has run (to avoid double-init)
     let deferredInitDone = false;
+
+    /**
+     * Pin main tab bar to viewport top while scrolling (CSS position:sticky is unreliable with
+     * this layout). Uses a placeholder to preserve header height when the nav is position:fixed.
+     * If deferred init runs before the entrance overlay is dismissed, wait for tdt-entrance-complete
+     * so layout measurements are valid.
+     */
+    function initStickyMainNav() {
+        function attach() {
+            var nav = document.getElementById('site-navigation');
+            var placeholder = document.getElementById('main-navigation-placeholder');
+            if (!nav || !placeholder) {
+                return;
+            }
+
+            var navSlotTop = 0;
+
+            function updateNavSlotTop() {
+                if (nav.classList.contains('main-navigation--fixed') && placeholder.classList.contains('is-active')) {
+                    navSlotTop = Math.round(placeholder.getBoundingClientRect().top + window.pageYOffset);
+                } else {
+                    navSlotTop = Math.round(nav.getBoundingClientRect().top + window.pageYOffset);
+                }
+            }
+
+            function applyFixed() {
+                if (!nav.classList.contains('main-navigation--fixed')) {
+                    placeholder.style.height = nav.offsetHeight + 'px';
+                    placeholder.classList.add('is-active');
+                    nav.classList.add('main-navigation--fixed');
+                    updateNavSlotTop();
+                }
+            }
+
+            function clearFixed() {
+                if (nav.classList.contains('main-navigation--fixed')) {
+                    nav.classList.remove('main-navigation--fixed');
+                    placeholder.classList.remove('is-active');
+                    placeholder.style.height = '';
+                    updateNavSlotTop();
+                }
+            }
+
+            function onScroll() {
+                var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+                if (y >= navSlotTop - 1) {
+                    applyFixed();
+                } else {
+                    clearFixed();
+                }
+            }
+
+            function onResize() {
+                var wasFixed = nav.classList.contains('main-navigation--fixed');
+                if (wasFixed) {
+                    clearFixed();
+                }
+                updateNavSlotTop();
+                if (wasFixed) {
+                    var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+                    if (y >= navSlotTop - 1) {
+                        applyFixed();
+                    }
+                }
+                onScroll();
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', onResize);
+
+            requestAnimationFrame(function() {
+                requestAnimationFrame(function() {
+                    updateNavSlotTop();
+                    onScroll();
+                });
+            });
+        }
+
+        if (document.body.classList.contains('entrance-active')) {
+            window.addEventListener('tdt-entrance-complete', function stickyAfterEntrance() {
+                window.removeEventListener('tdt-entrance-complete', stickyAfterEntrance);
+                requestAnimationFrame(function() {
+                    requestAnimationFrame(attach);
+                });
+            });
+            return;
+        }
+
+        requestAnimationFrame(function() {
+            requestAnimationFrame(attach);
+        });
+    }
     
     /**
      * Deferred initialization: heavy work that should wait until after entrance click.
@@ -110,6 +202,8 @@
         initScrollAnimations();
         initCharacterSheet();
         initWebGLShaders(); // Initialize procedural texture shaders
+
+        initStickyMainNav();
         
         // Handle window resize for WebGL canvases
         window.addEventListener('resize', handleWebGLResize);

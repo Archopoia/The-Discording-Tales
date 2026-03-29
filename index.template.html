@@ -49,6 +49,8 @@
     <!-- Gemini API key intentionally not exposed in frontend; use backend env vars -->
     <!-- Preload entrance-critical images for instant first paint -->
     <link rel="preload" href="assets/images/symbolpur.png" as="image" fetchpriority="high"/>
+    <link rel="preload" href="assets/images/People1.png" as="image"/>
+    <link rel="preload" href="assets/images/People2.png" as="image"/>
     <link rel="preload" href="assets/images/SymbolCoin.png" as="image" fetchpriority="high"/>
     <!-- Page title/description for setLanguage (filled by build_i18n) -->
     <script type="application/json" id="tdt-i18n-strings">{{i18n:script-json}}</script>
@@ -158,8 +160,14 @@
                     </div>
                 </div>
             </div>
+            <div class="header-creature-banner">
+                <div class="header-creature-banner-stack">
+                    <img class="header-creature-banner-img header-creature-banner-img--base" src="assets/images/People1.png" alt="" width="2400" height="400" decoding="async"/>
+                    <img class="header-creature-banner-img header-creature-banner-img--kick" src="assets/images/People2.png" alt="" width="2400" height="400" decoding="async" loading="lazy"/>
+                </div>
+            </div>
         </div>
-        
+        <div class="main-navigation-placeholder" id="main-navigation-placeholder" aria-hidden="true"></div>
         <nav class="main-navigation" id="site-navigation" role="navigation" {{i18n-aria:nav.aria_label}} aria-label="Main navigation">
             <button aria-controls="primary-menu" aria-expanded="false" class="menu-toggle" id="menu-toggle" {{i18n:nav.menu}}>Menu</button>
             <ul class="menu" id="primary-menu">
