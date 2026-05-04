@@ -6,6 +6,10 @@ import json
 import logging
 import os
 import re
+import urllib.error
+import urllib.parse
+import urllib.request
+from datetime import datetime, timezone
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -17,6 +21,8 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, RedirectResponse, StreamingResponse
 from pydantic import BaseModel, Field
+from google.auth.transport.requests import Request as GoogleAuthRequest
+from google.oauth2 import service_account
 from openai import OpenAI
 
 from rag import build_or_get_index, retrieve, format_chunks_for_prompt
@@ -126,6 +132,93 @@ class ChatRequest(BaseModel):
 
 class ChatResponse(BaseModel):
     reply: str
+
+
+class NewsletterSubscribeRequest(BaseModel):
+    email: str = Field(..., min_length=3, max_length=320)
+    lang: str | None = Field(None, max_length=16)
+    source: str | None = Field(None, max_length=128)
+    honeypot: str | None = Field(None, max_length=256)
+
+
+_NEWSLETTER_EMAIL_RE = re.compile(r"^[^\s@]+@[^\s@]+\.[^\s@]+$")
+_SHEETS_APPEND_SCOPE = "https://www.googleapis.com/auth/spreadsheets"
+
+
+def _newsletter_configured() -> bool:
+    if (os.getenv("NEWSLETTER_APPS_SCRIPT_URL") or "").strip():
+        return True
+    sa = (os.getenv("GOOGLE_SERVICE_ACCOUNT_JSON") or "").strip()
+    sid = (os.getenv("NEWSLETTER_SPREADSHEET_ID") or "").strip()
+    return bool(sa and sid)
+
+
+def _http_post_json(url: str, payload: dict, timeout: int = 25) -> tuple[int, str]:
+    """POST JSON; returns (status_code, response_body_text). Raises on network/HTTP errors."""
+    data = json.dumps(payload).encode("utf-8")
+    req = urllib.request.Request(
+        url,
+        data=data,
+        method="POST",
+        headers={"Content-Type": "application/json", "Accept": "application/json"},
+    )
+    with urllib.request.urlopen(req, timeout=timeout) as resp:  # noqa: S310 - URL from env / Google API
+        body = resp.read().decode("utf-8", errors="replace")
+        return resp.getcode() or 200, body
+
+
+def _append_newsletter_to_sheets(email: str, lang: str | None, source: str | None) -> None:
+    raw = (os.getenv("GOOGLE_SERVICE_ACCOUNT_JSON") or "").strip()
+    spreadsheet_id = (os.getenv("NEWSLETTER_SPREADSHEET_ID") or "").strip()
+    range_name = (os.getenv("NEWSLETTER_SHEET_RANGE") or "Sheet1!A:D").strip()
+    if not raw or not spreadsheet_id:
+        raise ValueError("GOOGLE_SERVICE_ACCOUNT_JSON and NEWSLETTER_SPREADSHEET_ID required for Sheets append")
+
+    info = json.loads(raw)
+    creds = service_account.Credentials.from_service_account_info(
+        info,
+        scopes=[_SHEETS_APPEND_SCOPE],
+    )
+    creds.refresh(GoogleAuthRequest())
+    if not creds.token:
+        raise ValueError("Failed to obtain Google access token for Sheets")
+
+    ts = datetime.now(timezone.utc).isoformat()
+    row = [ts, email, (lang or "").strip(), (source or "").strip()]
+    enc_range = urllib.parse.quote(range_name, safe="")
+    url = (
+        f"https://sheets.googleapis.com/v4/spreadsheets/{spreadsheet_id}/values/"
+        f"{enc_range}:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS"
+    )
+    payload = json.dumps({"values": [row]}).encode("utf-8")
+    req = urllib.request.Request(
+        url,
+        data=payload,
+        method="POST",
+        headers={
+            "Authorization": f"Bearer {creds.token}",
+            "Content-Type": "application/json",
+        },
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=25) as resp:  # noqa: S310
+            if (resp.getcode() or 200) not in (200, 201):
+                raise ValueError(f"Sheets API unexpected status {resp.getcode()}")
+    except urllib.error.HTTPError as e:
+        err_body = e.read().decode("utf-8", errors="replace")[:500]
+        log.warning("Sheets append HTTP %s: %s", e.code, err_body)
+        raise ValueError("Could not append row to spreadsheet (check sharing with the service account)") from e
+
+
+def _store_newsletter_subscription(email: str, lang: str | None, source: str | None) -> None:
+    script_url = (os.getenv("NEWSLETTER_APPS_SCRIPT_URL") or "").strip()
+    if script_url:
+        payload = {"email": email, "lang": lang or "", "source": source or ""}
+        status, _body = _http_post_json(script_url, payload)
+        if status not in (200, 201, 204):
+            raise ValueError(f"Newsletter webhook returned HTTP {status}")
+        return
+    _append_newsletter_to_sheets(email, lang, source)
 
 
 # --- System prompt ---
@@ -328,6 +421,28 @@ def root():
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
+
+@app.post("/newsletter/subscribe")
+def newsletter_subscribe(req: NewsletterSubscribeRequest):
+    """Store Outpost signup (homepage). Configure Sheets via env, or proxy to a Google Apps Script web app URL."""
+    if req.honeypot and str(req.honeypot).strip():
+        return {"ok": True}
+    email = req.email.strip()
+    if not _NEWSLETTER_EMAIL_RE.match(email):
+        return _error_response(400, "Invalid email address")
+    if not _newsletter_configured():
+        log.warning("newsletter/subscribe called but NEWSLETTER_APPS_SCRIPT_URL or GOOGLE_SERVICE_ACCOUNT_JSON+NEWSLETTER_SPREADSHEET_ID is not set")
+        return _error_response(503, "Newsletter is temporarily unavailable")
+    try:
+        _store_newsletter_subscription(email, req.lang, req.source)
+    except json.JSONDecodeError:
+        log.exception("Invalid GOOGLE_SERVICE_ACCOUNT_JSON")
+        return _error_response(500, "Newsletter storage misconfigured")
+    except Exception:
+        log.exception("newsletter/subscribe failed")
+        return _error_response(500, "Could not save subscription")
+    return {"ok": True}
 
 
 def _build_rag_query_from_messages(messages: list[ChatMessage]) -> str:

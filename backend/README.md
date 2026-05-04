@@ -72,6 +72,17 @@ python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
 - **GET /health**  -  liveness.
 - **POST /chat**  -  body `{ "messages": [...], "characterSnapshot": {...}, "gameState": {...} }`; returns `{ "reply": "..." }`.
 - **POST /chat/stream**  -  same body; streams GM reply as Server-Sent Events (`data: {"delta": "..."}` or `{"done": true}` or `{"error": "..."}`).
+- **POST /newsletter/subscribe**  -  Outpost email signup from the static site. Body: `{ "email": "...", "lang": "en"|"fr", "source": "homepage_outpost", "honeypot": "" }`. Returns `{ "ok": true }` on success. Requires env configuration (see **Newsletter / Outpost** below); if unset, returns 503.
+
+## Newsletter / Outpost (Google Sheet)
+
+The homepage form posts to **`/newsletter/subscribe`** on the same API URL as the GM (`gm-api-url` meta). That route was missing from early deployments; it must exist on the server and **storage must be configured** or subscribers get an error.
+
+**Option A  -  Google Apps Script (no GCP service account):** In the spreadsheet, Extensions  -  Apps Script, add a `doPost` that parses JSON and appends a row, then **Deploy**  -  **New deployment**  -  type **Web app** (Execute as: Me, Who has access: Anyone). Set **`NEWSLETTER_APPS_SCRIPT_URL`** to the web app URL in `backend/.env` (and on Render).
+
+**Option B  -  Sheets API:** Create a Google Cloud service account, enable the Google Sheets API, create a JSON key, and set **`GOOGLE_SERVICE_ACCOUNT_JSON`** to the full JSON string. Set **`NEWSLETTER_SPREADSHEET_ID`** to the sheet ID from the URL. **Share the spreadsheet** with the service account email (`client_email` in the JSON) as Editor. Optional: **`NEWSLETTER_SHEET_RANGE`** (default `Sheet1!A:D`); each signup appends one row: ISO timestamp, email, lang, source.
+
+See comments in **`backend/.env.example`** for variable names.
 
 ## CORS (Play tab)
 
