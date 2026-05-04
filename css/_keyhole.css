@@ -79,7 +79,7 @@ body.entrance-active > :not(#static-loader):not(#golden-flash) {
     z-index: 100;
     margin: 0;
     padding: 0 1rem;
-    max-width: min(90vw, 28rem);
+    max-width: min(92vw, 38rem);
     pointer-events: none;
     font-family: var(--font-heading);
     font-size: clamp(0.875rem, 2.5vw, 1.125rem);
@@ -92,6 +92,19 @@ body.entrance-active > :not(#static-loader):not(#golden-flash) {
         0 0 14px rgba(0, 0, 0, 0.95),
         0 2px 6px rgba(0, 0, 0, 0.85),
         0 0 32px rgba(245, 230, 200, 0.3);
+    /* EN + FR always visible (not driven by page i18n) */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35em 0.55em;
+}
+
+.entrance-click-hint__sep {
+    opacity: 0.55;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    user-select: none;
 }
 
 #static-loader.entrance-revealing .entrance-click-hint {

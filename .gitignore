@@ -17,6 +17,7 @@ reference/DRD/
 npm-debug.log*
 
 # Editor/IDE
+.cursor/
 .vscode/
 .idea/
 *.swp

@@ -1172,6 +1172,37 @@
         inset 0 -1px 2px rgba(0, 0, 0, 0.22);
 }
 
+button.nav-icon-link {
+    cursor: pointer;
+    font: inherit;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.nav-icon-link--x:hover,
+.nav-icon-link--x:focus-visible {
+    background:
+        linear-gradient(135deg, rgba(255, 248, 232, 0.1), rgba(0, 0, 0, 0.2)),
+        #0f0f0f;
+    box-shadow:
+        0 0 20px rgba(0, 0, 0, 0.45),
+        0 0 36px rgba(245, 230, 196, 0.18),
+        inset 0 1px 2px rgba(255, 248, 232, 0.22),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.nav-icon-link--mail:hover,
+.nav-icon-link--mail:focus-visible {
+    background:
+        linear-gradient(135deg, rgba(255, 248, 232, 0.16), rgba(90, 31, 31, 0.35)),
+        rgba(139, 115, 85, 0.55);
+    box-shadow:
+        0 0 20px rgba(245, 230, 196, 0.35),
+        0 0 36px rgba(212, 197, 168, 0.2),
+        inset 0 1px 2px rgba(255, 248, 232, 0.35),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.25);
+}
+
 .nav-icon-link:hover .nav-soc-svg,
 .nav-icon-link:focus-visible .nav-soc-svg {
     filter: drop-shadow(0 0 4px rgba(255, 248, 232, 0.45)) drop-shadow(0 0 10px rgba(245, 230, 196, 0.28));
@@ -1358,6 +1389,83 @@
     min-height: 44px;
     white-space: normal;
     word-break: break-word;
+}
+
+/* Contact dialog: form fields */
+.tdt-contact-dialog {
+    width: min(28rem, calc(100vw - 2rem));
+}
+
+.tdt-contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+}
+
+.tdt-contact-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-size: 0.9rem;
+    color: var(--tdt-beige-warm);
+}
+
+.tdt-contact-label {
+    font-weight: 600;
+    color: var(--tdt-cream);
+}
+
+.tdt-contact-form input,
+.tdt-contact-form textarea {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 0.5rem 0.65rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(217, 205, 184, 0.45);
+    background: rgba(0, 0, 0, 0.25);
+    color: var(--tdt-cream);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+}
+
+.tdt-contact-form textarea {
+    min-height: 7rem;
+    resize: vertical;
+}
+
+.tdt-contact-form input:focus-visible,
+.tdt-contact-form textarea:focus-visible {
+    outline: 2px solid var(--tdt-gold);
+    outline-offset: 1px;
+}
+
+.tdt-contact-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--spacing-xs);
+}
+
+.tdt-contact-submit {
+    font-size: 0.95rem !important;
+    padding: var(--spacing-xs) var(--spacing-md) !important;
+    letter-spacing: 0.05em !important;
+}
+
+.tdt-contact-hint {
+    font-size: 0.8rem;
+    opacity: 0.9;
+    margin: var(--spacing-sm) 0 0;
+    line-height: 1.45;
+    text-align: center;
+}
+
+.tdt-contact-err {
+    color: #ffb4b4;
+    font-size: 0.88rem;
+    margin: 0 0 var(--spacing-xs);
+    text-align: center;
 }
 
 /* Archive toggle: show/hide archived subtabs (Cosmology, World Context, Character Creation, Progression, Combat, Magic) */
