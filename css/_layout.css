@@ -66,10 +66,12 @@
     box-sizing: border-box;
 }
 
-/* Top row: galleries (left) | symbol & titles (center)  -  SoundCloud is fixed bottom-right, outside this row */
+/* Top row: galleries (left) | symbol & titles (center)  -  SoundCloud is fixed bottom-right, outside this row
+   Center uses 2fr so the title column grows past 560px on wide layouts; equal 1fr/1fr/1fr left the middle
+   stuck at minmax(560px) while sides ate space, so "THE DISCORDING TALES" wrapped on desktop but not on mobile. */
 .header-top-row {
     display: grid;
-    grid-template-columns: 1fr minmax(560px, 1fr) 1fr;
+    grid-template-columns: 1fr minmax(560px, 2fr) 1fr;
     gap: var(--spacing-md);
     align-items: start;
     max-width: 1400px;
