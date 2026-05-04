@@ -486,6 +486,14 @@
         grid-column: 1;
         min-width: auto;
     }
+
+    /* Inset tagline so long FR/EN lines do not run under fixed viewport EN/FR controls (top-right) */
+    .site-tagline {
+        box-sizing: border-box;
+        max-width: min(75ch, 100%);
+        padding-left: max(env(safe-area-inset-left, 0px), clamp(0.75rem, 3rem + 3vw, 5.75rem));
+        padding-right: max(env(safe-area-inset-right, 0px), clamp(0.75rem, 3rem + 3vw, 5.75rem));
+    }
 }
 
 /* Mobile: header shows only branding (title/tagline/logo); gallery relocated by JS */
