@@ -1830,6 +1830,12 @@
     color: var(--tdt-mint);
 }
 
+.system-overview-nav-link.active {
+    font-weight: 600;
+    color: var(--tdt-mint);
+    background: rgba(160, 253, 218, 0.12);
+}
+
 .system-overview-content {
     flex: 1 1 500px;
     min-width: 0;
@@ -1853,10 +1859,83 @@
     box-sizing: border-box;
 }
 
+#univers .univers-sidebar-nav .univers-monde-in-page-nav {
+    margin-top: var(--spacing-sm);
+    padding-top: var(--spacing-sm);
+    padding-left: 0.15rem;
+    border-top: 1px solid rgba(212, 197, 168, 0.35);
+}
+
 #univers .univers-sidebar-nav .univers-rules-in-page-nav {
     margin-top: var(--spacing-sm);
     padding-top: var(--spacing-sm);
     border-top: 1px solid rgba(212, 197, 168, 0.35);
+}
+
+.world-map-focus {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md) 0;
+    min-height: 40vh;
+    gap: var(--spacing-md);
+}
+
+.world-map-help-hint {
+    margin: 0;
+    max-width: min(72vmin, 520px);
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--tdt-beige-light);
+    line-height: 1.45;
+}
+
+.world-map-circle-crop {
+    width: min(72vmin, 520px);
+    height: min(72vmin, 520px);
+    border-radius: 50%;
+    overflow: hidden;
+    display: block;
+    margin: 0 auto;
+    flex-shrink: 0;
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.45),
+        inset 0 0 0 3px rgba(212, 197, 168, 0.45);
+}
+
+.world-map-viewport {
+    position: relative;
+    touch-action: none;
+    cursor: grab;
+    outline: none;
+}
+
+.world-map-viewport.world-map-viewport--dragging {
+    cursor: grabbing;
+}
+
+.world-map-viewport:focus-visible {
+    outline: 2px solid var(--tdt-mint);
+    outline-offset: 4px;
+}
+
+.world-map-pan-zoom-layer {
+    width: 100%;
+    height: 100%;
+    transform-origin: center center;
+    will-change: transform;
+}
+
+.world-map-pannable-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 /* System Overview Accordion */
@@ -3314,12 +3393,25 @@
 .tdt-peoples-portrait-lightbox[hidden] {
     display: none !important;
 }
+/* Closing: reverse of fade-in (same duration; ease-in mirrors opening ease-out) */
+.tdt-peoples-portrait-lightbox.tdt-peoples-portrait-lightbox--closing {
+    animation: tdt-peoples-lb-fade-out 0.15s ease-in forwards;
+    pointer-events: none;
+}
 @keyframes tdt-peoples-lb-fade-in {
     from {
         opacity: 0;
     }
     to {
         opacity: 1;
+    }
+}
+@keyframes tdt-peoples-lb-fade-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
     }
 }
 .tdt-peoples-portrait-lightbox__img {

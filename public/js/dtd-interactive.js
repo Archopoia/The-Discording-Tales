@@ -190,6 +190,7 @@
         deferredInitDone = true;
         
         initSubTabs();
+        initWorldMapPanZoom();
         initArchiveToggle();
         initZinePages();
         initPeuples();
@@ -218,26 +219,19 @@
         // Essential: language, tabs, menu (needed even during entrance for deep-links)
         initLanguage();
         initTabs();
+        initUniversMondeSidebarLinks();
         initMenuToggle();
         initPdfDownloadModal();
         initContactModal();
         
-        // Mobile layout: move gallery and SoundCloud out of header.
-        // The header-bg has CSS filter (drop-shadow) which breaks position:fixed
-        // on children (creates a new containing block). Moving them to <body>
-        // ensures proper viewport-relative positioning.
+        // Mobile layout: move gallery out of header (SoundCloud lives outside header in markup).
+        // The header-bg has CSS filter (drop-shadow) which breaks position:fixed on children.
         if (window.matchMedia('(max-width: 768px)').matches) {
             var gallerySlot = document.getElementById('galleries-cycling-slot');
             var discoverySection = document.querySelector('.discovery-unified-section');
             if (gallerySlot && discoverySection && discoverySection.parentNode) {
                 discoverySection.parentNode.insertBefore(gallerySlot, discoverySection);
                 gallerySlot.classList.add('mobile-relocated');
-            }
-
-            var soundcloudWrap = document.getElementById('soundcloud-cycling-wrap');
-            if (soundcloudWrap) {
-                document.body.appendChild(soundcloudWrap);
-                soundcloudWrap.classList.add('mobile-relocated');
             }
         }
         
@@ -406,31 +400,39 @@
     function switchTab(tabId, options) {
         options = options || {};
         const skipScrollToTop = options.skipScrollToTop === true;
+        const skipEnsureSubTab = options.skipEnsureSubTab === true;
 
         if (tabId === 'play') {
             loadPlayTabBundles().catch(function() {});
         }
 
-        // Update active states
+        // Update active states (do not strip .active from the target tab first  -  that would
+        // momentarily hide every .tab-content and collapse the page, resetting scroll to the top)
         elements.tabLinks.forEach(link => {
-            link.classList.remove('active');
             if (link.getAttribute('data-tab') === tabId) {
                 link.classList.add('active');
+            } else {
+                link.classList.remove('active');
             }
         });
 
         elements.tabContents.forEach(content => {
-            content.classList.remove('active');
-            if (content.id === tabId) {
-                content.classList.add('active');
-                state.currentTab = tabId;
-                if (!skipScrollToTop) {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }
-                ensureFirstSubTabActive(tabId);
-                requestAnimationFrame(function() { setLanguage(state.currentLang); });
+            if (content.id !== tabId) {
+                content.classList.remove('active');
             }
         });
+        const targetContent = document.getElementById(tabId);
+        if (targetContent) {
+            targetContent.classList.add('active');
+            state.currentTab = tabId;
+            if (!skipScrollToTop) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            if (!skipEnsureSubTab) {
+                ensureFirstSubTabActive(tabId);
+            }
+            requestAnimationFrame(function() { setLanguage(state.currentLang); });
+        }
     }
 
     function handleHashChange() {
@@ -456,6 +458,17 @@
             if (history.replaceState) history.replaceState(null, null, '#peoples');
             switchTab('univers');
             switchSubTab('univers', 'peoples');
+            return;
+        }
+        if (hash === 'world-map') {
+            if (archivedHidden) {
+                if (history.replaceState) history.replaceState(null, null, '#peoples');
+                switchTab('univers');
+                switchSubTab('univers', 'peoples');
+                return;
+            }
+            switchTab('univers', { skipScrollToTop: true, skipEnsureSubTab: true });
+            switchSubTab('univers', 'peoples', 'univers-world-map-panel');
             return;
         }
         if (validTabs.includes(hash)) {
@@ -496,6 +509,228 @@
     }
 
     // ========================================
+    // Universe > World: Peoples | World Map (sidebar .univers-monde-in-page-nav + inner panels)
+    // ========================================
+    function syncUniversMondeSublinkActive(innerId) {
+        var nav = document.querySelector('.univers-monde-in-page-nav');
+        if (!nav) return;
+        nav.querySelectorAll('a.univers-monde-sublink').forEach(function(a) {
+            var href = a.getAttribute('href') || '';
+            var on = false;
+            if (innerId === 'peoples-peoples' && href === '#peoples') on = true;
+            if (innerId === 'univers-world-map-panel' && href === '#world-map') on = true;
+            a.classList.toggle('active', !!on);
+            if (on) {
+                a.setAttribute('aria-current', 'page');
+            } else {
+                a.removeAttribute('aria-current');
+            }
+        });
+    }
+
+    function setUniversWorldInner(innerId) {
+        var root = document.getElementById('peoples');
+        if (!root) return;
+        var panels = root.querySelectorAll('.univers-world-panel');
+        panels.forEach(function(p) {
+            var isActive = p.id === innerId;
+            p.classList.toggle('univers-world-panel--active', isActive);
+            if (isActive) {
+                p.removeAttribute('hidden');
+            } else {
+                p.setAttribute('hidden', '');
+            }
+        });
+        syncUniversMondeSublinkActive(innerId);
+    }
+
+    /**
+     * Sidebar Monde sub-links (#peoples / #world-map): intercept so the browser does not
+     * scroll to a hidden fragment target (jumps to top) before JS reveals the panel.
+     */
+    function initUniversMondeSidebarLinks() {
+        var links = document.querySelectorAll('.univers-monde-in-page-nav a.univers-monde-sublink');
+        if (!links.length) return;
+        links.forEach(function(a) {
+            a.addEventListener('click', function(e) {
+                var href = this.getAttribute('href') || '';
+                if (href !== '#peoples' && href !== '#world-map') return;
+                e.preventDefault();
+                if (href === '#peoples') {
+                    switchTab('univers', { skipScrollToTop: true, skipEnsureSubTab: true });
+                    switchSubTab('univers', 'peoples', 'peoples-peoples');
+                } else {
+                    switchTab('univers', { skipScrollToTop: true, skipEnsureSubTab: true });
+                    switchSubTab('univers', 'peoples', 'univers-world-map-panel');
+                }
+                if (history.pushState) {
+                    history.pushState(null, null, href);
+                }
+                setLanguage(state.currentLang);
+            });
+        });
+    }
+
+    /**
+     * Universe world map: wheel / pinch zoom, drag pan when zoomed (inside circular viewport).
+     */
+    function initWorldMapPanZoom() {
+        var viewport = document.getElementById('world-map-viewport');
+        var layer = document.getElementById('world-map-pan-zoom-layer');
+        var panel = document.getElementById('univers-world-map-panel');
+        if (!viewport || !layer || !panel) return;
+
+        var scale = 1;
+        var tx = 0;
+        var ty = 0;
+        var minScale = 1;
+        var maxScale = 6;
+
+        function touchDist(a, b) {
+            var dx = a.clientX - b.clientX;
+            var dy = a.clientY - b.clientY;
+            return Math.sqrt(dx * dx + dy * dy) || 1;
+        }
+
+        function clampPan() {
+            var w = viewport.clientWidth;
+            var h = viewport.clientHeight;
+            if (w < 4 || h < 4) return;
+            var maxX = (w * (scale - 1)) / 2;
+            var maxY = (h * (scale - 1)) / 2;
+            if (maxX < 0) maxX = 0;
+            if (maxY < 0) maxY = 0;
+            tx = Math.max(-maxX, Math.min(maxX, tx));
+            ty = Math.max(-maxY, Math.min(maxY, ty));
+            if (scale < minScale) scale = minScale;
+            if (scale > maxScale) scale = maxScale;
+        }
+
+        function applyTransform() {
+            clampPan();
+            layer.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + scale + ')';
+        }
+
+        function zoomAtPoint(clientX, clientY, newScale) {
+            newScale = Math.max(minScale, Math.min(maxScale, newScale));
+            var rect = viewport.getBoundingClientRect();
+            var mx = clientX - rect.left;
+            var my = clientY - rect.top;
+            var cx = rect.width / 2;
+            var cy = rect.height / 2;
+            var dx = mx - cx;
+            var dy = my - cy;
+            var oldScale = scale;
+            if (Math.abs(oldScale - newScale) < 1e-6) return;
+            scale = newScale;
+            tx = dx - (dx - tx) * (scale / oldScale);
+            ty = dy - (dy - ty) * (scale / oldScale);
+            applyTransform();
+        }
+
+        function mapPanelVisible() {
+            return panel && !panel.hasAttribute('hidden');
+        }
+
+        viewport.addEventListener('wheel', function(e) {
+            if (!mapPanelVisible()) return;
+            e.preventDefault();
+            e.stopPropagation();
+            var factor = Math.exp(-e.deltaY * 0.002);
+            zoomAtPoint(e.clientX, e.clientY, scale * factor);
+        }, { passive: false });
+
+        var mouseDragging = false;
+        var mouseLastX = 0;
+        var mouseLastY = 0;
+
+        function canPan() {
+            return scale > 1.02;
+        }
+
+        viewport.addEventListener('mousedown', function(e) {
+            if (!mapPanelVisible() || e.button !== 0 || !canPan()) return;
+            mouseDragging = true;
+            mouseLastX = e.clientX;
+            mouseLastY = e.clientY;
+            viewport.classList.add('world-map-viewport--dragging');
+            e.preventDefault();
+        });
+
+        window.addEventListener('mousemove', function(e) {
+            if (!mouseDragging) return;
+            tx += e.clientX - mouseLastX;
+            ty += e.clientY - mouseLastY;
+            mouseLastX = e.clientX;
+            mouseLastY = e.clientY;
+            applyTransform();
+        });
+
+        window.addEventListener('mouseup', function() {
+            if (mouseDragging) {
+                mouseDragging = false;
+                viewport.classList.remove('world-map-viewport--dragging');
+            }
+        });
+
+        var touchPanning = false;
+        var touchLastX = 0;
+        var touchLastY = 0;
+        var pinchBaseDist = 0;
+        var pinchBaseScale = 1;
+
+        viewport.addEventListener('touchstart', function(e) {
+            if (!mapPanelVisible()) return;
+            if (e.touches.length === 2) {
+                pinchBaseDist = touchDist(e.touches[0], e.touches[1]);
+                pinchBaseScale = scale;
+                touchPanning = false;
+            } else if (e.touches.length === 1 && canPan()) {
+                touchPanning = true;
+                touchLastX = e.touches[0].clientX;
+                touchLastY = e.touches[0].clientY;
+            }
+        }, { passive: true });
+
+        viewport.addEventListener('touchmove', function(e) {
+            if (!mapPanelVisible()) return;
+            if (e.touches.length === 2 && pinchBaseDist > 0) {
+                e.preventDefault();
+                var d = touchDist(e.touches[0], e.touches[1]);
+                scale = Math.max(minScale, Math.min(maxScale, pinchBaseScale * (d / pinchBaseDist)));
+                applyTransform();
+            } else if (e.touches.length === 1 && touchPanning && canPan()) {
+                e.preventDefault();
+                var t = e.touches[0];
+                tx += t.clientX - touchLastX;
+                ty += t.clientY - touchLastY;
+                touchLastX = t.clientX;
+                touchLastY = t.clientY;
+                applyTransform();
+            }
+        }, { passive: false });
+
+        viewport.addEventListener('touchend', function(e) {
+            if (e.touches.length < 2) {
+                pinchBaseDist = 0;
+            }
+            if (e.touches.length === 0) {
+                touchPanning = false;
+            }
+        });
+
+        if (typeof ResizeObserver !== 'undefined') {
+            var ro = new ResizeObserver(function() {
+                clampPan();
+                applyTransform();
+            });
+            ro.observe(viewport);
+        }
+
+        applyTransform();
+    }
+
+    // ========================================
     // Subtab Navigation (Lore, Rules)
     // ========================================
     function initSubTabs() {
@@ -519,7 +754,7 @@
         // Set first subtab active when main tab is shown (handled in switchTab)
     }
 
-    function switchSubTab(tabId, subId) {
+    function switchSubTab(tabId, subId, universInnerOverride) {
         const tabContent = document.getElementById(tabId);
         if (!tabContent) return;
         const panels = tabContent.querySelectorAll('.tab-sub-panel');
@@ -533,6 +768,11 @@
             const linkSubId = linkHref ? linkHref.replace('#', '') : '';
             link.classList.toggle('active', linkSubId === subId);
         });
+        if (tabId === 'univers' && subId === 'peoples') {
+            setUniversWorldInner(universInnerOverride || 'peoples-peoples');
+        } else if (tabId === 'univers') {
+            syncUniversMondeSublinkActive(null);
+        }
         // Re-apply current language so all [data-en][data-fr] in newly visible panel are correct
         setLanguage(state.currentLang);
     }
@@ -803,19 +1043,25 @@
         }
 
         var lbPanoramaScale = 1;
+        var lbClosing = false;
+        var lbCloseTimer = null;
+        var lbCloseAnimEnd = null;
 
-        function onKeyLb(ev) {
-            if (ev.key === 'Escape') {
-                closeLb();
+        function finishCloseLb() {
+            if (lbCloseTimer) {
+                clearTimeout(lbCloseTimer);
+                lbCloseTimer = null;
             }
-        }
-
-        function closeLb() {
-            if (!lb || lb.hidden) return;
+            if (lbCloseAnimEnd && lb) {
+                lb.removeEventListener('animationend', lbCloseAnimEnd);
+                lbCloseAnimEnd = null;
+            }
+            lbClosing = false;
+            if (!lb) return;
+            lb.classList.remove('tdt-peoples-portrait-lightbox--closing');
             lb.hidden = true;
             lb.setAttribute('aria-hidden', 'true');
             document.body.classList.remove('tdt-peoples-portrait-lightbox-open');
-            document.removeEventListener('keydown', onKeyLb, true);
             lbPanoramaScale = 1;
             if (bigImg) {
                 bigImg.classList.remove('tdt-peoples-portrait-lightbox__img--panorama');
@@ -824,8 +1070,49 @@
             }
         }
 
+        function onKeyLb(ev) {
+            if (ev.key === 'Escape') {
+                closeLb();
+            }
+        }
+
+        function closeLb() {
+            if (!lb || lb.hidden || lbClosing) return;
+            lbClosing = true;
+            document.removeEventListener('keydown', onKeyLb, true);
+            lb.classList.add('tdt-peoples-portrait-lightbox--closing');
+            var done = false;
+            function complete() {
+                if (done) return;
+                done = true;
+                finishCloseLb();
+            }
+            lbCloseAnimEnd = function(e) {
+                if (e.target !== lb) return;
+                if (e.animationName !== 'tdt-peoples-lb-fade-out') return;
+                complete();
+            };
+            lb.addEventListener('animationend', lbCloseAnimEnd);
+            lbCloseTimer = setTimeout(complete, 200);
+        }
+
         function openLb(src, variant, sourceImg) {
             if (!src || !bigImg) return;
+            if (lbClosing) {
+                if (lbCloseTimer) {
+                    clearTimeout(lbCloseTimer);
+                    lbCloseTimer = null;
+                }
+                if (lbCloseAnimEnd && lb) {
+                    lb.removeEventListener('animationend', lbCloseAnimEnd);
+                    lbCloseAnimEnd = null;
+                }
+                lbClosing = false;
+                lb.classList.remove('tdt-peoples-portrait-lightbox--closing');
+                lb.style.animation = 'none';
+                void lb.offsetWidth;
+                lb.style.removeProperty('animation');
+            }
             document.removeEventListener('keydown', onKeyLb, true);
             lbPanoramaScale = 1;
             bigImg.style.transform = '';
@@ -851,7 +1138,7 @@
             lb.addEventListener(
                 'wheel',
                 function(e) {
-                    if (lb.hidden || !bigImg) return;
+                    if (lb.hidden || lbClosing || !bigImg) return;
                     e.preventDefault();
                     e.stopPropagation();
                     if (!bigImg.classList.contains('tdt-peoples-portrait-lightbox__img--panorama')) return;

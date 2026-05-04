@@ -66,7 +66,7 @@
     box-sizing: border-box;
 }
 
-/* Top row: galleries (left) | symbol & titles (center) | SoundCloud (right) */
+/* Top row: galleries (left) | symbol & titles (center)  -  SoundCloud is fixed bottom-right, outside this row */
 .header-top-row {
     display: grid;
     grid-template-columns: 1fr minmax(560px, 1fr) 1fr;
@@ -376,10 +376,13 @@
     margin: 0;
 }
 
-.header-top-row .soundcloud-cycling-wrap {
+/* SoundCloud: fixed bottom-right (markup is after </header> so fixed is viewport-relative) */
+.soundcloud-cycling-wrap {
     position: fixed;
-    top: var(--spacing-md, 1rem);
+    top: auto;
+    bottom: var(--spacing-md, 1rem);
     right: var(--spacing-md, 1rem);
+    left: auto;
     z-index: 1000;
     max-width: 160px;
     /* Keep a fixed-size hit area when hidden so hover can reveal the player */
@@ -388,7 +391,7 @@
 }
 
 /* Rounded circular container for the music player */
-.header-top-row .soundcloud-vignette {
+.soundcloud-cycling-wrap .soundcloud-vignette {
     position: relative;
     width: 100px;
     height: 100px;
@@ -413,12 +416,12 @@
 }
 
 /* While playing: keep visible + subtle beige pulsating glow every 2s */
-.header-top-row .soundcloud-cycling-wrap.soundcloud-playing .soundcloud-vignette {
+.soundcloud-cycling-wrap.soundcloud-playing .soundcloud-vignette {
     animation: tdt-soundcloud-beige-glow 2s ease-in-out infinite;
 }
 
 /* Music note symbol centered on the circle (dark red) */
-.header-top-row .soundcloud-vignette::after {
+.soundcloud-cycling-wrap .soundcloud-vignette::after {
     content: "♪";
     position: absolute;
     left: 50%;
@@ -433,7 +436,7 @@
 }
 
 /* When music is stopped: diagonal line through the note */
-.header-top-row .soundcloud-vignette.soundcloud-stopped::before {
+.soundcloud-cycling-wrap .soundcloud-vignette.soundcloud-stopped::before {
     content: "";
     position: absolute;
     left: 50%;
@@ -447,7 +450,7 @@
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-.header-top-row .soundcloud-embed {
+.soundcloud-cycling-wrap .soundcloud-embed {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -483,16 +486,9 @@
         grid-column: 1;
         min-width: auto;
     }
-
-    .header-top-row .soundcloud-cycling-wrap {
-        order: 3;
-        margin-left: auto;
-        margin-right: auto;
-        max-width: 100%;
-    }
 }
 
-/* Mobile: header shows only branding (title/tagline/logo); gallery relocated by JS, SoundCloud fixed bottom-right */
+/* Mobile: header shows only branding (title/tagline/logo); gallery relocated by JS */
 @media screen and (max-width: 768px) {
     .header-bg {
         background-attachment: scroll;
@@ -519,11 +515,6 @@
 
     /* Hide gallery from header  -  JS moves it before the discovery section */
     .header-top-row .galleries-cycling-slot {
-        display: none !important;
-    }
-
-    /* SoundCloud: hide from header (JS moves it to <body> for proper fixed positioning) */
-    .header-top-row .soundcloud-cycling-wrap {
         display: none !important;
     }
 
@@ -606,77 +597,8 @@
     text-align: center;
 }
 
-/* SoundCloud when relocated to <body> by mobile JS  -  fixed bottom-right */
-.soundcloud-cycling-wrap.mobile-relocated {
-    display: block !important;
-    position: fixed !important;
-    top: auto !important;
-    bottom: var(--spacing-md, 1rem);
-    right: var(--spacing-md, 1rem);
-    left: auto;
-    z-index: 1000;
-    max-width: 160px;
-    min-width: 100px;
-    min-height: 100px;
-    opacity: 1 !important;
-    transition: none !important;
-}
-
-/* Relocated SoundCloud: keep circular vignette + child styles (no longer inside .header-top-row) */
-.soundcloud-cycling-wrap.mobile-relocated .soundcloud-vignette {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    max-width: 100px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 0 auto;
-}
-
-.soundcloud-cycling-wrap.mobile-relocated.soundcloud-playing .soundcloud-vignette {
-    animation: tdt-soundcloud-beige-glow 2s ease-in-out infinite;
-}
-
-.soundcloud-cycling-wrap.mobile-relocated .soundcloud-vignette::after {
-    content: "♪";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    color: var(--tdt-dark-red);
-    font-size: 1.75rem;
-    line-height: 1;
-    pointer-events: none;
-    z-index: 2;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-}
-
-.soundcloud-cycling-wrap.mobile-relocated .soundcloud-vignette.soundcloud-stopped::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 140%;
-    height: 3px;
-    background: var(--tdt-dark-red);
-    transform: translate(-50%, -50%) rotate(-45deg);
-    pointer-events: none;
-    z-index: 3;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-.soundcloud-cycling-wrap.mobile-relocated .soundcloud-embed {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 160px;
-    height: 160px;
-    margin-left: -80px;
-    margin-top: -80px;
-}
-
 @media (prefers-reduced-motion: reduce) {
-    .header-top-row .soundcloud-cycling-wrap.soundcloud-playing .soundcloud-vignette {
+    .soundcloud-cycling-wrap.soundcloud-playing .soundcloud-vignette {
         animation: none;
     }
 

@@ -191,20 +191,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="soundcloud-cycling-wrap" id="soundcloud-cycling-wrap">
-                    <div class="soundcloud-vignette">
-                        <iframe
-                            class="soundcloud-embed"
-                            data-src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fthe-discording-tales%2Funderground-enlightenment&amp;auto_play=true&amp;hide_related=false&amp;visual=true&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;color=740000"
-                            width="100%"
-                            height="166"
-                            frameborder="0"
-                            scrolling="no"
-                            allow="autoplay; encrypted-media"
-                            title="Underground Enlightenment – The Discording Tales"
-                        ></iframe>
-                    </div>
-                </div>
             </div>
             <div class="header-creature-banner">
                 <div class="header-creature-banner-stack">
@@ -247,7 +233,23 @@
             </div>
         </nav>
     </header>
-    
+
+    <!-- Fixed bottom-right: outside .header-bg so position:fixed is viewport-relative (filter would otherwise create a containing block) -->
+    <div class="soundcloud-cycling-wrap" id="soundcloud-cycling-wrap">
+        <div class="soundcloud-vignette">
+            <iframe
+                class="soundcloud-embed"
+                data-src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fthe-discording-tales%2Funderground-enlightenment&amp;auto_play=true&amp;hide_related=false&amp;visual=true&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;color=740000"
+                width="100%"
+                height="166"
+                frameborder="0"
+                scrolling="no"
+                allow="autoplay; encrypted-media"
+                title="Underground Enlightenment – The Discording Tales"
+            ></iframe>
+        </div>
+    </div>
+
     <!-- Main Content Area -->
     <main id="main-content" class="site-content" role="main">
         
@@ -446,6 +448,10 @@
             <div class="system-overview-dashboard univers-dashboard">
                 <nav class="system-overview-nav tab-sub-nav univers-sidebar-nav" aria-label="Universe sections">
                     <a href="#peoples" class="tab-sub-nav-link univers-nav-main-link active" {{i18n:tpl.13}}>Monde</a>
+                    <ul class="system-overview-nav-list univers-monde-in-page-nav" aria-label="World sections">
+                        <li><a href="#peoples" class="system-overview-nav-link univers-monde-sublink active" data-en="Peoples" data-fr="Peuples">Peoples</a></li>
+                        <li><a href="#world-map" class="system-overview-nav-link univers-monde-sublink" data-en="World Map" data-fr="Carte du monde">World Map</a></li>
+                    </ul>
                     <a href="#system-overview" class="tab-sub-nav-link univers-nav-main-link" {{i18n:tpl.100}}>Rules</a>
                     <ul class="system-overview-nav-list univers-rules-in-page-nav" aria-label="Rules sections">
                         <li><a href="#system-overview-uncover" class="system-overview-nav-link" {{i18n:tpl.106}}>Uncover a world of possibilities</a></li>
@@ -458,8 +464,9 @@
                 </nav>
                 <div class="univers-dashboard-main system-overview-content">
 
-            <!-- Peoples Section -->
+            <!-- Peoples Section (World): Monde sub-tabs live in sidebar (.univers-monde-in-page-nav) -->
             <div class="lore-section tab-sub-panel active" id="peoples">
+                <div class="univers-world-panel univers-world-panel--active" id="peoples-peoples">
                 <header class="peoples-lead">
                     <h3 class="peoples-lead__title" {{i18n:tpl.55}}>10 Unique Peoples</h3>
                     <figure class="peoples-lead__figure">
@@ -502,6 +509,23 @@
                     </div>
                 </div>
 {{peoples-cards}}
+                </div>
+                <div class="univers-world-panel" id="univers-world-map-panel" hidden>
+                    <div class="world-map-focus">
+                        <p class="world-map-help-hint" data-en="Scroll or pinch to zoom. Drag to pan when zoomed." data-fr="Molette ou pincement pour zoomer. Glisser pour déplacer la carte.">Scroll or pinch to zoom. Drag to pan when zoomed.</p>
+                        <div
+                            class="world-map-circle-crop world-map-viewport"
+                            id="world-map-viewport"
+                            tabindex="0"
+                            role="application"
+                            aria-label="Interactive world map: scroll or pinch to zoom, drag to pan."
+                        >
+                            <div class="world-map-pan-zoom-layer" id="world-map-pan-zoom-layer">
+                                <img src="assets/images/novoworld.webp" alt="" class="world-map-pannable-img" id="world-map-pannable-img" decoding="async" loading="lazy" draggable="false"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <!-- System Overview panel (Vue d'ensemble) -->
