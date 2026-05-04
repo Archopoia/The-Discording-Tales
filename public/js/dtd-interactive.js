@@ -694,7 +694,7 @@
     }
 
     /**
-     * Full-screen preview for peoples tree portraits (hover or tap on thumb).
+     * Full-screen preview for peoples tree portraits and height chart (click thumb only).
      */
     function initPeoplesPortraitLightbox(peoplesSection) {
         if (!peoplesSection) return;
@@ -727,6 +727,8 @@
             }
         }
 
+        var lbPanoramaScale = 1;
+
         function onKeyLb(ev) {
             if (ev.key === 'Escape') {
                 closeLb();
@@ -739,14 +741,20 @@
             lb.setAttribute('aria-hidden', 'true');
             document.body.classList.remove('tdt-peoples-portrait-lightbox-open');
             document.removeEventListener('keydown', onKeyLb, true);
+            lbPanoramaScale = 1;
             if (bigImg) {
                 bigImg.classList.remove('tdt-peoples-portrait-lightbox__img--panorama');
+                bigImg.style.transform = '';
+                bigImg.style.transformOrigin = '';
             }
         }
 
         function openLb(src, variant, sourceImg) {
             if (!src || !bigImg) return;
             document.removeEventListener('keydown', onKeyLb, true);
+            lbPanoramaScale = 1;
+            bigImg.style.transform = '';
+            bigImg.style.transformOrigin = '';
             bigImg.src = src;
             bigImg.alt = sourceImg && sourceImg.getAttribute ? sourceImg.getAttribute('alt') || '' : '';
             if (variant === 'panorama') {
@@ -765,15 +773,40 @@
             lb.addEventListener('click', function() {
                 closeLb();
             });
+            lb.addEventListener(
+                'wheel',
+                function(e) {
+                    if (lb.hidden || !bigImg) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (!bigImg.classList.contains('tdt-peoples-portrait-lightbox__img--panorama')) return;
+                    var rect = bigImg.getBoundingClientRect();
+                    var w = rect.width;
+                    var h = rect.height;
+                    if (w < 2 || h < 2) return;
+                    var ox = ((e.clientX - rect.left) / w) * 100;
+                    var oy = ((e.clientY - rect.top) / h) * 100;
+                    bigImg.style.transformOrigin = ox + '% ' + oy + '%';
+                    var factor = Math.exp(-e.deltaY * 0.001);
+                    factor = Math.max(0.94, Math.min(1.065, factor));
+                    lbPanoramaScale *= factor;
+                    if (lbPanoramaScale < 1) lbPanoramaScale = 1;
+                    if (lbPanoramaScale > 5) lbPanoramaScale = 5;
+                    if (lbPanoramaScale <= 1.001) {
+                        lbPanoramaScale = 1;
+                        bigImg.style.transform = '';
+                        bigImg.style.transformOrigin = '';
+                    } else {
+                        bigImg.style.transform = 'scale(' + lbPanoramaScale + ')';
+                    }
+                },
+                { passive: false }
+            );
         }
 
         function bindPortraitLightboxTrigger(img, variant) {
             if (img.dataset.tdtPortraitLbBound) return;
             img.dataset.tdtPortraitLbBound = '1';
-            img.addEventListener('mouseenter', function() {
-                var s = img.currentSrc || img.getAttribute('src') || '';
-                if (s) openLb(s, variant, img);
-            });
             img.addEventListener('click', function(ev) {
                 ev.preventDefault();
                 ev.stopPropagation();

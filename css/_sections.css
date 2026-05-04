@@ -2929,6 +2929,8 @@
 .peoples-lead__figure {
     margin: 0 auto var(--spacing-sm);
     max-width: min(100%, 1120px);
+    overflow: hidden;
+    border-radius: 6px;
 }
 .peoples-lead__height-chart {
     display: block;
