@@ -368,8 +368,8 @@
     var ENTRANCE_IMAGE_URLS = [
         'assets/images/Map_Naked.webp',
         'assets/images/Creusalité_NoBorders.webp',
-        'assets/images/symbolpur.png',
-        'assets/images/SymbolCoin.png'
+        'assets/images/image/image12.png',
+        'assets/images/image/image2.png'
     ];
     var PEOPLE_BANNER_URLS = [
         'assets/images/People1.webp',

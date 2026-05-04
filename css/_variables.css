@@ -107,7 +107,7 @@
     initial-value: -18;
 }
 
-/* People1 first paint: same wipe as People2/Kickstarter; revealed after entrance (.header-creature-banner--revealed) */
+/* People1 first paint: bottom to up mask wipe (mirror of People2 hover); revealed after entrance (.header-creature-banner--revealed) */
 @property --tdt-creature-wipe-base {
     syntax: '<number>';
     inherits: false;

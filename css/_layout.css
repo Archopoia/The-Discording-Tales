@@ -89,8 +89,8 @@
     max-height: none;
     overflow-x: clip;
     overflow-y: visible;
-    /* Above .header-top-row (10): People1/2 sit over the Kickstarter oval on hover; pointer-events still none so clicks pass through */
-    z-index: 12;
+    /* Below .header-top-row (10) so the cycling gallery and other hero chrome stay above People1/2; pointer-events still none */
+    z-index: 8;
     pointer-events: none;
     display: flex;
     align-items: flex-end;
@@ -157,17 +157,18 @@
     mask-composite: intersect;
 }
 
-/* People1: same soft top→bottom mask wipe as People2; hidden until .header-creature-banner--revealed (after entrance) */
+/* People1: same feathered mask stack as People2, but linear-gradient(to top) so the wipe reveals bottom to up; hidden until .header-creature-banner--revealed */
 .header-creature-banner-img--base {
     position: relative;
     z-index: 1;
     opacity: 0.5;
-    transform: translateY(var(--header-creature-translate-y));
+    /* Sits slightly low, then rises with the mask wipe when revealed (pairs with to-top gradient) */
+    transform: translateY(calc(var(--header-creature-translate-y) + clamp(0.45rem, 2vh, 1.2rem)));
     --tdt-creature-wipe-base: -18;
     --tdt-creature-wipe-feather: 20;
     transition:
         opacity 0.55s ease,
-        transform 0.55s ease,
+        transform 0.7s cubic-bezier(0.33, 0.12, 0.09, 1),
         --tdt-creature-wipe-base 0.7s cubic-bezier(0.33, 0.12, 0.09, 1);
     -webkit-mask-image:
         radial-gradient(
@@ -236,6 +237,7 @@
 
 .header-creature-banner--revealed .header-creature-banner-img--base {
     --tdt-creature-wipe-base: 120;
+    transform: translateY(var(--header-creature-translate-y));
 }
 
 .header-creature-banner-img--kick {
@@ -680,6 +682,7 @@
 
     .header-creature-banner-img--base {
         --tdt-creature-wipe-base: 120;
+        transform: translateY(var(--header-creature-translate-y));
         transition: opacity 0.55s ease, transform 0.55s ease;
     }
 }
@@ -892,7 +895,7 @@
     padding: var(--spacing-sm) 0;
     position: relative;
     /* Sticking is handled in dtd-interactive.js (.main-navigation--fixed)  -  CSS sticky is unreliable here */
-    /* Above .header-creature-banner (12) and .header-bg (2) */
+    /* Above .header-creature-banner (8) and .header-bg (2) */
     z-index: 120;
     /* Multi-layer ornate shadows */
     box-shadow: 

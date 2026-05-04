@@ -80,12 +80,16 @@ function init(): void {
     }
   };
   
-  // Wait for entrance to complete before starting heavy model download
-  window.addEventListener('tdt-entrance-complete', schedulePreload, { once: true });
-  
-  // Fallback: if entrance doesn't fire (e.g., deep-link bypass), start after load + delay
+  // Wait for entrance unless already past it (bypass or late-loaded module after dynamic import).
+  if (document.body && !document.body.classList.contains('entrance-active')) {
+    schedulePreload();
+  } else {
+    window.addEventListener('tdt-entrance-complete', schedulePreload, { once: true });
+  }
+
+  // Fallback: if entrance doesn't fire, start after load + delay
   window.addEventListener('load', () => {
-    setTimeout(schedulePreload, 3000); // Give entrance a chance first
+    setTimeout(schedulePreload, 3000);
   }, { once: true });
 }
 

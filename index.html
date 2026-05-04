@@ -19,7 +19,7 @@
     <meta property="og:description" content="For those of us who crave DISCOVERY. A journey through exotic cultures, unexplored lands, weird creatures, and untold ways of thinking and being - yearning to experience the vast potentials, technologies and moralities of worlds unlike ours."/>
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="https://archopoia.github.io/The-Discording-Tales/"/>
-    <meta property="og:image" content="https://archopoia.github.io/The-Discording-Tales/assets/images/symbolpur.png"/>
+    <meta property="og:image" content="https://archopoia.github.io/The-Discording-Tales/assets/images/image/image12.png"/>
     <meta property="og:image:width" content="100"/>
     <meta property="og:image:height" content="100"/>
     <meta property="og:image:alt" content="The Discording Tales Symbol"/>
@@ -27,14 +27,20 @@
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:title" content="THE DISCORDING TALES – Under our steps awake those mysteries believed to be warring among the stars…"/>
     <meta name="twitter:description" content="For those of us who crave DISCOVERY. A journey through exotic cultures, unexplored lands, weird creatures, and untold ways of thinking and being - yearning to experience the vast potentials, technologies and moralities of worlds unlike ours."/>
-    <meta name="twitter:image" content="https://archopoia.github.io/The-Discording-Tales/assets/images/symbolpur.png"/>
+    <meta name="twitter:image" content="https://archopoia.github.io/The-Discording-Tales/assets/images/image/image12.png"/>
     
     <!-- Main Stylesheet (bundled by build_css.js) -->
     <link href="dist/main-site.css" rel="stylesheet" type="text/css"/>
+    <!-- Third-party hints (GM chat markdown, SoundCloud) -->
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net"/>
+    <link rel="dns-prefetch" href="https://w.soundcloud.com"/>
     <!-- Quintessential (Fermer / Envoyer button style) -->
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Quintessential&display=swap" rel="stylesheet"/>
+    <!-- Early fetch of main bundle (deferred execution; warms HTTP cache with SW) -->
+    <link rel="preload" href="dist/main-site.css" as="style"/>
+    <link rel="preload" href="dist/main-site.js" as="script"/>
     
     <!-- Theme Color -->
     <meta content="#5a1f1f" name="theme-color"/>
@@ -67,11 +73,11 @@
             }
             document.head.appendChild(link);
         }
-        preloadImage('assets/images/symbolpur.png', 'high');
+        preloadImage('assets/images/image/image12.png', 'high');
         if (!window.__TDT_ENTRANCE_BYPASS__) {
             preloadImage('assets/images/Map_Naked.webp', 'high');
             preloadImage('assets/images/Creusalité_NoBorders.webp', 'high');
-            preloadImage('assets/images/SymbolCoin.png', 'high');
+            preloadImage('assets/images/image/image2.png', 'high');
         }
     })();
     </script>
@@ -87,7 +93,7 @@
     {"@context":"https://schema.org","@type":"WebSite","name":"THE DISCORDING TALES","url":"https://archopoia.github.io/The-Discording-Tales/"}
     </script>
     <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"Organization","name":"The Discording Tales","url":"https://archopoia.github.io/The-Discording-Tales/","logo":"https://archopoia.github.io/The-Discording-Tales/assets/images/symbolpur.png","sameAs":["https://www.kickstarter.com/projects/1410517588/the-discording-tales-tabletop-rpg-and-worldlore","https://soundcloud.com/the-discording-tales","https://x.com/DiscordingTales"]}
+    {"@context":"https://schema.org","@type":"Organization","name":"The Discording Tales","url":"https://archopoia.github.io/The-Discording-Tales/","logo":"https://archopoia.github.io/The-Discording-Tales/assets/images/image/image12.png","sameAs":["https://www.kickstarter.com/projects/1410517588/the-discording-tales-tabletop-rpg-and-worldlore","https://soundcloud.com/the-discording-tales","https://x.com/DiscordingTales"]}
     </script>
     <!-- Copyright: Creative Work declaration -->
     <script type="application/ld+json">
@@ -118,8 +124,8 @@
         <div id="entrance-hover-zone" aria-hidden="true"></div>
         <button id="enter-portfolio-btn" type="button" aria-label="Enter site">
             <span class="entrance-logo-wrap">
-                <img src="assets/images/symbolpur.png" alt="" class="entrance-logo-base" aria-hidden="true" fetchpriority="high"/>
-                <img src="assets/images/SymbolCoin.png" alt="" class="entrance-logo-coin" aria-hidden="true" fetchpriority="high"/>
+                <img src="assets/images/image/image12.png" alt="" class="entrance-logo-base" aria-hidden="true" fetchpriority="high"/>
+                <img src="assets/images/image/image2.png" alt="" class="entrance-logo-coin" aria-hidden="true" fetchpriority="high"/>
             </span>
         </button>
         <p class="entrance-click-hint" aria-hidden="true">
@@ -166,7 +172,7 @@
                                 <span data-en="awoke those mysteries believed to be warring among the stars." data-fr="s'éveillèrent ces mystères-là que l'on croyait se battre parmi les étoiles.">awoke those mysteries believed to be warring among the stars.</span>
                             </p>
                             <a class="site-logo-link" href="#landing" data-aria-label-en="Home" data-aria-label-fr="Accueil" aria-label="Home">
-                                <img alt="The Discording Tales Symbol" class="site-logo" src="assets/images/symbolpur.png" height="100" width="100" decoding="async" data-alt-en="The Discording Tales Symbol" data-alt-fr="Le symbole des Récits Discordants"/>
+                                <img alt="The Discording Tales Symbol" class="site-logo" src="assets/images/image/image12.png" height="100" width="100" decoding="async" data-alt-en="The Discording Tales Symbol" data-alt-fr="Le symbole des Récits Discordants"/>
                             </a>
                             <h1 class="site-title"><a href="#landing" rel="home" data-en="THE DISCORDING TALES" data-fr="DES RÉCITS DISCORDANTS">THE DISCORDING TALES</a></h1>
                             <p class="site-genre" data-en="The ETHNO-SCIENCE-FANTASY world" data-fr="Le monde ÉTHNO-SCIENCE-FANTASTIQUE">the ETHNO-SCIENCE-FANTASY world</p>
@@ -3589,10 +3595,16 @@
         }, { once: true });
     })();
     </script>
-    <!-- WebLLM: in-browser GM -->
-    <script type="module" src="dist/play-webllm.js"></script>
-    <!-- React Character Sheet Bundle (built with Vite) -->
-    <script src="dist/character-sheet.js" defer></script>
+    <!-- Play tab: WebLLM + character sheet load on first visit to #play (see dtd-interactive.js) -->
+    <script>
+    (function () {
+        if (!('serviceWorker' in navigator)) return;
+        if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') return;
+        window.addEventListener('load', function () {
+            navigator.serviceWorker.register(new URL('sw.js', location.href).href).catch(function () {});
+        }, { once: true });
+    })();
+    </script>
 </body>
 </html>
 

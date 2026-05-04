@@ -46,33 +46,38 @@
     // Image Gallery Data (Landing: three carousels)
     // ========================================
     const lifestylesImages = [
-        { src: 'assets/images/png.png', alt: 'The Discording Tales Artwork' },
-        { src: 'assets/images/all.png', alt: 'All Creatures' },
-        { src: 'assets/images/kharde-entre.png', alt: 'Kharde' },
-        { src: 'assets/images/final.png', alt: 'Final Artwork' },
-        { src: 'assets/images/all-copy.png', alt: 'All Creatures Copy' },
-        { src: 'assets/images/png2.png', alt: 'Artwork 2' },
-        { src: 'assets/images/lastvtummattroi.png', alt: 'Lastvtummattroi' },
-        { src: 'assets/images/all-copy-1.png', alt: 'All Copy 1' },
-        { src: 'assets/images/touteslesraces-2psd-copy.jpg', alt: 'All Races' }
+        { src: 'assets/images/image/image5.png', alt: 'All Creatures' },
+        { src: 'assets/images/image/image6.png', alt: 'Final Artwork' },
+        { src: 'assets/images/image/image10.png', alt: 'Artwork 2' },
+        { src: 'assets/images/image/image3.png', alt: 'All Copy 1' },
+        { src: 'assets/images/people/Aristois%20copy.png', alt: 'Aristois' },
+        { src: 'assets/images/people/Griscribes%20copy.png', alt: 'Griscribes' },
+        { src: 'assets/images/people/Navillis%20copy.png', alt: 'Navillis' },
+        { src: 'assets/images/people/M%C3%A9ridiens%20copy.png', alt: 'Méridiens' },
+        { src: 'assets/images/people/Grands%20Ylfes%20copy.png', alt: 'Hauts Ylfes' },
+        { src: 'assets/images/people/Ylfes%20p%C3%A4les%20copy.png', alt: 'Ylfes pâles' },
+        { src: 'assets/images/people/Ylfe%20des%20lacs%20copy.png', alt: 'Ylfes des lacs' },
+        { src: 'assets/images/people/Iqqars%20copy.png', alt: 'Iqqars' },
+        { src: 'assets/images/people/Slaad%C3%A9ens%20copy.png', alt: 'Slaadéens' },
+        { src: 'assets/images/people/Tchalkcha%C3%AF%20copy.png', alt: 'Tchalkchaïs' }
     ];
     const meaningsImages = [
-        { src: 'assets/images/title-1-copy-1.png', alt: 'Title' },
+        { src: 'assets/images/image/image14.png', alt: 'Title' },
         { src: 'assets/images/essence-english-v2-1.png', alt: 'Essence' },
-        { src: 'assets/images/things-english.png', alt: 'Things' },
-        { src: 'assets/images/roue-desastres.png', alt: 'Roue des astres' }
+        { src: 'assets/images/image/image13.png', alt: 'Things' },
+        { src: 'assets/images/image/image11.png', alt: 'Roue des astres' }
     ];
     const storiesImages = [
-        { src: 'assets/images/iossoluvvaij.png', alt: 'Iossoluvvaij' },
-        { src: 'assets/images/current.png', alt: 'Current' },
-        { src: 'assets/images/adriuhn.png', alt: 'Adriuhn' },
-        { src: 'assets/images/agvalsis.png', alt: 'Agvalsis' },
-        { src: 'assets/images/bruysseliand.png', alt: 'Bruysseliand' },
-        { src: 'assets/images/dalvvaraad.png', alt: 'Dalvvaraad' },
-        { src: 'assets/images/eadryllir.png', alt: 'Eadryllir' },
-        { src: 'assets/images/hatroaj.png', alt: 'Hatroaj' },
-        { src: 'assets/images/mevyriil.png', alt: 'Mevyriil' },
-        { src: 'assets/images/ondusiol.png', alt: 'Ondusiol' },
+        { src: 'assets/images/areas/iossoluvvaij.png', alt: 'Iossoluvvaij' },
+        { src: 'assets/images/areas/current.png', alt: 'Current' },
+        { src: 'assets/images/areas/adriuhn.png', alt: 'Adriuhn' },
+        { src: 'assets/images/areas/agvalsis.png', alt: 'Agvalsis' },
+        { src: 'assets/images/areas/bruysseliand.png', alt: 'Bruysseliand' },
+        { src: 'assets/images/areas/dalvvaraad.png', alt: 'Dalvvaraad' },
+        { src: 'assets/images/areas/eadryllir.png', alt: 'Eadryllir' },
+        { src: 'assets/images/areas/hatroaj.png', alt: 'Hatroaj' },
+        { src: 'assets/images/areas/mevyriil.png', alt: 'Mevyriil' },
+        { src: 'assets/images/areas/ondusiol.png', alt: 'Ondusiol' },
         { src: 'assets/images/novoworld.webp', alt: 'Novoworld' },
         { src: 'assets/images/geocosmoseng.jpg', alt: 'Geocosmos' }
     ];
@@ -332,9 +337,79 @@
         }, 1000);
     }
 
+    /** Lazy-load Play tab bundles (WebLLM + React sheet) on first visit to #play to speed initial page load. */
+    var tdtPlayBundlesPromise = null;
+    function loadPlayTabBundles() {
+        if (tdtPlayBundlesPromise) {
+            return tdtPlayBundlesPromise;
+        }
+        function injectModuleOnce(src, attr, alreadyLoaded) {
+            return new Promise(function(resolve, reject) {
+                if (alreadyLoaded && alreadyLoaded()) {
+                    resolve();
+                    return;
+                }
+                if (document.querySelector('script[' + attr + ']')) {
+                    resolve();
+                    return;
+                }
+                var s = document.createElement('script');
+                s.type = 'module';
+                s.src = src;
+                s.setAttribute(attr, '1');
+                s.onload = function() {
+                    resolve();
+                };
+                s.onerror = function() {
+                    reject(new Error('Failed to load ' + src));
+                };
+                document.head.appendChild(s);
+            });
+        }
+        function injectDeferScriptOnce(src, attr, alreadyLoaded) {
+            return new Promise(function(resolve, reject) {
+                if (alreadyLoaded && alreadyLoaded()) {
+                    resolve();
+                    return;
+                }
+                if (document.querySelector('script[' + attr + ']')) {
+                    resolve();
+                    return;
+                }
+                var s = document.createElement('script');
+                s.src = src;
+                s.async = false;
+                s.setAttribute(attr, '1');
+                s.onload = function() {
+                    window.__tdtCharacterSheetLoaded = true;
+                    resolve();
+                };
+                s.onerror = function() {
+                    reject(new Error('Failed to load ' + src));
+                };
+                document.head.appendChild(s);
+            });
+        }
+        tdtPlayBundlesPromise = Promise.all([
+            injectModuleOnce('dist/play-webllm.js', 'data-tdt-play-webllm', function() {
+                return typeof window.getWebLLMEngine === 'function';
+            }),
+            injectDeferScriptOnce('dist/character-sheet.js', 'data-tdt-character-sheet', function() {
+                return !!window.__tdtCharacterSheetLoaded;
+            })
+        ]).catch(function() {
+            tdtPlayBundlesPromise = null;
+        });
+        return tdtPlayBundlesPromise;
+    }
+
     function switchTab(tabId, options) {
         options = options || {};
         const skipScrollToTop = options.skipScrollToTop === true;
+
+        if (tabId === 'play') {
+            loadPlayTabBundles().catch(function() {});
+        }
 
         // Update active states
         elements.tabLinks.forEach(link => {
