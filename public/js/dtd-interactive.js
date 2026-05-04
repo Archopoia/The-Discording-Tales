@@ -73,7 +73,7 @@
         { src: 'assets/images/hatroaj.png', alt: 'Hatroaj' },
         { src: 'assets/images/mevyriil.png', alt: 'Mevyriil' },
         { src: 'assets/images/ondusiol.png', alt: 'Ondusiol' },
-        { src: 'assets/images/novoworld.jpg', alt: 'Novoworld' },
+        { src: 'assets/images/novoworld.webp', alt: 'Novoworld' },
         { src: 'assets/images/geocosmoseng.jpg', alt: 'Geocosmos' }
     ];
 

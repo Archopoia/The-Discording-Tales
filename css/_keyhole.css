@@ -2,6 +2,13 @@
    Keyhole entrance (click to enter site)
    ======================================== */
 
+/* Fast revisit (localStorage TTL): hide overlay before paint; avoids loading entrance layers */
+body.tdt-entrance-bypassed #static-loader {
+    display: none !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+}
+
 /* Lock body scrolling when entrance screen is active */
 body.entrance-active {
     overflow: hidden !important;

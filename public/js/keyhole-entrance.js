@@ -10,6 +10,15 @@
     'use strict';
 
     const SOUNDS_BASE = 'assets/sounds/';
+    const ENTRANCE_SESSION_KEY = 'tdtEntranceCompletedAt';
+
+    function persistEntranceSession() {
+        try {
+            localStorage.setItem(ENTRANCE_SESSION_KEY, String(Date.now()));
+        } catch (e) {
+            /* private mode or quota */
+        }
+    }
 
     function createFullyPreloadedAudio(src, volume) {
         const audio = new Audio();
@@ -125,6 +134,19 @@
         const entranceFill = document.getElementById('entrance-fill');
         const enterButton = document.getElementById('enter-portfolio-btn');
         const hoverZone = document.getElementById('entrance-hover-zone');
+
+        if (window.__TDT_ENTRANCE_BYPASS__) {
+            if (staticLoader) {
+                staticLoader.style.display = 'none';
+                staticLoader.style.pointerEvents = 'none';
+            }
+            document.body.classList.remove('entrance-active');
+            document.body.classList.add('tdt-entrance-bypassed');
+            requestAnimationFrame(function() {
+                window.dispatchEvent(new Event('tdt-entrance-complete'));
+            });
+            return;
+        }
 
         doorUnlock = createFullyPreloadedAudio(SOUNDS_BASE + 'door_unlock.wav', 0.7);
         chimes = createFullyPreloadedAudio(SOUNDS_BASE + 'Chimes.wav', 0.3);
@@ -309,6 +331,7 @@
                     }
                     audioUnlocked = true;
                     setTimeout(startChimesLoop, 1000);
+                    persistEntranceSession();
                     window.dispatchEvent(new Event('tdt-entrance-complete'));
                 }, flashBloomMs + 16 + flashFadeMs + 100);
             }, { once: true });
@@ -321,6 +344,7 @@
                 }
                 audioReady = true;
                 unlockAudio(true);
+                persistEntranceSession();
                 window.dispatchEvent(new Event('tdt-entrance-complete'));
             }
         }, { once: true });
@@ -330,5 +354,65 @@
         document.addEventListener('DOMContentLoaded', runEntrance);
     } else {
         runEntrance();
+    }
+})();
+
+/**
+ * After entrance-critical images (same set as <link rel="preload"> in head) have loaded,
+ * start fetching the header People banner WebPs so they are warm before click-to-enter.
+ * Does not wait for tdt-entrance-complete; keeps priority low so the intro stays responsive.
+ */
+(function schedulePeopleBannerPreloadAfterEntranceAssets() {
+    'use strict';
+
+    var ENTRANCE_IMAGE_URLS = [
+        'assets/images/Map_Naked.webp',
+        'assets/images/Creusalité_NoBorders.webp',
+        'assets/images/symbolpur.png',
+        'assets/images/SymbolCoin.png'
+    ];
+    var PEOPLE_BANNER_URLS = [
+        'assets/images/People1.webp',
+        'assets/images/People2.webp'
+    ];
+
+    function loadImageForGate(url) {
+        return new Promise(function(resolve) {
+            var img = new Image();
+            img.onload = function() {
+                resolve();
+            };
+            img.onerror = function() {
+                resolve();
+            };
+            img.src = url;
+        });
+    }
+
+    function injectPreloads() {
+        PEOPLE_BANNER_URLS.forEach(function(href) {
+            var link = document.createElement('link');
+            link.rel = 'preload';
+            link.as = 'image';
+            link.href = href;
+            try {
+                link.fetchPriority = 'low';
+            } catch (e) { /* ignore */ }
+            document.head.appendChild(link);
+        });
+    }
+
+    function run() {
+        if (window.__TDT_ENTRANCE_BYPASS__) {
+            injectPreloads();
+            return;
+        }
+        Promise.all(ENTRANCE_IMAGE_URLS.map(loadImageForGate)).then(injectPreloads);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', run);
+    } else {
+        run();
     }
 })();

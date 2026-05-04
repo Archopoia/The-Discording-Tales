@@ -40,17 +40,46 @@
     <meta content="#5a1f1f" name="theme-color"/>
     <!-- GM API (Play tab): public backend for all visitors -->
     <meta name="gm-api-url" content="https://the-discording-tales.onrender.com"/>
+    <!-- Entrance bypass: within 5 min of last completed enter, skip keyhole and entrance-only assets -->
+    <script>
+    (function () {
+        var KEY = 'tdtEntranceCompletedAt';
+        var TTL_MS = 5 * 60 * 1000;
+        try {
+            var ts = parseInt(localStorage.getItem(KEY), 10);
+            window.__TDT_ENTRANCE_BYPASS__ = !isNaN(ts) && (Date.now() - ts < TTL_MS);
+        } catch (e) {
+            window.__TDT_ENTRANCE_BYPASS__ = false;
+        }
+    })();
+    </script>
+    <script>
+    (function () {
+        function preloadImage(href, fetchPriority) {
+            var link = document.createElement('link');
+            link.rel = 'preload';
+            link.as = 'image';
+            link.href = href;
+            if (fetchPriority) {
+                try {
+                    link.fetchPriority = fetchPriority;
+                } catch (e) { /* ignore */ }
+            }
+            document.head.appendChild(link);
+        }
+        preloadImage('assets/images/symbolpur.png', 'high');
+        if (!window.__TDT_ENTRANCE_BYPASS__) {
+            preloadImage('assets/images/Map_Naked.webp', 'high');
+            preloadImage('assets/images/Creusalité_NoBorders.webp', 'high');
+            preloadImage('assets/images/SymbolCoin.png', 'high');
+        }
+    })();
+    </script>
     
     <!-- Favicon -->
     <link href="assets/images/cropped-symbolpur.png" rel="icon" type="image/png" sizes="32x32"/>
-    <!-- Entrance-critical backdrop images should be requested at high priority -->
-    <link rel="preload" href="assets/images/Map_Naked.webp" as="image" fetchpriority="high"/>
-    <link rel="preload" href="assets/images/Creusalité_NoBorders.webp" as="image" fetchpriority="high"/>
     <!-- Gemini API key intentionally not exposed in frontend; use backend env vars -->
-    <!-- Preload entrance-critical images for instant first paint -->
-    <link rel="preload" href="assets/images/symbolpur.png" as="image" fetchpriority="high"/>
-    <!-- People banner PNGs are large: load with the document / lazy, not competing with entrance -->
-    <link rel="preload" href="assets/images/SymbolCoin.png" as="image" fetchpriority="high"/>
+    <!-- People banner WebPs: preloaded via keyhole-entrance.js (after entrance assets, or immediately if bypassing) -->
     <!-- Page title/description for setLanguage (filled by build_i18n) -->
     <script type="application/json" id="tdt-i18n-strings">{{i18n:script-json}}</script>
     <!-- Structured data (Schema.org JSON-LD) -->
@@ -66,6 +95,13 @@
     </script>
 </head>
 <body class="entrance-active">
+    <script>
+    (function () {
+        if (!window.__TDT_ENTRANCE_BYPASS__) return;
+        document.body.classList.remove('entrance-active');
+        document.body.classList.add('tdt-entrance-bypassed');
+    })();
+    </script>
     <!-- Keyhole entrance: vignette always visible; burgundy fill fades on unlock -->
     <div id="static-loader" class="entrance-vignette" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; z-index: 10000;">
         <div id="entrance-fill" class="entrance-fill" style="position: absolute; inset: 0; pointer-events: none;">
@@ -166,8 +202,8 @@
             </div>
             <div class="header-creature-banner">
                 <div class="header-creature-banner-stack">
-                    <img class="header-creature-banner-img header-creature-banner-img--base" src="assets/images/People1.png" alt="" width="2400" height="400" decoding="async" loading="lazy" fetchpriority="low"/>
-                    <img class="header-creature-banner-img header-creature-banner-img--kick" src="assets/images/People2.png" alt="" width="2400" height="400" decoding="async" loading="lazy" fetchpriority="low"/>
+                    <img class="header-creature-banner-img header-creature-banner-img--base" src="assets/images/People1.webp" alt="" width="2400" height="400" decoding="async" fetchpriority="low"/>
+                    <img class="header-creature-banner-img header-creature-banner-img--kick" src="assets/images/People2.webp" alt="" width="2400" height="400" decoding="async" fetchpriority="low"/>
                 </div>
             </div>
         </div>
