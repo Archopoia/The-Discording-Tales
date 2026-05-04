@@ -584,7 +584,7 @@
         var tx = 0;
         var ty = 0;
         var minScale = 1;
-        var maxScale = 6;
+        var maxScale = 12;
 
         function touchDist(a, b) {
             var dx = a.clientX - b.clientX;

@@ -1877,23 +1877,17 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: var(--spacing-md) 0;
-    min-height: 40vh;
-    gap: var(--spacing-md);
-}
-
-.world-map-help-hint {
-    margin: 0;
-    max-width: min(72vmin, 520px);
-    text-align: center;
-    font-size: 0.9rem;
-    color: var(--tdt-beige-light);
-    line-height: 1.45;
+    width: 100%;
+    box-sizing: border-box;
+    padding: var(--spacing-sm) 0;
+    min-height: 0;
 }
 
 .world-map-circle-crop {
-    width: min(72vmin, 520px);
-    height: min(72vmin, 520px);
+    /* Largest square that fits content width and viewport height */
+    width: min(92vmin, 720px, 100%, 85vh);
+    aspect-ratio: 1;
+    height: auto;
     border-radius: 50%;
     overflow: hidden;
     display: block;
@@ -1921,6 +1915,8 @@
 }
 
 .world-map-pan-zoom-layer {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     transform-origin: center center;
@@ -1928,6 +1924,8 @@
 }
 
 .world-map-pannable-img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;

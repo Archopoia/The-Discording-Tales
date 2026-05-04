@@ -134,6 +134,10 @@
             <span class="entrance-click-hint__fr">Cliquez pour entrer</span>
         </p>
     </div>
+    <div class="language-toggle language-toggle--fixed" role="group" {{i18n-aria:nav.lang_group_aria}}>
+        <button id="lang-en" class="lang-btn active" data-lang="en" type="button">EN</button>
+        <button id="lang-fr" class="lang-btn" data-lang="fr" type="button">FR</button>
+    </div>
     <!-- Skip to content link for accessibility -->
     <a class="skip-link screen-reader-text" href="#main-content" {{i18n:skip_link}}>Skip to content</a>
     
@@ -209,12 +213,6 @@
                 <li class="menu-item archived-section"><a href="#rules" data-tab="rules" class="tab-link" {{i18n:nav.ruleset}}>Règles.old</a></li>
                 <li class="menu-item"><a href="#play" data-tab="play" class="tab-link" {{i18n:nav.play}}>Play</a></li>
                 <li class="menu-item"><a href="#about" data-tab="about" class="tab-link" {{i18n:nav.about}}>About</a></li>
-                <li class="menu-item menu-item--lang">
-                    <div class="language-toggle language-toggle--in-menu" role="group" {{i18n-aria:nav.lang_group_aria}}>
-                        <button id="lang-en" class="lang-btn active" data-lang="en" type="button">EN</button>
-                        <button id="lang-fr" class="lang-btn" data-lang="fr" type="button">FR</button>
-                    </div>
-                </li>
             </ul>
             <div class="nav-secondary-actions" {{i18n-aria:nav.social.group_aria}}>
                 <a href="https://x.com/DiscordingTales" class="nav-icon-link nav-icon-link--x" target="_blank" rel="noopener noreferrer" {{i18n-aria:nav.social.x_aria}}>
@@ -893,13 +891,12 @@
                 </div>
                 <div class="univers-world-panel" id="univers-world-map-panel" hidden>
                     <div class="world-map-focus">
-                        <p class="world-map-help-hint" data-en="Scroll or pinch to zoom. Drag to pan when zoomed." data-fr="Molette ou pincement pour zoomer. Glisser pour déplacer la carte.">Scroll or pinch to zoom. Drag to pan when zoomed.</p>
                         <div
                             class="world-map-circle-crop world-map-viewport"
                             id="world-map-viewport"
                             tabindex="0"
                             role="application"
-                            aria-label="Interactive world map: scroll or pinch to zoom, drag to pan."
+                            aria-label="World map"
                         >
                             <div class="world-map-pan-zoom-layer" id="world-map-pan-zoom-layer">
                                 <img src="assets/images/novoworld.webp" alt="" class="world-map-pannable-img" id="world-map-pannable-img" decoding="async" loading="lazy" draggable="false"/>

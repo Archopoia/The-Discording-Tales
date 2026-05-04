@@ -980,19 +980,29 @@
     border-top: 1px solid rgba(217, 205, 184, 0.3);
 }
 
-/* EN/FR inline on the tab row (after About) */
-.menu-item--lang {
+/* EN/FR: fixed top-right (viewport); hidden during keyhole intro via body.entrance-active > ... display:none */
+.language-toggle--fixed {
+    position: fixed;
+    top: max(0.45rem, env(safe-area-inset-top));
+    right: max(0.45rem, env(safe-area-inset-right));
+    z-index: 10020;
     display: flex;
-    align-items: center;
-    list-style: none;
-}
-
-.language-toggle--in-menu {
-    border-top: none;
-    padding: 0;
-    justify-content: center;
+    flex-wrap: nowrap;
     align-items: center;
     gap: var(--spacing-xs);
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    pointer-events: auto;
+}
+
+.language-toggle--fixed .lang-btn {
+    padding: 5px 12px;
 }
 
 .lang-btn {
