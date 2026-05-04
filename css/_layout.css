@@ -1055,6 +1055,21 @@
     border-top: 1px solid rgba(217, 205, 184, 0.3);
 }
 
+/* EN/FR inline on the tab row (after About) */
+.menu-item--lang {
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+
+.language-toggle--in-menu {
+    border-top: none;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
 .lang-btn {
     background: transparent;
     color: var(--tdt-beige-warm);
@@ -1075,6 +1090,274 @@
     box-shadow: 
         0 0 12px rgba(232, 221, 208, 0.6),
         inset 0 1px 3px rgba(255, 248, 232, 0.4);
+}
+
+/* Second nav row: Discord → book download → Kickstarter */
+.nav-secondary-actions {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md) var(--spacing-md);
+    border-top: 1px solid rgba(217, 205, 184, 0.2);
+}
+
+.nav-icon-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+/*
+ * Social icons: default glyph = tab khaki (--tdt-beige-warm), ring = lang-style beige.
+ * Hover: same cream + glow + lift as .tab-link:hover; fill = brand (blurp / green).
+ */
+.nav-icon-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    padding: 0;
+    border: 1px solid var(--tdt-beige-warm);
+    background: transparent;
+    color: var(--tdt-beige-warm);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12);
+    transition: all var(--transition-normal);
+}
+
+.nav-icon-link:hover,
+.nav-icon-link:focus-visible {
+    outline: none;
+    color: var(--tdt-cream);
+    transform: translateY(-1px);
+    text-shadow:
+        0 0 8px rgba(255, 248, 232, 0.6),
+        0 0 16px rgba(245, 230, 196, 0.4),
+        2px 2px 4px rgba(0, 0, 0, 0.3);
+    box-shadow:
+        0 0 20px rgba(232, 221, 208, 0.5),
+        0 0 40px rgba(245, 230, 196, 0.3),
+        inset 0 1px 2px rgba(255, 248, 232, 0.4),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.2);
+    border-color: rgba(232, 221, 208, 0.55);
+}
+
+.nav-icon-link--discord:hover,
+.nav-icon-link--discord:focus-visible {
+    background:
+        linear-gradient(135deg, rgba(255, 248, 232, 0.14), rgba(0, 0, 0, 0.08)),
+        #5865f2;
+    box-shadow:
+        0 0 20px rgba(88, 101, 242, 0.48),
+        0 0 40px rgba(245, 230, 196, 0.22),
+        inset 0 1px 2px rgba(255, 248, 232, 0.35),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.28);
+}
+
+.nav-icon-link--kickstarter:hover,
+.nav-icon-link--kickstarter:focus-visible {
+    background:
+        linear-gradient(135deg, rgba(255, 248, 232, 0.12), rgba(0, 0, 0, 0.06)),
+        #05ce78;
+    box-shadow:
+        0 0 20px rgba(5, 206, 120, 0.4),
+        0 0 40px rgba(245, 230, 196, 0.2),
+        inset 0 1px 2px rgba(255, 248, 232, 0.32),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.22);
+}
+
+.nav-icon-link:hover .nav-soc-svg,
+.nav-icon-link:focus-visible .nav-soc-svg {
+    filter: drop-shadow(0 0 4px rgba(255, 248, 232, 0.45)) drop-shadow(0 0 10px rgba(245, 230, 196, 0.28));
+    transition: filter var(--transition-normal);
+}
+
+.nav-soc-svg {
+    display: block;
+    flex-shrink: 0;
+    transition: filter var(--transition-normal);
+}
+
+.nav-kick-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: inherit;
+    background: transparent;
+    border-radius: 50%;
+}
+
+.nav-download-book-btn {
+    font-family: var(--font-heading);
+    font-size: clamp(0.8rem, 2.2vw, 0.95rem);
+    padding: 0.45rem 1rem;
+    cursor: pointer;
+    color: var(--tdt-burgundy-warm);
+    background: linear-gradient(180deg, var(--tdt-cream) 0%, var(--tdt-beige-warm) 100%);
+    border: 2px solid var(--tdt-gold);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.nav-download-book-btn:hover,
+.nav-download-book-btn:focus-visible {
+    transform: translateY(-1px);
+    box-shadow: 0 0 18px rgba(245, 230, 196, 0.45);
+    outline: none;
+}
+
+.nav-download-free {
+    font-weight: 700;
+    opacity: 0.95;
+}
+
+/* PDF disclosure dialog — center in viewport (native dialog + fixed + margin auto) */
+.tdt-pdf-dialog {
+    position: fixed;
+    inset: 0;
+    width: min(34rem, calc(100vw - 2rem));
+    max-width: calc(100vw - 2rem);
+    max-height: min(90dvh, calc(100vh - 2rem));
+    height: fit-content;
+    margin: auto;
+    padding: 0;
+    border: 3px double var(--tdt-beige-warm);
+    border-radius: var(--radius-sm);
+    background: linear-gradient(165deg, var(--tdt-burgundy-warm) 0%, var(--tdt-dark-red) 55%, #2a0a0a 100%);
+    color: var(--tdt-cream);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.55);
+    z-index: 5000;
+    overflow: auto;
+}
+
+.tdt-pdf-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(3px);
+}
+
+.tdt-pdf-dialog-inner {
+    position: relative;
+    padding: var(--spacing-lg) var(--spacing-md);
+}
+
+.tdt-pdf-dialog-close {
+    position: absolute;
+    top: var(--spacing-xs);
+    right: var(--spacing-xs);
+    width: 2.25rem;
+    height: 2.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--tdt-beige-warm);
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(217, 205, 184, 0.35);
+    border-radius: var(--radius-sm);
+    transition: background var(--transition-normal), color var(--transition-normal);
+}
+
+.tdt-pdf-dialog-close:hover,
+.tdt-pdf-dialog-close:focus-visible {
+    background: rgba(232, 221, 208, 0.15);
+    color: var(--tdt-cream);
+    outline: none;
+}
+
+.tdt-pdf-dialog-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.15rem, 3vw, 1.45rem);
+    margin: 0 2rem var(--spacing-md) 0;
+    color: var(--tdt-cream);
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+}
+
+.tdt-pdf-dialog-lead,
+.tdt-pdf-dialog-license,
+.tdt-pdf-dialog-follow {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin: 0 0 var(--spacing-sm);
+}
+
+.tdt-pdf-dialog-license {
+    font-size: 0.88rem;
+    opacity: 0.95;
+    padding: var(--spacing-sm);
+    border-left: 3px solid var(--tdt-gold);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.tdt-pdf-dialog-license a {
+    color: #9fd4ff;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.tdt-pdf-dialog-license a:hover {
+    color: var(--tdt-cream);
+}
+
+.tdt-pdf-dialog-follow {
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Discord | Download PDF | Kickstarter — grid keeps one row; center shrinks to fit */
+.tdt-pdf-dialog-cta-row {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--spacing-sm);
+    width: 100%;
+    max-width: 100%;
+    margin-top: var(--spacing-xs);
+    box-sizing: border-box;
+}
+
+.tdt-pdf-dialog-cta-row .nav-icon-link {
+    justify-self: center;
+}
+
+.tdt-pdf-dialog-cta-row .tdt-pdf-dialog-download {
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    justify-self: stretch;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0.45rem 0.5rem;
+    font-size: clamp(0.58rem, 2.6vw, 0.78rem);
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    line-height: 1.15;
+    border-width: 2px;
+    min-height: 44px;
+    white-space: normal;
+    word-break: break-word;
 }
 
 /* Archive toggle: show/hide archived subtabs (Cosmology, World Context, Character Creation, Progression, Combat, Magic) */

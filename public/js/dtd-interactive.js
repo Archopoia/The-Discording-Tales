@@ -214,6 +214,7 @@
         initLanguage();
         initTabs();
         initMenuToggle();
+        initPdfDownloadModal();
         
         // Mobile layout: move gallery and SoundCloud out of header.
         // The header-bg has CSS filter (drop-shadow) which breaks position:fixed
@@ -2591,6 +2592,57 @@
                 var tooltipText = mastery.getAttribute(tooltipAttr) || mastery.getAttribute(fallbackAttr) || '';
                 mastery.setAttribute('title', tooltipText);
             });
+        });
+    }
+
+    // ========================================
+    // PDF book download (disclosure dialog)
+    // ========================================
+    function initPdfDownloadModal() {
+        var openBtn = document.getElementById('tdt-open-pdf-modal');
+        var dialog = document.getElementById('tdt-pdf-download-dialog');
+        var closeBtn = document.getElementById('tdt-pdf-modal-close');
+        var downloadBtn = document.getElementById('tdt-pdf-modal-download');
+        if (!openBtn || !dialog) return;
+
+        var pdfFileName = 'Des Récits DiscordantsV0.01.pdf';
+        var pdfHref = 'assets/' + encodeURIComponent(pdfFileName);
+
+        function triggerPdfDownload() {
+            var a = document.createElement('a');
+            a.href = pdfHref;
+            a.setAttribute('download', pdfFileName);
+            a.rel = 'noopener';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        openBtn.addEventListener('click', function() {
+            if (typeof dialog.showModal === 'function') {
+                dialog.showModal();
+            } else if (window.confirm('This PDF is French-only and a pre-release draft (CC BY-NC-SA 4.0). Download now?')) {
+                triggerPdfDownload();
+            }
+        });
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function() {
+                if (typeof dialog.close === 'function') dialog.close();
+            });
+        }
+
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', function() {
+                triggerPdfDownload();
+                if (typeof dialog.close === 'function') dialog.close();
+            });
+        }
+
+        dialog.addEventListener('click', function(e) {
+            if (e.target === dialog && typeof dialog.close === 'function') {
+                dialog.close();
+            }
         });
     }
 
