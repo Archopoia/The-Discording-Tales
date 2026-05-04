@@ -456,8 +456,8 @@
                         <li><a href="#system-overview-struggle" class="system-overview-nav-link" {{i18n:tpl.121}}>Struggle, suffer, strengthen</a></li>
                         <li><a href="#system-overview-traits" class="system-overview-nav-link" {{i18n:tpl.137}}>Traits &amp; Values</a></li>
                         <li><a href="#system-overview-more" class="system-overview-nav-link" {{i18n:tpl.141}}>And much, much more.</a></li>
-                        <li><a href="#system-overview" class="system-overview-nav-link" {{i18n:tpl.146}}>The 8 attributes</a></li>
-                        <li><a href="#system-overview-conflicts" class="system-overview-nav-link" {{i18n:tpl.169}}>The 8 Types of Conflicts (Gameplay)</a></li>
+                        <li><a href="#system-overview" class="system-overview-nav-link" {{i18n:tpl.146}}>The 8 Attributes</a></li>
+                        <li><a href="#system-overview-conflicts" class="system-overview-nav-link" {{i18n:tpl.169}}>The 8 Conflicts</a></li>
                     </ul>
                 </nav>
                 <div class="univers-dashboard-main system-overview-content">
@@ -508,7 +508,7 @@
                 </div>
 {{peoples-cards}}
                 </div>
-                <div class="univers-world-panel" id="univers-world-map-panel" hidden>
+                <div class="univers-world-panel" id="univers-world-map-panel" inert aria-hidden="true">
                     <div class="world-map-focus">
                         <div
                             class="world-map-circle-crop world-map-viewport"
@@ -679,7 +679,7 @@
                     </section>
 
                     <section class="system-overview-cards-block" id="system-overview-conflicts">
-                        <h4 class="system-overview-cards-title" {{i18n:tpl.169}}>The 8 Types of Conflicts (Gameplay)</h4>
+                        <h4 class="system-overview-cards-title" {{i18n:tpl.169}}>The 8 Conflicts</h4>
                         <p class="system-overview-cards-intro" {{i18n:tpl.170}}>The system proposes <strong>8 types of gameplay</strong> directly linked to the 8 Aptitudes. Use a &quot;Key&quot; (tool, knowledge, contact) to obtain the Object or pass the Obstacle in any conflict type.</p>
                         <div class="conflicts-cards" id="conflicts-cards">
                             <div class="conflict-card">
@@ -1142,7 +1142,7 @@
 
                 <!-- Combat intro -->
                 <div class="combat-intro rules-content">
-                    <p {{i18n:tpl.422}}>Combat is part of the larger <strong>8 Types of Conflicts</strong>, each tied to an Aptitude. This section covers <strong>Bataille</strong> (Puissance). Combat runs in <strong>real-time</strong> - no turns. Time is measured in <strong data-tip="1/3 of a second; basic time unit. Alert Clins determine who can Proact.">Clins</strong> (1/3 second). Everyone acts simultaneously; <strong data-tip="Proactive actions (attack, reload, move) that span multiple Clins.">Proactions</strong> and <strong data-tip="Block, Parry, Dodge - at the last Clin of an enemy attack.">Réactions</strong> accumulate <strong data-tip="Shock level; subtracts from rolls. Recovers next Clin unless you keep acting.">Niv d'Ébranlement</strong>, which penalizes your rolls.</p>
+                    <p {{i18n:tpl.422}}>Combat is one of <strong>The 8 Conflicts</strong>, each tied to an Aptitude. This section covers <strong>Bataille</strong> (Puissance). Combat runs in <strong>real-time</strong> - no turns. Time is measured in <strong data-tip="1/3 of a second; basic time unit. Alert Clins determine who can Proact.">Clins</strong> (1/3 second). Everyone acts simultaneously; <strong data-tip="Proactive actions (attack, reload, move) that span multiple Clins.">Proactions</strong> and <strong data-tip="Block, Parry, Dodge - at the last Clin of an enemy attack.">Réactions</strong> accumulate <strong data-tip="Shock level; subtracts from rolls. Recovers next Clin unless you keep acting.">Niv d'Ébranlement</strong>, which penalizes your rolls.</p>
                     <div class="combat-glossary">
                         <h4 {{i18n:tpl.423}}>Glossary</h4>
                         <ul class="combat-glossary-list">
@@ -2191,7 +2191,7 @@
             <p class="tdt-pdf-dialog-lead" {{i18n:nav.pdf_modal.p2_not_final}}>It is <strong>not the finished game</strong> - an early pre-release draft for feedback.</p>
             <p class="tdt-pdf-dialog-license" {{i18n:nav.pdf_modal.license}}></p>
             <p class="tdt-pdf-dialog-lead tdt-pdf-dialog-lead--after-license" {{i18n:nav.pdf_modal.p3_rights}}>If you’d like to use the material differently, ask on Discord. Tell me what you have in mind; I’m pretty easygoing because I want this to grow, spread, and be shared as widely as possible.</p>
-            <p class="tdt-pdf-dialog-follow" {{i18n:nav.pdf_modal.follow_cta}}>Download and read about the world, play the rules, join the Discord to share your stories and ideas, and follow the Kickstarter campaign—it helps us grow!</p>
+            <p class="tdt-pdf-dialog-follow" {{i18n:nav.pdf_modal.follow_cta}}>Download and read about the world, play the rules, join the Discord to share your stories and ideas, and follow the Kickstarter campaign to help us grow!</p>
             <div class="tdt-pdf-dialog-cta-row">
                 <a href="https://discord.gg/zNkjckKUHE" class="nav-icon-link nav-icon-link--discord" target="_blank" rel="noopener noreferrer" {{i18n-aria:nav.social.discord_aria}}>
                     <svg class="nav-soc-svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.125-.094.25-.192.371-.291a.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.121.099.246.198.372.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>

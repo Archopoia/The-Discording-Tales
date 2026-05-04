@@ -1872,6 +1872,29 @@
     border-top: 1px solid rgba(212, 197, 168, 0.35);
 }
 
+/* Universe Monde: cross-fade between Peoples list and World Map (see dtd-interactive setUniversWorldInner) */
+#peoples .univers-world-panel {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity 0.32s ease,
+        visibility 0.32s ease;
+}
+
+#peoples .univers-world-panel.univers-world-panel--active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #peoples .univers-world-panel {
+        transition: none;
+    }
+}
+
 .world-map-focus {
     display: flex;
     flex-direction: column;

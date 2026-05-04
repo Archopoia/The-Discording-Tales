@@ -1034,8 +1034,8 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: var(--spacing-md);
-    padding: var(--spacing-sm) var(--spacing-md) var(--spacing-md);
+    gap: 0.35rem;
+    padding: var(--spacing-xs) var(--spacing-sm) var(--spacing-sm);
     border-top: 1px solid rgba(217, 205, 184, 0.2);
 }
 
@@ -1059,10 +1059,10 @@
     height: 44px;
     border-radius: 50%;
     padding: 0;
-    border: 1px solid var(--tdt-beige-warm);
+    border: none;
     background: transparent;
     color: var(--tdt-beige-warm);
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12);
+    box-shadow: none;
     transition: all var(--transition-normal);
 }
 
@@ -1080,7 +1080,6 @@
         0 0 40px rgba(245, 230, 196, 0.3),
         inset 0 1px 2px rgba(255, 248, 232, 0.4),
         inset 0 -1px 2px rgba(0, 0, 0, 0.2);
-    border-color: rgba(232, 221, 208, 0.55);
 }
 
 .nav-icon-link--discord:hover,
@@ -1190,6 +1189,62 @@ button.nav-icon-link {
 .nav-download-free {
     font-weight: 700;
     opacity: 0.95;
+}
+
+/*
+ * Narrow nav: five controls do not fit one row  -  3 columns (X + Discord | Download | KS + Mail).
+ * Order in HTML: 1 X, 2 Discord, 3 Download, 4 Kickstarter, 5 Contact.
+ */
+@media (max-width: 820px) {
+    .nav-secondary-actions {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        grid-template-rows: auto auto;
+        align-items: center;
+        justify-items: center;
+        column-gap: 0.35rem;
+        row-gap: 0.3rem;
+        padding-inline: var(--spacing-xs);
+    }
+
+    .nav-secondary-actions > :nth-child(1) {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .nav-secondary-actions > :nth-child(2) {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .nav-secondary-actions > :nth-child(3) {
+        grid-column: 2;
+        grid-row: 1 / -1;
+        align-self: center;
+        justify-self: stretch;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    .nav-secondary-actions > :nth-child(4) {
+        grid-column: 3;
+        grid-row: 1;
+    }
+
+    .nav-secondary-actions > :nth-child(5) {
+        grid-column: 3;
+        grid-row: 2;
+    }
+
+    .nav-secondary-actions .nav-download-book-btn {
+        font-size: clamp(0.68rem, 3.2vw, 0.88rem);
+        padding: 0.38rem 0.45rem;
+        line-height: 1.2;
+        white-space: normal;
+        text-align: center;
+    }
 }
 
 /* PDF disclosure dialog  -  center in viewport (native dialog + fixed + margin auto) */

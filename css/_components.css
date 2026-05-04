@@ -970,11 +970,44 @@
 }
 
 /* Subtab panels: only the active one is visible (no long scrolling page) */
+@keyframes tdt-tab-sub-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 .tab-content.has-subtabs .tab-sub-panel {
     display: none;
+    opacity: 0;
 }
+
 .tab-content.has-subtabs .tab-sub-panel.active {
     display: block;
+    opacity: 1;
+    animation: tdt-tab-sub-fade-in 0.34s ease-out forwards;
+}
+
+/* Universe > Monde: stack Peoples + World Map in one grid cell for opacity cross-fade */
+.tab-content.has-subtabs #peoples.tab-sub-panel.active {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+}
+
+.tab-content.has-subtabs #peoples.tab-sub-panel.active > .univers-world-panel {
+    grid-column: 1;
+    grid-row: 1;
+    min-width: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tab-content.has-subtabs .tab-sub-panel.active {
+        animation: none;
+        opacity: 1;
+    }
 }
 
 /* Scroll margin for anchor targets (avoid header overlap) */

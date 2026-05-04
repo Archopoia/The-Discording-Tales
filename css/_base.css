@@ -277,4 +277,24 @@ img {
     max-width: 100%;
     height: auto;
     display: block;
+    /* Opacity 0 until load; .tdt-img-ready added by dtd-interactive.js (setupImgFade) */
+    opacity: 0;
+    transition: opacity 0.48s ease-out;
+}
+
+img.tdt-img-ready {
+    opacity: 1;
+}
+
+/* Opt out: logos, tracking pixels, or images that must show before JS */
+img.tdt-img-no-fade {
+    opacity: 1;
+    transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    img {
+        opacity: 1;
+        transition: none;
+    }
 }

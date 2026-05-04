@@ -43,6 +43,61 @@
     let logoBurstTimeout = null;
 
     // ========================================
+    // Image load fade-in (<img> only; add .tdt-img-no-fade to skip)
+    // ========================================
+    function setupImgFade(img) {
+        if (!img || img.nodeType !== 1 || img.tagName !== 'IMG') return;
+        if (img.dataset.tdtImgFadeBound === '1') return;
+
+        if (img.classList.contains('tdt-img-no-fade')) {
+            img.classList.add('tdt-img-ready');
+            img.dataset.tdtImgFadeBound = '1';
+            return;
+        }
+
+        function reveal() {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                img.classList.add('tdt-img-ready');
+                return;
+            }
+            requestAnimationFrame(function() {
+                requestAnimationFrame(function() {
+                    img.classList.add('tdt-img-ready');
+                });
+            });
+        }
+
+        img.addEventListener('load', reveal);
+        img.addEventListener('error', reveal);
+        img.dataset.tdtImgFadeBound = '1';
+
+        if (img.complete && img.naturalWidth > 0) {
+            reveal();
+        }
+    }
+
+    function initImgFadeOnLoad() {
+        if (document.documentElement.dataset.tdtImgFadeInit === '1') return;
+        document.documentElement.dataset.tdtImgFadeInit = '1';
+
+        document.querySelectorAll('img').forEach(setupImgFade);
+
+        if (typeof MutationObserver === 'undefined') return;
+        var mo = new MutationObserver(function(mutations) {
+            mutations.forEach(function(m) {
+                m.addedNodes.forEach(function(node) {
+                    if (node.nodeType !== 1) return;
+                    if (node.tagName === 'IMG') setupImgFade(node);
+                    if (node.querySelectorAll) {
+                        node.querySelectorAll('img').forEach(setupImgFade);
+                    }
+                });
+            });
+        });
+        mo.observe(document.body, { childList: true, subtree: true });
+    }
+
+    // ========================================
     // Image Gallery Data (Landing: three carousels)
     // ========================================
     const lifestylesImages = [
@@ -218,6 +273,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         // Essential: language, tabs, menu (needed even during entrance for deep-links)
         initLanguage();
+        initImgFadeOnLoad();
         initTabs();
         initUniversMondeSidebarLinks();
         initMenuToggle();
@@ -536,9 +592,11 @@
             var isActive = p.id === innerId;
             p.classList.toggle('univers-world-panel--active', isActive);
             if (isActive) {
-                p.removeAttribute('hidden');
+                p.removeAttribute('aria-hidden');
+                p.removeAttribute('inert');
             } else {
-                p.setAttribute('hidden', '');
+                p.setAttribute('aria-hidden', 'true');
+                p.setAttribute('inert', '');
             }
         });
         syncUniversMondeSublinkActive(innerId);
@@ -629,7 +687,7 @@
         }
 
         function mapPanelVisible() {
-            return panel && !panel.hasAttribute('hidden');
+            return panel && panel.classList.contains('univers-world-panel--active');
         }
 
         viewport.addEventListener('wheel', function(e) {
@@ -1041,6 +1099,9 @@
                 lb.appendChild(bigImg);
             }
         }
+        if (bigImg) {
+            setupImgFade(bigImg);
+        }
 
         var lbPanoramaScale = 1;
         var lbClosing = false;
@@ -1117,6 +1178,7 @@
             lbPanoramaScale = 1;
             bigImg.style.transform = '';
             bigImg.style.transformOrigin = '';
+            bigImg.classList.remove('tdt-img-ready');
             bigImg.src = src;
             bigImg.alt = sourceImg && sourceImg.getAttribute ? sourceImg.getAttribute('alt') || '' : '';
             if (variant === 'panorama') {
@@ -3478,6 +3540,7 @@
             </div>
         `;
         containerEl.innerHTML = carouselHTML;
+        containerEl.querySelectorAll('img').forEach(setupImgFade);
 
         const indicatorsEl = containerEl.querySelector('.carousel-indicators');
         images.forEach((_, index) => {
