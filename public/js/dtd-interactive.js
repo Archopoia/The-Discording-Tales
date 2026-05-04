@@ -495,7 +495,7 @@
             });
         });
 
-        // Mobile fallback: direct click on labels — ensures page switch even when
+        // Mobile fallback: direct click on labels  -  ensures page switch even when
         // the label→radio 'for' mechanism doesn't fire 'change' on some mobile browsers.
         var labels = container.querySelectorAll('.zine-page-nav-label');
         labels.forEach(function(label) {
@@ -696,16 +696,16 @@
         if (peoplesSection) {
             var PEOPLES_ORIGIN_DESCRIPTIONS = {
                 yommes: {
-                    en: 'Humanoids of small stature, the Yômmes descend from the Aïars and split through two great migrations: the Erréors south into mangroves (giving rise to Méridiens and Navillis), then the Escandirs north-west into the mountains (Aristois and Griscribes). They are nomadic in spirit yet practise agriculture, horticulture and pastoralism—tribes, chiefdoms or states—with chamanic rites and a shared sense of regret expressed in collective sacrifice. They tend to see the Yôrres as mad or charlatans for their religion and cannibalism, and the Bêstres as bastard dregs bewitched by natural forces, to be purged; they themselves resent the abuse of their small size by the other origins.',
-                    fr: 'Humanoïdes de petite taille, les Yômmes descendent des Aïars et se scindent en deux grandes migrations : les Erréors vers le Sud dans les mangroves (Méridiens et Navillis), puis les Escandirs vers le Nord-Ouest dans les montagnes (Aristois et Griscribes). Nomades dans l\'âme, ils pratiquent agriculture, horticulture et pastoralisme—tribus, chefferies ou états—avec des rites chamaniques et un regret partagé qui s\'exprime par le sacrifice collectif. Ils voient volontiers les Yôrres comme fous ou charlatans pour leur religion et leur cannibalisme, et les Bêstres comme des immondices bâtardes envoûtées par les forces naturelles, à purger ; eux-mêmes regrettent l\'abus de leur petite taille par les autres origines.'
+                    en: 'Humanoids of small stature, the Yômmes descend from the Aïars and split through two great migrations: the Erréors south into mangroves (giving rise to Méridiens and Navillis), then the Escandirs north-west into the mountains (Aristois and Griscribes). They are nomadic in spirit yet practise agriculture, horticulture and pastoralism - tribes, chiefdoms or states - with chamanic rites and a shared sense of regret expressed in collective sacrifice. They tend to see the Yôrres as mad or charlatans for their religion and cannibalism, and the Bêstres as bastard dregs bewitched by natural forces, to be purged; they themselves resent the abuse of their small size by the other origins.',
+                    fr: 'Humanoïdes de petite taille, les Yômmes descendent des Aïars et se scindent en deux grandes migrations : les Erréors vers le Sud dans les mangroves (Méridiens et Navillis), puis les Escandirs vers le Nord-Ouest dans les montagnes (Aristois et Griscribes). Nomades dans l\'âme, ils pratiquent agriculture, horticulture et pastoralisme - tribus, chefferies ou états - avec des rites chamaniques et un regret partagé qui s\'exprime par le sacrifice collectif. Ils voient volontiers les Yôrres comme fous ou charlatans pour leur religion et leur cannibalisme, et les Bêstres comme des immondices bâtardes envoûtées par les forces naturelles, à purger ; eux-mêmes regrettent l\'abus de leur petite taille par les autres origines.'
                 },
                 yorres: {
-                    en: 'Elf-like and long-lived, the Yôrres spring from the Hryôhpéens who sat in judgment at Withlaï and the Hydryôrres who travelled by water—giving rise to the Hauts Ylfes, Ylfes pâles, Ylfes des lacs, and the errant Iqqars. They built a sedentary civilisation that was shattered when their world collapsed from the sky; cold and flood drove them to ritual cannibalism and a sacred direction that unites them. They preserve and pass on possessions to those who use them best, and withdraw into the pure solitude of temple-homes. How they view the Yômmes and Bêstres varies from people to people, but they remain bound by lineage, longevity and a morality that feels alien to the others.',
-                    fr: 'Proches des elfes et longévifs, les Yôrres descendent des Hryôhpéens qui siégeaient au tribunal de Withlaï et des Hydryôrres qui voyagèrent par les eaux—donnant les Hauts Ylfes, Ylfes pâles, Ylfes des lacs et les Iqqars errants. Ils bâtirent une civilisation sédentaire que l\'effondrement du ciel détruisit ; le froid et les flots les menèrent au cannibalisme rituel et à une direction sacrée qui les unit. Ils sauvegardent et transmettent leurs biens à ceux qui les utilisent le mieux, et se retirent dans la solitude pure de leurs temples-maisons. Leur perception des Yômmes et des Bêstres varie selon les peuples, mais ils restent liés par la lignée, la longévité et une moralité qui demeure étrangère aux autres.'
+                    en: 'Elf-like and long-lived, the Yôrres spring from the Hryôhpéens who sat in judgment at Withlaï and the Hydryôrres who travelled by water - giving rise to the Hauts Ylfes, Ylfes pâles, Ylfes des lacs, and the errant Iqqars. They built a sedentary civilisation that was shattered when their world collapsed from the sky; cold and flood drove them to ritual cannibalism and a sacred direction that unites them. They preserve and pass on possessions to those who use them best, and withdraw into the pure solitude of temple-homes. How they view the Yômmes and Bêstres varies from people to people, but they remain bound by lineage, longevity and a morality that feels alien to the others.',
+                    fr: 'Proches des elfes et longévifs, les Yôrres descendent des Hryôhpéens qui siégeaient au tribunal de Withlaï et des Hydryôrres qui voyagèrent par les eaux - donnant les Hauts Ylfes, Ylfes pâles, Ylfes des lacs et les Iqqars errants. Ils bâtirent une civilisation sédentaire que l\'effondrement du ciel détruisit ; le froid et les flots les menèrent au cannibalisme rituel et à une direction sacrée qui les unit. Ils sauvegardent et transmettent leurs biens à ceux qui les utilisent le mieux, et se retirent dans la solitude pure de leurs temples-maisons. Leur perception des Yômmes et des Bêstres varie selon les peuples, mais ils restent liés par la lignée, la longévité et une moralité qui demeure étrangère aux autres.'
                 },
                 bestres: {
-                    en: 'Diverse creatures shaped by the Kweryas Gjuaj (the four giants of arms), the Bêstres range from animal and wild to primitive and inspired—of whom only the inspired peoples, the Slaadéens and Tchalkchaïs, are treated here. They emerged from caverns and troglodytic refuges as the world warmed, spreading from desert to forest. They use the Yômmes as living tools who manipulate nature through sacrifice, and observe the Ylfes as beings alienated from natural forces, other. They claim that the Yômmes and Yôrres were in truth also shaped from clay, and that their thought too was pressed into their skulls by the reproving fingers of Asmund—a pretension the other origins find absurd.',
-                    fr: 'Créatures diverses façonnées par les Kweryas Gjuaj (les quatre géants d\'armes), les Bêstres vont de l\'animal et du sauvage au primitif et à l\'inspiré—seuls les peuples inspirés, Slaadéens et Tchalkchaïs, sont traités ici. Ils sortirent des cavernes et refuges troglodytes avec le réchauffement du monde, s\'éparpillant du désert à la forêt. Ils utilisent les Yômmes comme êtres-outils manipulant la nature par le sacrifice, et voient les Ylfes comme des êtres aliénés des forces naturelles, autres. Ils prétendent que les Yômmes et les Yôrres furent eux aussi de glaise et que leur pensée fut écrasée en leur crâne par les doigts réprobateurs d\'Asmund—prétention que les autres origines jugent ridicule.'
+                    en: 'Diverse creatures shaped by the Kweryas Gjuaj (the four giants of arms), the Bêstres range from animal and wild to primitive and inspired - of whom only the inspired peoples, the Slaadéens and Tchalkchaïs, are treated here. They emerged from caverns and troglodytic refuges as the world warmed, spreading from desert to forest. They use the Yômmes as living tools who manipulate nature through sacrifice, and observe the Ylfes as beings alienated from natural forces, other. They claim that the Yômmes and Yôrres were in truth also shaped from clay, and that their thought too was pressed into their skulls by the reproving fingers of Asmund - a pretension the other origins find absurd.',
+                    fr: 'Créatures diverses façonnées par les Kweryas Gjuaj (les quatre géants d\'armes), les Bêstres vont de l\'animal et du sauvage au primitif et à l\'inspiré - seuls les peuples inspirés, Slaadéens et Tchalkchaïs, sont traités ici. Ils sortirent des cavernes et refuges troglodytes avec le réchauffement du monde, s\'éparpillant du désert à la forêt. Ils utilisent les Yômmes comme êtres-outils manipulant la nature par le sacrifice, et voient les Ylfes comme des êtres aliénés des forces naturelles, autres. Ils prétendent que les Yômmes et les Yôrres furent eux aussi de glaise et que leur pensée fut écrasée en leur crâne par les doigts réprobateurs d\'Asmund - prétention que les autres origines jugent ridicule.'
                 }
             };
 
@@ -1242,7 +1242,7 @@
                 id: 'AGI', abbr: 'AGI',
                 name: { en: 'Agility', fr: 'Agilité' },
                 desc: {
-                    en: 'Finesse, delicacy, dexterity, suppleness, and ease of movement. Covers balanced whole-body motion, quickness and grace, as well as physical harmony—part of perceived beauty.',
+                    en: 'Finesse, delicacy, dexterity, suppleness, and ease of movement. Covers balanced whole-body motion, quickness and grace, as well as physical harmony - part of perceived beauty.',
                     fr: 'C\'est sa finesse, délicatesse, doigté, souplesse et facilité de mouvement, couvrant à la fois les mouvements équilibrés de tout le corps, la manifestation de la promptitude et grâce dans ses mouvements, ainsi que son harmonie physique, partie de sa beauté perçue.'
                 },
                 aptitudes: ['AISANCE', 'PUISSANCE', 'ATHLETISME']
@@ -1251,7 +1251,7 @@
                 id: 'DEX', abbr: 'DEX',
                 name: { en: 'Dexterity', fr: 'Dextérité' },
                 desc: {
-                    en: 'Reflexes. Response time. Coordination. Dexterity indicates how easily and synchronously your character responds to the physical world—the ability to perform manual actions with exactitude.',
+                    en: 'Reflexes. Response time. Coordination. Dexterity indicates how easily and synchronously your character responds to the physical world - the ability to perform manual actions with exactitude.',
                     fr: 'Réflexes. Temps de réponse. Coordination. La dextérité indique à quelle aisance et synchronisation votre personnage répond à son monde physique, la capacité à accomplir une action manuelle avec exactitude.'
                 },
                 aptitudes: ['PRECISION', 'AISANCE', 'PUISSANCE']
@@ -1260,7 +1260,7 @@
                 id: 'VIG', abbr: 'VIG',
                 name: { en: 'Vigor', fr: 'Vigueur' },
                 desc: {
-                    en: 'Solidity. Firmness. Pure physical resilience. Vigor measures your character\'s physical toughness—how far they can push their body and what physical violence they can endure, as well as health-related physical beauty. Health, Energy, Life force.',
+                    en: 'Solidity. Firmness. Pure physical resilience. Vigor measures your character\'s physical toughness - how far they can push their body and what physical violence they can endure, as well as health-related physical beauty. Health, Energy, Life force.',
                     fr: 'Solidité. Fermeté. Résilience physique pure. La vigueur est une mesure de la dureté physique de votre personnage. Cela indique jusqu\'où il peut pousser son corps et quelle violence physique il peut endurer, mais aussi sa beauté physique purement liée à sa santé. Santé, Énergie, Force vitale.'
                 },
                 aptitudes: ['ATHLETISME', 'DOMINATION', 'AISANCE']
@@ -1269,7 +1269,7 @@
                 id: 'EMP', abbr: 'EMP',
                 name: { en: 'Empathy', fr: 'Empathie' },
                 desc: {
-                    en: 'Receptivity. Charm. Persuasive force. The ability to perceive and play on emotions, desires, hopes, and needs to influence or recognize others—knowing when and what to say for best impact. Empathy allows understanding emotions, not necessarily feeling them. Here it\'s neutral identification, not compassion. Eloquence.',
+                    en: 'Receptivity. Charm. Persuasive force. The ability to perceive and play on emotions, desires, hopes, and needs to influence or recognize others - knowing when and what to say for best impact. Empathy allows understanding emotions, not necessarily feeling them. Here it\'s neutral identification, not compassion. Eloquence.',
                     fr: 'Réceptivité. Charme. Force de persuasion. La capacité de percevoir et jouer sur les émotions, désirs, les espoirs et les besoins des autres pour les influencer ou les reconnaître, mais aussi de savoir quand et de quoi parler pour avoir le meilleur impact. L\'Empathie permet de comprendre les émotions, mais pas forcément de les ressentir ou les accepter. Ici, elle n\'est donc pas forcément liée à la compassion, mais plutôt à l\'identification neutre. Éloquence.'
                 },
                 aptitudes: ['CHARISME', 'REFLEXION', 'DETECTION']
@@ -1287,7 +1287,7 @@
                 id: 'CRE', abbr: 'CRÉ',
                 name: { en: 'Creativity', fr: 'Créativité' },
                 desc: {
-                    en: 'The ability to create, imagine, and innovate—to implement a new concept, a new object, or discover an original solution to a problem. The association of things, ideas, situations, and the unpredictable conjunction of elements enabling discovery. Also cerebral memory—the aptitude to absorb, digest, and memorize information, thus learning more. Mental acuity, Information memory, Analytical capacity.',
+                    en: 'The ability to create, imagine, and innovate - to implement a new concept, a new object, or discover an original solution to a problem. The association of things, ideas, situations, and the unpredictable conjunction of elements enabling discovery. Also cerebral memory - the aptitude to absorb, digest, and memorize information, thus learning more. Mental acuity, Information memory, Analytical capacity.',
                     fr: 'La capacité à créer, à imaginer et à innover, de mettre en œuvre un concept neuf, un objet nouveau ou à découvrir une solution originale à un problème. L\'association des choses, d\'idées, des situations, ainsi que la conjonction imprévisible d\'éléments permettant la découverte. Mais aussi la mémoire cérébrale. L\'aptitude à absorber, digérer, et mémoriser des informations - et donc à en apprendre davantage. Acuité mentale, Mémoire d\'information, Capacité d\'analyse.'
                 },
                 aptitudes: ['REFLEXION', 'DETECTION', 'PRECISION']
@@ -1307,7 +1307,7 @@
                 id: 'PUISSANCE',
                 name: { en: 'Power', fr: 'Puissance' },
                 desc: {
-                    en: 'Combat Power is the experience and current ability to fight in melee or at range, armed or unarmed. Different weapons require different muscles—a bow uses back muscles while a rapier uses forearm. Other Aptitudes may come into play during battle, but this is the direct link to combat and its styles.',
+                    en: 'Combat Power is the experience and current ability to fight in melee or at range, armed or unarmed. Different weapons require different muscles - a bow uses back muscles while a rapier uses forearm. Other Aptitudes may come into play during battle, but this is the direct link to combat and its styles.',
                     fr: 'L\'essentiel est que la Puissance au Combat est l\'expérience et capacité actuelle en la matière, afin de combattre au corps à corps ou à distance, armé ou non. Certaines armes requièrent différents muscles, comme un arc utilisant ceux du dos ou une rapière ceux de l\'avant-bras. D\'autres Aptitudes peuvent rentrer en compte lors d\'une bataille, mais ici c\'est le lien direct avec le combat et ses styles dont il est question.'
                 },
                 attributes: ['FOR', 'AGI', 'DEX'], // weights: +3, +2, +1
@@ -1327,7 +1327,7 @@
                 id: 'PRECISION',
                 name: { en: 'Precision', fr: 'Précision' },
                 desc: {
-                    en: 'Precision encompasses all skills related to coordination and analysis. The skill to drive any vehicle or mount on land, sea, or air. The simple ability to work with your hands, plus practical experience allowing production of objects, often linked to a trade—from cobbler to jeweler. Precision also covers lockpicking, trap-setting, disarming. It\'s the capacity for cunning, finesse, and stratagem.',
+                    en: 'Precision encompasses all skills related to coordination and analysis. The skill to drive any vehicle or mount on land, sea, or air. The simple ability to work with your hands, plus practical experience allowing production of objects, often linked to a trade - from cobbler to jeweler. Precision also covers lockpicking, trap-setting, disarming. It\'s the capacity for cunning, finesse, and stratagem.',
                     fr: 'La Précision correspond à toutes les aptitudes liées à la coordination et l\'analyse. L\'habileté pour la conduite de toute sorte de véhicules ou montures sur terre, mer ou dans les airs. La simple capacité à travailler de ses mains, mais aussi la pratique et l\'expérience réelle des connaissances, permettant de produire et/ou fabriquer un objet, souvent en lien avec un métier associé, allant du cordonnier au bijoutier. La Précision englobe aussi toutes les aptitudes liées à l\'art du crochetage, de la trappe, du désamorçage. C\'est la capacité à la ruse, la finesse et au stratagème.'
                 },
                 attributes: ['DEX', 'PER', 'CRE'],
@@ -1347,7 +1347,7 @@
                 id: 'CHARISME',
                 name: { en: 'Charisma', fr: 'Charisme' },
                 desc: {
-                    en: 'Charisma includes social and rhetorical capabilities between perceptive beings—to suggest, insinuate, incite, seduce, dupe, investigate, bargain, or accustom one to another. It\'s presence, aura, and rhetoric. Also uniquely influenced by physical beauty (Agility and Constitution). It\'s all forms of subterfuge: imitating, mimicking, taking or giving a different appearance to oneself, another, or an object, to pass one thing for another. Also artistic or social self-expression.',
+                    en: 'Charisma includes social and rhetorical capabilities between perceptive beings - to suggest, insinuate, incite, seduce, dupe, investigate, bargain, or accustom one to another. It\'s presence, aura, and rhetoric. Also uniquely influenced by physical beauty (Agility and Constitution). It\'s all forms of subterfuge: imitating, mimicking, taking or giving a different appearance to oneself, another, or an object, to pass one thing for another. Also artistic or social self-expression.',
                     fr: 'Le Charisme inclut les capacités sociales et rhétoriques entre êtres perceptifs à suggérer, insinuer, inciter, séduire, duper, investiguer, marchander ou encore accoutumer, de l\'un vers l\'autre. C\'est à la fois la présence, l\'aura et la rhétorique du personnage. Aussi, il est influencé d\'une façon unique par la valeur de Beauté Physique du personnage (son Agilité et sa Constitution). C\'est aussi toutes les formes de subterfuges permettant d\'imiter, de mimer, de prendre ou donner une apparence visuelle, auditive, etc. autre à soi-même, à un autre ou à un objet, afin de faire passer une chose pour une autre. Mais aussi de s\'évoquer artistiquement ou socialement.'
                 },
                 attributes: ['EMP', 'VOL', 'PER'],
@@ -1357,7 +1357,7 @@
                 id: 'DETECTION',
                 name: { en: 'Detection', fr: 'Détection' },
                 desc: {
-                    en: 'Detection includes all senses, from taste to sight, as well as emotional and rational intuition, and finally the aptitude to search and find—deduction. Knowledge of ecosystems and interactions between all things.',
+                    en: 'Detection includes all senses, from taste to sight, as well as emotional and rational intuition, and finally the aptitude to search and find - deduction. Knowledge of ecosystems and interactions between all things.',
                     fr: 'La Détection inclut tous les sens, du goûter à la vue, ainsi que l\'intuition émotionnelle et rationnelle, et enfin l\'aptitude à chercher et trouver - la déduction. Le savoir des écosystèmes et des interactions entre tous.'
                 },
                 attributes: ['PER', 'CRE', 'EMP'],
@@ -1367,7 +1367,7 @@
                 id: 'REFLEXION',
                 name: { en: 'Reflection', fr: 'Réflexion' },
                 desc: {
-                    en: 'Reflection here is education, erudition, and all forms of non-directly-practical instruction and exercise, from tales to science—theoretical information on any subject. It\'s the ability to prevent, identify, and heal all forms of ailments, whether physical, mental, or chronic. A successful roll means the character remembers; otherwise they don\'t know or can\'t recall. Knowledge of things and social activities.',
+                    en: 'Reflection here is education, erudition, and all forms of non-directly-practical instruction and exercise, from tales to science - theoretical information on any subject. It\'s the ability to prevent, identify, and heal all forms of ailments, whether physical, mental, or chronic. A successful roll means the character remembers; otherwise they don\'t know or can\'t recall. Knowledge of things and social activities.',
                     fr: 'La Réflexion est ici l\'éducation, l\'érudition et toute forme d\'instruction et exercice non directement pratiques, du conte à la science, ce sont les informations théoriques de n\'importe quel sujet. C\'est la capacité de prévenir, d\'identifier et de soigner toutes formes de maux, qu\'ils soient physiques, mentaux, ou chroniques. Un jet réussi signifie que le personnage se souvient, autrement il ne le sait pas ou alors il ne peut plus s\'en souvenir. Le savoir des choses et des activités sociales.'
                 },
                 attributes: ['CRE', 'EMP', 'VOL'],
@@ -1737,7 +1737,7 @@
                 { name: 'Amélioration', desc: { en: 'Improving an object\'s capabilities', fr: 'Améliorer les capacités d\'un objet' } },
                 { name: 'Improvisation', desc: { en: 'Creating objects with makeshift materials', fr: 'Créer des objets avec des matériaux de fortune' } }
             ] },
-            SAVOIR_FAIRE: { id: 'SAVOIR_FAIRE', name: { en: '[Know-How]', fr: '[Savoir-Faire]' }, desc: { en: 'All physical and manual practice of an art. Knowing how to do things, without necessarily knowing why it works—the descriptive and active technique. Linked to repair, maintenance, quality, precision, and craftsmanship consistency.', fr: 'Toute pratique physique et manuelle d\'un art. Savoir-faire ces choses, sans pour autant connaître les vraies raisons de pourquoi une telle chose fonctionne - la technique, descriptive et active. Lié à la réparation, l\'entretien, la qualité, la précision et la constance de l\'artisanat.' }, masteries: [
+            SAVOIR_FAIRE: { id: 'SAVOIR_FAIRE', name: { en: '[Know-How]', fr: '[Savoir-Faire]' }, desc: { en: 'All physical and manual practice of an art. Knowing how to do things, without necessarily knowing why it works - the descriptive and active technique. Linked to repair, maintenance, quality, precision, and craftsmanship consistency.', fr: 'Toute pratique physique et manuelle d\'un art. Savoir-faire ces choses, sans pour autant connaître les vraies raisons de pourquoi une telle chose fonctionne - la technique, descriptive et active. Lié à la réparation, l\'entretien, la qualité, la précision et la constance de l\'artisanat.' }, masteries: [
                 { name: 'Alimentaire', desc: { en: 'Food preparation', fr: 'Préparation de nourriture' } },
                 { name: 'des Graisses', desc: { en: 'Working with oils and fats', fr: 'Travail des huiles et graisses' } },
                 { name: 'du Papier', desc: { en: 'Paper manufacture and work', fr: 'Fabrication et travail du papier' } },
@@ -1892,7 +1892,7 @@
                 { name: 'Fanatisme', desc: { en: 'Arousing intense devotion', fr: 'Susciter une dévotion intense' } }
             ] },
             // Charisme - Interpréter
-            INSTRUMENTAL: { id: 'INSTRUMENTAL', name: { en: '[Instrumental]', fr: '[Instrumental]' }, desc: { en: 'Practice of various musical instruments—whether percussion, wind, vibrating, or improvised.', fr: 'Pratique d\'instruments de musique divers et variés - qu\'ils soient à percussion, à souffle, vibratoire voire improvisés.' }, masteries: [
+            INSTRUMENTAL: { id: 'INSTRUMENTAL', name: { en: '[Instrumental]', fr: '[Instrumental]' }, desc: { en: 'Practice of various musical instruments - whether percussion, wind, vibrating, or improvised.', fr: 'Pratique d\'instruments de musique divers et variés - qu\'ils soient à percussion, à souffle, vibratoire voire improvisés.' }, masteries: [
                 { name: 'Attirer', desc: { en: 'Attracting attention through music', fr: 'Attirer l\'attention par la musique' } },
                 { name: 'faire Émouvoir', desc: { en: 'Arousing emotions through music', fr: 'Susciter des émotions par la musique' } },
                 { name: 'faire Admirer', desc: { en: 'Impressing with virtuosity', fr: 'Impressionner par sa virtuosité' } },
@@ -1989,7 +1989,7 @@
                 { name: 'Temporalité', desc: { en: 'Sense of passing time', fr: 'Sens du temps qui passe' } }
             ] },
             // Réflexion - Concevoir
-            ARTISANAT: { id: 'ARTISANAT', name: { en: '[Craftsmanship]', fr: '[Artisanat]' }, desc: { en: 'The theoretical knowledge of arts and trades. Knowing why something works, not just how to do it—the explanatory science rather than descriptive technique.', fr: 'La connaissance théorique des arts et métiers. Savoir pourquoi une chose fonctionne, pas seulement comment la faire - la science explicative plutôt que la technique descriptive.' }, masteries: [
+            ARTISANAT: { id: 'ARTISANAT', name: { en: '[Craftsmanship]', fr: '[Artisanat]' }, desc: { en: 'The theoretical knowledge of arts and trades. Knowing why something works, not just how to do it - the explanatory science rather than descriptive technique.', fr: 'La connaissance théorique des arts et métiers. Savoir pourquoi une chose fonctionne, pas seulement comment la faire - la science explicative plutôt que la technique descriptive.' }, masteries: [
                 { name: 'Alimentaire', desc: { en: 'Science of cooking and preservation', fr: 'Science de la cuisine et conservation' } },
                 { name: 'des Graisses', desc: { en: 'Science of oils and lubricants', fr: 'Science des huiles et lubrifiants' } },
                 { name: 'du Papier', desc: { en: 'Science of paper-making', fr: 'Science de la papeterie' } },
@@ -2666,8 +2666,8 @@
     // Fallback if build_i18n has not injected #tdt-i18n-strings
     var PAGE_TITLE_EN = 'THE DISCORDING TALES – Under our steps awake those mysteries believed to be warring among the stars…';
     var PAGE_TITLE_FR = 'DES RÉCITS DISCORDANTS – Sous nos pas s\'éveillent ces mystères que l\'on croyait se battre parmi les étoiles…';
-    var META_DESCRIPTION_EN = 'For those of us who crave DISCOVERY. A journey through exotic cultures, unexplored lands, weird creatures, and untold ways of thinking and being—yearning to experience the vast potentials, technologies and moralities of worlds unlike ours.';
-    var META_DESCRIPTION_FR = 'Pour ceux d\'entre nous qui aspirent à la DÉCOUVERTE. Un voyage à travers des cultures exotiques, des terres inexplorées, des créatures étranges et des façons inédites de penser et d\'être—aspirant à expérimenter les vastes potentiels, technologies et moralités de mondes différents du nôtre.';
+    var META_DESCRIPTION_EN = 'For those of us who crave DISCOVERY. A journey through exotic cultures, unexplored lands, weird creatures, and untold ways of thinking and being - yearning to experience the vast potentials, technologies and moralities of worlds unlike ours.';
+    var META_DESCRIPTION_FR = 'Pour ceux d\'entre nous qui aspirent à la DÉCOUVERTE. Un voyage à travers des cultures exotiques, des terres inexplorées, des créatures étranges et des façons inédites de penser et d\'être - aspirant à expérimenter les vastes potentiels, technologies et moralités de mondes différents du nôtre.';
 
     function getPageI18n() {
         var el = document.getElementById('tdt-i18n-strings');
@@ -3082,7 +3082,7 @@
             }
             // Lazy-load: copy data-src → src so the iframe actually loads.
             // SC.Widget internally calls getAttribute('src') and runs .substr()
-            // on it — if the attribute is missing the result is null → crash.
+            // on it  -  if the attribute is missing the result is null → crash.
             if (!iframe.getAttribute('src') && iframe.dataset.src) {
                 iframe.src = iframe.dataset.src;
             }
@@ -3162,7 +3162,7 @@
             var scWasPlaying = false;
             document.addEventListener('visibilitychange', function() {
                 if (document.hidden) {
-                    // Page hidden — check if playing, then pause
+                    // Page hidden  -  check if playing, then pause
                     widget.isPaused(function(paused) {
                         scWasPlaying = !paused;
                         if (!paused) {
@@ -3170,7 +3170,7 @@
                         }
                     });
                 } else {
-                    // Page visible again — resume if it was playing before
+                    // Page visible again  -  resume if it was playing before
                     if (scWasPlaying) {
                         widget.play();
                         scWasPlaying = false;
@@ -3359,12 +3359,12 @@
                 e.preventDefault();
                 return false;
             }
-            // Ctrl+P / Cmd+P (Print) — redirect to copyright notice
+            // Ctrl+P / Cmd+P (Print)  -  redirect to copyright notice
             if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
                 e.preventDefault();
                 return false;
             }
-            // Ctrl+U / Cmd+U (View source) — not blockable but we discourage
+            // Ctrl+U / Cmd+U (View source)  -  not blockable but we discourage
         });
 
         // Console warning for developers/scrapers

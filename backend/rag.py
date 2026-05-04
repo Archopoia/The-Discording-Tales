@@ -156,5 +156,5 @@ def format_chunks_for_prompt(chunks: list[Document]) -> str:
     out = []
     for d in chunks:
         meta = d.metadata
-        out.append(f"[{meta.get('source', '')} — {meta.get('section', '')}]\n{d.page_content}")
+        out.append(f"[{meta.get('source', '')}  -  {meta.get('section', '')}]\n{d.page_content}")
     return "\n\n---\n\n".join(out)

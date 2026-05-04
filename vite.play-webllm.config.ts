@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import path from 'path';
 
-/** WebLLM bootstrap for Play tab — ESM for type="module". Run: vite build --config vite.play-webllm.config.ts */
+/** WebLLM bootstrap for Play tab  -  ESM for type="module". Run: vite build --config vite.play-webllm.config.ts */
 export default defineConfig({
   build: {
     outDir: 'dist',

@@ -70,7 +70,7 @@ body.entrance-active > :not(#static-loader):not(#golden-flash) {
     background: transparent;
 }
 
-/* Bottom hint — above vignette/logo stack; non-interactive so clicks reach hover zone / button */
+/* Bottom hint  -  above vignette/logo stack; non-interactive so clicks reach hover zone / button */
 .entrance-click-hint {
     position: absolute;
     left: 50%;
@@ -232,7 +232,7 @@ body.entrance-active > :not(#static-loader):not(#golden-flash) {
     }
 }
 
-/* Zoom: transform scale (GPU) — background-size keyframes repaint the map every frame and hitch. */
+/* Zoom: transform scale (GPU)  -  background-size keyframes repaint the map every frame and hitch. */
 #static-loader.entrance-revealing .entrance-map-layer {
     animation: entranceMapZoomInGpu 1.35s cubic-bezier(0.25, 0.46, 0.35, 1) forwards;
     will-change: transform;
@@ -313,7 +313,7 @@ body.entrance-active > :not(#static-loader):not(#golden-flash) {
 
 /* Hover styles triggered by the central hover zone (desktop) or touch-pressing (mobile) */
 /* Eye centering on hover is handled by JS for a smooth transition from current position */
-/* :not(.entrance-exiting): hover kept :hover true after click — opacity 1 !important blocked the fade */
+/* :not(.entrance-exiting): hover kept :hover true after click  -  opacity 1 !important blocked the fade */
 #static-loader:has(#entrance-hover-zone:hover) #enter-portfolio-btn:not(.entrance-exiting),
 #static-loader.touch-hovering #enter-portfolio-btn:not(.entrance-exiting) {
     opacity: 1 !important;
@@ -340,7 +340,7 @@ body.entrance-active > :not(#static-loader):not(#golden-flash) {
     opacity: 0.6;
 }
 
-/* Exit: quick, readable opacity fade (no long spin — glow/rotate made the logo linger visually) */
+/* Exit: quick, readable opacity fade (no long spin  -  glow/rotate made the logo linger visually) */
 #static-loader #enter-portfolio-btn.entrance-exiting,
 #static-loader.touch-hovering #enter-portfolio-btn.entrance-exiting {
     animation: entranceLogoFadeOut 0.55s cubic-bezier(0.33, 0, 0.2, 1) forwards !important;
@@ -447,7 +447,7 @@ body.entrance-active > :not(#static-loader):not(#golden-flash) {
     }
 }
 
-/* Lighter glow for touch / small screens — fewer stacked filters, much cheaper to paint */
+/* Lighter glow for touch / small screens  -  fewer stacked filters, much cheaper to paint */
 @keyframes keyholeGlowMobile {
     0%, 100% {
         filter:
@@ -572,7 +572,7 @@ body.entrance-active > :not(#static-loader):not(#golden-flash) {
    so it works on all mobile browsers reliably.
    ---------------------------------------- */
 @media (hover: none) and (pointer: coarse), (max-width: 768px) {
-    /* Eye stays centered — exclude exit so fade+scale animation can run */
+    /* Eye stays centered  -  exclude exit so fade+scale animation can run */
     #enter-portfolio-btn:not(.entrance-exiting) {
         animation: none !important;
         transform: translate(0, 0) !important;

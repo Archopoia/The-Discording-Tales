@@ -57,7 +57,7 @@ def template_row(source: str, section: str, content: str, *, debiasing: bool = F
         user = (
             "Player asks something about the rules or describes an action. As impartial GM using ONLY these rules/lore, respond accurately without external bias. "
             "If a roll is needed, output exactly one line: Roll [Compétence] vs Niv +X.\n\n"
-            f"[Rules/lore — {source} — {section}]\n{content[:4000]}"
+            f"[Rules/lore  -  {source}  -  {section}]\n{content[:4000]}"
         )
     return {
         "messages": [
@@ -96,7 +96,7 @@ def generate_with_llm(
             "Each pair: 'user' = a short player question or action (in French or English); 'assistant' = GM reply using ONLY the given rules, in-world voice, and when a roll is needed use exactly: Roll [Compétence] vs Niv +X. "
             "Output one JSON object per line with keys 'user' and 'assistant' (no markdown, no array wrapper)."
         )
-        chunk_preview = f"[{source} — {section}]\n{content[:3500]}"
+        chunk_preview = f"[{source}  -  {section}]\n{content[:3500]}"
 
     messages = [
         {"role": "system", "content": sys_prompt},

@@ -52,7 +52,7 @@
     /* Wider than viewport so left/right of the lineup crop off; centered in the hero */
     --header-creature-banner-width: min(122vw, 3200px);
     /*
-     * People1/2 nudge: % tracks narrow layouts; max caps wide screens — plain translateY(20%) scaled
+     * People1/2 nudge: % tracks narrow layouts; max caps wide screens  -  plain translateY(20%) scaled
      * with image height and pushed feet into the nav on large monitors.
      */
     --header-creature-translate-y: clamp(0.5rem, 10%, 4.25rem);

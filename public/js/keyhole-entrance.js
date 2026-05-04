@@ -268,7 +268,7 @@
                     staticLoader.classList.add('entrance-revealing');
                 }
 
-                /* Flash FIRST while content is still display:none — avoids multi-second main-thread
+                /* Flash FIRST while content is still display:none  -  avoids multi-second main-thread
                    layout before the animation can run (was: remove entrance-active, then append flash). */
                 var flashElement = document.createElement('div');
                 flashElement.id = 'golden-flash';

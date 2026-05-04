@@ -508,7 +508,7 @@
             resizeCanvas(gl, canvas);
 
             // Skip expensive draws while the canvas has no layout box (e.g. display:none
-            // during the entrance overlay) — keeps the rAF loop cheap until content is shown.
+            // during the entrance overlay)  -  keeps the rAF loop cheap until content is shown.
             if (canvas.clientWidth === 0 || canvas.clientHeight === 0) {
                 animationId = requestAnimationFrame(render);
                 return;

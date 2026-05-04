@@ -885,7 +885,7 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
                             className={`font-medieval text-base border-2 border-border-dark rounded px-2 py-2 bg-parchment-dark text-text-dark min-w-[4rem] ${simHighlightId === 'create-attributes' ? 'tutorial-input-highlight' : ''}`}
                             aria-label={getAttributeName(atb1, lang)}
                           >
-                            <option value="">—</option>
+                            <option value=""> - </option>
                             {(() => {
                               const current = creationAttributeAssignments[atb1] ?? null;
                               const pool = getAvailableSpreadPool();

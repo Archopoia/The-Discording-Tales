@@ -87,8 +87,8 @@ Voir `03_Attributs_Aptitudes_Competences.md` pour les 8 Aptitudes et les 72 Comp
 
 - **PI (Personnage Inspiré)** : Personnage joué ; « inspiré » par un Éveilleur.
 - **PNI (Personnage Non-Inspiré)** : Personnage non-joueur.
-- **Révélateur (RV, « Hervé »)** : Le **Maître de Jeu** — dévoile l’ordre de l’univers, éprouve les personnages à travers les huit façons d’interagir avec les cordes de la réalité.
-- **Éveilleur (EV)** : Les **Joueurs** — insufflent les PI d’un élan volontaire ; chaque joueur est l’Éveilleur de son personnage.
+- **Révélateur (RV, « Hervé »)** : Le **Maître de Jeu**  -  dévoile l’ordre de l’univers, éprouve les personnages à travers les huit façons d’interagir avec les cordes de la réalité.
+- **Éveilleur (EV)** : Les **Joueurs**  -  insufflent les PI d’un élan volontaire ; chaque joueur est l’Éveilleur de son personnage.
 
 (Livre p. 13.)
 
@@ -145,7 +145,7 @@ CSV : (8)_Aptitudes_(24)_Actions_&_(72)_Compétences, Attributs_Apt_+3_+2_+1, Ce
 ## Les 8 Attributs
 
 Chaque Attribut est noté entre -50 et +50 (×10 sur la feuille) ; 00 = humanoïde moyen.  
-**Lien Aptitudes** (chaque Aptitude est la somme de 3 Attributs) — CSV Attributs_Apt_+3_+2_+1 :
+**Lien Aptitudes** (chaque Aptitude est la somme de 3 Attributs)  -  CSV Attributs_Apt_+3_+2_+1 :
 
 | Attribut | Apt +3 (principal) | Apt +2 | Apt +1 |
 |----------|---------------------|--------|--------|
@@ -237,7 +237,7 @@ Chaque Aptitude est également liée à un **Type de Conflit/Gameplay** qui repr
 - **Acculturer** : [Jeux], [Médecine], [Pastoralisme]
 - **Acclimater** : [Ingénierie], [Géographie], [Agronomie]
 
-### Domination (VOL) — Livre p. 18, CSV (8) Aptitudes
+### Domination (VOL)  -  Livre p. 18, CSV (8) Aptitudes
 - **Discipliner** : [Commandement], [Intimidation], [Obstinance]
 - **Endurer** : [Gloutonnerie], [Beuverie], [Entrailles]
 - **Dompter** : [Apprivoisement], [Obéissance], [Dressage]
@@ -516,8 +516,8 @@ Chaque Souffrance est liée à un Attribut et se résiste par une **Compétence 
 | **Disettes** | VIG | R[Disettes] |
 | **Addictions** | EMP | R[Addictions] |
 | **Maladies** | PER | R[Maladies] |
-| **Folies** | CRÉ | R[Folies] — typ. Valeurs (Moralité, Motivation, Personnalité) |
-| **Rancœurs** | VOL | R[Rancœurs] — typ. Traits (Socialité, Disposition, Passion) |
+| **Folies** | CRÉ | R[Folies]  -  typ. Valeurs (Moralité, Motivation, Personnalité) |
+| **Rancœurs** | VOL | R[Rancœurs]  -  typ. Traits (Socialité, Disposition, Passion) |
 
 Plusieurs maux d'une même Souffrance peuvent s'accumuler en une seule Épreuve (ex. Fatigue d'encombrement + nuits blanches + labeurs). (Livre p. 72.)
 
@@ -538,7 +538,7 @@ Plusieurs maux d'une même Souffrance peuvent s'accumuler en une seule Épreuve 
 - **3 DS d'un coup** (Niv 2) → **Séquelle Passagère**.
 - **6 DS d'un coup** (Niv 3) → **Séquelle Durable**.
 - **10 DS d'un coup** (Niv 4) → **Séquelle Permanente**.
-- **15 DS d'un coup** (Niv 5) → **Séquelle Fatale** (mort instantanée ou équivalent — voir p. 146).
+- **15 DS d'un coup** (Niv 5) → **Séquelle Fatale** (mort instantanée ou équivalent  -  voir p. 146).
 
 Si vous recevez 2, 3, 4 ou 5 **Niv** de Souffrance d'un coup (soit 3, 6, 10, 15 DS), vous risquez aussi une Séquelle **et** le même Niv en **Marques** gagnées dans la CT ayant causé cette Souffrance (ex. Niv 3 = +3 Marques). (Livre p. 72.)
 
@@ -561,7 +561,7 @@ Si vous recevez 2, 3, 4 ou 5 **Niv** de Souffrance d'un coup (soit 3, 6, 10, 15 
 
 ## RESSOURCES (livre p. 72)
 
-Après chaque **jet de Repos** : vous pouvez **échanger 1 DS** d'un de vos **Maux** actuels (Blessures, Entraves, Folies, Rancœurs) contre un nombre de **Jours de souffrance** égal au Niv du DS échangé, à cocher dans un de vos **Besoins** (Fatigues, Disettes, Addictions, Maladies) — pouvant l'augmenter d'1 DS. L'**inverse** est possible (échanger 1 DS d'un Besoin contre des Jours de souffrance d'un Mal).
+Après chaque **jet de Repos** : vous pouvez **échanger 1 DS** d'un de vos **Maux** actuels (Blessures, Entraves, Folies, Rancœurs) contre un nombre de **Jours de souffrance** égal au Niv du DS échangé, à cocher dans un de vos **Besoins** (Fatigues, Disettes, Addictions, Maladies)  -  pouvant l'augmenter d'1 DS. L'**inverse** est possible (échanger 1 DS d'un Besoin contre des Jours de souffrance d'un Mal).
 
 ## Souffrances Déclenchées (livre p. 137)
 
@@ -577,7 +577,7 @@ Règles spécifiques (résumé) : **Saignements** (tester toutes les 5-X NdT con
 
 - **Rage** : Lorsque le total des Souffrances dépasse un seuil (livre p. 145), un **Jet de Rage** (1d6) détermine si le personnage peut agir contre l'instinct. Échec : action instinctive ; les DS peuvent être convertis en Dés positifs pour cette action. **6** : peut « Guider » la Rage.
 - **Évanouissement / Perte de connaissance** : Au-delà d'un certain total de DS, risque d'inconscience ou de démence (détails p. 145-146).
-- **Vaincu / Mort** : Seuils et situation de Défaite (table, perdre ses affaires, etc.) — livre p. 146.
+- **Vaincu / Mort** : Seuils et situation de Défaite (table, perdre ses affaires, etc.)  -  livre p. 146.
 
 ## Guérison (livre p. 149)
 
@@ -589,12 +589,12 @@ Règles spécifiques (résumé) : **Saignements** (tester toutes les 5-X NdT con
 ### Traitements (Niv 1 à 5)
 
 Les **Niv de Guérison** des 8 Souffrances sont détaillés dans le livre et le **CSV Niv_de_Guérison_des_8_Souffrances** (ex. Blessures Niv 1 : Désinfectant/Caillant, Herbes cicatrisantes, Sieste confortable, Anti-inflammatoire ; Niv 2-5 : Bloquant/Adaptatif, Insolvable/Coagulant, Réparant/Résolvant, Chirurgie générale, etc.). Chaque Souffrance a des traitements spécifiques (Niv 1 = remèdes simples, Niv 5 = soins exceptionnels).  
-**CSV Niv_de_Traitements_des_8_Souffrances** et **Traitements_par_Motivation (Gens/Choses)**, **Traitements_par_Personalité** donnent les modalités par Motivation et Personnalité (sacrifice de Niv de Valeur, soutien social, etc. — voir aussi 04_Experience_Progression, 13_Valeurs_Traits).
+**CSV Niv_de_Traitements_des_8_Souffrances** et **Traitements_par_Motivation (Gens/Choses)**, **Traitements_par_Personalité** donnent les modalités par Motivation et Personnalité (sacrifice de Niv de Valeur, soutien social, etc.  -  voir aussi 04_Experience_Progression, 13_Valeurs_Traits).
 
 ### Folies et Rancœurs
 
-- **Folies** : Traitement par **Valeurs** (Moralité, Motivation, Personnalité) — sacrifier un **Niv de Valeur** égal au Niv de Souffrance à soigner (voir livre p. 247, 62).
-- **Rancœurs** : Traitement par **Traits** (Socialité, Disposition, Passion) — sacrifier un **Niv de Trait** égal au Niv de Souffrance (voir livre p. 257, 62).
+- **Folies** : Traitement par **Valeurs** (Moralité, Motivation, Personnalité)  -  sacrifier un **Niv de Valeur** égal au Niv de Souffrance à soigner (voir livre p. 247, 62).
+- **Rancœurs** : Traitement par **Traits** (Socialité, Disposition, Passion)  -  sacrifier un **Niv de Trait** égal au Niv de Souffrance (voir livre p. 257, 62).
 
 ### Soutiens, Surdosage, Restaurations
 
@@ -660,7 +660,7 @@ Les **Proactions** correspondent aux actions nécessitant plusieurs **Clins d'af
 - **Armes à distance** : Clins d'Attaque = armement seulement (le tir est instantané). **Armes de mêlée et de jet** : moitié des Clins = armement du bras, moitié = décharge de la frappe.
 
 ### Types de Proactions
-- **Attaquer** : Frapper, Tirer (coût en Clins selon arme — CSV Clins_d'Action_au_Combat).
+- **Attaquer** : Frapper, Tirer (coût en Clins selon arme  -  CSV Clins_d'Action_au_Combat).
 - **Déplacer** : Se déplacer (coût en Clins).
 - **Manipuler** : Utiliser un objet.
 - **Parler** : Communication.
@@ -1216,7 +1216,7 @@ Descriptions et Produits (Melhygre, Lait, Viande, Chitine, etc.) dans le CSV.
 
 # File: 16_GM_Quand_Lancer_Jets.md
 
-# Quand lancer quels jets — Guide MJ
+# Quand lancer quels jets  -  Guide MJ
 
 *Sources : 01_Systeme_General, 03_Attributs_Aptitudes_Competences, 05_Souffrances_Guérison, 06_Combat, 08_Temps_Labeurs, 09_Groupe_Ambiance, 10_Voyages et sections MJ du livre.*
 
@@ -1225,7 +1225,7 @@ Ce document indique **quand** demander quel jet (ou appliquer une règle sans je
 ## Action à issue incertaine
 
 - **Quand** : Le personnage tente une action avec chance d'échec.
-- **Jet** : Roll [Compétence] vs Niv +X — la Compétence doit être l'une des 72 (ex. [Grimpe], [Négociation], [Investigation]). Jamais un Attribut ou une Aptitude dans les crochets.
+- **Jet** : Roll [Compétence] vs Niv +X  -  la Compétence doit être l'une des 72 (ex. [Grimpe], [Négociation], [Investigation]). Jamais un Attribut ou une Aptitude dans les crochets.
 - **Réf.** : 01, 03.
 
 ## Jet Précisé (Niveau de Temps)
@@ -1237,7 +1237,7 @@ Ce document indique **quand** demander quel jet (ou appliquer une règle sans je
 ## Labeurs (journée de travail, artisanat, entraînement, récupération)
 
 - **Quand** : Une journée de Labeur (8 h de travail, artisanat, entraînement, recherche, récupération).
-- **Jet** : Roll [Compétence] appropriée vs Niv +X — ex. Roll [Artisanat] vs Niv +1 pour une journée de craft, Roll [Médecine] vs Niv +0 pour soins, Roll [Géographie] pour recherche.
+- **Jet** : Roll [Compétence] appropriée vs Niv +X  -  ex. Roll [Artisanat] vs Niv +1 pour une journée de craft, Roll [Médecine] vs Niv +0 pour soins, Roll [Géographie] pour recherche.
 - **Réf.** : 08.
 
 ## Surmenage (plus d'un Labeur par jour)
@@ -1246,16 +1246,16 @@ Ce document indique **quand** demander quel jet (ou appliquer une règle sans je
 - **Jet** : **Aucun**. La résistance est passive : le Niv de la Compétence Résistante (ex. R[Fatigues]) absorbe les DS ; pas de jet de résistance.
 - **Réf.** : 08, 05.
 
-## Voyage — Navigation / perte de chemin
+## Voyage  -  Navigation / perte de chemin
 
 - **Quand** : Navigation, orientation, risque de se perdre en voyage.
 - **Jet** : Roll [Géographie] ou Roll [Estimation] ou Roll [Vision] vs Niv +X (ex. Roll [Géographie] vs Niv +2). Échec = perdu, temps perdu, rencontres possibles.
 - **Réf.** : 10_Voyages.
 
-## Voyage — Traverser un milieu avec Conditions
+## Voyage  -  Traverser un milieu avec Conditions
 
 - **Quand** : Traverser un milieu hostile (Conditions : froid, chaleur, obscurité, etc.). Voir milieux p.177 du livre.
-- **Règle** : Les Niv d'Outil "absorbent" les Niv de Condition. S'il reste des Niv de Conditions non absorbés : jet avec Dés d'Outil ET d'Habituation vs Épreuve = Niv de Temps voyagé + Niv de Conditions. Résistance aux DS passive (Niv) — pas de jet de résistance.
+- **Règle** : Les Niv d'Outil "absorbent" les Niv de Condition. S'il reste des Niv de Conditions non absorbés : jet avec Dés d'Outil ET d'Habituation vs Épreuve = Niv de Temps voyagé + Niv de Conditions. Résistance aux DS passive (Niv)  -  pas de jet de résistance.
 - **Réf.** : Livre p.102 ; 10_Voyages.
 
 ## Rencontres (voyage)

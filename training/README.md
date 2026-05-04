@@ -18,7 +18,7 @@ Optional overrides:
 python training/load_corpus.py --system-summary-dir PATH --book-dir PATH --csv-dir PATH --out training/corpus.jsonl
 ```
 
-Output: `training/corpus.jsonl` — one JSON object per line: `{"source": "filename.md" or "filename.csv", "section": "Section title" or "table", "content": "..."}`. CSV files are included as markdown tables.
+Output: `training/corpus.jsonl`  -  one JSON object per line: `{"source": "filename.md" or "filename.csv", "section": "Section title" or "table", "content": "..."}`. CSV files are included as markdown tables.
 
 ### 2. Generate Q&A dataset
 
@@ -47,7 +47,7 @@ Output format: JSONL where each line is a chat-style example for fine-tuning:
 {"messages": [{"role": "system", "content": "..."}, {"role": "user", "content": "..."}, {"role": "assistant", "content": "..."}]}
 ```
 
-**Combined dataset:** Use `training/train_combined.jsonl` for fine-tuning — it merges `train.jsonl` (instruction examples) and `debiasing.jsonl` (impartial GM on morally gray scenarios). Regenerate it after changing either file. Order of steps: `load_corpus` → `generate_qa_dataset` → merge to `train_combined.jsonl`.
+**Combined dataset:** Use `training/train_combined.jsonl` for fine-tuning  -  it merges `train.jsonl` (instruction examples) and `debiasing.jsonl` (impartial GM on morally gray scenarios). Regenerate it after changing either file. Order of steps: `load_corpus` → `generate_qa_dataset` → merge to `train_combined.jsonl`.
 
 ```bash
 python training/merge_combined.py
@@ -77,7 +77,7 @@ See **Fine-tuning** in this README for base model choice, LoRA/QLoRA with Unslot
 
 ### Base model
 
-- **Recommended**: DeepSeek-V3.2 distilled (32B/8B) — neutral, good for rules; fine-tunable on one GPU or Colab. Download from Hugging Face.
+- **Recommended**: DeepSeek-V3.2 distilled (32B/8B)  -  neutral, good for rules; fine-tunable on one GPU or Colab. Download from Hugging Face.
 - **Alternatives**: Qwen3 (smaller variants), Llama 4 Maverick/Scout, Mistral Medium 3 / Ministral 14B. All open weights, suitable for RPG GM and debiasing.
 
 ### Stack (beginner-friendly)

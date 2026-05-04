@@ -3,8 +3,8 @@
  * with contents of partials/peoples-cards.html and partials/inspirations-keywords.html.
  *
  * Usage:
- *   node tools/build_html.js          — build index.html from index.template.html + partials
- *   node tools/build_html.js --init  — extract partials from index.html and create index.template.html (one-time)
+ *   node tools/build_html.js           -  build index.html from index.template.html + partials
+ *   node tools/build_html.js --init   -  extract partials from index.html and create index.template.html (one-time)
  */
 import fs from 'fs';
 import path from 'path';

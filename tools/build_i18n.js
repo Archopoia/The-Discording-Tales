@@ -7,7 +7,7 @@
  * Special: {{i18n:script-json}} → JSON string for page title/description (for setLanguage in JS).
  *
  * Usage:
- *   node tools/build_i18n.js   — run after build_html.js; reads and overwrites index.html
+ *   node tools/build_i18n.js    -  run after build_html.js; reads and overwrites index.html
  */
 import fs from 'fs';
 import path from 'path';

@@ -260,7 +260,7 @@
         }
     }
 
-    /** Show hint above input when in creation mode and last assistant message has no choice/input buttons. (Hidden during hardcoded creation—no LLM to ask for buttons.) */
+    /** Show hint above input when in creation mode and last assistant message has no choice/input buttons. (Hidden during hardcoded creation - no LLM to ask for buttons.) */
     function updateCreationNoButtonsHint() {
         var hintEl = document.getElementById('gm-creation-no-buttons-hint');
         if (!hintEl) return;
@@ -352,7 +352,7 @@
             return;
         }
 
-        // Loading state — only visible when we need WebLLM (quota exhausted or no backend)
+        // Loading state  -  only visible when we need WebLLM (quota exhausted or no backend)
         llmStatusEl.className = 'gm-llm-status gm-llm-status--loading';
         llmStatusEl.style.display = '';
         var pct = Math.min(100, Math.max(0, Math.round(llmProgress)));
@@ -388,20 +388,20 @@
         var en, fr, cls;
 
         if (backendQuotaExhausted && currentLlmSource === 'webllm') {
-            en = '⚠ Using local AI (limited context) — Server quota reached, come back later for full rules & lore.';
-            fr = '⚠ IA locale active (contexte limité) — Quota serveur atteint, revenez plus tard pour les règles et le lore complets.';
+            en = '⚠ Using local AI (limited context)  -  Server quota reached, come back later for full rules & lore.';
+            fr = '⚠ IA locale active (contexte limité)  -  Quota serveur atteint, revenez plus tard pour les règles et le lore complets.';
             cls = 'gm-chat-disclaimer gm-chat-disclaimer--fallback';
         } else if (backendQuotaExhausted) {
             en = '⚠ Server quota reached. Loading local AI…';
             fr = '⚠ Quota serveur atteint. Chargement de l\'IA locale…';
             cls = 'gm-chat-disclaimer gm-chat-disclaimer--fallback';
         } else if (currentLlmSource === 'backend' || currentLlmSource === 'gemini-direct') {
-            en = '✦ Gemini AI — WIP, may contain inaccuracies';
-            fr = '✦ IA Gemini — WIP, peut contenir des inexactitudes';
+            en = '✦ Gemini AI  -  WIP, may contain inaccuracies';
+            fr = '✦ IA Gemini  -  WIP, peut contenir des inexactitudes';
             cls = 'gm-chat-disclaimer gm-chat-disclaimer--backend';
         } else if (currentLlmSource === 'webllm') {
-            en = '⚠ Local AI — WIP, limited context & less accurate';
-            fr = '⚠ IA locale — WIP, contexte limité & moins précis';
+            en = '⚠ Local AI  -  WIP, limited context & less accurate';
+            fr = '⚠ IA locale  -  WIP, contexte limité & moins précis';
             cls = 'gm-chat-disclaimer gm-chat-disclaimer--fallback';
         } else {
             en = '✦ Connecting to AI…';
@@ -457,7 +457,7 @@
             llmError = detail.message || 'Unknown error';
             llmReady = false;
             updateLlmStatusBanner();
-            // Don't disable buttons — backend is the primary LLM
+            // Don't disable buttons  -  backend is the primary LLM
             console.warn('[GM Chat] WebLLM fallback error:', llmError);
         });
 
@@ -993,7 +993,7 @@
                 : 'Rolled ' + label + ': 1d6 = ' + d6 + ', ' + (success ? '>' + niv + ' → act rationally.' : '≤' + niv + ' → instinct dominates.');
             input.value = prefill;
             var liveEl = document.getElementById('gm-roll-result-announce');
-            if (liveEl) liveEl.textContent = (lang === 'fr' ? 'Jet de ' : 'Roll ') + label + ': ' + d6 + ' — ' + (success ? (lang === 'fr' ? 'succès' : 'success') : (lang === 'fr' ? 'échec' : 'failure'));
+            if (liveEl) liveEl.textContent = (lang === 'fr' ? 'Jet de ' : 'Roll ') + label + ': ' + d6 + '  -  ' + (success ? (lang === 'fr' ? 'succès' : 'success') : (lang === 'fr' ? 'échec' : 'failure'));
             if (container) container.scrollTop = container.scrollHeight;
             sendMessage(container, input, sendBtn, useCharCheckbox, hintEl);
             updatePendingRollHint(input, hintEl);
@@ -1013,7 +1013,7 @@
                 : 'Rolled ' + label5 + ': 5dD = [' + faceStr + '] → sum ' + (sum >= 0 ? '+' : '') + sum + ' vs Niv ' + niv + ', ' + (success5dD ? 'success.' : 'failure.');
             input.value = prefill5;
             var liveEl5 = document.getElementById('gm-roll-result-announce');
-            if (liveEl5) liveEl5.textContent = (lang === 'fr' ? 'Jet de ' : 'Roll ') + label5 + ': ' + sum + ' — ' + (success5dD ? (lang === 'fr' ? 'succès' : 'success') : (lang === 'fr' ? 'échec' : 'failure'));
+            if (liveEl5) liveEl5.textContent = (lang === 'fr' ? 'Jet de ' : 'Roll ') + label5 + ': ' + sum + '  -  ' + (success5dD ? (lang === 'fr' ? 'succès' : 'success') : (lang === 'fr' ? 'échec' : 'failure'));
             if (container) container.scrollTop = container.scrollHeight;
             sendMessage(container, input, sendBtn, useCharCheckbox, hintEl);
             updatePendingRollHint(input, hintEl);
@@ -1293,7 +1293,7 @@
                             throw errObj;
                         });
                     }
-                    // Backend responded OK — mark as active source
+                    // Backend responded OK  -  mark as active source
                     currentLlmSource = 'backend';
                     updateDisclaimerStatus();
                     if (!r.body) {
@@ -1520,7 +1520,7 @@
         }
         updateDisclaimerStatus();
 
-        // Probe backend — if reachable, upgrade to backend source (has RAG)
+        // Probe backend  -  if reachable, upgrade to backend source (has RAG)
         if (GM_API_URL) {
             fetch(GM_API_URL + '/health', { method: 'GET', mode: 'cors' })
                 .then(function (r) {
@@ -2012,7 +2012,7 @@
     }
 
     /* ══════════════════════════════════════════════════════════════
-     *  Mini Chat Preview (Landing page) — standalone lightweight chat
+     *  Mini Chat Preview (Landing page)  -  standalone lightweight chat
      *  Shares the backend + renderMessages helper but has its own
      *  message history (doesn't interfere with creation / character flow).
      * ══════════════════════════════════════════════════════════════ */
