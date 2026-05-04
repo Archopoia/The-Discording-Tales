@@ -1835,6 +1835,30 @@
     min-width: 0;
 }
 
+/* Universe tab: left sidebar combines World / Rules + rules in-page links */
+#univers .univers-sidebar-nav.tab-sub-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0.35rem;
+    margin-top: 0;
+    padding: 0;
+}
+
+#univers .univers-sidebar-nav .univers-nav-main-link {
+    display: block;
+    width: 100%;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+#univers .univers-sidebar-nav .univers-rules-in-page-nav {
+    margin-top: var(--spacing-sm);
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid rgba(212, 197, 168, 0.35);
+}
+
 /* System Overview Accordion */
 .system-overview-accordion {
     margin: var(--spacing-md) 0;
@@ -2532,10 +2556,24 @@
     line-height: 1.5;
 }
 
-/* Responsive: hide nav on mobile, stack content */
+/* Responsive: hide legacy single-panel nav on mobile; Universe keeps sidebar */
 @media screen and (max-width: 900px) {
-    .system-overview-nav {
+    .system-overview-nav:not(.univers-sidebar-nav) {
         display: none;
+    }
+
+    #univers .univers-dashboard {
+        flex-direction: column;
+    }
+
+    #univers .univers-sidebar-nav {
+        display: flex;
+        position: static;
+        flex: 1 1 auto;
+        width: 100%;
+        max-width: none;
+        min-width: 0;
+        top: auto;
     }
 }
 
