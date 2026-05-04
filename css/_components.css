@@ -176,10 +176,6 @@
     padding-bottom: var(--spacing-sm);
 }
 
-.discovery-unified-outpost .outpost-title {
-    margin-bottom: var(--spacing-md);
-}
-
 .discovery-unified-outpost .outpost-form {
     display: flex;
     flex-direction: row;
@@ -884,36 +880,117 @@
     box-shadow: 0 0 8px rgba(232, 221, 208, 0.6);
 }
 
-/* Outpost form inputs and CTA (shared: standalone section or inside discovery-unified) */
-.outpost-form input[type="email"],
-.discovery-unified-outpost .outpost-form input[type="email"] {
+/* Outpost: border on wrap; prompts under input; empty input is transparent so prompts show through */
+.outpost-form .outpost-input-wrap {
+    position: relative;
     flex: 1 1 0;
     min-width: 0;
-    width: auto;
+    box-sizing: border-box;
+    border: 2px solid var(--tdt-burgundy-warm);
+    border-radius: var(--radius-md);
+    background: var(--tdt-cream);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.outpost-form .outpost-input-wrap:focus-within {
+    outline: none;
+    border-color: var(--tdt-beige-warm);
+    box-shadow: 0 0 0 3px rgba(212, 197, 168, 0.35), inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.outpost-form .outpost-input-wrap input[type="email"] {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
     box-sizing: border-box;
     height: var(--touch-min);
     min-height: var(--touch-min);
     max-height: var(--touch-min);
     padding: 0 var(--spacing-sm);
-    background: var(--tdt-cream);
-    color: var(--tdt-burgundy);
-    border: 2px solid var(--tdt-burgundy-warm);
-    border-radius: var(--radius-md);
+    margin: 0;
+    border: none;
+    border-radius: calc(var(--radius-md) - 2px);
+    box-shadow: none;
     font-family: var(--font-body);
     font-size: 0.8125rem;
     line-height: 1.2;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.outpost-form input[type="email"]::placeholder {
-    color: var(--tdt-brown-light);
-}
-
-.outpost-form input[type="email"]:focus {
     outline: none;
-    border-color: var(--tdt-beige-warm);
-    box-shadow: 0 0 0 3px rgba(212, 197, 168, 0.35), inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: color 0.15s ease, -webkit-text-fill-color 0.15s ease, background-color 0.15s ease;
+}
+
+/* Empty (placeholder still “shown”): ghost prompts read through transparent glyphs */
+.outpost-form .outpost-input-wrap:has(#newsletter-email:placeholder-shown) input[type="email"] {
+    background: transparent;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    caret-color: var(--tdt-burgundy);
+}
+
+/* Any real input: strong contrast; stays after blur (not tied to :focus-within) */
+.outpost-form .outpost-input-wrap:has(#newsletter-email:not(:placeholder-shown)) input[type="email"] {
+    background: var(--tdt-cream) !important;
+    color: var(--tdt-burgundy) !important;
+    -webkit-text-fill-color: var(--tdt-burgundy) !important;
+}
+
+/* WebKit autofill: keep text visible (overrides empty-state transparent fill) */
+.outpost-form .outpost-input-wrap input[type="email"]:-webkit-autofill,
+.outpost-form .outpost-input-wrap input[type="email"]:-webkit-autofill:hover {
+    -webkit-box-shadow: 0 0 0 100px var(--tdt-cream) inset;
+    box-shadow: 0 0 0 100px var(--tdt-cream) inset;
+    -webkit-text-fill-color: var(--tdt-burgundy) !important;
+    caret-color: var(--tdt-burgundy);
+}
+
+.outpost-input-prompt {
+    position: absolute;
+    left: var(--spacing-sm);
+    right: var(--spacing-sm);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 0;
+    pointer-events: none;
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    line-height: 1.2;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: opacity 0.2s ease;
+}
+
+.outpost-input-prompt--idle {
+    font-weight: 600;
+    font-style: normal;
+    color: rgba(90, 31, 31, 0.58);
+    opacity: 1;
+}
+
+.outpost-input-prompt--hint {
+    font-weight: 400;
+    font-style: italic;
+    color: var(--tdt-brown-light);
+    opacity: 0;
+}
+
+.outpost-form .outpost-input-wrap:has(#newsletter-email:placeholder-shown):hover .outpost-input-prompt--idle,
+.outpost-form .outpost-input-wrap:has(#newsletter-email:placeholder-shown):focus-within .outpost-input-prompt--idle {
+    opacity: 0;
+}
+
+.outpost-form .outpost-input-wrap:has(#newsletter-email:placeholder-shown):hover .outpost-input-prompt--hint,
+.outpost-form .outpost-input-wrap:has(#newsletter-email:placeholder-shown):focus-within .outpost-input-prompt--hint {
+    opacity: 1;
+}
+
+.outpost-form .outpost-input-wrap:has(#newsletter-email:not(:placeholder-shown)) .outpost-input-prompt--idle,
+.outpost-form .outpost-input-wrap:has(#newsletter-email:not(:placeholder-shown)) .outpost-input-prompt--hint {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 .outpost-cta {
