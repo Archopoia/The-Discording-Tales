@@ -3718,13 +3718,20 @@ body.tdt-peoples-portrait-lightbox-open {
     }
     
     .outpost-form {
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
     }
-    
-    .outpost-form input[type="email"],
-    .outpost-form .outpost-cta {
-        width: 100%;
+
+    .outpost-form input[type="email"] {
+        flex: 1 1 0;
         min-width: 0;
+        width: auto;
+    }
+
+    .outpost-form .outpost-cta {
+        flex: 0 0 auto;
+        width: auto;
     }
     
     .site-title {

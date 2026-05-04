@@ -164,27 +164,30 @@
     text-align: center;
 }
 
+/* Home tab: outpost sits above pitch; no separator line above first block */
+.discovery-unified-outpost.discovery-unified-outpost--landing-first {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+}
+
+.landing-outpost-lead {
+    padding-top: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+}
+
 .discovery-unified-outpost .outpost-title {
     margin-bottom: var(--spacing-md);
 }
 
-.discovery-unified-outpost .outpost-tagline {
-    font-size: clamp(0.95rem, 2vw, 1.1rem);
-    font-style: italic;
-    color: var(--tdt-beige-warm);
-    max-width: 52ch;
-    margin: 0 auto var(--spacing-lg);
-    line-height: 1.7;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-}
-
 .discovery-unified-outpost .outpost-form {
     display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-md);
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: var(--spacing-sm);
     justify-content: center;
     align-items: center;
-    max-width: 560px;
+    max-width: min(100%, 42rem);
     margin: 0 auto;
 }
 
@@ -884,15 +887,21 @@
 /* Outpost form inputs and CTA (shared: standalone section or inside discovery-unified) */
 .outpost-form input[type="email"],
 .discovery-unified-outpost .outpost-form input[type="email"] {
-    flex: 1;
-    min-width: 220px;
-    padding: var(--spacing-sm) var(--spacing-md);
+    flex: 1 1 0;
+    min-width: 0;
+    width: auto;
+    box-sizing: border-box;
+    height: var(--touch-min);
+    min-height: var(--touch-min);
+    max-height: var(--touch-min);
+    padding: 0 var(--spacing-sm);
     background: var(--tdt-cream);
     color: var(--tdt-burgundy);
-    border: 3px solid var(--tdt-burgundy-warm);
+    border: 2px solid var(--tdt-burgundy-warm);
     border-radius: var(--radius-md);
     font-family: var(--font-body);
-    font-size: 1rem;
+    font-size: 0.8125rem;
+    line-height: 1.2;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
     transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
@@ -908,7 +917,25 @@
 }
 
 .outpost-cta {
+    flex: 0 0 auto;
     white-space: nowrap;
+}
+
+/* Same outer height as email field; smaller type so the field stays visually wider */
+.outpost-form .outpost-cta.cta-button {
+    box-sizing: border-box;
+    height: var(--touch-min);
+    min-height: var(--touch-min);
+    max-height: var(--touch-min);
+    padding: 0 clamp(0.45rem, 1.8vw, 0.75rem);
+    font-size: clamp(0.58rem, 1.35vw, 0.6875rem);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-width: 2px;
 }
 
 /* ========================================
@@ -2119,13 +2146,14 @@
         max-width: calc(100vw - 1.5rem);
     }
 
-    /* Outpost form: fluid input and allow CTA text to wrap */
+    /* Outpost: email + button stay one row; input shrinks */
     .outpost-form input[type="email"] {
         min-width: 0;
-        width: 100%;
+        width: auto;
+        flex: 1 1 0;
     }
     .outpost-cta {
-        white-space: normal;
+        white-space: nowrap;
     }
 
     /* Genre cards: allow overflow so tables inside can scroll */

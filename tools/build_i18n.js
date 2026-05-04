@@ -2,6 +2,11 @@
  * i18n build: replace {{i18n:key}} placeholders in index.html with data-en/data-fr
  * from locales/en.json and locales/fr.json. Run after build_html.js.
  *
+ * Race flip-card tooltips: partials/peoples-cards.html uses {{i18n-title:races.*}}; build_html.js
+ * merges that partial into index.html, then this script fills data-title-en / data-title-fr from
+ * locales. Editing locales alone does not update index.html until you re-run build_html.js (or
+ * `npm run build:pages`, or full `npm run build`).
+ *
  * Placeholder format: {{i18n:key}} → data-en/data-fr; {{i18n-aria:key}}, {{i18n-alt:key}},
  * {{i18n-title:key}}, {{i18n-placeholder:key}}, {{i18n-tip:key}} for aria-label, alt, title, placeholder, tip.
  * Special: {{i18n:script-json}} → JSON string for page title/description (for setLanguage in JS).
@@ -95,6 +100,15 @@ function build() {
   };
   const scriptJsonStr = JSON.stringify(scriptJson);
   out = out.replace(/\{\{i18n:script-json\}\}/g, () => scriptJsonStr);
+
+  if (/\{\{i18n(?:-[a-z]+)?:/.test(out)) {
+    const samples = [...out.matchAll(/\{\{i18n(?:-[a-z]+)?:[a-zA-Z0-9_.]+\}\}/g)].slice(0, 8);
+    console.error(
+      'build_i18n: unresolved i18n placeholders (missing keys in locales?):',
+      samples.map((m) => m[0]).join(', ')
+    );
+    process.exit(1);
+  }
 
   fs.writeFileSync(indexPath, out, 'utf8');
   console.log('Built i18n: replaced {{i18n:key}} in index.html from locales/en.json and locales/fr.json');

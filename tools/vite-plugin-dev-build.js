@@ -61,9 +61,9 @@ function getScriptsForFile(filePath) {
     return ['build_css.js'];
   }
   
-  // Locale files
+  // Locale files (must re-merge partials so {{i18n*}} placeholders exist, then expand)
   if (relative.startsWith('locales/') && relative.endsWith('.json')) {
-    return ['build_i18n.js'];
+    return ['build_html.js', 'build_i18n.js'];
   }
   
   // Zine markdown files

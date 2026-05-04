@@ -253,7 +253,19 @@
         
         <!-- Landing Tab -->
         <section id="landing" class="tab-content active" data-lang-key="landing">
-            <!-- Game Pitch (AllPeople as full-width background) – first thing shown -->
+            <!-- Outpost (newsletter): first block on Home, before pitch -->
+            <div class="container landing-outpost-lead">
+                <section class="discovery-unified-outpost discovery-unified-outpost--landing-first" aria-labelledby="outpost-heading">
+                    <h2 id="outpost-heading" class="section-subtitle outpost-title" {{i18n:tpl.7}}>Join the Outpost</h2>
+                    <form class="outpost-form" id="newsletter-form" action="#" method="post">
+                        <label for="newsletter-email" class="screen-reader-text" {{i18n-aria:tpl.707}}>Email address</label>
+                        <input type="email" id="newsletter-email" name="email" placeholder="thediscordingtales@gmail.com" required {{i18n-aria:tpl.707}} aria-label="Email address"/>
+                        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;"/>
+                        <button type="submit" class="cta-button outpost-cta" {{i18n:tpl.9}}>Subscribe - no spam</button>
+                    </form>
+                </section>
+            </div>
+            <!-- Game Pitch (AllPeople as full-width background) -->
             <div class="pitch-wrapper">
                 <div class="pitch-section">
                     <p class="pitch-intro" {{i18n:pitch.intro}}>Explore a baroque world worthy of myths and their mystical technologies, whence flourishes alien peoples through their perpetual conflicts within extreme environments…</p>
@@ -319,17 +331,6 @@
                                 <p class="unified-depth-p2" {{i18n:unified.p2}}>Every path is balanced through a cohesive experience system equally rewarding your playstyle as deeply as you explore them.</p>
                             </div>
                         </div>
-                    </section>
-                    <!-- Outpost (newsletter): same flow as Discovery + UNIFIED -->
-                    <section class="discovery-unified-outpost" aria-labelledby="outpost-heading">
-                        <h2 id="outpost-heading" class="section-subtitle outpost-title" {{i18n:tpl.7}}>Join the Outpost</h2>
-                        <p class="outpost-tagline" {{i18n:tpl.8}}>Hear the latest rumours from the depths.</p>
-                        <form class="outpost-form" id="newsletter-form" action="#" method="post">
-                            <label for="newsletter-email" class="screen-reader-text" {{i18n-aria:tpl.707}}>Email address</label>
-                            <input type="email" id="newsletter-email" name="email" placeholder="thediscordingtales@gmail.com" required {{i18n-aria:tpl.707}} aria-label="Email address"/>
-                            <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;"/>
-                            <button type="submit" class="cta-button outpost-cta" {{i18n:tpl.9}}>Sit by the Fireplace (Subscribe – NO Spam)</button>
-                        </form>
                     </section>
                 </div>
             </div>

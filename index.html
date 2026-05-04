@@ -253,7 +253,19 @@
         
         <!-- Landing Tab -->
         <section id="landing" class="tab-content active" data-lang-key="landing">
-            <!-- Game Pitch (AllPeople as full-width background) – first thing shown -->
+            <!-- Outpost (newsletter): first block on Home, before pitch -->
+            <div class="container landing-outpost-lead">
+                <section class="discovery-unified-outpost discovery-unified-outpost--landing-first" aria-labelledby="outpost-heading">
+                    <h2 id="outpost-heading" class="section-subtitle outpost-title" data-en="Join the Outpost" data-fr="Rejoignez l'Avant-poste">Join the Outpost</h2>
+                    <form class="outpost-form" id="newsletter-form" action="#" method="post">
+                        <label for="newsletter-email" class="screen-reader-text" data-aria-label-en="Email address" data-aria-label-fr="Adresse e-mail">Email address</label>
+                        <input type="email" id="newsletter-email" name="email" placeholder="thediscordingtales@gmail.com" required data-aria-label-en="Email address" data-aria-label-fr="Adresse e-mail" aria-label="Email address"/>
+                        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;"/>
+                        <button type="submit" class="cta-button outpost-cta" data-en="Subscribe - no spam" data-fr="S'abonner - pas de spam">Subscribe - no spam</button>
+                    </form>
+                </section>
+            </div>
+            <!-- Game Pitch (AllPeople as full-width background) -->
             <div class="pitch-wrapper">
                 <div class="pitch-section">
                     <p class="pitch-intro" data-en="Explore a baroque world worthy of myths and their mystical technologies, whence flourishes alien peoples through their perpetual conflicts within extreme environments…" data-fr="Explorez un monde baroque digne des mythes aux technologies mystiques, d'où fleurissent des peuples étrangers à travers leurs perpétuels conflits au sein d'environnements extrêmes…">Explore a baroque world worthy of myths and their mystical technologies, whence flourishes alien peoples through their perpetual conflicts within extreme environments…</p>
@@ -319,17 +331,6 @@
                                 <p class="unified-depth-p2" data-en="Every path is balanced through a cohesive experience system equally rewarding your playstyle as deeply as you explore them." data-fr="Chaque chemin est équilibré par un système d'expérience cohérent qui récompense votre style de jeu autant que vous l'explorez.">Every path is balanced through a cohesive experience system equally rewarding your playstyle as deeply as you explore them.</p>
                             </div>
                         </div>
-                    </section>
-                    <!-- Outpost (newsletter): same flow as Discovery + UNIFIED -->
-                    <section class="discovery-unified-outpost" aria-labelledby="outpost-heading">
-                        <h2 id="outpost-heading" class="section-subtitle outpost-title" data-en="Join the Outpost" data-fr="Rejoignez l'Avant-poste">Join the Outpost</h2>
-                        <p class="outpost-tagline" data-en="Hear the latest rumours from the depths." data-fr="Entendez les dernières rumeurs venues des profondeurs.">Hear the latest rumours from the depths.</p>
-                        <form class="outpost-form" id="newsletter-form" action="#" method="post">
-                            <label for="newsletter-email" class="screen-reader-text" data-aria-label-en="Email address" data-aria-label-fr="Adresse e-mail">Email address</label>
-                            <input type="email" id="newsletter-email" name="email" placeholder="thediscordingtales@gmail.com" required data-aria-label-en="Email address" data-aria-label-fr="Adresse e-mail" aria-label="Email address"/>
-                            <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;"/>
-                            <button type="submit" class="cta-button outpost-cta" data-en="Sit by the Fireplace (Subscribe – no spam)" data-fr="Asseyez-vous au Coin du Feu (Abonnez-vous – PAS de Spam)">Sit by the Fireplace (Subscribe – NO Spam)</button>
-                        </form>
                     </section>
                 </div>
             </div>
