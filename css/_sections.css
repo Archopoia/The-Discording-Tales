@@ -2917,10 +2917,31 @@
 .lore-table tbody tr:hover {
     background: rgba(217, 205, 184, 0.1);
 }
-/* Peoples section: title, then intro (left) + table (right); table takes freed space */
+/* Peoples section: centered title, height chart, then centered intro + tree */
+.peoples-lead {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+.peoples-lead__title {
+    text-align: center;
+    margin: 0 0 var(--spacing-sm);
+}
+.peoples-lead__figure {
+    margin: 0 auto var(--spacing-sm);
+    max-width: min(100%, 1120px);
+}
+.peoples-lead__height-chart {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-inline: auto;
+    border-radius: 6px;
+}
+
 .peoples-intro {
-    margin: 0;
+    margin: 0 auto;
     max-width: 75ch;
+    text-align: center;
 }
 
 .peoples-top {
@@ -2978,12 +2999,19 @@
     font-style: normal;
     opacity: 0.9;
 }
-/* People row: name + morality left, portrait thumbnail right */
-.peoples-tree-node[data-peuple] > .peoples-tree-head {
+/* People entry: main column sets height; portrait column is absolute (does not stretch the row) */
+.peoples-tree-node[data-peuple] {
+    position: relative;
+    min-width: 0;
+    padding-right: calc(clamp(76px, 13vw, 160px) + 0.5rem);
+}
+.peoples-tree-node[data-peuple] > .peoples-tree-node-main {
+    min-width: 0;
+}
+.peoples-tree-node[data-peuple] .peoples-tree-node-main > .peoples-tree-head {
     display: flex;
     align-items: flex-start;
     gap: var(--spacing-xs);
-    justify-content: space-between;
 }
 .peoples-tree-head .peoples-tree-toggle {
     flex-shrink: 0;
@@ -2993,20 +3021,27 @@
     flex: 1 1 auto;
     min-width: 0;
 }
-.peoples-tree-portrait-wrap {
-    flex: 0 0 auto;
-    margin-left: auto;
-    align-self: center;
-}
-.peoples-tree-portrait {
-    display: block;
-    width: 52px;
-    height: 52px;
-    object-fit: cover;
-    object-position: top center;
-    border-radius: 4px;
+.peoples-tree-portrait-column {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: clamp(76px, 13vw, 160px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 6px;
     border: 1px solid var(--tdt-burgundy-warm);
     background: var(--tdt-beige-lighter);
+}
+.peoples-tree-portrait-column .peoples-tree-portrait {
+    display: block;
+    width: 100%;
+    height: 100%;
+    flex: 1 1 auto;
+    min-height: 0;
+    object-fit: cover;
+    object-position: top center;
     cursor: zoom-in;
 }
 .peoples-tree-node[data-origin] > .peoples-tree-children {
@@ -3028,11 +3063,11 @@
 .peoples-tree-node[aria-expanded="false"] > .peoples-tree-toggle::before {
     content: '▶';
 }
-/* People rows: toggle sits inside .peoples-tree-head (not direct child of .peoples-tree-node) */
-.peoples-tree-node[data-peuple][aria-expanded="true"] > .peoples-tree-head > .peoples-tree-toggle::before {
+/* People rows: toggle inside .peoples-tree-head within .peoples-tree-node-main */
+.peoples-tree-node[data-peuple][aria-expanded="true"] .peoples-tree-node-main > .peoples-tree-head > .peoples-tree-toggle::before {
     content: '▼';
 }
-.peoples-tree-node[data-peuple][aria-expanded="false"] > .peoples-tree-head > .peoples-tree-toggle::before {
+.peoples-tree-node[data-peuple][aria-expanded="false"] .peoples-tree-node-main > .peoples-tree-head > .peoples-tree-toggle::before {
     content: '▶';
 }
 .peoples-tree-node[aria-expanded="false"] > .peoples-tree-children {
@@ -3046,6 +3081,24 @@
     border-left: 1px solid var(--tdt-burgundy-warm);
     font-size: 0.9em;
     color: var(--tdt-brown);
+    overflow: hidden;
+    max-height: 2400px;
+    opacity: 1;
+    transition:
+        max-height 0.4s ease,
+        opacity 0.28s ease,
+        margin 0.28s ease,
+        padding 0.28s ease,
+        border-width 0.2s ease;
+}
+.peoples-tree-races.peoples-tree-races--collapsed {
+    max-height: 0 !important;
+    opacity: 0;
+    margin-top: 0 !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    border-left-width: 0 !important;
+    pointer-events: none;
 }
 .peoples-tree-race {
     display: block;
@@ -3055,11 +3108,46 @@
     text-decoration-style: dotted;
     text-underline-offset: 2px;
 }
-/* Inline accordions: people, race, and origin content folded in the tree */
+/* Inline accordions: fade + collapse (override UA [hidden] display so transitions run) */
 .peoples-tree-people-content[hidden],
 .peoples-tree-race-content[hidden],
 .peoples-tree-origin-content[hidden] {
-    display: none !important;
+    display: block !important;
+    max-height: 0 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    overflow: hidden !important;
+    margin-top: 0 !important;
+    margin-left: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    border-width: 0 !important;
+    pointer-events: none !important;
+    transition:
+        max-height 0.38s ease,
+        opacity 0.28s ease,
+        visibility 0.28s ease,
+        margin 0.26s ease,
+        padding 0.26s ease,
+        border-width 0.2s ease;
+}
+.peoples-tree-people-content:not([hidden]),
+.peoples-tree-race-content:not([hidden]),
+.peoples-tree-origin-content:not([hidden]) {
+    max-height: 4800px;
+    opacity: 1;
+    visibility: visible;
+    overflow: visible;
+    transition:
+        max-height 0.42s ease,
+        opacity 0.32s ease,
+        visibility 0.32s ease,
+        margin 0.28s ease,
+        padding 0.28s ease,
+        border-width 0.2s ease;
 }
 /* Reset flip-card transform when cloned into tree (avoids mirrored text) */
 .peoples-tree-people-content .peoples-flip-back-inner {
@@ -3166,31 +3254,8 @@
     color: #2c2419;
 }
 .peoples-tree-race-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.25rem 0.5rem;
-    margin-top: 2px;
-}
-.peoples-tree-race-row .peoples-tree-race {
-    flex: 1 1 auto;
-    min-width: 0;
-}
-.peoples-tree-race-portrait-wrap {
-    flex: 0 0 auto;
-    margin-left: auto;
-}
-.peoples-tree-race-portrait {
     display: block;
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
-    object-position: top center;
-    border-radius: 3px;
-    border: 1px solid var(--tdt-burgundy-warm);
-    background: var(--tdt-beige-lighter);
-    cursor: zoom-in;
+    margin-top: 2px;
 }
 
 /* Peoples tree: hover portrait enlargement (full-screen dim + image) */
@@ -3201,7 +3266,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 3rem 1.5rem 1.5rem;
+    padding: 1.5rem;
     box-sizing: border-box;
     background: rgba(26, 8, 8, 0.78);
     cursor: pointer;
@@ -3218,30 +3283,6 @@
         opacity: 1;
     }
 }
-.tdt-peoples-portrait-lightbox__close {
-    position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
-    z-index: 2;
-    margin: 0;
-    padding: 0.35rem 0.65rem;
-    min-width: 2.25rem;
-    min-height: 2.25rem;
-    border: 1px solid var(--tdt-beige);
-    border-radius: 6px;
-    background: var(--tdt-burgundy);
-    color: var(--tdt-gold);
-    font: inherit;
-    font-size: 1.25rem;
-    line-height: 1;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
-}
-.tdt-peoples-portrait-lightbox__close:hover,
-.tdt-peoples-portrait-lightbox__close:focus-visible {
-    background: var(--tdt-burgundy-warm);
-    outline: none;
-}
 .tdt-peoples-portrait-lightbox__img {
     max-width: min(92vw, 720px);
     max-height: min(85vh, 900px);
@@ -3249,16 +3290,14 @@
     height: auto;
     object-fit: contain;
     border-radius: 8px;
-    border: 2px solid var(--tdt-beige-warm);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+    border: none;
+    box-shadow: none;
+    filter: none;
     pointer-events: none;
     cursor: default;
 }
 body.tdt-peoples-portrait-lightbox-open {
     overflow: hidden;
-}
-.peoples-tree-race-row .peoples-tree-race-content {
-    flex: 1 1 100%;
 }
 .peoples-tree-race-content {
     margin-top: var(--spacing-xs);
@@ -3277,6 +3316,7 @@ body.tdt-peoples-portrait-lightbox-open {
     margin: 0;
     line-height: 1.5;
     color: #2c2419;
+    white-space: pre-line;
 }
 /* Origin description panel: same style as people/race unfolded cards */
 .peoples-tree-origin-content {
@@ -3296,6 +3336,7 @@ body.tdt-peoples-portrait-lightbox-open {
     margin: 0;
     line-height: 1.5;
     color: #2c2419;
+    white-space: pre-line;
 }
 /* Flip cards  -  hidden when using accordions; cards kept as content source */
 .peoples-gallery--hidden {
@@ -3647,13 +3688,11 @@ body.tdt-peoples-portrait-lightbox-open {
         margin-left: var(--spacing-sm);
         padding-left: var(--spacing-xs);
     }
-    .peoples-tree-portrait {
-        width: 40px;
-        height: 40px;
+    .peoples-tree-node[data-peuple] {
+        padding-right: calc(clamp(56px, 22vw, 112px) + 0.35rem);
     }
-    .peoples-tree-race-portrait {
-        width: 32px;
-        height: 32px;
+    .peoples-tree-portrait-column {
+        width: clamp(56px, 22vw, 112px);
     }
     .peoples-tree-people-content,
     .peoples-tree-race-content,
