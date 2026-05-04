@@ -1321,7 +1321,21 @@ button.nav-icon-link {
 }
 
 .tdt-pdf-dialog-lead,
-.tdt-pdf-dialog-license,
+.tdt-pdf-dialog-license {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin: 0 0 var(--spacing-sm);
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphenate-limit-chars: 6 3 2;
+    overflow-wrap: break-word;
+}
+
+.tdt-pdf-dialog-lead--after-license {
+    margin-top: var(--spacing-sm);
+}
+
 .tdt-pdf-dialog-follow {
     font-size: 0.95rem;
     line-height: 1.55;

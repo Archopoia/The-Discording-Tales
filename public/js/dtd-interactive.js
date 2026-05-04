@@ -556,6 +556,126 @@
     // ========================================
     // Peuples Section: Flip cards, view tabs, tree, filter/search
     // ========================================
+
+    /**
+     * Show an origin's people list and each people's race list (inline styles + aria).
+     * Uses direct children only so it still works after .peoples-tree-origin-content is injected.
+     */
+    function expandPeoplesTreeOriginSubtree(originNode) {
+        if (!originNode) return;
+        var childrenEl = null;
+        for (var ci = 0; ci < originNode.children.length; ci++) {
+            var ch = originNode.children[ci];
+            if (ch.classList && ch.classList.contains('peoples-tree-children')) {
+                childrenEl = ch;
+                break;
+            }
+        }
+        if (!childrenEl) return;
+        originNode.setAttribute('aria-expanded', 'true');
+        childrenEl.style.removeProperty('display');
+        for (var pi = 0; pi < childrenEl.children.length; pi++) {
+            var peupleNode = childrenEl.children[pi];
+            if (!peupleNode.getAttribute || !peupleNode.getAttribute('data-peuple')) continue;
+            var racesEl = peupleNode.querySelector('.peoples-tree-races');
+            if (!racesEl) continue;
+            peupleNode.setAttribute('aria-expanded', 'true');
+            racesEl.style.removeProperty('display');
+        }
+    }
+
+    function expandPeoplesTreePeupleRaces(peupleNode) {
+        if (!peupleNode) return;
+        var racesEl = peupleNode.querySelector('.peoples-tree-races');
+        if (!racesEl) return;
+        peupleNode.setAttribute('aria-expanded', 'true');
+        racesEl.style.removeProperty('display');
+    }
+
+    /**
+     * Full-screen preview for peoples tree portraits (hover or tap on thumb).
+     */
+    function initPeoplesPortraitLightbox(peoplesSection) {
+        if (!peoplesSection) return;
+        var lb = document.getElementById('tdt-peoples-portrait-lightbox');
+        var bigImg;
+        var closeBtn;
+        if (!lb) {
+            lb = document.createElement('div');
+            lb.id = 'tdt-peoples-portrait-lightbox';
+            lb.className = 'tdt-peoples-portrait-lightbox';
+            lb.setAttribute('role', 'dialog');
+            lb.setAttribute('aria-modal', 'true');
+            lb.setAttribute('aria-hidden', 'true');
+            lb.hidden = true;
+            closeBtn = document.createElement('button');
+            closeBtn.type = 'button';
+            closeBtn.className = 'tdt-peoples-portrait-lightbox__close';
+            closeBtn.setAttribute('aria-label', 'Close');
+            closeBtn.appendChild(document.createTextNode('\u00d7'));
+            bigImg = document.createElement('img');
+            bigImg.className = 'tdt-peoples-portrait-lightbox__img';
+            bigImg.alt = '';
+            lb.appendChild(closeBtn);
+            lb.appendChild(bigImg);
+            document.body.appendChild(lb);
+        } else {
+            bigImg = lb.querySelector('.tdt-peoples-portrait-lightbox__img');
+            closeBtn = lb.querySelector('.tdt-peoples-portrait-lightbox__close');
+        }
+
+        function onKeyLb(ev) {
+            if (ev.key === 'Escape') {
+                closeLb();
+            }
+        }
+
+        function closeLb() {
+            if (!lb || lb.hidden) return;
+            lb.hidden = true;
+            lb.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('tdt-peoples-portrait-lightbox-open');
+            document.removeEventListener('keydown', onKeyLb, true);
+        }
+
+        function openLb(src) {
+            if (!src || !bigImg) return;
+            document.removeEventListener('keydown', onKeyLb, true);
+            bigImg.src = src;
+            lb.hidden = false;
+            lb.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('tdt-peoples-portrait-lightbox-open');
+            document.addEventListener('keydown', onKeyLb, true);
+        }
+
+        if (!lb.dataset.tdtLbBound) {
+            lb.dataset.tdtLbBound = '1';
+            lb.addEventListener('click', function() {
+                closeLb();
+            });
+            closeBtn.addEventListener('click', function(ev) {
+                ev.preventDefault();
+                ev.stopPropagation();
+                closeLb();
+            });
+        }
+
+        peoplesSection.querySelectorAll('img.peoples-tree-portrait, img.peoples-tree-race-portrait').forEach(function(img) {
+            if (img.dataset.tdtPortraitLbBound) return;
+            img.dataset.tdtPortraitLbBound = '1';
+            img.addEventListener('mouseenter', function() {
+                var s = img.currentSrc || img.getAttribute('src') || '';
+                if (s) openLb(s);
+            });
+            img.addEventListener('click', function(ev) {
+                ev.preventDefault();
+                ev.stopPropagation();
+                var s = img.currentSrc || img.getAttribute('src') || '';
+                if (s) openLb(s);
+            });
+        });
+    }
+
     function initPeuples() {
         const peoplesSection = document.getElementById('peoples');
         if (!peoplesSection) return;
@@ -775,6 +895,19 @@
                 });
             }
 
+            var PEOPLE_TREE_PORTRAIT_BY_PEUPLE = {
+                aristois: 'assets/images/people/Aristois%20copy.png',
+                griscribes: 'assets/images/people/Griscribes%20copy.png',
+                navillis: 'assets/images/people/Navillis%20copy.png',
+                meridiens: 'assets/images/people/M%C3%A9ridiens%20copy.png',
+                'hauts-ylfes': 'assets/images/people/Grands%20Ylfes%20copy.png',
+                'ylfes-pales': 'assets/images/people/Ylfes%20p%C3%A4les%20copy.png',
+                'ylfes-des-lacs': 'assets/images/people/Ylfe%20des%20lacs%20copy.png',
+                iqqars: 'assets/images/people/Iqqars%20copy.png',
+                slaadeens: 'assets/images/people/Slaad%C3%A9ens%20copy.png',
+                tchalkchais: 'assets/images/people/Tchalkcha%C3%AF%20copy.png'
+            };
+
             var treeWrap = peoplesSection.querySelector('.peoples-tree-wrap');
             if (treeWrap) {
                 // Inject people accordion panels (right below name/morality, before races)
@@ -798,6 +931,23 @@
                         row.className = 'peoples-tree-race-row';
                         span.parentNode.insertBefore(row, span);
                         row.appendChild(span);
+                        var peupleId = span.getAttribute('data-peuple');
+                        var portraitSrc = peupleId ? PEOPLE_TREE_PORTRAIT_BY_PEUPLE[peupleId] : '';
+                        if (portraitSrc) {
+                            var pWrap = document.createElement('span');
+                            pWrap.className = 'peoples-tree-race-portrait-wrap';
+                            pWrap.setAttribute('aria-hidden', 'true');
+                            var pImg = document.createElement('img');
+                            pImg.className = 'peoples-tree-race-portrait';
+                            pImg.src = portraitSrc;
+                            pImg.alt = '';
+                            pImg.width = 40;
+                            pImg.height = 40;
+                            pImg.decoding = 'async';
+                            pImg.loading = 'lazy';
+                            pWrap.appendChild(pImg);
+                            row.appendChild(pWrap);
+                        }
                         var content = document.createElement('div');
                         content.className = 'peoples-tree-race-content';
                         content.setAttribute('aria-expanded', 'false');
@@ -848,6 +998,7 @@
                                 panel.appendChild(body);
                             }
                             body.textContent = text;
+                            expandPeoplesTreeOriginSubtree(originNode);
                         }
                         return;
                     }
@@ -865,6 +1016,7 @@
                         } else {
                             panel.removeAttribute('hidden');
                             panel.setAttribute('aria-expanded', 'true');
+                            expandPeoplesTreePeupleRaces(node);
                             if (!panel.children.length) {
                                 var peupleId = node.getAttribute('data-peuple');
                                 var content = buildPeopleAccordionContent(peoplesSection, peupleId);
@@ -915,6 +1067,8 @@
                     }
                 });
             }
+
+            initPeoplesPortraitLightbox(peoplesSection);
 
             // Refresh inline accordion content on language change
             try {
