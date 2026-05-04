@@ -2936,6 +2936,7 @@
     height: auto;
     margin-inline: auto;
     border-radius: 6px;
+    cursor: zoom-in;
 }
 
 .peoples-intro {
@@ -3295,6 +3296,11 @@
     filter: none;
     pointer-events: none;
     cursor: default;
+}
+/* Height comparison chart (wide): same lightbox, larger horizontal fit */
+.tdt-peoples-portrait-lightbox__img.tdt-peoples-portrait-lightbox__img--panorama {
+    max-width: min(98vw, 1680px);
+    max-height: min(58vh, 640px);
 }
 body.tdt-peoples-portrait-lightbox-open {
     overflow: hidden;

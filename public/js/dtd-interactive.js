@@ -739,12 +739,21 @@
             lb.setAttribute('aria-hidden', 'true');
             document.body.classList.remove('tdt-peoples-portrait-lightbox-open');
             document.removeEventListener('keydown', onKeyLb, true);
+            if (bigImg) {
+                bigImg.classList.remove('tdt-peoples-portrait-lightbox__img--panorama');
+            }
         }
 
-        function openLb(src) {
+        function openLb(src, variant, sourceImg) {
             if (!src || !bigImg) return;
             document.removeEventListener('keydown', onKeyLb, true);
             bigImg.src = src;
+            bigImg.alt = sourceImg && sourceImg.getAttribute ? sourceImg.getAttribute('alt') || '' : '';
+            if (variant === 'panorama') {
+                bigImg.classList.add('tdt-peoples-portrait-lightbox__img--panorama');
+            } else {
+                bigImg.classList.remove('tdt-peoples-portrait-lightbox__img--panorama');
+            }
             lb.hidden = false;
             lb.setAttribute('aria-hidden', 'false');
             document.body.classList.add('tdt-peoples-portrait-lightbox-open');
@@ -758,19 +767,26 @@
             });
         }
 
-        peoplesSection.querySelectorAll('img.peoples-tree-portrait').forEach(function(img) {
+        function bindPortraitLightboxTrigger(img, variant) {
             if (img.dataset.tdtPortraitLbBound) return;
             img.dataset.tdtPortraitLbBound = '1';
             img.addEventListener('mouseenter', function() {
                 var s = img.currentSrc || img.getAttribute('src') || '';
-                if (s) openLb(s);
+                if (s) openLb(s, variant, img);
             });
             img.addEventListener('click', function(ev) {
                 ev.preventDefault();
                 ev.stopPropagation();
                 var s = img.currentSrc || img.getAttribute('src') || '';
-                if (s) openLb(s);
+                if (s) openLb(s, variant, img);
             });
+        }
+
+        peoplesSection.querySelectorAll('img.peoples-tree-portrait').forEach(function(img) {
+            bindPortraitLightboxTrigger(img);
+        });
+        peoplesSection.querySelectorAll('img.peoples-lead__height-chart').forEach(function(img) {
+            bindPortraitLightboxTrigger(img, 'panorama');
         });
     }
 
