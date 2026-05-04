@@ -993,26 +993,71 @@
     pointer-events: none;
 }
 
-.outpost-cta {
-    flex: 0 0 auto;
-    white-space: nowrap;
-}
-
-/* Same outer height as email field; smaller type so the field stays visually wider */
-.outpost-form .outpost-cta.cta-button {
+/* Outpost subscribe: row height; disabled = Play tab panel buttons at rest; enabled = Download the Book */
+.outpost-form button.outpost-cta {
     box-sizing: border-box;
-    height: var(--touch-min);
-    min-height: var(--touch-min);
-    max-height: var(--touch-min);
-    padding: 0 clamp(0.45rem, 1.8vw, 0.75rem);
-    font-size: clamp(0.58rem, 1.35vw, 0.6875rem);
-    font-weight: 800;
-    letter-spacing: 0.04em;
-    line-height: 1.1;
+    flex: 0 0 auto;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-width: 2px;
+    height: var(--touch-min);
+    min-height: var(--touch-min);
+    max-height: var(--touch-min);
+    padding: 0 1rem;
+    white-space: nowrap;
+    line-height: 1.15;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    border-radius: var(--radius-sm);
+    opacity: 1;
+    -webkit-text-fill-color: unset;
+}
+
+/* Same default chrome as .play-panel-btn (Zine / Chat / Sheet) when not hovered or active */
+.outpost-form button.outpost-cta:disabled {
+    cursor: not-allowed;
+    font-family: 'Quintessential', cursive, serif;
+    font-weight: 600;
+    font-size: clamp(0.68rem, 1.85vw, 0.88rem);
+    letter-spacing: normal;
+    color: #f3e2a9;
+    background: #643030;
+    border: 2px solid #674b1b;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 0 0 1px #ffebc6;
+    transition: all 0.3s ease;
+    transform: none;
+    opacity: 1;
+    -webkit-text-fill-color: #f3e2a9;
+}
+
+.outpost-form button.outpost-cta:disabled:hover,
+.outpost-form button.outpost-cta:disabled:focus-visible {
+    background: #643030;
+    color: #f3e2a9;
+    transform: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 0 0 1px #ffebc6;
+    outline: none;
+}
+
+/* Match .nav-download-book-btn (header) when a plausible address is present */
+.outpost-form button.outpost-cta:not(:disabled) {
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-size: clamp(0.68rem, 1.9vw, 0.88rem);
+    color: var(--tdt-burgundy-warm);
+    background: linear-gradient(180deg, var(--tdt-cream) 0%, var(--tdt-beige-warm) 100%);
+    border: 2px solid var(--tdt-gold);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.outpost-form button.outpost-cta:not(:disabled):hover,
+.outpost-form button.outpost-cta:not(:disabled):focus-visible {
+    transform: translateY(-1px);
+    box-shadow: 0 0 18px rgba(245, 230, 196, 0.45);
+    outline: none;
 }
 
 /* ========================================

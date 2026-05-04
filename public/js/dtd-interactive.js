@@ -38,6 +38,13 @@
         siteLogo: document.querySelector('.site-logo')
     };
 
+    /** Loose gate for enabling the outpost subscribe control (trimmed; needs @ and domain.tld). */
+    function isLooseNewsletterEmail(value) {
+        var v = String(value || '').trim();
+        if (!v) return false;
+        return /\S+@\S+\.\S+/.test(v);
+    }
+
     /** Main nav tab order (left to right) for logo spin direction */
     const TAB_ORDER = ['landing', 'lore', 'univers', 'rules', 'play', 'about'];
     let logoBurstTimeout = null;
@@ -3632,15 +3639,35 @@
     // Newsletter Form
     // ========================================
     function initNewsletter() {
-        if (!elements.newsletterForm) return;
+        /* Resolve at init time: elements.newsletterForm is captured when the script first runs and can be null with some load orders. */
+        var form = document.getElementById('newsletter-form');
+        if (!form) return;
 
-        elements.newsletterForm.addEventListener('submit', async function(e) {
+        var newsletterEmailInput = document.getElementById('newsletter-email');
+        var newsletterSubmitBtn = form.querySelector('button.outpost-cta');
+
+        function updateNewsletterSubmitEnabled() {
+            if (!newsletterEmailInput || !newsletterSubmitBtn) return;
+            newsletterSubmitBtn.disabled = !isLooseNewsletterEmail(newsletterEmailInput.value);
+        }
+
+        if (newsletterEmailInput && newsletterSubmitBtn) {
+            ['input', 'change', 'blur'].forEach(function(evt) {
+                newsletterEmailInput.addEventListener(evt, updateNewsletterSubmitEnabled);
+            });
+            newsletterEmailInput.addEventListener('paste', function() {
+                setTimeout(updateNewsletterSubmitEnabled, 0);
+            });
+            updateNewsletterSubmitEnabled();
+        }
+
+        form.addEventListener('submit', async function(e) {
             e.preventDefault();
             const emailInput = document.getElementById('newsletter-email');
             const email = emailInput ? emailInput.value : '';
-            const honeypotInput = elements.newsletterForm.querySelector('input[name="website"]');
+            const honeypotInput = form.querySelector('input[name="website"]');
             const honeypot = honeypotInput ? honeypotInput.value : '';
-            const submitBtn = elements.newsletterForm.querySelector('button[type="submit"]');
+            const submitBtn = form.querySelector('button[type="submit"]');
             const originalBtnText = submitBtn ? submitBtn.textContent : '';
 
             if (!email || !isValidEmail(email)) {
@@ -3701,9 +3728,9 @@
                 console.error('[Newsletter] subscribe error:', err);
             } finally {
                 if (submitBtn) {
-                    submitBtn.disabled = false;
                     submitBtn.textContent = originalBtnText;
                 }
+                updateNewsletterSubmitEnabled();
             }
         });
     }
