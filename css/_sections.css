@@ -1895,104 +1895,169 @@
     }
 }
 
-/* Universe > Monde > Lore: simple blog of book extracts (<details> per entry) */
-.universe-lore-blog {
+/* Universe > Monde > Lore: book extracts - same legibility pattern as About .genre-card (beige panel, burgundy border, dark type) */
+#universe-lore .universe-lore-blog {
     max-width: 52rem;
     margin: 0 auto;
-    padding: var(--spacing-sm) var(--spacing-md) var(--spacing-lg);
+    padding: var(--spacing-md);
     box-sizing: border-box;
+    background:
+        linear-gradient(135deg, var(--tdt-beige-lighter) 0%, var(--tdt-beige-warm) 50%, var(--tdt-beige-light) 100%),
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 10px,
+            rgba(212, 197, 168, 0.12) 10px,
+            rgba(212, 197, 168, 0.12) 20px
+        );
+    border: 4px double var(--tdt-burgundy-warm);
+    border-radius: var(--radius-md);
+    box-shadow: var(--card-shadow);
 }
 
-.universe-lore-blog__head {
+#universe-lore .universe-lore-blog__head {
     margin-bottom: var(--spacing-md);
     padding-bottom: var(--spacing-sm);
-    border-bottom: 1px solid rgba(212, 197, 168, 0.35);
+    border-bottom: 2px solid rgba(90, 31, 31, 0.35);
 }
 
-.universe-lore-blog__title {
+#universe-lore .universe-lore-blog__title {
     font-size: clamp(1.25rem, 2.5vw, 1.65rem);
     margin: 0 0 0.35rem;
-    color: var(--tdt-mint, #a0fdd2);
+    color: #2a0f0f;
+    font-weight: 900;
     letter-spacing: 0.02em;
+    text-shadow:
+        1px 1px 0 rgba(90, 31, 31, 0.2),
+        0 0 12px rgba(245, 230, 196, 0.35);
 }
 
-.universe-lore-blog__sub {
+#universe-lore .universe-lore-blog__sub {
     margin: 0;
     font-size: 0.95rem;
-    opacity: 0.88;
-    line-height: 1.45;
+    line-height: 1.55;
+    color: #1a0f0f;
+    font-weight: 500;
+    text-align: justify;
+    text-align-last: start;
+    text-justify: inter-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    overflow-wrap: break-word;
+    word-break: normal;
+    orphans: 2;
+    widows: 2;
 }
 
-.universe-lore-entry {
+#universe-lore .universe-lore-entry {
     margin-bottom: 0.65rem;
     border-radius: var(--radius-md, 8px);
-    border: 1px solid rgba(212, 197, 168, 0.28);
-    background: linear-gradient(135deg, rgba(40, 22, 22, 0.55) 0%, rgba(28, 16, 18, 0.72) 100%);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    border: 2px solid var(--tdt-burgundy-warm);
+    background: rgba(255, 252, 245, 0.55);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
     overflow: hidden;
 }
 
-.universe-lore-entry__summary {
+#universe-lore .universe-lore-entry:last-child {
+    margin-bottom: 0;
+}
+
+#universe-lore .universe-lore-entry__summary {
     cursor: pointer;
     list-style: none;
     padding: 0.85rem 1rem;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 1.02rem;
-    color: var(--tdt-beige-warm, #e8dcc8);
+    color: #2a0f0f;
     transition: background 0.2s ease, color 0.2s ease;
 }
 
-.universe-lore-entry__summary::-webkit-details-marker {
+#universe-lore .universe-lore-entry__summary::-webkit-details-marker {
     display: none;
 }
 
-.universe-lore-entry__summary::after {
+#universe-lore .universe-lore-entry__summary::after {
     content: "+";
     float: right;
-    font-weight: 400;
-    opacity: 0.65;
+    font-weight: 600;
+    color: var(--tdt-burgundy-warm);
+    opacity: 0.85;
     transition: transform 0.2s ease;
 }
 
-.universe-lore-entry[open] .universe-lore-entry__summary::after {
+#universe-lore .universe-lore-entry[open] .universe-lore-entry__summary::after {
     content: "−";
     transform: rotate(0deg);
 }
 
-.universe-lore-entry__summary:hover,
-.universe-lore-entry__summary:focus-visible {
-    background: rgba(160, 253, 218, 0.08);
-    color: var(--tdt-mint, #a0fdd2);
+#universe-lore .universe-lore-entry__summary:hover,
+#universe-lore .universe-lore-entry__summary:focus-visible {
+    background: rgba(90, 31, 31, 0.08);
+    color: #1a0808;
     outline: none;
 }
 
-.universe-lore-entry__body {
+#universe-lore .universe-lore-entry__body {
     padding: 0 1rem 1.1rem;
-    border-top: 1px solid rgba(212, 197, 168, 0.15);
+    border-top: 1px solid rgba(90, 31, 31, 0.22);
     font-size: 0.95rem;
-    line-height: 1.55;
-    color: rgba(245, 236, 220, 0.92);
+    line-height: 1.65;
+    color: #0f0808;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern" 1, "liga" 1;
 }
 
-.universe-lore-entry__body p {
+#universe-lore .universe-lore-entry__body p,
+#universe-lore .universe-lore-entry__body li {
+    color: #0f0808;
+    font-weight: 500;
+    text-align: justify;
+    text-align-last: start;
+    text-justify: inter-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphenate-limit-chars: 6 3 3;
+    overflow-wrap: break-word;
+    word-break: normal;
+    orphans: 2;
+    widows: 2;
+}
+
+#universe-lore .universe-lore-entry__body strong {
+    color: #1a0a0a;
+    font-weight: 700;
+    hyphens: manual;
+    -webkit-hyphens: manual;
+    -ms-hyphens: manual;
+}
+
+#universe-lore .universe-lore-entry__body p {
     margin: 0.65rem 0;
 }
 
-.universe-lore-entry__body ul {
+#universe-lore .universe-lore-entry__body ul {
     margin: 0.5rem 0 0.75rem;
     padding-left: 1.15rem;
+    list-style-position: outside;
 }
 
-.universe-lore-entry__body li {
+#universe-lore .universe-lore-entry__body li {
     margin: 0.4rem 0;
+    padding-left: 0.15rem;
 }
 
-.universe-lore-src {
+#universe-lore .universe-lore-src {
     font-size: 0.78rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    opacity: 0.55;
+    color: rgba(90, 31, 31, 0.75);
+    font-weight: 600;
     margin: 0.5rem 0 0.25rem !important;
+    text-align: start;
+    hyphens: none;
+    -webkit-hyphens: none;
 }
 
 .map-focus {
