@@ -1139,7 +1139,7 @@
     animation: tdt-tab-sub-fade-in 0.34s ease-out forwards;
 }
 
-/* Universe > Monde: stack Peoples + World Map in one grid cell for opacity cross-fade */
+/* Universe > Monde: stack Peoples + Map in one grid cell for opacity cross-fade */
 .tab-content.has-subtabs #peoples.tab-sub-panel.active {
     display: grid;
     grid-template-columns: minmax(0, 1fr);

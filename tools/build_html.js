@@ -1,6 +1,6 @@
 /**
- * HTML partials build: replace {{peoples-cards}} and {{inspirations-keywords}}
- * with contents of partials/peoples-cards.html and partials/inspirations-keywords.html.
+ * HTML partials build: replace {{peoples-cards}}, {{inspirations-keywords}},
+ * {{universe-lore-fr}}, {{zine-content}} with partials files.
  *
  * Usage:
  *   node tools/build_html.js           -  build index.html from index.template.html + partials
@@ -26,12 +26,17 @@ function build() {
   const peoplesPath = path.join(partialsDir, 'peoples-cards.html');
   const keywordsPath = path.join(partialsDir, 'inspirations-keywords.html');
   const zinePath = path.join(partialsDir, 'zine-content.html');
+  const universeLorePath = path.join(partialsDir, 'universe-lore-fr.html');
   const peoples = fs.readFileSync(peoplesPath, 'utf8');
   const keywords = fs.readFileSync(keywordsPath, 'utf8');
   const zineContent = fs.existsSync(zinePath) ? fs.readFileSync(zinePath, 'utf8') : '<!-- Run build_zine.js to generate zine-content -->';
+  const universeLoreFr = fs.existsSync(universeLorePath)
+    ? fs.readFileSync(universeLorePath, 'utf8')
+    : '<!-- missing partials/universe-lore-fr.html -->';
   let out = template
     .replace('{{peoples-cards}}', peoples.trim())
     .replace('{{inspirations-keywords}}', keywords.trim())
+    .replace('{{universe-lore-fr}}', universeLoreFr.trim())
     .replace('{{zine-content}}', zineContent.trim());
   fs.writeFileSync(indexPath, out, 'utf8');
   console.log('Built index.html from template + partials');

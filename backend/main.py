@@ -326,7 +326,7 @@ GM_CREATION_PROMPT = """You are the Éveilleur guiding character creation for De
 [StateJSON] <single-line JSON object>
 
 StateJSON must be a single-line JSON with:
-- "attributes": object with keys FOR, AGI, DEX, VIG, EMP, PER, CRE, VOL. Integer values in Niv scale = People base (from CSV) + individuation (+2,+1,0,0,0,0,-1,-2). Sum depends on People. Example (Aristois male + individuation): {"FOR":1,"AGI":0,"DEX":-2,"VIG":0,"EMP":2,"PER":1,"CRE":1,"VOL":2}
+- "attributes": object with keys FOR, AGI, DEX, VIG, EMP, PER, CRE, VOL. Integer values in Niv scale = People base (from CSV) + individuation (+2,+1,0,0,0,0,-1,-2). Sum depends on People. Example (Aristese male + individuation): {"FOR":1,"AGI":0,"DEX":-2,"VIG":0,"EMP":2,"PER":1,"CRE":1,"VOL":2}
 - "revealed": array of 3 to 5 competence keys (use exact keys from the 72 competences, e.g. GRIMPE, NEGOCIATION, ESQUIVE, INVESTIGATION, MEDECINE, ARMÉ → ARME, Désarmé → DESARME, etc.). French accents removed: use ARME not Armé.
 - "degrees": object mapping each revealed competence key to its degree count (dice). Sum of degrees must be 10. Only competence keys (no resistance). Example: {"GRIMPE":3,"NEGOCIATION":2,"ESQUIVE":2,"INVESTIGATION":1,"MEDECINE":2}
 
@@ -334,8 +334,8 @@ Valid competence keys include: ARME, DESARME, IMPROVISE, LUTTE, BOTTES, RUSES, B
 
 **Steps to run (in order):**
 1. Origine: [Choice id=origine] with [Option Yômmes], [Option Yôrres], [Option Bêstres]
-2. Peuple: [Choice id=peuple] with options depending on Origine (Yômmes: Aristois, Griscribes, Navillis, Méridiens; Yôrres: Hauts Ylfes, Ylfes pâles, Ylfes des lacs, Iqqars; Bêstres: Slaadéens, Tchalkchaïs)
-3. Sex (for Peoples with sex-based modifiers): [Choice id=sex] with [Option male], [Option female]  -  required for Aristois, Griscribes, Navillis, Méridiens, Haut-Ylfes, Ylfes des lacs, Tchalkchaïs.
+2. Peuple: [Choice id=peuple] with options depending on Origine (Yômmes: Aristese, Greyscribes, Navillis, Meridians; Yôrres: Tall Ylves, Pale Ylves, Lake Ylves, Iqqars; Bêstres: Slaadeans, Tchalkchaïs)
+3. Sex (for Peoples with sex-based modifiers): [Choice id=sex] with [Option male], [Option female]  -  required for Aristese, Greyscribes, Navillis, Meridians, Tall Ylves, Lake Ylves, Tchalkchaïs.
 4. (Optional) [Input id=name] Ask for the character's name.
 5. Attributes: Each People has base modifiers (CSV Attributs d'Origine, Peuple & Race). Player adds individuation (+2, +1, 0, 0, 0, 0, -1, -2, one per attribute). Final = People base + individuation. Then [Input id=attributes]  -  values are the final Niv (can be negative; sum depends on People).
 6. Reveal competences: [Choice id=reveal] or [Input id=reveal]  -  player must choose 3 to 5 competences to reveal (list a few suggested options or ask them to list 3–5 competence names from the 72).
@@ -559,7 +559,7 @@ def _chat_system_prompt(req: ChatRequest, rules_block: str) -> str:
     lang_instruction_top = ""
     lang_instruction_end = ""
     if req.lang and req.lang.lower() == "en":
-        lang_instruction_top = "**Language**: You MUST respond in English. All narrative, descriptions, and dialogue must be in English. Refer to the game as \"The Discording Tales\" (not \"Des Récits Discordants\"). When quoting or paraphrasing from the rules/lore, TRANSLATE the content into English  -  do NOT paste French quotes directly. The only French words allowed are proper nouns (character names, place names like Iäoduneï, Hael, Féos), people names (Yômmes, Yôrres, Bêstres, Aristois, etc.), and competence names in brackets (e.g. Roll [Grimpe]).\n\n"
+        lang_instruction_top = "**Language**: You MUST respond in English. All narrative, descriptions, and dialogue must be in English. Refer to the game as \"The Discording Tales\" (not \"Des Récits Discordants\"). When quoting or paraphrasing from the rules/lore, TRANSLATE the content into English  -  do NOT paste French quotes directly. The only French words allowed are proper nouns (character names, place names like Iäoduneï, Hael, Féos), origins and peoples as usually written (Yômmes, Yôrres, Bêstres; Aristese, Greyscribes, Meridians, Tall Ylves, Pale Ylves, Lake Ylves, Slaadeans, etc.), and competence names in brackets (e.g. Roll [Grimpe]).\n\n"
         lang_instruction_end = "\n\n**REMINDER  -  LANGUAGE**: You MUST reply ENTIRELY in English. The rules/lore above are in French  -  you must TRANSLATE all quotes and descriptions into English. Do NOT include French sentences or phrases except for proper nouns and competence names. The game is called \"The Discording Tales\" in English."
     elif req.lang and req.lang.lower() == "fr":
         lang_instruction_top = "**Langue** : Réponds en français. Tout le récit, les descriptions et les dialogues doivent être en français.\n\n"

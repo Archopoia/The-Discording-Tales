@@ -112,15 +112,15 @@
         { src: 'assets/images/image/image6.png', alt: 'Final Artwork' },
         { src: 'assets/images/image/image10.png', alt: 'Artwork 2' },
         { src: 'assets/images/image/image3.png', alt: 'All Copy 1' },
-        { src: 'assets/images/people/Aristois%20copy.png', alt: 'Aristois' },
-        { src: 'assets/images/people/Griscribes%20copy.png', alt: 'Griscribes' },
+        { src: 'assets/images/people/Aristois%20copy.png', alt: 'Aristese' },
+        { src: 'assets/images/people/Griscribes%20copy.png', alt: 'Greyscribes' },
         { src: 'assets/images/people/Navillis%20copy.png', alt: 'Navillis' },
-        { src: 'assets/images/people/M%C3%A9ridiens%20copy.png', alt: 'Méridiens' },
-        { src: 'assets/images/people/Grands%20Ylfes%20copy.png', alt: 'Hauts Ylfes' },
-        { src: 'assets/images/people/Ylfes%20p%C3%A4les%20copy.png', alt: 'Ylfes pâles' },
-        { src: 'assets/images/people/Ylfe%20des%20lacs%20copy.png', alt: 'Ylfes des lacs' },
+        { src: 'assets/images/people/M%C3%A9ridiens%20copy.png', alt: 'Meridians' },
+        { src: 'assets/images/people/Grands%20Ylfes%20copy.png', alt: 'Tall Ylves' },
+        { src: 'assets/images/people/Ylfes%20p%C3%A4les%20copy.png', alt: 'Pale Ylves' },
+        { src: 'assets/images/people/Ylfe%20des%20lacs%20copy.png', alt: 'Lake Ylves' },
         { src: 'assets/images/people/Iqqars%20copy.png', alt: 'Iqqars' },
-        { src: 'assets/images/people/Slaad%C3%A9ens%20copy.png', alt: 'Slaadéens' },
+        { src: 'assets/images/people/Slaad%C3%A9ens%20copy.png', alt: 'Slaadeans' },
         { src: 'assets/images/people/Tchalkcha%C3%AF%20copy.png', alt: 'Tchalkchaïs' }
     ];
     const meaningsImages = [
@@ -252,7 +252,7 @@
         deferredInitDone = true;
         
         initSubTabs();
-        initWorldMapPanZoom();
+        initMapPanZoom();
         initArchiveToggle();
         initZinePages();
         initPeuples();
@@ -498,8 +498,37 @@
         }
     }
 
+    /** Normalize location.hash for routing (encoded, leading /, query junk). */
+    function getRouteHashFragment() {
+        var h = (window.location.hash || '').replace(/^#/, '');
+        try {
+            h = decodeURIComponent(h);
+        } catch (e) { /* keep raw */ }
+        h = (h || '').split('?')[0].split('&')[0].trim();
+        if (h.indexOf('/') === 0) {
+            h = h.replace(/^\/+/, '');
+        }
+        return h;
+    }
+
+    /** Fragment from an in-page <a> (works when href is relative or absolute). */
+    function fragmentFromMondeLink(anchor) {
+        if (!anchor || anchor.tagName !== 'A') return '';
+        try {
+            var u = new URL(anchor.href, window.location.href);
+            if (u.origin !== window.location.origin) return '';
+            var frag = (u.hash || '').replace(/^#/, '').split('?')[0].trim();
+            if (frag.indexOf('/') === 0) frag = frag.replace(/^\/+/, '');
+            return frag;
+        } catch (e1) {
+            var raw = anchor.getAttribute('href') || '';
+            var m = raw.match(/#([^#?\s]+)/);
+            return m ? m[1].trim() : '';
+        }
+    }
+
     function handleHashChange() {
-        const hash = window.location.hash.substring(1);
+        const hash = getRouteHashFragment();
         const validTabs = ['landing', 'lore', 'univers', 'rules', 'play', 'about'];
         const sectionToTab = {
             cosmology: 'lore',
@@ -524,6 +553,11 @@
             return;
         }
         if (hash === 'world-map') {
+            if (history.replaceState) history.replaceState(null, null, '#map');
+            handleHashChange();
+            return;
+        }
+        if (hash === 'map') {
             if (archivedHidden) {
                 if (history.replaceState) history.replaceState(null, null, '#peoples');
                 switchTab('univers');
@@ -531,7 +565,12 @@
                 return;
             }
             switchTab('univers', { skipScrollToTop: true, skipEnsureSubTab: true });
-            switchSubTab('univers', 'peoples', 'univers-world-map-panel');
+            switchSubTab('univers', 'peoples', 'map');
+            return;
+        }
+        if (hash === 'universe-lore') {
+            switchTab('univers', { skipScrollToTop: true, skipEnsureSubTab: true });
+            switchSubTab('univers', 'peoples', 'universe-lore');
             return;
         }
         if (validTabs.includes(hash)) {
@@ -572,7 +611,7 @@
     }
 
     // ========================================
-    // Universe > World: Peoples | World Map (sidebar .univers-monde-in-page-nav + inner panels)
+    // Universe > World: Peoples | Map (sidebar .univers-monde-in-page-nav + inner panels)
     // ========================================
     function syncUniversMondeSublinkActive(innerId) {
         var nav = document.querySelector('.univers-monde-in-page-nav');
@@ -581,7 +620,8 @@
             var href = a.getAttribute('href') || '';
             var on = false;
             if (innerId === 'peoples-peoples' && href === '#peoples') on = true;
-            if (innerId === 'univers-world-map-panel' && href === '#world-map') on = true;
+            if (innerId === 'map' && href === '#map') on = true;
+            if (innerId === 'universe-lore' && href === '#universe-lore') on = true;
             a.classList.toggle('active', !!on);
             if (on) {
                 a.setAttribute('aria-current', 'page');
@@ -610,39 +650,39 @@
     }
 
     /**
-     * Sidebar Monde sub-links (#peoples / #world-map): intercept so the browser does not
+     * Sidebar Monde sub-links (#peoples / #map / #universe-lore): intercept so the browser does not
      * scroll to a hidden fragment target (jumps to top) before JS reveals the panel.
      */
     function initUniversMondeSidebarLinks() {
-        var links = document.querySelectorAll('.univers-monde-in-page-nav a.univers-monde-sublink');
-        if (!links.length) return;
-        links.forEach(function(a) {
-            a.addEventListener('click', function(e) {
-                var href = this.getAttribute('href') || '';
-                if (href !== '#peoples' && href !== '#world-map') return;
+        var nav = document.querySelector('.univers-monde-in-page-nav');
+        if (!nav) return;
+        nav.addEventListener(
+            'click',
+            function(e) {
+                var a = e.target && e.target.closest ? e.target.closest('a') : null;
+                if (!a || !a.classList.contains('univers-monde-sublink') || !nav.contains(a)) return;
+                var frag = fragmentFromMondeLink(a);
+                if (frag !== 'peoples' && frag !== 'map' && frag !== 'universe-lore') return;
                 e.preventDefault();
-                if (href === '#peoples') {
-                    switchTab('univers', { skipScrollToTop: true, skipEnsureSubTab: true });
-                    switchSubTab('univers', 'peoples', 'peoples-peoples');
-                } else {
-                    switchTab('univers', { skipScrollToTop: true, skipEnsureSubTab: true });
-                    switchSubTab('univers', 'peoples', 'univers-world-map-panel');
-                }
+                var pushHash = '#' + frag;
                 if (history.pushState) {
-                    history.pushState(null, null, href);
+                    history.pushState(null, null, pushHash);
+                    handleHashChange();
+                } else {
+                    window.location.hash = pushHash;
                 }
-                setLanguage(state.currentLang);
-            });
-        });
+            },
+            true
+        );
     }
 
     /**
-     * Universe world map: wheel / pinch zoom, drag pan when zoomed (inside circular viewport).
+     * Universe Map panel: wheel / pinch zoom, drag pan when zoomed (inside circular viewport).
      */
-    function initWorldMapPanZoom() {
-        var viewport = document.getElementById('world-map-viewport');
-        var layer = document.getElementById('world-map-pan-zoom-layer');
-        var panel = document.getElementById('univers-world-map-panel');
+    function initMapPanZoom() {
+        var viewport = document.getElementById('map-viewport');
+        var layer = document.getElementById('map-pan-zoom-layer');
+        var panel = document.getElementById('map');
         if (!viewport || !layer || !panel) return;
 
         var scale = 1;
@@ -718,7 +758,7 @@
             mouseDragging = true;
             mouseLastX = e.clientX;
             mouseLastY = e.clientY;
-            viewport.classList.add('world-map-viewport--dragging');
+            viewport.classList.add('map-viewport--dragging');
             e.preventDefault();
         });
 
@@ -734,7 +774,7 @@
         window.addEventListener('mouseup', function() {
             if (mouseDragging) {
                 mouseDragging = false;
-                viewport.classList.remove('world-map-viewport--dragging');
+                viewport.classList.remove('map-viewport--dragging');
             }
         });
 
@@ -1395,16 +1435,16 @@
         if (peoplesSection) {
             var PEOPLES_ORIGIN_DESCRIPTIONS = {
                 yommes: {
-                    en: 'Humanoids of small stature, the Yômmes descend from the Aïars and split through two great migrations: the Erréors south into mangroves (giving rise to Méridiens and Navillis), then the Escandirs north-west into the mountains (Aristois and Griscribes). They are nomadic in spirit yet practise agriculture, horticulture and pastoralism - tribes, chiefdoms or states - with chamanic rites and a shared sense of regret expressed in collective sacrifice. They tend to see the Yôrres as mad or charlatans for their religion and cannibalism, and the Bêstres as bastard dregs bewitched by natural forces, to be purged; they themselves resent the abuse of their small size by the other origins.',
-                    fr: 'Humanoïdes de petite taille, les Yômmes descendent des Aïars et se scindent en deux grandes migrations : les Erréors vers le Sud dans les mangroves (Méridiens et Navillis), puis les Escandirs vers le Nord-Ouest dans les montagnes (Aristois et Griscribes). Nomades dans l\'âme, ils pratiquent agriculture, horticulture et pastoralisme - tribus, chefferies ou états - avec des rites chamaniques et un regret partagé qui s\'exprime par le sacrifice collectif. Ils voient volontiers les Yôrres comme fous ou charlatans pour leur religion et leur cannibalisme, et les Bêstres comme des immondices bâtardes envoûtées par les forces naturelles, à purger ; eux-mêmes regrettent l\'abus de leur petite taille par les autres origines.'
+                    en: 'The Yômmes (Aristese, Greyscribes, Navillis, Meridians) were born from wandering Hryôhpéens when the four Pauk Peytsk nurselings guided them beyond their thrones and across the world (whence the Yômmes draw their name of ever-travellers). One branch, the Erréors, went south into hot flooded mangroves and became Meridians and Navillis; later, after cooling and contact with indigenous Bêstres, the Escandirs climbed the windy north-west mountains and became Aristese and Greyscribes. Those who joined neither exodus are remembered as the vanished Aïars. Culturally they are anarchic nomads of a sort, none of their tribes purely hunter-gatherer: they farm, garden and herd on giant mobile halls or mastodon backs, forming tribes, chiefdoms or states defended with hurled and spring-driven arms. Chamanic myth explains their rites and favours, often toward ancestors, around a shared regret that drives collective sacrifice. They often see Ylves as mad or charlatans (abstract law of religion, cannibalism) and Bêstres as bastard filth bewitched by nature to purge; they rue how other origins abuse their small stature.',
+                    fr: 'Les Yômmes (Aristois, Griscribes, Navillis, Méridiens) naquirent des Hryôhpéens errants lorsqu\'ils furent guidés par les 4 Pauk Peytsk à voyager au-delà de leurs trônes et de par le monde (d\'où les Yômmes tirent leur nom vieillissant). Une partie migra vers le Sud : les Erréors, dans des mangroves denses, inondées et chaudes, d\'où Méridiens et Navillis ; bien plus tard, refroidissement du climat et Bêstres indigènes, une seconde partition monta au nord-ouest : les Escandirs, Aristois et Griscribes. Ceux qui ne partirent ni avec les Erréors ni avec les Escandirs passent pour ancêtres communs appelés Aïars, aujourd\'hui disparus. Socialement ce sont des nomades anarchistes à leur manière, jamais exclusivement chasseurs-cueilleurs : agriculture, horticulture, pastoralisme sur mastodontes ou bâtiments gigantesques mobiles, en tribus, chefferies ou États aux armes jetées ou bandées, défendus par rites plutôt chamaniques et un regret partagé qui s\'exprime en sacrifices collectifs. Ils perçoivent volontiers les Ylfes comme fous ou charlatans (religion, cannibalisme) et les Bêstres comme immondices bâtardes à purger ; ils regrettent l\'abus de leur petite taille par les autres origines.'
                 },
                 yorres: {
-                    en: 'Elf-like and long-lived, the Yôrres spring from the Hryôhpéens who sat in judgment at Withlaï and the Hydryôrres who travelled by water - giving rise to the Hauts Ylfes, Ylfes pâles, Ylfes des lacs, and the errant Iqqars. They built a sedentary civilisation that was shattered when their world collapsed from the sky; cold and flood drove them to ritual cannibalism and a sacred direction that unites them. They preserve and pass on possessions to those who use them best, and withdraw into the pure solitude of temple-homes. How they view the Yômmes and Bêstres varies from people to people, but they remain bound by lineage, longevity and a morality that feels alien to the others.',
-                    fr: 'Proches des elfes et longévifs, les Yôrres descendent des Hryôhpéens qui siégeaient au tribunal de Withlaï et des Hydryôrres qui voyagèrent par les eaux - donnant les Hauts Ylfes, Ylfes pâles, Ylfes des lacs et les Iqqars errants. Ils bâtirent une civilisation sédentaire que l\'effondrement du ciel détruisit ; le froid et les flots les menèrent au cannibalisme rituel et à une direction sacrée qui les unit. Ils sauvegardent et transmettent leurs biens à ceux qui les utilisent le mieux, et se retirent dans la solitude pure de leurs temples-maisons. Leur perception des Yômmes et des Bêstres varie selon les peuples, mais ils restent liés par la lignée, la longévité et une moralité qui demeure étrangère aux autres.'
+                    en: 'The Ylves (Tall Ylves, Pale Ylves, Lake Ylves, and Iqqars), though among themselves they call each other Yôrres, settled and first founded their world through their ancestors - the enthroned Hryôhpéens who sat, hoarded and judged at the greedy, mist-fattened tribunal of Withlaï. They often claim their kin\'s bodies through cannibalism to become one with them (probably inheriting this from their passage in the cold cave of Haolûd the frozen, starving), saving and passing on their possessions to whoever uses them best down the ages. It is said they were once a very isolated, small people in lofty valleys otherwise drowned but rich and flowering, among the many mountains of Dümavel that gave them paradisiac longevity, until the world of the Yôrres as they knew it fell from the sky: cooling of their lands and cultures, mountains first smashing their peoples and civilisation, then glacier floods - leading to cannibalism of their own still so present among Yôrres. The Ylves say they descend from the Aryôphéens, "beings of light" descended from the Dûwasaï Harlbhus, the Great Seasonal Fées. Over many years after that catastrophe, most Hylsyôrres (ancestors to all of them) left the mountains southward on lakes, rivers and streams before finding lands hospitable to their rather sedentary life. A Yôrre population stayed (turning from Withlaï\'s set ways), while three colonies settled in other places; most then became Hydryôrres (said to have come out of Haolûd\'s cave), which ties today\'s Lake and Pale Ylves; Tall Ylves (claiming direct descent from Hylsyôrres) settled last. Those who survived in the mountains (or were "cursed", or had lain on the bed of flowers of Wlastaï who floods and quickens) but stayed, climbing higher still, were called Izkyôrres and begot the Iqqar people, so unlike other Yôrres. Ylves eat Yômmes when they no longer understand them through wanting to bend nature by ritual; they see Bêstres as animals grasping nothing of religion\'s use, as resources harvested by, on and through every Bêstre. Fundamentally every people among the Ylves is organised as authoritarian, sedentary bands purifying themselves through often-cannibal consanguinity to found their societies - only Iqqars break or oppose those rules - and you find their tiered city-temples on coasts and in deep lacustrine forests (Iqqars overtop them, sometimes shot at sight). In their myths peopled with spirits yet without priests, gods or ancestors (which shore up conduct and justify traditional orders to keep harmony and hierarchy - except among Iqqars, who stand at opposite dichotomies), they withdraw into the pure solitude of temple-houses, eating whoever could cost them the voice they hear and that guides them (memories, reason, friendships, etc.), or those whose power makes the voices commanding them speak, down to wars fought with guard weapons, balanced, flexible and of antipole.',
+                    fr: 'Les Ylfes (Hauts Ylfes, Ylfes pâles, Ylfes des lacs et Iqqars), bien que s\'appelant entre eux les Yôrres, s\'établirent et fondèrent leur monde en premier à travers leurs ancêtres - les Hryôhpéens trônants qui siégeaient, accumulaient et jugeaient au tribunal avare de Withlaï l\'engraissée brumeuse. Ils réclament bien souvent le corps des leurs en les cannibalisant afin de ne faire qu\'un avec eux-mêmes (probablement héritant de leur passage dans la froide cave d\'Haolûd l\'affamé congelé), sauvegardant et transmettant leurs possessions à ceux les utilisant le mieux au fil des âges. Il est dit que les Ylfes furent autrefois issus d\'une population très isolée et de petite taille, vivant au sein de vallées surélevées autrement englouties par l\'eau, mais riches et florissantes, au sein des nombreuses montagnes de Dümavel qui leur donnèrent leur longévité paradisiaque ; puis le monde des Yôrres tel qu\'ils le connurent s\'écroula du ciel et ils s\'éparpillèrent, seuls : refroidissement de leurs terres et cultures, montagnes autrefois les protégeant les auraient engloutis, d\'abord sous les roches se fracassant sur leurs peuples et civilisation, ensuite en libérant les flots des glaciers les inondant, les menant jusqu\'au cannibalisme des leurs encore si présent au sein des Yôrres. Les Ylfes disent qu\'ils descendent des Aryôphéens, ces « êtres de lumières » descendants directement des Dûwasaï Harlbhus, les Grandes Fées saisonnières. Au fil de nombreuses années et suite à leur catastrophe, la majorité des Hylsyôrres (leurs ancêtres à tous) partit des montagnes en naviguant vers le Sud sur les lacs, fleuves et rivières avant de trouver terres hospitalières à leur mode de vie plutôt sédentaire. Une population « Yôrre » resta (se détournant des voies établies du tribunal de Withlaï), tandis que tout au long de leur voyage trois colonies s\'installèrent en différents lieux ; la majorité des Yôrres partit des montagnes vers le Sud sur les lacs, fleuves et rivières, formant les Hydryôrres (qui seraient sortis de la cave d\'Haolûd), avant de lier aujourd\'hui Ylfes des lacs et Ylfes pâles à ce mode de vie originellement sédentaire ; les Hauts Ylfes (se disant descendants directs des Hylsyôrres) furent les derniers à s\'installer. Alors que la majorité des clans Yôrres partit, ceux qui survécurent (ou furent « maudits » selon les autres Ylfes, ou s\'étant reposés sur le lit de fleurs de Wlastaï l\'inondé fécondant) mais restèrent dans les environs - escaladant encore plus les montagnes - auraient été appelés les Izkyôrres, donnant naissance au peuple Iqqar, si différent des Yôrres. Les Ylfes mangent les Yômmes lorsqu\'ils ne les comprennent plus à force de vouloir faire plier la nature par leurs rituels ; autrement, ils voient les Bêstres tels des animaux ne comprenant rien à l\'utilité de la religion, et les prennent comme des ressources recherchées et foisonnantes qu\'ils utilisent en récoltant par, sur et en tout Bêstre. Tout peuple Ylfes est fondamentalement organisé sous la forme de bandes autoritaires et sédentaires se purifiant par la consanguinité souvent cannibale afin d\'établir leurs sociétés, où seuls les Iqqars dérogent (voire s\'opposent) à toutes ces règles ; on trouvera leurs cité-temples à étages sur les côtes et dans les forêts plus ou moins profondes et lacustres, hormis les Iqqars qui les surplombent (et en étant parfois tirés à vu). Dans leurs mythes peuplés d\'esprits mais sans prêtres, dieux ni ancêtres (qui renforcent leurs comportements et justifient leurs ordres traditionnels afin de maintenir l\'harmonie et la hiérarchie - hormis ceux des Iqqars aux opposés dichotomiques), ils se retirent dans la solitude pure de leurs temples-maisons, mangeant ceux pouvant causer la perte de la voix qu\'ils entendent et qui les guide (leurs mémoires, leur raison, leurs amitiés, etc.), ou ceux dont les forces font parler les voix les commandant jusque dans leurs guerres combattues d\'armes de garde, équilibrées, flexibles et d\'antipôle.'
                 },
                 bestres: {
-                    en: 'Diverse creatures shaped by the Kweryas Gjuaj (the four giants of arms), the Bêstres range from animal and wild to primitive and inspired - of whom only the inspired peoples, the Slaadéens and Tchalkchaïs, are treated here. They emerged from caverns and troglodytic refuges as the world warmed, spreading from desert to forest. They use the Yômmes as living tools who manipulate nature through sacrifice, and observe the Ylfes as beings alienated from natural forces, other. They claim that the Yômmes and Yôrres were in truth also shaped from clay, and that their thought too was pressed into their skulls by the reproving fingers of Asmund - a pretension the other origins find absurd.',
-                    fr: 'Créatures diverses façonnées par les Kweryas Gjuaj (les quatre géants d\'armes), les Bêstres vont de l\'animal et du sauvage au primitif et à l\'inspiré - seuls les peuples inspirés, Slaadéens et Tchalkchaïs, sont traités ici. Ils sortirent des cavernes et refuges troglodytes avec le réchauffement du monde, s\'éparpillant du désert à la forêt. Ils utilisent les Yômmes comme êtres-outils manipulant la nature par le sacrifice, et voient les Ylfes comme des êtres aliénés des forces naturelles, autres. Ils prétendent que les Yômmes et les Yôrres furent eux aussi de glaise et que leur pensée fut écrasée en leur crâne par les doigts réprobateurs d\'Asmund - prétention que les autres origines jugent ridicule.'
+                    en: 'The Bêstres are an archaic origin of extreme traits shaped in harsh homes and struggles - so extreme that their inspired peoples almost count as origins themselves. Only the inspired peoples here: Slaadeans and Tchalkchaïs. They treat Yômmes as tool-beings who twist nature through sacrifice (and stir new troubles doing so) and watch Ylves as beings cut off from natural force, wholly other. Inspired Bêstres insist Yômmes and Yôrres were clay too, minds stamped into the skull by Asmund\'s scolding fingers, lately at that - a boast other origins mock. Wild and primitive creation tales aside, they know how to survive alone and to keep order, usually by force.',
+                    fr: 'Les Bêstres sont une origine archaïque aux traits poussés par l\'intensité de leurs habitats et luttes - au point que leurs peuples inspirés faillent compter comme origines à part. Ici : Slaadéens et Tchalkchaïs. Ils utilisent les Yômmes comme êtres-outils qui manipulent la nature par le sacrifice, tout en créant d\'autres problèmes ; ils voient les Ylfes comme aliénés des forces naturelles, autres. Les Bêstres inspirés prétendent que Yômmes et Yôrres furent aussi de glaise et la pensée écrasée dans le crâne par les doigts réprobateurs d\'Asmund, et récemment encore - prétention jugée ridicule. Au-delà des mythes du sauvage et du primitif, ils savent survivre seuls et imposer l\'ordre, le plus souvent par la force.'
                 }
             };
 
