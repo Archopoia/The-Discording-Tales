@@ -479,13 +479,28 @@
                 </header>
                 <div class="peoples-top" data-lang-key="peoples-content">
                     <p class="peoples-intro" {{i18n:tpl.56}}>Each People has their own <strong>morality</strong> (driving them insane from you), <strong>cultures</strong> (struggling against each other), and unique racial <strong>traits</strong> (distinguishing them from others).</p>
+                    <div class="peoples-invective" id="peoples-invective" data-invective-interval-ms="10000">
+                        <p class="peoples-invective__attribution" data-en="Extract and retelling of the fiery oration « Citizens of the world » by an unknown speaker before being stoned." data-fr="Extrait reformulation de l'oration enflammée « Citoyens du monde » par un inconnu avant sa lapidation.">Extract and retelling of the fiery oration « Citizens of the world » by an unknown speaker before being stoned.</p>
+                        <div
+                            class="peoples-invective__surface"
+                            role="button"
+                            tabindex="0"
+                            data-aria-label-en="Next satirical passage (or wait 10 seconds)"
+                            data-aria-label-fr="Passage satirique suivant (ou attendez 10 secondes)"
+                            aria-label="Next satirical passage (or wait 10 seconds)"
+                        >
+                            <h4 class="peoples-invective__title"></h4>
+                            <p class="peoples-invective__text" aria-live="polite"></p>
+                        </div>
+                        <div class="peoples-invective__dots" aria-hidden="true"></div>
+                    </div>
                     <div class="peoples-tree-wrap">
                         <div class="peoples-tree" role="tree" aria-label="Origins and peoples">
                             <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-origin="yommes">
                                 <span class="peoples-tree-toggle" aria-hidden="true"></span>
                                 <span class="peoples-tree-origin-head">
                                 <strong class="peoples-tree-origin-name" {{i18n:tpl.57}}>YÔMMES</strong>
-                                <span class="peoples-tree-morality peoples-tree-origin-aka" {{i18n:peoples.origins.yommes_aka}}>a.k.a. Gnomes, Dwarves, Hoblings, Halflings</span>
+                                <span class="peoples-tree-morality peoples-tree-origin-aka" {{i18n:peoples.origins.yommes_aka}}>a.k.a. Gnomes, Dwarves, Halflings, Hoblings</span>
                                 </span>
                                 <div class="peoples-tree-children">
                                     <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-peuple="aristois"><div class="peoples-tree-node-main"><div class="peoples-tree-head"><span class="peoples-tree-toggle"></span><div class="peoples-tree-head-main"><span class="peoples-tree-name" {{i18n:tpl.58}}>Aristese</span> <span class="peoples-tree-morality"><span {{i18n:peoples.1}}>Trepharchy</span> <em {{i18n:peoples.2}}>(Sovereign Growth)</em></span></div></div><div class="peoples-tree-races"><span class="peoples-tree-race" data-peuple="aristois" data-race="Monte-Foudres">Monte-Foudres</span><span class="peoples-tree-race" data-peuple="aristois" data-race="Fleuris">Fleuris</span><span class="peoples-tree-race" data-peuple="aristois" data-race="Des Souffles">Des Souffles</span><span class="peoples-tree-race" data-peuple="aristois" data-race="Ambrés">Ambrés</span></div></div><div class="peoples-tree-portrait-column" aria-hidden="true"><img class="peoples-tree-portrait" src="assets/images/people/Aristois%20copy.png" alt="" decoding="async" loading="lazy"/></div></div>
@@ -523,19 +538,35 @@
                 </div>
 {{universe-lore-fr}}
                 <div class="univers-world-panel" id="map" inert aria-hidden="true">
-                    <div class="map-focus">
-                        <div
-                            class="map-circle-crop map-viewport"
-                            id="map-viewport"
-                            tabindex="0"
-                            role="application"
-                            data-aria-label-en="Map"
-                            data-aria-label-fr="Carte"
-                            aria-label="Map"
-                        >
-                            <div class="map-pan-zoom-layer" id="map-pan-zoom-layer">
-                                <img src="assets/images/novoworld.webp" alt="" class="map-pannable-img" id="map-pannable-img" decoding="async" loading="lazy" draggable="false"/>
+                    <div class="map-panel-stack">
+                        <div class="map-panel-prose map-panel-prose--above">
+                            <p class="map-panel-question" data-en="&lt;strong&gt;Are we inside or outside?&lt;/strong&gt;" data-fr="&lt;strong&gt;Sommes-nous à l'intérieur ou à l'extérieur ?&lt;/strong&gt;"><strong>Are we inside or outside?</strong></p>
+                            <p class="map-panel-lead" data-en="Our senses tell us we are swallowing the sky. In the infinity of our grounds would still dwell far more mysteries and pasts." data-fr="Nos sens nous indique que nous engouffrons le ciel. Dans l'infinité de nos sols résideraient encore biens plus de mystères et de passés.">Our senses tell us we are swallowing the sky. In the infinity of our grounds would still dwell far more mysteries and pasts.</p>
+                        </div>
+                        <div class="map-focus">
+                            <div
+                                class="map-circle-crop map-viewport"
+                                id="map-viewport"
+                                tabindex="0"
+                                role="application"
+                                data-aria-label-en="Map"
+                                data-aria-label-fr="Carte"
+                                aria-label="Map"
+                            >
+                                <div class="map-pan-zoom-layer" id="map-pan-zoom-layer">
+                                    <img src="assets/images/novoworld.webp" alt="" class="map-pannable-img" id="map-pannable-img" decoding="async" loading="lazy" draggable="false"/>
+                                </div>
                             </div>
+                        </div>
+                        <div class="map-panel-prose map-panel-prose--below">
+                            <p data-en="In the tale of ages resounds the murmur of the past: today's icy rigor was preceded by blazing eras and paralyzing freezes that once submerged the lands beneath oceanic floods, leaving only mountain islets and touching every form of life. Later ice ages bred immense frozen expanses, then great fires, finally giving way to the present cooling: a harmonious dance of extremes revealing the distinguished clans among the masses, who otherwise spread everywhere without being able to survive there, starve from their numbers, infect one another in their promiscuity, or corrupt one another in sharing. Today..." data-fr="Au sein du récit des ères, résonne le murmure du passé où la rigueur glaciale actuelle fut précédée d'âges brûlants et de gels paralysants, submergeant jadis les terres sous des flots océaniques, ne laissant qu'îlots montagneux et impactant toute forme de vie. Des ères de gel ultérieures engendrèrent d'immenses étendues glacées, fondant ensuite des grands incendies, pour enfin laisser place au refroidissement actuel, une danse harmonieuse des extrêmes révélant les clans distingués des masses, qui elles autrement s'étalent partout sans pouvoir y survivre, s'affa- ment par leur nombre et s'infectent dans leur promiscuité voir se corrompent dans le partage. Aujourd'hui...">In the tale of ages resounds the murmur of the past: today's icy rigor was preceded by blazing eras and paralyzing freezes that once submerged the lands beneath oceanic floods, leaving only mountain islets and touching every form of life. Later ice ages bred immense frozen expanses, then great fires, finally giving way to the present cooling: a harmonious dance of extremes revealing the distinguished clans among the masses, who otherwise spread everywhere without being able to survive there, starve from their numbers, infect one another in their promiscuity, or corrupt one another in sharing. Today...</p>
+                            <ul class="map-panel-regions">
+                                <li data-en="Iäoduneï, scorched by meanders of turquoise thermal springs piercing the windblown snow dunes of the cutting blizzard that waters their scarlet scrub, plunges into Dümavel, raising its high plateaus, mountains, and flowering rivers forever swept by every wind." data-fr="Iäoduneï , la brûlée de méandres de sources thermales turquoisées perçants les dunes neiges soufflées du tranchant blizzard y abreuvant leurs brousses écar- lates, s'engouffre dans Dümavel érigeant ses hauts plateaux, montagnes et rivières fleuris toujours balayés par les tous les vents.">Iäoduneï, scorched by meanders of turquoise thermal springs piercing the windblown snow dunes of the cutting blizzard that waters their scarlet scrub, plunges into Dümavel, raising its high plateaus, mountains, and flowering rivers forever swept by every wind.</li>
+                                <li data-en="The blued hills of Agvalsis, surviving its fleshy steppes, mingle with the cold, wet, frosted, but above all luxuriant forest-jungles of the tormented sea of Hatrohaj." data-fr="Les collines bleuies d' Agvalsis survivant à ses steppes carnées se mêlent aux forêts - jungles froides, humides, givrées mais surtout luxu- riantes de la mer tourmentée d' Hatrohaj .">The blued hills of Agvalsis, surviving its fleshy steppes, mingle with the cold, wet, frosted, but above all luxuriant forest-jungles of the tormented sea of Hatrohaj.</li>
+                                <li data-en="The glacial bays of Dalvvar'Aad, carved and pierced by their biting winds; the white marshes and mangroves, misted and drowned, of Mevyriil; and the gleaming coasts with the aggressive sheer cliffs of Êadryllir enrich the landscape of revelatory sufferings they bring forth." data-fr="Les glaciales baies de Dalvvar'Aad creusées et perforées de leurs vents mordants, les marécages et mangroves blanches embrumés et noyés de Mevyriil et les côtes luisantes aux agressives falaises escarpées d 'Êadryllir enrichissent le paysage des souffrances révélatrices qu'elles engendrent.">The glacial bays of Dalvvar'Aad, carved and pierced by their biting winds; the white marshes and mangroves, misted and drowned, of Mevyriil; and the gleaming coasts with the aggressive sheer cliffs of Êadryllir enrich the landscape of revelatory sufferings they bring forth.</li>
+                                <li data-en="Ondusiöl waltzes her hills in seasonal colors, followed by the windblown forests and leaf-filled lakes of Bruysséliand, pierced by her cloud-padded pillars hiding their high peaks." data-fr="Ondusiöl elle, valse ses collines aux couleurs saisonnières, suivies des forêts soufflées et des lacs enfeuillés de Bruysséliand , percées par ses piliers ouatés de nuages cachant leurs hauts pics.">Ondusiöl waltzes her hills in seasonal colors, followed by the windblown forests and leaf-filled lakes of Bruysséliand, pierced by her cloud-padded pillars hiding their high peaks.</li>
+                                <li data-en="Finally, the burning and glacial deserts of Adriuhn shelter a solitary river with resilient marshes, with floods at once tormenting and saving." data-fr="Enfin, les déserts brûlants et glacials d 'Adriuhn , abritent un fleuve solitaire aux marais résilient, aux inondations à la fois torturantes et sauveuses.">Finally, the burning and glacial deserts of Adriuhn shelter a solitary river with resilient marshes, with floods at once tormenting and saving.</li>
+                            </ul>
                         </div>
                     </div>
                 </div>

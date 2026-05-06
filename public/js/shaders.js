@@ -14,6 +14,55 @@
     // ========================================
     const shaderContexts = new Map(); // Store contexts per canvas
 
+    /** One rAF drives every procedural canvas (fewer timers; skip draws when off-screen or tab hidden). */
+    const shaderAnimationJobs = [];
+    let shaderMasterRafId = null;
+
+    function isCanvasShaderWorthDrawing(canvas) {
+        if (!canvas || canvas.clientWidth === 0 || canvas.clientHeight === 0) return false;
+        const r = canvas.getBoundingClientRect();
+        const vw = window.innerWidth || 0;
+        const vh = window.innerHeight || 0;
+        const margin = 80;
+        return r.bottom > -margin && r.top < vh + margin && r.right > -margin && r.left < vw + margin;
+    }
+
+    function scheduleShaderMasterFrame() {
+        if (shaderMasterRafId !== null) return;
+        shaderMasterRafId = requestAnimationFrame(shaderMasterTick);
+    }
+
+    function shaderMasterTick() {
+        shaderMasterRafId = null;
+        if (document.hidden) {
+            return;
+        }
+        var i = shaderAnimationJobs.length;
+        while (i--) {
+            var job = shaderAnimationJobs[i];
+            if (job.removed) {
+                shaderAnimationJobs.splice(i, 1);
+                continue;
+            }
+            try {
+                job.step();
+            } catch (err) {
+                console.warn('TDT shader step error:', err);
+            }
+        }
+        if (shaderAnimationJobs.length > 0) {
+            scheduleShaderMasterFrame();
+        }
+    }
+
+    if (typeof document !== 'undefined') {
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden && shaderAnimationJobs.length > 0 && shaderMasterRafId === null) {
+                scheduleShaderMasterFrame();
+            }
+        });
+    }
+
     /**
      * Initialize WebGL context for a canvas element
      * @param {HTMLCanvasElement} canvas - Canvas element to initialize
@@ -500,57 +549,40 @@
         // Get shader-specific uniform locations
         const uniformLocations = getUniformLocations(gl, program, shaderType);
 
-        let animationId = null;
-        let startTime = Date.now();
+        const startTime = Date.now();
 
-        function render() {
-            // Resize if needed
+        function renderStep() {
             resizeCanvas(gl, canvas);
 
-            // Skip expensive draws while the canvas has no layout box (e.g. display:none
-            // during the entrance overlay)  -  keeps the rAF loop cheap until content is shown.
-            if (canvas.clientWidth === 0 || canvas.clientHeight === 0) {
-                animationId = requestAnimationFrame(render);
+            if (!isCanvasShaderWorthDrawing(canvas)) {
                 return;
             }
 
-            // Clear canvas
             gl.clearColor(0, 0, 0, 0);
             gl.clear(gl.COLOR_BUFFER_BIT);
 
-            // Use shader program
             gl.useProgram(program);
 
-            // Set up geometry
             gl.bindBuffer(gl.ARRAY_BUFFER, geometry.buffer);
             gl.enableVertexAttribArray(positionLocation);
             gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
 
-            // Set time uniform (in seconds)
             const time = (Date.now() - startTime) / 1000.0;
             gl.uniform1f(timeLocation, time);
 
-            // Set resolution uniform
             gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
 
-            // Set shader-specific uniforms
             setShaderUniforms(gl, uniformLocations, shaderType, config);
 
-            // Draw fullscreen quad
             gl.drawArrays(gl.TRIANGLES, 0, geometry.count);
-
-            // Continue animation loop
-            animationId = requestAnimationFrame(render);
         }
 
-        // Start rendering loop
-        render();
+        const job = { removed: false, step: renderStep };
+        shaderAnimationJobs.push(job);
+        scheduleShaderMasterFrame();
 
-        // Return cleanup function
         return function cleanup() {
-            if (animationId) {
-                cancelAnimationFrame(animationId);
-            }
+            job.removed = true;
         };
     }
 

@@ -1950,6 +1950,59 @@
     widows: 2;
 }
 
+/* Lore tab: bilingual intro (regions, monuments, mythic pasts) above foldable extracts */
+#universe-lore .universe-lore-intro {
+    margin: 0 0 var(--spacing-md);
+    padding: 0 0 var(--spacing-md);
+    border-bottom: 2px solid rgba(90, 31, 31, 0.22);
+}
+
+#universe-lore .universe-lore-intro__p {
+    margin: 0 0 0.65rem;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: #0f0808;
+    font-weight: 500;
+    text-align: justify;
+    text-align-last: start;
+    text-justify: inter-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    overflow-wrap: break-word;
+    word-break: normal;
+    orphans: 2;
+    widows: 2;
+}
+
+#universe-lore .universe-lore-intro__p--closing {
+    margin-bottom: 0;
+    margin-top: 0.35rem;
+}
+
+#universe-lore .universe-lore-intro__list {
+    margin: 0.4rem 0 0.65rem;
+    padding-left: 1.15rem;
+    list-style-position: outside;
+}
+
+#universe-lore .universe-lore-intro__list li {
+    margin: 0.4rem 0;
+    padding-left: 0.15rem;
+    font-size: 0.93rem;
+    line-height: 1.62;
+    color: #0f0808;
+    font-weight: 500;
+    text-align: justify;
+    text-align-last: start;
+    text-justify: inter-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    overflow-wrap: break-word;
+    word-break: normal;
+}
+
 #universe-lore .universe-lore-entry {
     margin-bottom: 0.65rem;
     border-radius: var(--radius-md, 8px);
@@ -2058,6 +2111,89 @@
     text-align: start;
     hyphens: none;
     -webkit-hyphens: none;
+}
+
+/* Universe > Monde > Map: page 6 flavor text above / below the pan-zoom map */
+#map .map-panel-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    gap: var(--spacing-md);
+    padding: 0 var(--spacing-sm) var(--spacing-sm);
+}
+
+#map .map-panel-prose {
+    max-width: 52rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#map .map-panel-prose--above {
+    text-align: center;
+}
+
+#map .map-panel-prose--above .map-panel-question {
+    font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+    font-weight: 700;
+    color: var(--tdt-beige-lighter);
+    margin: 0 0 0.5rem;
+    line-height: 1.35;
+    text-wrap: balance;
+}
+
+#map .map-panel-prose--above .map-panel-question strong {
+    font-weight: 800;
+    color: var(--tdt-mint);
+}
+
+#map .map-panel-prose--above .map-panel-lead {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(232, 221, 208, 0.92);
+    max-width: 40rem;
+    margin-inline: auto;
+}
+
+#map .map-panel-prose--below p {
+    margin: 0 0 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: rgba(232, 221, 208, 0.94);
+    text-align: justify;
+    text-align-last: start;
+    text-justify: inter-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    overflow-wrap: break-word;
+    word-break: normal;
+    orphans: 2;
+    widows: 2;
+}
+
+#map .map-panel-regions {
+    margin: 0.35rem 0 0;
+    padding-left: 1.2rem;
+    list-style-position: outside;
+}
+
+#map .map-panel-regions li {
+    margin: 0.45rem 0;
+    padding-left: 0.2rem;
+    font-size: 0.92rem;
+    line-height: 1.62;
+    color: rgba(232, 221, 208, 0.92);
+    text-align: justify;
+    text-align-last: start;
+    text-justify: inter-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    overflow-wrap: break-word;
+    word-break: normal;
 }
 
 .map-focus {
@@ -3248,6 +3384,109 @@
     margin: 0 auto;
     max-width: 75ch;
     text-align: center;
+}
+
+/* Peoples: page 22 invective rotator (click or 10s auto-advance) */
+.peoples-invective {
+    margin: var(--spacing-md) auto var(--spacing-lg);
+    max-width: 52rem;
+    padding: var(--spacing-md);
+    box-sizing: border-box;
+    border-radius: var(--radius-md);
+    border: 2px solid rgba(160, 253, 218, 0.28);
+    background:
+        linear-gradient(145deg, rgba(40, 22, 28, 0.92) 0%, rgba(28, 18, 32, 0.96) 100%),
+        radial-gradient(ellipse 120% 80% at 50% 0%, rgba(90, 31, 31, 0.35), transparent 55%);
+    box-shadow:
+        0 6px 28px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.peoples-invective__surface {
+    cursor: pointer;
+    text-align: left;
+    border-radius: var(--radius-sm);
+    outline: none;
+    transition:
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.peoples-invective__surface:hover,
+.peoples-invective__surface:focus-visible {
+    background: rgba(160, 253, 218, 0.06);
+    box-shadow: inset 0 0 0 1px rgba(160, 253, 218, 0.25);
+}
+
+.peoples-invective__surface:focus-visible {
+    outline: 2px solid var(--tdt-mint);
+    outline-offset: 3px;
+}
+
+.peoples-invective__attribution {
+    margin: 0 0 0.75rem;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: rgba(232, 221, 208, 0.78);
+    font-weight: 500;
+    font-style: italic;
+    letter-spacing: 0.02em;
+    text-align: center;
+}
+
+.peoples-invective__title {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-weight: 800;
+    color: var(--tdt-mint);
+    letter-spacing: 0.03em;
+    text-shadow: 0 0 18px rgba(160, 253, 218, 0.2);
+}
+
+.peoples-invective__title strong {
+    font-weight: 900;
+    color: var(--tdt-beige-lighter);
+}
+
+.peoples-invective__text {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.62;
+    color: rgba(245, 236, 220, 0.94);
+    font-weight: 500;
+    text-align: justify;
+    text-align-last: start;
+    text-justify: inter-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    overflow-wrap: break-word;
+    word-break: normal;
+    min-height: 7.5em;
+}
+
+.peoples-invective__dots {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.35rem;
+    margin-top: 0.75rem;
+}
+
+.peoples-invective__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(232, 221, 208, 0.25);
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.peoples-invective__dot.is-active {
+    background: var(--tdt-mint);
+    transform: scale(1.25);
+    box-shadow: 0 0 10px rgba(160, 253, 218, 0.45);
 }
 
 .peoples-top {
