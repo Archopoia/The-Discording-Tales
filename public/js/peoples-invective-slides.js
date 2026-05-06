@@ -38,7 +38,7 @@
         },
         {
             titleFr: '<strong>Hauts Ylfes</strong> ( Hypsyôrre )',
-            titleEn: '<strong>Tall Ylves</strong> ( Hypsyôrre )',
+            titleEn: '<strong>Great Ylves</strong> ( Hypsyôrre )',
             bodyFr:
                 'Ces narcissiques perchés sur leurs falaises, des tyrans mélancoliques qui se prennent pour des dieux parce qu\'ils savent tendre un filet la nuit, puent la crasse sous leurs robes clinquantes. Des couleuvres dorées, des cannibals incestraux, ils bouffent leurs cousins et sautent leurs sœurs dans leurs temples branlants, pleurant leur paradis englouti par les flots de Dümavel. Troublés et sans - ami, ces nécrophages chevauchent des singes larmoyants, des baise - mère qui se gargarisent de leur " maîtrise " pendant que leurs clans crèvent sous des toits dorés. Leurs têtes de poulpes et leurs cous tordus hurlent leur dégénérescence, des bouffons qui agitent leurs technique pour cacher leur misère.',
             bodyEn:

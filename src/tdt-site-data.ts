@@ -1,6 +1,6 @@
 /**
- * Injects content manifests onto window before legacy IIFE scripts run.
- * Keeps large JSON out of dtd-interactive.js and allows editors to update data files only.
+ * Injects content manifests onto window before the main-site bundle runs.
+ * Large site data lives in public/data/*.json; editors update those files directly.
  */
 import attributesTree from '../public/data/attributes-tree.json';
 import landingCarousels from '../public/data/landing-carousels.json';

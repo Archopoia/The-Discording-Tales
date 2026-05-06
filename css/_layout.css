@@ -826,7 +826,7 @@
     border-bottom: 4px double var(--tdt-beige-warm);
     padding: var(--spacing-sm) 0;
     position: relative;
-    /* Sticking is handled in dtd-interactive.js (.main-navigation--fixed)  -  CSS sticky is unreliable here */
+    /* Sticking is handled in src/site/dtd/nav-sticky.ts (.main-navigation--fixed); CSS sticky is unreliable here */
     /* Above .header-creature-banner (8) and .header-bg (2) */
     z-index: 120;
     /* Multi-layer ornate shadows */

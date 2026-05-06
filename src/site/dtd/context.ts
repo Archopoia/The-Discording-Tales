@@ -1,5 +1,5 @@
 /**
- * Shared mutable site state and DOM handles (same timing as legacy script: evaluated after defer).
+ * Shared mutable site state and DOM handles (evaluated when the deferred bundle runs).
  */
 export const state = {
     currentTab: 'landing',

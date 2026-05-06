@@ -1872,7 +1872,7 @@
     border-top: 1px solid rgba(212, 197, 168, 0.35);
 }
 
-/* Universe Monde: cross-fade between Peoples list and Map (see dtd-interactive setUniversWorldInner) */
+/* Universe Monde: cross-fade between Peoples list and Map (src/site/dtd/subtabs.ts setUniversWorldInner) */
 #peoples .univers-world-panel {
     opacity: 0;
     visibility: hidden;
@@ -2957,7 +2957,7 @@
     line-height: 1.5;
 }
 
-/* Responsive: hide legacy single-panel nav on mobile; Universe keeps sidebar */
+/* Responsive: hide single-panel nav on mobile; Universe keeps sidebar */
 @media screen and (max-width: 900px) {
     .system-overview-nav:not(.univers-sidebar-nav) {
         display: none;
@@ -3400,6 +3400,11 @@
     box-shadow:
         0 6px 28px rgba(0, 0, 0, 0.35),
         inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Global `p { max-width: 75ch }` would leave a narrow column inside this card */
+.peoples-invective p {
+    max-width: none;
 }
 
 .peoples-invective__surface {

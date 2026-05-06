@@ -280,10 +280,6 @@ export function initPeoplesPortraitLightbox(peoplesSection) {
         document.body.appendChild(lb);
     } else {
         bigImg = lb.querySelector('.tdt-peoples-portrait-lightbox__img');
-        var legacyClose = lb.querySelector('.tdt-peoples-portrait-lightbox__close');
-        if (legacyClose) {
-            legacyClose.remove();
-        }
         if (!bigImg) {
             bigImg = document.createElement('img');
             bigImg.className = 'tdt-peoples-portrait-lightbox__img';
