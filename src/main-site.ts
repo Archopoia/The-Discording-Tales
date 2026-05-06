@@ -7,6 +7,6 @@ import './tdt-site-data';
 import '../public/js/keyhole-entrance.js';
 import '../public/js/shaders.js';
 import '../public/js/peoples-invective-slides.js';
-import '../public/js/dtd-interactive.js';
+import './site/dtd/bootstrap';
 import '../public/js/gm-system-prompt.js';
 import '../public/js/gm-chat.js';

@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import path from 'path';
 
 /**
- * Vite config for main-site bundle only (shaders, dtd-interactive, gm-system-prompt, gm-chat).
+ * Vite config for main-site bundle only (shaders, src/site/dtd, gm-system-prompt, gm-chat).
  * Run: vite build --config vite.main-site.config.ts
  * Output: dist/main-site.js (IIFE, no framework).
  */

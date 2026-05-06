@@ -1,5 +1,5 @@
 /**
- * Page 22 satirical invectives: FR (book) + EN. Order matches the book. Used by dtd-interactive.js (#peoples-invective).
+ * Page 22 satirical invectives: FR (book) + EN. Order matches the book. Used by src/site/dtd/peoples.ts / popovers.ts (#peoples-invective).
  */
 (function (w) {
     'use strict';
