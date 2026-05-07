@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { state } from './context';
 import { setLanguage } from './language';
+import { doubleRaf } from './dom-utils';
 import { ARCHIVED_SUBTABS } from './archive-constants';
 
 export function syncUniversMondeSublinkActive(innerId: string | null) {
@@ -237,6 +238,17 @@ export function switchSubTab(tabId: string, subId: string, universInnerOverride?
     }
     // Re-apply current language so all [data-en][data-fr] in newly visible panel are correct
     setLanguage(state.currentLang);
+
+    if (tabId === 'about') {
+        doubleRaf(function () {
+            var root = document.getElementById('about');
+            if (!root || !root.classList.contains('active')) return;
+            var main = root.querySelector('.about-tab-sub-nav');
+            if (!main || typeof main.scrollIntoView !== 'function') return;
+            var smooth = !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+            main.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
+        });
+    }
 }
 
 export function ensureFirstSubTabActive(tabId: string) {

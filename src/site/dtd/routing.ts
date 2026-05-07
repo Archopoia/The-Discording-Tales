@@ -43,6 +43,9 @@ export function handleHashChange(): void {
         progression: 'rules',
         combat: 'rules',
         magic: 'rules',
+        'about-world': 'about',
+        'about-author': 'about',
+        'about-contact': 'about',
     };
 
     if (!hash) {

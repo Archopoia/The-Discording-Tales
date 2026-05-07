@@ -1741,13 +1741,26 @@
 
 /* Scroll margin for anchor targets (avoid header overlap) */
 #cosmology, #peoples, #world-context,
-#system-overview, #character-creation, #combat, #magic {
+#system-overview, #character-creation, #combat, #magic,
+#about-world, #about-author, #about-contact {
+    scroll-margin-top: 6rem;
+}
+
+/* About: sub-tabs are the first row (Lore-style), not a sidebar */
+#about > .about-tab-sub-nav {
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
     scroll-margin-top: 6rem;
 }
 
 @media screen and (max-width: 768px) {
     #cosmology, #peoples, #world-context,
-    #system-overview, #character-creation, #combat, #magic {
+    #system-overview, #character-creation, #combat, #magic,
+    #about-world, #about-author, #about-contact {
+        scroll-margin-top: 4rem;
+    }
+
+    #about > .about-tab-sub-nav {
         scroll-margin-top: 4rem;
     }
 }
