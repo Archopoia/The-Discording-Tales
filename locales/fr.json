@@ -887,8 +887,7 @@
   "tpl.621": "Créer un personnage",
   "tpl.622": "Supprimer ce personnage et en créer un nouveau",
   "tpl.623": "Envoyer",
-  "tpl.624": "Genre & Inspirations",
-  "tpl.625": "Où ça se situe",
+  "tpl.625": "Un nouveau genre pour un vieux monde",
   "tpl.626": "Les Récits Discordants s'inscrivent dans des traditions qui nomment déjà une part de ce qu'il est. Ci-dessous, ces genres sous la lumière de ce monde et de ses règles.",
   "tpl.627": "(Nouveau) Weird",
   "tpl.628": "La complexité du réel comme fondation. Le familier - fantômes, vampires - <strong>radicalement réinterprété</strong> pour incarner à nouveau l'étrange.",
@@ -1036,5 +1035,7 @@
   "tpl.900": "Dés",
   "tpl.901": "Lutte",
   "tpl.902": "Marque",
-  "tpl.903": "Réaliser"
+  "tpl.903": "Réaliser",
+  "tpl.904": "La même main qui a bâti ce monde tient d'autres registres : projets annexes, notes en vadrouille, idées qui n'ont jamais accepté de n'être qu'une seule chose. On y a aussi caché de nombreux jeux et trésors pour qui aime fouiller par curiosité. <a class=\"about-author-portfolio-link\" href=\"https://archopoia.github.io/Hugues.W.B.dePingon/\" target=\"_blank\" rel=\"noopener noreferrer\">Jetez un œil au coin personnel chez moi</a> si vous aimez les portes qui en ouvrent d'autres.",
+  "tpl.905": "Aperçu du site portfolio personnel"
 }

@@ -887,8 +887,7 @@
   "tpl.621": "Create a character",
   "tpl.622": "Kill this character and create a new one",
   "tpl.623": "Send",
-  "tpl.624": "Genre & Inspirations",
-  "tpl.625": "Where it sits",
+  "tpl.625": "A New Genre for an Old World",
   "tpl.626": "The Discording Tales draws from traditions that already name part of what it is. Below, those genres in the light of this world and its rules.",
   "tpl.627": "(New) Weird",
   "tpl.628": "Reality's complexity as foundation. The familiar - ghosts, vampires - <strong>radically reinterpreted</strong> to embody the uncanny again.",
@@ -1036,5 +1035,7 @@
   "tpl.900": "Dice",
   "tpl.901": "Struggle",
   "tpl.902": "Mark",
-  "tpl.903": "Realize"
+  "tpl.903": "Realize",
+  "tpl.904": "The same hand that built this world keeps other ledgers too: side projects, wandering notes, ideas that never agreed to be just one thing. That page also holds many hidden games and treasures, if you are curious enough to go looking. <a class=\"about-author-portfolio-link\" href=\"https://archopoia.github.io/Hugues.W.B.dePingon/\" target=\"_blank\" rel=\"noopener noreferrer\">Peek at my personal corner</a> if you like doors that open onto more doors.",
+  "tpl.905": "Preview of the author's personal portfolio site"
 }
