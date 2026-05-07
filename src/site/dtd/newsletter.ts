@@ -1,6 +1,36 @@
 // @ts-nocheck
 import { state } from './context';
 
+/** Same host as GM Play tab (`gm-api-url` meta or `GM_API_URL`). */
+export function getNewsletterApiBaseUrl() {
+    if (typeof window.GM_API_URL !== 'undefined' && window.GM_API_URL) {
+        return String(window.GM_API_URL).trim();
+    }
+    const meta = document.querySelector('meta[name="gm-api-url"]');
+    if (meta && meta.getAttribute('content')) {
+        return meta.getAttribute('content').trim();
+    }
+    return 'http://localhost:8000';
+}
+
+/** Row column D via Sheets API; Apps Script receives the same JSON `source`. */
+export const NEWSLETTER_SOURCE_HOMEPAGE = 'homepage_outpost';
+export const NEWSLETTER_SOURCE_ABOUT_CONTACT = 'about_contact';
+
+/** POST /newsletter/subscribe (Outpost sheet / Apps Script). */
+export async function subscribeOutpost(email, opts) {
+    return fetch(getNewsletterApiBaseUrl() + '/newsletter/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            email: String(email).trim(),
+            lang: opts.lang || '',
+            source: opts.source,
+            honeypot: opts.honeypot || '',
+        }),
+    });
+}
+
 function isLooseNewsletterEmail(value: string): boolean {
     const v = String(value || '').trim();
     if (!v) return false;
@@ -54,17 +84,6 @@ export function initNewsletter() {
             return;
         }
 
-        function getApiBaseUrl() {
-            if (typeof window.GM_API_URL !== 'undefined' && window.GM_API_URL) {
-                return String(window.GM_API_URL).trim();
-            }
-            var meta = document.querySelector('meta[name="gm-api-url"]');
-            if (meta && meta.getAttribute('content')) {
-                return meta.getAttribute('content').trim();
-            }
-            return 'http://localhost:8000';
-        }
-
         let slowHintTimer = 0;
         if (submitBtn) {
             submitBtn.disabled = true;
@@ -81,15 +100,10 @@ export function initNewsletter() {
         }
 
         try {
-            const res = await fetch(getApiBaseUrl() + '/newsletter/subscribe', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    email: String(email).trim(),
-                    lang: state.currentLang,
-                    source: 'homepage_outpost',
-                    honeypot: honeypot || ''
-                })
+            const res = await subscribeOutpost(String(email).trim(), {
+                lang: state.currentLang,
+                source: NEWSLETTER_SOURCE_HOMEPAGE,
+                honeypot: honeypot || '',
             });
 
             if (!res.ok) {

@@ -4097,27 +4097,6 @@ body.tdt-peoples-portrait-lightbox-open {
     margin-bottom: var(--spacing-sm);
 }
 
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: var(--spacing-md);
-}
-
-.social-links a {
-    color: var(--tdt-beige-warm);
-    transition: all var(--transition-normal);
-    padding: var(--spacing-sm);
-    min-height: var(--touch-min);
-    display: inline-flex;
-    align-items: center;
-}
-
-.social-links a:hover {
-    color: var(--tdt-cream);
-    transform: translateY(-2px);
-    text-shadow: 0 0 10px rgba(255, 245, 221, 0.6);
-}
-
 /* ========================================
    Responsive Design
    ======================================== */

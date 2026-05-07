@@ -72,11 +72,11 @@ python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
 - **GET /health**  -  liveness.
 - **POST /chat**  -  body `{ "messages": [...], "characterSnapshot": {...}, "gameState": {...} }`; returns `{ "reply": "..." }`.
 - **POST /chat/stream**  -  same body; streams GM reply as Server-Sent Events (`data: {"delta": "..."}` or `{"done": true}` or `{"error": "..."}`).
-- **POST /newsletter/subscribe**  -  Outpost email signup from the static site. Body: `{ "email": "...", "lang": "en"|"fr", "source": "homepage_outpost", "honeypot": "" }`. Returns `{ "ok": true }` on success. Requires env configuration (see **Newsletter / Outpost** below); if unset, returns 503.
+- **POST /newsletter/subscribe**  -  Outpost email signup from the static site. Body: `{ "email": "...", "lang": "en"|"fr", "source": "<string>", "honeypot": "" }`. **`source`** is written to the Sheet (column D with the default range). Values from the frontend: **`homepage_outpost`** (Outpost footer form) and **`about_contact`** (About tab contact quest Send). Returns `{ "ok": true }` on success. Requires env configuration (see **Newsletter / Outpost** below); if unset, returns 503.
 
 ## Newsletter / Outpost (Google Sheet)
 
-The homepage form posts to **`/newsletter/subscribe`** on the same API URL as the GM (`gm-api-url` meta). That route was missing from early deployments; it must exist on the server and **storage must be configured** or subscribers get an error.
+The homepage Outpost form and the About contact quest (on Send) both post to **`/newsletter/subscribe`** on the same API URL as the GM (`gm-api-url` meta). That route was missing from early deployments; it must exist on the server and **storage must be configured** or subscribers get an error.
 
 **Option A  -  Google Apps Script (no GCP service account):** In the spreadsheet, Extensions  -  Apps Script, add a `doPost` that parses JSON and appends a row, then **Deploy**  -  **New deployment**  -  type **Web app** (Execute as: Me, Who has access: Anyone). Set **`NEWSLETTER_APPS_SCRIPT_URL`** to the web app URL in `backend/.env` (and on Render).
 

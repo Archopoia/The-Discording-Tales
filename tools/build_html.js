@@ -27,17 +27,22 @@ function build() {
   const keywordsPath = path.join(partialsDir, 'inspirations-keywords.html');
   const zinePath = path.join(partialsDir, 'zine-content.html');
   const universeLorePath = path.join(partialsDir, 'universe-lore-fr.html');
+  const aboutQuestPath = path.join(partialsDir, 'about-contact-quest.html');
   const peoples = fs.readFileSync(peoplesPath, 'utf8');
   const keywords = fs.readFileSync(keywordsPath, 'utf8');
   const zineContent = fs.existsSync(zinePath) ? fs.readFileSync(zinePath, 'utf8') : '<!-- Run build_zine.js to generate zine-content -->';
   const universeLoreFr = fs.existsSync(universeLorePath)
     ? fs.readFileSync(universeLorePath, 'utf8')
     : '<!-- missing partials/universe-lore-fr.html -->';
+  const aboutContactQuest = fs.existsSync(aboutQuestPath)
+    ? fs.readFileSync(aboutQuestPath, 'utf8')
+    : '<!-- missing partials/about-contact-quest.html -->';
   let out = template
     .replace('{{peoples-cards}}', peoples.trim())
     .replace('{{inspirations-keywords}}', keywords.trim())
     .replace('{{universe-lore-fr}}', universeLoreFr.trim())
-    .replace('{{zine-content}}', zineContent.trim());
+    .replace('{{zine-content}}', zineContent.trim())
+    .replace('{{about-contact-quest}}', aboutContactQuest.trim());
   fs.writeFileSync(indexPath, out, 'utf8');
   console.log('Built index.html from template + partials');
 }

@@ -32,6 +32,7 @@ import { initWebGLShaders } from './webgl-site';
 import { handleWebGLResize } from './webgl-site';
 import { initStickyMainNav } from './nav-sticky';
 import { initCopyrightProtection } from './copyright';
+import { initAboutContactQuest } from './about-contact-quest';
 
 let deferredInitDone = false;
 
@@ -71,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initMenuToggle();
     initPdfDownloadModal();
     initContactModal();
+    initAboutContactQuest();
 
     if (window.matchMedia('(max-width: 768px)').matches) {
         const gallerySlot = document.getElementById('galleries-cycling-slot');
