@@ -725,13 +725,17 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
             </>
           )}
 
-          {/* Aptitudes Section - 8 Columns Side by Side (tutorial target; z-[110] so it draws above the overlay at z-100) */}
+          {/* Aptitudes Section - 8 columns: min readable width + horizontal scroll when viewport is narrow */}
           <section
             ref={attributesSectionRef}
             data-sim-highlight={simHighlightId === 'create-attributes' ? 'create-attributes' : simHighlightId === 'create-reveal' ? 'create-reveal' : simHighlightId === 'create-dice' ? 'create-dice' : undefined}
-            className={`mt-8 relative flex gap-4 items-start transition-all ${simHighlightId === 'create-attributes' || simHighlightId === 'create-reveal' || simHighlightId === 'create-dice' ? 'z-[110] tutorial-spotlight-target' : ''}`}
+            className={`mt-8 relative w-full min-w-0 transition-all ${simHighlightId === 'create-attributes' || simHighlightId === 'create-reveal' || simHighlightId === 'create-dice' ? 'z-[110] tutorial-spotlight-target' : ''}`}
           >
-            <div className="flex gap-0 flex-1 items-start" style={{ minWidth: 0 }}>
+            <div
+              className="w-full min-w-0 overflow-x-auto overflow-y-visible overscroll-x-contain pb-2"
+              style={{ WebkitOverflowScrolling: 'touch' }}
+            >
+              <div className="flex flex-nowrap gap-4 items-start w-max min-w-full">
                 {Object.values(Aptitude).map((aptitude) => {
                 const [atb1, atb2, atb3] = getAptitudeAttributes(aptitude);
                 const level = state.aptitudeLevels[aptitude];
@@ -742,12 +746,13 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
                 return (
                   <div 
                     key={aptitude}
-                    className="relative flex flex-col"
+                    className="relative flex flex-col shrink-0"
                     style={{
                       perspective: '1000px',
-                      flex: isFlipped ? '0 0 6.25%' : '1 1 12.5%',
-                      minWidth: '0',
-                      transition: 'flex 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
+                      flex: isFlipped ? '0 0 2.75rem' : '1 0 9rem',
+                      minWidth: isFlipped ? '2.75rem' : '9rem',
+                      maxWidth: isFlipped ? '2.75rem' : undefined,
+                      transition: 'flex 0.6s cubic-bezier(0.4, 0, 0.2, 1), min-width 0.6s cubic-bezier(0.4, 0, 0.2, 1), max-width 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
                     }}
                   >
                     {/* Souffrance Bar - At the top of each column, fills from bottom upward */}
@@ -861,18 +866,18 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
                           onClick={() => toggleAptitudeFlip(aptitude)}
                           style={{ backgroundColor: 'transparent' }}
                         >
-                          <div className="flex justify-between items-center">
-                            <div className="font-medieval text-xs font-bold text-red-theme uppercase tracking-wide">
+                          <div className="flex justify-between items-start gap-2 min-w-0">
+                            <div className="font-medieval text-xs font-bold text-red-theme uppercase tracking-wide min-w-0 break-words leading-tight">
                               {getAptitudeName(aptitude, lang)}
                             </div>
-                            <div className="font-medieval text-2xl font-bold text-text-dark" style={{ textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)' }}>
+                            <div className="font-medieval text-2xl font-bold text-text-dark shrink-0" style={{ textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)' }}>
                               {level >= 0 ? '+' : ''}{level}
                             </div>
                           </div>
                         </div>
 
                     {/* Attributes Section - Two Column Layout */}
-                    <div className="flex gap-4 mb-3 pb-3 border-b-2 border-border-dark relative z-10" style={{ backgroundColor: 'transparent' }}>
+                    <div className="flex gap-2 sm:gap-4 mb-3 pb-3 border-b-2 border-border-dark relative z-10 min-w-0 flex-wrap sm:flex-nowrap" style={{ backgroundColor: 'transparent' }}>
                       {/* Left Column - Main Attribute with Input */}
                       <div className="flex flex-col items-start gap-2">
                         {simHighlightId === 'create-attributes' ? (
@@ -915,7 +920,7 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
                       </div>
 
                       {/* Right Column - Three Attributes Stacked */}
-                      <div className="flex-1 flex flex-col items-end justify-start gap-1">
+                      <div className="flex-1 flex flex-col items-end justify-start gap-1 min-w-0 basis-[8rem] sm:basis-auto">
                         {/* Attribute 1 - AAA format (all caps) */}
                         <div
                           className="font-medieval text-xs font-bold text-red-theme tracking-wide cursor-help"
@@ -974,7 +979,7 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
                               }}
                               title={simHighlightId === `resistance-${souf}` ? simTooltip ?? undefined : undefined}
                             >
-                              <div className="font-bold text-text-cream mb-1 flex items-center gap-1">
+                              <div className="font-bold text-text-cream mb-1 flex flex-wrap items-center gap-1 min-w-0">
                                 <DegreeInput
                                   value={resistanceDegreeCount}
                                   onChange={(value) => {
@@ -1072,9 +1077,9 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
                                 isExpanded={isExpanded}
                                 onToggle={() => toggleAction(action)}
                                 title={
-                                  <div className="flex items-center w-full" style={{ gap: 0, margin: 0, padding: 0 }}>
-                                    <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', marginRight: 'auto' }}>{getActionName(action, lang).toUpperCase()}</span>
-                                    <div style={{ position: 'relative', flexShrink: 0, marginLeft: 0 }}>
+                                  <div className="flex items-start w-full gap-1 min-w-0" style={{ margin: 0, padding: 0 }}>
+                                    <span className="min-w-0 flex-1 text-left leading-tight break-words">{getActionName(action, lang).toUpperCase()}</span>
+                                    <div style={{ position: 'relative', flexShrink: 0, marginLeft: 'auto' }}>
                                       {/* DegreeInput showing total compétence levels - always in layout to maintain height */}
                                       <div
                                         style={{
@@ -1189,7 +1194,7 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
                                                     className={simHighlightId === 'create-dice' && compData.isRevealed ? 'tutorial-input-highlight' : ''}
                                                   />
                                                 </div>
-                                                <span className="text-xs">{getCompetenceName(comp, lang)}</span>
+                                                <span className="text-xs min-w-0 break-words leading-tight">{getCompetenceName(comp, lang)}</span>
                                               </div>
                                             }
                                             headerFooter={
@@ -1531,6 +1536,7 @@ export default function CharacterSheet({ isOpen = false, onClose, embedded = fal
                 );
                 })}
               </div>
+            </div>
           </section>
         </div>
     </div>
