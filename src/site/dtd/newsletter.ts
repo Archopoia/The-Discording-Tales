@@ -65,9 +65,19 @@ export function initNewsletter() {
             return 'http://localhost:8000';
         }
 
+        let slowHintTimer = 0;
         if (submitBtn) {
             submitBtn.disabled = true;
             submitBtn.textContent = state.currentLang === 'en' ? 'Subscribing…' : 'Abonnement…';
+            /* Render free tier + optional Apps Script cold start can take 30s–2m; reassure after a few seconds. */
+            slowHintTimer = window.setTimeout(function () {
+                if (submitBtn && submitBtn.disabled) {
+                    submitBtn.textContent =
+                        state.currentLang === 'en'
+                            ? 'Still connecting… server may be waking up'
+                            : 'Connexion… le serveur démarre peut-être';
+                }
+            }, 8000);
         }
 
         try {
@@ -104,6 +114,7 @@ export function initNewsletter() {
                 : 'L’abonnement est temporairement indisponible. Veuillez réessayer plus tard.');
             console.error('[Newsletter] subscribe error:', err);
         } finally {
+            if (slowHintTimer) window.clearTimeout(slowHintTimer);
             if (submitBtn) {
                 submitBtn.textContent = originalBtnText;
             }
