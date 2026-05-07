@@ -7,6 +7,9 @@
    CSS Variables & Color System
    ======================================== */
 :root {
+    /* Prefer light UA chrome (scrollbars, form controls) and hint against client auto-dark heuristics */
+    color-scheme: light only;
+
     /* TDT Theme Colors - Warmer Palette */
     --tdt-cream: #fff8e8;
     --tdt-cream-light: #fffbf0;
