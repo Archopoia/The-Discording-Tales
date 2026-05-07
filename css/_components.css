@@ -722,7 +722,7 @@
    ======================================== */
 .galleries-cycling-slot {
     position: relative;
-    min-height: 340px;
+    min-height: 0;
     transition: opacity 0.6s ease;
 }
 
@@ -735,6 +735,9 @@
     top: 0;
     left: 0;
     right: 0;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -756,7 +759,7 @@
 
 .galleries-cycling-slot .gallery-carousel--small {
     width: 100%;
-    max-width: 360px;
+    max-width: min(360px, 100%);
     margin: 0 auto;
 }
 

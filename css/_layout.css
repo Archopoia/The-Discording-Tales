@@ -346,20 +346,23 @@
     z-index: 1;
 }
 
+/* Match footprint of .soundcloud-cycling-wrap (100px circle, 160px column cap) */
 .header-top-row .galleries-cycling-slot {
     position: fixed;
     top: var(--spacing-md, 1rem);
     left: var(--spacing-md, 1rem);
     z-index: 1000;
-    min-height: 200px;
-    min-width: 200px;
+    box-sizing: border-box;
+    max-width: 160px;
+    min-width: 100px;
+    min-height: 100px;
     text-align: left;
-    /* Ensure the whole column area is hoverable to pause cycling */
-    width: auto;
+    width: 100%;
 }
 
 .header-top-row .galleries-cycling-slot .gallery-carousel--small {
-    max-width: 200px;
+    width: 100px;
+    max-width: 100px;
     margin-left: 0;
     margin-right: auto;
 }
@@ -371,11 +374,19 @@
 .header-top-row .three-col-title {
     font-size: 1rem;
     margin: var(--spacing-xs) 0 0;
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 .header-top-row .three-col-subtitle {
     font-size: 0.8rem;
     margin: 0;
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 /* SoundCloud: fixed bottom-right (markup is after </header> so fixed is viewport-relative) */
@@ -480,7 +491,7 @@
 
     .header-top-row .galleries-cycling-slot {
         order: 2;
-        min-height: 180px;
+        min-height: auto;
     }
 
     .header-top-row .site-branding {
