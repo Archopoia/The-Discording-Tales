@@ -42,6 +42,8 @@ jobs:
           cp sitemap.xml site/
           cp robots.txt site/
           cp 404.html site/
+          # Google Search Console HTML-file verification (repo root google*.html)
+          find . -maxdepth 1 -name 'google*.html' -exec cp -v {} site/ \;
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v4
