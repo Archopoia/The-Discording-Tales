@@ -5,13 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node tools/build_rules_lore.js && node tools/build_zine.js && node tools/build_html.js && node tools/build_css.js && node tools/build_i18n.js && tsc && vite build && vite build --config vite.main-site.config.ts && vite build --config vite.play-webllm.config.ts",
+    "build": "node tools/build_rules_lore.js && node tools/build_zine.js && node tools/build_html.js && node tools/build_css.js && node tools/build_i18n.js && node tools/build_sitemap.js && tsc && vite build && vite build --config vite.main-site.config.ts && vite build --config vite.play-webllm.config.ts",
     "build:rules": "node tools/build_rules_lore.js",
     "build:zine": "node tools/build_zine.js",
     "build:html": "node tools/build_html.js",
-    "build:pages": "node tools/build_html.js && node tools/build_i18n.js",
+    "build:pages": "node tools/build_html.js && node tools/build_i18n.js && node tools/build_sitemap.js",
     "build:css": "node tools/build_css.js",
     "build:i18n": "node tools/build_i18n.js",
+    "build:sitemap": "node tools/build_sitemap.js",
     "build:images": "node tools/optimize_entrance_images.js",
     "preview": "vite preview"
   },
