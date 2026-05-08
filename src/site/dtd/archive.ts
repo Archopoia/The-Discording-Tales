@@ -1,5 +1,4 @@
 import { ARCHIVED_SUBTABS, FIRST_NON_ARCHIVED } from './archive-constants';
-import { switchTab } from './tabs';
 import { switchSubTab } from './subtabs';
 
 export function setArchivedVisible(show: boolean): void {
@@ -28,11 +27,6 @@ export function initArchiveToggle(): void {
     const showArchived = stored === 'true';
     if (!showArchived) {
         document.body.classList.add('archived-hidden');
-        const activeTab = document.querySelector('.tab-content.active') as HTMLElement | null;
-        if (activeTab && (activeTab.id === 'lore' || activeTab.id === 'rules')) {
-            switchTab('univers');
-            switchSubTab('univers', 'peoples');
-        }
     } else {
         document.body.classList.remove('archived-hidden');
     }

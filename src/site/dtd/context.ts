@@ -20,7 +20,7 @@ export const elements = {
 };
 
 /** Main nav tab order (left to right) for logo spin direction */
-export const TAB_ORDER = ['landing', 'lore', 'univers', 'rules', 'play', 'about'] as const;
+export const TAB_ORDER = ['landing', 'univers', 'play', 'about'] as const;
 
 /** Per-carousel autoplay state (see carousel.ts) */
 export const carouselStates: Record<string, { index: number; interval: ReturnType<typeof setInterval> | null }> = {};

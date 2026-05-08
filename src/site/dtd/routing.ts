@@ -33,16 +33,10 @@ export function fragmentFromMondeLink(anchor: HTMLAnchorElement | null): string 
 
 export function handleHashChange(): void {
     const hash = getRouteHashFragment();
-    const validTabs = ['landing', 'lore', 'univers', 'rules', 'play', 'about'];
+    const validTabs = ['landing', 'univers', 'play', 'about'];
     const sectionToTab: Record<string, string> = {
-        cosmology: 'lore',
         peoples: 'univers',
-        'world-context': 'lore',
         'system-overview': 'univers',
-        'character-creation': 'rules',
-        progression: 'rules',
-        combat: 'rules',
-        magic: 'rules',
         'about-world': 'about',
         'about-author': 'about',
         'about-contact': 'about',
@@ -53,12 +47,6 @@ export function handleHashChange(): void {
         return;
     }
     const archivedHidden = document.body.classList.contains('archived-hidden');
-    if (archivedHidden && (hash === 'lore' || hash === 'rules')) {
-        if (history.replaceState) history.replaceState(null, '', '#peoples');
-        switchTab('univers');
-        switchSubTab('univers', 'peoples');
-        return;
-    }
     if (hash === 'world-map') {
         if (history.replaceState) history.replaceState(null, '', '#map');
         handleHashChange();
@@ -86,12 +74,6 @@ export function handleHashChange(): void {
     }
     if (sectionToTab[hash]) {
         const tab = sectionToTab[hash];
-        if (archivedHidden && (tab === 'lore' || tab === 'rules')) {
-            if (history.replaceState) history.replaceState(null, '', '#peoples');
-            switchTab('univers');
-            switchSubTab('univers', 'peoples');
-            return;
-        }
         switchTab(tab, { skipScrollToTop: true });
         switchSubTab(tab, hash);
         return;
