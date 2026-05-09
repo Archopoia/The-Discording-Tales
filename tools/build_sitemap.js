@@ -14,8 +14,10 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
 const outPath = path.join(root, 'sitemap.xml');
+const indexOutPath = path.join(root, 'sitemap-index.xml');
 const nestedDir = path.join(root, 'sitemap');
 const nestedOutPath = path.join(nestedDir, 'sitemap.xml');
+const nestedIndexOutPath = path.join(nestedDir, 'sitemap-index.xml');
 
 const BASE = 'https://archopoia.github.io/The-Discording-Tales';
 const HOME = `${BASE}/`;
@@ -71,7 +73,32 @@ ${imageBlocks}
 `;
 }
 
+function buildIndexXml() {
+  const lastmod = new Date().toISOString().slice(0, 10);
+  const sitemaps = [
+    `${BASE}/sitemap.xml`,
+    `${BASE}/sitemap/sitemap.xml`,
+  ];
+
+  const items = sitemaps
+    .map(
+      (loc) => `  <sitemap>
+    <loc>${escXml(loc)}</loc>
+    <lastmod>${lastmod}</lastmod>
+  </sitemap>`,
+    )
+    .join('\n');
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${items}
+</sitemapindex>
+`;
+}
+
 fs.writeFileSync(outPath, buildXml(), 'utf8');
+fs.writeFileSync(indexOutPath, buildIndexXml(), 'utf8');
 fs.mkdirSync(nestedDir, { recursive: true });
 fs.writeFileSync(nestedOutPath, buildXml(), 'utf8');
+fs.writeFileSync(nestedIndexOutPath, buildIndexXml(), 'utf8');
 console.log('Wrote sitemap.xml with lastmod', new Date().toISOString().slice(0, 10));

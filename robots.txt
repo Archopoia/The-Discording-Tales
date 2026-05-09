@@ -117,3 +117,4 @@ Disallow: /.git/
 
 Sitemap: https://archopoia.github.io/The-Discording-Tales/sitemap.xml
 Sitemap: https://archopoia.github.io/The-Discording-Tales/sitemap/sitemap.xml
+Sitemap: https://archopoia.github.io/The-Discording-Tales/sitemap-index.xml

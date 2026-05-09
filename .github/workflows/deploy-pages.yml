@@ -40,6 +40,7 @@ jobs:
           cp -r public/js site/
           [ -f public/drd-rules-lore.txt ] && cp public/drd-rules-lore.txt site/ || true
           cp sitemap.xml site/
+          [ -f sitemap-index.xml ] && cp sitemap-index.xml site/ || true
           [ -d sitemap ] && cp -r sitemap site/ || true
           cp robots.txt site/
           cp 404.html site/
