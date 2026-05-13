@@ -11,7 +11,7 @@ export function initPdfDownloadModal() {
     var downloadBtn = document.getElementById('tdt-pdf-modal-download');
     if (!openBtn || !dialog) return;
 
-    var pdfFileName = 'Des Récits DiscordantsV0.01.pdf';
+    var pdfFileName = 'Des Récits Discordants v0.01.pdf';
     var pdfHref = 'assets/' + encodeURIComponent(pdfFileName);
 
     function triggerPdfDownload() {

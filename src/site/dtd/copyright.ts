@@ -17,9 +17,14 @@ export function initCopyrightProtection(): void {
         const selection = window.getSelection();
         if (selection && selection.toString().length > 50) {
             const copiedText = selection.toString();
+            const canonical =
+                typeof document !== 'undefined'
+                    ? document.querySelector('link[rel="canonical"]')?.getAttribute('href')?.trim()
+                    : '';
+            const sourceLine = canonical ? `Source: ${canonical}\n` : '';
             const watermark =
                 '\n\n---\n© 2020-2026 The Discording Tales / Des Récits Discordants. All Rights Reserved.\n' +
-                'Source: https://archopoia.github.io/The-Discording-Tales/\n' +
+                sourceLine +
                 'Unauthorized reproduction is prohibited.\n---';
             if (e.clipboardData) {
                 e.clipboardData.setData('text/plain', copiedText + watermark);

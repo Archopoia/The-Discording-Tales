@@ -1,6 +1,8 @@
 /**
  * HTML partials build: replace {{peoples-cards}}, {{inspirations-keywords}},
- * {{universe-lore-fr}}, {{zine-content}} with partials files.
+ * {{universe-lore-fr}}, {{zine-content}}, {{about-contact-quest}} with partials files.
+ * Injects {{SITE_PUBLIC_BASE}} from tools/site-public-url.js (SITE_PUBLIC_URL env).
+ * Builds 404.html from 404.template.html with the same base.
  *
  * Usage:
  *   node tools/build_html.js           -  build index.html from index.template.html + partials
@@ -9,6 +11,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { getSitePublicBase } from './site-public-url.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
@@ -43,8 +46,18 @@ function build() {
     .replace('{{universe-lore-fr}}', universeLoreFr.trim())
     .replace('{{zine-content}}', zineContent.trim())
     .replace('{{about-contact-quest}}', aboutContactQuest.trim());
+  const base = getSitePublicBase();
+  out = out.replaceAll('{{SITE_PUBLIC_BASE}}', base);
   fs.writeFileSync(indexPath, out, 'utf8');
   console.log('Built index.html from template + partials');
+
+  const fourTemplatePath = path.join(root, '404.template.html');
+  const fourOutPath = path.join(root, '404.html');
+  if (fs.existsSync(fourTemplatePath)) {
+    const four = fs.readFileSync(fourTemplatePath, 'utf8').replaceAll('{{SITE_PUBLIC_BASE}}', base);
+    fs.writeFileSync(fourOutPath, four, 'utf8');
+    console.log('Built 404.html from 404.template.html');
+  }
 }
 
 function init() {

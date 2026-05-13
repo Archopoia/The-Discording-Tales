@@ -1,8 +1,10 @@
 /**
- * Writes sitemap.xml at repo root for GitHub Pages.
+ * Writes sitemap.xml at repo root for GitHub Pages, and robots.txt from robots.template.txt.
  * - One canonical URL (hash-only SPA sections are not separate sitemap URLs; Google ignores fragments).
  * - hreflang alternates (en / fr / x-default) on the same URL for the bilingual toggle UI.
  * - Google Image extension for key brand images on that page.
+ *
+ * Public URL prefix: tools/site-public-url.js (SITE_PUBLIC_URL env override).
  *
  * Run: node tools/build_sitemap.js
  * Invoked from npm run build / build:pages after HTML+i18n.
@@ -10,6 +12,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { getSitePublicBase } from './site-public-url.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
@@ -18,8 +21,10 @@ const indexOutPath = path.join(root, 'sitemap-index.xml');
 const nestedDir = path.join(root, 'sitemap');
 const nestedOutPath = path.join(nestedDir, 'sitemap.xml');
 const nestedIndexOutPath = path.join(nestedDir, 'sitemap-index.xml');
+const robotsTemplatePath = path.join(root, 'robots.template.txt');
+const robotsOutPath = path.join(root, 'robots.txt');
 
-const BASE = 'https://archopoia.github.io/The-Discording-Tales';
+const BASE = getSitePublicBase();
 const HOME = `${BASE}/`;
 
 /** @type {{ loc: string; title: string }[]} */
@@ -102,3 +107,9 @@ fs.mkdirSync(nestedDir, { recursive: true });
 fs.writeFileSync(nestedOutPath, buildXml(), 'utf8');
 fs.writeFileSync(nestedIndexOutPath, buildIndexXml(), 'utf8');
 console.log('Wrote sitemap.xml with lastmod', new Date().toISOString().slice(0, 10));
+
+if (fs.existsSync(robotsTemplatePath)) {
+  const robotsBody = fs.readFileSync(robotsTemplatePath, 'utf8').replaceAll('{{SITE_PUBLIC_BASE}}', BASE);
+  fs.writeFileSync(robotsOutPath, robotsBody, 'utf8');
+  console.log('Wrote robots.txt from robots.template.txt');
+}

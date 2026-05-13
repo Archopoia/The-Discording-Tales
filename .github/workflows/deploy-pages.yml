@@ -27,7 +27,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # Optional repo variable SITE_PUBLIC_URL (no trailing slash), e.g.
+      # https://www.thediscordingtales.com/The-Discording-Tales - overrides canonical, sitemap, robots.
       - name: Build (Vite + play-webllm)
+        env:
+          SITE_PUBLIC_URL: ${{ vars.SITE_PUBLIC_URL }}
         run: npm run build
 
       - name: Assemble site for Pages
@@ -44,6 +48,7 @@ jobs:
           [ -d sitemap ] && cp -r sitemap site/ || true
           cp robots.txt site/
           cp 404.html site/
+          [ -f LICENSE ] && cp LICENSE site/ || true
           # Google Search Console HTML-file verification (repo root google*.html)
           find . -maxdepth 1 -name 'google*.html' -exec cp -v {} site/ \;
 
