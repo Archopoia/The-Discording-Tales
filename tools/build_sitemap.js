@@ -31,15 +31,23 @@ const HOME = `${BASE}/`;
 const IMAGES = [
   {
     loc: `${BASE}/assets/og-tdt-1200x630.jpg`,
-    title: 'THE DISCORDING TALES - Open Graph preview',
+    title: 'THE DISCORDING TALES - share preview (1200x630)',
   },
   {
-    loc: `${BASE}/assets/images/image/image12.png`,
-    title: 'THE DISCORDING TALES - emblem',
+    loc: `${BASE}/assets/og/tdt-brand-square-600.jpg`,
+    title: 'THE DISCORDING TALES - brand image (square)',
   },
   {
-    loc: `${BASE}/assets/images/cropped-symbolpur.png`,
-    title: 'THE DISCORDING TALES - site icon',
+    loc: `${BASE}/assets/og/og-tdt-600x315.jpg`,
+    title: 'THE DISCORDING TALES - share preview (600x315)',
+  },
+  {
+    loc: `${BASE}/assets/icons/android-chrome-512x512.png`,
+    title: 'THE DISCORDING TALES - site symbol icon',
+  },
+  {
+    loc: `${BASE}/favicon.ico`,
+    title: 'THE DISCORDING TALES - favicon',
   },
 ];
 

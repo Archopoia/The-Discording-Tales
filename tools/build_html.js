@@ -15,6 +15,22 @@ import { getSitePublicBase } from './site-public-url.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
+const ogMetaPath = path.join(root, 'tools', '.og-assets-meta.json');
+
+/** @returns {{ primary: string; cacheQuery: string; alt: string; orgLogo: string }} */
+function loadOgMeta() {
+  const fallback = {
+    primary: 'assets/og-tdt-1200x630.jpg',
+    cacheQuery: '',
+    alt: 'THE DISCORDING TALES - An ethno-science-fantasy gameworld',
+    orgLogo: 'assets/og/tdt-brand-square-512.jpg',
+  };
+  if (!fs.existsSync(ogMetaPath)) {
+    console.warn('Missing tools/.og-assets-meta.json - run: npm run build:og');
+    return fallback;
+  }
+  return { ...fallback, ...JSON.parse(fs.readFileSync(ogMetaPath, 'utf8')) };
+}
 const partialsDir = path.join(root, 'partials');
 const templatePath = path.join(root, 'index.template.html');
 const indexPath = path.join(root, 'index.html');
@@ -47,7 +63,14 @@ function build() {
     .replace('{{zine-content}}', zineContent.trim())
     .replace('{{about-contact-quest}}', aboutContactQuest.trim());
   const base = getSitePublicBase();
-  out = out.replaceAll('{{SITE_PUBLIC_BASE}}', base);
+  const og = loadOgMeta();
+  const ogImagePath = `${og.primary}${og.cacheQuery}`;
+  const orgLogoPath = `${og.orgLogo}${og.cacheQuery}`;
+  out = out
+    .replaceAll('{{SITE_PUBLIC_BASE}}', base)
+    .replaceAll('{{OG_IMAGE_PATH}}', ogImagePath)
+    .replaceAll('{{OG_IMAGE_ALT}}', og.alt)
+    .replaceAll('{{ORG_LOGO_PATH}}', orgLogoPath);
   fs.writeFileSync(indexPath, out, 'utf8');
   console.log('Built index.html from template + partials');
 

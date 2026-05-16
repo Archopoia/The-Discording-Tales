@@ -26,18 +26,18 @@
     <meta property="og:site_name" content="THE DISCORDING TALES"/>
     <meta property="og:locale" content="en_US"/>
     <meta property="og:locale:alternate" content="fr_FR"/>
-    <meta property="og:image" content="{{SITE_PUBLIC_BASE}}/assets/og-tdt-1200x630.jpg"/>
-    <meta property="og:image:secure_url" content="{{SITE_PUBLIC_BASE}}/assets/og-tdt-1200x630.jpg"/>
+    <meta property="og:image" content="{{SITE_PUBLIC_BASE}}/{{OG_IMAGE_PATH}}"/>
+    <meta property="og:image:secure_url" content="{{SITE_PUBLIC_BASE}}/{{OG_IMAGE_PATH}}"/>
     <meta property="og:image:type" content="image/jpeg"/>
     <meta property="og:image:width" content="1200"/>
     <meta property="og:image:height" content="630"/>
-    <meta property="og:image:alt" content="THE DISCORDING TALES - Weird ethno-science-fantasy tabletop RPG and worldlore"/>
+    <meta property="og:image:alt" content="{{OG_IMAGE_ALT}}"/>
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:title" content="THE DISCORDING TALES – Under our steps awake those mysteries believed to be warring among the stars…"/>
     <meta name="twitter:description" content="For those of us who crave DISCOVERY. A journey through exotic cultures, unexplored lands, weird creatures, and untold ways of thinking and being - yearning to experience the vast potentials, technologies and moralities of worlds unlike ours."/>
-    <meta name="twitter:image" content="{{SITE_PUBLIC_BASE}}/assets/og-tdt-1200x630.jpg"/>
-    <meta name="twitter:image:alt" content="THE DISCORDING TALES - Weird ethno-science-fantasy tabletop RPG and worldlore"/>
+    <meta name="twitter:image" content="{{SITE_PUBLIC_BASE}}/{{OG_IMAGE_PATH}}"/>
+    <meta name="twitter:image:alt" content="{{OG_IMAGE_ALT}}"/>
     <meta name="twitter:site" content="@DiscordingTales"/>
     <meta name="twitter:creator" content="@DiscordingTales"/>
     
@@ -94,18 +94,23 @@
     })();
     </script>
     
-    <!-- Favicon -->
-    <link href="assets/images/cropped-symbolpur.png" rel="icon" type="image/png" sizes="32x32"/>
+    <!-- Favicon & app icons (npm run build:favicons from assets/images/cropped-symbolpur.png) -->
+    <link href="favicon.ico" rel="icon" sizes="48x48"/>
+    <link href="assets/icons/favicon-48x48.png" rel="icon" type="image/png" sizes="48x48"/>
+    <link href="assets/icons/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32"/>
+    <link href="assets/icons/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16"/>
+    <link href="assets/icons/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+    <link href="site.webmanifest" rel="manifest"/>
     <!-- Gemini API key intentionally not exposed in frontend; use backend env vars -->
     <!-- People banner WebPs: preloaded via keyhole-entrance.js (after entrance assets, or immediately if bypassing) -->
     <!-- Page title/description for setLanguage (filled by build_i18n) -->
     <script type="application/json" id="tdt-i18n-strings">{{i18n:script-json}}</script>
     <!-- Structured data (Schema.org JSON-LD) -->
     <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"WebSite","name":"THE DISCORDING TALES","alternateName":"Des Récits Discordants","url":"{{SITE_PUBLIC_BASE}}/","inLanguage":["en","fr"],"description":"For those of us who crave DISCOVERY. A weird ethno-science-fantasy tabletop RPG and worldlore.","image":"{{SITE_PUBLIC_BASE}}/assets/og-tdt-1200x630.jpg","publisher":{"@type":"Organization","name":"The Discording Tales"}}
+    {"@context":"https://schema.org","@type":"WebSite","name":"THE DISCORDING TALES","alternateName":"Des Récits Discordants","url":"{{SITE_PUBLIC_BASE}}/","inLanguage":["en","fr"],"description":"For those of us who crave DISCOVERY. A weird ethno-science-fantasy tabletop RPG and worldlore.","image":"{{SITE_PUBLIC_BASE}}/{{OG_IMAGE_PATH}}","publisher":{"@type":"Organization","name":"The Discording Tales"}}
     </script>
     <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"Organization","name":"The Discording Tales","url":"{{SITE_PUBLIC_BASE}}/","logo":"{{SITE_PUBLIC_BASE}}/assets/images/image/image12.png","sameAs":["https://www.kickstarter.com/projects/1410517588/the-discording-tales-tabletop-rpg-and-worldlore","https://soundcloud.com/the-discording-tales","https://x.com/DiscordingTales"]}
+    {"@context":"https://schema.org","@type":"Organization","name":"The Discording Tales","url":"{{SITE_PUBLIC_BASE}}/","logo":"{{SITE_PUBLIC_BASE}}/{{ORG_LOGO_PATH}}","sameAs":["https://www.kickstarter.com/projects/1410517588/the-discording-tales-tabletop-rpg-and-worldlore","https://soundcloud.com/the-discording-tales","https://x.com/DiscordingTales"]}
     </script>
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"Person","name":"Hugues W.B. de Pingon","jobTitle":"Lead Game Designer","worksFor":{"@type":"Organization","name":"Once Lost Games","url":"https://oncelostgames.com/","sameAs":["https://www.oncelostgames.com/","https://thewaywardrealms.com/","https://store.steampowered.com/app/1685310/The_Wayward_Realms/"]},"knowsAbout":["The Wayward Realms","Tabletop role-playing games","Worldbuilding","Game design"],"colleague":[{"@type":"Person","name":"Ted Peterson"},{"@type":"Person","name":"Julian LeFay"}],"creator":{"@type":"CreativeWork","name":"The Discording Tales","url":"{{SITE_PUBLIC_BASE}}/"},"url":"https://archopoia.github.io/Hugues.W.B.dePingon/","sameAs":["https://archopoia.github.io/Hugues.W.B.dePingon/","https://www.oncelostgames.com/","https://store.steampowered.com/app/1685310/The_Wayward_Realms/"]}

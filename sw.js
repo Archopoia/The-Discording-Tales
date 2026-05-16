@@ -5,7 +5,7 @@
  * Bump CACHE_NAME after changing caching rules.
  */
 /* global self, caches, fetch */
-var CACHE_NAME = 'tdt-static-v3';
+var CACHE_NAME = 'tdt-static-v4';
 
 function isAssetRequest(url) {
     var p = url.pathname;
