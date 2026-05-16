@@ -17,10 +17,6 @@ import { getSitePublicBase } from './site-public-url.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
 const outPath = path.join(root, 'sitemap.xml');
-const indexOutPath = path.join(root, 'sitemap-index.xml');
-const nestedDir = path.join(root, 'sitemap');
-const nestedOutPath = path.join(nestedDir, 'sitemap.xml');
-const nestedIndexOutPath = path.join(nestedDir, 'sitemap-index.xml');
 const robotsTemplatePath = path.join(root, 'robots.template.txt');
 const robotsOutPath = path.join(root, 'robots.txt');
 
@@ -86,35 +82,9 @@ ${imageBlocks}
 `;
 }
 
-function buildIndexXml() {
-  const lastmod = new Date().toISOString().slice(0, 10);
-  const sitemaps = [
-    `${BASE}/sitemap.xml`,
-    `${BASE}/sitemap/sitemap.xml`,
-  ];
-
-  const items = sitemaps
-    .map(
-      (loc) => `  <sitemap>
-    <loc>${escXml(loc)}</loc>
-    <lastmod>${lastmod}</lastmod>
-  </sitemap>`,
-    )
-    .join('\n');
-
-  return `<?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${items}
-</sitemapindex>
-`;
-}
-
 fs.writeFileSync(outPath, buildXml(), 'utf8');
-fs.writeFileSync(indexOutPath, buildIndexXml(), 'utf8');
-fs.mkdirSync(nestedDir, { recursive: true });
-fs.writeFileSync(nestedOutPath, buildXml(), 'utf8');
-fs.writeFileSync(nestedIndexOutPath, buildIndexXml(), 'utf8');
 console.log('Wrote sitemap.xml with lastmod', new Date().toISOString().slice(0, 10));
+console.log('GSC: submit only "sitemap.xml" (no trailing slash) on your URL-prefix property');
 
 if (fs.existsSync(robotsTemplatePath)) {
   const robotsBody = fs.readFileSync(robotsTemplatePath, 'utf8').replaceAll('{{SITE_PUBLIC_BASE}}', BASE);

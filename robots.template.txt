@@ -116,5 +116,3 @@ Disallow: /tools/
 Disallow: /.git/
 
 Sitemap: {{SITE_PUBLIC_BASE}}/sitemap.xml
-Sitemap: {{SITE_PUBLIC_BASE}}/sitemap/sitemap.xml
-Sitemap: {{SITE_PUBLIC_BASE}}/sitemap-index.xml
