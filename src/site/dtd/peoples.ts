@@ -64,7 +64,7 @@ function racesJsonKeySuffix(peupleId, raceLabel) {
 
 export function fetchPeoplesLocaleJson(lang: string) {
     var l = lang === 'fr' ? 'fr' : 'en';
-    if (tdtPeoplesLocaleCache[l]) {
+    if (Object.prototype.hasOwnProperty.call(tdtPeoplesLocaleCache, l)) {
         return Promise.resolve(tdtPeoplesLocaleCache[l]);
     }
     return fetch('locales/' + l + '.json', { credentials: 'same-origin' })
@@ -77,6 +77,7 @@ export function fetchPeoplesLocaleJson(lang: string) {
             return data;
         })
         .catch(function() {
+            tdtPeoplesLocaleCache[l] = null;
             return null;
         });
 }

@@ -41,6 +41,7 @@ jobs:
           cp -r css site/
           cp -r assets site/
           cp -r dist site/
+          [ -d locales ] && cp -r locales site/ || true
           cp -r public/js site/
           [ -f public/drd-rules-lore.txt ] && cp public/drd-rules-lore.txt site/ || true
           cp sitemap.xml site/

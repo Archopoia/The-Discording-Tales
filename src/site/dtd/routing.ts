@@ -46,19 +46,13 @@ export function handleHashChange(): void {
         switchTab('landing');
         return;
     }
-    const archivedHidden = document.body.classList.contains('archived-hidden');
     if (hash === 'world-map') {
         if (history.replaceState) history.replaceState(null, '', '#map');
         handleHashChange();
         return;
     }
     if (hash === 'map') {
-        if (archivedHidden) {
-            if (history.replaceState) history.replaceState(null, '', '#peoples');
-            switchTab('univers');
-            switchSubTab('univers', 'peoples');
-            return;
-        }
+        // Map is regular Monde content (not .archived-section); do not gate on archived-hidden.
         switchTab('univers', { skipScrollToTop: true, skipEnsureSubTab: true });
         switchSubTab('univers', 'peoples', 'map');
         return;
