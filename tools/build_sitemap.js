@@ -1,7 +1,7 @@
 /**
  * Writes sitemap.xml at repo root for GitHub Pages, and robots.txt from robots.template.txt.
  * - One canonical URL (hash-only SPA sections are not separate sitemap URLs; Google ignores fragments).
- * - hreflang alternates (en / fr / x-default) on the same URL for the bilingual toggle UI.
+ * - hreflang alternates: en on /, fr on /?lang=fr (matches head bootstrap + language.ts).
  * - Google Image extension for key brand images on that page.
  *
  * Public URL prefix: tools/site-public-url.js (SITE_PUBLIC_URL env override).
@@ -22,6 +22,7 @@ const robotsOutPath = path.join(root, 'robots.txt');
 
 const BASE = getSitePublicBase();
 const HOME = `${BASE}/`;
+const HOME_FR = `${BASE}/?lang=fr`;
 
 /** @type {{ loc: string; title: string }[]} */
 const IMAGES = [
@@ -74,7 +75,7 @@ function buildXml() {
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="${HOME}"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="${HOME}"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="${HOME_FR}"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="${HOME}"/>
 ${imageBlocks}
   </url>

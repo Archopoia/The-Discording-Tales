@@ -4,11 +4,11 @@
     <meta charset="utf-8"/>
     <meta name="color-scheme" content="light only"/>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
-    <title>THE DISCORDING TALES – Under our steps awake those mysteries believed to be warring among the stars…</title>
-    <meta content="For those of us who crave DISCOVERY. A journey through exotic cultures, unexplored lands, weird creatures, and untold ways of thinking and being - yearning to experience the vast potentials, technologies and moralities of worlds unlike ours." name="description"/>
+    <title>DES RÉCITS DISCORDANTS | THE DISCORDING TALES – Weird ethno-science-fantasy tabletop RPG</title>
+    <meta content="Des Récits Discordants / The Discording Tales - For those of us who crave DISCOVERY. A weird ethno-science-fantasy tabletop RPG and gameworld. Jeu de rôle et univers ethno-science-fantasy." name="description"/>
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1, noai, noimageai"/>
     <meta name="rights" content="All Rights Reserved. Copyright (c) 2020-2026 The Discording Tales / Des Récits Discordants."/>
-    <meta name="author" content="The Discording Tales"/>
+    <meta name="author" content="The Discording Tales / Des Récits Discordants"/>
     <meta name="copyright" content="Copyright (c) 2020-2026 The Discording Tales / Des Récits Discordants. All rights reserved."/>
     <meta name="dcterms.rights" content="All rights reserved."/>
     <meta name="dcterms.rightsHolder" content="The Discording Tales / Des Récits Discordants"/>
@@ -17,13 +17,13 @@
     <link rel="sitemap" type="application/xml" title="Sitemap" href="{{SITE_PUBLIC_BASE}}/sitemap.xml"/>
     <link rel="alternate" href="{{SITE_PUBLIC_BASE}}/" hreflang="x-default"/>
     <link rel="alternate" href="{{SITE_PUBLIC_BASE}}/" hreflang="en"/>
-    <link rel="alternate" href="{{SITE_PUBLIC_BASE}}/" hreflang="fr"/>
+    <link rel="alternate" href="{{SITE_PUBLIC_BASE}}/?lang=fr" hreflang="fr"/>
     <!-- Open Graph -->
-    <meta property="og:title" content="THE DISCORDING TALES – Under our steps awake those mysteries believed to be warring among the stars…"/>
-    <meta property="og:description" content="For those of us who crave DISCOVERY. A journey through exotic cultures, unexplored lands, weird creatures, and untold ways of thinking and being - yearning to experience the vast potentials, technologies and moralities of worlds unlike ours."/>
+    <meta property="og:title" content="DES RÉCITS DISCORDANTS | THE DISCORDING TALES – Weird ethno-science-fantasy tabletop RPG"/>
+    <meta property="og:description" content="Des Récits Discordants / The Discording Tales - For those of us who crave DISCOVERY. A weird ethno-science-fantasy tabletop RPG and gameworld. Jeu de rôle et univers ethno-science-fantasy."/>
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="{{SITE_PUBLIC_BASE}}/"/>
-    <meta property="og:site_name" content="THE DISCORDING TALES"/>
+    <meta property="og:site_name" content="THE DISCORDING TALES / DES RÉCITS DISCORDANTS"/>
     <meta property="og:locale" content="en_US"/>
     <meta property="og:locale:alternate" content="fr_FR"/>
     <meta property="og:image" content="{{SITE_PUBLIC_BASE}}/{{OG_IMAGE_PATH}}"/>
@@ -34,8 +34,8 @@
     <meta property="og:image:alt" content="{{OG_IMAGE_ALT}}"/>
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:title" content="THE DISCORDING TALES – Under our steps awake those mysteries believed to be warring among the stars…"/>
-    <meta name="twitter:description" content="For those of us who crave DISCOVERY. A journey through exotic cultures, unexplored lands, weird creatures, and untold ways of thinking and being - yearning to experience the vast potentials, technologies and moralities of worlds unlike ours."/>
+    <meta name="twitter:title" content="DES RÉCITS DISCORDANTS | THE DISCORDING TALES – Weird ethno-science-fantasy tabletop RPG"/>
+    <meta name="twitter:description" content="Des Récits Discordants / The Discording Tales - For those of us who crave DISCOVERY. A weird ethno-science-fantasy tabletop RPG and gameworld. Jeu de rôle et univers ethno-science-fantasy."/>
     <meta name="twitter:image" content="{{SITE_PUBLIC_BASE}}/{{OG_IMAGE_PATH}}"/>
     <meta name="twitter:image:alt" content="{{OG_IMAGE_ALT}}"/>
     <meta name="twitter:site" content="@DiscordingTales"/>
@@ -105,12 +105,37 @@
     <!-- People banner WebPs: preloaded via keyhole-entrance.js (after entrance assets, or immediately if bypassing) -->
     <!-- Page title/description for setLanguage (filled by build_i18n) -->
     <script type="application/json" id="tdt-i18n-strings">{{i18n:script-json}}</script>
+    <script>
+    (function () {
+        try {
+            var m = /[?&]lang=(fr|en)\b/i.exec(location.search);
+            if (!m) return;
+            var lang = m[1].toLowerCase();
+            document.documentElement.lang = lang;
+            var el = document.getElementById('tdt-i18n-strings');
+            if (!el || !el.textContent) return;
+            var data = JSON.parse(el.textContent);
+            if (data.title && data.title[lang]) document.title = data.title[lang];
+            if (data.description && data.description[lang]) {
+                var meta = document.querySelector('meta[name="description"]');
+                if (meta) meta.setAttribute('content', data.description[lang]);
+            }
+            if (lang === 'fr') {
+                var canon = document.querySelector('link[rel="canonical"]');
+                if (canon) {
+                    var base = canon.getAttribute('href') || '';
+                    canon.setAttribute('href', base.split('?')[0].replace(/\/?$/, '/') + '?lang=fr');
+                }
+            }
+        } catch (e) { /* ignore */ }
+    })();
+    </script>
     <!-- Structured data (Schema.org JSON-LD) -->
     <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"WebSite","name":"THE DISCORDING TALES","alternateName":"Des Récits Discordants","url":"{{SITE_PUBLIC_BASE}}/","inLanguage":["en","fr"],"description":"For those of us who crave DISCOVERY. A weird ethno-science-fantasy tabletop RPG and worldlore.","image":"{{SITE_PUBLIC_BASE}}/{{OG_IMAGE_PATH}}","publisher":{"@type":"Organization","name":"The Discording Tales"}}
+    {"@context":"https://schema.org","@type":"WebSite","name":"THE DISCORDING TALES","alternateName":["Des Récits Discordants","DES RÉCITS DISCORDANTS","DRD","TDT"],"url":"{{SITE_PUBLIC_BASE}}/","inLanguage":["en","fr"],"description":"The Discording Tales / Des Récits Discordants - For those of us who crave DISCOVERY. A weird ethno-science-fantasy tabletop RPG and worldlore. Jeu de rôle weird ethno-science-fantasy.","image":"{{SITE_PUBLIC_BASE}}/{{OG_IMAGE_PATH}}","publisher":{"@type":"Organization","name":"The Discording Tales","alternateName":["Des Récits Discordants","DES RÉCITS DISCORDANTS"]}}
     </script>
     <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"Organization","name":"The Discording Tales","url":"{{SITE_PUBLIC_BASE}}/","logo":"{{SITE_PUBLIC_BASE}}/{{ORG_LOGO_PATH}}","sameAs":["https://www.kickstarter.com/projects/1410517588/the-discording-tales-tabletop-rpg-and-worldlore","https://soundcloud.com/the-discording-tales","https://x.com/DiscordingTales"]}
+    {"@context":"https://schema.org","@type":"Organization","name":"The Discording Tales","alternateName":["Des Récits Discordants","DES RÉCITS DISCORDANTS","DRD"],"url":"{{SITE_PUBLIC_BASE}}/","logo":"{{SITE_PUBLIC_BASE}}/{{ORG_LOGO_PATH}}","sameAs":["https://www.kickstarter.com/projects/1410517588/the-discording-tales-tabletop-rpg-and-worldlore","https://soundcloud.com/the-discording-tales","https://x.com/DiscordingTales"]}
     </script>
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"Person","name":"Hugues W.B. de Pingon","jobTitle":"Lead Game Designer","worksFor":{"@type":"Organization","name":"Once Lost Games","url":"https://oncelostgames.com/","sameAs":["https://www.oncelostgames.com/","https://thewaywardrealms.com/","https://store.steampowered.com/app/1685310/The_Wayward_Realms/"]},"knowsAbout":["The Wayward Realms","Tabletop role-playing games","Worldbuilding","Game design"],"colleague":[{"@type":"Person","name":"Ted Peterson"},{"@type":"Person","name":"Julian LeFay"}],"creator":{"@type":"CreativeWork","name":"The Discording Tales","url":"{{SITE_PUBLIC_BASE}}/"},"url":"https://archopoia.github.io/Hugues.W.B.dePingon/","sameAs":["https://archopoia.github.io/Hugues.W.B.dePingon/","https://www.oncelostgames.com/","https://store.steampowered.com/app/1685310/The_Wayward_Realms/"]}
@@ -198,7 +223,7 @@
                             <a class="site-logo-link" href="#landing" {{i18n-aria:site.logo_aria}} aria-label="Hearth">
                                 <img alt="The Discording Tales Symbol" class="site-logo" src="assets/images/image/image12.png" height="100" width="100" decoding="async" {{i18n-alt:site.logo_alt}}/>
                             </a>
-                            <h1 class="site-title"><a href="#landing" rel="home" {{i18n:site.title}}>THE DISCORDING TALES</a></h1>
+                            <h1 class="site-title"><a href="#landing" rel="home" {{i18n:site.title}}>THE DISCORDING TALES</a><span class="screen-reader-text" lang="fr">Des Récits Discordants</span></h1>
                             <p class="site-genre" {{i18n:site.genre}}>the ETHNO-SCIENCE-FANTASY world</p>
                         </div>
                         <div class="branding-flip-back">

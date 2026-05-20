@@ -4,11 +4,11 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://archopoia.github.io/The-Discording-Tales/</loc>
-    <lastmod>2026-05-16</lastmod>
+    <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://archopoia.github.io/The-Discording-Tales/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://archopoia.github.io/The-Discording-Tales/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://archopoia.github.io/The-Discording-Tales/?lang=fr"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://archopoia.github.io/The-Discording-Tales/"/>
     <image:image>
       <image:loc>https://archopoia.github.io/The-Discording-Tales/assets/og-tdt-1200x630.jpg</image:loc>

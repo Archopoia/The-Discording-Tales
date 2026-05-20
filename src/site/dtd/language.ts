@@ -20,6 +20,16 @@ function getPageI18n(): { title?: { en: string; fr: string }; description?: { en
     }
 }
 
+function setMetaContent(selector: string, content: string): void {
+    const el = document.querySelector(selector);
+    if (el) el.setAttribute('content', content);
+}
+
+function getLangFromUrl(): string | null {
+    const m = /[?&]lang=(fr|en)\b/i.exec(window.location.search);
+    return m ? m[1].toLowerCase() : null;
+}
+
 export function setLanguage(lang: string): void {
     state.currentLang = lang;
     document.documentElement.lang = lang;
@@ -36,9 +46,15 @@ export function setLanguage(lang: string): void {
         pageI18n && pageI18n.description && pageI18n.description.en ? pageI18n.description.en : META_DESCRIPTION_EN;
     const descFr =
         pageI18n && pageI18n.description && pageI18n.description.fr ? pageI18n.description.fr : META_DESCRIPTION_FR;
-    document.title = lang === 'fr' ? titleFr : titleEn;
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) metaDesc.setAttribute('content', lang === 'fr' ? descFr : descEn);
+    const title = lang === 'fr' ? titleFr : titleEn;
+    const desc = lang === 'fr' ? descFr : descEn;
+    document.title = title;
+    setMetaContent('meta[name="description"]', desc);
+    setMetaContent('meta[property="og:title"]', title);
+    setMetaContent('meta[property="og:description"]', desc);
+    setMetaContent('meta[property="og:locale"]', lang === 'fr' ? 'fr_FR' : 'en_US');
+    setMetaContent('meta[name="twitter:title"]', title);
+    setMetaContent('meta[name="twitter:description"]', desc);
 
     elements.langButtons.forEach((btn) => {
         btn.classList.remove('active');
@@ -95,7 +111,7 @@ export function setLanguage(lang: string): void {
 }
 
 export function initLanguage(): void {
-    const savedLang = localStorage.getItem('tdt-lang') || 'en';
+    const savedLang = getLangFromUrl() || localStorage.getItem('tdt-lang') || 'en';
     setLanguage(savedLang);
 
     elements.langButtons.forEach((btn) => {
