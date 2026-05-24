@@ -21,6 +21,7 @@ const root = path.resolve(__dirname, '..');
 const zineMdPathFr = path.join(root, 'reference', 'TTRPG_DRD', 'System_Summary', 'ZINE_Regles_De_Base_10_Pages.md');
 const zineMdPathEn = path.join(root, 'reference', 'TTRPG_DRD', 'System_Summary', 'ZINE_Regles_De_Base_10_Pages_EN.md');
 const pitchDeck7pPath = path.join(root, 'assets', 'PITCH_DECK_DRD_7P.md');
+const pitchDeck7pPathEn = path.join(root, 'assets', 'PITCH_DECK_DRD_7P_EN.md');
 const partialsDir = path.join(root, 'partials');
 const outPath = path.join(partialsDir, 'zine-content.html');
 
@@ -151,19 +152,45 @@ function escapeAttr(str) {
 }
 
 /** Pitch intro (page 0): map MD bold section titles to ## / ### before marked. */
-const INTRO_MAJOR_SECTIONS = {
-  "L'UNIVERS : COSMOS & SECRET": "L'Univers · Cosmos & secret",
-  "L'UNIVERS : CONFLITS, QUOTIDIEN & ANCRAGE": "L'Univers · Conflits & ancrage",
-  'THÉMATIQUES & PROMESSE ÉDITORIALE': 'Thématiques',
-  'LE SYSTÈME DISCORDANT (I) : PHILOSOPHIE & STRUCTURE': 'Système Discordant (I) · Philosophie',
-  'LE SYSTÈME DISCORDANT (II) : SOUFFRANCE, COMBAT, RILIE & SANDBOX': 'Système Discordant (II) · Combat & sandbox',
+const INTRO_CONFIG = {
+  fr: {
+    majorSections: {
+      "L'UNIVERS : COSMOS & SECRET": "L'Univers · Cosmos & secret",
+      "L'UNIVERS : CONFLITS, QUOTIDIEN & ANCRAGE": "L'Univers · Conflits & ancrage",
+      'THÉMATIQUES & PROMESSE ÉDITORIALE': 'Thématiques',
+      'LE SYSTÈME DISCORDANT (I) : PHILOSOPHIE & STRUCTURE': 'Système Discordant (I) · Philosophie',
+      'LE SYSTÈME DISCORDANT (II) : SOUFFRANCE, COMBAT, RILIE & SANDBOX':
+        'Système Discordant (II) · Combat & sandbox',
+    },
+    omitMajor: 'AUTEUR, PROJET, FORMAT & CONTACT',
+    omitSubsections: new Set(['Ce que le jeu apporte à un catalogue']),
+    publicVise: 'Public visé',
+    firstMajor: 'Présentation · Genre · HOOK',
+    whyExists: 'Pourquoi ce jeu existe',
+    mentalImages: /Images mentales/i,
+    peoplesCardRe: /<p><strong>Les (Aristois|Slaadéens|Hauts Ylfes)<\/strong>[\s\S]*?<\/p>/g,
+  },
+  en: {
+    majorSections: {
+      'THE SETTING: COSMOS & SECRET': 'The Setting · Cosmos & secret',
+      'THE SETTING: CONFLICT, DAILY LIFE & ANCHORING': 'The Setting · Conflict & anchoring',
+      'THEMES & EDITORIAL PROMISE': 'Themes',
+      'THE DISCORDING SYSTEM (I): PHILOSOPHY & STRUCTURE': 'Discording System (I) · Philosophy',
+      'THE DISCORDING SYSTEM (II): SUFFERING, COMBAT, RILIE & SANDBOX':
+        'Discording System (II) · Combat & sandbox',
+    },
+    omitMajor: 'AUTHOR, PROJECT, FORMAT & CONTACT',
+    omitSubsections: new Set(['What the game brings to a catalogue']),
+    publicVise: 'Target audience',
+    firstMajor: 'Overview · Genre · HOOK',
+    whyExists: 'Why this game exists',
+    mentalImages: /Mental images/i,
+    peoplesCardRe: /<p><strong>The (Aristese|Slaadeans|Great Ylves)<\/strong>[\s\S]*?<\/p>/g,
+  },
 };
-const INTRO_OMIT_FROM_MAJOR = 'AUTEUR, PROJET, FORMAT & CONTACT';
-const INTRO_OMIT_SUBSECTIONS = new Set(['Ce que le jeu apporte à un catalogue']);
-const INTRO_PUBLIC_VISE_PROMO = 'Public visé';
-const INTRO_FIRST_MAJOR = 'Présentation · Genre · HOOK';
 
-function preprocessPitchIntroMd(md) {
+function preprocessPitchIntroMd(md, lang = 'fr') {
+  const cfg = INTRO_CONFIG[lang] || INTRO_CONFIG.fr;
   const lines = md.replace(/\r\n/g, '\n').split('\n');
   const out = [];
   let pastHeroHr = false;
@@ -190,7 +217,7 @@ function preprocessPitchIntroMd(md) {
     const boldOnly = trimmed.match(/^\*\*(.+)\*\*$/);
     if (boldOnly) {
       const title = boldOnly[1].trim();
-      if (title === INTRO_PUBLIC_VISE_PROMO) {
+      if (title === cfg.publicVise) {
         collectingPublicVise = true;
         publicViseLines = [];
         continue;
@@ -198,27 +225,27 @@ function preprocessPitchIntroMd(md) {
       if (collectingPublicVise) {
         collectingPublicVise = false;
       }
-      if (title === INTRO_OMIT_FROM_MAJOR) {
+      if (title === cfg.omitMajor) {
         skipPublisherTail = true;
         continue;
       }
       if (skipPublisherTail) {
         continue;
       }
-      if (INTRO_OMIT_SUBSECTIONS.has(title)) {
+      if (cfg.omitSubsections.has(title)) {
         skipSubsection = true;
         continue;
       }
       if (skipSubsection) {
         skipSubsection = false;
       }
-      if (INTRO_MAJOR_SECTIONS[title]) {
-        out.push(`## ${INTRO_MAJOR_SECTIONS[title]}`);
+      if (cfg.majorSections[title]) {
+        out.push(`## ${cfg.majorSections[title]}`);
         continue;
       }
-      if (title === 'Pourquoi ce jeu existe') {
+      if (title === cfg.whyExists) {
         if (!firstMajorStarted) {
-          out.push(`## ${INTRO_FIRST_MAJOR}`);
+          out.push(`## ${cfg.firstMajor}`);
           firstMajorStarted = true;
         }
         out.push(`### ${title}`);
@@ -249,7 +276,7 @@ function preprocessPitchIntroMd(md) {
 
   let result = out.join('\n');
   if (publicViseLines.length) {
-    const promo = `## ${INTRO_PUBLIC_VISE_PROMO}\n\n${publicViseLines.join('\n').trim()}\n\n`;
+    const promo = `## ${cfg.publicVise}\n\n${publicViseLines.join('\n').trim()}\n\n`;
     const marker = '\n---\n';
     const idx = result.indexOf(marker);
     if (idx >= 0) {
@@ -281,8 +308,9 @@ function transformIntroPeoplesTable(html) {
   return html.replace(tableMatch[0], gridHtml);
 }
 
-function wrapIntroPeoplesParagraphs(html) {
-  const re = /<p><strong>Les (Aristois|Slaadéens|Hauts Ylfes)<\/strong>[\s\S]*?<\/p>/g;
+function wrapIntroPeoplesParagraphs(html, lang = 'fr') {
+  const cfg = INTRO_CONFIG[lang] || INTRO_CONFIG.fr;
+  const re = cfg.peoplesCardRe;
   const matches = html.match(re);
   if (!matches || matches.length < 2) return html;
   const grid = `<div class="zine-intro-peoples-grid">${matches.map((p) => `<div class="zine-intro-peoples-card genre-card">${p}</div>`).join('')}</div>`;
@@ -324,7 +352,8 @@ function wrapIntroHero(heroHtml) {
   return `<header class="zine-intro-hero">${parts.join('\n')}</header>`;
 }
 
-function wrapIntroSubsections(bodyHtml) {
+function wrapIntroSubsections(bodyHtml, lang = 'fr') {
+  const cfg = INTRO_CONFIG[lang] || INTRO_CONFIG.fr;
   const parts = bodyHtml.split(/(?=<h3>)/).filter(Boolean);
   return parts
     .map((part) => {
@@ -338,8 +367,8 @@ function wrapIntroSubsections(bodyHtml) {
       const title = h3Match[1];
       let content = part.slice(h3Match[0].length).trim();
       content = content.replace(/<hr\s*\/?>/g, '');
-      if (/Images mentales/i.test(title)) {
-        content = wrapIntroPeoplesParagraphs(content);
+      if (cfg.mentalImages.test(title)) {
+        content = wrapIntroPeoplesParagraphs(content, lang);
       } else {
         content = transformIntroPeoplesTable(content);
       }
@@ -353,12 +382,12 @@ function wrapIntroSubsections(bodyHtml) {
     .join('\n');
 }
 
-function wrapIntroPublicVise(bodyHtml) {
+function wrapIntroPublicVise(bodyHtml, publicViseTitle) {
   let body = bodyHtml.trim();
   body = transformIntroPeoplesTable(body);
   body = wrapIntroTables(body);
   return `<div class="zine-intro-public genre-card">
-  <h3 class="zine-intro-public-title">${INTRO_PUBLIC_VISE_PROMO}</h3>
+  <h3 class="zine-intro-public-title">${publicViseTitle}</h3>
   <div class="zine-intro-public-body">${body}</div>
 </div>`;
 }
@@ -367,7 +396,8 @@ function cleanIntroLiteralMarkdown(html) {
   return html.replace(/\*\*([^*]+?)\*\*/g, '<strong>$1</strong>');
 }
 
-function processPitchIntroHtml(html) {
+function processPitchIntroHtml(html, lang = 'fr') {
+  const cfg = INTRO_CONFIG[lang] || INTRO_CONFIG.fr;
   html = html.replace(/<p>\s*(?:<strong>\s*<\/strong>\s*)?\s*<\/p>/g, '');
   const h2Index = html.search(/<h2>/);
   let hero = '';
@@ -384,8 +414,8 @@ function processPitchIntroHtml(html) {
   const accordionSections = [];
   for (const section of sections) {
     const h2Match = section.match(/^<h2>([\s\S]*?)<\/h2>/);
-    if (h2Match && h2Match[1].trim() === INTRO_PUBLIC_VISE_PROMO) {
-      publicViseHtml = wrapIntroPublicVise(section.slice(h2Match[0].length).trim());
+    if (h2Match && h2Match[1].trim() === cfg.publicVise) {
+      publicViseHtml = wrapIntroPublicVise(section.slice(h2Match[0].length).trim(), cfg.publicVise);
       continue;
     }
     accordionSections.push(section);
@@ -396,7 +426,7 @@ function processPitchIntroHtml(html) {
       const h2Match = section.match(/^<h2>([\s\S]*?)<\/h2>/);
       if (!h2Match) return section;
       const title = h2Match[1];
-      const body = wrapIntroSubsections(section.slice(h2Match[0].length).trim());
+      const body = wrapIntroSubsections(section.slice(h2Match[0].length).trim(), lang);
       const defaultOpen = index === 0 ? ' data-default-open' : '';
       return `<div class="zine-intro-accordion-item"${defaultOpen}>
   <button type="button" class="zine-intro-accordion-head" aria-expanded="${index === 0 ? 'true' : 'false'}">${title}</button>
@@ -414,11 +444,11 @@ ${accordionItems}
 </div>`);
 }
 
-function htmlFromMdBlock(block, pageIndex) {
+function htmlFromMdBlock(block, pageIndex, lang = 'fr') {
   if (pageIndex === 0) {
-    const md = preprocessPitchIntroMd(block.trim());
+    const md = preprocessPitchIntroMd(block.trim(), lang);
     let html = marked.parse(md);
-    html = processPitchIntroHtml(html);
+    html = processPitchIntroHtml(html, lang);
     return html;
   }
   let html = marked.parse(block.trim());
@@ -428,9 +458,10 @@ function htmlFromMdBlock(block, pageIndex) {
   return html;
 }
 
-function buildIntroSection(introHtml) {
-  const escaped = escapeAttr(introHtml);
-  return `<section id="zine-page-0" class="zine-page zine-page-panel zine-page-active" data-page="0" role="tabpanel" aria-labelledby="zine-page-radio-0" data-fr="${escaped}" data-en="${escaped}">${introHtml}</section>`;
+function buildIntroSection(introHtmlFr, introHtmlEn) {
+  const escapedFr = escapeAttr(introHtmlFr);
+  const escapedEn = escapeAttr(introHtmlEn ?? introHtmlFr);
+  return `<section id="zine-page-0" class="zine-page zine-page-panel zine-page-active" data-page="0" role="tabpanel" aria-labelledby="zine-page-radio-0" data-fr="${escapedFr}" data-en="${escapedEn}">${introHtmlFr}</section>`;
 }
 
 /** When full zine markdown is unavailable, patch Intro from PITCH_DECK_DRD_7P.md only. */
@@ -438,17 +469,22 @@ function patchZineIntroOnly() {
   if (!fs.existsSync(pitchDeck7pPath) || !fs.existsSync(outPath)) {
     return false;
   }
-  const pitchMd = fs.readFileSync(pitchDeck7pPath, 'utf8').replace(/\r\n/g, '\n');
-  const introHtml = htmlFromMdBlock(pitchMd, 0);
+  const pitchMdFr = fs.readFileSync(pitchDeck7pPath, 'utf8').replace(/\r\n/g, '\n');
+  let pitchMdEn = pitchMdFr;
+  if (fs.existsSync(pitchDeck7pPathEn)) {
+    pitchMdEn = fs.readFileSync(pitchDeck7pPathEn, 'utf8').replace(/\r\n/g, '\n');
+  }
+  const introHtmlFr = htmlFromMdBlock(pitchMdFr, 0, 'fr');
+  const introHtmlEn = htmlFromMdBlock(pitchMdEn, 0, 'en');
   let zine = fs.readFileSync(outPath, 'utf8');
   const start = zine.indexOf('<section id="zine-page-0"');
   const end = zine.indexOf('<section id="zine-page-1"');
   if (start < 0 || end < 0) {
     return false;
   }
-  zine = zine.slice(0, start) + buildIntroSection(introHtml) + '\n' + zine.slice(end);
+  zine = zine.slice(0, start) + buildIntroSection(introHtmlFr, introHtmlEn) + '\n' + zine.slice(end);
   fs.writeFileSync(outPath, zine, 'utf8');
-  console.log('Patched zine Intro from', pitchDeck7pPath);
+  console.log('Patched zine Intro from', pitchDeck7pPath, fs.existsSync(pitchDeck7pPathEn) ? '+ EN' : '');
   patchZineIntroLabel();
   return true;
 }
@@ -521,9 +557,13 @@ function build() {
   }
 
   if (fs.existsSync(pitchDeck7pPath)) {
-    const pitchIntro = fs.readFileSync(pitchDeck7pPath, 'utf8').replace(/\r\n/g, '\n').trim();
-    blocksFr[0] = pitchIntro;
-    blocksEn[0] = pitchIntro;
+    blocksFr[0] = fs.readFileSync(pitchDeck7pPath, 'utf8').replace(/\r\n/g, '\n').trim();
+    if (fs.existsSync(pitchDeck7pPathEn)) {
+      blocksEn[0] = fs.readFileSync(pitchDeck7pPathEn, 'utf8').replace(/\r\n/g, '\n').trim();
+    } else {
+      blocksEn[0] = blocksFr[0];
+      console.warn('EN pitch intro not found:', pitchDeck7pPathEn);
+    }
   } else {
     console.warn('Pitch deck intro not found:', pitchDeck7pPath);
   }
@@ -551,11 +591,11 @@ function build() {
   const nav = `<nav class="zine-pages-nav" role="tablist" aria-label="Zine pages">\n${navItems}\n</nav>`;
 
   const sections = blocksFr.map((block, i) => {
-    const htmlFr = htmlFromMdBlock(block, i);
+    const htmlFr = htmlFromMdBlock(block, i, 'fr');
 
     let htmlEn = htmlFr;
     if (blocksEn[i] && blocksEn[i] !== block) {
-      htmlEn = htmlFromMdBlock(blocksEn[i], i);
+      htmlEn = htmlFromMdBlock(blocksEn[i], i, 'en');
     }
 
     const activeClass = i === 0 ? ' zine-page-active' : '';

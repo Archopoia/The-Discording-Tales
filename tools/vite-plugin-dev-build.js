@@ -67,8 +67,12 @@ function getScriptsForFile(filePath) {
   }
   
   // Zine markdown files
-  if ((relative.includes('ZINE_') && relative.endsWith('.md')) || relative === 'assets/PITCH_DECK_DRD_7P.md') {
+  if ((relative.includes('ZINE_') && relative.endsWith('.md')) || relative === 'assets/PITCH_DECK_DRD_7P.md' || relative === 'assets/PITCH_DECK_DRD_7P_EN.md') {
     return ['build_zine.js', 'build_html.js', 'build_i18n.js'];
+  }
+
+  if (relative === 'assets/PITCH_DECK_DRD.md' || relative === 'assets/PITCH_DECK_DRD_EN.md') {
+    return ['build_pitch.js', 'build_html.js', 'build_i18n.js'];
   }
   
   // Other reference files (rules/lore)

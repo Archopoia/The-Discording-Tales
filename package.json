@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node tools/build_rules_lore.js && node tools/build_zine.js && node tools/build_favicons.js && node tools/build_og_assets.js && node tools/build_html.js && node tools/build_css.js && node tools/build_i18n.js && node tools/build_sitemap.js && tsc && vite build && vite build --config vite.main-site.config.ts && vite build --config vite.play-webllm.config.ts",
+    "build": "node tools/build_rules_lore.js && node tools/build_zine.js && node tools/build_pitch.js && node tools/build_favicons.js && node tools/build_og_assets.js && node tools/build_html.js && node tools/build_css.js && node tools/build_i18n.js && node tools/build_sitemap.js && tsc && vite build && vite build --config vite.main-site.config.ts && vite build --config vite.play-webllm.config.ts",
     "build:og": "node tools/build_og_assets.js",
     "build:favicons": "node tools/build_favicons.js",
     "build:rules": "node tools/build_rules_lore.js",
