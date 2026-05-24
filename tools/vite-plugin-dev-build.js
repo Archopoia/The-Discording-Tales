@@ -67,7 +67,7 @@ function getScriptsForFile(filePath) {
   }
   
   // Zine markdown files
-  if (relative.includes('ZINE_') && relative.endsWith('.md')) {
+  if ((relative.includes('ZINE_') && relative.endsWith('.md')) || relative === 'assets/PITCH_DECK_DRD_7P.md') {
     return ['build_zine.js', 'build_html.js', 'build_i18n.js'];
   }
   

@@ -33,7 +33,7 @@ export function fragmentFromMondeLink(anchor: HTMLAnchorElement | null): string 
 
 export function handleHashChange(): void {
     const hash = getRouteHashFragment();
-    const validTabs = ['landing', 'univers', 'play', 'about'];
+    const validTabs = ['landing', 'pitch', 'univers', 'play', 'about'];
     const sectionToTab: Record<string, string> = {
         peoples: 'univers',
         'system-overview': 'univers',

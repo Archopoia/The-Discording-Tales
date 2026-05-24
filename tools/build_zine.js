@@ -1,5 +1,6 @@
 /**
  * Build zine HTML from ZINE_Regles_De_Base_10_Pages.md (FR) and ZINE_Regles_De_Base_10_Pages_EN.md (EN).
+ * Intro tab (page 0) is replaced by assets/PITCH_DECK_DRD_7P.md (French pitch deck).
  * Writes partials/zine-content.html for injection into index.template.html.
  *
  * - Extracts descriptive nav labels from h1/h2
@@ -19,15 +20,18 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
 const zineMdPathFr = path.join(root, 'reference', 'TTRPG_DRD', 'System_Summary', 'ZINE_Regles_De_Base_10_Pages.md');
 const zineMdPathEn = path.join(root, 'reference', 'TTRPG_DRD', 'System_Summary', 'ZINE_Regles_De_Base_10_Pages_EN.md');
+const pitchDeck7pPath = path.join(root, 'assets', 'PITCH_DECK_DRD_7P.md');
 const partialsDir = path.join(root, 'partials');
 const outPath = path.join(partialsDir, 'zine-content.html');
 
 marked.setOptions({ gfm: true, breaks: true });
 
+const ZINE_INTRO_LABEL_FR = "Dix pages d'Introduction";
+const ZINE_INTRO_LABEL_EN = 'Ten Introduction Pages';
+
 /** Extract short label from "PAGE N : Title" or use fallback */
-function extractLabel(block, index, totalBlocks) {
-  if (index === 0) return 'Intro';
-  if (index === totalBlocks - 1) return 'Fin';
+function extractLabel(block, index, totalBlocks, lang = 'fr') {
+  if (index === 0) return lang === 'en' ? ZINE_INTRO_LABEL_EN : ZINE_INTRO_LABEL_FR;
   const h1Match = block.match(/^#\s+(.+)$/m);
   if (h1Match) {
     const full = h1Match[1].trim();
@@ -146,10 +150,86 @@ function escapeAttr(str) {
     .replace(/"/g, '&quot;');
 }
 
+function htmlFromMdBlock(block, pageIndex) {
+  let html = marked.parse(block.trim());
+  html = processPageHtml(html, pageIndex);
+  html = enhanceDiceCode(html);
+  html = wrapD6Tip(html, pageIndex);
+  return html;
+}
+
+function buildIntroSection(introHtml) {
+  const escaped = escapeAttr(introHtml);
+  return `<section id="zine-page-0" class="zine-page zine-page-panel zine-page-active" data-page="0" role="tabpanel" aria-labelledby="zine-page-radio-0" data-fr="${escaped}" data-en="${escaped}">${introHtml}</section>`;
+}
+
+/** When full zine markdown is unavailable, patch Intro from PITCH_DECK_DRD_7P.md only. */
+function patchZineIntroOnly() {
+  if (!fs.existsSync(pitchDeck7pPath) || !fs.existsSync(outPath)) {
+    return false;
+  }
+  const pitchMd = fs.readFileSync(pitchDeck7pPath, 'utf8').replace(/\r\n/g, '\n');
+  const introHtml = htmlFromMdBlock(pitchMd, 0);
+  let zine = fs.readFileSync(outPath, 'utf8');
+  const start = zine.indexOf('<section id="zine-page-0"');
+  const end = zine.indexOf('<section id="zine-page-1"');
+  if (start < 0 || end < 0) {
+    return false;
+  }
+  zine = zine.slice(0, start) + buildIntroSection(introHtml) + '\n' + zine.slice(end);
+  fs.writeFileSync(outPath, zine, 'utf8');
+  console.log('Patched zine Intro from', pitchDeck7pPath);
+  patchZineIntroLabel();
+  return true;
+}
+
+/** Keep first zine nav label in sync when only patching Intro content. */
+function patchZineIntroLabel() {
+  if (!fs.existsSync(outPath)) {
+    return false;
+  }
+  let zine = fs.readFileSync(outPath, 'utf8');
+  const before = zine;
+  zine = zine.replace(
+    /(<label for="zine-page-radio-0" class="zine-page-nav-label" )data-fr="[^"]*" data-en="[^"]*">[^<]*<\/label>/,
+    `$1data-fr="${escapeAttr(ZINE_INTRO_LABEL_FR)}" data-en="${escapeAttr(ZINE_INTRO_LABEL_EN)}">${escapeHtml(ZINE_INTRO_LABEL_FR)}</label>`
+  );
+  if (zine === before) {
+    return false;
+  }
+  fs.writeFileSync(outPath, zine, 'utf8');
+  return true;
+}
+
+/** Remove the trailing "Fin" / "End" zine page (version stamp only). */
+function removeZineFinPage() {
+  if (!fs.existsSync(outPath)) {
+    return false;
+  }
+  let zine = fs.readFileSync(outPath, 'utf8');
+  const before = zine;
+  zine = zine.replace(
+    /<input type="radio" name="zine-page" id="zine-page-radio-11"[\s\S]*?<\/label>\n?/,
+    ''
+  );
+  zine = zine.replace(/<section id="zine-page-11"[\s\S]*?<\/section>\n?/, '');
+  if (zine === before) {
+    return false;
+  }
+  fs.writeFileSync(outPath, zine, 'utf8');
+  console.log('Removed zine Fin page');
+  return true;
+}
+
 function build() {
   if (!fs.existsSync(zineMdPathFr)) {
-    // Reference dir missing (e.g. CI where TTRPG_DRD is gitignored).
-    // If the pre-built output already exists, skip silently.
+    if (patchZineIntroOnly()) {
+      removeZineFinPage();
+      return;
+    }
+    if (removeZineFinPage()) {
+      return;
+    }
     if (fs.existsSync(outPath)) {
       console.log('Zine source not found, using pre-built', outPath);
       return;
@@ -159,22 +239,35 @@ function build() {
   }
   const mdFr = fs.readFileSync(zineMdPathFr, 'utf8').replace(/\r\n/g, '\n');
   const blocksFr = mdFr.split(/\n---\n/).filter(Boolean);
-  const totalBlocks = blocksFr.length;
+  const sourceBlockCount = blocksFr.length;
 
   let blocksEn = blocksFr;
   if (fs.existsSync(zineMdPathEn)) {
     const mdEn = fs.readFileSync(zineMdPathEn, 'utf8').replace(/\r\n/g, '\n');
     blocksEn = mdEn.split(/\n---\n/).filter(Boolean);
   }
-  if (blocksEn.length !== totalBlocks) {
+  if (blocksEn.length !== sourceBlockCount) {
     console.warn('EN zine block count differs from FR; using FR labels/content where missing.');
   }
 
-  const labelsFr = blocksFr.map((_, i) => extractLabel(blocksFr[i], i, totalBlocks));
-  const labelsEn = blocksEn.map((_, i) => {
-    if (i === totalBlocks - 1) return 'End';
-    return extractLabel(blocksEn[i], i, totalBlocks);
-  });
+  if (fs.existsSync(pitchDeck7pPath)) {
+    const pitchIntro = fs.readFileSync(pitchDeck7pPath, 'utf8').replace(/\r\n/g, '\n').trim();
+    blocksFr[0] = pitchIntro;
+    blocksEn[0] = pitchIntro;
+  } else {
+    console.warn('Pitch deck intro not found:', pitchDeck7pPath);
+  }
+
+  // Drop trailing version-stamp page ("Fin" / "End").
+  blocksFr.pop();
+  if (blocksEn.length > blocksFr.length) {
+    blocksEn.pop();
+  }
+
+  const totalBlocks = blocksFr.length;
+
+  const labelsFr = blocksFr.map((_, i) => extractLabel(blocksFr[i], i, totalBlocks, 'fr'));
+  const labelsEn = blocksEn.map((_, i) => extractLabel(blocksEn[i], i, totalBlocks, 'en'));
 
   const navItems = blocksFr
     .map((_, i) => {
@@ -188,19 +281,11 @@ function build() {
   const nav = `<nav class="zine-pages-nav" role="tablist" aria-label="Zine pages">\n${navItems}\n</nav>`;
 
   const sections = blocksFr.map((block, i) => {
-    const trimmedFr = block.trim();
-    let htmlFr = marked.parse(trimmedFr);
-    htmlFr = processPageHtml(htmlFr, i);
-    htmlFr = enhanceDiceCode(htmlFr);
-    htmlFr = wrapD6Tip(htmlFr, i);
+    const htmlFr = htmlFromMdBlock(block, i);
 
     let htmlEn = htmlFr;
-    if (blocksEn[i]) {
-      const trimmedEn = blocksEn[i].trim();
-      htmlEn = marked.parse(trimmedEn);
-      htmlEn = processPageHtml(htmlEn, i);
-      htmlEn = enhanceDiceCode(htmlEn);
-      htmlEn = wrapD6Tip(htmlEn, i);
+    if (blocksEn[i] && blocksEn[i] !== block) {
+      htmlEn = htmlFromMdBlock(blocksEn[i], i);
     }
 
     const activeClass = i === 0 ? ' zine-page-active' : '';

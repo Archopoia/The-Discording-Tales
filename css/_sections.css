@@ -270,6 +270,14 @@
     flex-direction: row;
     align-items: stretch;
 }
+
+/* Zine Intro pitch header: full-width centered lines (override global p max-width) */
+#play-panel-zine #zine-page-0 > p:nth-child(-n+3) {
+    max-width: none;
+    width: 100%;
+    text-align: center;
+}
+
 /* Zine layout: sidebar + main content (desktop) */
 .zine-content.zine-layout {
     display: flex;
@@ -4547,6 +4555,205 @@ body.tdt-peoples-portrait-lightbox-open {
 }
 
 /* Print styles - Hide WebGL canvases */
+/* ========================================
+   Pitch Deck Tab
+   ======================================== */
+#pitch.tab-content {
+    padding: var(--spacing-md) 0 var(--spacing-xl);
+}
+
+.pitch-deck {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.pitch-deck__hero {
+    text-align: center;
+    padding: var(--spacing-lg) var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    background:
+        radial-gradient(ellipse at center, rgba(217, 205, 184, 0.12) 0%, transparent 72%),
+        linear-gradient(180deg, rgba(92, 29, 29, 0.35) 0%, rgba(92, 29, 29, 0.15) 100%);
+    border: 1px solid rgba(217, 205, 184, 0.18);
+    border-radius: var(--radius-md);
+}
+
+.pitch-deck__title {
+    font-size: clamp(1.5rem, 3.2vw, 2.25rem);
+    color: var(--tdt-cream);
+    margin-bottom: var(--spacing-sm);
+}
+
+.pitch-deck__tagline {
+    width: 100%;
+    max-width: none;
+    text-align: center;
+    font-size: 1.05rem;
+    color: var(--tdt-beige-warm);
+    margin-bottom: var(--spacing-sm);
+}
+
+.pitch-deck__lede {
+    width: 100%;
+    max-width: none;
+    margin: 0 auto;
+    font-size: 1.05rem;
+    color: var(--tdt-cream);
+    opacity: 0.95;
+    text-align: center;
+}
+
+.pitch-deck__pages {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+}
+
+@media (min-width: 980px) {
+    .pitch-deck__pages {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+    }
+}
+
+.pitch-deck__page {
+    background: rgba(92, 29, 29, 0.42);
+    border: 1px solid rgba(217, 205, 184, 0.16);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+}
+
+.pitch-deck__page--recto,
+.pitch-deck__page--verso {
+    border-top: 3px solid rgba(217, 205, 184, 0.45);
+}
+
+.pitch-deck__section + .pitch-deck__section {
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid rgba(217, 205, 184, 0.12);
+}
+
+.pitch-deck__section-title {
+    font-size: 1.45rem;
+    color: var(--tdt-cream);
+    margin-bottom: var(--spacing-sm);
+    text-align: left;
+}
+
+/* Global `p { max-width: 75ch }` would leave a narrow column inside pitch cards */
+.pitch-deck__section,
+.pitch-deck__section p,
+.pitch-deck__section li,
+.pitch-deck__aside,
+.pitch-deck__table td {
+    max-width: none;
+    width: 100%;
+}
+
+.pitch-deck__section p,
+.pitch-deck__section li,
+.pitch-deck__table td {
+    color: var(--tdt-cream);
+    line-height: 1.65;
+    text-wrap: pretty;
+    text-align: justify;
+    hyphens: auto;
+}
+
+.pitch-deck__section p + p {
+    margin-top: var(--spacing-sm);
+}
+
+.pitch-deck__aside {
+    margin-top: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-left: 3px solid rgba(217, 205, 184, 0.35);
+    font-style: italic;
+    opacity: 0.95;
+    text-align: justify;
+}
+
+.pitch-deck__table-wrap {
+    overflow-x: auto;
+    margin-top: var(--spacing-sm);
+}
+
+.pitch-deck__table {
+    width: 100%;
+}
+
+.pitch-deck__table th[scope="row"] {
+    width: 34%;
+    min-width: 9rem;
+    vertical-align: top;
+    color: var(--tdt-beige-warm);
+    font-weight: 600;
+    text-align: left;
+}
+
+.pitch-deck__pillars {
+    margin: var(--spacing-sm) 0 0;
+    padding-left: 1.25rem;
+    display: grid;
+    gap: var(--spacing-sm);
+}
+
+.pitch-deck__pillars li::marker {
+    color: var(--tdt-beige-warm);
+}
+
+.pitch-deck__section--contact {
+    background: rgba(0, 0, 0, 0.14);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-md);
+}
+
+.pitch-deck__contact {
+    margin-top: var(--spacing-sm);
+    font-size: 1.05rem;
+}
+
+.pitch-deck__contact a {
+    color: var(--tdt-beige-warm);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+.pitch-deck__contact a:hover,
+.pitch-deck__contact a:focus-visible {
+    color: var(--tdt-cream);
+}
+
+.pitch-deck__section a:not(.pitch-deck__contact a) {
+    color: var(--tdt-beige-warm);
+}
+
+.pitch-deck__meta {
+    margin-top: var(--spacing-lg);
+    text-align: center;
+    opacity: 0.75;
+    font-size: 0.92rem;
+    color: var(--tdt-beige-warm);
+}
+
+@media (max-width: 640px) {
+    .pitch-deck__table th[scope="row"],
+    .pitch-deck__table td {
+        display: block;
+        width: 100%;
+    }
+
+    .pitch-deck__table tr + tr {
+        margin-top: var(--spacing-sm);
+        display: block;
+        padding-top: var(--spacing-sm);
+        border-top: 1px solid rgba(217, 205, 184, 0.12);
+    }
+}
+
 @media print {
     .webgl-bg-canvas,
     .webgl-header-canvas {
