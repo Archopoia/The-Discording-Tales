@@ -38,7 +38,7 @@ An RPG where every failure brings you closer to mastery, where magic is born fro
 
 Under our feet, in the blossoming depths of a forgotten Earth, **there is only discord**.
 
-~250 million years in the future, the posthuman **Aïars** - masters of crystalline technomagic - vanished into the depths. Their legendary ruins dot a transformed Earth. **There are no more humans** - or almost: traces, relics, technologies frozen in ethereal magic. A strong and rare argument: a fantasy universe **without humans**, where current peoples derive from genetic, mythic and selective origins operated by the Aïars before their withdrawal.
+In a far, far future, our descendants the posthuman **Aïars** - masters of crystalline technomagic - vanished into the depths. Their legendary ruins dot a transformed Earth. **There are no more humans** - or almost: traces, relics, technologies frozen in ethereal magic. A strong and rare argument: a fantasy universe **without humans**, where current peoples derive from genetic, mythic and selective origins operated by the Aïars before their withdrawal.
 
 **Ten peoples, three origins**
 

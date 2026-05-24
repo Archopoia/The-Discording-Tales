@@ -12,7 +12,7 @@
 
 Sous nos pas, dans les profondeurs florissantes d'une Terre oubliée, **il n'y a que la discorde**.
 
-~250 millions d'années dans le futur, les posthumains **Aïars** - maîtres d'une technomagie cristalline, la Rilie - ont disparu dans les profondeurs. Leurs ruines légendaires parsèment un monde habité par **dix peuples** en trois origines : **Yômmes**, **Yôrres**, **Bêstres** - loin des archétypes de Tolkien ; ici, une **fantaisie niétzschéenne** aux principes divergents, proche de *Talislanta*, *Yoon Suin* ou *Empire of the Petal Throne* par l'exotisme, de *Star Wars* × *Dark Crystal* × *Warhammer* par l'émerveillement baroque dans le conflit.
+Dans un avenir lointain, très lointain, nos descendants les posthumains **Aïars** - maîtres d'une technomagie cristalline, la Rilie - ont disparu dans les profondeurs. Leurs ruines légendaires parsèment un monde habité par **dix peuples** en trois origines : **Yômmes**, **Yôrres**, **Bêstres** - loin des archétypes de Tolkien ; ici, une **fantaisie niétzschéenne** aux principes divergents, proche de *Talislanta*, *Yoon Suin* ou *Empire of the Petal Throne* par l'exotisme, de *Star Wars* × *Dark Crystal* × *Warhammer* par l'émerveillement baroque dans le conflit.
 
 **Coup de théâtre :** tous croient vivre dans un **univers concave** (Cytocosmisme), le cosmos englobé par la roche - ainsi donc, ce sont les profondeurs terrestres qui deviennent le far-ouest cosmique. La magie **Rilique** en découle : animisme rationnel où gravité, lumière et émotion sont une corde tressée universelle, n'étant autre que la déesse **Ô** elle-même, constamment tiraillée entre douleur et soulagement par les forces cosmiques derrière la physique réelle et la magie, n’étant qu’une seule et même chose à la fin.
 

@@ -38,7 +38,7 @@ Un JdR où chaque échec vous rapproche de la maîtrise, où la magie naît de l
 
 Sous nos pas, dans les profondeurs florissantes d'une Terre oubliée, **il n'y a que la discorde**.
 
-~250 millions d'années dans le futur, les posthumains **Aïars** - maîtres d'une technomagie cristalline - ont disparu dans les profondeurs. Leurs ruines légendaires parsèment une Terre transformée. **Il n'y a plus d'humains** - ou presque : des traces, des reliques, des technologies figées dans la magie éthérée. C'est un argument fort et rare : un univers fantasy **sans humains**, où les peuples actuels dérivent d'origines génétiques, mythiques et sélectives opérées par les Aïars avant leur retrait.
+Dans un avenir lointain, très lointain, nos descendants les posthumains **Aïars** - maîtres d'une technomagie cristalline - ont disparu dans les profondeurs. Leurs ruines légendaires parsèment une Terre transformée. **Il n'y a plus d'humains** - ou presque : des traces, des reliques, des technologies figées dans la magie éthérée. C'est un argument fort et rare : un univers fantasy **sans humains**, où les peuples actuels dérivent d'origines génétiques, mythiques et sélectives opérées par les Aïars avant leur retrait.
 
 **Dix peuples, trois origines**
 

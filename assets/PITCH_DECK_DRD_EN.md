@@ -12,7 +12,7 @@
 
 Under our feet, in the blossoming depths of a forgotten Earth, **there is only discord**.
 
-~250 million years in the future, the posthuman **Aïars** - masters of crystalline technomagic, Rilie - vanished into the depths. Their legendary ruins dot a world inhabited by **ten peoples** in three origins: **Yômmes**, **Yôrres**, **Bêstres** - far from Tolkien archetypes; here, a **Nietzschean fantasy** of divergent principles, close to *Talislanta*, *Yoon Suin* or *Empire of the Petal Throne* for exotism, to *Star Wars* × *Dark Crystal* × *Warhammer* for baroque wonder in conflict.
+In a far, far future, our descendants the posthuman **Aïars** - masters of crystalline technomagic, Rilie - vanished into the depths. Their legendary ruins dot a world inhabited by **ten peoples** in three origins: **Yômmes**, **Yôrres**, **Bêstres** - far from Tolkien archetypes; here, a **Nietzschean fantasy** of divergent principles, close to *Talislanta*, *Yoon Suin* or *Empire of the Petal Throne* for exotism, to *Star Wars* × *Dark Crystal* × *Warhammer* for baroque wonder in conflict.
 
 **Plot twist:** all believe they live in a **concave universe** (Cytocosmism), the cosmos wrapped in rock - and so it is the earthly depths that become the cosmic far-west. **Rilic** magic follows: rational animism where gravity, light and emotion are one braided universal cord, none other than the goddess **Ô** herself, constantly tugged between pain and relief by the cosmic forces behind real physics and magic, being one and the same thing in the end.
 
