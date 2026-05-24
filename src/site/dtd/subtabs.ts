@@ -263,6 +263,38 @@ export function ensureFirstSubTabActive(tabId: string) {
     if (firstSubId) switchSubTab(tabId, firstSubId);
 }
 
+export function initZineIntroAccordion(pageRoot) {
+    if (!pageRoot) return;
+    var accordion = pageRoot.querySelector('.zine-intro-accordion');
+    if (!accordion) return;
+
+    function setBodyOpen(body, open) {
+        body.classList.toggle('is-open', open);
+        if (open) {
+            body.style.maxHeight = body.scrollHeight + 'px';
+        } else {
+            body.style.maxHeight = '0';
+        }
+    }
+
+    accordion.querySelectorAll('.zine-intro-accordion-item').forEach(function(item) {
+        var head = item.querySelector('.zine-intro-accordion-head');
+        var body = item.querySelector('.zine-intro-accordion-body');
+        if (!head || !body) return;
+
+        if (item.hasAttribute('data-default-open') || head.getAttribute('aria-expanded') === 'true') {
+            setBodyOpen(body, true);
+            head.setAttribute('aria-expanded', 'true');
+        }
+
+        head.addEventListener('click', function() {
+            var isOpen = body.classList.contains('is-open');
+            setBodyOpen(body, !isOpen);
+            head.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+        });
+    });
+}
+
 export function initZinePages() {
     var container = document.querySelector('.zine-content');
     if (!container) return;
@@ -274,6 +306,14 @@ export function initZinePages() {
             panel.classList.toggle('zine-page-active', panel.getAttribute('data-page') === value);
         });
     }
+
+    initZineIntroAccordion(document.getElementById('zine-page-0'));
+
+    window.addEventListener('tdt-lang-changed', function() {
+        doubleRaf(function() {
+            initZineIntroAccordion(document.getElementById('zine-page-0'));
+        });
+    });
 
     // Desktop: radio change event (fires when label checks a radio via 'for')
     radios.forEach(function(radio) {

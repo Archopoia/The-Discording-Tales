@@ -1,6 +1,12 @@
 // @ts-nocheck
 import { state } from './context';
 
+/** Set true to restore nav button → PDF disclosure modal + download. */
+export const PDF_BOOK_NAV_DOWNLOAD_ENABLED = false;
+
+const KICKSTARTER_PRELAUNCH_URL =
+    'https://www.kickstarter.com/projects/1410517588/the-discording-tales-tabletop-rpg-and-worldlore';
+
 // ========================================
 // PDF book download (disclosure dialog)
 // ========================================
@@ -24,12 +30,20 @@ export function initPdfDownloadModal() {
         document.body.removeChild(a);
     }
 
-    openBtn.addEventListener('click', function() {
+    function openPdfDisclosureModal() {
         if (typeof dialog.showModal === 'function') {
             dialog.showModal();
         } else if (window.confirm('This PDF is French-only and a pre-release draft (CC BY-NC-SA 4.0). Download now?')) {
             triggerPdfDownload();
         }
+    }
+
+    openBtn.addEventListener('click', function() {
+        if (!PDF_BOOK_NAV_DOWNLOAD_ENABLED) {
+            window.open(KICKSTARTER_PRELAUNCH_URL, '_blank', 'noopener,noreferrer');
+            return;
+        }
+        openPdfDisclosureModal();
     });
 
     if (closeBtn) {

@@ -150,7 +150,277 @@ function escapeAttr(str) {
     .replace(/"/g, '&quot;');
 }
 
+/** Pitch intro (page 0): map MD bold section titles to ## / ### before marked. */
+const INTRO_MAJOR_SECTIONS = {
+  "L'UNIVERS : COSMOS & SECRET": "L'Univers · Cosmos & secret",
+  "L'UNIVERS : CONFLITS, QUOTIDIEN & ANCRAGE": "L'Univers · Conflits & ancrage",
+  'THÉMATIQUES & PROMESSE ÉDITORIALE': 'Thématiques',
+  'LE SYSTÈME DISCORDANT (I) : PHILOSOPHIE & STRUCTURE': 'Système Discordant (I) · Philosophie',
+  'LE SYSTÈME DISCORDANT (II) : SOUFFRANCE, COMBAT, RILIE & SANDBOX': 'Système Discordant (II) · Combat & sandbox',
+};
+const INTRO_OMIT_FROM_MAJOR = 'AUTEUR, PROJET, FORMAT & CONTACT';
+const INTRO_OMIT_SUBSECTIONS = new Set(['Ce que le jeu apporte à un catalogue']);
+const INTRO_PUBLIC_VISE_PROMO = 'Public visé';
+const INTRO_FIRST_MAJOR = 'Présentation · Genre · HOOK';
+
+function preprocessPitchIntroMd(md) {
+  const lines = md.replace(/\r\n/g, '\n').split('\n');
+  const out = [];
+  let pastHeroHr = false;
+  let firstMajorStarted = false;
+  let skipPublisherTail = false;
+  let skipSubsection = false;
+  let collectingPublicVise = false;
+  let publicViseLines = [];
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (trimmed === '---' && !pastHeroHr) {
+      pastHeroHr = true;
+      out.push(line);
+      continue;
+    }
+    if (!pastHeroHr) {
+      out.push(line);
+      continue;
+    }
+    if (trimmed === '****' || trimmed === '** **') {
+      continue;
+    }
+    const boldOnly = trimmed.match(/^\*\*(.+)\*\*$/);
+    if (boldOnly) {
+      const title = boldOnly[1].trim();
+      if (title === INTRO_PUBLIC_VISE_PROMO) {
+        collectingPublicVise = true;
+        publicViseLines = [];
+        continue;
+      }
+      if (collectingPublicVise) {
+        collectingPublicVise = false;
+      }
+      if (title === INTRO_OMIT_FROM_MAJOR) {
+        skipPublisherTail = true;
+        continue;
+      }
+      if (skipPublisherTail) {
+        continue;
+      }
+      if (INTRO_OMIT_SUBSECTIONS.has(title)) {
+        skipSubsection = true;
+        continue;
+      }
+      if (skipSubsection) {
+        skipSubsection = false;
+      }
+      if (INTRO_MAJOR_SECTIONS[title]) {
+        out.push(`## ${INTRO_MAJOR_SECTIONS[title]}`);
+        continue;
+      }
+      if (title === 'Pourquoi ce jeu existe') {
+        if (!firstMajorStarted) {
+          out.push(`## ${INTRO_FIRST_MAJOR}`);
+          firstMajorStarted = true;
+        }
+        out.push(`### ${title}`);
+        continue;
+      }
+      out.push(`### ${title}`);
+      continue;
+    }
+    if (collectingPublicVise) {
+      if (trimmed === '---') {
+        collectingPublicVise = false;
+        continue;
+      }
+      publicViseLines.push(line);
+      continue;
+    }
+    if (skipPublisherTail) {
+      continue;
+    }
+    if (skipSubsection) {
+      if (trimmed.startsWith('- ') || trimmed === '' || trimmed === '****') {
+        continue;
+      }
+      skipSubsection = false;
+    }
+    out.push(line);
+  }
+
+  let result = out.join('\n');
+  if (publicViseLines.length) {
+    const promo = `## ${INTRO_PUBLIC_VISE_PROMO}\n\n${publicViseLines.join('\n').trim()}\n\n`;
+    const marker = '\n---\n';
+    const idx = result.indexOf(marker);
+    if (idx >= 0) {
+      const insertAt = idx + marker.length;
+      result = result.slice(0, insertAt) + promo + result.slice(insertAt);
+    }
+  }
+  return result;
+}
+
+function transformIntroPeoplesTable(html) {
+  const tableMatch = html.match(/<table>[\s\S]*?<tbody>([\s\S]*?)<\/tbody>[\s\S]*?<\/table>/);
+  if (!tableMatch) return html;
+  const tbody = tableMatch[1];
+  if (!/(?:Origine|Origin)/i.test(tbody) || !/Yômmes|Yommes/i.test(tbody)) return html;
+
+  const rowRegex = /<tr>\s*<td>([\s\S]*?)<\/td>\s*<td>([\s\S]*?)<\/td>\s*<td>([\s\S]*?)<\/td>\s*<\/tr>/g;
+  const cards = [];
+  let m;
+  while ((m = rowRegex.exec(tbody)) !== null) {
+    const name = m[1].replace(/<\/?strong>/g, '').trim();
+    if (/^(Origine|Origin)$/i.test(name)) continue;
+    cards.push(
+      `<div class="zine-intro-origin-card genre-card"><span class="zine-intro-origin-name">${name}</span><span class="zine-intro-origin-peoples">${m[2].trim()}</span><span class="zine-intro-origin-note">${m[3].trim()}</span></div>`
+    );
+  }
+  if (!cards.length) return html;
+  const gridHtml = `<div class="zine-intro-origin-grid">${cards.join('')}</div>`;
+  return html.replace(tableMatch[0], gridHtml);
+}
+
+function wrapIntroPeoplesParagraphs(html) {
+  const re = /<p><strong>Les (Aristois|Slaadéens|Hauts Ylfes)<\/strong>[\s\S]*?<\/p>/g;
+  const matches = html.match(re);
+  if (!matches || matches.length < 2) return html;
+  const grid = `<div class="zine-intro-peoples-grid">${matches.map((p) => `<div class="zine-intro-peoples-card genre-card">${p}</div>`).join('')}</div>`;
+  let stripped = html;
+  matches.forEach((p) => {
+    stripped = stripped.replace(p, '');
+  });
+  return `${grid}\n${stripped.trim()}`;
+}
+
+function wrapIntroTables(html) {
+  return html
+    .replace(/<table>/g, '<div class="zine-intro-table-wrap"><table class="zine-intro-table">')
+    .replace(/<\/table>/g, '</table></div>');
+}
+
+function wrapIntroHero(heroHtml) {
+  let html = heroHtml.trim().replace(/<hr\s*\/?>/g, '');
+  const parts = [];
+
+  const titleMatch = html.match(/^<p><strong>([\s\S]*?)<\/strong><\/p>/);
+  if (titleMatch) {
+    parts.push(`<h2 class="zine-intro-title">${titleMatch[1]}</h2>`);
+    html = html.slice(titleMatch[0].length).trim();
+  }
+  const subtitleMatch = html.match(/^<p><strong>([\s\S]*?)<\/strong><\/p>/);
+  if (subtitleMatch) {
+    parts.push(`<p class="zine-intro-subtitle">${subtitleMatch[1]}</p>`);
+    html = html.slice(subtitleMatch[0].length).trim();
+  }
+  const ledeMatch = html.match(/^<p><em>([\s\S]*?)<\/em><\/p>/);
+  if (ledeMatch) {
+    parts.push(`<p class="zine-intro-lede"><em>${ledeMatch[1]}</em></p>`);
+    html = html.slice(ledeMatch[0].length).trim();
+  }
+  if (html) {
+    parts.push(html);
+  }
+  return `<header class="zine-intro-hero">${parts.join('\n')}</header>`;
+}
+
+function wrapIntroSubsections(bodyHtml) {
+  const parts = bodyHtml.split(/(?=<h3>)/).filter(Boolean);
+  return parts
+    .map((part) => {
+      const h3Match = part.match(/^<h3>([\s\S]*?)<\/h3>/);
+      if (!h3Match) {
+        let block = part.trim();
+        block = transformIntroPeoplesTable(block);
+        block = wrapIntroTables(block);
+        return block ? `<div class="zine-intro-block">${block}</div>` : '';
+      }
+      const title = h3Match[1];
+      let content = part.slice(h3Match[0].length).trim();
+      content = content.replace(/<hr\s*\/?>/g, '');
+      if (/Images mentales/i.test(title)) {
+        content = wrapIntroPeoplesParagraphs(content);
+      } else {
+        content = transformIntroPeoplesTable(content);
+      }
+      content = wrapIntroTables(content);
+      const cardBody = content;
+      return `<div class="zine-intro-card genre-card">
+  <h4 class="zine-intro-card-title">${title}</h4>
+  <div class="zine-intro-card-body">${cardBody}</div>
+</div>`;
+    })
+    .join('\n');
+}
+
+function wrapIntroPublicVise(bodyHtml) {
+  let body = bodyHtml.trim();
+  body = transformIntroPeoplesTable(body);
+  body = wrapIntroTables(body);
+  return `<div class="zine-intro-public genre-card">
+  <h3 class="zine-intro-public-title">${INTRO_PUBLIC_VISE_PROMO}</h3>
+  <div class="zine-intro-public-body">${body}</div>
+</div>`;
+}
+
+function cleanIntroLiteralMarkdown(html) {
+  return html.replace(/\*\*([^*]+?)\*\*/g, '<strong>$1</strong>');
+}
+
+function processPitchIntroHtml(html) {
+  html = html.replace(/<p>\s*(?:<strong>\s*<\/strong>\s*)?\s*<\/p>/g, '');
+  const h2Index = html.search(/<h2>/);
+  let hero = '';
+  let rest = html;
+  if (h2Index > 0) {
+    hero = html.slice(0, h2Index).trim();
+    rest = html.slice(h2Index);
+  } else if (h2Index === -1) {
+    return cleanIntroLiteralMarkdown(`<div class="zine-intro">${wrapIntroHero(html)}</div>`);
+  }
+
+  const sections = rest.split(/(?=<h2>)/).filter(Boolean);
+  let publicViseHtml = '';
+  const accordionSections = [];
+  for (const section of sections) {
+    const h2Match = section.match(/^<h2>([\s\S]*?)<\/h2>/);
+    if (h2Match && h2Match[1].trim() === INTRO_PUBLIC_VISE_PROMO) {
+      publicViseHtml = wrapIntroPublicVise(section.slice(h2Match[0].length).trim());
+      continue;
+    }
+    accordionSections.push(section);
+  }
+
+  const accordionItems = accordionSections
+    .map((section, index) => {
+      const h2Match = section.match(/^<h2>([\s\S]*?)<\/h2>/);
+      if (!h2Match) return section;
+      const title = h2Match[1];
+      const body = wrapIntroSubsections(section.slice(h2Match[0].length).trim());
+      const defaultOpen = index === 0 ? ' data-default-open' : '';
+      return `<div class="zine-intro-accordion-item"${defaultOpen}>
+  <button type="button" class="zine-intro-accordion-head" aria-expanded="${index === 0 ? 'true' : 'false'}">${title}</button>
+  <div class="zine-intro-accordion-body${index === 0 ? ' is-open' : ''}"><div class="zine-intro-accordion-body-inner">${body}</div></div>
+</div>`;
+    })
+    .join('\n');
+
+  return cleanIntroLiteralMarkdown(`<div class="zine-intro">
+${wrapIntroHero(hero)}
+${publicViseHtml}
+<div class="zine-intro-accordion">
+${accordionItems}
+</div>
+</div>`);
+}
+
 function htmlFromMdBlock(block, pageIndex) {
+  if (pageIndex === 0) {
+    const md = preprocessPitchIntroMd(block.trim());
+    let html = marked.parse(md);
+    html = processPitchIntroHtml(html);
+    return html;
+  }
   let html = marked.parse(block.trim());
   html = processPageHtml(html, pageIndex);
   html = enhanceDiceCode(html);
