@@ -115,4 +115,4 @@ Disallow: /node_modules/
 Disallow: /tools/
 Disallow: /.git/
 
-Sitemap: https://archopoia.github.io/The-Discording-Tales/sitemap.xml
+Sitemap: https://www.thediscordingtales.com/sitemap.xml

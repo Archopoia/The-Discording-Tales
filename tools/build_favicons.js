@@ -78,6 +78,8 @@ async function main() {
   const manifest = {
     name: 'THE DISCORDING TALES',
     short_name: 'TDT',
+    id: '/',
+    start_url: '/',
     description:
       'Weird ethno-science-fantasy tabletop RPG and worldlore - Des Récits Discordants.',
     icons: [

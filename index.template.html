@@ -95,12 +95,12 @@
     </script>
     
     <!-- Favicon & app icons (npm run build:favicons from assets/images/cropped-symbolpur.png) -->
-    <link href="favicon.ico" rel="icon" sizes="48x48"/>
-    <link href="assets/icons/favicon-48x48.png" rel="icon" type="image/png" sizes="48x48"/>
-    <link href="assets/icons/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32"/>
-    <link href="assets/icons/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16"/>
-    <link href="assets/icons/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
-    <link href="site.webmanifest" rel="manifest"/>
+    <link href="{{SITE_PUBLIC_BASE}}/assets/icons/favicon-48x48.png" rel="icon" type="image/png" sizes="48x48"/>
+    <link href="{{SITE_PUBLIC_BASE}}/favicon.ico" rel="icon" sizes="48x48"/>
+    <link href="{{SITE_PUBLIC_BASE}}/assets/icons/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32"/>
+    <link href="{{SITE_PUBLIC_BASE}}/assets/icons/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16"/>
+    <link href="{{SITE_PUBLIC_BASE}}/assets/icons/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+    <link href="{{SITE_PUBLIC_BASE}}/site.webmanifest" rel="manifest"/>
     <!-- Gemini API key intentionally not exposed in frontend; use backend env vars -->
     <!-- People banner WebPs: preloaded via keyhole-entrance.js (after entrance assets, or immediately if bypassing) -->
     <!-- Page title/description for setLanguage (filled by build_i18n) -->

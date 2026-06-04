@@ -27,8 +27,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Optional repo variable SITE_PUBLIC_URL (no trailing slash), e.g.
-      # https://www.thediscordingtales.com/The-Discording-Tales - overrides canonical, sitemap, robots.
+      # Canonical URLs default to https://www.thediscordingtales.com (tools/site-public-url.js).
+      # Optional repo variable SITE_PUBLIC_URL overrides for previews (no trailing slash).
       - name: Build (Vite + play-webllm)
         env:
           SITE_PUBLIC_URL: ${{ vars.SITE_PUBLIC_URL }}
@@ -46,6 +46,9 @@ jobs:
           [ -f public/drd-rules-lore.txt ] && cp public/drd-rules-lore.txt site/ || true
           cp sitemap.xml site/
           cp robots.txt site/
+          cp favicon.ico site/
+          cp site.webmanifest site/
+          [ -f sw.js ] && cp sw.js site/ || true
           # Prevent Jekyll from touching static XML on Pages (avoids odd sitemap behavior)
           touch site/.nojekyll
           cp 404.html site/

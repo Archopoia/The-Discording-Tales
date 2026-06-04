@@ -2,12 +2,13 @@
  * Public absolute URL prefix (no trailing slash) for canonical links, OG/Twitter,
  * sitemap.xml, robots.txt Sitemap lines, and 404.html.
  *
- * Override at build time when the site is served from a custom domain or path:
- *   SITE_PUBLIC_URL=https://www.example.com/The-Discording-Tales npm run build
+ * Default matches the production custom domain (GitHub Pages root, no /The-Discording-Tales path).
+ * Override for previews or the legacy project URL:
+ *   SITE_PUBLIC_URL=https://archopoia.github.io/The-Discording-Tales npm run build
  *
- * GitHub Actions: set repository variable SITE_PUBLIC_URL (optional).
+ * GitHub Actions: optional repository variable SITE_PUBLIC_URL overrides this default.
  */
-const DEFAULT_BASE = 'https://archopoia.github.io/The-Discording-Tales';
+const DEFAULT_BASE = 'https://www.thediscordingtales.com';
 
 export function getSitePublicBase() {
   const raw = (process.env.SITE_PUBLIC_URL || '').trim();
