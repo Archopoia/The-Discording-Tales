@@ -43,13 +43,8 @@
     
     <!-- Main Stylesheet (bundled by build_css.js) -->
     <link href="dist/main-site.css" rel="stylesheet" type="text/css"/>
-    <!-- Third-party hints (GM chat markdown, SoundCloud) -->
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net"/>
+    <!-- SoundCloud API loads on demand after entrance (landing-extra.ts) -->
     <link rel="dns-prefetch" href="https://w.soundcloud.com"/>
-    <!-- Quintessential (Fermer / Envoyer button style) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link href="https://fonts.googleapis.com/css2?family=Quintessential&display=swap" rel="stylesheet"/>
     <!-- Early fetch of main bundle (deferred execution; warms HTTP cache with SW) -->
     <link rel="preload" href="dist/main-site.css" as="style"/>
     <link rel="preload" href="dist/main-site.js" as="script"/>
@@ -2366,14 +2361,10 @@
         </div>
     </footer>
     
-    <!-- SoundCloud Widget API (for play/pause state → note symbol) -->
-    <script src="https://w.soundcloud.com/player/api.js" async></script>
     <!-- Scripts (defer: run in order after DOM parse, non-blocking) -->
     <!-- Main-site bundle: shaders, src/site/dtd (bootstrap), gm-system-prompt, gm-chat (built with Vite) -->
+    <!-- marked + DOMPurify load with Play tab bundles (js/vendor/, tabs.ts) -->
     <script src="dist/main-site.js" defer></script>
-    <!-- Markdown + sanitizer for GM chat formatted replies -->
-    <script src="https://cdn.jsdelivr.net/npm/marked@9.1.6/marked.min.js" crossorigin="anonymous" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.9/dist/purify.min.js" crossorigin="anonymous" defer></script>
     <script>
     // Warm image cache after entrance (or immediately if no entrance) so warmup never
     // competes with the loader, map, or click-to-enter responsiveness.

@@ -16,7 +16,7 @@ services:
       - key: CORS_WILDCARD
         value: "false"
       - key: CORS_ORIGINS
-        value: https://archopoia.github.io
+        value: https://www.thediscordingtales.com,https://thediscordingtales.com,https://archopoia.github.io
       - key: RAG_TOP_K
         value: "20"
       - key: RAG_USE_MMR
