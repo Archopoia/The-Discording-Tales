@@ -2275,8 +2275,16 @@
                     });
                 }
                 return readNext();
-            }).catch(function () {
-                /* Backend unreachable → try Gemini direct */
+            }).catch(function (err) {
+                /* Backend failed (network or stream error) → show error if we have one */
+                if (err && err.message) {
+                    clearInterval(thinkInterval);
+                    miniMessages.push({ role: 'assistant', content: '⚠ ' + err.message });
+                    saveMiniMessages();
+                    renderMiniMessages(container);
+                    done();
+                    return;
+                }
                 miniGeminiDirect();
             });
         }

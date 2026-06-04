@@ -16,14 +16,16 @@ def _project_root() -> Path:
 def default_source_dirs() -> tuple[Path, Path, Path]:
     """Return (System_Summary, AllBookPages-FullBook, AllBookTables-csv) under TTRPG folder."""
     ref = _project_root() / "reference"
-    for sub in ref.iterdir():
-        if not sub.is_dir() or "TTRPG" not in sub.name:
-            continue
-        base = sub
-        ss = base / "System_Summary"
-        ab = base / "AllBookPages-FullBook"
-        cv = base / "AllBookTables-csv"
-        return (ss, ab, cv)
+    if ref.is_dir():
+        for sub in sorted(ref.iterdir()):
+            if not sub.is_dir() or "TTRPG" not in sub.name:
+                continue
+            base = sub
+            return (
+                base / "System_Summary",
+                base / "AllBookPages-FullBook",
+                base / "AllBookTables-csv",
+            )
     base = ref / "TTRPG_DRD"
     return (
         base / "System_Summary",

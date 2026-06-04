@@ -39,6 +39,6 @@ desktop.ini
 *.tsbuildinfo
 
 # Backend
-backend/faiss_drd/
+# Pre-built RAG index (index.faiss + index.pkl) — commit for Render/production (sources stay gitignored).
 backend/.env
 backend/__pycache__/

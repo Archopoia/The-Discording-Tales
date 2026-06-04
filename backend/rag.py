@@ -122,8 +122,12 @@ def build_or_get_index(
     docs = _load_all_docs()
     if not docs:
         raise FileNotFoundError(
-            "No chunks from System_Summary, AllBookPages-FullBook, or AllBookTables-csv. "
-            "Check RAG_SOURCE_DIR or reference/.../TTRPG folder."
+            "RAG index missing at "
+            f"{faiss_path} (need index.faiss + index.pkl). "
+            "On production, commit a pre-built index (run: python backend/build_rag_index.py locally) "
+            "or set FAISS_PATH to an existing index. "
+            "To rebuild from sources, set RAG_SOURCE_DIR to a folder containing "
+            "System_Summary, AllBookPages-FullBook, and AllBookTables-csv."
         )
     faiss_path.mkdir(parents=True, exist_ok=True)
     vs = FAISS.from_documents(docs, embeddings)

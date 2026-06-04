@@ -122,6 +122,7 @@ So: **for a public website, run the backend (and Ollama) on a server**, and poin
   - **Build Command**: `pip install -r requirements.txt`
   - **Start Command**: `uvicorn main:app --host 0.0.0.0 --port $PORT`
   - Set secret env vars: `GEMINI_API_KEY`, `OPENAI_API_KEY`
+- **RAG on Render:** `reference/` is not deployed (gitignored). Commit the pre-built index under `backend/faiss_drd/` (`index.faiss` + `index.pkl`) after running `python backend/build_rag_index.py` locally (needs `reference/.../TTRPG` and `OPENAI_API_KEY` once). The server loads that index at runtime; it does not need source MDs/CSVs on the host.
 
 **Alternative:** If you don’t want to run Ollama on a server (e.g. no GPU, or you prefer not to maintain it), use **OpenAI** for the public site: set `LLM_PROVIDER=openai` and `OPENAI_API_KEY` on the server. Then deploy the backend anywhere (e.g. a serverless or small VPS) and point the frontend at it; no Ollama on the server.
 
