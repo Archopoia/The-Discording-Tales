@@ -169,20 +169,8 @@ function pitchMdToHtml(md) {
   );
   const asideMatch = md.match(/\*(Le système met|The system puts)[\s\S]*?\*/);
   const formatMatch = md.match(
-    /\*\*(?:Format envisagé|Planned format)\*\*:\s*([\s\S]*?)(?=\n\n---|\n\n\*\*Pourquoi|\n\n\*\*Why)/
+    /\*\*(?:Format envisagé|Planned format)\*\*:\s*([\s\S]*?)$/
   );
-
-  const contactBlock = extractBetween(md, [/^\*\*Pourquoi ce jeu|^\*\*Why this game/], [/$/]);
-  const contactTitle = /Why this game/i.test(contactBlock)
-    ? 'Why this game? · Contact'
-    : 'Pourquoi ce jeu ? · Contact';
-  const contactParas = contactBlock
-    .replace(/^\*\*Pourquoi ce jeu \? · Contact\*\*|^\*\*Why this game\? · Contact\*\*/m, '')
-    .split(/\n\n+/)
-    .map((p) => p.trim())
-    .filter(Boolean)
-    .map((p) => `<p>${mdBlockToHtml(p)}</p>`)
-    .join('\n                ');
 
   const lang = /The Discording Tales/i.test(title) ? 'en' : 'fr';
 
@@ -233,11 +221,6 @@ function pitchMdToHtml(md) {
                     ? `<p><strong>${/Planned format/i.test(formatMatch[0]) ? 'Planned format' : 'Format envisagé'}:</strong> ${mdInlineToHtml(formatMatch[1].trim())}</p>`
                     : ''
                 }
-            </section>
-
-            <section class="pitch-deck__section pitch-deck__section--contact">
-                <h3 class="pitch-deck__section-title">${escapeHtml(contactTitle)}</h3>
-                ${contactParas}
             </section>
         </article>
     </div>

@@ -58,17 +58,3 @@ Région de jeu par défaut : **Iäoduneï** - point d'entrée central parmi d'au
 *Le système met le joueur face à l'altérité : comprendre une culture, c'est accepter ses règles - mécaniques et morales.*
 
 **Format envisagé :** livre de base + livret d'introduction + **PDF** ; éditions broché / hardcover - flexible selon votre catalogue. Manuscrit solide ; reste principalement contenu additionnel (bestiaire, objets, scénarios) et raffinement par playtests - **prêt pour une collaboration éditoriale forte**.
-
----
-
-**Pourquoi ce jeu ? · Contact**
-
-Un **brightstrife** francophone, profond et weird, prêt à devenir une **IP éditoriale** : originalité créative, profondeur mécanique rare, potentiel cross-média avéré, par auteur professionnellement game designer.
-
-**Hugues de Pingon** - Recruté comme Lead Game Designer chez **Once Lost Games** (*The Wayward Realms*, Ted Peterson & Julian LeFay) en leur montrant ce jeu de rôle. Univers développé depuis **5 ans** à temps plein ; manuscrit principal **~300 pages**, entièrement réécrit **trois fois** - maturité éditoriale forte, itération interne poussée. Playtests en cours ; actual plays prévus avec le **Studio 4D2**.
-
-**Cross-média :** *The Discording Tales* - RPG immersive sim en développement (sortie ~1 an, anglais/français) - première entrée d'une série ; propriété intellectuelle pensée pour dérivés internationaux. Déjà 130 followers sur le pre-lancement du Kickstarter et 1400 followers sur X/Twitter.
-
-**Site web:** [archopoia.github.io/The-Discording-Tales](https://archopoia.github.io/The-Discording-Tales/) - univers, règles, visuels.  
-**Portfolio:** [https://archopoia.github.io/Hugues.W.B.dePingon/](https://archopoia.github.io/Hugues.W.B.dePingon/)  
-**Contact:** [hugues.ii.w.b.depingon@gmail.com](mailto:hugues.ii.w.b.depingon@gmail.com)

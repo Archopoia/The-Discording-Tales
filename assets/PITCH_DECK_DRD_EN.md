@@ -59,16 +59,3 @@ Default play region: **Iäoduneï** - central gateway among other extreme enviro
 
 **Planned format:** core book + introduction booklet + **PDF**; paperback / hardcover editions - flexible to your catalogue. Solid manuscript; remaining work is mainly additional content (bestiary, items, scenarios) and refinement through playtests - **ready for strong editorial collaboration**.
 
----
-
-**Why this game? · Contact**
-
-A French **brightstrife**, deep and weird, ready to become an **editorial IP**: creative originality, rare mechanical depth, proven cross-media potential, by an author professionally trained as game designer.
-
-**Hugues de Pingon** - Recruited as **Lead Game Designer** at **Once Lost Games** (*The Wayward Realms*, Ted Peterson & Julian LeFay) by showing them this role-playing game. Setting developed for **5 years** full-time; main manuscript **~300 pages**, entirely rewritten **three times** - strong editorial maturity, deep internal iteration. Playtests underway; actual plays planned with **Studio 4D2**.
-
-**Cross-media:** *The Discording Tales* - immersive sim RPG in development (release ~1 year, English/French) - first entry in a series; intellectual property designed for international derivatives. Already 130 followers on the Kickstarter pre-launch and 1400 followers on X/Twitter.
-
-**Website:** [archopoia.github.io/The-Discording-Tales](https://archopoia.github.io/The-Discording-Tales/) - setting, rules, visuals.  
-**Portfolio:** [https://archopoia.github.io/Hugues.W.B.dePingon/](https://archopoia.github.io/Hugues.W.B.dePingon/)  
-**Contact:** [hugues.ii.w.b.depingon@gmail.com](mailto:hugues.ii.w.b.depingon@gmail.com)
