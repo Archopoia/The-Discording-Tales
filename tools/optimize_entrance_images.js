@@ -69,14 +69,20 @@ async function optimizeImages() {
         console.log(`  📷  ${img.src} (${fmtKB(srcStats.size)})`);
 
         try {
-            // 1. Full-quality WebP (same resolution)
             const webpPath = path.join(ASSETS_DIR, `${img.baseName}.webp`);
-            await sharp(srcPath)
-                .webp({ quality: img.quality })
-                .toFile(webpPath);
-            const webpStats = fs.statSync(webpPath);
-            const savings = ((1 - webpStats.size / srcStats.size) * 100).toFixed(1);
-            console.log(`      Full WebP : ${img.baseName}.webp (${fmtKB(webpStats.size)}, ${savings}% smaller)`);
+            const srcIsWebp = img.src.toLowerCase().endsWith('.webp');
+
+            // 1. Full-quality WebP (skip if source is already the target webp)
+            if (!srcIsWebp || path.resolve(srcPath) !== path.resolve(webpPath)) {
+                await sharp(srcPath)
+                    .webp({ quality: img.quality })
+                    .toFile(webpPath);
+                const webpStats = fs.statSync(webpPath);
+                const savings = ((1 - webpStats.size / srcStats.size) * 100).toFixed(1);
+                console.log(`      Full WebP : ${img.baseName}.webp (${fmtKB(webpStats.size)}, ${savings}% smaller)`);
+            } else {
+                console.log(`      Full WebP : ${img.baseName}.webp (already present)`);
+            }
 
             // 2. Medium-resolution WebP (max 1200px wide)
             await generateVariant(

@@ -2313,4 +2313,15 @@
         init();
         initMiniChat();
     }
+
+    window.addEventListener('tdt-gm-markdown-ready', function () {
+        var container = document.getElementById('gm-chat-messages');
+        if (container && messages.length) {
+            renderMessages(container);
+        }
+        var miniContainer = document.getElementById('mini-gm-chat-messages');
+        if (miniContainer && miniMessages.length) {
+            renderMiniMessages(miniContainer);
+        }
+    });
 })();

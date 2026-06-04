@@ -1,38 +1,128 @@
 {
   "lifestyles": [
-    { "src": "assets/images/image/image5.png", "alt": "All Creatures" },
-    { "src": "assets/images/image/image6.png", "alt": "Final Artwork" },
-    { "src": "assets/images/image/image10.png", "alt": "Artwork 2" },
-    { "src": "assets/images/image/image3.png", "alt": "All Copy 1" },
-    { "src": "assets/images/people/Aristois%20copy.png", "alt": "Aristese" },
-    { "src": "assets/images/people/Griscribes%20copy.png", "alt": "Greyscribes" },
-    { "src": "assets/images/people/Navillis%20copy.png", "alt": "Navillis" },
-    { "src": "assets/images/people/M%C3%A9ridiens%20copy.png", "alt": "Meridians" },
-    { "src": "assets/images/people/Grands%20Ylfes%20copy.png", "alt": "Great Ylves" },
-    { "src": "assets/images/people/Ylfes%20p%C3%A4les%20copy.png", "alt": "Pale Ylves" },
-    { "src": "assets/images/people/Ylfe%20des%20lacs%20copy.png", "alt": "Lake Ylves" },
-    { "src": "assets/images/people/Iqqars%20copy.png", "alt": "Iqqars" },
-    { "src": "assets/images/people/Slaad%C3%A9ens%20copy.png", "alt": "Slaadeans" },
-    { "src": "assets/images/people/Tchalkcha%C3%AF%20copy.png", "alt": "Tchalkchaïs" }
+    {
+      "src": "assets/images/image/image5.webp",
+      "alt": "All Creatures"
+    },
+    {
+      "src": "assets/images/image/image6.webp",
+      "alt": "Final Artwork"
+    },
+    {
+      "src": "assets/images/image/image10.webp",
+      "alt": "Artwork 2"
+    },
+    {
+      "src": "assets/images/image/image3.webp",
+      "alt": "All Copy 1"
+    },
+    {
+      "src": "assets/images/people/Aristois copy.webp",
+      "alt": "Aristese"
+    },
+    {
+      "src": "assets/images/people/Griscribes copy.webp",
+      "alt": "Greyscribes"
+    },
+    {
+      "src": "assets/images/people/Navillis copy.webp",
+      "alt": "Navillis"
+    },
+    {
+      "src": "assets/images/people/Méridiens copy.webp",
+      "alt": "Meridians"
+    },
+    {
+      "src": "assets/images/people/Grands Ylfes copy.webp",
+      "alt": "Great Ylves"
+    },
+    {
+      "src": "assets/images/people/Ylfes päles copy.webp",
+      "alt": "Pale Ylves"
+    },
+    {
+      "src": "assets/images/people/Ylfe des lacs copy.webp",
+      "alt": "Lake Ylves"
+    },
+    {
+      "src": "assets/images/people/Iqqars copy.webp",
+      "alt": "Iqqars"
+    },
+    {
+      "src": "assets/images/people/Slaadéens copy.webp",
+      "alt": "Slaadeans"
+    },
+    {
+      "src": "assets/images/people/Tchalkchaï copy.webp",
+      "alt": "Tchalkchaïs"
+    }
   ],
   "meanings": [
-    { "src": "assets/images/image/image14.png", "alt": "Title" },
-    { "src": "assets/images/essence-english-v2-1.png", "alt": "Essence" },
-    { "src": "assets/images/image/image13.png", "alt": "Things" },
-    { "src": "assets/images/image/image11.png", "alt": "Roue des astres" }
+    {
+      "src": "assets/images/image/image14.webp",
+      "alt": "Title"
+    },
+    {
+      "src": "assets/images/essence-english-v2-1.webp",
+      "alt": "Essence"
+    },
+    {
+      "src": "assets/images/image/image13.webp",
+      "alt": "Things"
+    },
+    {
+      "src": "assets/images/image/image11.webp",
+      "alt": "Roue des astres"
+    }
   ],
   "stories": [
-    { "src": "assets/images/areas/iossoluvvaij.png", "alt": "Iossoluvvaij" },
-    { "src": "assets/images/areas/current.png", "alt": "Current" },
-    { "src": "assets/images/areas/adriuhn.png", "alt": "Adriuhn" },
-    { "src": "assets/images/areas/agvalsis.png", "alt": "Agvalsis" },
-    { "src": "assets/images/areas/bruysseliand.png", "alt": "Bruysseliand" },
-    { "src": "assets/images/areas/dalvvaraad.png", "alt": "Dalvvaraad" },
-    { "src": "assets/images/areas/eadryllir.png", "alt": "Eadryllir" },
-    { "src": "assets/images/areas/hatroaj.png", "alt": "Hatroaj" },
-    { "src": "assets/images/areas/mevyriil.png", "alt": "Mevyriil" },
-    { "src": "assets/images/areas/ondusiol.png", "alt": "Ondusiol" },
-    { "src": "assets/images/novoworld.webp", "alt": "Novoworld" },
-    { "src": "assets/images/geocosmoseng.jpg", "alt": "Geocosmos" }
+    {
+      "src": "assets/images/areas/iossoluvvaij.webp",
+      "alt": "Iossoluvvaij"
+    },
+    {
+      "src": "assets/images/areas/current.webp",
+      "alt": "Current"
+    },
+    {
+      "src": "assets/images/areas/adriuhn.webp",
+      "alt": "Adriuhn"
+    },
+    {
+      "src": "assets/images/areas/agvalsis.webp",
+      "alt": "Agvalsis"
+    },
+    {
+      "src": "assets/images/areas/bruysseliand.webp",
+      "alt": "Bruysseliand"
+    },
+    {
+      "src": "assets/images/areas/dalvvaraad.webp",
+      "alt": "Dalvvaraad"
+    },
+    {
+      "src": "assets/images/areas/eadryllir.webp",
+      "alt": "Eadryllir"
+    },
+    {
+      "src": "assets/images/areas/hatroaj.webp",
+      "alt": "Hatroaj"
+    },
+    {
+      "src": "assets/images/areas/mevyriil.webp",
+      "alt": "Mevyriil"
+    },
+    {
+      "src": "assets/images/areas/ondusiol.webp",
+      "alt": "Ondusiol"
+    },
+    {
+      "src": "assets/images/novoworld.webp",
+      "alt": "Novoworld"
+    },
+    {
+      "src": "assets/images/geocosmoseng.webp",
+      "alt": "Geocosmos"
+    }
   ]
 }

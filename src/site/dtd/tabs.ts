@@ -24,6 +24,29 @@ export function loadPlayTabBundles(): Promise<unknown[]> | null {
     if (tdtPlayBundlesPromise) {
         return tdtPlayBundlesPromise;
     }
+    function injectVendorScript(src: string, attr: string, alreadyLoaded?: () => boolean) {
+        return new Promise<void>(function (resolve, reject) {
+            if (alreadyLoaded && alreadyLoaded()) {
+                resolve();
+                return;
+            }
+            if (document.querySelector('script[' + attr + ']')) {
+                resolve();
+                return;
+            }
+            const s = document.createElement('script');
+            s.src = src;
+            s.async = false;
+            s.setAttribute(attr, '1');
+            s.onload = function () {
+                resolve();
+            };
+            s.onerror = function () {
+                reject(new Error('Failed to load ' + src));
+            };
+            document.head.appendChild(s);
+        });
+    }
     function injectModuleOnce(src: string, attr: string, alreadyLoaded?: () => boolean) {
         return new Promise<void>(function (resolve, reject) {
             if (alreadyLoaded && alreadyLoaded()) {
@@ -72,16 +95,27 @@ export function loadPlayTabBundles(): Promise<unknown[]> | null {
         });
     }
     tdtPlayBundlesPromise = Promise.all([
+        injectVendorScript('js/vendor/marked.min.js', 'data-tdt-marked', function () {
+            return typeof (window as unknown as { marked?: unknown }).marked !== 'undefined';
+        }),
+        injectVendorScript('js/vendor/purify.min.js', 'data-tdt-dompurify', function () {
+            return typeof (window as unknown as { DOMPurify?: unknown }).DOMPurify !== 'undefined';
+        }),
         injectModuleOnce('dist/play-webllm.js', 'data-tdt-play-webllm', function () {
             return typeof (window as unknown as { getWebLLMEngine?: unknown }).getWebLLMEngine === 'function';
         }),
         injectDeferScriptOnce('dist/character-sheet.js', 'data-tdt-character-sheet', function () {
             return !!(window as unknown as { __tdtCharacterSheetLoaded?: boolean }).__tdtCharacterSheetLoaded;
         }),
-    ]).catch(function () {
-        tdtPlayBundlesPromise = null;
-        return [];
-    });
+    ])
+        .then(function () {
+            window.dispatchEvent(new CustomEvent('tdt-gm-markdown-ready'));
+            return [];
+        })
+        .catch(function () {
+            tdtPlayBundlesPromise = null;
+            return [];
+        });
     return tdtPlayBundlesPromise;
 }
 

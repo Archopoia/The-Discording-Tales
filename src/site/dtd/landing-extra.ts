@@ -104,6 +104,43 @@ export function initSoundCloudCycling() {
 // ========================================
 // SoundCloud: cross the note symbol when music is stopped (Widget API)
 // ========================================
+let soundCloudApiPromise: Promise<void> | null = null;
+
+function loadSoundCloudApi(): Promise<void> {
+    if (soundCloudApiPromise) {
+        return soundCloudApiPromise;
+    }
+    const sc = window.SC as { Widget?: unknown } | undefined;
+    if (typeof sc !== 'undefined' && sc.Widget) {
+        soundCloudApiPromise = Promise.resolve();
+        return soundCloudApiPromise;
+    }
+    soundCloudApiPromise = new Promise(function (resolve, reject) {
+        const existing = document.querySelector('script[data-tdt-soundcloud-api]');
+        if (existing) {
+            existing.addEventListener('load', function () {
+                resolve();
+            });
+            existing.addEventListener('error', function () {
+                reject(new Error('SoundCloud API failed to load'));
+            });
+            return;
+        }
+        const s = document.createElement('script');
+        s.src = 'https://w.soundcloud.com/player/api.js';
+        s.async = true;
+        s.setAttribute('data-tdt-soundcloud-api', '1');
+        s.onload = function () {
+            resolve();
+        };
+        s.onerror = function () {
+            reject(new Error('SoundCloud API failed to load'));
+        };
+        document.head.appendChild(s);
+    });
+    return soundCloudApiPromise;
+}
+
 export function initSoundCloudNoteState() {
     const wrap = document.getElementById('soundcloud-cycling-wrap');
     const iframe = document.querySelector('#soundcloud-cycling-wrap .soundcloud-embed');
@@ -112,8 +149,7 @@ export function initSoundCloudNoteState() {
     if (!vignette) return;
 
     function bindWidget() {
-        if (typeof window.SC === 'undefined' || !window.SC.Widget) {
-            setTimeout(bindWidget, 150);
+        if (typeof window.SC === 'undefined' || !(window.SC as { Widget?: unknown }).Widget) {
             return;
         }
         // Lazy-load: copy data-src → src so the iframe actually loads.
@@ -122,7 +158,8 @@ export function initSoundCloudNoteState() {
         if (!iframe.getAttribute('src') && iframe.dataset.src) {
             iframe.src = iframe.dataset.src;
         }
-        var widget = window.SC.Widget(iframe);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        var widget = (window.SC as any).Widget(iframe);
         var hasStartedFromEntrance = false;
 
         function setPlaying(isPlaying) {
@@ -174,21 +211,21 @@ export function initSoundCloudNoteState() {
         document.addEventListener('click', startPlayback, { once: true });
         document.addEventListener('touchstart', startPlayback, { once: true });
 
-        widget.bind(window.SC.Widget.Events.READY, function() {
+        widget.bind((window.SC as { Widget: { Events: { READY: unknown; PLAY: unknown; PAUSE: unknown; FINISH: unknown } } }).Widget.Events.READY, function() {
             widget.isPaused(function(paused) {
                 vignette.classList.toggle('soundcloud-stopped', paused);
                 setPlaying(!paused);
             });
         });
-        widget.bind(window.SC.Widget.Events.PLAY, function() {
+        widget.bind((window.SC as { Widget: { Events: { PLAY: unknown } } }).Widget.Events.PLAY, function() {
             vignette.classList.remove('soundcloud-stopped');
             setPlaying(true);
         });
-        widget.bind(window.SC.Widget.Events.PAUSE, function() {
+        widget.bind((window.SC as { Widget: { Events: { PAUSE: unknown } } }).Widget.Events.PAUSE, function() {
             vignette.classList.add('soundcloud-stopped');
             setPlaying(false);
         });
-        widget.bind(window.SC.Widget.Events.FINISH, function() {
+        widget.bind((window.SC as { Widget: { Events: { FINISH: unknown } } }).Widget.Events.FINISH, function() {
             vignette.classList.add('soundcloud-stopped');
             setPlaying(false);
         });
@@ -214,7 +251,7 @@ export function initSoundCloudNoteState() {
             }
         });
     }
-    bindWidget();
+    loadSoundCloudApi().then(bindWidget).catch(function () {});
 }
 
 // ========================================
