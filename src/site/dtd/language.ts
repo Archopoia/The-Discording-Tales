@@ -2,13 +2,13 @@ import { elements, state } from './context';
 import { updateCarouselAriaLabels } from './carousel';
 
 const PAGE_TITLE_EN =
-    'THE DISCORDING TALES – Under our steps awake those mysteries believed to be warring among the stars…';
+    'THE DISCORDING TALES | Des Récits Discordants – Weird ethno-science-fantasy tabletop RPG';
 const PAGE_TITLE_FR =
-    "DES RÉCITS DISCORDANTS – Sous nos pas s'éveillent ces mystères que l'on croyait se battre parmi les étoiles…";
+    'DES RÉCITS DISCORDANTS | The Discording Tales – Jeu de rôle weird ethno-science-fantasy';
 const META_DESCRIPTION_EN =
-    'For those of us who crave DISCOVERY. A journey through exotic cultures, unexplored lands, weird creatures, and untold ways of thinking and being - yearning to experience the vast potentials, technologies and moralities of worlds unlike ours.';
+    'The Discording Tales (Des Récits Discordants) – For those of us who crave DISCOVERY. A weird ethno-science-fantasy tabletop RPG and gameworld. A journey through exotic cultures, unexplored lands, weird creatures, and untold ways of thinking and being.';
 const META_DESCRIPTION_FR =
-    "Pour ceux d'entre nous qui aspirent à la DÉCOUVERTE. Un voyage à travers des cultures exotiques, des terres inexplorées, des créatures étranges et des façons inédites de penser et d'être - aspirant à expérimenter les vastes potentiels, technologies et moralités de mondes différents du nôtre.";
+    "Des Récits Discordants (The Discording Tales) – Pour ceux d'entre nous qui aspirent à la DÉCOUVERTE. Jeu de rôle et univers weird ethno-science-fantasy. Un voyage à travers des cultures exotiques, des terres inexplorées, des créatures étranges et des façons inédites de penser et d'être.";
 
 function getPageI18n(): { title?: { en: string; fr: string }; description?: { en: string; fr: string } } | null {
     const el = document.getElementById('tdt-i18n-strings');

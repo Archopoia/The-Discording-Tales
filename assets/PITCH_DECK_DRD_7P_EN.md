@@ -326,7 +326,9 @@ Recruited as **Lead Game Designer** at **Once Lost Games** (*The Wayward Realms*
 
 A French **brightstrife**, deep and weird, ready to become an **editorial IP**: creative originality, rare mechanical depth, proven cross-media potential, author trained in professional game design - with a manuscript already **almost ready** for strong editorial collaboration.
 
-**Website:** [archopoia.github.io/The-Discording-Tales](https://archopoia.github.io/The-Discording-Tales/) - setting, rules, visuals.
+**Website:** [www.thediscordingtales.com](https://www.thediscordingtales.com/) - setting, rules, visuals.
+
+**Games:** [the-discording-tales.itch.io](https://the-discording-tales.itch.io/) - playable prototypes and side projects.
 
 **Portfolio:** [https://archopoia.github.io/Hugues.W.B.dePingon/](https://archopoia.github.io/Hugues.W.B.dePingon/)
 

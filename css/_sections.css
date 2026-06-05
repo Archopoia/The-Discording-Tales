@@ -4378,6 +4378,32 @@ body.tdt-peoples-portrait-lightbox-open {
     margin-bottom: var(--spacing-sm);
 }
 
+.footer-social {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem 1.1rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.footer-social-link {
+    color: var(--tdt-cream);
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(245, 230, 196, 0.35);
+    transition: color var(--transition-normal), border-color var(--transition-normal);
+}
+
+.footer-social-link:hover,
+.footer-social-link:focus-visible {
+    color: #fff8e8;
+    border-bottom-color: rgba(255, 248, 232, 0.75);
+    outline: none;
+}
+
 /* ========================================
    Responsive Design
    ======================================== */
