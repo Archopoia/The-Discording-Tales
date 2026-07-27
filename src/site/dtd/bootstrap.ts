@@ -33,6 +33,7 @@ import { handleWebGLResize } from './webgl-site';
 import { initStickyMainNav } from './nav-sticky';
 import { initCopyrightProtection } from './copyright';
 import { initAboutContactQuest } from './about-contact-quest';
+import { initUniverseLore } from './universe-lore';
 
 let deferredInitDone = false;
 
@@ -45,6 +46,7 @@ function initDeferred(): void {
     initArchiveToggle();
     initZinePages();
     initPeuples();
+    initUniverseLore();
     initPopovers();
     initCombat();
     initMagicProgressionRulesUi();

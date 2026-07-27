@@ -1,5 +1,6 @@
 import { elements, state } from './context';
 import { updateCarouselAriaLabels } from './carousel';
+import { applyUniverseLoreLanguage } from './universe-lore';
 
 const PAGE_TITLE_EN =
     'THE DISCORDING TALES | Des Récits Discordants – Weird ethno-science-fantasy tabletop RPG';
@@ -108,6 +109,7 @@ export function setLanguage(lang: string): void {
     });
 
     updateCarouselAriaLabels(lang);
+    applyUniverseLoreLanguage(lang);
 }
 
 export function initLanguage(): void {
