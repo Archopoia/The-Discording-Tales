@@ -1,5 +1,5 @@
 import { doubleRaf } from './dom-utils';
-import { switchTab } from './tabs';
+import { loadPlayTabBundles, switchTab } from './tabs';
 import { switchSubTab } from './subtabs';
 
 export function getRouteHashFragment(): string {
@@ -31,35 +31,71 @@ export function fragmentFromMondeLink(anchor: HTMLAnchorElement | null): string 
     }
 }
 
+const HASH_ALIASES: Record<string, string> = {
+    play: 'chatbot',
+    chat: 'chatbot',
+    'world-map': 'map',
+};
+
+const WORLD_INNER: Record<string, string> = {
+    peoples: 'peoples-peoples',
+    map: 'map',
+    'universe-lore': 'universe-lore',
+};
+
+const TABLETOP_INNER: Record<string, string> = {
+    tabletop: 'tabletop-rules',
+    zine: 'zine',
+    sheet: 'sheet',
+    chatbot: 'chatbot',
+};
+
+const TABLETOP_PLAY_BUNDLES = new Set(['sheet', 'chatbot']);
+
+const NESTED_LINK_FRAGS: Record<string, string[]> = {
+    'univers-nav-main-link': ['peoples', 'videogame', 'tabletop'],
+    'univers-monde-sublink': ['peoples', 'map', 'universe-lore'],
+    'univers-tabletop-sublink': ['tabletop', 'zine', 'sheet', 'chatbot'],
+};
+
 export function handleHashChange(): void {
-    const hash = getRouteHashFragment();
-    const validTabs = ['landing', 'pitch', 'univers', 'play', 'about'];
+    const rawHash = getRouteHashFragment();
+    const validTabs = ['landing', 'pitch', 'univers', 'about'];
     const sectionToTab: Record<string, string> = {
-        peoples: 'univers',
-        'system-overview': 'univers',
         'about-world': 'about',
         'about-author': 'about',
         'about-contact': 'about',
     };
 
-    if (!hash) {
+    if (!rawHash) {
         switchTab('landing');
         return;
     }
-    if (hash === 'world-map') {
-        if (history.replaceState) history.replaceState(null, '', '#map');
+
+    if (HASH_ALIASES[rawHash]) {
+        if (history.replaceState) history.replaceState(null, '', '#' + HASH_ALIASES[rawHash]);
         handleHashChange();
         return;
     }
-    if (hash === 'map') {
-        // Map is regular Monde content (not .archived-section); do not gate on archived-hidden.
+
+    const hash = rawHash;
+
+    if (hash === 'videogame') {
         switchTab('univers', { skipScrollToTop: true, skipEnsureSubTab: true });
-        switchSubTab('univers', 'peoples', 'map');
+        switchSubTab('univers', 'videogame');
         return;
     }
-    if (hash === 'universe-lore') {
+    if (WORLD_INNER[hash]) {
         switchTab('univers', { skipScrollToTop: true, skipEnsureSubTab: true });
-        switchSubTab('univers', 'peoples', 'universe-lore');
+        switchSubTab('univers', 'peoples', WORLD_INNER[hash]);
+        return;
+    }
+    if (TABLETOP_INNER[hash]) {
+        switchTab('univers', { skipScrollToTop: true, skipEnsureSubTab: true });
+        switchSubTab('univers', 'tabletop', TABLETOP_INNER[hash]);
+        if (TABLETOP_PLAY_BUNDLES.has(hash)) {
+            loadPlayTabBundles()?.catch(function () {});
+        }
         return;
     }
     if (validTabs.includes(hash)) {
@@ -73,8 +109,8 @@ export function handleHashChange(): void {
         return;
     }
     if (hash.indexOf('system-overview') === 0) {
-        switchTab('univers', { skipScrollToTop: true });
-        switchSubTab('univers', 'system-overview');
+        switchTab('univers', { skipScrollToTop: true, skipEnsureSubTab: true });
+        switchSubTab('univers', 'tabletop', 'tabletop-rules');
         doubleRaf(function () {
             const target = document.getElementById(hash);
             if (target) {
@@ -93,20 +129,31 @@ export function handleHashChange(): void {
 }
 
 /**
- * Sidebar Monde sub-links (#peoples / #map / #universe-lore)
+ * Sidebar nested sub-links (World: #peoples / #map / #universe-lore;
+ * Tabletop: #tabletop / #zine / #sheet / #chatbot)
  */
 export function initUniversMondeSidebarLinks(): void {
-    const nav = document.querySelector('.univers-monde-in-page-nav');
+    const nav = document.querySelector('.univers-sidebar-nav');
     if (!nav) return;
     nav.addEventListener(
         'click',
         function (e) {
             const t = e.target as HTMLElement | null;
             const a = t && t.closest ? (t.closest('a') as HTMLAnchorElement | null) : null;
-            if (!a || !a.classList.contains('univers-monde-sublink') || !nav.contains(a)) return;
+            if (!a || !nav.contains(a)) return;
+            let allowed: string[] | undefined;
+            if (a.classList.contains('univers-nav-main-link')) {
+                allowed = NESTED_LINK_FRAGS['univers-nav-main-link'];
+            } else if (a.classList.contains('univers-monde-sublink')) {
+                allowed = NESTED_LINK_FRAGS['univers-monde-sublink'];
+            } else if (a.classList.contains('univers-tabletop-sublink')) {
+                allowed = NESTED_LINK_FRAGS['univers-tabletop-sublink'];
+            }
+            if (!allowed) return;
             const frag = fragmentFromMondeLink(a);
-            if (frag !== 'peoples' && frag !== 'map' && frag !== 'universe-lore') return;
+            if (allowed.indexOf(frag) === -1) return;
             e.preventDefault();
+            e.stopPropagation();
             const pushHash = '#' + frag;
             if (history.pushState) {
                 history.pushState(null, '', pushHash);

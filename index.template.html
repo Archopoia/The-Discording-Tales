@@ -51,7 +51,7 @@
     
     <!-- Theme Color -->
     <meta content="#5a1f1f" name="theme-color"/>
-    <!-- GM API (Play tab): public backend for all visitors -->
+    <!-- GM API (Tabletop chatbot): public backend for all visitors -->
     <meta name="gm-api-url" content="https://the-discording-tales-wlu5.onrender.com"/>
     <!-- Entrance bypass: within 5 min of last completed enter, skip keyhole and entrance-only assets -->
     <script>
@@ -250,7 +250,6 @@
                 <li class="menu-item"><a href="#landing" data-tab="landing" class="tab-link active" {{i18n:nav.home}}>Hearth</a></li>
                 <li class="menu-item"><a href="#pitch" data-tab="pitch" class="tab-link" {{i18n:nav.pitch}}>Pitch</a></li>
                 <li class="menu-item"><a href="#univers" data-tab="univers" class="tab-link" {{i18n:nav.univers}}>Universe</a></li>
-                <li class="menu-item"><a href="#play" data-tab="play" class="tab-link" {{i18n:nav.play}}>Play</a></li>
                 <li class="menu-item"><a href="#about" data-tab="about" class="tab-link" {{i18n:nav.about}}>About</a></li>
             </ul>
             <div class="nav-secondary-actions" {{i18n-aria:nav.social.group_aria}}>
@@ -354,7 +353,7 @@
                         <button type="button" id="mini-gm-chat-send" data-en="Send" data-fr="Envoyer">Send</button>
                     </div>
                 </div>
-                <a href="#play" class="mini-chat-play-btn tab-link" data-tab="play" data-en="▶ Play  -  Full Chat &amp; Character Sheet" data-fr="▶ Jouer  -  Tchat complet &amp; Feuille de Personnage">▶ Play  -  Full Chat &amp; Character Sheet</a>
+                <a href="#chatbot" class="mini-chat-play-btn" data-en="▶ Chatbot  -  Full Chat &amp; Character Sheet" data-fr="▶ Chatbot  -  Tchat complet &amp; Feuille de Personnage">▶ Chatbot  -  Full Chat &amp; Character Sheet</a>
             </div>
 
             <!-- Discovery + UNIFIED: one section, one container, shared layout -->
@@ -503,14 +502,13 @@
                         <li><a href="#universe-lore" class="system-overview-nav-link univers-monde-sublink" data-en="Lore" data-fr="Lore">Lore</a></li>
                         <li><a href="#map" class="system-overview-nav-link univers-monde-sublink" data-en="Map" data-fr="Carte">Map</a></li>
                     </ul>
-                    <a href="#system-overview" class="tab-sub-nav-link univers-nav-main-link" {{i18n:tpl.100}}>Rules</a>
-                    <ul class="system-overview-nav-list univers-rules-in-page-nav" aria-label="Rules sections">
-                        <li><a href="#system-overview-uncover" class="system-overview-nav-link" {{i18n:tpl.106}}>Uncover a world of possibilities</a></li>
-                        <li><a href="#system-overview-struggle" class="system-overview-nav-link" {{i18n:tpl.121}}>Struggle, suffer, strengthen</a></li>
-                        <li><a href="#system-overview-traits" class="system-overview-nav-link" {{i18n:tpl.137}}>Traits &amp; Values</a></li>
-                        <li><a href="#system-overview-more" class="system-overview-nav-link" {{i18n:tpl.141}}>And much, much more.</a></li>
-                        <li><a href="#system-overview" class="system-overview-nav-link" {{i18n:tpl.146}}>The 8 Attributes</a></li>
-                        <li><a href="#system-overview-conflicts" class="system-overview-nav-link" {{i18n:tpl.169}}>The 8 Conflicts</a></li>
+                    <a href="#videogame" class="tab-sub-nav-link univers-nav-main-link" {{i18n:nav.univers.videogame}}>Videogame</a>
+                    <a href="#tabletop" class="tab-sub-nav-link univers-nav-main-link" {{i18n:nav.univers.tabletop}}>Tabletop</a>
+                    <ul class="system-overview-nav-list univers-tabletop-in-page-nav" aria-label="Tabletop sections">
+                        <li><a href="#tabletop" class="system-overview-nav-link univers-tabletop-sublink" {{i18n:nav.univers.tabletop.rules}}>Rules</a></li>
+                        <li><a href="#zine" class="system-overview-nav-link univers-tabletop-sublink" {{i18n:nav.univers.tabletop.zine}}>Zine</a></li>
+                        <li><a href="#sheet" class="system-overview-nav-link univers-tabletop-sublink" {{i18n:nav.univers.tabletop.sheet}}>Sheet</a></li>
+                        <li><a href="#chatbot" class="system-overview-nav-link univers-tabletop-sublink" {{i18n:nav.univers.tabletop.chatbot}}>Chatbot</a></li>
                     </ul>
                 </nav>
                 <div class="univers-dashboard-main system-overview-content">
@@ -619,8 +617,42 @@
                 </div>
             </div>
             
-            <!-- System Overview panel (Vue d'ensemble) -->
-            <div class="tab-sub-panel" data-subtab="system-overview" id="system-overview-panel">
+            <!-- Videogame teaser -->
+            <div class="lore-section tab-sub-panel" id="videogame" data-subtab="videogame">
+                <article class="videogame-teaser">
+                    <header class="videogame-teaser-hero">
+                        <p class="videogame-teaser-kicker" {{i18n:videogame.teaser.kicker}}>Teaser</p>
+                        <h3 class="videogame-teaser-title" {{i18n:videogame.teaser.title}}>The Discording Tales, playable</h3>
+                        <p class="videogame-teaser-subtitle" {{i18n:videogame.teaser.subtitle}}>Same world. New vessel.</p>
+                        <p class="videogame-teaser-lede" {{i18n:videogame.teaser.lede}}>The tabletop is the first door. A videogame of discovery is taking shape - struggle, cultures, and the pull of Ô, now as a world you can enter.</p>
+                    </header>
+                    <div class="videogame-teaser-stage" {{i18n-aria:videogame.teaser.stage_aria}} aria-label="Videogame teaser stage, film coming soon">
+                        <div class="videogame-teaser-stage-frame">
+                            <img class="videogame-teaser-stage-img" src="assets/images/novoworld.webp" alt="" decoding="async" loading="lazy"/>
+                            <div class="videogame-teaser-stage-veil" aria-hidden="true"></div>
+                            <p class="videogame-teaser-stage-label" {{i18n:videogame.teaser.stage}}>Teaser incoming</p>
+                        </div>
+                    </div>
+                    <ul class="videogame-teaser-chips" aria-hidden="true">
+                        <li {{i18n:videogame.teaser.chip_brightstrife}}>Brightstrife</li>
+                        <li {{i18n:videogame.teaser.chip_peoples}}>Ten peoples</li>
+                        <li {{i18n:videogame.teaser.chip_o}}>One Ô</li>
+                    </ul>
+                    <p class="videogame-teaser-body" {{i18n:videogame.teaser.body}}>A first look is being cut. Until then, the world, the rules, and the Éveilleur already wait on the tabletop.</p>
+                    <div class="videogame-teaser-actions">
+                        <a href="https://www.kickstarter.com/projects/1410517588/the-discording-tales-tabletop-rpg-and-worldlore" class="cta-button videogame-teaser-cta" target="_blank" rel="noopener noreferrer">
+                            <span {{i18n:cta.raise_hand}}>Raise your Hand</span>
+                            <small {{i18n:cta.notified}}>(Be notified on launch)</small>
+                        </a>
+                        <a href="#tabletop" class="videogame-teaser-link" {{i18n:videogame.teaser.cta_tabletop}}>Enter the tabletop</a>
+                        <a href="#chatbot" class="videogame-teaser-link" {{i18n:videogame.teaser.cta_chatbot}}>Ask the Éveilleur</a>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Tabletop: Rules / Zine / Sheet / Chatbot -->
+            <div class="lore-section tab-sub-panel" data-subtab="tabletop" id="tabletop">
+                <div class="univers-tabletop-panel univers-tabletop-panel--active" id="tabletop-rules">
                 <!-- Accordion: main worldlore sections (first expanded) -->
                 <div class="system-overview-accordion" id="system-overview-accordion">
                     <div class="system-overview-accordion-item" id="system-overview-uncover">
@@ -827,10 +859,55 @@
                         </div>
                     </section>
                 </div>
+                </div>
+                <!-- end Tabletop > Rules -->
+
+                <div class="univers-tabletop-panel" id="zine" inert aria-hidden="true">
+                    {{zine-content}}
+                </div>
+
+                <div class="univers-tabletop-panel" id="sheet" inert aria-hidden="true">
+                    <div id="character-sheet-root" class="play-character-sheet-root tdt-scrollable"></div>
+                </div>
+
+                <div class="univers-tabletop-panel" id="chatbot" inert aria-hidden="true">
+                            <div class="gm-chat-wrapper rules-section">
+                                <div class="gm-chat-toolbar">
+                                    <button type="button" id="gm-chat-clear" class="gm-chat-toolbar-btn gm-chat-clear-btn" {{i18n-aria:tpl.712}} {{i18n-title:tpl.714}} aria-label="Clear chat" title="Clear chat">
+                                        <svg class="gm-chat-icon-brush" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M20.71 4.63l-1.34-1.34c-.39-.39-1.02-.39-1.41 0L9 12.25 11.75 15l8.96-8.96c.39-.39.39-1.02 0-1.41zM7 14a3 3 0 0 0 3 3c.5 0 .97-.15 1.36-.41l-1.95-1.95-.41.41V14z"/></svg>
+                                    </button>
+                                    <span class="gm-chat-disclaimer gm-chat-disclaimer--backend" role="note" data-en="✦ Connecting to AI…" data-fr="✦ Connexion à l'IA…">✦ Connecting to AI…</span>
+                                </div>
+                                <div class="gm-chat-messages tdt-scrollable" id="gm-chat-messages" role="log" aria-live="polite"></div>
+                                <div class="gm-chat-input-wrap">
+                                    <div class="gm-chat-no-character" id="gm-chat-no-character" style="display: none;">
+                                        <div class="gm-chat-no-character-buttons">
+                                            <button type="button" id="gm-chat-ask-world" class="gm-chat-no-character-btn">
+                                                <span {{i18n:tpl.620}}>Ask about the world or rules</span>
+                                            </button>
+                                            <button type="button" id="gm-chat-create-character" class="gm-chat-no-character-btn">
+                                                <span {{i18n:tpl.621}}>Create a character</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="gm-chat-has-character" id="gm-chat-has-character">
+                                        <div class="gm-chat-action-buttons">
+                                            <button type="button" id="gm-chat-kill-and-create" class="gm-chat-kill-create-btn">
+                                                <span {{i18n:tpl.622}}>Kill this character and create a new one</span>
+                                            </button>
+                                        </div>
+                                        <div class="gm-chat-input-row">
+                                            <input type="text" id="gm-chat-input" {{i18n-placeholder:tpl.716}} placeholder="Your action or roll result…" {{i18n-aria:tpl.713}} aria-label="Message to GM" autocomplete="off"/>
+                                            <button type="button" id="gm-chat-send" {{i18n:tpl.623}}>Send</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                </div>
             </div>
             </div>
             </div>
-            <!-- end System Overview panel -->
+            <!-- end Tabletop panel -->
         </section>
         
         <!-- Rules Tab (archived) -->
@@ -840,7 +917,7 @@
                 <p class="tab-intro" {{i18n:tpl.98}}>Discover the free-forming system where failure becomes progression</p>
                 <div class="character-sheet-trigger character-sheet-trigger-inline" style="text-align: center; margin: 1.5rem 0;">
                     <button id="open-character-sheet" class="cta-button" style="font-size: 1.2rem; padding: 1rem 2rem;">
-                        <span {{i18n:tpl.99}}>Go to Play (Character Sheet &amp; GM)</span>
+                        <span {{i18n:tpl.99}}>Go to Sheet (Character Sheet &amp; GM)</span>
                     </button>
                 </div>
                 <nav class="tab-sub-nav" aria-label="Ruleset sections">
@@ -1926,67 +2003,6 @@
             <!-- end Magic panel -->
         </section>
         
-        <!-- Play Tab -->
-        <section id="play" class="tab-content" data-lang-key="play">
-            <div class="play-panels-layout">
-                <div class="play-panels-buttons" role="group" {{i18n-aria:tpl.711}} aria-label="Chat, character sheet, or zine">
-                    <button type="button" id="play-panel-chat-btn" class="play-panel-btn active" data-panel="chat">
-                        <span {{i18n:tpl.618}}>Chat</span>
-                    </button>
-                    <button type="button" id="play-panel-sheet-btn" class="play-panel-btn" data-panel="sheet">
-                        <span {{i18n:tpl.619}}>Sheet</span>
-                    </button>
-                    <button type="button" id="play-panel-zine-btn" class="play-panel-btn" data-panel="zine">
-                        <span {{i18n:play.zine}}>Zine</span>
-                    </button>
-                </div>
-                <div class="play-panels-container" id="play-panels-container">
-                    <div id="play-panel-chat" class="play-panel active" aria-hidden="false">
-                            <!-- GM Chat -->
-                            <div class="gm-chat-wrapper rules-section">
-                                <div class="gm-chat-toolbar">
-                                    <button type="button" id="gm-chat-clear" class="gm-chat-toolbar-btn gm-chat-clear-btn" {{i18n-aria:tpl.712}} {{i18n-title:tpl.714}} aria-label="Clear chat" title="Clear chat">
-                                        <svg class="gm-chat-icon-brush" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M20.71 4.63l-1.34-1.34c-.39-.39-1.02-.39-1.41 0L9 12.25 11.75 15l8.96-8.96c.39-.39.39-1.02 0-1.41zM7 14a3 3 0 0 0 3 3c.5 0 .97-.15 1.36-.41l-1.95-1.95-.41.41V14z"/></svg>
-                                    </button>
-                                    <span class="gm-chat-disclaimer gm-chat-disclaimer--backend" role="note" data-en="✦ Connecting to AI…" data-fr="✦ Connexion à l'IA…">✦ Connecting to AI…</span>
-                                </div>
-                                <div class="gm-chat-messages tdt-scrollable" id="gm-chat-messages" role="log" aria-live="polite"></div>
-                                <div class="gm-chat-input-wrap">
-                                    <div class="gm-chat-no-character" id="gm-chat-no-character" style="display: none;">
-                                        <div class="gm-chat-no-character-buttons">
-                                            <button type="button" id="gm-chat-ask-world" class="gm-chat-no-character-btn">
-                                                <span {{i18n:tpl.620}}>Ask about the world or rules</span>
-                                            </button>
-                                            <button type="button" id="gm-chat-create-character" class="gm-chat-no-character-btn">
-                                                <span {{i18n:tpl.621}}>Create a character</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="gm-chat-has-character" id="gm-chat-has-character">
-                                        <div class="gm-chat-action-buttons">
-                                            <button type="button" id="gm-chat-kill-and-create" class="gm-chat-kill-create-btn">
-                                                <span {{i18n:tpl.622}}>Kill this character and create a new one</span>
-                                            </button>
-                                        </div>
-                                        <div class="gm-chat-input-row">
-                                            <input type="text" id="gm-chat-input" {{i18n-placeholder:tpl.716}} placeholder="Your action or roll result…" {{i18n-aria:tpl.713}} aria-label="Message to GM" autocomplete="off"/>
-                                            <button type="button" id="gm-chat-send" {{i18n:tpl.623}}>Send</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                    <div id="play-panel-sheet" class="play-panel" aria-hidden="true">
-                            <!-- Character Sheet -->
-                            <div id="character-sheet-root" class="play-character-sheet-root tdt-scrollable"></div>
-                    </div>
-                    <div id="play-panel-zine" class="play-panel" aria-hidden="true">
-                        {{zine-content}}
-                    </div>
-                </div>
-            </div>
-        </section>
-        
         <!-- About Tab (subpanels: horizontal top nav) -->
         <section id="about" class="tab-content has-subtabs" data-lang-key="about">
             <nav class="tab-sub-nav about-tab-sub-nav" {{i18n-aria:nav.about.subtabs_aria}}>
@@ -2000,7 +2016,6 @@
             <!-- Genre Cards -->
             <div class="about-section" id="genres">
                 <h3 {{i18n:tpl.625}}>A New Genre for an Old World</h3>
-                <p class="genres-intro" {{i18n:tpl.626}}>The Discording Tales pretends to be <strong>unclassifiable</strong> (yet), aiming at creating a <strong>new name</strong> for itself. Here below are those existing genres, put under the light of TDT's worldlore and ruleset.</p>
                 <div class="genres-grid" data-lang-key="genres-content">
                     <div class="genre-card">
                         <h4 {{i18n:tpl.627}}>(New) Weird</h4>
@@ -2043,8 +2058,6 @@
             <!-- Inspirations -->
             <div class="about-section" id="inspirations">
                 <h3 {{i18n:tpl.648}}>Themes & Inspirations</h3>
-                <p class="inspirations-intro" {{i18n:tpl.649}}>This is an archive of what could be remembered of the research on the lands and rules of The Discording Tales.</p>
-                
                 <div class="inspirations-content" data-lang-key="inspirations-content">
                     <details class="inspirations-expandable">
                         <summary {{i18n:tpl.650}}>Tabletop RPGs</summary>
@@ -2459,7 +2472,7 @@
         }, { once: true });
     })();
     </script>
-    <!-- Play tab: WebLLM + character sheet load on first visit to #play (src/site/dtd/tabs.ts loadPlayTabBundles) -->
+    <!-- Tabletop sheet/chatbot: WebLLM + character sheet load on first visit (src/site/dtd/tabs.ts loadPlayTabBundles) -->
     <script>
     (function () {
         if (!('serviceWorker' in navigator)) return;

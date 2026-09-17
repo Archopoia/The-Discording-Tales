@@ -84,6 +84,16 @@ function getScriptsForFile(filePath) {
   if (relative === 'index.template.html' || relative.startsWith('partials/')) {
     return ['build_html.js', 'build_i18n.js'];
   }
+
+  // Main-site TS / legacy IIFE scripts bundled into dist/main-site.js
+  if (
+    relative === 'src/main-site.ts' ||
+    relative === 'src/tdt-site-data.ts' ||
+    relative.startsWith('src/site/') ||
+    relative.startsWith('public/js/')
+  ) {
+    return ['build_main_site.js'];
+  }
   
   return null;
 }
@@ -120,6 +130,9 @@ export default function devBuildPlugin() {
         path.join(ROOT, 'css'),
         path.join(ROOT, 'locales'),
         path.join(ROOT, 'reference', 'TTRPG_DRD'),
+        path.join(ROOT, 'src', 'site'),
+        path.join(ROOT, 'src', 'main-site.ts'),
+        path.join(ROOT, 'public', 'js'),
       ];
       
       for (const watchPath of watchPaths) {
@@ -152,6 +165,7 @@ export default function devBuildPlugin() {
             'build_html.js',
             'build_css.js',
             'build_i18n.js',
+            'build_main_site.js',
           ];
           scriptsToRun.sort((a, b) => order.indexOf(a) - order.indexOf(b));
           

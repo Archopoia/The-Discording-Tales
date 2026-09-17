@@ -1719,16 +1719,8 @@
             renderMessages(container);
             creationMode = false;
             updateInputVisibility();
-            /* Switch Play tab to chat panel */
-            var panelChat = document.getElementById('play-panel-chat');
-            var btnChat = document.getElementById('play-panel-chat-btn');
-            if (panelChat && btnChat) {
-                document.querySelectorAll('.play-panel').forEach(function (p) { p.classList.remove('active'); p.setAttribute('aria-hidden', 'true'); });
-                document.querySelectorAll('.play-panel-btn').forEach(function (b) { b.classList.remove('active'); });
-                panelChat.classList.add('active');
-                panelChat.setAttribute('aria-hidden', 'false');
-                btnChat.classList.add('active');
-            }
+            /* Switch Tabletop to chatbot panel */
+            setPlayPanel('chat');
         });
 
         window.addEventListener('drd-roll-result', function (ev) {
@@ -1892,33 +1884,17 @@
             });
         }
 
-        /* Three panels: Zine / Chat / Sheet (Play tab) */
-        var panelsContainer = document.getElementById('play-panels-container');
-        var panelZine = document.getElementById('play-panel-zine');
-        var panelChat = document.getElementById('play-panel-chat');
-        var panelSheet = document.getElementById('play-panel-sheet');
-        var btnZine = document.getElementById('play-panel-zine-btn');
-        var btnChat = document.getElementById('play-panel-chat-btn');
-        var btnSheet = document.getElementById('play-panel-sheet-btn');
+        /* Tabletop inner panels: Zine / Chatbot / Sheet via Universe hashes */
         function setPlayPanel(panelId) {
-            if (!panelsContainer) return;
-            var panels = [panelZine, panelChat, panelSheet];
-            var buttons = [btnZine, btnChat, btnSheet];
-            panels.forEach(function (p) {
-                if (p) {
-                    p.classList.remove('active');
-                    p.setAttribute('aria-hidden', 'true');
-                }
-            });
-            buttons.forEach(function (b) { if (b) b.classList.remove('active'); });
-            var target = document.getElementById('play-panel-' + panelId);
-            var targetBtn = document.getElementById('play-panel-' + panelId + '-btn');
-            if (target) { target.classList.add('active'); target.setAttribute('aria-hidden', 'false'); }
-            if (targetBtn) targetBtn.classList.add('active');
+            var hashMap = { chat: 'chatbot', sheet: 'sheet', zine: 'zine' };
+            var hash = hashMap[panelId] || panelId;
+            if (history.pushState) {
+                history.pushState(null, '', '#' + hash);
+                window.dispatchEvent(new HashChangeEvent('hashchange'));
+            } else {
+                window.location.hash = hash;
+            }
         }
-        if (btnZine) btnZine.addEventListener('click', function () { setPlayPanel('zine'); });
-        if (btnChat) btnChat.addEventListener('click', function () { setPlayPanel('chat'); });
-        if (btnSheet) btnSheet.addEventListener('click', function () { setPlayPanel('sheet'); });
 
         if (sendBtn) sendBtn.addEventListener('click', submit);
         if (input) {

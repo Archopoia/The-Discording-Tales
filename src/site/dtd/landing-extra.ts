@@ -304,16 +304,17 @@ export function initScrollAnimations() {
 }
 
 // ========================================
-// Go to Play (Character Sheet + GM Chat)
+// Go to Tabletop sheet (Character Sheet + GM Chat)
 // ========================================
 export function initCharacterSheet() {
     const openButton = document.getElementById('open-character-sheet');
     if (openButton) {
         openButton.addEventListener('click', function() {
-            var playLink = document.querySelector('[data-tab="play"]');
-            if (playLink) {
-                playLink.click();
-                if (history.pushState) history.pushState(null, null, '#play');
+            if (history.pushState) {
+                history.pushState(null, '', '#sheet');
+                window.dispatchEvent(new HashChangeEvent('hashchange'));
+            } else {
+                window.location.hash = 'sheet';
             }
         });
     }

@@ -4,15 +4,12 @@ import { setLanguage } from './language';
 import { doubleRaf } from './dom-utils';
 import { ARCHIVED_SUBTABS } from './archive-constants';
 
-export function syncUniversMondeSublinkActive(innerId: string | null) {
-    var nav = document.querySelector('.univers-monde-in-page-nav');
+function syncNestedSublinkActive(navSelector: string, linkSelector: string, hrefToInner: Record<string, string>, innerId: string | null) {
+    var nav = document.querySelector(navSelector);
     if (!nav) return;
-    nav.querySelectorAll('a.univers-monde-sublink').forEach(function(a) {
+    nav.querySelectorAll(linkSelector).forEach(function(a) {
         var href = a.getAttribute('href') || '';
-        var on = false;
-        if (innerId === 'peoples-peoples' && href === '#peoples') on = true;
-        if (innerId === 'map' && href === '#map') on = true;
-        if (innerId === 'universe-lore' && href === '#universe-lore') on = true;
+        var on = !!(innerId && hrefToInner[href] === innerId);
         a.classList.toggle('active', !!on);
         if (on) {
             a.setAttribute('aria-current', 'page');
@@ -22,13 +19,14 @@ export function syncUniversMondeSublinkActive(innerId: string | null) {
     });
 }
 
-export function setUniversWorldInner(innerId: string) {
-    var root = document.getElementById('peoples');
+function setStackedInnerPanels(rootId: string, innerId: string, panelClass: string) {
+    var root = document.getElementById(rootId);
     if (!root) return;
-    var panels = root.querySelectorAll('.univers-world-panel');
+    var activeClass = panelClass + '--active';
+    var panels = root.querySelectorAll('.' + panelClass);
     panels.forEach(function(p) {
         var isActive = p.id === innerId;
-        p.classList.toggle('univers-world-panel--active', isActive);
+        p.classList.toggle(activeClass, isActive);
         if (isActive) {
             p.removeAttribute('aria-hidden');
             p.removeAttribute('inert');
@@ -37,7 +35,37 @@ export function setUniversWorldInner(innerId: string) {
             p.setAttribute('inert', '');
         }
     });
+}
+
+var WORLD_HREF_TO_INNER = {
+    '#peoples': 'peoples-peoples',
+    '#map': 'map',
+    '#universe-lore': 'universe-lore'
+};
+
+var TABLETOP_HREF_TO_INNER = {
+    '#tabletop': 'tabletop-rules',
+    '#zine': 'zine',
+    '#sheet': 'sheet',
+    '#chatbot': 'chatbot'
+};
+
+export function syncUniversMondeSublinkActive(innerId: string | null) {
+    syncNestedSublinkActive('.univers-monde-in-page-nav', 'a.univers-monde-sublink', WORLD_HREF_TO_INNER, innerId);
+}
+
+export function syncUniversTabletopSublinkActive(innerId: string | null) {
+    syncNestedSublinkActive('.univers-tabletop-in-page-nav', 'a.univers-tabletop-sublink', TABLETOP_HREF_TO_INNER, innerId);
+}
+
+export function setUniversWorldInner(innerId: string) {
+    setStackedInnerPanels('peoples', innerId, 'univers-world-panel');
     syncUniversMondeSublinkActive(innerId);
+}
+
+export function setUniversTabletopInner(innerId: string) {
+    setStackedInnerPanels('tabletop', innerId, 'univers-tabletop-panel');
+    syncUniversTabletopSublinkActive(innerId);
 }
 
 export function initMapPanZoom() {
@@ -233,8 +261,13 @@ export function switchSubTab(tabId: string, subId: string, universInnerOverride?
     });
     if (tabId === 'univers' && subId === 'peoples') {
         setUniversWorldInner(universInnerOverride || 'peoples-peoples');
+        syncUniversTabletopSublinkActive(null);
+    } else if (tabId === 'univers' && subId === 'tabletop') {
+        setUniversTabletopInner(universInnerOverride || 'tabletop-rules');
+        syncUniversMondeSublinkActive(null);
     } else if (tabId === 'univers') {
         syncUniversMondeSublinkActive(null);
+        syncUniversTabletopSublinkActive(null);
     }
     // Re-apply current language so all [data-en][data-fr] in newly visible panel are correct
     setLanguage(state.currentLang);

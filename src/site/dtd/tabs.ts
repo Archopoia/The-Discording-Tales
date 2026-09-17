@@ -124,10 +124,6 @@ export function switchTab(tabId: string, options?: { skipScrollToTop?: boolean; 
     const skipScrollToTop = options.skipScrollToTop === true;
     const skipEnsureSubTab = options.skipEnsureSubTab === true;
 
-    if (tabId === 'play') {
-        loadPlayTabBundles()?.catch(function () {});
-    }
-
     elements.tabLinks.forEach((link) => {
         if (link.getAttribute('data-tab') === tabId) {
             link.classList.add('active');

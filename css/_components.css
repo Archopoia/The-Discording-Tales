@@ -1757,7 +1757,8 @@
 /* Scroll margin for anchor targets (avoid header overlap) */
 #cosmology, #peoples, #world-context,
 #system-overview, #character-creation, #combat, #magic,
-#about-world, #about-author, #about-contact {
+#about-world, #about-author, #about-contact,
+#videogame, #tabletop, #zine, #sheet, #chatbot {
     scroll-margin-top: 6rem;
 }
 
