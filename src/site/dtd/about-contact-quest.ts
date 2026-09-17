@@ -7,7 +7,7 @@ import { NEWSLETTER_SOURCE_ABOUT_CONTACT, subscribeOutpost } from './newsletter'
 const MAILTO = 'thediscordingtales@gmail.com';
 
 let currentQuestion = 1;
-const totalQuestions = 5;
+const totalQuestions = 4;
 
 function getWrap(): HTMLElement | null {
     return document.querySelector('.about-contact-quest-wrap');
@@ -218,9 +218,8 @@ export function initAboutContactQuest(): void {
 
         const purpose = labelForChecked(form, 'about-purpose');
         const stance = labelForChecked(form, 'about-stance');
-        const timeline = labelForChecked(form, 'about-timeline');
 
-        if (!purpose || !stance || !timeline) {
+        if (!purpose || !stance) {
             window.alert(selErrText(wrap));
             return;
         }
@@ -236,7 +235,6 @@ export function initAboutContactQuest(): void {
 
         const qPurpose = wrap.querySelector(`[data-about-mail-key="purpose"]`);
         const qStance = wrap.querySelector(`[data-about-mail-key="stance"]`);
-        const qTimeline = wrap.querySelector(`[data-about-mail-key="timeline"]`);
         const qName = wrap.querySelector(`[data-about-mail-key="name"]`);
         const qEmail = wrap.querySelector(`[data-about-mail-key="email"]`);
         const qOrg = wrap.querySelector(`[data-about-mail-key="org"]`);
@@ -248,7 +246,6 @@ export function initAboutContactQuest(): void {
         const emailBody =
             `${L(qPurpose)}: ${purpose}\n` +
             `${L(qStance)}: ${stance}\n` +
-            `${L(qTimeline)}: ${timeline}\n` +
             `${L(qName)}: ${name}\n` +
             `${L(qEmail)}: ${email}\n` +
             `${L(qOrg)}: ${org || (lang === 'fr' ? 'N/A' : 'N/A')}\n\n` +
@@ -289,7 +286,7 @@ export function initAboutContactQuest(): void {
     wrap.querySelectorAll<HTMLInputElement>('.about-mobile-question input[type="radio"]').forEach((radio) => {
         radio.addEventListener('change', () => {
             window.setTimeout(() => {
-                if (window.innerWidth <= 768 && currentQuestion < 4) {
+                if (window.innerWidth <= 768 && currentQuestion < 3) {
                     nextAboutQuestQuestion();
                 }
             }, 280);
@@ -302,7 +299,7 @@ export function initAboutContactQuest(): void {
         mobileMessage.addEventListener('input', function (this: HTMLTextAreaElement) {
             window.clearTimeout(typingTimer);
             typingTimer = window.setTimeout(() => {
-                if (window.innerWidth <= 768 && currentQuestion === 4 && this.value.trim().length > 12) {
+                if (window.innerWidth <= 768 && currentQuestion === 3 && this.value.trim().length > 12) {
                     nextAboutQuestQuestion();
                 }
             }, 1900);

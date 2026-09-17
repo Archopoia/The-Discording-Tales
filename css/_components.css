@@ -1299,6 +1299,18 @@
     font-weight: 700;
 }
 
+.about-contact-quest-wrap .about-quest-discord-link {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+    text-decoration-thickness: 1px;
+}
+
+.about-contact-quest-wrap .about-quest-discord-link:hover,
+.about-contact-quest-wrap .about-quest-discord-link:focus-visible {
+    color: var(--tdt-cream);
+}
+
 @media (max-width: 520px) {
     .about-contact-quest-wrap .about-quest-intro-inner {
         grid-template-columns: 1fr;
@@ -1317,7 +1329,7 @@
 
 .about-contact-quest-wrap .about-desktop-form-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1.45fr;
+    grid-template-columns: 1fr 1fr 1.45fr;
     gap: var(--spacing-md);
     margin-bottom: var(--spacing-md);
 }

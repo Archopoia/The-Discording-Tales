@@ -1,6 +1,6 @@
 /**
  * HTML partials build: replace {{peoples-cards}}, {{inspirations-keywords}},
- * {{universe-lore-fr}}, {{zine-content}}, {{about-contact-quest}}, {{pitch-deck}} with partials files.
+ * {{universe-lore-fr}}, {{zine-content}}, {{about-contact-quest}}, {{about-team}}, {{pitch-deck}} with partials files.
  * Injects {{SITE_PUBLIC_BASE}} from tools/site-public-url.js (SITE_PUBLIC_URL env).
  * Builds 404.html from 404.template.html with the same base.
  *
@@ -47,6 +47,7 @@ function build() {
   const zinePath = path.join(partialsDir, 'zine-content.html');
   const universeLorePath = path.join(partialsDir, 'universe-lore-fr.html');
   const aboutQuestPath = path.join(partialsDir, 'about-contact-quest.html');
+  const aboutTeamPath = path.join(partialsDir, 'about-team.html');
   const pitchDeckPath = path.join(partialsDir, 'pitch-deck.html');
   const peoples = fs.readFileSync(peoplesPath, 'utf8');
   const keywords = fs.readFileSync(keywordsPath, 'utf8');
@@ -57,6 +58,9 @@ function build() {
   const aboutContactQuest = fs.existsSync(aboutQuestPath)
     ? fs.readFileSync(aboutQuestPath, 'utf8')
     : '<!-- missing partials/about-contact-quest.html -->';
+  const aboutTeam = fs.existsSync(aboutTeamPath)
+    ? fs.readFileSync(aboutTeamPath, 'utf8')
+    : '<!-- missing partials/about-team.html -->';
   const pitchDeck = fs.existsSync(pitchDeckPath)
     ? fs.readFileSync(pitchDeckPath, 'utf8')
     : '<!-- missing partials/pitch-deck.html -->';
@@ -66,6 +70,7 @@ function build() {
     .replace('{{universe-lore-fr}}', universeLoreFr.trim())
     .replace('{{zine-content}}', zineContent.trim())
     .replace('{{about-contact-quest}}', aboutContactQuest.trim())
+    .replace('{{about-team}}', aboutTeam.trim())
     .replace('{{pitch-deck}}', pitchDeck.trim());
   const base = getSitePublicBase();
   const og = loadOgMeta();
