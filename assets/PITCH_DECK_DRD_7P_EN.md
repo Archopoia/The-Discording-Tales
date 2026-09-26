@@ -53,7 +53,7 @@ The world is inhabited by **ten peoples** in three radically opposed origins:
 | **Bêstres** | Slaadeans, Tchalkchaïs                            | Animal races / evolved creatures       |
 
 
-Far from Tolkien archetypes: **divergent** fundamental principles, inherited unconscious moralities, cultures in permanent tension. Close to *Talislanta*, *Yoon Suin* or *Empire of the Petal Throne* for exotism; to *Star Wars* × *Dark Crystal* × *Warhammer* for baroque wonder **within** conflict.
+**Divergent** fundamental principles, inherited unconscious moralities, cultures in permanent tension. Close to *Talislanta*, *Yoon Suin* or *Empire of the Petal Throne* for exotism; to *Star Wars* × *Dark Crystal* × *Warhammer* for baroque wonder **within** conflict.
 
 **Plot twist: Cytocosmism**
 
@@ -245,7 +245,7 @@ And combat does not belong to warriors alone. **Action Potentials** - dice spent
 
 The **collective weighs mechanically** on every roll - cohesion, shared successes and failures, Group Roll, Audacity Roll. The individual can take everything on themselves, but the group exists in the numbers.
 
-**Rilie - entirely novel**
+**Rilie**
 
 - **Freeforming** magic - no spell lists.
 - **Rilical Honorations** - rituals of interaction with the Rils.

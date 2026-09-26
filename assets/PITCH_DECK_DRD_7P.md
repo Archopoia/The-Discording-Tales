@@ -53,7 +53,7 @@ Le monde est habité par **dix peuples** en trois origines radicalement opposée
 | **Bêstres** | Slaadéens, Tchalkchaïs                           | Races animalières / créatures évoluées |
 
 
-Loin des archétypes tolkiens : principes fondamentaux **divergents**, moralités inconscientes héritées, cultures en tension permanente. Proche de *Talislanta*, *Yoon Suin* ou *Empire of the Petal Throne* par l'exotisme ; de *Star Wars* × *Dark Crystal* × *Warhammer* par l'émerveillement baroque **dans** le conflit.
+Principes fondamentaux **divergents**, moralités inconscientes héritées, cultures en tension permanente. Proche de *Talislanta*, *Yoon Suin* ou *Empire of the Petal Throne* par l'exotisme ; de *Star Wars* × *Dark Crystal* × *Warhammer* par l'émerveillement baroque **dans** le conflit.
 
 **Coup de théâtre : le Cytocosmisme**
 
@@ -245,7 +245,7 @@ Et enfin, le combat n'appartient pas aux guerriers seuls. Les **Potentiels d'Act
 
 Le **collectif pèse mécaniquement** sur chaque jet - cohésion, succès et échecs partagés, Jet de Groupe, Jet d'Audace. L'individu peut prendre sur lui, mais le groupe existe dans les chiffres.
 
-**Rilie - totalement novateur**
+**Rilie**
 
 - Magie **freeforming** - pas de liste de sorts.
 - **Honorations riliques** - rituels d'interaction avec les Rils.

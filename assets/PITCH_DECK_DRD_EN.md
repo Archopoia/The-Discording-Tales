@@ -12,7 +12,7 @@
 
 Under our feet, in the blossoming depths of a forgotten Earth, **there is only discord**.
 
-In a far, far future, our descendants the posthuman **Aïars** - masters of crystalline technomagic, Rilie - vanished into the depths. Their legendary ruins dot a world inhabited by **ten peoples** in three origins: **Yômmes**, **Yôrres**, **Bêstres** - far from Tolkien archetypes; here, a **Nietzschean fantasy** of divergent principles, close to *Talislanta*, *Yoon Suin* or *Empire of the Petal Throne* for exotism, to *Star Wars* × *Dark Crystal* × *Warhammer* for baroque wonder in conflict.
+In a far, far future, our descendants the posthuman **Aïars** - masters of crystalline technomagic, Rilie - vanished into the depths. Their legendary ruins dot a world inhabited by **ten peoples** in three origins: **Yômmes**, **Yôrres**, **Bêstres** - a **Nietzschean fantasy** of divergent principles, close to *Talislanta*, *Yoon Suin* or *Empire of the Petal Throne* for exotism, to *Star Wars* × *Dark Crystal* × *Warhammer* for baroque wonder in conflict.
 
 **Plot twist:** all believe they live in a **concave universe** (Cytocosmism), the cosmos wrapped in rock - and so it is the earthly depths that become the cosmic far-west. **Rilic** magic follows: rational animism where gravity, light and emotion are one braided universal cord, none other than the goddess **Ô** herself, constantly tugged between pain and relief by the cosmic forces behind real physics and magic, being one and the same thing in the end.
 
@@ -47,7 +47,7 @@ Default play region: **Iäoduneï** - central gateway among other extreme enviro
 
 - **The 8 Columns** - Attributes, Aptitudes, Sufferings, Experience, Conflicts: one rule repeated eight times (8 × 3 Action Verbs × 3 Skills = **72 Skills**). Eight player archetypes - warrior, thief, artisan, priest… - and eight conflict types of **equal depth** (Battle, Investigation, Debate, Infiltration…). Pool of 5 simple Dice (+ / 0 / -) + extra negative/positive Dice + Modifier.
 - **Suffering, Rage & real time** - Failure → Marks → progression. Eight Sufferings lead to **Rage**, physical and mental **Blackout**, and finally **Defeat**. Combat runs in **Clins** (1/3 second), **with no turns** - simultaneous and reactive at every instant. **Group atmosphere**: the collective weighs mechanically on every roll although the individual can take everything on themselves.
-- **Rilie** - Freeforming magic without spell lists; Rilical Honorations integrating the universe's fundamental physics and the cosmology of cultural animism present there. Entirely novel.
+- **Rilie** - Freeforming magic without spell lists; Rilical Honorations integrating the universe's fundamental physics and the cosmology of cultural animism present there.
 - **Mechanical perspectivism** - Morality, Motivation, Personality, Traits: roleplay as a sharp alternative to **heal** Insanities and Grudges, rewarding the player for embodying foreign visions.
 - **Living economy & Westmarches** - Livestock-currency, light-silver, golden cords; inspired goals accumulating off-session resources - world logic solving sandbox problems.
 
