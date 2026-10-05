@@ -2,6 +2,9 @@
  * Build partials/pitch-deck.html from assets/PITCH_DECK_DRD.md (FR) and PITCH_DECK_DRD_EN.md (EN).
  * Outputs a bilingual .pitch-deck root with data-fr / data-en for language switching.
  *
+ * Pitch markdown is a local working copy (gitignored). When it is absent, keep the
+ * committed partials/pitch-deck.html so CI can still publish the site.
+ *
  * Usage: node tools/build_pitch.js
  */
 import fs from 'fs';
@@ -287,7 +290,12 @@ ${innerFr}
 
 function build() {
   if (!fs.existsSync(pitchMdFr)) {
-    console.error('Missing', pitchMdFr);
+    // Pitch drafts are gitignored. CI keeps the committed partial.
+    if (fs.existsSync(outPath)) {
+      console.log('Pitch source not found, using pre-built', outPath);
+      return;
+    }
+    console.error('Pitch source not found and no pre-built output:', pitchMdFr);
     process.exit(1);
   }
   const mdFr = fs.readFileSync(pitchMdFr, 'utf8');
