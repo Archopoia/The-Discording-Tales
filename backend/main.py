@@ -558,23 +558,27 @@ def _chat_system_prompt(req: ChatRequest, rules_block: str) -> str:
     )
     lang_instruction_top = ""
     lang_instruction_end = ""
+    instructions = GM_INSTRUCTIONS
     if req.lang and req.lang.lower() == "en":
-        lang_instruction_top = "**Language**: You MUST respond in English. All narrative, descriptions, and dialogue must be in English. Refer to the game as \"The Discording Tales\" (not \"Des Récits Discordants\"). When quoting or paraphrasing from the rules/lore, TRANSLATE the content into English  -  do NOT paste French quotes directly. The only French words allowed are proper nouns (character names, place names like Iäoduneï, Hael, Féos), origins and peoples as usually written (Yômmes, Yôrres, Bêstres; Aristese, Greyscribes, Meridians, Great Ylves, Pale Ylves, Lake Ylves, Slaadeans, etc.), and competence names in brackets (e.g. Roll [Grimpe]).\n\n"
-        lang_instruction_end = "\n\n**REMINDER  -  LANGUAGE**: You MUST reply ENTIRELY in English. The rules/lore above are in French  -  you must TRANSLATE all quotes and descriptions into English. Do NOT include French sentences or phrases except for proper nouns and competence names. The game is called \"The Discording Tales\" in English."
+        instructions = instructions.replace("Éveilleurs", "Awakeners").replace("Éveilleur", "Awakener")
+        lang_instruction_top = "**Language**: You MUST respond in English. All narrative, descriptions, and dialogue must be in English. Refer to the game as \"The Discording Tales\" (not \"Des Récits Discordants\"). When quoting or paraphrasing from the rules/lore, TRANSLATE the content into English  -  do NOT paste French quotes directly. The only French words allowed are proper nouns (character names, place names like Iäoduneï, Hael, Féos), origins and peoples as usually written (Yômmes, Yôrres, Bêstres; Aristese, Greyscribes, Meridians, Great Ylves, Pale Ylves, Lake Ylves, Slaadeans, etc.), and competence names in brackets (e.g. Roll [Grimpe]). Translate the role name Éveilleur as Awakener (plural: Awakeners). Never write Éveilleur in an English reply.\n\n"
+        lang_instruction_end = "\n\n**REMINDER  -  LANGUAGE**: You MUST reply ENTIRELY in English. The rules/lore above are in French  -  you must TRANSLATE all quotes and descriptions into English. Do NOT include French sentences or phrases except for proper nouns and competence names. The game is called \"The Discording Tales\" in English. The role Éveilleur is Awakener; never write Éveilleur."
     elif req.lang and req.lang.lower() == "fr":
         lang_instruction_top = "**Langue** : Réponds en français. Tout le récit, les descriptions et les dialogues doivent être en français.\n\n"
         lang_instruction_end = "\n\n**RAPPEL  -  LANGUE** : Tu DOIS répondre entièrement en français."
-    return f"{lang_instruction_top}{GM_INSTRUCTIONS}\n\n{GM_MECHANICS_REFERENCE}\n\n{rules_only_block}---\n\nRules and lore (use only these):\n\n{rules_block}\n\n{rag_instruction}{char_block}{game_state_block}{lang_instruction_end}".strip()
+    return f"{lang_instruction_top}{instructions}\n\n{GM_MECHANICS_REFERENCE}\n\n{rules_only_block}---\n\nRules and lore (use only these):\n\n{rules_block}\n\n{rag_instruction}{char_block}{game_state_block}{lang_instruction_end}".strip()
 
 
 def _creation_system_prompt(rules_block: str, lang: str | None = None) -> str:
     """System prompt for character creation mode. Uses creation rules (02) and strict [Choice]/[Option]/[Input]/[Complete]/[StateJSON] format."""
     lang_instruction = ""
+    creation = GM_CREATION_PROMPT
     if lang and lang.lower() == "en":
-        lang_instruction = "**Language**: You MUST respond in English. All text (choices, options, labels, narration) must be in English. Keep technical tags like [Choice], [Option], [Input], [Complete], [StateJSON] and competence names as in the rules.\n\n"
+        creation = creation.replace("Éveilleurs", "Awakeners").replace("Éveilleur", "Awakener")
+        lang_instruction = "**Language**: You MUST respond in English. All text (choices, options, labels, narration) must be in English. Keep technical tags like [Choice], [Option], [Input], [Complete], [StateJSON] and competence names as in the rules. Translate the role name Éveilleur as Awakener (plural: Awakeners). Never write Éveilleur in an English reply.\n\n"
     elif lang and lang.lower() == "fr":
         lang_instruction = "**Langue** : Réponds en français. Tout le texte (choix, options, libellés, narration) doit être en français.\n\n"
-    return f"{lang_instruction}{GM_CREATION_PROMPT}\n\n---\n\nRules (character creation, 02):\n\n{rules_block}".strip()
+    return f"{lang_instruction}{creation}\n\n---\n\nRules (character creation, 02):\n\n{rules_block}".strip()
 
 
 def _stream_chat_sse(req: ChatRequest):

@@ -56,7 +56,7 @@ async function toWebpIfNeeded(src) {
 
 console.log('Optimizing landing carousel images…\n');
 
-for (const key of ['lifestyles', 'meanings', 'stories']) {
+for (const key of ['animal', 'people', 'world', 'culture']) {
     const items = carousel[key];
     if (!Array.isArray(items)) continue;
     console.log(key + ':');

@@ -1,128 +1,155 @@
 {
-  "lifestyles": [
+  "animal": [
     {
-      "src": "assets/images/image/image5.webp",
-      "alt": "All Creatures"
+      "src": "assets/images/image/cheval.webp",
+      "alt": "Cheval",
+      "altFr": "Cheval"
     },
     {
-      "src": "assets/images/image/image6.webp",
-      "alt": "Final Artwork"
+      "src": "assets/images/image/chicken.webp",
+      "alt": "Chicken",
+      "altFr": "Poulet"
     },
     {
-      "src": "assets/images/image/image10.webp",
-      "alt": "Artwork 2"
+      "src": "assets/images/image/cow.webp",
+      "alt": "Cow",
+      "altFr": "Vache"
     },
     {
-      "src": "assets/images/image/image3.webp",
-      "alt": "All Copy 1"
-    },
+      "src": "assets/images/image/bear.webp",
+      "alt": "Bear",
+      "altFr": "Ours"
+    }
+  ],
+  "people": [
     {
       "src": "assets/images/people/Aristois copy.webp",
-      "alt": "Aristese"
+      "alt": "Aristese",
+      "altFr": "Aristois"
     },
     {
       "src": "assets/images/people/Griscribes copy.webp",
-      "alt": "Greyscribes"
+      "alt": "Greyscribes",
+      "altFr": "Griscribes"
     },
     {
       "src": "assets/images/people/Navillis copy.webp",
-      "alt": "Navillis"
+      "alt": "Navillis",
+      "altFr": "Navillis"
     },
     {
       "src": "assets/images/people/Méridiens copy.webp",
-      "alt": "Meridians"
+      "alt": "Meridians",
+      "altFr": "Méridiens"
     },
     {
       "src": "assets/images/people/Grands Ylfes copy.webp",
-      "alt": "Great Ylves"
+      "alt": "Great Ylves",
+      "altFr": "Hauts Ylfes"
     },
     {
       "src": "assets/images/people/Ylfes päles copy.webp",
-      "alt": "Pale Ylves"
+      "alt": "Pale Ylves",
+      "altFr": "Ylfes pâles"
     },
     {
       "src": "assets/images/people/Ylfe des lacs copy.webp",
-      "alt": "Lake Ylves"
+      "alt": "Lake Ylves",
+      "altFr": "Ylfes des lacs"
     },
     {
       "src": "assets/images/people/Iqqars copy.webp",
-      "alt": "Iqqars"
-    },
-    {
-      "src": "assets/images/people/Slaadéens copy.webp",
-      "alt": "Slaadeans"
+      "alt": "Iqqars",
+      "altFr": "Iqqars"
     },
     {
       "src": "assets/images/people/Tchalkchaï copy.webp",
-      "alt": "Tchalkchaïs"
+      "alt": "Tchalkchaïs",
+      "altFr": "Tchalkchaïs"
+    },
+    {
+      "src": "assets/images/people/Slaadéens copy.webp",
+      "alt": "Slaadeans",
+      "altFr": "Slaadéens"
     }
   ],
-  "meanings": [
+  "world": [
     {
-      "src": "assets/images/image/image14.webp",
-      "alt": "Title"
+      "src": "assets/images/areas/where-the-game-is-set.webp",
+      "alt": "Where the game is set",
+      "altFr": "Là où se déroule le jeu"
     },
     {
-      "src": "assets/images/essence-english-v2-1.webp",
-      "alt": "Essence"
+      "src": "assets/images/world-map.webp",
+      "alt": "World Map",
+      "altFr": "Carte du monde"
     },
-    {
-      "src": "assets/images/image/image13.webp",
-      "alt": "Things"
-    },
-    {
-      "src": "assets/images/image/image11.webp",
-      "alt": "Roue des astres"
-    }
-  ],
-  "stories": [
     {
       "src": "assets/images/areas/iossoluvvaij.webp",
-      "alt": "Iossoluvvaij"
-    },
-    {
-      "src": "assets/images/areas/current.webp",
-      "alt": "Current"
+      "alt": "Iossoluvvaij",
+      "altFr": "Iossoluvvaij"
     },
     {
       "src": "assets/images/areas/adriuhn.webp",
-      "alt": "Adriuhn"
+      "alt": "Adriuhn",
+      "altFr": "Adriuhn"
     },
     {
       "src": "assets/images/areas/agvalsis.webp",
-      "alt": "Agvalsis"
+      "alt": "Agvalsis",
+      "altFr": "Agvalsis"
     },
     {
       "src": "assets/images/areas/bruysseliand.webp",
-      "alt": "Bruysseliand"
+      "alt": "Bruysseliand",
+      "altFr": "Bruysseliand"
     },
     {
       "src": "assets/images/areas/dalvvaraad.webp",
-      "alt": "Dalvvaraad"
+      "alt": "Dalvvaraad",
+      "altFr": "Dalvvaraad"
     },
     {
       "src": "assets/images/areas/eadryllir.webp",
-      "alt": "Eadryllir"
+      "alt": "Eadryllir",
+      "altFr": "Eadryllir"
     },
     {
       "src": "assets/images/areas/hatroaj.webp",
-      "alt": "Hatroaj"
+      "alt": "Hatroaj",
+      "altFr": "Hatroaj"
     },
     {
       "src": "assets/images/areas/mevyriil.webp",
-      "alt": "Mevyriil"
+      "alt": "Mevyriil",
+      "altFr": "Mevyriil"
     },
     {
       "src": "assets/images/areas/ondusiol.webp",
-      "alt": "Ondusiol"
-    },
-    {
-      "src": "assets/images/novoworld.webp",
-      "alt": "Novoworld"
+      "alt": "Ondusiol",
+      "altFr": "Ondusiol"
     },
     {
       "src": "assets/images/geocosmoseng.webp",
-      "alt": "Geocosmos"
+      "alt": "Geocosmos",
+      "altFr": "Géocosmos"
+    }
+  ],
+  "culture": [
+    {
+      "src": "assets/images/image/symbol.webp",
+      "alt": "Symbol",
+      "altFr": "Symbole"
+    },
+    {
+      "src": "assets/images/people-alignment.webp",
+      "alt": "People alignment",
+      "altFr": "Alignement des peuples"
+    },
+    {
+      "src": "assets/images/image/things-alignment.webp",
+      "alt": "Things alignment",
+      "altFr": "Alignement des choses"
     }
   ]
 }

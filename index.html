@@ -191,7 +191,7 @@
         <canvas id="header-gold-canvas" class="webgl-header-canvas" aria-hidden="true"></canvas>
         <div class="header-bg decorated-container">
             <div class="header-top-row">
-                <div class="galleries-cycling-slot" id="galleries-cycling-slot" aria-live="polite">
+                <div class="galleries-cycling-slot is-parked" id="galleries-cycling-slot" hidden aria-hidden="true">
                     <div class="gallery-panel active" data-panel-index="0">
                         <div class="gallery-carousel gallery-carousel--small" id="carousel-lifestyles" aria-label="Lifestyles slideshow"></div>
                         <h4 class="three-col-title" data-en="Encounter curious Lifestyles" data-fr="Rencontrez d'étranges Modes de vie">Encounter curious Lifestyles</h4>
@@ -227,7 +227,7 @@
                                     <p class="branding-flip-headline" data-en="Make path with Kickstarter!" data-fr="Faites route avec Kickstarter !">Make path with Kickstarter!</p>
                                     <a href="https://www.kickstarter.com/projects/1410517588/the-discording-tales-tabletop-rpg-and-worldlore" class="cta-button branding-flip-cta" target="_blank" rel="noopener noreferrer">
                                         <span data-en="Raise your Hand" data-fr="Levez la Main">Raise your Hand</span>
-                                        <small data-en="(Be notified on launch)" data-fr="(Soyez notifié au lancement)">(Be notified on launch)</small>
+                                        <small data-en="(Be notified on the launch of the TTRPG book)" data-fr="(Soyez notifié au lancement du livre de JdR)">(Be notified on the launch of the TTRPG book)</small>
                                     </a>
                                     <p class="branding-flip-subline" data-en="Join the Caravan before its Departure…" data-fr="Rejoignez la Caravane avant son Départ…">Join the Caravan before its Departure…</p>
                                 </div>
@@ -249,8 +249,22 @@
             <ul class="menu" id="primary-menu">
                 <li class="menu-item"><a href="#landing" data-tab="landing" class="tab-link active" data-en="Hearth" data-fr="Foyer">Hearth</a></li>
                 <li class="menu-item"><a href="#pitch" data-tab="pitch" class="tab-link" data-en="Pitch" data-fr="Pitch">Pitch</a></li>
-                <li class="menu-item"><a href="#univers" data-tab="univers" class="tab-link" data-en="Universe" data-fr="Univers">Universe</a></li>
-                <li class="menu-item"><a href="#about" data-tab="about" class="tab-link" data-en="About" data-fr="À propos">About</a></li>
+                <li class="menu-item menu-item--has-sub">
+                    <a href="#univers" data-tab="univers" class="tab-link" aria-haspopup="true" aria-expanded="false" data-en="Universe" data-fr="Univers">Universe</a>
+                    <ul class="menu-sub" data-aria-label-en="Universe sections" data-aria-label-fr="Sections de l'univers" aria-label="Universe sections">
+                        <li><a href="#peoples" class="menu-sub-link" data-tab="univers" data-subtab="peoples" data-en="World" data-fr="Monde">World</a></li>
+                        <li><a href="#videogame" class="menu-sub-link" data-tab="univers" data-subtab="videogame" data-en="Videogame" data-fr="Jeu vidéo">Videogame</a></li>
+                        <li><a href="#tabletop" class="menu-sub-link" data-tab="univers" data-subtab="tabletop" data-en="Tabletop" data-fr="Tabletop">Tabletop</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item menu-item--has-sub">
+                    <a href="#about" data-tab="about" class="tab-link" aria-haspopup="true" aria-expanded="false" data-en="About" data-fr="À propos">About</a>
+                    <ul class="menu-sub" data-aria-label-en="About page sections" data-aria-label-fr="Sections de la page À propos" aria-label="About page sections">
+                        <li><a href="#about-world" class="menu-sub-link" data-tab="about" data-subtab="about-world" data-en="What kind of world" data-fr="Quel genre de monde">What kind of world</a></li>
+                        <li><a href="#about-author" class="menu-sub-link" data-tab="about" data-subtab="about-author" data-en="About us" data-fr="À propos de nous">About us</a></li>
+                        <li><a href="#about-contact" class="menu-sub-link" data-tab="about" data-subtab="about-contact" data-en="Contact" data-fr="Contact">Contact</a></li>
+                    </ul>
+                </li>
             </ul>
             <div class="nav-secondary-actions" data-aria-label-en="X, Discord, book download, itch.io, Kickstarter, and contact" data-aria-label-fr="X, Discord, téléchargement du livre, itch.io, Kickstarter et contact">
                 <a href="https://x.com/DiscordingTales" class="nav-icon-link nav-icon-link--x" target="_blank" rel="noopener noreferrer" data-aria-label-en="The Discording Tales on X" data-aria-label-fr="The Discording Tales sur X">
@@ -259,7 +273,7 @@
                 <a href="https://discord.gg/zNkjckKUHE" class="nav-icon-link nav-icon-link--discord" target="_blank" rel="noopener noreferrer" data-aria-label-en="The Discording Tales  -  Discord server" data-aria-label-fr="Des Récits Discordants  -  serveur Discord">
                     <svg class="nav-soc-svg" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.125-.094.25-.192.371-.291a.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.121.099.246.198.372.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
                 </a>
-                <button type="button" class="nav-download-book-btn" id="tdt-open-pdf-modal" data-en="Be FIRST to get the Book (early access)" data-fr="Soyez les PREMIERS à obtenir le livre (early access)" data-title-en="Open the Kickstarter pre-launch page" data-title-fr="Ouvrir la page de pré-lancement Kickstarter">Be FIRST to get the Book (early access)</button>
+                <button type="button" class="nav-download-book-btn" id="tdt-open-pdf-modal" data-en="Be FIRST to get the TTRPG Book (early access)" data-fr="Soyez les PREMIERS à obtenir le livre de JdR (early access)" data-title-en="Open the Kickstarter pre-launch page" data-title-fr="Ouvrir la page de pré-lancement Kickstarter">Be FIRST to get the TTRPG Book (early access)</button>
                 <a href="https://the-discording-tales.itch.io/" class="nav-icon-link nav-icon-link--itch" target="_blank" rel="noopener noreferrer" data-aria-label-en="The Discording Tales on itch.io" data-aria-label-fr="The Discording Tales sur itch.io">
                     <span class="nav-itch-icon" aria-hidden="true">itch</span>
                 </a>
@@ -330,30 +344,12 @@
                     </p>
                         <a href="https://www.kickstarter.com/projects/1410517588/the-discording-tales-tabletop-rpg-and-worldlore" class="cta-button discovery-kickstarter-cta" target="_blank" rel="noopener noreferrer">
                             <span data-en="Raise your Hand" data-fr="Levez la Main">Raise your Hand</span>
-                            <small data-en="(Be notified on launch)" data-fr="(Soyez notifié au lancement)">(Be notified on launch)</small>
+                            <small data-en="(Be notified on the launch of the TTRPG book)" data-fr="(Soyez notifié au lancement du livre de JdR)">(Be notified on the launch of the TTRPG book)</small>
                         </a>
                         <p class="discovery-kickstarter-headline" data-en="Make path with Kickstarter!" data-fr="Faites route avec Kickstarter !">Make path with Kickstarter!</p>
                         <p class="discovery-kickstarter-subline" data-en="Join the Caravan before its Departure…" data-fr="Rejoignez la Caravane avant son Départ…">Join the Caravan before its Departure…</p>
                     </div>
                 </div>
-            </div>
-
-            <!-- Mini Chat Preview -->
-            <div class="mini-chat-preview">
-                <div class="mini-chat-widget gm-chat-wrapper">
-                    <div class="gm-chat-toolbar">
-                        <button type="button" id="mini-gm-chat-clear" class="gm-chat-toolbar-btn gm-chat-clear-btn" data-aria-label-en="Clear chat" data-aria-label-fr="Effacer le tchat" aria-label="Clear chat" title="Clear chat">
-                            <svg class="gm-chat-icon-brush" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M20.71 4.63l-1.34-1.34c-.39-.39-1.02-.39-1.41 0L9 12.25 11.75 15l8.96-8.96c.39-.39.39-1.02 0-1.41zM7 14a3 3 0 0 0 3 3c.5 0 .97-.15 1.36-.41l-1.95-1.95-.41.41V14z"/></svg>
-                        </button>
-                        <span class="gm-chat-disclaimer gm-chat-disclaimer--backend" role="note" data-en="✦ Gemini AI  -  WIP, may contain inaccuracies" data-fr="✦ IA Gemini  -  WIP, peut contenir des inexactitudes">✦ Gemini AI  -  WIP, may contain inaccuracies</span>
-                    </div>
-                    <div class="gm-chat-messages mini-gm-chat-messages tdt-scrollable" id="mini-gm-chat-messages" role="log" aria-live="polite"></div>
-                    <div class="mini-gm-chat-input-row">
-                        <input type="text" id="mini-gm-chat-input" data-value-en="Which of the peoples is the most insane, bizarre, immoral, horrible?" data-value-fr="Lequels des peuples est le plus fou, bizarre, immoral, horrible ?" value="Which of the peoples is the most insane, bizarre, immoral, horrible?" data-aria-label-en="Ask the AI" data-aria-label-fr="Poser une question à l'IA" aria-label="Ask the AI" autocomplete="off"/>
-                        <button type="button" id="mini-gm-chat-send" data-en="Send" data-fr="Envoyer">Send</button>
-                    </div>
-                </div>
-                <a href="#chatbot" class="mini-chat-play-btn" data-en="▶ Chatbot  -  Full Chat &amp; Character Sheet" data-fr="▶ Chatbot  -  Tchat complet &amp; Feuille de Personnage">▶ Chatbot  -  Full Chat &amp; Character Sheet</a>
             </div>
 
             <!-- Discovery + UNIFIED: one section, one container, shared layout -->
@@ -363,8 +359,24 @@
                         <h2 class="section-title discovery-unified-title" data-en="For those of us who crave DISCOVERY" data-fr="Pour ceux d'entre nous qui aspirent à la DÉCOUVERTE">For those of us who crave DISCOVERY</h2>
                         <p class="discovery-unified-tagline" data-en="A journey through cultures whose ways of living, perceiving and valuing can stand opposed to one another - lands, creatures, technologies and moralities to enter and question, where the unknown shapes every choice and consequence." data-fr="Un voyage à travers des cultures dont les manières de vivre, de percevoir et de valoriser peuvent s'opposer - terres, créatures, technologies et moralités à entrer et à questionner, où l'inconnu façonne chaque choix et chaque conséquence.">A journey through cultures whose ways of living, perceiving and valuing can stand opposed to one another - lands, creatures, technologies and moralities to enter and question, where the unknown shapes every choice and consequence.</p>
                     </header>
+                    <section class="discovery-unified-game" aria-labelledby="videogame-heading">
+                        <h3 id="videogame-heading" class="section-subtitle" data-en="In a LIVING Action-RPG" data-fr="Dans un Action-RPG VIVANT">In a LIVING Action-RPG</h3>
+                        <p class="discovery-unified-intro vg-living-line" data-en="A living dungeon. Everything in it behaves as a physical system." data-fr="Un donjon vivant. Tout ce qu'il contient se comporte comme un système physique.">A living dungeon. Everything in it behaves as a physical system.</p>
+                        <div class="unified-two-columns vg-play-feel">
+                            <div class="unified-col unified-col-depth">
+                                <p class="unified-depth-heading" data-en="<strong>Gameplay</strong>" data-fr="<strong>Gameplay</strong>"><strong>Gameplay</strong></p>
+                                <p class="unified-depth-p1" data-en="An Action-RPG immersive sim on compact ground of extreme density. Almost everything is visible from the start. It opens as you come to understand the physical, environmental, and social systems." data-fr="Un Action-RPG immersive sim sur un terrain compact d'une densité extrême. Presque tout est visible dès le début. Il s'ouvre à mesure que l'on comprend les systèmes physiques, environnementaux et sociaux.">An Action-RPG immersive sim on compact ground of extreme density. Almost everything is visible from the start. It opens as you come to understand the physical, environmental, and social systems.</p>
+                                <p class="unified-depth-p2" data-en="You return to the same spaces: explore, act on the world, fight or resolve, gain, improve, then come back. Each tool or understanding changes access, perception, factions, and dangers. Doors, guarded ways, and dangerous ground can shift, so the same place is approached anew." data-fr="On revient aux mêmes espaces : explorer, agir sur le monde, combattre ou résoudre, gagner, s'améliorer, puis revenir. Chaque outil ou compréhension change l'accès, la perception, les factions et les dangers. Portes, passages gardés et sols dangereux peuvent évoluer : le même lieu s'aborde autrement.">You return to the same spaces: explore, act on the world, fight or resolve, gain, improve, then come back. Each tool or understanding changes access, perception, factions, and dangers. Doors, guarded ways, and dangerous ground can shift, so the same place is approached anew.</p>
+                            </div>
+                            <div class="unified-col unified-col-depth vg-feel-col">
+                                <p class="unified-depth-heading" data-en="<strong>Gamefeel</strong>" data-fr="<strong>Gamefeel</strong>"><strong>Gamefeel</strong></p>
+                                <p class="unified-depth-p1" data-en="A vertical pocket under Iaôdunaï: rope platforms, crystalline faults, and passages held by different groups. Creatures follow hunger, threat, and opportunity. A starving ogre seeks mushrooms, or living goblins. What remains may be dragged home for a later meal, or taken apart and used as a weapon." data-fr="Une poche verticale sous Iaôdunaï : plateformes de corde, failles cristallines, passages tenus par différents groupes. Les créatures suivent la faim, la menace et l'opportunité. Un ogre affamé cherche des champignons, ou des gobelins vivants. Ce qui reste peut être traîné dans l'antre pour un repas, ou démembré et employé comme arme.">A vertical pocket under Iaôdunaï: rope platforms, crystalline faults, and passages held by different groups. Creatures follow hunger, threat, and opportunity. A starving ogre seeks mushrooms, or living goblins. What remains may be dragged home for a later meal, or taken apart and used as a weapon.</p>
+                                <p class="unified-depth-p2" data-en="Move a crate, debris, or a body to block, divert, or brace a route. Light, pressure, obstruction, and energy redraw the paths. A rope hook, bathoscopic sight, or a simple artifact sends you back through rooms you already know." data-fr="Déplacer une caisse, un débris ou un corps peut bloquer, détourner ou appuyer un passage. Lumière, pression, obstruction et énergie redessinent les routes. Un crochet de corde, la vision bathoscopique ou un artefact simple renvoient dans des salles déjà connues.">Move a crate, debris, or a body to block, divert, or brace a route. Light, pressure, obstruction, and energy redraw the paths. A rope hook, bathoscopic sight, or a simple artifact sends you back through rooms you already know.</p>
+                            </div>
+                        </div>
+                    </section>
                     <section class="discovery-unified-game" aria-labelledby="unified-heading">
-                        <h3 id="unified-heading" class="section-subtitle" data-en="In a UNIFIED Role-Playing Game" data-fr="Dans un Jeu de Rôle UNIFIÉ">In a UNIFIED Role-Playing Game</h3>
+                        <h3 id="unified-heading" class="section-subtitle" data-en="In a UNIFIED Tabletop Role-Playing Game" data-fr="Dans un Jeu de Rôle sur Table UNIFIÉ">In a UNIFIED Tabletop Role-Playing Game</h3>
                         <p class="discovery-unified-intro" data-en="Experience a <strong>groundbreaking</strong> TTRPG through <strong>8 Paths</strong> to interact with its world :" data-fr="Vivez un JdR <strong>novateur</strong> à travers <strong>8 Chemins</strong> pour interagir avec son monde :">Experience a <strong>groundbreaking</strong> TTRPG through <strong>8 Paths</strong> to interact with its world :</p>
                         <div class="unified-two-columns">
                             <div class="unified-col unified-col-paths">
@@ -383,11 +395,11 @@
 
         <!-- Pitch Deck Tab -->
         <section id="pitch" class="tab-content" data-lang-key="pitch" lang="fr">
-            <aside class="pitch-investor-cta" aria-label="Investor pitch deck">
+            <aside class="pitch-investor-cta" aria-label="Video game investor deck">
                 <div class="pitch-investor-cta__inner">
                     <p class="pitch-investor-cta__kicker" data-en="Videogame pitch" data-fr="Pitch jeu vidéo">Videogame pitch</p>
-                    <h3 class="pitch-investor-cta__title" data-en="Investor deck" data-fr="Investor deck">Investor deck</h3>
-                    <p class="pitch-investor-cta__lede" data-en="The full pitch for the Action RPG in development - vision, market, roadmap, and the team behind the teaser." data-fr="Le pitch complet du Action RPG en développement - vision, marché, feuille de route, et l'équipe derrière le teaser.">The full pitch for the Action RPG in development - vision, market, roadmap, and the team behind the teaser.</p>
+                    <h3 class="pitch-investor-cta__title" data-en="Video game investor deck" data-fr="Deck investisseurs jeu vidéo">Video game investor deck</h3>
+                    <p class="pitch-investor-cta__lede" data-en="The full pitch for the Action RPG in development - vision, market, roadmap, and the team behind the game and in-game teaser." data-fr="Le pitch complet du Action RPG en développement - vision, marché, feuille de route, et l'équipe derrière le jeu et le teaser in-game.">The full pitch for the Action RPG in development - vision, market, roadmap, and the team behind the game and in-game teaser.</p>
                     <a class="cta-button pitch-investor-cta__btn" href="assets/tdt-investor-deck.pdf" target="_blank" rel="noopener noreferrer" data-en="Open the PDF" data-fr="Ouvrir le PDF">Open the PDF</a>
                 </div>
             </aside>
@@ -418,8 +430,6 @@
                 <p><strong>Images mentales :</strong> des <strong>Aristois</strong> sur leurs mastodontes, palais-sculptures sur plateaux fleuris, bibliothèques nomades qui emmagasinent tout savoir - voyant les Bêstres comme des bêtes ; des <strong>Slaadéens</strong> en caravanes aux toits métalliques solaires, chasseurs-cueilleurs dans dunes enneigées et mangroves d&amp;#39;eaux brûlantes - voyant les Aristois comme des outils ; des <strong>Hauts Ylfes</strong> cannibales hiérarchiques - voyant les uns comme nourriture, les autres comme des ressources. Pastoralisme contre chasse ; Gens contre Choses. La richesse à <strong>quatre pattes</strong> ou <strong>brille de lumière</strong> : des hardes de bétail aux cordons d&amp;#39;or.</p>
 </p>
                 <p>Échelle : Le <strong>choc culturel intime</strong> ouvrant sur quête épique de dépassement. A <em>local in a strange land.</em><br>Région de jeu par défaut : <strong>Iäoduneï</strong> - point d&amp;#39;entrée central parmi d&amp;#39;autres environnements extrêmes.</p>
-</p>
-                <p><strong>Ton :</strong> weird, conflictuel, survivaliste, profond. <strong>Jouable</strong> du one-shot à la campagne Westmarch.</p>
 </p>
             </section>
 
@@ -456,7 +466,20 @@
 
         <article class=&quot;pitch-deck__page pitch-deck__page--verso&quot;>
             <section class=&quot;pitch-deck__section&quot;>
-                <h3 class=&quot;pitch-deck__section-title&quot;>Le Système Discordant</h3>
+                <h3 class=&quot;pitch-deck__section-title&quot;>Gamefeel (jeu vidéo seulement)</h3>
+                <p>Vous êtes dans une poche souterraine verticale sous Iaôdunaï, traversée de plateformes de corde, de failles cristallines et de passages contrôlés par différents groupes.</p>
+                <p>Une porte verrouillée bloque un accès de palier. Une source lumineuse vivante influence la perception des créatures alentours. Une patrouille de Bêstres circule selon des règles simples liées à la lumière et aux espaces ouverts. Un mécanisme ancien Aïar est visible mais partiellement inaccessible.</p>
+                <p>Les créatures du monde ne se déplacent pas uniquement comme des ennemis statiques, mais comme des entités guidées par des besoins concrets et immédiats. La faim, la menace et l’opportunité structurent leurs comportements de manière visible. Un ogre affamé peut traverser les cavernes à la recherche de nourriture, consommer des champignons ou, si la faim devient critique, vouloir manger des gobelins même vivant. Le monde devient ainsi un espace de prédation opportuniste où les interactions ne sont jamais entièrement scriptées.</p>
+                <p>Les conséquences de ces comportements sont physiques et persistantes dans l’espace. Par exemple, des créatures peuvent exploiter ce qui reste d’un adversaire de manière utilitaire : un corps peut être traîné dans leur antre pour un repas futur, démembré pour être utilisé telle une arme.</p>
+                <p>Vous aussi vous interagissez physiquement avec le monde : déplacer une caisse, un débris ou un corps peut bloquer ou détourner un passage, créer un appui improvisé, ou modifier un trajet ennemi. L’environnement est lisible dès le début mais rarement accessible sans compréhension des couches physiques et sociales simples.</p>
+                <p>Le système répond de manière cohérente : activer ou perturber une source lumineuse modifie les comportements locaux et révèle ou masque certains passages. Des mécanismes physiques simples (pression, obstruction, énergie) peuvent changer les routes disponibles, sans création de nouveaux niveaux, mais par reconfiguration locale de l’espace.</p>
+                <p>Les outils (crochet de corde, vision bathoscopique, artefact simple) permettent de revisiter des zones connues sous une nouvelle lecture : un passage devient accessible, une paroi révèle une ouverture, une zone interdite peut être contournée par compréhension ou manipulation simple des règles locales.</p>
+                <p>En combat, tout reste contextuel : pousser une créature, bloquer un passage, utiliser les cordes ou l’environnement pour créer un avantage. Le combat est toujours lié à l’espace physique.</p>
+            </section>
+            <section class=&quot;pitch-deck__section&quot;>
+                <h3 class=&quot;pitch-deck__section-title&quot;>Le Système Discordant (Tabletop only)</h3>
+                <p><strong>Ton :</strong> weird, conflictuel, survivaliste, profond. <strong>Jouable</strong> du one-shot à la campagne Westmarch.</p>
+</p>
                 <p><strong>Philosophie :</strong> <em>Rules Heavy, Procedures Light</em> - permissivité extrême à la Pathfinder repensée, conséquences mathématiques claires pour chaque choix, <strong>sans</strong> tables de référence ni improvisation creuse. Entre le jeu simplifié et le jeu complexe : vos décisions <strong>comptent</strong>, sans puzzle abstrait. Pas de classes, pas de dons figés - tout est possible dès le départ ; plus vous visez haut, plus la complexité émerge <strong>élégamment</strong>.</p>
 </p>
                 <p><strong>Cinq piliers mécaniques </strong></p>
@@ -495,8 +518,6 @@
 </p>
                 <p>Scale: <strong>Intimate culture shock</strong> opening onto an epic quest of transcendence. A <em>local in a strange land.</em><br>Default play region: <strong>Iäoduneï</strong> - central gateway among other extreme environments.</p>
 </p>
-                <p><strong>Tone:</strong> weird, conflictual, survivalist, deep. <strong>Playable</strong> from one-shot to Westmarch campaign.</p>
-</p>
             </section>
 
             <section class=&quot;pitch-deck__section&quot;>
@@ -532,7 +553,20 @@
 
         <article class=&quot;pitch-deck__page pitch-deck__page--verso&quot;>
             <section class=&quot;pitch-deck__section&quot;>
-                <h3 class=&quot;pitch-deck__section-title&quot;>The Discording System</h3>
+                <h3 class=&quot;pitch-deck__section-title&quot;>Gamefeel (video game only)</h3>
+                <p>You are in a vertical underground pocket beneath Iaôdunaï, crossed by rope platforms, crystalline faults and passages controlled by different groups.</p>
+                <p>A locked door blocks access to a landing. A living light source influences the perception of nearby creatures. A patrol of Bêstres moves according to simple rules tied to light and open spaces. An ancient Aïar mechanism is visible but partly inaccessible.</p>
+                <p>The creatures of this world do not move only as static enemies, but as entities driven by concrete and immediate needs. Hunger, threat and opportunity visibly structure their behaviour. A hungry ogre may cross the caverns in search of food, eat mushrooms or, if hunger becomes critical, want to eat goblins even alive. The world thus becomes a space of opportunistic predation where interactions are never entirely scripted.</p>
+                <p>The consequences of these behaviours are physical and persistent in space. For example, creatures may exploit what remains of an adversary in a utilitarian way: a body may be dragged into their lair for a future meal, dismembered to be used as a weapon.</p>
+                <p>You too physically interact with the world: moving a crate, debris or a body can block or divert a passage, create an improvised support, or alter an enemy route. The environment is legible from the start but rarely accessible without an understanding of the simple physical and social layers.</p>
+                <p>The system answers coherently: activating or disrupting a light source modifies local behaviours and reveals or conceals certain passages. Simple physical mechanisms (pressure, obstruction, energy) can change the available routes, without creating new levels, but by locally reconfiguring the space.</p>
+                <p>The tools (rope hook, bathoscopic vision, simple artifact) make it possible to revisit known areas under a new reading: a passage becomes accessible, a wall reveals an opening, a forbidden area can be bypassed by understanding or simple manipulation of the local rules.</p>
+                <p>In combat, everything stays contextual: pushing a creature, blocking a passage, using the ropes or the environment to create an advantage. Combat is always tied to physical space.</p>
+            </section>
+            <section class=&quot;pitch-deck__section&quot;>
+                <h3 class=&quot;pitch-deck__section-title&quot;>The Discording System (Tabletop only)</h3>
+                <p><strong>Tone:</strong> weird, conflictual, survivalist, deep. <strong>Playable</strong> from one-shot to Westmarch campaign.</p>
+</p>
                 <p><strong>Philosophy:</strong> <em>Rules Heavy, Procedures Light</em> - extreme permissiveness in a reimagined Pathfinder vein, clear mathematical consequences for every choice, <strong>without</strong> reference tables or hollow improvisation. Between simplified and complex play: your decisions <strong>matter</strong>, without abstract puzzles. No classes, no fixed gifts - everything is possible from the start; the higher you aim, the more complexity emerges <strong>elegantly</strong>.</p>
 </p>
                 <p><strong>Five mechanical pillars</strong></p>
@@ -572,8 +606,6 @@
 </p>
                 <p>Échelle : Le <strong>choc culturel intime</strong> ouvrant sur quête épique de dépassement. A <em>local in a strange land.</em><br>Région de jeu par défaut : <strong>Iäoduneï</strong> - point d&#39;entrée central parmi d&#39;autres environnements extrêmes.</p>
 </p>
-                <p><strong>Ton :</strong> weird, conflictuel, survivaliste, profond. <strong>Jouable</strong> du one-shot à la campagne Westmarch.</p>
-</p>
             </section>
 
             <section class="pitch-deck__section">
@@ -609,7 +641,20 @@
 
         <article class="pitch-deck__page pitch-deck__page--verso">
             <section class="pitch-deck__section">
-                <h3 class="pitch-deck__section-title">Le Système Discordant</h3>
+                <h3 class="pitch-deck__section-title">Gamefeel (jeu vidéo seulement)</h3>
+                <p>Vous êtes dans une poche souterraine verticale sous Iaôdunaï, traversée de plateformes de corde, de failles cristallines et de passages contrôlés par différents groupes.</p>
+                <p>Une porte verrouillée bloque un accès de palier. Une source lumineuse vivante influence la perception des créatures alentours. Une patrouille de Bêstres circule selon des règles simples liées à la lumière et aux espaces ouverts. Un mécanisme ancien Aïar est visible mais partiellement inaccessible.</p>
+                <p>Les créatures du monde ne se déplacent pas uniquement comme des ennemis statiques, mais comme des entités guidées par des besoins concrets et immédiats. La faim, la menace et l’opportunité structurent leurs comportements de manière visible. Un ogre affamé peut traverser les cavernes à la recherche de nourriture, consommer des champignons ou, si la faim devient critique, vouloir manger des gobelins même vivant. Le monde devient ainsi un espace de prédation opportuniste où les interactions ne sont jamais entièrement scriptées.</p>
+                <p>Les conséquences de ces comportements sont physiques et persistantes dans l’espace. Par exemple, des créatures peuvent exploiter ce qui reste d’un adversaire de manière utilitaire : un corps peut être traîné dans leur antre pour un repas futur, démembré pour être utilisé telle une arme.</p>
+                <p>Vous aussi vous interagissez physiquement avec le monde : déplacer une caisse, un débris ou un corps peut bloquer ou détourner un passage, créer un appui improvisé, ou modifier un trajet ennemi. L’environnement est lisible dès le début mais rarement accessible sans compréhension des couches physiques et sociales simples.</p>
+                <p>Le système répond de manière cohérente : activer ou perturber une source lumineuse modifie les comportements locaux et révèle ou masque certains passages. Des mécanismes physiques simples (pression, obstruction, énergie) peuvent changer les routes disponibles, sans création de nouveaux niveaux, mais par reconfiguration locale de l’espace.</p>
+                <p>Les outils (crochet de corde, vision bathoscopique, artefact simple) permettent de revisiter des zones connues sous une nouvelle lecture : un passage devient accessible, une paroi révèle une ouverture, une zone interdite peut être contournée par compréhension ou manipulation simple des règles locales.</p>
+                <p>En combat, tout reste contextuel : pousser une créature, bloquer un passage, utiliser les cordes ou l’environnement pour créer un avantage. Le combat est toujours lié à l’espace physique.</p>
+            </section>
+            <section class="pitch-deck__section">
+                <h3 class="pitch-deck__section-title">Le Système Discordant (Tabletop only)</h3>
+                <p><strong>Ton :</strong> weird, conflictuel, survivaliste, profond. <strong>Jouable</strong> du one-shot à la campagne Westmarch.</p>
+</p>
                 <p><strong>Philosophie :</strong> <em>Rules Heavy, Procedures Light</em> - permissivité extrême à la Pathfinder repensée, conséquences mathématiques claires pour chaque choix, <strong>sans</strong> tables de référence ni improvisation creuse. Entre le jeu simplifié et le jeu complexe : vos décisions <strong>comptent</strong>, sans puzzle abstrait. Pas de classes, pas de dons figés - tout est possible dès le départ ; plus vous visez haut, plus la complexité émerge <strong>élégamment</strong>.</p>
 </p>
                 <p><strong>Cinq piliers mécaniques </strong></p>
@@ -740,6 +785,7 @@
                         <li><a href="#peoples" class="system-overview-nav-link univers-monde-sublink active" data-en="Peoples" data-fr="Peuples">Peoples</a></li>
                         <li><a href="#universe-lore" class="system-overview-nav-link univers-monde-sublink" data-en="Lore" data-fr="Lore">Lore</a></li>
                         <li><a href="#map" class="system-overview-nav-link univers-monde-sublink" data-en="Map" data-fr="Carte">Map</a></li>
+                        <li><a href="#gallery" class="system-overview-nav-link univers-monde-sublink" data-en="Gallery" data-fr="Galerie">Gallery</a></li>
                     </ul>
                     <a href="#videogame" class="tab-sub-nav-link univers-nav-main-link" data-en="Videogame" data-fr="Jeu vidéo">Videogame</a>
                     <a href="#tabletop" class="tab-sub-nav-link univers-nav-main-link" data-en="Tabletop" data-fr="Tabletop">Tabletop</a>
@@ -772,7 +818,7 @@
                                 <p data-en="The kings purified a line of their own, selecting it until it held one extreme. What climbed back to the surface, millennia later, are the Yôrres, the ylves. Myth calls their ancestors the eight seasonal fairies." data-fr="Les rois purifièrent une lignée qui était la leur, la sélectionnant jusqu'à n'en garder qu'un extrême. Ce qui remonta à la surface, des millénaires plus tard, ce sont les Yôrres, les ylfes. Le mythe appelle leurs ancêtres les huit fées saisonnières.">The kings purified a line of their own, selecting it until it held one extreme. What climbed back to the surface, millennia later, are the Yôrres, the ylves. Myth calls their ancestors the eight seasonal fairies.</p>
                             </article>
                             <article class="peoples-descent__line" data-line="yommes">
-                                <h4 class="peoples-descent__name"><span data-en="Yômmes" data-fr="Yômmes">Yômmes</span> <em data-en="the priests' mixes" data-fr="les mélanges des prêtres">the priests' mixes</em></h4>
+                                <h4 class="peoples-descent__name"><span data-en="Yômmes" data-fr="Yômmes">Yômmes</span> <em data-en="the priests' minglings" data-fr="les mêlements des prêtres">the priests' minglings</em></h4>
                                 <p data-en="The priests mingled. Finding their own form incomplete, they folded it into the beasts around it. What returned are the Yômmes: gnommes, dwommes, halflyns, hobblyns. Myth calls their ancestors nurseling lutins." data-fr="Les prêtres mêlèrent. Jugeant leur propre forme incomplète, ils la plièrent dans les bêtes alentour. Ce qui revint, ce sont les Yômmes : gnommes, naims, halflyns, hobblyns. Le mythe appelle leurs ancêtres des lutins nourriciers.">The priests mingled. Finding their own form incomplete, they folded it into the beasts around it. What returned are the Yômmes: gnommes, dwommes, halflyns, hobblyns. Myth calls their ancestors nurseling lutins.</p>
                             </article>
                             <article class="peoples-descent__line" data-line="bestres">
@@ -1963,7 +2009,7 @@ Les Bas-Iqqars (Sää'm), à la fourrure blonde ou grise, aux yeux d'un bleu gla
                                 aria-label="Map"
                             >
                                 <div class="map-pan-zoom-layer" id="map-pan-zoom-layer">
-                                    <img src="assets/images/novoworld.webp" alt="" class="map-pannable-img" id="map-pannable-img" decoding="async" loading="lazy" draggable="false"/>
+                                    <img src="assets/images/world-map.webp" alt="" class="map-pannable-img" id="map-pannable-img" decoding="async" loading="lazy" draggable="false"/>
                                 </div>
                             </div>
                         </div>
@@ -1979,27 +2025,85 @@ Les Bas-Iqqars (Sää'm), à la fourrure blonde ou grise, aux yeux d'un bleu gla
                         </div>
                     </div>
                 </div>
+                <div class="univers-world-panel" id="world-gallery" inert aria-hidden="true">
+                    <header class="world-gallery-head">
+                        <h3 class="world-gallery-title" data-en="Gallery" data-fr="Galerie">Gallery</h3>
+                        <p class="world-gallery-lead" data-en="Animals, peoples, the world, and its culture, gathered as pictures." data-fr="Animaux, peuples, monde et culture, réunis en images.">Animals, peoples, the world, and its culture, gathered as pictures.</p>
+                    </header>
+                    <div class="world-gallery-toolbar">
+                        <div class="world-gallery-filters" role="group" data-aria-label-en="Picture groups" data-aria-label-fr="Groupes d'images" aria-label="Picture groups">
+                            <button type="button" class="world-gallery-filter is-active" data-filter="all" aria-pressed="true" data-en="All" data-fr="Tout">All</button>
+                            <button type="button" class="world-gallery-filter" data-filter="animal" aria-pressed="false" data-en="Animal" data-fr="Animaux">Animal</button>
+                            <button type="button" class="world-gallery-filter" data-filter="people" aria-pressed="false" data-en="People" data-fr="Peuples">People</button>
+                            <button type="button" class="world-gallery-filter" data-filter="world" aria-pressed="false" data-en="World" data-fr="Monde">World</button>
+                            <button type="button" class="world-gallery-filter" data-filter="culture" aria-pressed="false" data-en="Culture" data-fr="Culture">Culture</button>
+                        </div>
+                        <p class="world-gallery-count" aria-live="polite"></p>
+                    </div>
+                    <div class="world-gallery-grid"></div>
+                </div>
             </div>
             
             <!-- Videogame teaser -->
             <div class="lore-section tab-sub-panel" id="videogame" data-subtab="videogame">
                 <article class="videogame-teaser">
-                    <div class="videogame-teaser-stage" data-aria-label-en="Videogame teaser stage, film coming soon" data-aria-label-fr="Scène du teaser du jeu vidéo, film bientôt disponible" aria-label="Videogame teaser stage, film coming soon">
+                    <div class="videogame-teaser-stage" data-aria-label-en="In-game teaser, game in development" data-aria-label-fr="Teaser in-game, jeu en développement" aria-label="In-game teaser, game in development">
                         <div class="videogame-teaser-stage-frame">
                             <img class="videogame-teaser-stage-img" src="assets/images/image/image1.webp" alt="The ten peoples" decoding="async" loading="lazy" data-alt-en="The ten peoples" data-alt-fr="Les dix peuples"/>
                             <div class="videogame-teaser-stage-veil" aria-hidden="true"></div>
-                            <p class="videogame-teaser-stage-label" data-en="Teaser incoming" data-fr="Teaser à venir">Teaser incoming</p>
+                            <p class="videogame-teaser-stage-label" data-en="In-game teaser · game in development" data-fr="Teaser in-game · jeu en développement">In-game teaser · game in development</p>
                         </div>
                     </div>
                     <div class="videogame-teaser-actions">
-                        <a href="https://www.kickstarter.com/projects/1410517588/the-discording-tales-tabletop-rpg-and-worldlore" class="cta-button videogame-teaser-cta" target="_blank" rel="noopener noreferrer">
-                            <span data-en="Raise your Hand" data-fr="Levez la Main">Raise your Hand</span>
-                            <small data-en="(Be notified on launch)" data-fr="(Soyez notifié au lancement)">(Be notified on launch)</small>
-                        </a>
                         <a href="#tabletop" class="videogame-teaser-link" data-en="Enter the tabletop" data-fr="Entrer dans le tabletop">Enter the tabletop</a>
-                        <a href="#chatbot" class="videogame-teaser-link" data-en="Ask the Éveilleur" data-fr="Questionner l'Éveilleur">Ask the Éveilleur</a>
+                        <a href="#chatbot" class="videogame-teaser-link" data-en="Ask the Awakener" data-fr="Questionner l'Éveilleur">Ask the Awakener</a>
                     </div>
                 </article>
+                <section class="vg-pillars" aria-labelledby="vg-pillars-heading">
+                    <div class="vg-above-pillars">
+                        <p class="vg-above-lead" data-en="Create an Action-RPG immersive sim on a compact area but of extreme systemic density, where everything is visible from the start or almost, but nothing is accessible without a progressive understanding of the physical, environmental and social systems. The player returns constantly to the same spaces - and each new tool or understanding transforms how they explore a place they thought they knew (access, perception, factions, dangers)." data-fr="Créer un Action-RPG immersive sim sur une zone compacte mais d'une densité systémique extrême, où tout est visible dès le début ou presque, mais rien n'est accessible sans compréhension progressive des systèmes physiques, environnementaux et sociaux. Le joueur revient constamment dans les mêmes espaces - et chaque nouvel outil ou compréhension transforme sa manière d'explorer un lieu qu'il croyait connaître (accès, perception, factions, dangers).">Create an Action-RPG immersive sim on a compact area but of extreme systemic density, where everything is visible from the start or almost, but nothing is accessible without a progressive understanding of the physical, environmental and social systems. The player returns constantly to the same spaces - and each new tool or understanding transforms how they explore a place they thought they knew (access, perception, factions, dangers).</p>
+                        <ol class="vg-cycle" data-aria-label-en="A cycle of steps" data-aria-label-fr="Un cycle d'étapes" aria-label="A cycle of steps">
+                            <li style="--i:0"><span data-en="Explore" data-fr="Explorer">Explore</span></li>
+                            <li style="--i:1"><span data-en="Interact with the systemic world" data-fr="Interagir avec le monde systémique">Interact with the systemic world</span></li>
+                            <li style="--i:2"><span data-en="Fight / resolve" data-fr="Combattre / résoudre">Fight / resolve</span></li>
+                            <li style="--i:3"><span data-en="Gain a benefit" data-fr="Obtenir un bénéfice">Gain a benefit</span></li>
+                            <li style="--i:4"><span data-en="Improve" data-fr="S'améliorer">Improve</span></li>
+                            <li style="--i:5"><span data-en="Return to explore the same places" data-fr="Revenir explorer les mêmes lieux">Return to explore the same places</span></li>
+                            <li style="--i:6"><span data-en="Discover new accesses / layers of reading" data-fr="Découvrir de nouveaux accès / couches de lecture">Discover new accesses / layers of reading</span></li>
+                        </ol>
+                        <p class="vg-above-close" data-en="On each return, local conditions may shift slightly (door states, controlled access, dangerous or locked areas), changing how the space is approached without adding new levels. &quot;A living dungeon, everything in it behaves as a physical system, not as a scripted level.&quot;" data-fr="Dans chaque retour, les conditions locales peuvent légèrement évoluer (états de portes, accès contrôlés, zones dangereuses ou verrouillées), modifiant la manière d'aborder l'espace sans ajouter de nouveaux niveaux. « Un donjon vivant, tout ce qu'il contient se comporte comme un système physique, pas comme un niveau scripté. »">On each return, local conditions may shift slightly (door states, controlled access, dangerous or locked areas), changing how the space is approached without adding new levels. "A living dungeon, everything in it behaves as a physical system, not as a scripted level."</p>
+                    </div>
+                    <h3 id="vg-pillars-heading" class="vg-pillars-title" data-en="Core pillars" data-fr="Piliers">Core pillars</h3>
+                    <div class="vg-pillars-grid">
+                        <section class="vg-pillars-col" aria-labelledby="vg-pillars-world">
+                            <h4 id="vg-pillars-world" class="vg-pillars-h" data-en="World" data-fr="Monde">World</h4>
+                            <ul class="vg-pillars-list" data-en="<li><strong>Brightstrife</strong> Lightful struggle. A utopia of extremes: conflict is the good; apathy and nihilism are the harm.</li><li><strong>Life-affirming</strong> A yes to life and strength. Suffering is the ground of what triumphs.</li><li><strong>Ethno-science-fantasy</strong> Exotic cultures, customs and morals, always foreign.</li><li><strong>Golden Ages Rush</strong> Every paradise struggles to overcome itself.</li>" data-fr="<li><strong>Brightstrife</strong> Lutte lumineuse. Une utopie des extrêmes : le conflit est le bien ; l'apathie et le nihilisme sont le mal.</li><li><strong>Affirmation de la vie</strong> Un oui à la vie et à la force. La souffrance est le terreau de ce qui triomphe.</li><li><strong>Ethno-science-fantasy</strong> Cultures, mœurs et morales toujours étrangères.</li><li><strong>Ruée vers l'âge d'or</strong> Chaque paradis lutte pour se dépasser.</li>">
+                                <li><strong>Brightstrife</strong> Lightful struggle. A utopia of extremes: conflict is the good; apathy and nihilism are the harm.</li>
+                                <li><strong>Life-affirming</strong> A yes to life and strength. Suffering is the ground of what triumphs.</li>
+                                <li><strong>Ethno-science-fantasy</strong> Exotic cultures, customs and morals, always foreign.</li>
+                                <li><strong>Golden Ages Rush</strong> Every paradise struggles to overcome itself.</li>
+                            </ul>
+                        </section>
+                        <section class="vg-pillars-col vg-pillars-col--look" aria-labelledby="vg-pillars-look">
+                            <h4 id="vg-pillars-look" class="vg-pillars-h" data-en="Look" data-fr="Esthétique">Look</h4>
+                            <ul class="vg-pillars-list" data-en="<li><strong>(New) Weird</strong> The familiar, remade until it is strange again.</li><li><strong>Baroque</strong> Vivid, intricate, amplified.</li><li><strong>Mystical</strong> The ordinary is divine. Nature is magical.</li><li><strong>Eutechnical</strong> Technology that strengthens body and mind, without dependence.</li>" data-fr="<li><strong>(Nouveau) Weird</strong> Le familier, refait jusqu'à redevenir étrange.</li><li><strong>Baroque</strong> Vif, orné, amplifié.</li><li><strong>Mystique</strong> L'ordinaire est divin. La nature est magique.</li><li><strong>Eutechnique</strong> Une technique qui fortifie le corps et l'esprit, sans dépendance.</li>">
+                                <li><strong>(New) Weird</strong> The familiar, remade until it is strange again.</li>
+                                <li><strong>Baroque</strong> Vivid, intricate, amplified.</li>
+                                <li><strong>Mystical</strong> The ordinary is divine. Nature is magical.</li>
+                                <li><strong>Eutechnical</strong> Technology that strengthens body and mind, without dependence.</li>
+                            </ul>
+                        </section>
+                        <section class="vg-pillars-col vg-pillars-col--play" aria-labelledby="vg-pillars-play">
+                            <h4 id="vg-pillars-play" class="vg-pillars-h" data-en="Play" data-fr="Jeu">Play</h4>
+                            <ul class="vg-pillars-list" data-en="<li><strong>Organic</strong> Places, creatures and objects react by the same rules. The world answers, and keeps changing.</li><li><strong>Creativity</strong> Sneak, fight, talk, improvise. No correct way. Your character and your choices set the difficulty.</li><li><strong>Consequence</strong> Suffering, tools and the environment force the decision. Skills open actions, and the attempt itself can be felt, as in a shaky aim.</li><li><strong>Discovery</strong> Choices change factions, chances and dangers. Every place already shows what it may open later.</li>" data-fr="<li><strong>Organique</strong> Lieux, créatures et objets réagissent par les mêmes règles. Le monde répond, et continue de changer.</li><li><strong>Créativité</strong> Se faufiler, combattre, parler, improviser. Aucune voie correcte. Le personnage et les choix règlent la difficulté.</li><li><strong>Conséquence</strong> Souffrance, outils et milieu forcent la décision. Les compétences ouvrent les actions, et le geste peut se sentir, comme une visée tremblante.</li><li><strong>Découverte</strong> Les choix changent factions, occasions et dangers. Chaque lieu montre déjà ce qu'il pourra ouvrir plus tard.</li>">
+                                <li><strong>Organic</strong> Places, creatures and objects react by the same rules. The world answers, and keeps changing.</li>
+                                <li><strong>Creativity</strong> Sneak, fight, talk, improvise. No correct way. Your character and your choices set the difficulty.</li>
+                                <li><strong>Consequence</strong> Suffering, tools and the environment force the decision. Skills open actions, and the attempt itself can be felt, as in a shaky aim.</li>
+                                <li><strong>Discovery</strong> Choices change factions, chances and dangers. Every place already shows what it may open later.</li>
+                            </ul>
+                        </section>
+                    </div>
+                </section>
             </div>
 
             <!-- Tabletop: Rules / Zine / Sheet / Chatbot -->
@@ -4097,7 +4201,7 @@ Les Bas-Iqqars (Sää'm), à la fourrure blonde ou grise, aux yeux d'un bleu gla
                     <div class="progression-accordion-item" id="progression-declenchees">
                         <button type="button" class="progression-accordion-head" aria-expanded="false" aria-controls="progression-declenchees-body" id="progression-declenchees-btn" data-en="Triggered sufferings" data-fr="Souffrances déclenchées">Triggered Sufferings</button>
                         <div class="progression-accordion-body" id="progression-declenchees-body" role="region" aria-labelledby="progression-declenchees-btn">
-                            <p data-en="Some Souffrances appear after a delay. After <strong>NdT 5 - Niv</strong> of the triggered suffering, test: <strong>5dD + Resistance dice - ALL current DS + APT</strong> linked to Resistance. Each <strong>Échec</strong> → +1 DS and +1 Marque in that Resistance. Each extra <strong>Succès</strong> can remove 1 Jour de souffrance. If the Éveilleur points their own triggered Souffrance for their PI, +X Dés and +X Marques (X = Niv of Épreuve)." data-fr="Après NdT 5 - Niv : jet 5dD + Dés Résistance - TOUS les DS + APT. Échec → +1 DS et +1 Marque ; Succès → effacer 1 Jour. Éveilleur qui pointe sa Souffrance : +X Dés et +X Marques.">After <strong>NdT 5 - Niv</strong>: jet <strong>5dD + Resistance - ALL DS + APT</strong>. Failure → +1 DS, +1 Marque; success → remove 1 Jour. Éveilleur points own → +X Dés, +X Marques.</p>
+                            <p data-en="Some Souffrances appear after a delay. After <strong>NdT 5 - Niv</strong> of the triggered suffering, test: <strong>5dD + Resistance dice - ALL current DS + APT</strong> linked to Resistance. Each <strong>Échec</strong> → +1 DS and +1 Marque in that Resistance. Each extra <strong>Succès</strong> can remove 1 Jour de souffrance. If the Awakener points their own triggered Souffrance for their PI, +X Dés and +X Marques (X = Niv of Épreuve)." data-fr="Après NdT 5 - Niv : jet 5dD + Dés Résistance - TOUS les DS + APT. Échec → +1 DS et +1 Marque ; Succès → effacer 1 Jour. Éveilleur qui pointe sa Souffrance : +X Dés et +X Marques.">After <strong>NdT 5 - Niv</strong>: jet <strong>5dD + Resistance - ALL DS + APT</strong>. Failure → +1 DS, +1 Marque; success → remove 1 Jour. Awakener points own → +X Dés, +X Marques.</p>
                             <ul>
                                 <li data-en="<strong>Saignements</strong>: test every 5-X NdT vs Niv X bleeding." data-fr="<strong>Saignements</strong> : tester toutes les 5-X NdT."><strong>Saignements</strong>: test every 5-X NdT.</li>
                                 <li data-en="<strong>Exténuements</strong>: encumbrance beyond Niv → Épreuve vs Entraves/Fatigues." data-fr="<strong>Exténuements</strong> : encombrement → Épreuve."><strong>Exténuements</strong>: encumbrance → Épreuve.</li>
@@ -4637,7 +4741,7 @@ Les Bas-Iqqars (Sää'm), à la fourrure blonde ou grise, aux yeux d'un bleu gla
                     <div class="magic-accordion-item" id="magic-pretre-jeu">
                         <button type="button" class="magic-accordion-head" aria-expanded="false" aria-controls="magic-pretre-jeu-body" id="magic-pretre-jeu-btn" data-en="Priest role &amp; in-game use" data-fr="Rôle Prêtre &amp; utilisation en jeu">Priest role &amp; in-game use</button>
                         <div class="magic-accordion-body" id="magic-pretre-jeu-body" role="region" aria-labelledby="magic-pretre-jeu-btn">
-                            <p data-en="The <strong>Prêtre</strong> (Éveilleur role) prepares and manages the group's Cercles / Sacrifices Riliques. <strong>Power</strong>: reduce one of the group's Rilique Honorations by <strong>1 Cercle</strong>." data-fr="Le <strong>Prêtre</strong> prépare et gère les Cercles/Sacrifices Riliques du groupe. <strong>Pouvoir</strong> : réduire une Honoration Rilique du groupe d'<strong>1 Cercle</strong>.">Prêtre: prepares Cercles/Sacrifices. Power: reduce one group Honoration by 1 Cercle.</p>
+                            <p data-en="The <strong>Prêtre</strong> (Awakener role) prepares and manages the group's Cercles / Sacrifices Riliques. <strong>Power</strong>: reduce one of the group's Rilique Honorations by <strong>1 Cercle</strong>." data-fr="Le <strong>Prêtre</strong> prépare et gère les Cercles/Sacrifices Riliques du groupe. <strong>Pouvoir</strong> : réduire une Honoration Rilique du groupe d'<strong>1 Cercle</strong>.">Prêtre: prepares Cercles/Sacrifices. Power: reduce one group Honoration by 1 Cercle.</p>
                             <ul>
                                 <li data-en="Rilie must be <strong>revealed</strong> as a Competence (training, discovery, heritage)." data-fr="La Rilie doit être <strong>révélée</strong> comme Compétence.">Rilie must be <strong>revealed</strong> as a Competence.</li>
                                 <li data-en="<strong>NdT not symbolically sacrificed</strong>: offense malus reduced by 1 per Symbole (see <span data-tip=&quot;Niveau de Trait.&quot; data-tip-en=&quot;Trait level.&quot; data-tip-fr=&quot;Niveau de Trait.&quot;>NdT</span> in progression)." data-fr="NdT non sacrifiée symboliquement : malus d'offense -1 par Symbole.">NdT not sacrificed: offense malus -1 per Symbole.</li>
@@ -5187,7 +5291,7 @@ Les Bas-Iqqars (Sää'm), à la fourrure blonde ou grise, aux yeux d'un bleu gla
 <div class="about-team">
     <header class="about-team-header">
         <h3 class="about-team-title" data-en="About us" data-fr="À propos de nous">About us</h3>
-        <p class="about-team-lede" data-en="The Discording Tales universe was created by Hugues de Pingon. Since summer 2026, a mostly Swiss team has gathered around the videogame - right now, we are making a teaser." data-fr="L'univers des Récits Discordants a été créé par Hugues de Pingon. Depuis l'été 2026, une équipe majoritairement suisse s'est réunie autour du jeu vidéo - en ce moment, nous préparons un teaser.">The Discording Tales universe was created by Hugues de Pingon. Since summer 2026, a mostly Swiss team has gathered around the videogame - right now, we are making a teaser.</p>
+        <p class="about-team-lede" data-en="The Discording Tales universe was created by Hugues de Pingon. Since summer 2026, a mostly Swiss team has gathered around the videogame - right now: game + in-game teaser." data-fr="L'univers des Récits Discordants a été créé par Hugues de Pingon. Depuis l'été 2026, une équipe majoritairement suisse s'est réunie autour du jeu vidéo - en ce moment : jeu + teaser in-game.">The Discording Tales universe was created by Hugues de Pingon. Since summer 2026, a mostly Swiss team has gathered around the videogame - right now: game + in-game teaser.</p>
         <div class="about-team-recruit">
             <p class="about-team-recruit-lede" data-en="We are recruiting:" data-fr="Nous recrutons :">We are recruiting:</p>
             <ul class="about-team-recruit-list" role="list">
@@ -5205,7 +5309,7 @@ Les Bas-Iqqars (Sää'm), à la fourrure blonde ou grise, aux yeux d'un bleu gla
         <div class="about-team-lead-body">
             <h4 class="about-team-name" data-en="Hugues de Pingon" data-fr="Hugues de Pingon">Hugues de Pingon</h4>
             <p class="about-team-role" data-en="Creator of the universe · Creative Director &amp; Lead Game Designer" data-fr="Créateur de l'univers · Directeur créatif &amp; Lead Game Designer">Creator of the universe · Creative Director &amp; Lead Game Designer</p>
-            <p class="about-team-bio" data-en="Creator of The Discording Tales universe and Creative Director of the project. Trained in anthropology, biology and neuroscience, then in philosophy and ethics, he built the world so that ideas could become cultures, environments, moral systems and myths rather than remain arguments. He leads creative direction, game design, gameplay systems, narrative, and the overall coherence of the transmedia world. By day he is Lead Game Designer on The Wayward Realms, developed with the co-creators of The Elder Scrolls series." data-fr="Créateur de l'univers des Récits Discordants et directeur créatif du projet. Formé en anthropologie, biologie et neurosciences, puis en philosophie et en éthique, il a construit ce monde pour que des idées deviennent des cultures, des milieux, des systèmes moraux et des mythes plutôt que de rester des arguments. Il mène la direction créative, le game design, les systèmes de jeu, le narratif et la cohérence d'ensemble de l'univers transmédia. Le jour, il est Lead Game Designer sur The Wayward Realms, développé avec les co-créateurs de la série The Elder Scrolls.">Creator of The Discording Tales universe and Creative Director of the project. Trained in anthropology, biology and neuroscience, then in philosophy and ethics, he built the world so that ideas could become cultures, environments, moral systems and myths rather than remain arguments. He leads creative direction, game design, gameplay systems, narrative, and the overall coherence of the transmedia world. By day he is Lead Game Designer on The Wayward Realms, developed with the co-creators of The Elder Scrolls series.</p>
+            <p class="about-team-bio" data-en="Creator of The Discording Tales universe and Creative Director of the project. Trained in anthropology, biology and neuroscience, then in philosophy and ethics, he built the world so that ideas could become cultures, environments, moral systems and myths rather than remain arguments. He leads creative direction, game design, gameplay systems, narrative, and the overall coherence of the transmedia world. By day he is Lead Game Designer on The Wayward Realms, the spiritual successor of TESII: Daggerfall, led by Ted Peterson and Julian LeFay, the founding fathers of the Elder Scrolls series." data-fr="Créateur de l'univers des Récits Discordants et directeur créatif du projet. Formé en anthropologie, biologie et neurosciences, puis en philosophie et en éthique, il a construit ce monde pour que des idées deviennent des cultures, des milieux, des systèmes moraux et des mythes plutôt que de rester des arguments. Il mène la direction créative, le game design, les systèmes de jeu, le narratif et la cohérence d'ensemble de l'univers transmédia. Le jour, il est Lead Game Designer sur The Wayward Realms, le successeur spirituel de TESII: Daggerfall, mené par Ted Peterson et Julian LeFay, les pères fondateurs de la série The Elder Scrolls.">Creator of The Discording Tales universe and Creative Director of the project. Trained in anthropology, biology and neuroscience, then in philosophy and ethics, he built the world so that ideas could become cultures, environments, moral systems and myths rather than remain arguments. He leads creative direction, game design, gameplay systems, narrative, and the overall coherence of the transmedia world. By day he is Lead Game Designer on The Wayward Realms, the spiritual successor of TESII: Daggerfall, led by Ted Peterson and Julian LeFay, the founding fathers of the Elder Scrolls series.</p>
         </div>
     </article>
 
@@ -5217,7 +5321,7 @@ Les Bas-Iqqars (Sää'm), à la fourrure blonde ou grise, aux yeux d'un bleu gla
             <p class="about-team-bio" data-en="Vice President, EMEA Commercial &amp; Product Management at MSCI, with experience across MSCI and Bloomberg. He brings product strategy, commercial development, fundraising preparation, and go-to-market execution to the project's positioning and long-term growth." data-fr="Vice-président, Commercial &amp; Product Management EMEA chez MSCI, avec une expérience chez MSCI et Bloomberg. Il apporte stratégie produit, développement commercial, préparation au fundraising et exécution go-to-market au positionnement et à la croissance du projet.">Vice President, EMEA Commercial &amp; Product Management at MSCI, with experience across MSCI and Bloomberg. He brings product strategy, commercial development, fundraising preparation, and go-to-market execution to the project's positioning and long-term growth.</p>
         </article>
         <article class="about-team-card" role="listitem">
-            <div class="about-team-portrait" aria-hidden="true"><span>TM</span></div>
+            <img class="about-team-portrait about-team-portrait--photo tdt-img-no-fade" src="assets/theotime-vignette.jpg" alt="Théotime Millois" width="144" height="144" decoding="async" />
             <h4 class="about-team-name" data-en="Théotime Millois" data-fr="Théotime Millois">Théotime Millois</h4>
             <p class="about-team-role" data-en="Creature Artist" data-fr="Artiste créatures">Creature Artist</p>
             <p class="about-team-bio" data-en="Holds a Bachelor's in Game Art &amp; Animation and specialises in character and creature sculpting. With experience in 3D printing and miniature painting, he shapes anatomy, form, and the game's characters, creatures, and core 3D assets." data-fr="Titulaire d'un Bachelor en Game Art &amp; Animation, spécialisé dans la sculpture de personnages et de créatures. Avec une expérience en impression 3D et peinture de figurines, il façonne l'anatomie, la forme, et les personnages, créatures et assets 3D du jeu.">Holds a Bachelor's in Game Art &amp; Animation and specialises in character and creature sculpting. With experience in 3D printing and miniature painting, he shapes anatomy, form, and the game's characters, creatures, and core 3D assets.</p>
@@ -5259,6 +5363,81 @@ Les Bas-Iqqars (Sää'm), à la fourrure blonde ou grise, aux yeux d'un bleu gla
             <p class="about-team-bio" data-en="Studies percussion at the Lucerne University of Applied Sciences and Arts. Inspired by John Williams, Howard Shore, Nobuo Uematsu, and Yoko Shimomura, he composes the original soundtrack that anchors the game's atmosphere." data-fr="Étudie les percussions à la Haute école de Lucerne. Inspiré par John Williams, Howard Shore, Nobuo Uematsu et Yoko Shimomura, il compose la bande originale qui ancre l'atmosphère du jeu.">Studies percussion at the Lucerne University of Applied Sciences and Arts. Inspired by John Williams, Howard Shore, Nobuo Uematsu, and Yoko Shimomura, he composes the original soundtrack that anchors the game's atmosphere.</p>
         </article>
     </div>
+
+    <section class="about-pillars" aria-labelledby="about-pillars-name">
+        <header class="about-pillars-header">
+            <h4 id="about-pillars-name" class="about-pillars-name" data-en="Archopoia" data-fr="Archopoia">Archopoia</h4>
+            <p class="about-pillars-meaning" data-en="sovereign creativity" data-fr="créativité souveraine">sovereign creativity</p>
+        </header>
+
+        <div class="about-pillars-list">
+            <article class="about-pillar">
+                <h5 class="about-pillar-title" data-en="01 - Total Freedom" data-fr="01 - Liberté totale">01 - Total Freedom</h5>
+                <p class="about-pillar-lead" data-en="No sacred cows. No creative taboos." data-fr="Aucune vache sacrée. Aucun tabou créatif.">No sacred cows. No creative taboos.</p>
+                <div class="about-pillar-body">
+                    <p data-en="Every idea deserves to be heard before it is judged. We encourage disagreement, criticism, experimentation, and even ideas that may initially seem strange, uncomfortable, politically incorrect, or impossible." data-fr="Chaque idée mérite d'être entendue avant d'être jugée. Nous encourageons le désaccord, la critique, l'expérimentation, et même les idées qui peuvent d'abord sembler étranges, inconfortables, politiquement incorrectes ou impossibles.">Every idea deserves to be heard before it is judged. We encourage disagreement, criticism, experimentation, and even ideas that may initially seem strange, uncomfortable, politically incorrect, or impossible.</p>
+                    <p data-en="We do not censor creativity to protect feelings. We practice what we call <strong>rational dissent</strong>: speak directly, challenge ideas openly, and argue for what you believe will make the game better." data-fr="Nous ne censurons pas la créativité pour protéger des sentiments. Nous pratiquons ce que nous appelons la <strong>dissidence rationnelle</strong> : parler directement, contester les idées ouvertement, et défendre ce que l'on croit meilleur pour le jeu.">We do not censor creativity to protect feelings. We practice what we call <strong>rational dissent</strong>: speak directly, challenge ideas openly, and argue for what you believe will make the game better.</p>
+                    <p data-en="No backroom politics. No passive-aggressive silence. No criticism whispered behind someone's back." data-fr="Pas de politique de couloir. Pas de silence passif-agressif. Pas de critique chuchotée dans le dos de quelqu'un.">No backroom politics. No passive-aggressive silence. No criticism whispered behind someone's back.</p>
+                    <p data-en="The only question that ultimately matters is simple:" data-fr="La seule question qui compte vraiment est simple :">The only question that ultimately matters is simple:</p>
+                    <p class="about-pillar-punch" data-en="Does it make the game better?" data-fr="Est-ce que ça rend le jeu meilleur ?">Does it make the game better?</p>
+                    <p data-en="This freedom exists for the work, not as an excuse for ego, hostility, or gratuitous provocation." data-fr="Cette liberté existe pour le travail, pas comme une excuse pour l'ego, l'hostilité ou la provocation gratuite.">This freedom exists for the work, not as an excuse for ego, hostility, or gratuitous provocation.</p>
+                </div>
+            </article>
+
+            <article class="about-pillar about-pillar--end">
+                <h5 class="about-pillar-title" data-en="02 - God Product" data-fr="02 - Produit-dieu">02 - God Product</h5>
+                <p class="about-pillar-lead" data-en="The game comes first." data-fr="Le jeu passe en premier.">The game comes first.</p>
+                <div class="about-pillar-body">
+                    <p data-en="There is only one ego here that matters: <strong>the game's.</strong>" data-fr="Il n'y a qu'un ego ici qui compte : <strong>celui du jeu.</strong>">There is only one ego here that matters: <strong>the game's.</strong></p>
+                    <p data-en="Personal pride has no authority over the work. Ideas are not defended because they belong to someone. They are defended because they deserve to survive." data-fr="L'orgueil personnel n'a aucune autorité sur le travail. Les idées ne se défendent pas parce qu'elles appartiennent à quelqu'un. Elles se défendent parce qu'elles méritent de survivre.">Personal pride has no authority over the work. Ideas are not defended because they belong to someone. They are defended because they deserve to survive.</p>
+                    <p data-en="Criticism is welcomed when it serves the product. Great ideas are strengthened. Bad ideas are abandoned. Good ideas are transformed." data-fr="La critique est bienvenue quand elle sert le produit. Les grandes idées se renforcent. Les mauvaises idées s'abandonnent. Les bonnes idées se transforment.">Criticism is welcomed when it serves the product. Great ideas are strengthened. Bad ideas are abandoned. Good ideas are transformed.</p>
+                    <p data-en="We are not here to win arguments." data-fr="Nous ne sommes pas là pour gagner des arguments.">We are not here to win arguments.</p>
+                    <p class="about-pillar-punch" data-en="We are here to make something worth playing." data-fr="Nous sommes là pour faire quelque chose qui mérite d'être joué.">We are here to make something worth playing.</p>
+                </div>
+            </article>
+
+            <article class="about-pillar">
+                <h5 class="about-pillar-title" data-en="03 - Action over Words" data-fr="03 - L'action avant les mots">03 - Action over Words</h5>
+                <p class="about-pillar-lead" data-en="We value what gets done." data-fr="Nous valorisons ce qui se fait.">We value what gets done.</p>
+                <div class="about-pillar-body">
+                    <p data-en="Not titles. Not promises. Not corporate language. Not motivational speeches." data-fr="Pas les titres. Pas les promesses. Pas le langage d'entreprise. Pas les discours motivationnels.">Not titles. Not promises. Not corporate language. Not motivational speeches.</p>
+                    <p data-en="Progress is measured in what we actually create: the quality of the work, the consistency of the output, and the ability to turn ideas into reality." data-fr="Le progrès se mesure à ce que nous créons vraiment : la qualité du travail, la constance de la production, et la capacité à transformer les idées en réalité.">Progress is measured in what we actually create: the quality of the work, the consistency of the output, and the ability to turn ideas into reality.</p>
+                    <p data-en="We believe creative freedom means little without discipline." data-fr="Nous croyons que la liberté créative ne vaut pas grand-chose sans discipline.">We believe creative freedom means little without discipline.</p>
+                    <p data-en="So we work." data-fr="Alors nous travaillons.">So we work.</p>
+                    <p data-en="We build. We test. We break things. We rebuild them." data-fr="Nous construisons. Nous testons. Nous cassons. Nous reconstruisons.">We build. We test. We break things. We rebuild them.</p>
+                    <p data-en="And, occasionally, we laugh at the absurd amount of suffering we voluntarily inflict upon ourselves for the love of art." data-fr="Et, parfois, nous rions de l'absurde quantité de souffrance que nous nous infligeons volontairement par amour de l'art.">And, occasionally, we laugh at the absurd amount of suffering we voluntarily inflict upon ourselves for the love of art.</p>
+                    <p class="about-pillar-punch" data-en="Ideas are cheap. Creation is not." data-fr="Les idées ne coûtent rien. La création, si.">Ideas are cheap. Creation is not.</p>
+                </div>
+            </article>
+
+            <article class="about-pillar about-pillar--end">
+                <h5 class="about-pillar-title" data-en="04 - Wild Creativity" data-fr="04 - Créativité sauvage">04 - Wild Creativity</h5>
+                <p class="about-pillar-lead" data-en="Ordered chaos." data-fr="Chaos ordonné.">Ordered chaos.</p>
+                <div class="about-pillar-body">
+                    <p data-en="We want to make things that could not have been made by committee." data-fr="Nous voulons faire des choses qu'un comité n'aurait pas pu faire.">We want to make things that could not have been made by committee.</p>
+                    <p data-en="We push ideas as far as they can go: strange, beautiful, unsettling, humorous, extreme, poetic, contradictory. We would rather make something memorable than something merely safe." data-fr="Nous poussons les idées aussi loin qu'elles peuvent aller : étranges, belles, troublantes, drôles, extrêmes, poétiques, contradictoires. Nous préférons faire quelque chose de mémorable plutôt que quelque chose de simplement sage.">We push ideas as far as they can go: strange, beautiful, unsettling, humorous, extreme, poetic, contradictory. We would rather make something memorable than something merely safe.</p>
+                    <p data-en="That does not mean being provocative for its own sake." data-fr="Cela ne veut pas dire provoquer pour le plaisir de provoquer.">That does not mean being provocative for its own sake.</p>
+                    <p class="about-pillar-punch" data-en="Controversy without purpose is cheap. Originality is not." data-fr="La controverse sans but ne coûte rien. L'originalité, si.">Controversy without purpose is cheap. Originality is not.</p>
+                    <p data-en="If an idea shocks, it should be because it serves the world, the story, the gameplay, or the artistic vision." data-fr="Si une idée choque, ce doit être parce qu'elle sert le monde, l'histoire, le gameplay ou la vision artistique.">If an idea shocks, it should be because it serves the world, the story, the gameplay, or the artistic vision.</p>
+                    <p data-en="Our ambition is not to offend." data-fr="Notre ambition n'est pas d'offenser.">Our ambition is not to offend.</p>
+                    <p data-en="It is to create something people have never quite experienced before." data-fr="C'est de créer quelque chose que les gens n'ont encore jamais tout à fait vécu.">It is to create something people have never quite experienced before.</p>
+                </div>
+            </article>
+        </div>
+
+        <article class="about-pillars-close">
+            <h5 class="about-pillar-title" data-en="Sovereign Creativity" data-fr="Créativité souveraine">Sovereign Creativity</h5>
+            <div class="about-pillar-body">
+                <p data-en="These principles are deliberately anti-corporate." data-fr="Ces principes sont délibérément anti-corporate.">These principles are deliberately anti-corporate.</p>
+                <p data-en="We are not trying to recreate the machinery of a large studio on a smaller budget. We are trying to preserve what large creative organizations so often lose:" data-fr="Nous n'essayons pas de recréer la machine d'un grand studio avec un plus petit budget. Nous essayons de préserver ce que les grandes organisations créatives perdent si souvent :">We are not trying to recreate the machinery of a large studio on a smaller budget. We are trying to preserve what large creative organizations so often lose:</p>
+                <p class="about-pillar-punch" data-en="freedom, obsession, responsibility, and the ability to follow an idea wherever it leads." data-fr="la liberté, l'obsession, la responsabilité, et la capacité de suivre une idée là où elle mène.">freedom, obsession, responsibility, and the ability to follow an idea wherever it leads.</p>
+                <p data-en="Archopoia is the sovereignty of the creator over the creation." data-fr="Archopoia, c'est la souveraineté du créateur sur la création.">Archopoia is the sovereignty of the creator over the creation.</p>
+                <p class="about-pillar-lines" data-en="No HR-approved creativity.<br>No committee-designed worlds.<br>No focus-grouped imagination." data-fr="Pas de créativité validée par les RH.<br>Pas de mondes conçus en comité.<br>Pas d'imagination passée au focus group.">No HR-approved creativity.<br>No committee-designed worlds.<br>No focus-grouped imagination.</p>
+                <p data-en="Just a group of people, somewhere on the internet, obsessively trying to make something extraordinary." data-fr="Juste un groupe de gens, quelque part sur internet, qui essaient obsessionnellement de faire quelque chose d'extraordinaire.">Just a group of people, somewhere on the internet, obsessively trying to make something extraordinary.</p>
+                <p class="about-pillar-punch" data-en="The game is the boss." data-fr="Le jeu est le patron.">The game is the boss.</p>
+            </div>
+        </article>
+    </section>
 </div>
                     </div>
 
@@ -5293,7 +5472,7 @@ Les Bas-Iqqars (Sää'm), à la fourrure blonde ou grise, aux yeux d'un bleu gla
                 <div class="about-question-header"><h4 data-en="Which part of the project?" data-fr="Quelle partie du projet ?">Which part of the project?</h4></div>
                 <div class="about-quest-options vertical">
                     <label class="about-quest-option"><input type="radio" name="about-purpose" value="world" required/><div class="about-option-card"><svg class="about-quest-mini-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span data-en="World / lore / setting" data-fr="Monde / lore / cadre">World / lore / setting</span></div></label>
-                    <label class="about-quest-option"><input type="radio" name="about-purpose" value="videogame" required/><div class="about-option-card"><svg class="about-quest-mini-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h4M8 10v4"/><circle cx="16" cy="11" r="1"/><circle cx="18" cy="13" r="1"/></svg><span data-en="Videogame / teaser" data-fr="Jeu vidéo / teaser">Videogame / teaser</span></div></label>
+                    <label class="about-quest-option"><input type="radio" name="about-purpose" value="videogame" required/><div class="about-option-card"><svg class="about-quest-mini-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h4M8 10v4"/><circle cx="16" cy="11" r="1"/><circle cx="18" cy="13" r="1"/></svg><span data-en="Videogame / in-game teaser" data-fr="Jeu vidéo / teaser in-game">Videogame / in-game teaser</span></div></label>
                     <label class="about-quest-option"><input type="radio" name="about-purpose" value="tabletop" required/><div class="about-option-card"><svg class="about-quest-mini-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m12 14 9-5-9-5-9 5 9 5z"/><path d="m12 14 9-5"/><path d="M12 14v8"/></svg><span data-en="Tabletop / rules / play" data-fr="Jeu de table / règles / parties">Tabletop / rules / play</span></div></label>
                     <label class="about-quest-option"><input type="radio" name="about-purpose" value="business" required/><div class="about-option-card"><svg class="about-quest-mini-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span data-en="Business / press / partnerships" data-fr="Business / presse / partenariats">Business / press / partnerships</span></div></label>
                 </div>
@@ -5339,7 +5518,7 @@ Les Bas-Iqqars (Sää'm), à la fourrure blonde ou grise, aux yeux d'un bleu gla
                 <div class="about-question-header"><h4 data-en="Which part of the project?" data-fr="Quelle partie du projet ?">Which part of the project?</h4></div>
                 <div class="about-quest-options">
                     <label class="about-quest-option"><input type="radio" name="about-purpose" value="world" required/><div class="about-option-card"><svg class="about-quest-mini-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span data-en="World / lore / setting" data-fr="Monde / lore / cadre">World / lore / setting</span></div></label>
-                    <label class="about-quest-option"><input type="radio" name="about-purpose" value="videogame" required/><div class="about-option-card"><svg class="about-quest-mini-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h4M8 10v4"/><circle cx="16" cy="11" r="1"/><circle cx="18" cy="13" r="1"/></svg><span data-en="Videogame / teaser" data-fr="Jeu vidéo / teaser">Videogame / teaser</span></div></label>
+                    <label class="about-quest-option"><input type="radio" name="about-purpose" value="videogame" required/><div class="about-option-card"><svg class="about-quest-mini-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h4M8 10v4"/><circle cx="16" cy="11" r="1"/><circle cx="18" cy="13" r="1"/></svg><span data-en="Videogame / in-game teaser" data-fr="Jeu vidéo / teaser in-game">Videogame / in-game teaser</span></div></label>
                     <label class="about-quest-option"><input type="radio" name="about-purpose" value="tabletop" required/><div class="about-option-card"><svg class="about-quest-mini-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m12 14 9-5-9-5-9 5 9 5z"/><path d="m12 14 9-5"/><path d="M12 14v8"/></svg><span data-en="Tabletop / rules / play" data-fr="Jeu de table / règles / parties">Tabletop / rules / play</span></div></label>
                     <label class="about-quest-option"><input type="radio" name="about-purpose" value="business" required/><div class="about-option-card"><svg class="about-quest-mini-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span data-en="Business / press / partnerships" data-fr="Business / presse / partenariats">Business / press / partnerships</span></div></label>
                 </div>

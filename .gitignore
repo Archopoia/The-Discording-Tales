@@ -38,6 +38,12 @@ desktop.ini
 .cache/
 *.tsbuildinfo
 
+# Pitch deck drafts (working copies, not for the public repo)
+assets/PITCH_DECK_DRD.md
+assets/PITCH_DECK_DRD_EN.md
+assets/PITCH_DECK_DRD_7P.md
+assets/PITCH_DECK_DRD_7P_EN.md
+
 # Backend
 # Pre-built RAG index (index.faiss + index.pkl) — commit for Render/production (sources stay gitignored).
 backend/.env

@@ -99,15 +99,18 @@ export function buildOneCarousel(containerEl: HTMLElement, images: CarouselImage
 
 export function initCarousel(): void {
     const lc = window.__TDT_LANDING_CAROUSELS__;
-    const lifestylesImages = lc?.lifestyles ?? [];
-    const meaningsImages = lc?.meanings ?? [];
-    const storiesImages = lc?.stories ?? [];
+    const lifestylesImages = lc?.animal ?? [];
+    const meaningsImages = lc?.people ?? [];
+    const storiesImages = lc?.world ?? [];
+    const headerGalleryParked = document.getElementById('galleries-cycling-slot')?.classList.contains('is-parked');
     const lifestylesEl = document.getElementById('carousel-lifestyles');
     const meaningsEl = document.getElementById('carousel-meanings');
     const storiesEl = document.getElementById('carousel-stories');
-    if (lifestylesEl) buildOneCarousel(lifestylesEl, lifestylesImages);
-    if (meaningsEl) buildOneCarousel(meaningsEl, meaningsImages);
-    if (storiesEl) buildOneCarousel(storiesEl, storiesImages);
+    if (!headerGalleryParked) {
+        if (lifestylesEl) buildOneCarousel(lifestylesEl, lifestylesImages);
+        if (meaningsEl) buildOneCarousel(meaningsEl, meaningsImages);
+        if (storiesEl) buildOneCarousel(storiesEl, storiesImages);
+    }
     if (elements.carousel) {
         buildOneCarousel(elements.carousel, lifestylesImages);
     }

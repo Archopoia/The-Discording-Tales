@@ -3,9 +3,10 @@ export {};
 declare global {
     interface Window {
         __TDT_LANDING_CAROUSELS__?: {
-            lifestyles?: { src: string; alt: string }[];
-            meanings?: { src: string; alt: string }[];
-            stories?: { src: string; alt: string }[];
+            animal?: { src: string; alt: string; altFr?: string }[];
+            people?: { src: string; alt: string; altFr?: string }[];
+            world?: { src: string; alt: string; altFr?: string }[];
+            culture?: { src: string; alt: string; altFr?: string }[];
         };
         TDTShaders?: {
             applyShader?: (canvas: HTMLCanvasElement, type: string, opts?: { uniforms?: Record<string, unknown> }) => unknown;

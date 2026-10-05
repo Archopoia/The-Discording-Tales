@@ -346,6 +346,13 @@
     z-index: 1;
 }
 
+/* Corner slideshow is parked for now. The same pictures hang under Universe > World > Gallery. */
+.galleries-cycling-slot.is-parked,
+.galleries-cycling-slot.is-parked.mobile-relocated,
+.galleries-cycling-slot.is-parked.galleries-slot-hidden {
+    display: none !important;
+}
+
 /* Match footprint of .soundcloud-cycling-wrap (100px circle, 160px column cap) */
 .header-top-row .galleries-cycling-slot {
     position: fixed;
@@ -913,10 +920,202 @@
     flex-wrap: wrap;
     gap: var(--spacing-sm);
     padding: 0 var(--spacing-md);
+    position: relative;
+    z-index: 2;
 }
 
 .menu-item {
     margin: 0;
+    position: relative;
+}
+
+/* Hover list: first-level sections only (World / Videogame / Tabletop, and the About sections). */
+.menu-item--has-sub > .tab-link {
+    padding-right: 1.2rem;
+}
+
+.menu-item--has-sub > .tab-link::before {
+    content: "";
+    position: absolute;
+    right: 0.4rem;
+    top: 50%;
+    width: 0;
+    height: 0;
+    margin-top: -2px;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid currentColor;
+    opacity: 0.85;
+    pointer-events: none;
+}
+
+.menu-item--has-sub:hover > .tab-link::before,
+.menu-item--has-sub:focus-within > .tab-link::before {
+    transform: rotate(180deg);
+    margin-top: -3px;
+}
+
+.menu-sub {
+    --menu-bridge: 0px;
+    list-style: none;
+    margin: 0;
+    /* Transparent strip from the tab down to the bottom of the bar, so the pointer can reach the list. */
+    padding: var(--menu-bridge) 0 0;
+    min-width: 12.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 30;
+    background: none;
+    border: none;
+    box-shadow: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.18s ease, visibility 0.18s ease;
+}
+
+.menu-sub::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    right: 0;
+    top: var(--menu-bridge);
+    bottom: 0;
+    background:
+        linear-gradient(to bottom, var(--tdt-dark-red) 0%, var(--tdt-burgundy) 100%);
+    border: 2px solid var(--tdt-beige-warm);
+    border-radius: var(--radius-sm);
+    box-shadow:
+        0 10px 28px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(245, 230, 196, 0.18);
+}
+
+.menu-item--has-sub:hover > .menu-sub,
+.menu-item--has-sub:focus-within > .menu-sub {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.menu-sub-link {
+    display: block;
+    margin: 0 0.35rem;
+    padding: 0.45rem 0.8rem;
+    color: var(--tdt-beige-warm);
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    white-space: nowrap;
+    border-radius: var(--radius-sm);
+    transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.menu-sub li:first-child .menu-sub-link {
+    margin-top: 0.35rem;
+}
+
+.menu-sub li:last-child .menu-sub-link {
+    margin-bottom: 0.35rem;
+}
+
+.menu-sub-link:hover,
+.menu-sub-link:focus-visible {
+    color: var(--tdt-cream);
+    background: rgba(232, 221, 208, 0.18);
+    outline: none;
+}
+
+.menu-sub-link.active {
+    color: var(--tdt-cream);
+    background: rgba(232, 221, 208, 0.28);
+    box-shadow: inset 0 0 0 1px rgba(212, 197, 168, 0.5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .menu-sub {
+        transition: none;
+    }
+}
+
+/* Touch: no hover, so the first-level sections stay visible and one tap opens them. */
+@media (hover: none), (pointer: coarse) {
+    .menu-item--has-sub {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .menu-item--has-sub > .tab-link {
+        padding-right: var(--spacing-md);
+        text-align: center;
+    }
+
+    .menu-item--has-sub > .tab-link::before {
+        display: none;
+    }
+
+    .menu-sub {
+        --menu-bridge: 0px;
+        position: static;
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        min-width: 0;
+        width: 100%;
+        margin-top: 0.2rem;
+        padding-top: 0;
+    }
+
+    .menu-sub-link {
+        white-space: normal;
+        text-align: center;
+        min-height: var(--touch-min);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* Narrow bar: tabs wrap, so keep the sections in the flow instead of a floating list. */
+.menu.menu--stacked .menu-item--has-sub {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.menu.menu--stacked .menu-item--has-sub > .tab-link {
+    padding-right: var(--spacing-md);
+    text-align: center;
+}
+
+.menu.menu--stacked .menu-item--has-sub > .tab-link::before {
+    display: none;
+}
+
+.menu.menu--stacked .menu-sub {
+    --menu-bridge: 0px;
+    position: static;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    min-width: 0;
+    width: 100%;
+    margin-top: 0.2rem;
+    padding-top: 0;
+}
+
+.menu.menu--stacked .menu-sub-link {
+    white-space: normal;
+    text-align: center;
 }
 
 .tab-link {

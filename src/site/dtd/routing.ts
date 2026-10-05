@@ -41,6 +41,7 @@ const WORLD_INNER: Record<string, string> = {
     peoples: 'peoples-peoples',
     map: 'map',
     'universe-lore': 'universe-lore',
+    gallery: 'world-gallery',
 };
 
 const TABLETOP_INNER: Record<string, string> = {
@@ -54,7 +55,7 @@ const TABLETOP_PLAY_BUNDLES = new Set(['sheet', 'chatbot']);
 
 const NESTED_LINK_FRAGS: Record<string, string[]> = {
     'univers-nav-main-link': ['peoples', 'videogame', 'tabletop'],
-    'univers-monde-sublink': ['peoples', 'map', 'universe-lore'],
+    'univers-monde-sublink': ['peoples', 'map', 'universe-lore', 'gallery'],
     'univers-tabletop-sublink': ['tabletop', 'zine', 'sheet', 'chatbot'],
 };
 
@@ -129,7 +130,7 @@ export function handleHashChange(): void {
 }
 
 /**
- * Sidebar nested sub-links (World: #peoples / #map / #universe-lore;
+ * Sidebar nested sub-links (World: #peoples / #map / #universe-lore / #gallery;
  * Tabletop: #tabletop / #zine / #sheet / #chatbot)
  */
 export function initUniversMondeSidebarLinks(): void {

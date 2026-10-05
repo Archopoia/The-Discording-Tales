@@ -28,12 +28,14 @@ import {
 } from './landing-extra';
 import { initNewsletter } from './newsletter';
 import { initMenuToggle } from './menu-toggle';
+import { initNavSubmenus } from './nav-submenu';
 import { initWebGLShaders } from './webgl-site';
 import { handleWebGLResize } from './webgl-site';
 import { initStickyMainNav } from './nav-sticky';
 import { initCopyrightProtection } from './copyright';
 import { initAboutContactQuest } from './about-contact-quest';
 import { initUniverseLore } from './universe-lore';
+import { initWorldGallery } from './world-gallery';
 
 let deferredInitDone = false;
 
@@ -52,6 +54,7 @@ function initDeferred(): void {
     initMagicProgressionRulesUi();
     initSystemOverview();
     initCarousel();
+    initWorldGallery();
     initGalleriesCycling();
     initSoundCloudCycling();
     initSoundCloudNoteState();
@@ -70,6 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initLanguage();
     initImgFadeOnLoad();
     initTabs();
+    initNavSubmenus();
     initUniversMondeSidebarLinks();
     initMenuToggle();
     initPdfDownloadModal();
@@ -79,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (window.matchMedia('(max-width: 768px)').matches) {
         const gallerySlot = document.getElementById('galleries-cycling-slot');
         const discoverySection = document.querySelector('.discovery-unified-section');
-        if (gallerySlot && discoverySection && discoverySection.parentNode) {
+        if (gallerySlot && !gallerySlot.classList.contains('is-parked') && discoverySection && discoverySection.parentNode) {
             discoverySection.parentNode.insertBefore(gallerySlot, discoverySection);
             gallerySlot.classList.add('mobile-relocated');
         }

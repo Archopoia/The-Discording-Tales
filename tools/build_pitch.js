@@ -101,6 +101,43 @@ function pillarsFromMd(md) {
   return items.join('\n                    ');
 }
 
+const GAMEFEEL_FR = {
+  title: 'Gamefeel (jeu vidéo seulement)',
+  paras: [
+    'Vous êtes dans une poche souterraine verticale sous Iaôdunaï, traversée de plateformes de corde, de failles cristallines et de passages contrôlés par différents groupes.',
+    'Une porte verrouillée bloque un accès de palier. Une source lumineuse vivante influence la perception des créatures alentours. Une patrouille de Bêstres circule selon des règles simples liées à la lumière et aux espaces ouverts. Un mécanisme ancien Aïar est visible mais partiellement inaccessible.',
+    'Les créatures du monde ne se déplacent pas uniquement comme des ennemis statiques, mais comme des entités guidées par des besoins concrets et immédiats. La faim, la menace et l’opportunité structurent leurs comportements de manière visible. Un ogre affamé peut traverser les cavernes à la recherche de nourriture, consommer des champignons ou, si la faim devient critique, vouloir manger des gobelins même vivant. Le monde devient ainsi un espace de prédation opportuniste où les interactions ne sont jamais entièrement scriptées.',
+    'Les conséquences de ces comportements sont physiques et persistantes dans l’espace. Par exemple, des créatures peuvent exploiter ce qui reste d’un adversaire de manière utilitaire : un corps peut être traîné dans leur antre pour un repas futur, démembré pour être utilisé telle une arme.',
+    'Vous aussi vous interagissez physiquement avec le monde : déplacer une caisse, un débris ou un corps peut bloquer ou détourner un passage, créer un appui improvisé, ou modifier un trajet ennemi. L’environnement est lisible dès le début mais rarement accessible sans compréhension des couches physiques et sociales simples.',
+    'Le système répond de manière cohérente : activer ou perturber une source lumineuse modifie les comportements locaux et révèle ou masque certains passages. Des mécanismes physiques simples (pression, obstruction, énergie) peuvent changer les routes disponibles, sans création de nouveaux niveaux, mais par reconfiguration locale de l’espace.',
+    'Les outils (crochet de corde, vision bathoscopique, artefact simple) permettent de revisiter des zones connues sous une nouvelle lecture : un passage devient accessible, une paroi révèle une ouverture, une zone interdite peut être contournée par compréhension ou manipulation simple des règles locales.',
+    'En combat, tout reste contextuel : pousser une créature, bloquer un passage, utiliser les cordes ou l’environnement pour créer un avantage. Le combat est toujours lié à l’espace physique.',
+  ],
+};
+
+const GAMEFEEL_EN = {
+  title: 'Gamefeel (video game only)',
+  paras: [
+    'You are in a vertical underground pocket beneath Iaôdunaï, crossed by rope platforms, crystalline faults and passages controlled by different groups.',
+    'A locked door blocks access to a landing. A living light source influences the perception of nearby creatures. A patrol of Bêstres moves according to simple rules tied to light and open spaces. An ancient Aïar mechanism is visible but partly inaccessible.',
+    'The creatures of this world do not move only as static enemies, but as entities driven by concrete and immediate needs. Hunger, threat and opportunity visibly structure their behaviour. A hungry ogre may cross the caverns in search of food, eat mushrooms or, if hunger becomes critical, want to eat goblins even alive. The world thus becomes a space of opportunistic predation where interactions are never entirely scripted.',
+    'The consequences of these behaviours are physical and persistent in space. For example, creatures may exploit what remains of an adversary in a utilitarian way: a body may be dragged into their lair for a future meal, dismembered to be used as a weapon.',
+    'You too physically interact with the world: moving a crate, debris or a body can block or divert a passage, create an improvised support, or alter an enemy route. The environment is legible from the start but rarely accessible without an understanding of the simple physical and social layers.',
+    'The system answers coherently: activating or disrupting a light source modifies local behaviours and reveals or conceals certain passages. Simple physical mechanisms (pressure, obstruction, energy) can change the available routes, without creating new levels, but by locally reconfiguring the space.',
+    'The tools (rope hook, bathoscopic vision, simple artifact) make it possible to revisit known areas under a new reading: a passage becomes accessible, a wall reveals an opening, a forbidden area can be bypassed by understanding or simple manipulation of the local rules.',
+    'In combat, everything stays contextual: pushing a creature, blocking a passage, using the ropes or the environment to create an advantage. Combat is always tied to physical space.',
+  ],
+};
+
+function gamefeelSectionHtml(md) {
+  const feel = /The Discording System/i.test(md) ? GAMEFEEL_EN : GAMEFEEL_FR;
+  const paras = feel.paras.map((p) => `<p>${escapeHtml(p)}</p>`).join('\n                ');
+  return `<section class="pitch-deck__section">
+                <h3 class="pitch-deck__section-title">${escapeHtml(feel.title)}</h3>
+                ${paras}
+            </section>`;
+}
+
 function pitchMdToHtml(md) {
   md = stripMdArtifacts(md);
   const lines = md.split('\n');
@@ -146,19 +183,26 @@ function pitchMdToHtml(md) {
 
   const settingTitle = /^\*\*The Setting\*\*/m.test(md) ? 'The Setting' : "L'Univers";
   const themesTitle = /^\*\*Themes\*\*/m.test(md) ? 'Themes' : 'Thématiques';
-  const systemTitle =
-    md.match(/^\*\*(Le Système Discordant|The Discording System)\*\*/m)?.[1] || 'System';
+  const systemHeadingRe =
+    /^\*\*((?:Le Système Discordant|The Discording System)(?:\s*\([^)]*\))?)\*\*/m;
+  const systemTitle = md.match(systemHeadingRe)?.[1] || 'System';
 
   const themesHtml = themesTableToHtml(md);
 
   const systemIntro = extractBetween(
     md,
-    [/^\*\*Le Système Discordant\*\*|^\*\*The Discording System\*\*/],
+    [/^\*\*(?:Le Système Discordant|The Discording System)(?:\s*\([^)]*\))?\*\*/],
     [/^\*\*Cinq piliers|^\*\*Five mechanical pillars/]
   );
   const philosophyPara = systemIntro
-    .replace(/^\*\*Le Système Discordant\*\*|^\*\*The Discording System\*\*/m, '')
+    .replace(/^\*\*(?:Le Système Discordant|The Discording System)(?:\s*\([^)]*\))?\*\*/m, '')
     .trim();
+  const philosophyParas = philosophyPara
+    .split(/\n\n+/)
+    .map((p) => p.trim())
+    .filter(Boolean)
+    .map((p) => `<p>${mdBlockToHtml(p)}</p>`)
+    .join('\n                ');
   const pillarsLabel = /Five mechanical pillars/i.test(md)
     ? 'Five mechanical pillars:'
     : 'Cinq piliers mécaniques :';
@@ -199,9 +243,10 @@ function pitchMdToHtml(md) {
         </article>
 
         <article class="pitch-deck__page pitch-deck__page--verso">
+            ${gamefeelSectionHtml(md)}
             <section class="pitch-deck__section">
                 <h3 class="pitch-deck__section-title">${escapeHtml(systemTitle)}</h3>
-                <p>${mdBlockToHtml(philosophyPara)}</p>
+                ${philosophyParas}
                 <p><strong>${escapeHtml(pillarsLabel.replace(':', ''))}</strong></p>
                 <ul class="pitch-deck__pillars">
                     ${pillarsHtml}

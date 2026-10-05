@@ -1,5 +1,5 @@
 import { elements, state, TAB_ORDER } from './context';
-import { ensureFirstSubTabActive } from './subtabs';
+import { clearMainNavSubmenu, ensureFirstSubTabActive } from './subtabs';
 import { setLanguage } from './language';
 
 let logoBurstTimeout: ReturnType<typeof setTimeout> | null = null;
@@ -141,6 +141,7 @@ export function switchTab(tabId: string, options?: { skipScrollToTop?: boolean; 
     if (targetContent) {
         targetContent.classList.add('active');
         state.currentTab = tabId;
+        clearMainNavSubmenu();
         if (!skipScrollToTop) {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }

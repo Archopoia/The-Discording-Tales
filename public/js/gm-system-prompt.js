@@ -156,7 +156,7 @@
     }
 
     function getLangInstruction(lang) {
-        if (lang && lang.toLowerCase() === 'en') return '**Language**: You MUST respond ENTIRELY in English. Refer to the game as "The Discording Tales" (not "Des Récits Discordants"). When quoting or paraphrasing from the rules/lore, TRANSLATE the content into English  -  do NOT paste French quotes directly. The only French words allowed are proper nouns (character names, place names like Iäoduneï, Hael, Féos), people names (Yômmes, Yôrres, Bêstres, Aristois, etc.), and competence names in brackets (e.g. Roll [Grimpe]).\n\n';
+        if (lang && lang.toLowerCase() === 'en') return '**Language**: You MUST respond ENTIRELY in English. Refer to the game as "The Discording Tales" (not "Des Récits Discordants"). When quoting or paraphrasing from the rules/lore, TRANSLATE the content into English  -  do NOT paste French quotes directly. The only French words allowed are proper nouns (character names, place names like Iäoduneï, Hael, Féos), people names (Yômmes, Yôrres, Bêstres, Aristois, etc.), and competence names in brackets (e.g. Roll [Grimpe]). Translate the role name Éveilleur as Awakener (plural: Awakeners). Never write Éveilleur in an English reply.\n\n';
         if (lang && lang.toLowerCase() === 'fr') return '**Langue** : Réponds en français. Tout le récit, les descriptions et les dialogues doivent être en français.\n\n';
         return '';
     }
@@ -166,14 +166,21 @@
      * @param {Object} opts - { characterSnapshot, gameState, rulesOnly, lang, compact }
      * compact: true → use short LORE_SUMMARY only (for in-browser LLM with small context window).
      */
+    function withEnglishRoleNames(text) {
+        return text.replace(/Éveilleurs/g, 'Awakeners').replace(/Éveilleur/g, 'Awakener');
+    }
+
     function buildChatSystemPrompt(opts) {
         opts = opts || {};
+        var isEn = opts.lang && opts.lang.toLowerCase() === 'en';
         var langInstr = getLangInstruction(opts.lang);
         var rulesOnlyBlock = formatRulesOnlyBlurb(opts.rulesOnly);
         var charBlock = formatCharacterBlurb(opts.characterSnapshot);
         var gameStateBlock = formatGameState(opts.gameState);
+        var instructions = isEn ? withEnglishRoleNames(GM_INSTRUCTIONS) : GM_INSTRUCTIONS;
         var rules = opts.compact ? getCompactRulesBlock() : getRulesBlock();
-        return (langInstr + GM_INSTRUCTIONS + '\n\n' + GM_MECHANICS_REFERENCE + '\n\n' + rulesOnlyBlock + '---\n\nRules and lore (use only these):\n\n' + rules + '\n\nBase your response on the rules and lore above. Do not add external facts.\n\n' + charBlock + gameStateBlock).trim();
+        if (isEn && opts.compact) rules = withEnglishRoleNames(rules);
+        return (langInstr + instructions + '\n\n' + GM_MECHANICS_REFERENCE + '\n\n' + rulesOnlyBlock + '---\n\nRules and lore (use only these):\n\n' + rules + '\n\nBase your response on the rules and lore above. Do not add external facts.\n\n' + charBlock + gameStateBlock).trim();
     }
 
     /**
@@ -183,9 +190,12 @@
      */
     function buildCreationSystemPrompt(opts) {
         opts = opts || {};
+        var isEn = opts.lang && opts.lang.toLowerCase() === 'en';
         var langInstr = getLangInstruction(opts.lang);
+        var creation = isEn ? withEnglishRoleNames(GM_CREATION_PROMPT) : GM_CREATION_PROMPT;
         var rules = opts.compact ? getCompactRulesBlock() : getRulesBlock();
-        return (langInstr + GM_CREATION_PROMPT + '\n\n---\n\nRules (character creation):\n\n' + rules).trim();
+        if (isEn && opts.compact) rules = withEnglishRoleNames(rules);
+        return (langInstr + creation + '\n\n---\n\nRules (character creation):\n\n' + rules).trim();
     }
 
     window.GM_SYSTEM_PROMPT = {

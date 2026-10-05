@@ -7,7 +7,7 @@ import { carouselStates } from './context';
 // ========================================
 export function initGalleriesCycling() {
     const slot = document.getElementById('galleries-cycling-slot');
-    if (!slot) return;
+    if (!slot || slot.classList.contains('is-parked')) return;
     const panels = slot.querySelectorAll('.gallery-panel');
     if (panels.length === 0) return;
 

@@ -69,7 +69,7 @@
         if (stepName === 'handoff') {
             return isFr
                 ? "Le reste de votre personnage (attributs de base du Peuple + individuation +2,+1,0,0,0,0,-1,-2, 3 à 5 compétences à révéler, 10 dés à répartir) se fait sur la feuille de personnage ci-dessous. Complétez les étapes là, puis vous pourrez discuter avec l'Éveilleur."
-                : "The rest of your character (People base attributes + individuation +2,+1,0,0,0,0,-1,-2, 3 to 5 competences to reveal, 10 dice to assign) is to be done on the character sheet below. Complete the steps there; then you can chat with the Éveilleur.";
+                : "The rest of your character (People base attributes + individuation +2,+1,0,0,0,0,-1,-2, 3 to 5 competences to reveal, 10 dice to assign) is to be done on the character sheet below. Complete the steps there; then you can chat with the Awakener.";
         }
         return '';
     }
@@ -111,7 +111,7 @@
 
     /** In-world phrases shown while waiting for the GM (streaming or not). */
     const THINKING_PHRASES_EN = [
-        'The Éveilleur weighs the threads…',
+        'The Awakener weighs the threads…',
         'Consulting the Rils…',
         'The tale stirs…'
     ];
@@ -123,7 +123,7 @@
 
     /** DRD-themed phrases for model loading; always shown with "… X%". */
     const LOADING_PHRASES_EN = [
-        "The Éveilleur weighs the threads…",
+        "The Awakener weighs the threads…",
         "The Rils align…",
         "The cords braid…",
         "The tale stirs awake…",
@@ -796,7 +796,7 @@
         if (!container) return;
         var lang = getLang();
         var youLabel = lang === 'fr' ? 'Toi' : 'You';
-        var gmLabel = lang === 'fr' ? 'Éveilleur' : 'GM';
+        var gmLabel = lang === 'fr' ? 'Éveilleur' : 'Awakener';
         // When only streaming content changes, update the streaming bubble in place (no full re-render) so words appear smoothly.
         if (typeof streamingContent === 'string') {
             var existingStream = container.querySelector('.gm-msg-streaming');
@@ -1580,7 +1580,7 @@
             radioApi.name = 'gm-chat-mode';
             radioApi.value = 'api';
             radioApi.checked = !useTestMode;
-            radioApi.setAttribute('aria-label', getLang() === 'fr' ? 'Tchat avec l\'Éveilleur (API)' : 'Chat with Éveilleur (API)');
+            radioApi.setAttribute('aria-label', getLang() === 'fr' ? 'Tchat avec l\'Éveilleur (API)' : 'Chat with the Awakener (API)');
             var radioTest = document.createElement('input');
             radioTest.type = 'radio';
             radioTest.name = 'gm-chat-mode';
@@ -1713,7 +1713,7 @@
             var isFr = getLang() === 'fr';
             var readyMsg = isFr
                 ? "Votre personnage est prêt. Vous pouvez maintenant discuter avec l'Éveilleur et lancer la simulation."
-                : "Your character is ready. You can now chat with the Éveilleur and start the simulation.";
+                : "Your character is ready. You can now chat with the Awakener and start the simulation.";
             messages.push({ role: 'assistant', content: readyMsg });
             saveMessages();
             renderMessages(container);
@@ -2009,7 +2009,7 @@
         if (!container) return;
         var lang = getLang();
         var youLabel = lang === 'fr' ? 'Toi' : 'You';
-        var gmLabel = lang === 'fr' ? 'Éveilleur' : 'GM';
+        var gmLabel = lang === 'fr' ? 'Éveilleur' : 'Awakener';
 
         /* Streaming update (just patch the existing bubble) */
         if (typeof streamingContent === 'string') {

@@ -40,7 +40,8 @@ function setStackedInnerPanels(rootId: string, innerId: string, panelClass: stri
 var WORLD_HREF_TO_INNER = {
     '#peoples': 'peoples-peoples',
     '#map': 'map',
-    '#universe-lore': 'universe-lore'
+    '#universe-lore': 'universe-lore',
+    '#gallery': 'world-gallery'
 };
 
 var TABLETOP_HREF_TO_INNER = {
@@ -245,6 +246,25 @@ export function initSubTabs() {
     // Set first subtab active when main tab is shown (handled in switchTab)
 }
 
+export function clearMainNavSubmenu() {
+    document.querySelectorAll('.menu-sub-link').forEach(function(link) {
+        link.classList.remove('active');
+        link.removeAttribute('aria-current');
+    });
+}
+
+export function syncMainNavSubmenu(tabId: string, subId: string) {
+    document.querySelectorAll('.menu-sub-link').forEach(function(link) {
+        var on = link.getAttribute('data-tab') === tabId && link.getAttribute('data-subtab') === subId;
+        link.classList.toggle('active', !!on);
+        if (on) {
+            link.setAttribute('aria-current', 'page');
+        } else {
+            link.removeAttribute('aria-current');
+        }
+    });
+}
+
 export function switchSubTab(tabId: string, subId: string, universInnerOverride?: string) {
     const tabContent = document.getElementById(tabId);
     if (!tabContent) return;
@@ -271,6 +291,8 @@ export function switchSubTab(tabId: string, subId: string, universInnerOverride?
     }
     // Re-apply current language so all [data-en][data-fr] in newly visible panel are correct
     setLanguage(state.currentLang);
+
+    syncMainNavSubmenu(tabId, subId);
 
     if (tabId === 'about') {
         doubleRaf(function () {

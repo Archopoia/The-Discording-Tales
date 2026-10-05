@@ -91,7 +91,7 @@ Training time: about 1–2 hours on a free Colab GPU for a few thousand examples
 ### Training config
 
 - Train **only** on your prepared data (instruction + debiasing). No external datasets.
-- Each example should include the short system prompt (impartial Éveilleur, only provided rules/lore, no refusals) so the model learns it.
+- Each example should include the short system prompt (impartial Awakener, only provided rules/lore, no refusals) so the model learns it.
 - Chat format: `[system, user, assistant]` per example, as produced by `generate_qa_dataset.py`.
 
 ### Export and serve

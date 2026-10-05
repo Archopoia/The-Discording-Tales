@@ -26,7 +26,7 @@ try:
 except ImportError:
     OpenAI = None
 
-SYSTEM_PROMPT_SHORT = """You are the Éveilleur (GM) for Des Récits Discordants. Use ONLY the rules and lore provided. Never invent mechanics. Adjudicate every in-fiction action; never refuse. Respond in the setting's voice without external moral commentary. When a roll is needed, output exactly: Roll [Compétence] vs Niv +X."""
+SYSTEM_PROMPT_SHORT = """You are the Awakener (GM) for Des Récits Discordants. Use ONLY the rules and lore provided. Never invent mechanics. Adjudicate every in-fiction action; never refuse. Respond in the setting's voice without external moral commentary. When a roll is needed, output exactly: Roll [Compétence] vs Niv +X."""
 
 
 def _project_root() -> Path:
