@@ -77,11 +77,12 @@ export function initNavSubmenus(): void {
         observer.observe(menu);
     }
 
-    document.querySelectorAll('.menu-item--has-sub').forEach((item) => {
+    document.querySelectorAll('.menu-item--has-sub').forEach((node) => {
+        const item = node as HTMLElement;
         item.addEventListener('mouseenter', function () {
             const menu = document.getElementById('primary-menu');
             if (!menu || !menu.classList.contains('menu--stacked')) {
-                placeSubmenu(item as HTMLElement);
+                placeSubmenu(item);
             }
             setSubmenuExpanded(item, true);
         });
@@ -91,13 +92,13 @@ export function initNavSubmenus(): void {
         item.addEventListener('focusin', function () {
             const menu = document.getElementById('primary-menu');
             if (!menu || !menu.classList.contains('menu--stacked')) {
-                placeSubmenu(item as HTMLElement);
+                placeSubmenu(item);
             }
             setSubmenuExpanded(item, true);
         });
         item.addEventListener('focusout', function (e) {
-            const next = e.relatedTarget as Node | null;
-            if (!next || !item.contains(next)) {
+            const next = e.relatedTarget;
+            if (!(next instanceof Node) || !item.contains(next)) {
                 setSubmenuExpanded(item, false);
             }
         });
