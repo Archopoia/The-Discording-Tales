@@ -51,12 +51,21 @@ var TABLETOP_HREF_TO_INNER = {
     '#chatbot': 'chatbot'
 };
 
+var VIDEOGAME_HREF_TO_INNER = {
+    '#videogame': 'videogame-teaser',
+    '#pillars': 'videogame-pillars'
+};
+
 export function syncUniversMondeSublinkActive(innerId: string | null) {
     syncNestedSublinkActive('.univers-monde-in-page-nav', 'a.univers-monde-sublink', WORLD_HREF_TO_INNER, innerId);
 }
 
 export function syncUniversTabletopSublinkActive(innerId: string | null) {
     syncNestedSublinkActive('.univers-tabletop-in-page-nav', 'a.univers-tabletop-sublink', TABLETOP_HREF_TO_INNER, innerId);
+}
+
+export function syncUniversVideogameSublinkActive(innerId: string | null) {
+    syncNestedSublinkActive('.univers-videogame-in-page-nav', 'a.univers-videogame-sublink', VIDEOGAME_HREF_TO_INNER, innerId);
 }
 
 export function setUniversWorldInner(innerId: string) {
@@ -67,6 +76,16 @@ export function setUniversWorldInner(innerId: string) {
 export function setUniversTabletopInner(innerId: string) {
     setStackedInnerPanels('tabletop', innerId, 'univers-tabletop-panel');
     syncUniversTabletopSublinkActive(innerId);
+}
+
+export function setUniversVideogameInner(innerId: string) {
+    syncUniversVideogameSublinkActive(innerId);
+    var el = document.getElementById(innerId);
+    if (!el) return;
+    doubleRaf(function () {
+        var smooth = !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+        el.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
+    });
 }
 
 export function initMapPanZoom() {
@@ -282,12 +301,19 @@ export function switchSubTab(tabId: string, subId: string, universInnerOverride?
     if (tabId === 'univers' && subId === 'peoples') {
         setUniversWorldInner(universInnerOverride || 'peoples-peoples');
         syncUniversTabletopSublinkActive(null);
+        syncUniversVideogameSublinkActive(null);
     } else if (tabId === 'univers' && subId === 'tabletop') {
         setUniversTabletopInner(universInnerOverride || 'tabletop-rules');
         syncUniversMondeSublinkActive(null);
+        syncUniversVideogameSublinkActive(null);
+    } else if (tabId === 'univers' && subId === 'videogame') {
+        setUniversVideogameInner(universInnerOverride || 'videogame-teaser');
+        syncUniversMondeSublinkActive(null);
+        syncUniversTabletopSublinkActive(null);
     } else if (tabId === 'univers') {
         syncUniversMondeSublinkActive(null);
         syncUniversTabletopSublinkActive(null);
+        syncUniversVideogameSublinkActive(null);
     }
     // Re-apply current language so all [data-en][data-fr] in newly visible panel are correct
     setLanguage(state.currentLang);

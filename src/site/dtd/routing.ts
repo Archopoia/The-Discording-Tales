@@ -51,12 +51,18 @@ const TABLETOP_INNER: Record<string, string> = {
     chatbot: 'chatbot',
 };
 
+const VIDEOGAME_INNER: Record<string, string> = {
+    videogame: 'videogame-teaser',
+    pillars: 'videogame-pillars',
+};
+
 const TABLETOP_PLAY_BUNDLES = new Set(['sheet', 'chatbot']);
 
 const NESTED_LINK_FRAGS: Record<string, string[]> = {
     'univers-nav-main-link': ['peoples', 'videogame', 'tabletop'],
     'univers-monde-sublink': ['peoples', 'map', 'universe-lore', 'gallery'],
     'univers-tabletop-sublink': ['tabletop', 'zine', 'sheet', 'chatbot'],
+    'univers-videogame-sublink': ['videogame', 'pillars'],
 };
 
 export function handleHashChange(): void {
@@ -81,9 +87,9 @@ export function handleHashChange(): void {
 
     const hash = rawHash;
 
-    if (hash === 'videogame') {
+    if (VIDEOGAME_INNER[hash]) {
         switchTab('univers', { skipScrollToTop: true, skipEnsureSubTab: true });
-        switchSubTab('univers', 'videogame');
+        switchSubTab('univers', 'videogame', VIDEOGAME_INNER[hash]);
         return;
     }
     if (WORLD_INNER[hash]) {
@@ -149,6 +155,8 @@ export function initUniversMondeSidebarLinks(): void {
                 allowed = NESTED_LINK_FRAGS['univers-monde-sublink'];
             } else if (a.classList.contains('univers-tabletop-sublink')) {
                 allowed = NESTED_LINK_FRAGS['univers-tabletop-sublink'];
+            } else if (a.classList.contains('univers-videogame-sublink')) {
+                allowed = NESTED_LINK_FRAGS['univers-videogame-sublink'];
             }
             if (!allowed) return;
             const frag = fragmentFromMondeLink(a);

@@ -2141,6 +2141,7 @@
 }
 
 #univers .univers-sidebar-nav .univers-monde-in-page-nav,
+#univers .univers-sidebar-nav .univers-videogame-in-page-nav,
 #univers .univers-sidebar-nav .univers-tabletop-in-page-nav {
     margin-top: 0.15rem;
     margin-bottom: var(--spacing-sm);
@@ -2427,6 +2428,15 @@
     }
 }
 
+/* Universe > Videogame: Teaser then Pillars, one after the other. Side links only scroll. */
+#videogame .univers-videogame-panel {
+    scroll-margin-top: 5.5rem;
+}
+
+#videogame .univers-videogame-panel + .univers-videogame-panel {
+    margin-top: var(--spacing-xl);
+}
+
 /* Universe > Tabletop: Rules / Zine / Sheet / Chatbot (display swap; zine is far taller than rules) */
 #tabletop .univers-tabletop-panel {
     display: none;
@@ -2619,12 +2629,12 @@
     counter-reset: vg-step;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: none;
+    align-items: stretch;
+    width: fit-content;
+    max-width: 100%;
     aspect-ratio: auto;
     position: static;
-    margin: 1rem 0 0.35rem;
+    margin: 1rem auto 0.35rem;
     padding: 0;
     list-style: none;
     text-align: center;
@@ -2640,26 +2650,51 @@
     position: static;
     left: auto;
     top: auto;
+    display: flex;
     width: 100%;
     max-width: none;
-    margin: 0.12rem 0;
+    margin: 0.35rem 0;
     transform: none;
     text-align: center;
     counter-increment: vg-step;
 }
 
 #videogame .vg-cycle li span {
-    display: inline;
-    max-width: none;
-    width: auto;
-    padding: 0;
-    border: none;
-    border-radius: 0;
-    background: none;
-    box-shadow: none;
+    display: block;
+    flex: 1 1 auto;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0.55rem 1.15rem;
+    border: 1px solid rgba(232, 221, 208, 0.45);
+    border-radius: var(--radius-sm);
+    background: rgba(232, 221, 208, 0.08);
+    box-shadow: inset 0 1px 0 rgba(255, 248, 232, 0.12);
     color: var(--tdt-beige-warm);
-    font-size: inherit;
-    line-height: 1.6;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    line-height: 1.35;
+    text-align: center;
+    cursor: default;
+    transition: color var(--transition-normal), background var(--transition-normal), box-shadow var(--transition-normal), text-shadow var(--transition-normal), transform var(--transition-normal);
+}
+
+#videogame .vg-cycle li span:hover {
+    color: var(--tdt-cream);
+    background:
+        linear-gradient(135deg, rgba(232, 221, 208, 0.3), rgba(245, 230, 196, 0.2)),
+        rgba(232, 221, 208, 0.15);
+    box-shadow:
+        0 0 20px rgba(232, 221, 208, 0.5),
+        0 0 40px rgba(245, 230, 196, 0.3),
+        inset 0 1px 2px rgba(255, 248, 232, 0.4),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.2);
+    text-shadow:
+        0 0 8px rgba(255, 248, 232, 0.6),
+        0 0 16px rgba(245, 230, 196, 0.4),
+        2px 2px 4px rgba(0, 0, 0, 0.3);
+    transform: translateY(-1px);
 }
 
 #videogame .vg-cycle li span::before {
@@ -2697,7 +2732,7 @@
 }
 
 .vg-pillars-list li {
-    margin: 0 0 0.75rem;
+    margin: 0;
     color: var(--tdt-beige-warm);
     line-height: 1.45;
     font-size: 0.95rem;
@@ -2712,6 +2747,99 @@
     color: var(--tdt-cream);
     font-size: 0.98rem;
     margin-bottom: 0.12rem;
+}
+
+/* Each pillar is a card. Hover turns it over to the inspirations, and leaving turns it back. */
+.vg-pillar-flip,
+.vg-pillar-static {
+    margin: 0 0 0.85rem;
+}
+
+.vg-pillar-flip {
+    perspective: 1100px;
+    cursor: pointer;
+}
+
+.vg-pillar-flip:focus {
+    outline: none;
+}
+
+.vg-pillar-flip:focus-visible {
+    outline: 2px solid var(--tdt-mint);
+    outline-offset: 3px;
+    border-radius: 0.7rem;
+}
+
+.vg-pillar-flip-inner {
+    display: grid;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.vg-pillar-flip:hover .vg-pillar-flip-inner,
+.vg-pillar-flip:focus-within .vg-pillar-flip-inner {
+    transform: rotateY(180deg);
+}
+
+.vg-pillar-face {
+    grid-area: 1 / 1;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border: 1px solid var(--tdt-burgundy-warm);
+    border-radius: 0.65rem;
+    padding: 0.7rem 0.75rem 0.8rem;
+    background: linear-gradient(135deg, var(--tdt-beige-lighter) 0%, var(--tdt-beige-warm) 55%, var(--tdt-beige-light) 100%);
+}
+
+.vg-pillar-face strong {
+    color: #2a0f0f;
+    font-style: normal;
+}
+
+.vg-pillar-face p {
+    color: #000000;
+    font-style: italic;
+}
+
+.vg-pillar-front {
+    transform: rotateY(0deg);
+}
+
+.vg-pillar-front p,
+.vg-pillar-static .vg-pillar-face p {
+    margin: 0;
+}
+
+.vg-pillar-back {
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.45rem;
+    text-align: center;
+    background: rgba(74, 24, 24, 0.88);
+    border-color: rgba(217, 205, 184, 0.28);
+}
+
+.vg-pillar-back strong {
+    color: var(--tdt-cream);
+}
+
+.vg-pillar-refs {
+    margin: 0;
+    color: #000000;
+    line-height: 1.55;
+}
+
+.vg-pillar-back .vg-pillar-refs {
+    color: var(--tdt-beige-warm);
+    font-weight: 500;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .vg-pillar-flip-inner {
+        transition-duration: 0.01ms;
+    }
 }
 
 @media screen and (max-width: 800px) {
@@ -5936,7 +6064,8 @@ body.tdt-peoples-portrait-lightbox-open {
     }
     
     .tab-link:hover,
-    .decorated-card:hover {
+    .decorated-card:hover,
+    #videogame .vg-cycle li span:hover {
         transform: none;
     }
 }

@@ -593,6 +593,10 @@
                         <li><a href="#gallery" class="system-overview-nav-link univers-monde-sublink" data-en="Gallery" data-fr="Galerie">Gallery</a></li>
                     </ul>
                     <a href="#videogame" class="tab-sub-nav-link univers-nav-main-link" {{i18n:nav.univers.videogame}}>Videogame</a>
+                    <ul class="system-overview-nav-list univers-videogame-in-page-nav" aria-label="Videogame sections">
+                        <li><a href="#videogame" class="system-overview-nav-link univers-videogame-sublink" {{i18n:nav.univers.videogame.teaser}}>Teaser</a></li>
+                        <li><a href="#pillars" class="system-overview-nav-link univers-videogame-sublink" {{i18n:nav.univers.videogame.pillars}}>Pillars</a></li>
+                    </ul>
                     <a href="#tabletop" class="tab-sub-nav-link univers-nav-main-link" {{i18n:nav.univers.tabletop}}>Tabletop</a>
                     <ul class="system-overview-nav-list univers-tabletop-in-page-nav" aria-label="Tabletop sections">
                         <li><a href="#tabletop" class="system-overview-nav-link univers-tabletop-sublink" {{i18n:nav.univers.tabletop.rules}}>Rules</a></li>
@@ -747,6 +751,7 @@
             
             <!-- Videogame teaser -->
             <div class="lore-section tab-sub-panel" id="videogame" data-subtab="videogame">
+                <div class="univers-videogame-panel univers-videogame-panel--active" id="videogame-teaser">
                 <article class="videogame-teaser">
                     <div class="videogame-teaser-stage" {{i18n-aria:videogame.teaser.stage_aria}} aria-label="In-game teaser, game in development">
                         <div class="videogame-teaser-stage-frame">
@@ -775,6 +780,8 @@
                         <p class="outpost-legal" data-en='Your address is kept only so we can write when Kickstarter opens. You can ask us to delete it at any time. <span class="outpost-legal-links"><a href="privacy/index.html">Privacy</a> · <a href="impressum/index.html">Impressum</a></span>' data-fr='Votre adresse est conservée uniquement pour vous écrire à l&#39;ouverture de Kickstarter. Vous pouvez en demander la suppression à tout moment. <span class="outpost-legal-links"><a href="privacy/index.html">Confidentialité</a> · <a href="impressum/index.html">Mentions légales</a></span>'>Your address is kept only so we can write when Kickstarter opens. You can ask us to delete it at any time. <span class="outpost-legal-links"><a href="privacy/index.html">Privacy</a> · <a href="impressum/index.html">Impressum</a></span></p>
                     </section>
                 </article>
+                </div>
+                <div class="univers-videogame-panel" id="videogame-pillars">
                 <section class="vg-pillars" aria-labelledby="vg-pillars-heading">
                     <div class="vg-above-pillars">
                         <p class="vg-above-lead" {{i18n:videogame.above_lead}}>Create an Action-RPG immersive sim on a compact area but of extreme systemic density, where everything is visible from the start or almost, but nothing is accessible without a progressive understanding of the physical, environmental and social systems. The player returns constantly to the same spaces - and each new tool or understanding transforms how they explore a place they thought they knew (access, perception, factions, dangers).</p>
@@ -793,33 +800,166 @@
                     <div class="vg-pillars-grid">
                         <section class="vg-pillars-col" aria-labelledby="vg-pillars-world">
                             <h4 id="vg-pillars-world" class="vg-pillars-h" {{i18n:videogame.pillars.world_h}}>World</h4>
-                            <ul class="vg-pillars-list" {{i18n:videogame.pillars.world}}>
-                                <li><strong>Brightstrife</strong> Lightful struggle. A utopia of extremes: conflict is the good; apathy and nihilism are the harm.</li>
-                                <li><strong>Life-affirming</strong> Life beautiful despite everything. A 'yes' to creation and strength. Suffering as the ground of the triumphant.</li>
-                                <li><strong>Ethno-science-fantasy</strong> Exoticism where poetry, darkness and humour mingle. Strange customs, anatomies, morals - odious, dangerous or ridiculous - always foreign, ungraspable. Everyone comes from elsewhere.</li>
-                                <li><strong>Golden Ages Rush</strong> Not a mourning of lost glories, nor a post-apocalypse. The imminent dawn of a Golden Age: wishes sown, about to burgeon.</li>
+                            <ul class="vg-pillars-list">
+                                <li class="vg-pillar-flip" tabindex="0">
+                                    <div class="vg-pillar-flip-inner">
+                                        <div class="vg-pillar-face vg-pillar-front">
+                                            <strong {{i18n:videogame.pillars.bright_h}}>Brightstrife</strong>
+                                            <p {{i18n:videogame.pillars.bright_p}}>Lightful struggle. A utopia of extremes: conflict is the good; apathy and nihilism are the harm.</p>
+                                        </div>
+                                        <div class="vg-pillar-face vg-pillar-back">
+                                            <strong {{i18n:videogame.pillars.bright_h}}>Brightstrife</strong>
+                                            <p class="vg-pillar-refs" {{i18n:videogame.pillars.bright_refs}}>The Discording Tales</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="vg-pillar-flip" tabindex="0">
+                                    <div class="vg-pillar-flip-inner">
+                                        <div class="vg-pillar-face vg-pillar-front">
+                                            <strong {{i18n:videogame.pillars.life_h}}>Life-affirming</strong>
+                                            <p {{i18n:videogame.pillars.life_p}}>Life beautiful despite everything. A 'yes' to creation and strength. Suffering as the ground of the triumphant.</p>
+                                        </div>
+                                        <div class="vg-pillar-face vg-pillar-back">
+                                            <strong {{i18n:videogame.pillars.life_h}}>Life-affirming</strong>
+                                            <p class="vg-pillar-refs" {{i18n:videogame.pillars.life_refs}}>F. Nietzsche's 'Thus spoke Zarathustra'<br>Monster Hunter<br>Ghibli movies (somewhat)</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="vg-pillar-flip" tabindex="0">
+                                    <div class="vg-pillar-flip-inner">
+                                        <div class="vg-pillar-face vg-pillar-front">
+                                            <strong {{i18n:videogame.pillars.ethno_h}}>Ethno-science-fantasy</strong>
+                                            <p {{i18n:videogame.pillars.ethno_p}}>Exoticism where poetry, darkness and humour mingle. Strange customs, anatomies, morals - odious, dangerous or ridiculous - always foreign, ungraspable. Everyone comes from elsewhere.</p>
+                                        </div>
+                                        <div class="vg-pillar-face vg-pillar-back">
+                                            <strong {{i18n:videogame.pillars.ethno_h}}>Ethno-science-fantasy</strong>
+                                            <p class="vg-pillar-refs" {{i18n:videogame.pillars.ethno_refs}}>J. Vance's 'Planet of Adventure'<br>Talislanta TTRPG<br>Tatooine's cantina</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="vg-pillar-flip" tabindex="0">
+                                    <div class="vg-pillar-flip-inner">
+                                        <div class="vg-pillar-face vg-pillar-front">
+                                            <strong {{i18n:videogame.pillars.golden_h}}>Golden Ages Rush</strong>
+                                            <p {{i18n:videogame.pillars.golden_p}}>Not a mourning of lost glories, nor a post-apocalypse. The imminent dawn of a Golden Age: wishes sown, about to burgeon.</p>
+                                        </div>
+                                        <div class="vg-pillar-face vg-pillar-back">
+                                            <strong {{i18n:videogame.pillars.golden_h}}>Golden Ages Rush</strong>
+                                            <p class="vg-pillar-refs" {{i18n:videogame.pillars.golden_refs}}>The Discording Tales<br>Ancient mythical realms<br>The Renaissance</p>
+                                        </div>
+                                    </div>
+                                </li>
                             </ul>
                         </section>
                         <section class="vg-pillars-col vg-pillars-col--look" aria-labelledby="vg-pillars-look">
                             <h4 id="vg-pillars-look" class="vg-pillars-h" {{i18n:videogame.pillars.look_h}}>Look</h4>
-                            <ul class="vg-pillars-list" {{i18n:videogame.pillars.look}}>
-                                <li><strong>(New) Weird</strong> Reality's complexity as foundation. The familiar - ghosts, vampires - radically reinterpreted to embody the uncanny again.</li>
-                                <li><strong>Baroque</strong> Vivid colours and intricate detail; architectural grandeur and animistic vibrancy. Every expression and landscape amplified.</li>
-                                <li><strong>Mystical</strong> The mundane is divine; nature is magical. Ordinary actions intersect with supernatural forces; the common becomes extraordinary.</li>
-                                <li><strong>Eutechnical</strong> Technology that strengthens body and mind without dependence - the physical improvement of life. Animals as technology, by nature or by craft.</li>
+                            <ul class="vg-pillars-list">
+                                <li class="vg-pillar-flip" tabindex="0">
+                                    <div class="vg-pillar-flip-inner">
+                                        <div class="vg-pillar-face vg-pillar-front">
+                                            <strong {{i18n:videogame.pillars.weird_h}}>(New) Weird</strong>
+                                            <p {{i18n:videogame.pillars.weird_p}}>Reality's complexity as foundation. The familiar - ghosts, vampires - radically reinterpreted to embody the uncanny again.</p>
+                                        </div>
+                                        <div class="vg-pillar-face vg-pillar-back">
+                                            <strong {{i18n:videogame.pillars.weird_h}}>(New) Weird</strong>
+                                            <p class="vg-pillar-refs" {{i18n:videogame.pillars.weird_refs}}>Dishonored<br>Dark Sun<br>Arx Fatalis</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="vg-pillar-flip" tabindex="0">
+                                    <div class="vg-pillar-flip-inner">
+                                        <div class="vg-pillar-face vg-pillar-front">
+                                            <strong {{i18n:videogame.pillars.baroque_h}}>Baroque</strong>
+                                            <p {{i18n:videogame.pillars.baroque_p}}>Vivid colours and intricate detail; architectural grandeur and animistic vibrancy. Every expression and landscape amplified.</p>
+                                        </div>
+                                        <div class="vg-pillar-face vg-pillar-back">
+                                            <strong {{i18n:videogame.pillars.baroque_h}}>Baroque</strong>
+                                            <p class="vg-pillar-refs" {{i18n:videogame.pillars.baroque_refs}}>Caravaggio<br>Star Wars<br>Dark Crystal</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="vg-pillar-flip" tabindex="0">
+                                    <div class="vg-pillar-flip-inner">
+                                        <div class="vg-pillar-face vg-pillar-front">
+                                            <strong {{i18n:videogame.pillars.mystical_h}}>Mystical</strong>
+                                            <p {{i18n:videogame.pillars.mystical_p}}>The mundane is divine; nature is magical. Ordinary actions intersect with supernatural forces; the common becomes extraordinary.</p>
+                                        </div>
+                                        <div class="vg-pillar-face vg-pillar-back">
+                                            <strong {{i18n:videogame.pillars.mystical_h}}>Mystical</strong>
+                                            <p class="vg-pillar-refs" {{i18n:videogame.pillars.mystical_refs}}>TES III : Morrowind<br>Animisms<br>Zelda (Ocarina of Time & Majora's Mask)</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="vg-pillar-flip" tabindex="0">
+                                    <div class="vg-pillar-flip-inner">
+                                        <div class="vg-pillar-face vg-pillar-front">
+                                            <strong {{i18n:videogame.pillars.eutech_h}}>Eutechnical</strong>
+                                            <p {{i18n:videogame.pillars.eutech_p}}>Technology that strengthens body and mind without dependence - the physical improvement of life. Animals as technology, by nature or by craft.</p>
+                                        </div>
+                                        <div class="vg-pillar-face vg-pillar-back">
+                                            <strong {{i18n:videogame.pillars.eutech_h}}>Eutechnical</strong>
+                                            <p class="vg-pillar-refs" {{i18n:videogame.pillars.eutech_refs}}>Astrolabes<br>Final Fantasy IX' mistpunk<br>Anti-terrorist bees or the Skekis' carriage</p>
+                                        </div>
+                                    </div>
+                                </li>
                             </ul>
                         </section>
                         <section class="vg-pillars-col vg-pillars-col--play" aria-labelledby="vg-pillars-play">
                             <h4 id="vg-pillars-play" class="vg-pillars-h" {{i18n:videogame.pillars.play_h}}>Play</h4>
-                            <ul class="vg-pillars-list" {{i18n:videogame.pillars.play}}>
-                                <li><strong>Organic</strong> Places, creatures and objects react by the same rules. The world answers, and keeps changing.</li>
-                                <li><strong>Creativity</strong> Sneak, fight, talk, improvise. No correct way. Your character and your choices set the difficulty.</li>
-                                <li><strong>Consequence</strong> Suffering, tools and the environment force the decision. Skills open actions, and the attempt itself can be felt, as in a shaky aim.</li>
-                                <li><strong>Discovery</strong> Choices change factions, chances and dangers. Every place already shows what it may open later.</li>
+                            <ul class="vg-pillars-list">
+                                <li class="vg-pillar-flip" tabindex="0">
+                                    <div class="vg-pillar-flip-inner">
+                                        <div class="vg-pillar-face vg-pillar-front">
+                                            <strong {{i18n:videogame.pillars.organic_h}}>Organic</strong>
+                                            <p {{i18n:videogame.pillars.organic_p}}>Places, creatures and objects react by the same rules. The world answers, and keeps changing.</p>
+                                        </div>
+                                        <div class="vg-pillar-face vg-pillar-back">
+                                            <strong {{i18n:videogame.pillars.organic_h}}>Organic</strong>
+                                            <p class="vg-pillar-refs" {{i18n:videogame.pillars.organic_refs}}>S.T.A.L.K.E.R.<br>Slugcat<br>Viva Piñata</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="vg-pillar-flip" tabindex="0">
+                                    <div class="vg-pillar-flip-inner">
+                                        <div class="vg-pillar-face vg-pillar-front">
+                                            <strong {{i18n:videogame.pillars.creativity_h}}>Creativity</strong>
+                                            <p {{i18n:videogame.pillars.creativity_p}}>Sneak, fight, talk, improvise. No correct way. Your character and your choices set the difficulty.</p>
+                                        </div>
+                                        <div class="vg-pillar-face vg-pillar-back">
+                                            <strong {{i18n:videogame.pillars.creativity_h}}>Creativity</strong>
+                                            <p class="vg-pillar-refs" {{i18n:videogame.pillars.creativity_refs}}>TES II: Daggerfall<br>Arcanum: OSMO<br>Baldur's Gate</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="vg-pillar-flip" tabindex="0">
+                                    <div class="vg-pillar-flip-inner">
+                                        <div class="vg-pillar-face vg-pillar-front">
+                                            <strong {{i18n:videogame.pillars.consequence_h}}>Consequence</strong>
+                                            <p {{i18n:videogame.pillars.consequence_p}}>Suffering, tools and the environment force the decision. Skills open actions, and the attempt itself can be felt, as in a shaky aim.</p>
+                                        </div>
+                                        <div class="vg-pillar-face vg-pillar-back">
+                                            <strong {{i18n:videogame.pillars.consequence_h}}>Consequence</strong>
+                                            <p class="vg-pillar-refs" {{i18n:videogame.pillars.consequence_refs}}>Ultima Underworld<br>Thief<br>Deus Ex</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="vg-pillar-flip" tabindex="0">
+                                    <div class="vg-pillar-flip-inner">
+                                        <div class="vg-pillar-face vg-pillar-front">
+                                            <strong {{i18n:videogame.pillars.discovery_h}}>Discovery</strong>
+                                            <p {{i18n:videogame.pillars.discovery_p}}>Choices change factions, chances and dangers. Every place already shows what it may open later.</p>
+                                        </div>
+                                        <div class="vg-pillar-face vg-pillar-back">
+                                            <strong {{i18n:videogame.pillars.discovery_h}}>Discovery</strong>
+                                            <p class="vg-pillar-refs" {{i18n:videogame.pillars.discovery_refs}}>Zelda: Ocarina of Time<br>Arx Fatalis<br>Gothic 3</p>
+                                        </div>
+                                    </div>
+                                </li>
                             </ul>
                         </section>
                     </div>
                 </section>
+                </div>
             </div>
 
             <!-- Tabletop: Rules / Zine / Sheet / Chatbot -->
