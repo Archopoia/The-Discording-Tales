@@ -319,3 +319,23 @@ export function initCharacterSheet() {
         });
     }
 }
+
+/* Home: living-RPG block opens Universe > Videogame; tabletop block opens Universe > Tabletop */
+export function initDiscoveryGameLinks() {
+    document.querySelectorAll('a.discovery-unified-game--link').forEach(function(node) {
+        node.addEventListener('click', function(e) {
+            const href = node.getAttribute('href') || '';
+            const frag = href.replace(/^#/, '');
+            if (frag !== 'videogame' && frag !== 'tabletop') return;
+            e.preventDefault();
+            if (history.pushState) {
+                history.pushState(null, '', '#' + frag);
+                window.dispatchEvent(new HashChangeEvent('hashchange'));
+            } else {
+                window.location.hash = frag;
+            }
+            const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+        });
+    });
+}

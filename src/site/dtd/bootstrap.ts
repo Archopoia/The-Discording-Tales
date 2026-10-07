@@ -25,6 +25,7 @@ import {
     initDiscoveryOvalParallax,
     initScrollAnimations,
     initCharacterSheet,
+    initDiscoveryGameLinks,
 } from './landing-extra';
 import { initNewsletter } from './newsletter';
 import { initMenuToggle } from './menu-toggle';
@@ -75,6 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initTabs();
     initNavSubmenus();
     initUniversMondeSidebarLinks();
+    initDiscoveryGameLinks();
     initMenuToggle();
     initPdfDownloadModal();
     initContactModal();

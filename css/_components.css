@@ -155,6 +155,37 @@
     text-align: center;
 }
 
+/* Whole block is a door into Universe: videogame or tabletop */
+.discovery-unified-game--link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.discovery-unified-game--link:hover,
+.discovery-unified-game--link:focus {
+    color: inherit;
+    text-shadow: none;
+}
+
+.discovery-unified-game--link:focus {
+    outline: none;
+}
+
+.discovery-unified-game--link:focus-visible {
+    outline: 2px solid var(--tdt-cream);
+    outline-offset: 4px;
+}
+
+.discovery-unified-game--link:hover,
+.discovery-unified-game--link:focus-visible {
+    background: rgba(212, 197, 168, 0.07);
+    box-shadow: inset 0 0 0 1px rgba(212, 197, 168, 0.35);
+}
+
 .discovery-unified-game .unified-two-columns {
     margin-top: var(--spacing-md);
     text-align: left;
