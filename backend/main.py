@@ -6,6 +6,7 @@ import json
 import logging
 import os
 import re
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -143,6 +144,97 @@ class NewsletterSubscribeRequest(BaseModel):
 
 _NEWSLETTER_EMAIL_RE = re.compile(r"^[^\s@]+@[^\s@]+\.[^\s@]+$")
 _SHEETS_APPEND_SCOPE = "https://www.googleapis.com/auth/spreadsheets"
+# The Outpost form sends this. Anything else is a direct poke at the signup door.
+_NEWSLETTER_ALLOWED_SOURCES = frozenset({"homepage_outpost"})
+# Gmail ignores dots. Four or more in the name is the dotted-junk pattern, not "first.last".
+_DOT_STUFFED_MIN_DOTS = 4
+_SIGNUP_DEDUPE_SECONDS = 600
+_SIGNUP_IP_LIMIT = 8
+_SIGNUP_IP_WINDOW = 600
+_recent_newsletter: dict[str, float] = {}
+_newsletter_ip_hits: dict[str, list[float]] = {}
+
+
+def _gmail_local(email: str) -> str | None:
+    """Name half of a Gmail address, without a +tag. None for any other domain."""
+    local, sep, domain = email.strip().lower().partition("@")
+    if not sep or domain not in {"gmail.com", "googlemail.com"}:
+        return None
+    return local.split("+", 1)[0]
+
+
+def _newsletter_identity(email: str) -> str:
+    """Same inbox key. Gmail dots and +tags collapse so a repeat is one person."""
+    local = _gmail_local(email)
+    if local is not None:
+        return local.replace(".", "") + "@gmail.com"
+    return email.strip().lower()
+
+
+def _is_dot_stuffed_gmail(email: str) -> bool:
+    local = _gmail_local(email)
+    if local is None:
+        return False
+    return local.count(".") >= _DOT_STUFFED_MIN_DOTS
+
+
+def _client_ip(request: Request) -> str:
+    forwarded = (request.headers.get("x-forwarded-for") or "").split(",")[0].strip()
+    if forwarded:
+        return forwarded
+    if request.client and request.client.host:
+        return request.client.host
+    return ""
+
+
+def _prune_newsletter_memory(now: float) -> None:
+    cutoff = now - _SIGNUP_DEDUPE_SECONDS
+    for key, seen_at in list(_recent_newsletter.items()):
+        if seen_at < cutoff:
+            del _recent_newsletter[key]
+    ip_cutoff = now - _SIGNUP_IP_WINDOW
+    for ip_key, hits in list(_newsletter_ip_hits.items()):
+        kept = [t for t in hits if t >= ip_cutoff]
+        if kept:
+            _newsletter_ip_hits[ip_key] = kept
+        else:
+            del _newsletter_ip_hits[ip_key]
+
+
+def _ip_key(client_ip: str) -> str:
+    if not client_ip:
+        return ""
+    return hashlib.sha256(client_ip.encode("utf-8")).hexdigest()[:16]
+
+
+def _newsletter_rate_limited(client_ip: str, now: float) -> bool:
+    """Count this try. True when this place has already knocked too often."""
+    key = _ip_key(client_ip)
+    if not key:
+        return False
+    hits = _newsletter_ip_hits.setdefault(key, [])
+    hits.append(now)
+    return len(hits) > _SIGNUP_IP_LIMIT
+
+
+def _newsletter_drop_reason(email: str, source: str | None, client_ip: str) -> str | None:
+    """Why to answer 'saved' and write nothing. None means store the address."""
+    now = time.monotonic()
+    _prune_newsletter_memory(now)
+    if _newsletter_rate_limited(client_ip, now):
+        return "rate"
+    if (source or "").strip() not in _NEWSLETTER_ALLOWED_SOURCES:
+        return "unknown_source"
+    if _is_dot_stuffed_gmail(email):
+        return "dot_stuffed"
+    seen = _recent_newsletter.get(_newsletter_identity(email))
+    if seen is not None and (now - seen) < _SIGNUP_DEDUPE_SECONDS:
+        return "duplicate"
+    return None
+
+
+def _newsletter_remember(email: str) -> None:
+    _recent_newsletter[_newsletter_identity(email)] = time.monotonic()
 
 
 def _newsletter_configured() -> bool:
@@ -424,7 +516,7 @@ def health():
 
 
 @app.post("/newsletter/subscribe")
-def newsletter_subscribe(req: NewsletterSubscribeRequest):
+def newsletter_subscribe(req: NewsletterSubscribeRequest, request: Request):
     """Store Outpost signup (homepage). Configure Sheets via env, or proxy to a Google Apps Script web app URL."""
     if req.honeypot and str(req.honeypot).strip():
         return {"ok": True}
@@ -434,8 +526,14 @@ def newsletter_subscribe(req: NewsletterSubscribeRequest):
     if not _newsletter_configured():
         log.warning("newsletter/subscribe called but NEWSLETTER_APPS_SCRIPT_URL or GOOGLE_SERVICE_ACCOUNT_JSON+NEWSLETTER_SPREADSHEET_ID is not set")
         return _error_response(503, "Newsletter is temporarily unavailable")
+    drop = _newsletter_drop_reason(email, req.source, _client_ip(request))
+    if drop:
+        # Same answer as a real signup, so a script learns nothing from the reply.
+        log.info("newsletter/subscribe ignored (%s)", drop)
+        return {"ok": True}
     try:
         _store_newsletter_subscription(email, req.lang, req.source)
+        _newsletter_remember(email)
     except json.JSONDecodeError:
         log.exception("Invalid GOOGLE_SERVICE_ACCOUNT_JSON")
         return _error_response(500, "Newsletter storage misconfigured")
