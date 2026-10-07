@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="color-scheme" content="light only"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title id="legal-title" data-en="Impressum | THE DISCORDING TALES" data-fr="Mentions légales | DES RÉCITS DISCORDANTS" data-de="Impressum | THE DISCORDING TALES">Impressum | THE DISCORDING TALES</title>
+    <meta id="legal-desc" name="description" data-en="Who publishes The Discording Tales: name, address, and contact." data-fr="Qui publie Des Récits Discordants : nom, adresse et contact." data-de="Wer The Discording Tales herausgibt: Name, Anschrift und Kontakt." content="Who publishes The Discording Tales: name, address, and contact."/>
+    <meta name="robots" content="index, follow"/>
+    <link rel="canonical" href="https://www.thediscordingtales.com/impressum"/>
+    <link rel="alternate" href="https://www.thediscordingtales.com/impressum" hreflang="en"/>
+    <link rel="alternate" href="https://www.thediscordingtales.com/impressum?lang=fr" hreflang="fr"/>
+    <link rel="alternate" href="https://www.thediscordingtales.com/impressum?lang=de" hreflang="de"/>
+    <link rel="alternate" href="https://www.thediscordingtales.com/impressum" hreflang="x-default"/>
+    <link href="https://www.thediscordingtales.com/dist/main-site.css" rel="stylesheet" type="text/css"/>
+    <meta content="#5a1f1f" name="theme-color"/>
+    <link href="https://www.thediscordingtales.com/assets/icons/favicon-48x48.png" rel="icon" type="image/png" sizes="48x48"/>
+    <link href="https://www.thediscordingtales.com/favicon.ico" rel="icon" sizes="48x48"/>
+    <style>
+        html { scrollbar-width: thin; scrollbar-color: #c9a227 #3a1010; }
+        html::-webkit-scrollbar { display: block; width: 10px; }
+        html::-webkit-scrollbar-thumb { background: #c9a227; }
+        body.legal-page {
+            margin: 0;
+            min-height: 100vh;
+            background: #3a1010;
+            color: #f6edd4;
+            font-family: "Fanwood Text", Georgia, "Times New Roman", serif;
+            line-height: 1.65;
+        }
+        .legal-bar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem 1.25rem;
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid rgba(228, 197, 106, 0.35);
+            background: rgba(0, 0, 0, 0.18);
+        }
+        .legal-home {
+            color: #f6edd4;
+            font-family: Texturina, Georgia, serif;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-decoration: none;
+        }
+        .legal-home:hover, .legal-home:focus-visible { color: #fff8e8; }
+        .legal-langs { display: flex; gap: 0.4rem; }
+        .legal-langs button {
+            min-width: 2.8rem;
+            min-height: 2.4rem;
+            padding: 0.2rem 0.7rem;
+            color: #f6edd4;
+            background: transparent;
+            border: 1px solid rgba(228, 197, 106, 0.45);
+            border-radius: 4px;
+            font: inherit;
+            cursor: pointer;
+        }
+        .legal-langs button[aria-pressed="true"] {
+            color: #3a1010;
+            background: #e4c56a;
+            border-color: #e4c56a;
+        }
+        .legal-langs button:focus-visible { outline: 2px solid #fff8e8; outline-offset: 2px; }
+        [data-lang-block] { display: none; }
+        html:not([data-legal-lang]) [data-lang-block="en"],
+        html[data-legal-lang="en"] [data-lang-block="en"],
+        html[data-legal-lang="fr"] [data-lang-block="fr"],
+        html[data-legal-lang="de"] [data-lang-block="de"] { display: block; }
+        .legal-wrap {
+            max-width: 46rem;
+            margin: 0 auto;
+            padding: 1.75rem 1.25rem 3rem;
+        }
+        .legal-kicker {
+            margin: 0 0 0.35rem;
+            color: #e4c56a;
+            font-size: 0.78rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+        h1 {
+            margin: 0 0 0.4rem;
+            font-family: Texturina, Georgia, serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            line-height: 1.15;
+            font-weight: 700;
+        }
+        .legal-updated { margin: 0 0 1.25rem; color: rgba(246, 237, 212, 0.72); }
+        h2 {
+            margin: 1.6rem 0 0.45rem;
+            font-family: Texturina, Georgia, serif;
+            font-size: 1.35rem;
+            color: #e4c56a;
+        }
+        p { font-size: 1.05rem; }
+        a { color: #f3e2a9; }
+        a:hover, a:focus-visible { color: #fff8e8; }
+        .legal-card {
+            margin: 0.8rem 0 0;
+            padding: 0.9rem 1rem;
+            background: rgba(0, 0, 0, 0.16);
+            border-left: 3px solid #e4c56a;
+            border-radius: 0 8px 8px 0;
+        }
+        .legal-card dl { margin: 0; display: grid; grid-template-columns: 11rem 1fr; gap: 0.45rem 0.8rem; }
+        .legal-card dt { color: #e4c56a; }
+        .legal-card dd { margin: 0; }
+        .legal-foot {
+            padding: 1.25rem;
+            text-align: center;
+            border-top: 1px solid rgba(228, 197, 106, 0.28);
+        }
+        .legal-foot nav { display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem; justify-content: center; }
+        .legal-foot a { color: #f6edd4; font-weight: 700; text-decoration: none; border-bottom: 1px solid rgba(245, 230, 196, 0.35); }
+        @media (max-width: 800px) {
+            .legal-card dl { grid-template-columns: 1fr; }
+        }
+    </style>
+    <script>
+        (function () {
+            var m = /[?&]lang=(de|fr|en)\b/i.exec(location.search);
+            var stored = null;
+            try { stored = localStorage.getItem('tdt-lang'); } catch (e) {}
+            var lang = m ? m[1].toLowerCase() : (stored === 'fr' || stored === 'en' ? stored : 'en');
+            document.documentElement.lang = lang;
+            document.documentElement.setAttribute('data-legal-lang', lang);
+            var title = document.getElementById('legal-title');
+            var desc = document.getElementById('legal-desc');
+            if (title) title.textContent = title.getAttribute('data-' + lang) || title.getAttribute('data-en');
+            if (desc) desc.setAttribute('content', desc.getAttribute('data-' + lang) || desc.getAttribute('data-en'));
+        })();
+    </script>
+</head>
+<body class="legal-page">
+    <header class="legal-bar">
+        <a class="legal-home" href="../index.html">THE DISCORDING TALES</a>
+        <div class="legal-langs" role="group" aria-label="Language">
+            <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+            <button type="button" data-set-lang="fr" aria-pressed="false">FR</button>
+            <button type="button" data-set-lang="de" aria-pressed="false">DE</button>
+        </div>
+    </header>
+
+    <article data-lang-block="en" lang="en">
+        <div class="legal-wrap">
+            <p class="legal-kicker">Legal notice</p>
+            <h1>Impressum</h1>
+            <p class="legal-updated">Last updated: 7 October 2026</p>
+            <p>This website, thediscordingtales.com, is published by:</p>
+            <div class="legal-card">
+                <dl>
+                    <dt>Name</dt>
+                    <dd>Archopoia OÜ</dd>
+                    <dt>Address</dt>
+                    <dd>Riisipere<br/>Saulepi küla, Lääneranna vald<br/>88203 Pärnu maakond<br/>Estonia</dd>
+                    <dt>Email</dt>
+                    <dd><a href="mailto:thediscordingtales@gmail.com">thediscordingtales@gmail.com</a></dd>
+                    <dt>Register</dt>
+                    <dd>Estonian commercial register (äriregister)<br/>Registry code 17151039</dd>
+                    <dt>Represented by</dt>
+                    <dd>Hugues William Brenthone de Pingon, member of the board</dd>
+                    <dt>VAT</dt>
+                    <dd>No VAT identification number is registered.</dd>
+                    <dt>Content</dt>
+                    <dd>Hugues William Brenthone de Pingon, at the address above, is responsible for the content of this site.</dd>
+                </dl>
+            </div>
+            <h2>What this site is</h2>
+            <p>The Discording Tales / Des Récits Discordants is the game world published here. This site does not take payment. A pledge on Kickstarter is handled by Kickstarter, under Kickstarter’s own terms.</p>
+            <p>How addresses from “Join the Outpost” are used is explained on the <a href="../privacy/index.html">privacy page</a>.</p>
+        </div>
+    </article>
+
+    <article data-lang-block="fr" lang="fr">
+        <div class="legal-wrap">
+            <p class="legal-kicker">Éditeur du site</p>
+            <h1>Mentions légales</h1>
+            <p class="legal-updated">Dernière mise à jour : 7 octobre 2026</p>
+            <p>Ce site, thediscordingtales.com, est publié par :</p>
+            <div class="legal-card">
+                <dl>
+                    <dt>Nom</dt>
+                    <dd>Archopoia OÜ</dd>
+                    <dt>Adresse</dt>
+                    <dd>Riisipere<br/>Saulepi küla, Lääneranna vald<br/>88203 Pärnu maakond<br/>Estonie</dd>
+                    <dt>E-mail</dt>
+                    <dd><a href="mailto:thediscordingtales@gmail.com">thediscordingtales@gmail.com</a></dd>
+                    <dt>Registre</dt>
+                    <dd>Registre du commerce estonien (äriregister)<br/>Code 17151039</dd>
+                    <dt>Représenté par</dt>
+                    <dd>Hugues William Brenthone de Pingon, membre du conseil</dd>
+                    <dt>TVA</dt>
+                    <dd>Aucun numéro de TVA n'est enregistré.</dd>
+                    <dt>Contenu</dt>
+                    <dd>Hugues William Brenthone de Pingon, à l'adresse ci-dessus, est responsable du contenu de ce site.</dd>
+                </dl>
+            </div>
+            <h2>Ce qu'est ce site</h2>
+            <p>Des Récits Discordants / The Discording Tales est l'univers publié ici. Ce site n'encaisse pas de paiement. Un engagement sur Kickstarter est traité par Kickstarter, selon les conditions de Kickstarter.</p>
+            <p>L'usage des adresses laissées à « Rejoindre l'Avant-poste » est expliqué sur la page <a href="../privacy/index.html">Confidentialité</a>.</p>
+        </div>
+    </article>
+
+    <article data-lang-block="de" lang="de">
+        <div class="legal-wrap">
+            <p class="legal-kicker">Angaben gemäß § 5 DDG</p>
+            <h1>Impressum</h1>
+            <p class="legal-updated">Stand: 7. Oktober 2026</p>
+            <p>Diese Website, thediscordingtales.com, wird herausgegeben von:</p>
+            <div class="legal-card">
+                <dl>
+                    <dt>Name</dt>
+                    <dd>Archopoia OÜ</dd>
+                    <dt>Anschrift</dt>
+                    <dd>Riisipere<br/>Saulepi küla, Lääneranna vald<br/>88203 Pärnu maakond<br/>Estland</dd>
+                    <dt>E-Mail</dt>
+                    <dd><a href="mailto:thediscordingtales@gmail.com">thediscordingtales@gmail.com</a></dd>
+                    <dt>Register</dt>
+                    <dd>Estnisches Handelsregister (äriregister)<br/>Registriercode 17151039</dd>
+                    <dt>Vertreten durch</dt>
+                    <dd>Hugues William Brenthone de Pingon, Vorstandsmitglied</dd>
+                    <dt>USt-IdNr.</dt>
+                    <dd>Eine Umsatzsteuer-Identifikationsnummer ist nicht erteilt.</dd>
+                    <dt>Inhalt</dt>
+                    <dd>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV: Hugues William Brenthone de Pingon, Anschrift wie oben.</dd>
+                </dl>
+            </div>
+            <h2>Worum es hier geht</h2>
+            <p>The Discording Tales / Des Récits Discordants ist die hier veröffentlichte Spielwelt. Diese Website nimmt keine Zahlung entgegen. Eine Zusage auf Kickstarter läuft über Kickstarter, zu dessen Bedingungen.</p>
+            <p>Was mit Adressen aus „Join the Outpost“ geschieht, steht in der <a href="../privacy/index.html">Datenschutzerklärung</a>.</p>
+        </div>
+    </article>
+
+    <footer class="legal-foot">
+        <nav aria-label="Legal">
+            <a href="../index.html">Home</a>
+            <a href="../privacy/index.html">Privacy</a>
+            <a href="index.html">Impressum</a>
+        </nav>
+    </footer>
+    <script>
+        (function () {
+            function apply(lang) {
+                if (lang !== 'fr' && lang !== 'de') lang = 'en';
+                document.documentElement.lang = lang;
+                document.documentElement.setAttribute('data-legal-lang', lang);
+                var title = document.getElementById('legal-title');
+                var desc = document.getElementById('legal-desc');
+                if (title) title.textContent = title.getAttribute('data-' + lang) || title.getAttribute('data-en');
+                if (desc) desc.setAttribute('content', desc.getAttribute('data-' + lang) || desc.getAttribute('data-en'));
+                document.querySelectorAll('[data-set-lang]').forEach(function (btn) {
+                    var on = btn.getAttribute('data-set-lang') === lang;
+                    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+                });
+            }
+            apply(document.documentElement.getAttribute('data-legal-lang') || 'en');
+            document.querySelectorAll('[data-set-lang]').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var lang = btn.getAttribute('data-set-lang');
+                    if (lang === 'en' || lang === 'fr') {
+                        try { localStorage.setItem('tdt-lang', lang); } catch (e) {}
+                    }
+                    var url = new URL(location.href);
+                    url.searchParams.set('lang', lang);
+                    history.replaceState(null, '', url);
+                    apply(lang);
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

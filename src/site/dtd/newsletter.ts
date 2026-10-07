@@ -15,7 +15,6 @@ export function getNewsletterApiBaseUrl() {
 
 /** Row column D via Sheets API; Apps Script receives the same JSON `source`. */
 export const NEWSLETTER_SOURCE_HOMEPAGE = 'homepage_outpost';
-export const NEWSLETTER_SOURCE_ABOUT_CONTACT = 'about_contact';
 
 /** POST /newsletter/subscribe (Outpost sheet / Apps Script). */
 export async function subscribeOutpost(email, opts) {

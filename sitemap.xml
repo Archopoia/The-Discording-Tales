@@ -31,4 +31,24 @@
       <image:title>THE DISCORDING TALES - favicon</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://www.thediscordingtales.com/privacy</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/privacy"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.thediscordingtales.com/privacy?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.thediscordingtales.com/privacy?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thediscordingtales.com/privacy"/>
+  </url>
+  <url>
+    <loc>https://www.thediscordingtales.com/impressum</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/impressum"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.thediscordingtales.com/impressum?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.thediscordingtales.com/impressum?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thediscordingtales.com/impressum"/>
+  </url>
 </urlset>

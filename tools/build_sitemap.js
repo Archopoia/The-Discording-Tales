@@ -65,6 +65,26 @@ function buildXml() {
     </image:image>`,
   ).join('\n');
 
+  const legalPages = [
+    { path: '/privacy', priority: '0.3' },
+    { path: '/impressum', priority: '0.3' },
+  ];
+  const legalBlocks = legalPages
+    .map((page) => {
+      const loc = `${BASE}${page.path}`;
+      return `  <url>
+    <loc>${loc}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>${page.priority}</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="${loc}"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="${loc}?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="de" href="${loc}?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="${loc}"/>
+  </url>`;
+    })
+    .join('\n');
+
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
@@ -79,6 +99,7 @@ function buildXml() {
     <xhtml:link rel="alternate" hreflang="x-default" href="${HOME}"/>
 ${imageBlocks}
   </url>
+${legalBlocks}
 </urlset>
 `;
 }

@@ -289,6 +289,29 @@
     margin: 0 auto;
 }
 
+.outpost-legal {
+    max-width: 36rem;
+    margin: 0.75rem auto 0;
+    font-size: 0.78rem;
+    line-height: 1.45;
+    color: rgba(244, 225, 169, 0.82);
+    text-align: center;
+}
+
+.outpost-legal-links {
+    white-space: nowrap;
+}
+
+.outpost-legal a {
+    color: inherit;
+    text-underline-offset: 2px;
+}
+
+.outpost-legal a:hover,
+.outpost-legal a:focus-visible {
+    color: #fff8e8;
+}
+
 .section-subtitle {
     font-size: clamp(1.5rem, 3.5vw, 2rem);
     font-family: var(--font-heading);

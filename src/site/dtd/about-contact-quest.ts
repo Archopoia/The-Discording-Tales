@@ -2,7 +2,6 @@
  * About tab: portfolio-style interactive contact quest (mailto), scoped to #about.
  */
 import { state } from './context';
-import { NEWSLETTER_SOURCE_ABOUT_CONTACT, subscribeOutpost } from './newsletter';
 
 const MAILTO = 'thediscordingtales@gmail.com';
 
@@ -255,32 +254,17 @@ export function initAboutContactQuest(): void {
         const mailtoHref =
             `mailto:${MAILTO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
 
-        void (async () => {
-            /* Same Outpost POST as homepage form; Sheet column `source`: about_contact vs homepage_outpost. */
-            try {
-                const res = await subscribeOutpost(email, {
-                    lang: state.currentLang,
-                    source: NEWSLETTER_SOURCE_ABOUT_CONTACT,
-                    honeypot: '',
-                });
-                if (!res.ok) {
-                    console.warn('[About contact] newsletter row not written:', res.status);
-                }
-            } catch (err) {
-                console.warn('[About contact] newsletter subscribe:', err);
-            }
+        /* The page tells visitors this message is not stored here. Do not also add the address to the Outpost list. */
+        window.location.href = mailtoHref;
 
-            window.location.href = mailtoHref;
-
-            window.setTimeout(() => {
-                const questForm = wrap.querySelector<HTMLElement>('.about-quest-form');
-                const questIntro = wrap.querySelector<HTMLElement>('.about-quest-intro');
-                const formSuccess = wrap.querySelector<HTMLElement>('#about-form-success');
-                if (questForm) questForm.hidden = true;
-                if (questIntro) questIntro.hidden = true;
-                if (formSuccess) formSuccess.hidden = false;
-            }, 400);
-        })();
+        window.setTimeout(() => {
+            const questForm = wrap.querySelector<HTMLElement>('.about-quest-form');
+            const questIntro = wrap.querySelector<HTMLElement>('.about-quest-intro');
+            const formSuccess = wrap.querySelector<HTMLElement>('#about-form-success');
+            if (questForm) questForm.hidden = true;
+            if (questIntro) questIntro.hidden = true;
+            if (formSuccess) formSuccess.hidden = false;
+        }, 400);
     });
 
     wrap.querySelectorAll<HTMLInputElement>('.about-mobile-question input[type="radio"]').forEach((radio) => {

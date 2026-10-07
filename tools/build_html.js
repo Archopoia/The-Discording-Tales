@@ -91,6 +91,20 @@ function build() {
     fs.writeFileSync(fourOutPath, four, 'utf8');
     console.log('Built 404.html from 404.template.html');
   }
+
+  const legalPages = [
+    ['privacy.template.html', path.join('privacy', 'index.html')],
+    ['impressum.template.html', path.join('impressum', 'index.html')],
+  ];
+  for (const [templateName, outRel] of legalPages) {
+    const legalTemplatePath = path.join(root, templateName);
+    if (!fs.existsSync(legalTemplatePath)) continue;
+    const html = fs.readFileSync(legalTemplatePath, 'utf8').replaceAll('{{SITE_PUBLIC_BASE}}', base);
+    const legalOutPath = path.join(root, outRel);
+    fs.mkdirSync(path.dirname(legalOutPath), { recursive: true });
+    fs.writeFileSync(legalOutPath, html, 'utf8');
+    console.log('Built', outRel, 'from', templateName);
+  }
 }
 
 function init() {

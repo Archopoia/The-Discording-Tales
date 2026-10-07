@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="color-scheme" content="light only"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title id="legal-title" data-en="Privacy | THE DISCORDING TALES" data-fr="Confidentialité | DES RÉCITS DISCORDANTS" data-de="Datenschutz | THE DISCORDING TALES">Privacy | THE DISCORDING TALES</title>
+    <meta id="legal-desc" name="description" data-en="What happens to your email if you join the Outpost, and what this site does not collect." data-fr="Ce qui arrive à votre adresse si vous rejoignez l'Avant-poste, et ce que ce site ne conserve pas." data-de="Was mit Ihrer E-Mail geschieht, wenn Sie dem Outpost beitreten, und was diese Seite nicht speichert." content="What happens to your email if you join the Outpost, and what this site does not collect."/>
+    <meta name="robots" content="index, follow"/>
+    <link rel="canonical" href="{{SITE_PUBLIC_BASE}}/privacy"/>
+    <link rel="alternate" href="{{SITE_PUBLIC_BASE}}/privacy" hreflang="en"/>
+    <link rel="alternate" href="{{SITE_PUBLIC_BASE}}/privacy?lang=fr" hreflang="fr"/>
+    <link rel="alternate" href="{{SITE_PUBLIC_BASE}}/privacy?lang=de" hreflang="de"/>
+    <link rel="alternate" href="{{SITE_PUBLIC_BASE}}/privacy" hreflang="x-default"/>
+    <link href="{{SITE_PUBLIC_BASE}}/dist/main-site.css" rel="stylesheet" type="text/css"/>
+    <meta content="#5a1f1f" name="theme-color"/>
+    <link href="{{SITE_PUBLIC_BASE}}/assets/icons/favicon-48x48.png" rel="icon" type="image/png" sizes="48x48"/>
+    <link href="{{SITE_PUBLIC_BASE}}/favicon.ico" rel="icon" sizes="48x48"/>
+    <style>
+        html { scrollbar-width: thin; scrollbar-color: #c9a227 #3a1010; }
+        html::-webkit-scrollbar { display: block; width: 10px; }
+        html::-webkit-scrollbar-thumb { background: #c9a227; }
+        body.legal-page {
+            margin: 0;
+            min-height: 100vh;
+            background: #3a1010;
+            color: #f6edd4;
+            font-family: "Fanwood Text", Georgia, "Times New Roman", serif;
+            line-height: 1.65;
+        }
+        .legal-bar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem 1.25rem;
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid rgba(228, 197, 106, 0.35);
+            background: rgba(0, 0, 0, 0.18);
+        }
+        .legal-home {
+            color: #f6edd4;
+            font-family: Texturina, Georgia, serif;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-decoration: none;
+        }
+        .legal-home:hover, .legal-home:focus-visible { color: #fff8e8; }
+        .legal-langs { display: flex; gap: 0.4rem; }
+        .legal-langs button {
+            min-width: 2.8rem;
+            min-height: 2.4rem;
+            padding: 0.2rem 0.7rem;
+            color: #f6edd4;
+            background: transparent;
+            border: 1px solid rgba(228, 197, 106, 0.45);
+            border-radius: 4px;
+            font: inherit;
+            cursor: pointer;
+        }
+        .legal-langs button[aria-pressed="true"] {
+            color: #3a1010;
+            background: #e4c56a;
+            border-color: #e4c56a;
+        }
+        .legal-langs button:focus-visible { outline: 2px solid #fff8e8; outline-offset: 2px; }
+        [data-lang-block] { display: none; }
+        html:not([data-legal-lang]) [data-lang-block="en"],
+        html[data-legal-lang="en"] [data-lang-block="en"],
+        html[data-legal-lang="fr"] [data-lang-block="fr"],
+        html[data-legal-lang="de"] [data-lang-block="de"] { display: block; }
+        .legal-wrap {
+            max-width: 68rem;
+            margin: 0 auto;
+            padding: 1.75rem 1.25rem 3rem;
+            display: grid;
+            grid-template-columns: minmax(11rem, 15rem) minmax(0, 1fr);
+            gap: 2rem 2.5rem;
+            align-items: start;
+        }
+        .legal-toc {
+            position: sticky;
+            top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            padding: 0.9rem 1rem;
+            background: rgba(0, 0, 0, 0.18);
+            border: 1px solid rgba(228, 197, 106, 0.28);
+            border-radius: 8px;
+        }
+        .legal-toc a {
+            color: rgba(246, 237, 212, 0.88);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+        .legal-toc a:hover, .legal-toc a:focus-visible { color: #fff8e8; border-bottom-color: rgba(228, 197, 106, 0.7); }
+        .legal-kicker {
+            margin: 0 0 0.35rem;
+            color: #e4c56a;
+            font-size: 0.78rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+        h1 {
+            margin: 0 0 0.4rem;
+            font-family: Texturina, Georgia, serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            line-height: 1.15;
+            font-weight: 700;
+        }
+        .legal-updated { margin: 0 0 1.25rem; color: rgba(246, 237, 212, 0.72); }
+        h2 {
+            margin: 1.6rem 0 0.45rem;
+            font-family: Texturina, Georgia, serif;
+            font-size: 1.35rem;
+            color: #e4c56a;
+        }
+        p, li { font-size: 1.05rem; }
+        a { color: #f3e2a9; }
+        a:hover, a:focus-visible { color: #fff8e8; }
+        .legal-card {
+            margin: 0.8rem 0 0;
+            padding: 0.9rem 1rem;
+            background: rgba(0, 0, 0, 0.16);
+            border-left: 3px solid #e4c56a;
+            border-radius: 0 8px 8px 0;
+        }
+        .legal-card dl { margin: 0; display: grid; grid-template-columns: 9rem 1fr; gap: 0.35rem 0.8rem; }
+        .legal-card dt { color: #e4c56a; }
+        .legal-card dd { margin: 0; }
+        ul { margin: 0.4rem 0 0; padding-left: 1.2rem; }
+        li + li { margin-top: 0.25rem; }
+        .legal-foot {
+            padding: 1.25rem;
+            text-align: center;
+            border-top: 1px solid rgba(228, 197, 106, 0.28);
+        }
+        .legal-foot nav { display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem; justify-content: center; }
+        .legal-foot a { color: #f6edd4; font-weight: 700; text-decoration: none; border-bottom: 1px solid rgba(245, 230, 196, 0.35); }
+        @media (max-width: 800px) {
+            .legal-wrap { grid-template-columns: 1fr; padding-top: 1.25rem; }
+            .legal-toc { position: static; }
+            .legal-card dl { grid-template-columns: 1fr; }
+        }
+    </style>
+    <script>
+        (function () {
+            var m = /[?&]lang=(de|fr|en)\b/i.exec(location.search);
+            var stored = null;
+            try { stored = localStorage.getItem('tdt-lang'); } catch (e) {}
+            var lang = m ? m[1].toLowerCase() : (stored === 'fr' || stored === 'en' ? stored : 'en');
+            document.documentElement.lang = lang;
+            document.documentElement.setAttribute('data-legal-lang', lang);
+            var title = document.getElementById('legal-title');
+            var desc = document.getElementById('legal-desc');
+            if (title) title.textContent = title.getAttribute('data-' + lang) || title.getAttribute('data-en');
+            if (desc) desc.setAttribute('content', desc.getAttribute('data-' + lang) || desc.getAttribute('data-en'));
+        })();
+    </script>
+</head>
+<body class="legal-page">
+    <header class="legal-bar">
+        <a class="legal-home" href="../index.html">THE DISCORDING TALES</a>
+        <div class="legal-langs" role="group" aria-label="Language">
+            <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+            <button type="button" data-set-lang="fr" aria-pressed="false">FR</button>
+            <button type="button" data-set-lang="de" aria-pressed="false">DE</button>
+        </div>
+    </header>
+
+    <article data-lang-block="en" lang="en">
+        <div class="legal-wrap">
+            <nav class="legal-toc" aria-label="On this page">
+                <a href="#en-who">Who we are</a>
+                <a href="#en-outpost">The Outpost</a>
+                <a href="#en-contact">Writing to us</a>
+                <a href="#en-play">The Play page</a>
+                <a href="#en-device">Your browser</a>
+                <a href="#en-rights">Your choices</a>
+            </nav>
+            <div class="legal-body">
+                <p class="legal-kicker">The Discording Tales</p>
+                <h1>Privacy</h1>
+                <p class="legal-updated">Last updated: 7 October 2026</p>
+                <p>You can read the whole site without giving an address. This page says what happens if you do, and what stays on your own device.</p>
+
+                <h2 id="en-who">Who keeps this</h2>
+                <div class="legal-card">
+                    <dl>
+                        <dt>Name</dt>
+                        <dd>Archopoia OÜ</dd>
+                        <dt>Register</dt>
+                        <dd>Estonian commercial register, code 17151039</dd>
+                        <dt>Address</dt>
+                        <dd>Riisipere, Saulepi küla, Lääneranna vald, 88203 Pärnu maakond, Estonia</dd>
+                        <dt>Email</dt>
+                        <dd><a href="mailto:thediscordingtales@gmail.com">thediscordingtales@gmail.com</a></dd>
+                        <dt>Board</dt>
+                        <dd>Hugues William Brenthone de Pingon</dd>
+                    </dl>
+                </div>
+                <p>Archopoia OÜ publishes this site. For privacy questions, write to the email above. The same details are on the <a href="../impressum/index.html">Impressum</a>.</p>
+
+                <h2 id="en-outpost">Joining the Outpost</h2>
+                <p>If you type an email and press Subscribe, we save four things:</p>
+                <ul>
+                    <li>the address you typed</li>
+                    <li>whether the page was in English or French</li>
+                    <li>that you signed up from the homepage</li>
+                    <li>the date and time</li>
+                </ul>
+                <p>We use that list for one purpose: to write when The Discording Tales launches, and for rare news of that same kind. We do not sell the list. We do not pass it to advertisers, other studios, or Kickstarter.</p>
+                <p>The list is a private spreadsheet at Google. Our own server, hosted by Render, writes each new row. You are asked because you pressed Subscribe. You can take that back at any time, and we will delete the row.</p>
+                <p>We keep the address until you ask us to delete it, or until we no longer send launch news.</p>
+
+                <h2 id="en-contact">Writing to us</h2>
+                <p>The contact form opens a draft in your own email app. The message is not stored on this website. It arrives like any letter you send to thediscordingtales@gmail.com. Sending a question does not add you to the Outpost list.</p>
+
+                <h2 id="en-play">The Play page</h2>
+                <p>If you talk to the game master, what you type is sent to our server so it can answer. If a character sheet is open, a snapshot of that sheet is sent with the message. The conversation also stays in that browser tab until you close it.</p>
+                <p>Do not type passwords, home addresses, or other real-world secrets into the game. Those messages are not added to the Outpost list. The server may pass the text to an AI service in order to write the reply.</p>
+
+                <h2 id="en-device">What stays on your device</h2>
+                <p>There is no advertising and no analytics tracker. The site remembers, in your browser only:</p>
+                <ul>
+                    <li>the language you chose</li>
+                    <li>whether you already came through the entrance, so it does not play again for a few minutes</li>
+                    <li>whether archived sections are shown</li>
+                </ul>
+                <p>The music player is SoundCloud’s. If it loads, SoundCloud may set its own cookies. Two typefaces are requested from fonts.wp.com (Automattic). That request includes the usual technical address of your connection, as loading any remote file does. The site itself is hosted on GitHub Pages.</p>
+                <p>Archopoia OÜ is in Estonia, in the European Union. Google, Render, SoundCloud, Automattic, and GitHub may process that technical traffic in the United States or elsewhere. Where the law requires a safeguard, those providers use their standard contract clauses or an adequacy decision.</p>
+
+                <h2 id="en-rights">Your choices</h2>
+                <p>Email <a href="mailto:thediscordingtales@gmail.com">thediscordingtales@gmail.com</a>. You can ask to see what we hold, correct it, delete it, limit it, or receive a copy. Asking to delete your Outpost address stops the launch letters.</p>
+                <p>You can also complain to the Estonian Data Protection Inspectorate (Andmekaitse Inspektsioon), Tatari 39, 10134 Tallinn, Estonia, <a href="https://www.aki.ee/en" target="_blank" rel="noopener noreferrer">aki.ee</a>. If you live elsewhere in the European Union, you may contact your local authority as well.</p>
+                <p>If this notice changes in a way that matters, the date at the top will change with it.</p>
+            </div>
+        </div>
+    </article>
+
+    <article data-lang-block="fr" lang="fr">
+        <div class="legal-wrap">
+            <nav class="legal-toc" aria-label="Sur cette page">
+                <a href="#fr-who">Qui sommes-nous</a>
+                <a href="#fr-outpost">L'Avant-poste</a>
+                <a href="#fr-contact">Nous écrire</a>
+                <a href="#fr-play">La page Jouer</a>
+                <a href="#fr-device">Votre navigateur</a>
+                <a href="#fr-rights">Vos choix</a>
+            </nav>
+            <div class="legal-body">
+                <p class="legal-kicker">Des Récits Discordants</p>
+                <h1>Confidentialité</h1>
+                <p class="legal-updated">Dernière mise à jour : 7 octobre 2026</p>
+                <p>Tout le site se lit sans donner d'adresse. Cette page dit ce qui se passe si vous en donnez une, et ce qui reste sur votre appareil.</p>
+
+                <h2 id="fr-who">Qui conserve cela</h2>
+                <div class="legal-card">
+                    <dl>
+                        <dt>Nom</dt>
+                        <dd>Archopoia OÜ</dd>
+                        <dt>Registre</dt>
+                        <dd>Registre du commerce estonien, code 17151039</dd>
+                        <dt>Adresse</dt>
+                        <dd>Riisipere, Saulepi küla, Lääneranna vald, 88203 Pärnu maakond, Estonie</dd>
+                        <dt>E-mail</dt>
+                        <dd><a href="mailto:thediscordingtales@gmail.com">thediscordingtales@gmail.com</a></dd>
+                        <dt>Direction</dt>
+                        <dd>Hugues William Brenthone de Pingon</dd>
+                    </dl>
+                </div>
+                <p>Archopoia OÜ publie ce site. Pour une question sur vos données, écrivez à l'adresse ci-dessus. Les mêmes informations figurent dans les <a href="../impressum/index.html">mentions légales</a>.</p>
+
+                <h2 id="fr-outpost">Rejoindre l'Avant-poste</h2>
+                <p>Si vous saisissez une adresse et appuyez sur S'abonner, nous conservons quatre choses :</p>
+                <ul>
+                    <li>l'adresse saisie</li>
+                    <li>la langue de la page, anglais ou français</li>
+                    <li>le fait que l'inscription vient de la page d'accueil</li>
+                    <li>la date et l'heure</li>
+                </ul>
+                <p>Cette liste sert à une seule chose : vous écrire au lancement de Des Récits Discordants / The Discording Tales, et pour de rares nouvelles du même ordre. Nous ne vendons pas la liste. Nous ne la transmettons ni à des régies, ni à d'autres studios, ni à Kickstarter.</p>
+                <p>La liste est un tableur privé chez Google. Notre serveur, hébergé par Render, y ajoute chaque ligne. Vous êtes inscrit parce que vous avez appuyé sur S'abonner. Vous pouvez revenir sur ce choix à tout moment : la ligne sera effacée.</p>
+                <p>Nous gardons l'adresse jusqu'à votre demande de suppression, ou jusqu'à ce que les nouvelles de lancement n'aient plus de raison d'être.</p>
+
+                <h2 id="fr-contact">Nous écrire</h2>
+                <p>Le formulaire de contact ouvre un brouillon dans votre propre messagerie. Le message n'est pas enregistré sur ce site. Il arrive comme n'importe quel courrier envoyé à thediscordingtales@gmail.com. Poser une question ne vous inscrit pas à l'Avant-poste.</p>
+
+                <h2 id="fr-play">La page Jouer</h2>
+                <p>Si vous parlez au meneur, ce que vous écrivez est envoyé à notre serveur pour qu'il réponde. Si une feuille de personnage est ouverte, un instantané de cette feuille part avec le message. La conversation reste aussi dans l'onglet du navigateur jusqu'à sa fermeture.</p>
+                <p>N'écrivez pas de mots de passe, d'adresse personnelle ou d'autre secret du monde réel dans la partie. Ces messages ne rejoignent pas la liste de l'Avant-poste. Le serveur peut transmettre le texte à un service d'IA pour rédiger la réponse.</p>
+
+                <h2 id="fr-device">Ce qui reste sur votre appareil</h2>
+                <p>Il n'y a ni publicité ni mesure d'audience. Le site se souvient, dans votre navigateur seulement :</p>
+                <ul>
+                    <li>de la langue choisie</li>
+                    <li>de votre passage par l'entrée, pour ne pas la rejouer pendant quelques minutes</li>
+                    <li>de l'affichage ou non des parties archivées</li>
+                </ul>
+                <p>Le lecteur de musique est celui de SoundCloud. S'il se charge, SoundCloud peut déposer ses propres cookies. Deux polices sont demandées à fonts.wp.com (Automattic). Cette demande emporte l'adresse technique habituelle de la connexion, comme n'importe quel fichier distant. Le site lui-même est hébergé sur GitHub Pages.</p>
+                <p>Archopoia OÜ est en Estonie, dans l'Union européenne. Google, Render, SoundCloud, Automattic et GitHub peuvent traiter ce trafic technique aux États-Unis ou ailleurs. Lorsque la loi exige une garantie, ces prestataires s'appuient sur leurs clauses contractuelles types ou sur une décision d'adéquation.</p>
+
+                <h2 id="fr-rights">Vos choix</h2>
+                <p>Écrivez à <a href="mailto:thediscordingtales@gmail.com">thediscordingtales@gmail.com</a>. Vous pouvez demander à voir ce que nous détenons, le corriger, le supprimer, en limiter l'usage, ou en recevoir une copie. Demander la suppression de l'adresse d'Avant-poste arrête les lettres de lancement.</p>
+                <p>Vous pouvez aussi saisir l'Inspection estonienne de la protection des données (Andmekaitse Inspektsioon), Tatari 39, 10134 Tallinn, Estonie, <a href="https://www.aki.ee/en" target="_blank" rel="noopener noreferrer">aki.ee</a>. Si vous vivez ailleurs dans l'Union européenne, vous pouvez aussi vous adresser à l'autorité de votre pays.</p>
+                <p>Si cette notice change sur un point qui compte, la date en haut changera avec elle.</p>
+            </div>
+        </div>
+    </article>
+
+    <article data-lang-block="de" lang="de">
+        <div class="legal-wrap">
+            <nav class="legal-toc" aria-label="Auf dieser Seite">
+                <a href="#de-who">Verantwortlicher</a>
+                <a href="#de-outpost">Outpost</a>
+                <a href="#de-contact">Kontakt</a>
+                <a href="#de-play">Spielseite</a>
+                <a href="#de-device">Ihr Browser</a>
+                <a href="#de-rights">Ihre Rechte</a>
+            </nav>
+            <div class="legal-body">
+                <p class="legal-kicker">The Discording Tales</p>
+                <h1>Datenschutz</h1>
+                <p class="legal-updated">Stand: 7. Oktober 2026</p>
+                <p>Die Seite lässt sich vollständig lesen, ohne eine Adresse anzugeben. Hier steht, was geschieht, wenn Sie es doch tun, und was auf Ihrem Gerät bleibt.</p>
+
+                <h2 id="de-who">Wer diese Angaben führt</h2>
+                <div class="legal-card">
+                    <dl>
+                        <dt>Name</dt>
+                        <dd>Archopoia OÜ</dd>
+                        <dt>Register</dt>
+                        <dd>Estnisches Handelsregister, Code 17151039</dd>
+                        <dt>Anschrift</dt>
+                        <dd>Riisipere, Saulepi küla, Lääneranna vald, 88203 Pärnu maakond, Estland</dd>
+                        <dt>E-Mail</dt>
+                        <dd><a href="mailto:thediscordingtales@gmail.com">thediscordingtales@gmail.com</a></dd>
+                        <dt>Vorstand</dt>
+                        <dd>Hugues William Brenthone de Pingon</dd>
+                    </dl>
+                </div>
+                <p>Archopoia OÜ gibt diese Website heraus. Fragen zum Datenschutz gehen an die E-Mail oben. Dieselben Angaben stehen im <a href="../impressum/index.html">Impressum</a>.</p>
+
+                <h2 id="de-outpost">Dem Outpost beitreten</h2>
+                <p>Wenn Sie eine E-Mail eintragen und auf Subscribe drücken, speichern wir vier Dinge:</p>
+                <ul>
+                    <li>die eingetragene Adresse</li>
+                    <li>ob die Seite auf Englisch oder Französisch stand</li>
+                    <li>dass die Anmeldung von der Startseite kam</li>
+                    <li>Datum und Uhrzeit</li>
+                </ul>
+                <p>Die Liste hat einen Zweck: Ihnen zu schreiben, wenn The Discording Tales erscheint, und für seltene Nachrichten derselben Art. Wir verkaufen die Liste nicht. Wir geben sie nicht an Werbung, andere Studios oder Kickstarter weiter.</p>
+                <p>Die Liste ist eine private Tabelle bei Google. Unser eigener Server, betrieben bei Render, schreibt jede neue Zeile. Rechtsgrundlage ist Ihre Einwilligung durch den Klick auf Subscribe. Sie können die Einwilligung jederzeit widerrufen; die Zeile wird gelöscht.</p>
+                <p>Wir behalten die Adresse, bis Sie die Löschung verlangen oder bis Startnachrichten nicht mehr nötig sind.</p>
+
+                <h2 id="de-contact">Schreiben Sie uns</h2>
+                <p>Das Kontaktformular öffnet einen Entwurf in Ihrem eigenen E-Mail-Programm. Die Nachricht wird auf dieser Website nicht gespeichert. Sie kommt an wie jede Post an thediscordingtales@gmail.com. Eine Frage setzt Sie nicht auf die Outpost-Liste.</p>
+
+                <h2 id="de-play">Die Spielseite</h2>
+                <p>Wenn Sie mit der Spielleitung sprechen, geht Ihr Text an unseren Server, damit er antworten kann. Ist ein Charakterbogen geöffnet, geht eine Momentaufnahme dieses Bogens mit. Das Gespräch bleibt außerdem in dem Browser-Tab, bis Sie ihn schließen.</p>
+                <p>Schreiben Sie keine Passwörter, Wohnadressen oder andere Geheimnisse aus der wirklichen Welt in das Spiel. Diese Nachrichten kommen nicht auf die Outpost-Liste. Der Server kann den Text an einen KI-Dienst weitergeben, damit die Antwort geschrieben wird.</p>
+
+                <h2 id="de-device">Was auf Ihrem Gerät bleibt</h2>
+                <p>Es gibt keine Werbung und kein Reichweiten-Tracking. Die Seite merkt sich nur in Ihrem Browser:</p>
+                <ul>
+                    <li>die gewählte Sprache</li>
+                    <li>ob Sie den Eingang schon durchschritten haben, damit er ein paar Minuten lang nicht erneut spielt</li>
+                    <li>ob archivierte Abschnitte sichtbar sind</li>
+                </ul>
+                <p>Der Musikspieler stammt von SoundCloud. Lädt er, kann SoundCloud eigene Cookies setzen. Zwei Schriftarten werden von fonts.wp.com (Automattic) geladen. Dabei fällt die übliche technische Adresse der Verbindung an, wie bei jeder Datei aus der Ferne. Die Website selbst liegt auf GitHub Pages.</p>
+                <p>Archopoia OÜ sitzt in Estland, in der Europäischen Union. Google, Render, SoundCloud, Automattic und GitHub können diesen technischen Verkehr in den USA oder anderswo verarbeiten. Wo das Recht eine Absicherung verlangt, nutzen diese Anbieter ihre Standardvertragsklauseln oder einen Angemessenheitsbeschluss.</p>
+
+                <h2 id="de-rights">Ihre Rechte</h2>
+                <p>Schreiben Sie an <a href="mailto:thediscordingtales@gmail.com">thediscordingtales@gmail.com</a>. Sie können Auskunft, Berichtigung, Löschung, Einschränkung und eine Kopie verlangen. Die Löschung der Outpost-Adresse beendet die Startbriefe. Die Einwilligung können Sie jederzeit widerrufen.</p>
+                <p>Beschwerde können Sie bei der estnischen Datenschutzinspektion einlegen (Andmekaitse Inspektsioon), Tatari 39, 10134 Tallinn, Estland, <a href="https://www.aki.ee/en" target="_blank" rel="noopener noreferrer">aki.ee</a>. Leben Sie anderswo in der Europäischen Union, können Sie sich auch an die Aufsichtsbehörde Ihres Landes wenden.</p>
+                <p>Ändert sich diese Unterrichtung in einem wesentlichen Punkt, ändert sich das Datum oben mit.</p>
+            </div>
+        </div>
+    </article>
+
+    <footer class="legal-foot">
+        <nav aria-label="Legal">
+            <a href="../index.html">Home</a>
+            <a href="index.html">Privacy</a>
+            <a href="../impressum/index.html">Impressum</a>
+        </nav>
+    </footer>
+    <script>
+        (function () {
+            function apply(lang) {
+                if (lang !== 'fr' && lang !== 'de') lang = 'en';
+                document.documentElement.lang = lang;
+                document.documentElement.setAttribute('data-legal-lang', lang);
+                var title = document.getElementById('legal-title');
+                var desc = document.getElementById('legal-desc');
+                if (title) title.textContent = title.getAttribute('data-' + lang) || title.getAttribute('data-en');
+                if (desc) desc.setAttribute('content', desc.getAttribute('data-' + lang) || desc.getAttribute('data-en'));
+                document.querySelectorAll('[data-set-lang]').forEach(function (btn) {
+                    var on = btn.getAttribute('data-set-lang') === lang;
+                    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+                });
+            }
+            apply(document.documentElement.getAttribute('data-legal-lang') || 'en');
+            document.querySelectorAll('[data-set-lang]').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var lang = btn.getAttribute('data-set-lang');
+                    if (lang === 'en' || lang === 'fr') {
+                        try { localStorage.setItem('tdt-lang', lang); } catch (e) {}
+                    }
+                    var url = new URL(location.href);
+                    url.searchParams.set('lang', lang);
+                    history.replaceState(null, '', url);
+                    apply(lang);
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
