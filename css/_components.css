@@ -371,6 +371,10 @@
     max-width: 55ch;
 }
 
+.discovery-unified-intro--italic {
+    font-style: italic;
+}
+
 .discovery-unified-intro.vg-play-summary {
     max-width: none;
     text-align: left;
