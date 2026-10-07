@@ -95,6 +95,7 @@ function build() {
   const legalPages = [
     ['privacy.template.html', path.join('privacy', 'index.html')],
     ['impressum.template.html', path.join('impressum', 'index.html')],
+    ['landing.template.html', path.join('landing', 'index.html')],
   ];
   for (const [templateName, outRel] of legalPages) {
     const legalTemplatePath = path.join(root, templateName);

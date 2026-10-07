@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="color-scheme" content="light only"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <title>THE DISCORDING TALES | A world that doesn't wait for you</title>
+    <meta name="description" content="A world that doesn't wait for you. Watch the 90-second project showcase, then the game, the team, the tabletop book, the pitch deck, and how to write to us."/>
+    <meta name="robots" content="index, follow"/>
+    <meta name="author" content="The Discording Tales / Des Récits Discordants"/>
+    <meta name="rights" content="All Rights Reserved. Copyright (c) 2020-2026 The Discording Tales / Des Récits Discordants."/>
+    <link rel="canonical" href="https://www.thediscordingtales.com/landing"/>
+    <link rel="alternate" href="https://www.thediscordingtales.com/landing" hreflang="en"/>
+    <link rel="alternate" href="https://www.thediscordingtales.com/landing" hreflang="x-default"/>
+    <meta property="og:title" content="THE DISCORDING TALES | A world that doesn't wait for you"/>
+    <meta property="og:description" content="Watch the 90-second project showcase. The game, the team, five years of the tabletop book, the pitch deck, and contact."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://www.thediscordingtales.com/landing"/>
+    <meta property="og:site_name" content="THE DISCORDING TALES"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="og:image" content="https://www.thediscordingtales.com/assets/og-tdt-1200x630.jpg"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+    <meta property="og:image:alt" content="THE DISCORDING TALES"/>
+    <meta property="og:video" content="https://www.thediscordingtales.com/assets/images/PoC-TDT-October.mp4"/>
+    <meta property="og:video:type" content="video/mp4"/>
+    <meta property="og:video:width" content="720"/>
+    <meta property="og:video:height" content="1280"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="THE DISCORDING TALES | A world that doesn't wait for you"/>
+    <meta name="twitter:description" content="Watch the 90-second project showcase. The game, the team, the book, the pitch deck."/>
+    <meta name="twitter:image" content="https://www.thediscordingtales.com/assets/og-tdt-1200x630.jpg"/>
+    <meta name="theme-color" content="#5a1f1f"/>
+    <link rel="icon" href="../assets/icons/favicon-48x48.png" type="image/png" sizes="48x48"/>
+    <link rel="icon" href="../favicon.ico" sizes="48x48"/>
+    <style>
+        /* Type: display face is local; body face matches the main site, with Georgia if the network face is slow. */
+        @font-face {
+            font-family: "Fanwood Text";
+            font-style: italic;
+            font-weight: 400;
+            src: url(https://fonts.wp.com/s/fanwoodtext/v17/3XFzErwl05Ad_vSCF6Fq7xX2R-zV_Pw.ttf) format("truetype");
+            font-display: swap;
+        }
+        @font-face {
+            font-family: "Fanwood Text";
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://fonts.wp.com/s/fanwoodtext/v17/3XFtErwl05Ad_vSCF6Fq7xX2TNzc.ttf) format("truetype");
+            font-display: swap;
+        }
+        @font-face {
+            font-family: "Quintessential";
+            font-style: normal;
+            font-weight: 400;
+            src: url("../assets/fonts/quintessential-latin-ext.woff2") format("woff2");
+            unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: "Quintessential";
+            font-style: normal;
+            font-weight: 400;
+            src: url("../assets/fonts/quintessential-latin.woff2") format("woff2");
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+            font-display: swap;
+        }
+
+        :root {
+            --ink: #f6edd4;
+            --ink-soft: #e4d5b8;
+            --muted: #c4b59a;
+            --gold: #e4c56a;
+            --gold-deep: #c9a227;
+            --burgundy: #3a1010;
+            --burgundy-deep: #240a0a;
+            --plate: rgba(18, 6, 6, 0.55);
+            --line: rgba(228, 197, 106, 0.45);
+            --bar: 6.75rem;
+            --font-display: "Quintessential", Palatino, "Palatino Linotype", Georgia, serif;
+            --font-body: "Fanwood Text", Georgia, "Times New Roman", serif;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            color: var(--ink);
+            background:
+                radial-gradient(120% 70% at 50% -10%, rgba(122, 50, 50, 0.55), transparent 55%),
+                linear-gradient(180deg, #4a1818 0%, var(--burgundy) 28%, var(--burgundy-deep) 100%);
+            font-family: var(--font-body);
+            font-size: 1.125rem;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        img, video { max-width: 100%; height: auto; }
+        a { color: var(--gold); }
+        a:hover { color: #fff8e8; }
+        :focus-visible {
+            outline: 2px solid #fff8e8;
+            outline-offset: 3px;
+        }
+        .skip {
+            position: absolute;
+            left: 0.75rem;
+            top: 0.75rem;
+            transform: translateY(-150%);
+            background: var(--gold);
+            color: var(--burgundy-deep);
+            padding: 0.5rem 0.8rem;
+            z-index: 40;
+        }
+        .skip:focus { transform: none; }
+
+        /* Sticky wayfinding: brand row, then a sideways strip of sections. */
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 30;
+            background: rgba(36, 10, 10, 0.94);
+            border-bottom: 1px solid var(--line);
+            padding-top: env(safe-area-inset-top);
+            backdrop-filter: blur(12px);
+        }
+        .brandrow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            padding: 0.65rem 1rem 0.35rem;
+        }
+        .brand {
+            color: var(--ink);
+            font-family: var(--font-display);
+            font-size: 1rem;
+            letter-spacing: 0.04em;
+            text-decoration: none;
+            line-height: 1.2;
+        }
+        .brand:hover { color: #fff8e8; }
+        .brand-side {
+            color: var(--ink);
+            text-decoration: none;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: 0.35rem 0.75rem;
+            font-size: 0.95rem;
+            min-height: 2.5rem;
+            display: inline-flex;
+            align-items: center;
+        }
+        .jump {
+            display: flex;
+            gap: 0.4rem;
+            overflow-x: auto;
+            padding: 0.35rem 1rem 0.7rem;
+            scrollbar-width: none;
+        }
+        .jump::-webkit-scrollbar { display: none; }
+        .jump a {
+            flex: 0 0 auto;
+            color: var(--ink);
+            text-decoration: none;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: 0.4rem 0.8rem;
+            min-height: 2.5rem;
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.95rem;
+            background: transparent;
+        }
+        .jump a[aria-current="true"] {
+            background: var(--gold);
+            color: var(--burgundy-deep);
+            border-color: var(--gold);
+        }
+
+        .sheet {
+            width: min(44rem, calc(100% - 1.5rem));
+            margin: 0 auto;
+            padding: 1.25rem 0 3rem;
+            padding-bottom: calc(2.5rem + env(safe-area-inset-bottom));
+        }
+        section[id] { scroll-margin-top: calc(var(--bar) + 0.5rem); }
+
+        .plate {
+            background: var(--plate);
+            border: 1px solid var(--line);
+            box-shadow:
+                0 0 0 4px rgba(20, 6, 6, 0.35),
+                0 0 0 5px rgba(228, 197, 106, 0.28);
+            padding: 1.35rem 1rem 1.2rem;
+        }
+
+        .hero { text-align: center; margin-bottom: 1.25rem; }
+        .kicker {
+            margin: 0 0 0.6rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            font-size: 0.72rem;
+            color: var(--gold);
+        }
+        h1 {
+            margin: 0;
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: clamp(2.15rem, 9vw, 3.6rem);
+            line-height: 1.05;
+            letter-spacing: 0.03em;
+        }
+        .french {
+            margin: 0.45rem 0 0;
+            color: var(--muted);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+        .ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.65rem;
+            margin: 0.9rem 0;
+        }
+        .ornament span {
+            width: 3.5rem;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        .ornament i {
+            width: 0.45rem;
+            height: 0.45rem;
+            background: var(--gold);
+            transform: rotate(45deg);
+        }
+        .tagline {
+            margin: 0;
+            font-family: var(--font-display);
+            font-size: clamp(1.35rem, 5vw, 1.85rem);
+            color: var(--gold);
+            line-height: 1.25;
+        }
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1.15rem;
+            min-height: 3rem;
+            padding: 0.7rem 1.1rem;
+            background: var(--gold);
+            color: var(--burgundy-deep);
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .cta:hover { background: #fff1c4; color: var(--burgundy-deep); }
+
+        /* Three facts you can tap. Same order as the page. */
+        .facts {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.5rem;
+            margin: 1rem 0 0;
+            padding: 0;
+        }
+        .facts a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.1rem;
+            min-height: 4.4rem;
+            padding: 0.45rem 0.3rem;
+            text-decoration: none;
+            color: var(--ink);
+            border: 1px solid var(--line);
+            background: rgba(0, 0, 0, 0.18);
+            border-radius: 4px;
+        }
+        .facts a:hover { border-color: var(--gold); color: #fff8e8; }
+        .facts b {
+            font-family: var(--font-display);
+            font-size: 1.45rem;
+            font-weight: 400;
+            color: var(--gold);
+            line-height: 1;
+        }
+        .facts span {
+            font-size: 0.78rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .block { margin-top: 2.25rem; }
+        .index {
+            margin: 0 0 0.25rem;
+            color: var(--gold-deep);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            font-size: 0.72rem;
+        }
+        h2 {
+            margin: 0 0 0.85rem;
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: clamp(1.7rem, 6vw, 2.3rem);
+            line-height: 1.15;
+            color: var(--ink);
+        }
+        .prose p { margin: 0 0 0.95rem; }
+        .prose p:last-child { margin-bottom: 0; }
+
+        /* Portrait film: width follows the phone, height follows 9:16, never taller than the screen. */
+        .stage {
+            position: relative;
+            width: min(100%, 22rem, calc(72vh * 9 / 16));
+            margin: 0 auto;
+            aspect-ratio: 9 / 16;
+            background: #120606;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .stage video {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000;
+        }
+        .play {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.7rem;
+            width: 100%;
+            border: 0;
+            padding: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.45));
+            color: var(--ink);
+            cursor: pointer;
+        }
+        .play-disc {
+            width: 4.6rem;
+            height: 4.6rem;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            background: rgba(36, 10, 10, 0.82);
+            display: grid;
+            place-items: center;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+        }
+        .play-disc i {
+            display: block;
+            width: 0;
+            height: 0;
+            margin-left: 0.25rem;
+            border-style: solid;
+            border-width: 0.7rem 0 0.7rem 1.15rem;
+            border-color: transparent transparent transparent var(--gold);
+        }
+        .play-label {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+        }
+        .stage.is-playing .play { display: none; }
+        .fine {
+            margin: 0.75rem 0 0;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin: 0 0 0.9rem;
+        }
+        .filters button {
+            min-height: 2.5rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--ink);
+            font: inherit;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+        .filters button[aria-pressed="true"] {
+            background: var(--gold);
+            color: var(--burgundy-deep);
+            border-color: var(--gold);
+        }
+        .roster {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.65rem;
+        }
+        .person {
+            display: grid;
+            grid-template-columns: 3.4rem minmax(0, 1fr);
+            gap: 0.75rem;
+            align-items: start;
+            padding: 0.75rem;
+            border: 1px solid rgba(228, 197, 106, 0.28);
+            background: rgba(0, 0, 0, 0.16);
+            border-radius: 4px;
+        }
+        .person[hidden] { display: none; }
+        .person--lead {
+            border-color: var(--line);
+            background: rgba(228, 197, 106, 0.08);
+        }
+        .avatar, .initials {
+            width: 3.4rem;
+            height: 3.4rem;
+            border-radius: 50%;
+            border: 1px solid var(--gold);
+            object-fit: cover;
+        }
+        .initials {
+            display: grid;
+            place-items: center;
+            color: var(--gold);
+            background: rgba(0, 0, 0, 0.28);
+            font-family: var(--font-display);
+            font-size: 1rem;
+            letter-spacing: 0.04em;
+        }
+        .person h3 {
+            margin: 0;
+            font-size: 1.15rem;
+            font-weight: 400;
+            font-family: var(--font-display);
+            line-height: 1.2;
+        }
+        .role {
+            margin: 0.15rem 0 0.35rem;
+            color: var(--gold);
+            font-size: 0.95rem;
+            font-style: italic;
+        }
+        .person p { margin: 0; font-size: 1rem; }
+
+        .path {
+            list-style: none;
+            margin: 0 0 1rem;
+            padding: 0;
+            display: grid;
+            gap: 0.65rem;
+        }
+        .path li {
+            padding: 0.85rem 0.9rem;
+            border-left: 3px solid var(--gold);
+            background: rgba(0, 0, 0, 0.16);
+        }
+        .path b {
+            display: block;
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: 1.35rem;
+            color: var(--gold);
+        }
+        .path span { color: var(--ink-soft); }
+
+        .deck-lead { margin: 0; }
+        .deck-actions {
+            display: grid;
+            gap: 0.6rem;
+            margin-top: 1rem;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 3rem;
+            padding: 0.7rem 1rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 700;
+            text-align: center;
+        }
+        .btn-gold {
+            background: var(--gold);
+            color: var(--burgundy-deep);
+        }
+        .btn-gold:hover { background: #fff1c4; color: var(--burgundy-deep); }
+        .btn-ghost {
+            border: 1px solid var(--gold);
+            color: var(--ink);
+            background: transparent;
+        }
+        .btn-ghost:hover { background: rgba(228, 197, 106, 0.12); color: #fff8e8; }
+
+        .contact-links {
+            display: grid;
+            gap: 0.6rem;
+            margin: 0 0 1rem;
+        }
+        form {
+            display: grid;
+            gap: 0.7rem;
+        }
+        label {
+            display: grid;
+            gap: 0.3rem;
+            font-size: 0.95rem;
+            color: var(--ink-soft);
+        }
+        input, textarea {
+            width: 100%;
+            font: inherit;
+            font-size: 1rem;
+            color: var(--ink);
+            background: rgba(0, 0, 0, 0.28);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            padding: 0.7rem 0.75rem;
+        }
+        textarea { min-height: 7rem; resize: vertical; }
+        button[type="submit"] {
+            min-height: 3rem;
+            border: 0;
+            border-radius: 4px;
+            background: var(--gold);
+            color: var(--burgundy-deep);
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover { background: #fff1c4; }
+        .hint { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+        footer {
+            margin-top: 2.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(228, 197, 106, 0.25);
+            color: var(--muted);
+            font-size: 0.95rem;
+            text-align: center;
+        }
+        footer p { margin: 0.35rem 0; }
+        footer a { color: var(--ink-soft); }
+
+        @media (min-width: 40rem) {
+            .sheet { width: min(46rem, calc(100% - 2.5rem)); }
+            .plate { padding: 1.8rem 1.5rem 1.5rem; }
+            .roster { grid-template-columns: 1fr 1fr; }
+            .person--lead { grid-column: 1 / -1; }
+            .path { grid-template-columns: 1fr 1fr; }
+            .deck-actions, .contact-links { grid-template-columns: 1fr 1fr; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+        }
+        @media print {
+            .topbar, .play, .filters, form { display: none; }
+            body { background: #fff; color: #1a1a1a; }
+            a { color: #1a1a1a; }
+            .plate { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <a class="skip" href="#showcase">Skip to the showcase</a>
+    <header class="topbar">
+        <div class="brandrow">
+            <a class="brand" href="#top">The Discording Tales</a>
+            <a class="brand-side" href="../">Full site</a>
+        </div>
+        <nav class="jump" aria-label="On this page">
+            <a href="#showcase">Watch</a>
+            <a href="#game">Game</a>
+            <a href="#team">Team</a>
+            <a href="#origin">Origin</a>
+            <a href="#deck">Deck</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main class="sheet" id="top">
+        <header class="hero plate">
+            <p class="kicker">Ethno-science-fantasy action RPG</p>
+            <h1>THE DISCORDING TALES</h1>
+            <p class="french">Des Récits Discordants</p>
+            <p class="ornament" aria-hidden="true"><span></span><i></i><span></span></p>
+            <p class="tagline">A world that doesn't wait for you.</p>
+            <a class="cta" href="#showcase">Watch 90-second project showcase</a>
+            <ul class="facts">
+                <li><a href="#showcase"><b>90s</b><span>Showcase</span></a></li>
+                <li><a href="#team"><b>10+</b><span>People</span></a></li>
+                <li><a href="#origin"><b>5+</b><span>The book</span></a></li>
+            </ul>
+        </header>
+
+        <section class="block" id="showcase" aria-labelledby="showcase-title">
+            <p class="index">01</p>
+            <h2 id="showcase-title">Watch 90-second project showcase</h2>
+            <div class="stage" data-stage>
+                <video
+                    controls
+                    playsinline
+                    preload="none"
+                    width="720"
+                    height="1280"
+                    poster="../assets/images/PoC-TDT-October-poster.jpg"
+                    aria-label="90-second project showcase of The Discording Tales"
+                >
+                    <source src="../assets/images/PoC-TDT-October.mp4" type="video/mp4"/>
+                </video>
+                <button class="play" type="button" data-play>
+                    <span class="play-disc" aria-hidden="true"><i></i></span>
+                    <span class="play-label">Play</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="block prose" id="game" aria-labelledby="game-title">
+            <p class="index">02</p>
+            <h2 id="game-title">The game</h2>
+            <p><strong>The Discording Tales</strong> is an ethno-science-fantasy action RPG. You survive, clash, and go further in a world without humans, through cultures, places, and moralities that feel impossible until the rules make them coherent and playable. Every adventure is a social, mental, or physical challenge. Failure forges the hero. That is how you grow.</p>
+            <p>In a far future, humanity has withdrawn. Ten peoples, in three origins, collide on a forgotten Earth, and you are the local who grew up in a blind spot. You learn the place in order to last. Underfoot, in the flowering depths, there is only discord.</p>
+            <p>The world does not wait for you. Creatures follow hunger, threat, and a chance. Move a light, a crate, or a body, and the dungeon changes with you. Places, creatures, and objects answer by the same rules. There is no correct path. Your choices set the difficulty.</p>
+        </section>
+
+        <section class="block" id="team" aria-labelledby="team-title">
+            <p class="index">03</p>
+            <h2 id="team-title">The team</h2>
+            <div class="prose">
+                <p>More than ten people. Mostly in Switzerland. Since summer 2026, a team has gathered around the video game: the game itself, and an in-game teaser. The universe was created by Hugues de Pingon.</p>
+            </div>
+            <div class="filters" role="toolbar" aria-label="Filter the team by craft">
+                <button type="button" data-filter="all" aria-pressed="true">All</button>
+                <button type="button" data-filter="direction" aria-pressed="false">Direction</button>
+                <button type="button" data-filter="art" aria-pressed="false">Art</button>
+                <button type="button" data-filter="tech" aria-pressed="false">Tech</button>
+                <button type="button" data-filter="sound" aria-pressed="false">Sound</button>
+                <button type="button" data-filter="strategy" aria-pressed="false">Strategy</button>
+            </div>
+            <div class="roster">
+                <article class="person person--lead" data-craft="direction">
+                    <img class="avatar" src="../assets/Hugues.W.B.dePingon%20-%20roundvignette.jpg" alt="" width="144" height="144" decoding="async"/>
+                    <div>
+                        <h3>Hugues de Pingon</h3>
+                        <p class="role">Creator of the universe, creative director, lead game designer</p>
+                        <p>He built the world so ideas could become cultures, places, moralities, and myths. He leads direction, design, systems, and the coherence of the whole. By day he is lead game designer on The Wayward Realms.</p>
+                    </div>
+                </article>
+                <article class="person" data-craft="strategy">
+                    <img class="avatar" src="../assets/Patrice%20vignette.jpg" alt="" width="144" height="144" decoding="async"/>
+                    <div>
+                        <h3>Patrice Le</h3>
+                        <p class="role">Strategy, product, and business</p>
+                        <p>Product strategy, commercial development, and the path toward fundraising and market, from experience at MSCI and Bloomberg.</p>
+                    </div>
+                </article>
+                <article class="person" data-craft="art">
+                    <img class="avatar" src="../assets/theotime-vignette.jpg" alt="" width="144" height="144" decoding="async"/>
+                    <div>
+                        <h3>Théotime Millois</h3>
+                        <p class="role">Creature artist</p>
+                        <p>Character and creature sculpting. Anatomy, form, and the core three-dimensional figures of the game.</p>
+                    </div>
+                </article>
+                <article class="person" data-craft="art">
+                    <div class="initials" aria-hidden="true">ZB</div>
+                    <div>
+                        <h3>Zeineb Bouzidi</h3>
+                        <p class="role">Character artist</p>
+                        <p>Digital sculpting and character creation, each figure rooted in the cultures of the world.</p>
+                    </div>
+                </article>
+                <article class="person" data-craft="tech">
+                    <div class="initials" aria-hidden="true">NZ</div>
+                    <div>
+                        <h3>Nolan Zannato</h3>
+                        <p class="role">Technical artist</p>
+                        <p>The bridge from the picture to the engine: tools, workflows, and the solutions that carry the art into the game.</p>
+                    </div>
+                </article>
+                <article class="person" data-craft="tech">
+                    <div class="initials" aria-hidden="true">D</div>
+                    <div>
+                        <h3>Deltark</h3>
+                        <p class="role">Simulation and physics</p>
+                        <p>Physical simulation that supports level design and play that can emerge from the place itself.</p>
+                    </div>
+                </article>
+                <article class="person" data-craft="art">
+                    <div class="initials" aria-hidden="true">DH</div>
+                    <div>
+                        <h3>DH</h3>
+                        <p class="role">Level design and environments</p>
+                        <p>Levels, architecture, and places, with a watchmaker's attention to detail.</p>
+                    </div>
+                </article>
+                <article class="person" data-craft="sound">
+                    <div class="initials" aria-hidden="true">QH</div>
+                    <div>
+                        <h3>Quentin Huengi</h3>
+                        <p class="role">Sound designer</p>
+                        <p>Sound, synthesis, and the audio identity of The Discording Tales. Founder of Rituel Audio Design.</p>
+                    </div>
+                </article>
+                <article class="person" data-craft="sound">
+                    <div class="initials" aria-hidden="true">MR</div>
+                    <div>
+                        <h3>MR</h3>
+                        <p class="role">Composer</p>
+                        <p>The original music that holds the atmosphere of the game.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="block prose" id="origin" aria-labelledby="origin-title">
+            <p class="index">04</p>
+            <h2 id="origin-title">The origin</h2>
+            <ol class="path">
+                <li>
+                    <b>5+ years</b>
+                    <span>The tabletop book, more than 300 pages</span>
+                </li>
+                <li>
+                    <b>The launch</b>
+                    <span>The video game, a living dungeon</span>
+                </li>
+            </ol>
+            <p>For more than five years, this world has been a tabletop role-playing book: an early-access PDF of more than 300 pages, written beside the setting itself.</p>
+            <p>The video game is what launches. The book is where the cultures, the moralities, and the rules were made playable first.</p>
+        </section>
+
+        <section class="block" id="deck" aria-labelledby="deck-title">
+            <p class="index">05</p>
+            <h2 id="deck-title">Pitch deck</h2>
+            <div class="plate">
+                <p class="deck-lead">One PDF. Open it in the browser, or save it to the phone.</p>
+                <div class="deck-actions">
+                    <a class="btn btn-gold" href="../assets/images/Discording%20Tales%20-%20Pitchdeck.pdf" target="_blank" rel="noopener noreferrer">View the deck</a>
+                    <a class="btn btn-ghost" href="../assets/images/Discording%20Tales%20-%20Pitchdeck.pdf" download="The-Discording-Tales-Pitchdeck.pdf">Download the PDF</a>
+                </div>
+                <p class="fine">About 2 MB.</p>
+            </div>
+        </section>
+
+        <section class="block" id="contact" aria-labelledby="contact-title">
+            <p class="index">06</p>
+            <h2 id="contact-title">Contact</h2>
+            <p>Write to us, or talk on Discord. A message from the form opens in your mail app. Nothing from it is stored on this page.</p>
+            <div class="contact-links">
+                <a class="btn btn-gold" href="mailto:thediscordingtales@gmail.com">thediscordingtales@gmail.com</a>
+                <a class="btn btn-ghost" href="https://discord.gg/zNkjckKUHE" target="_blank" rel="noopener noreferrer">Discord</a>
+            </div>
+            <form id="contact-form">
+                <label>
+                    Your name
+                    <input type="text" name="from" autocomplete="name" maxlength="120"/>
+                </label>
+                <label>
+                    Message
+                    <textarea name="message" required maxlength="4000" placeholder="What would you like to talk about?"></textarea>
+                </label>
+                <button type="submit">Open in my email app</button>
+                <p class="hint">You can still edit the message before you send it. It goes to thediscordingtales@gmail.com.</p>
+            </form>
+        </section>
+
+        <footer>
+            <p>The Discording Tales / Des Récits Discordants</p>
+            <p><a href="../">Enter the full site</a></p>
+            <p>Copyright 2020-2026. All rights reserved.</p>
+        </footer>
+    </main>
+
+    <script>
+        (function () {
+            var stage = document.querySelector("[data-stage]");
+            var video = stage.querySelector("video");
+            var play = stage.querySelector("[data-play]");
+
+            function startFilm() {
+                stage.classList.add("is-playing");
+                var pending = video.play();
+                if (pending && pending.catch) {
+                    pending.catch(function () {
+                        stage.classList.remove("is-playing");
+                    });
+                }
+            }
+            play.addEventListener("click", startFilm);
+            video.addEventListener("play", function () {
+                stage.classList.add("is-playing");
+            });
+
+            var links = Array.prototype.slice.call(document.querySelectorAll(".jump a"));
+            var sections = links.map(function (link) {
+                return document.querySelector(link.getAttribute("href"));
+            }).filter(Boolean);
+            if ("IntersectionObserver" in window && sections.length) {
+                var watcher = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (!entry.isIntersecting) return;
+                        var id = "#" + entry.target.id;
+                        links.forEach(function (link) {
+                            if (link.getAttribute("href") === id) link.setAttribute("aria-current", "true");
+                            else link.removeAttribute("aria-current");
+                        });
+                        var current = document.querySelector('.jump a[aria-current="true"]');
+                        if (current && current.parentElement) {
+                            var nav = current.parentElement;
+                            var left = current.offsetLeft - (nav.clientWidth - current.offsetWidth) / 2;
+                            nav.scrollTo({ left: Math.max(0, left), behavior: "auto" });
+                        }
+                    });
+                }, { rootMargin: "-45% 0px -45% 0px", threshold: 0.01 });
+                sections.forEach(function (section) { watcher.observe(section); });
+            }
+
+            var filterButtons = Array.prototype.slice.call(document.querySelectorAll("[data-filter]"));
+            var people = Array.prototype.slice.call(document.querySelectorAll(".person"));
+            filterButtons.forEach(function (button) {
+                button.addEventListener("click", function () {
+                    var craft = button.getAttribute("data-filter");
+                    filterButtons.forEach(function (other) {
+                        other.setAttribute("aria-pressed", other === button ? "true" : "false");
+                    });
+                    people.forEach(function (person) {
+                        var show = craft === "all" || person.getAttribute("data-craft") === craft;
+                        person.hidden = !show;
+                    });
+                });
+            });
+
+            var form = document.getElementById("contact-form");
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+                var who = (form.from.value || "").trim();
+                var message = (form.message.value || "").trim();
+                if (!message) {
+                    form.message.focus();
+                    return;
+                }
+                var body = (who ? who + "\n\n" : "") + message;
+                window.location.href = "mailto:thediscordingtales@gmail.com?subject="
+                    + encodeURIComponent("The Discording Tales")
+                    + "&body=" + encodeURIComponent(body);
+            });
+        })();
+    </script>
+</body>
+</html>

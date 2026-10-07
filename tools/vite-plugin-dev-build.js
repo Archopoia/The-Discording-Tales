@@ -81,7 +81,7 @@ function getScriptsForFile(filePath) {
   }
   
   // Template or partials
-  if (relative === 'index.template.html' || relative.startsWith('partials/')) {
+  if (relative === 'index.template.html' || relative === 'landing.template.html' || relative.startsWith('partials/')) {
     return ['build_html.js', 'build_i18n.js'];
   }
 
@@ -126,6 +126,7 @@ export default function devBuildPlugin() {
       // Watch additional directories that Vite doesn't watch by default
       const watchPaths = [
         path.join(ROOT, 'index.template.html'),
+        path.join(ROOT, 'landing.template.html'),
         path.join(ROOT, 'partials'),
         path.join(ROOT, 'css'),
         path.join(ROOT, 'locales'),
