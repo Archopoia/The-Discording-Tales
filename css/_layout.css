@@ -1442,8 +1442,8 @@ button.nav-icon-link {
 }
 
 /*
- * Narrow nav: five controls do not fit one row  -  3 columns (X + Discord | Download | KS + Mail).
- * Order in HTML: 1 X, 2 Discord, 3 Download, 4 Kickstarter, 5 Contact.
+ * Narrow nav: the row does not fit  -  3 columns (X + Discord | Launch | itch + Kickstarter).
+ * Order in HTML: 1 X, 2 Discord, 3 Launch, 4 itch.io, 5 Kickstarter.
  */
 @media (max-width: 820px) {
     .nav-secondary-actions {

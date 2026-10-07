@@ -99,7 +99,7 @@
     font-size: clamp(1rem, 2.2vw, 1.35rem);
     font-weight: 700;
     color: var(--tdt-cream);
-    margin: var(--spacing-xs) 0 0;
+    margin: 0 0 var(--spacing-sm);
     text-shadow: 0 0 4px rgba(0, 0, 0, 1), 0 1px 4px rgba(0, 0, 0, 1), 0 3px 10px rgba(0, 0, 0, 0.9);
 }
 
@@ -287,6 +287,45 @@
     align-items: center;
     max-width: min(100%, 42rem);
     margin: 0 auto;
+}
+
+.outpost-promise,
+.release-note,
+.videogame-release-note {
+    box-sizing: border-box;
+    width: min(100%, 46rem);
+    max-width: min(100%, 46rem);
+    margin: 0 auto 0.85rem;
+    color: var(--tdt-cream);
+    line-height: 1.5;
+    text-align: center;
+    text-wrap: balance;
+}
+
+.outpost-promise {
+    font-size: 0.95rem;
+}
+
+.release-note {
+    color: var(--tdt-beige-warm);
+}
+
+.videogame-release-note {
+    margin-top: var(--spacing-md);
+    margin-bottom: 0;
+    color: var(--tdt-beige-warm);
+}
+
+.tabletop-release {
+    margin: 0 0 var(--spacing-lg);
+    padding: clamp(0.9rem, 2vw, 1.25rem) clamp(1rem, 2.5vw, 1.5rem);
+    border: 1px solid rgba(243, 226, 169, 0.35);
+    border-radius: var(--radius-md);
+    background: rgba(10, 4, 4, 0.35);
+}
+
+.tabletop-release .release-note {
+    margin-bottom: 0;
 }
 
 .outpost-legal {

@@ -36,7 +36,7 @@ export function initPitchSlider(): void {
         viewport.addEventListener('pointerdown', (event) => {
             if (!(event instanceof PointerEvent) || event.button !== 0) return;
             const target = event.target;
-            if (target instanceof Element && target.closest('button')) return;
+            if (target instanceof Element && target.closest('button, a')) return;
             startX = event.clientX;
             tracking = true;
             viewport.setPointerCapture(event.pointerId);

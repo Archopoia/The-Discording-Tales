@@ -114,8 +114,8 @@ function bindOutpostForm(form) {
             }
 
             alert(state.currentLang === 'en'
-                ? 'Thank you for subscribing! You will be notified when The Discording Tales launches.'
-                : 'Merci de vous être abonné ! Vous serez notifié au lancement de The Discording Tales.');
+                ? 'Thank you. We will write when Kickstarter opens. The launch includes the video game and, on higher tiers, the tabletop PDF.'
+                : 'Merci. Nous vous écrirons à l\'ouverture de Kickstarter. Le lancement comprend le jeu vidéo et, aux paliers supérieurs, le PDF de jeu de rôle.');
             if (emailInput) emailInput.value = '';
             if (honeypotInput) honeypotInput.value = '';
         } catch (err) {
