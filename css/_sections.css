@@ -2525,6 +2525,14 @@
     gap: 0.85rem 1.25rem;
 }
 
+/* Same Outpost sign-up as Home. The video game has no Kickstarter yet. */
+.videogame-outpost {
+    margin-top: var(--spacing-lg);
+    max-width: 52rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .videogame-teaser-cta small {
     display: block;
 }
@@ -5939,6 +5947,136 @@ body.tdt-peoples-portrait-lightbox-open {
    ======================================== */
 #pitch.tab-content {
     padding: var(--spacing-md) 0 var(--spacing-xl);
+}
+
+.pitch-slider {
+    max-width: 1200px;
+    margin: 0 auto var(--spacing-lg);
+    padding: 0 var(--spacing-md);
+    outline: none;
+}
+
+/* Same Outpost sign-up as Home, under the deck. The pitch is the video game; Kickstarter is tabletop only. */
+.pitch-outpost {
+    max-width: 1200px;
+    margin: 0 auto var(--spacing-xl);
+    padding: 0 var(--spacing-md);
+}
+
+.pitch-slider:focus-visible {
+    outline: 2px solid var(--tdt-beige-warm);
+    outline-offset: 6px;
+    border-radius: var(--radius-md);
+}
+
+.pitch-slider__viewport {
+    position: relative;
+    border: 4px double var(--tdt-burgundy-warm);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: #140808;
+    box-shadow: var(--card-shadow);
+}
+
+.pitch-slider__slide {
+    display: none;
+    margin: 0;
+}
+
+.pitch-slider__slide.is-active {
+    display: block;
+}
+
+.pitch-slider__slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: #111;
+}
+
+.pitch-slider__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border: 2px solid var(--tdt-beige);
+    background: rgba(90, 31, 31, 0.82);
+    color: var(--tdt-beige-warm);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.pitch-slider__nav--prev {
+    left: 0.75rem;
+}
+
+.pitch-slider__nav--next {
+    right: 0.75rem;
+}
+
+.pitch-slider__nav:hover,
+.pitch-slider__nav:focus-visible {
+    background: var(--tdt-beige-warm);
+    color: var(--tdt-burgundy-warm);
+    transform: translateY(-50%) scale(1.08);
+    outline: none;
+}
+
+.pitch-slider__nav:disabled {
+    opacity: 0.35;
+    cursor: default;
+    transform: translateY(-50%);
+}
+
+.pitch-slider__nav:disabled:hover,
+.pitch-slider__nav:disabled:focus-visible {
+    background: rgba(90, 31, 31, 0.82);
+    color: var(--tdt-beige-warm);
+}
+
+.pitch-reading {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.pitch-reading__title {
+    margin: 0 0 var(--spacing-lg);
+    padding-bottom: var(--spacing-sm);
+    text-align: center;
+    font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+    color: var(--tdt-cream);
+    border-bottom: 1px solid rgba(217, 205, 184, 0.28);
+}
+
+.pitch-reading .pitch-deck {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 640px) {
+    .pitch-slider__nav {
+        width: 2.4rem;
+        height: 2.4rem;
+        font-size: 1.6rem;
+    }
+
+    .pitch-slider__nav--prev {
+        left: 0.4rem;
+    }
+
+    .pitch-slider__nav--next {
+        right: 0.4rem;
+    }
 }
 
 .pitch-investor-cta {

@@ -72,7 +72,7 @@ python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
 - **GET /health**  -  liveness.
 - **POST /chat**  -  body `{ "messages": [...], "characterSnapshot": {...}, "gameState": {...} }`; returns `{ "reply": "..." }`.
 - **POST /chat/stream**  -  same body; streams GM reply as Server-Sent Events (`data: {"delta": "..."}` or `{"done": true}` or `{"error": "..."}`).
-- **POST /newsletter/subscribe**  -  Outpost email signup from the static site. Body: `{ "email": "...", "lang": "en"|"fr", "source": "<string>", "honeypot": "" }`. **`source`** is written to the Sheet (column D with the default range). The homepage form sends **`homepage_outpost`**. Returns `{ "ok": true }` on success. Requires env configuration (see **Newsletter / Outpost** below); if unset, returns 503.
+- **POST /newsletter/subscribe**  -  Outpost email signup from the static site. Body: `{ "email": "...", "lang": "en"|"fr", "source": "<string>", "honeypot": "" }`. **`source`** is written to the Sheet (column D with the default range). The homepage form sends **`homepage_outpost`**. The pitch sends **`pitch_outpost`**. The Universe video-game page sends **`videogame_outpost`**. Other values are ignored. Returns `{ "ok": true }` on success. Requires env configuration (see **Newsletter / Outpost** below); if unset, returns 503.
 
 ## Newsletter / Outpost (Google Sheet)
 

@@ -312,7 +312,7 @@
             <div class="container landing-outpost-lead">
                 <section class="discovery-unified-outpost discovery-unified-outpost--landing-first" aria-labelledby="outpost-heading">
                     <h2 id="outpost-heading" class="screen-reader-text" data-en="Join the Outpost" data-fr="Rejoignez l'Avant-poste">Join the Outpost</h2>
-                    <form class="outpost-form" id="newsletter-form" action="#" method="post">
+                    <form class="outpost-form" id="newsletter-form" data-newsletter-source="homepage_outpost" action="#" method="post">
                         <label for="newsletter-email" class="screen-reader-text" data-aria-label-en="Email address" data-aria-label-fr="Adresse e-mail">Email address</label>
                         <div class="outpost-input-wrap" id="outpost-input-wrap">
                             <span class="outpost-input-prompt outpost-input-prompt--idle" aria-hidden="true" data-en="Join the Outpost" data-fr="Rejoignez l'Avant-poste">Join the Outpost</span>
@@ -396,15 +396,77 @@
 
         <!-- Pitch Deck Tab -->
         <section id="pitch" class="tab-content" data-lang-key="pitch" lang="fr">
-            <aside class="pitch-investor-cta" aria-label="Video game investor deck">
-                <div class="pitch-investor-cta__inner">
-                    <p class="pitch-investor-cta__kicker" data-en="Videogame pitch" data-fr="Pitch jeu vidéo">Videogame pitch</p>
-                    <h3 class="pitch-investor-cta__title" data-en="Video game investor deck" data-fr="Deck investisseurs jeu vidéo">Video game investor deck</h3>
-                    <p class="pitch-investor-cta__lede" data-en="The full pitch for the Action RPG in development - vision, market, roadmap, and the team behind the game and in-game teaser." data-fr="Le pitch complet du Action RPG en développement - vision, marché, feuille de route, et l'équipe derrière le jeu et le teaser in-game.">The full pitch for the Action RPG in development - vision, market, roadmap, and the team behind the game and in-game teaser.</p>
-                    <a class="cta-button pitch-investor-cta__btn" href="assets/tdt-investor-deck.pdf" target="_blank" rel="noopener noreferrer" data-en="Open the PDF" data-fr="Ouvrir le PDF">Open the PDF</a>
+            <!-- Slides from assets/tdt-investor-deck.pdf. Pages 10, 11, and 16 are omitted. -->
+            <div class="pitch-slider" id="pitch-slider" tabindex="0" role="region" aria-roledescription="carousel" data-aria-label-en="Video game pitch" data-aria-label-fr="Pitch jeu vidéo">
+                <div class="pitch-slider__viewport">
+                    <button type="button" class="pitch-slider__nav pitch-slider__nav--prev" data-aria-label-en="Previous slide" data-aria-label-fr="Diapositive précédente" aria-label="Previous slide" disabled>
+                        <span aria-hidden="true">‹</span>
+                    </button>
+                    <div class="pitch-slider__track">
+                        <figure class="pitch-slider__slide is-active">
+                            <img src="assets/images/pitch-deck/01.webp" width="1920" height="1080" alt="Pitch slide 1" data-alt-en="Pitch slide 1" data-alt-fr="Diapositive 1 du pitch" decoding="async" fetchpriority="high">
+                        </figure>
+                        <figure class="pitch-slider__slide" aria-hidden="true">
+                            <img src="assets/images/pitch-deck/02.webp" width="1920" height="1080" alt="Pitch slide 2" data-alt-en="Pitch slide 2" data-alt-fr="Diapositive 2 du pitch" decoding="async" loading="lazy">
+                        </figure>
+                        <figure class="pitch-slider__slide" aria-hidden="true">
+                            <img src="assets/images/pitch-deck/03.webp" width="1920" height="1080" alt="Pitch slide 3" data-alt-en="Pitch slide 3" data-alt-fr="Diapositive 3 du pitch" decoding="async" loading="lazy">
+                        </figure>
+                        <figure class="pitch-slider__slide" aria-hidden="true">
+                            <img src="assets/images/pitch-deck/04.webp" width="1920" height="1080" alt="Pitch slide 4" data-alt-en="Pitch slide 4" data-alt-fr="Diapositive 4 du pitch" decoding="async" loading="lazy">
+                        </figure>
+                        <figure class="pitch-slider__slide" aria-hidden="true">
+                            <img src="assets/images/pitch-deck/05.webp" width="1920" height="1080" alt="Pitch slide 5" data-alt-en="Pitch slide 5" data-alt-fr="Diapositive 5 du pitch" decoding="async" loading="lazy">
+                        </figure>
+                        <figure class="pitch-slider__slide" aria-hidden="true">
+                            <img src="assets/images/pitch-deck/06.webp" width="1920" height="1080" alt="Pitch slide 6" data-alt-en="Pitch slide 6" data-alt-fr="Diapositive 6 du pitch" decoding="async" loading="lazy">
+                        </figure>
+                        <figure class="pitch-slider__slide" aria-hidden="true">
+                            <img src="assets/images/pitch-deck/07.webp" width="1920" height="1080" alt="Pitch slide 7" data-alt-en="Pitch slide 7" data-alt-fr="Diapositive 7 du pitch" decoding="async" loading="lazy">
+                        </figure>
+                        <figure class="pitch-slider__slide" aria-hidden="true">
+                            <img src="assets/images/pitch-deck/08.webp" width="1920" height="1080" alt="Pitch slide 8" data-alt-en="Pitch slide 8" data-alt-fr="Diapositive 8 du pitch" decoding="async" loading="lazy">
+                        </figure>
+                        <figure class="pitch-slider__slide" aria-hidden="true">
+                            <img src="assets/images/pitch-deck/09.webp" width="1920" height="1080" alt="Pitch slide 9" data-alt-en="Pitch slide 9" data-alt-fr="Diapositive 9 du pitch" decoding="async" loading="lazy">
+                        </figure>
+                        <figure class="pitch-slider__slide" aria-hidden="true">
+                            <img src="assets/images/pitch-deck/10.webp" width="1920" height="1080" alt="Pitch slide 10" data-alt-en="Pitch slide 10" data-alt-fr="Diapositive 10 du pitch" decoding="async" loading="lazy">
+                        </figure>
+                        <figure class="pitch-slider__slide" aria-hidden="true">
+                            <img src="assets/images/pitch-deck/11.webp" width="1920" height="1080" alt="Pitch slide 11" data-alt-en="Pitch slide 11" data-alt-fr="Diapositive 11 du pitch" decoding="async" loading="lazy">
+                        </figure>
+                        <figure class="pitch-slider__slide" aria-hidden="true">
+                            <img src="assets/images/pitch-deck/12.webp" width="1920" height="1080" alt="Pitch slide 12" data-alt-en="Pitch slide 12" data-alt-fr="Diapositive 12 du pitch" decoding="async" loading="lazy">
+                        </figure>
+                        <figure class="pitch-slider__slide" aria-hidden="true">
+                            <img src="assets/images/pitch-deck/13.webp" width="1920" height="1080" alt="Pitch slide 13" data-alt-en="Pitch slide 13" data-alt-fr="Diapositive 13 du pitch" decoding="async" loading="lazy">
+                        </figure>
+                    </div>
+                    <button type="button" class="pitch-slider__nav pitch-slider__nav--next" data-aria-label-en="Next slide" data-aria-label-fr="Diapositive suivante" aria-label="Next slide">
+                        <span aria-hidden="true">›</span>
+                    </button>
                 </div>
-            </aside>
-            <!-- Pitch Deck DRD (bilingual: assets/PITCH_DECK_DRD.md + PITCH_DECK_DRD_EN.md) -->
+            </div>
+            <div class="pitch-outpost">
+                <section class="discovery-unified-outpost discovery-unified-outpost--landing-first" aria-labelledby="outpost-heading-pitch">
+                    <h2 id="outpost-heading-pitch" class="screen-reader-text" data-en="Join the Outpost" data-fr="Rejoignez l'Avant-poste">Join the Outpost</h2>
+                    <form class="outpost-form" id="newsletter-form-pitch" data-newsletter-source="pitch_outpost" action="#" method="post">
+                        <label for="newsletter-email-pitch" class="screen-reader-text" data-aria-label-en="Email address" data-aria-label-fr="Adresse e-mail">Email address</label>
+                        <div class="outpost-input-wrap">
+                            <span class="outpost-input-prompt outpost-input-prompt--idle" aria-hidden="true" data-en="Join the Outpost" data-fr="Rejoignez l'Avant-poste">Join the Outpost</span>
+                            <span class="outpost-input-prompt outpost-input-prompt--hint" aria-hidden="true" data-en="thediscordingtales@gmail.com" data-fr="thediscordingtales@gmail.com">thediscordingtales@gmail.com</span>
+                            <input type="email" id="newsletter-email-pitch" name="email" autocomplete="email" required placeholder="&#8203;" data-aria-label-en="Email address" data-aria-label-fr="Adresse e-mail" aria-labelledby="outpost-heading-pitch"/>
+                        </div>
+                        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;"/>
+                        <button type="submit" class="outpost-cta" disabled data-en="Subscribe - no spam" data-fr="S'abonner - pas de spam">Subscribe - no spam</button>
+                    </form>
+                    <p class="outpost-legal" data-en='Your address is kept only so we can write when the game launches. You can ask us to delete it at any time. <span class="outpost-legal-links"><a href="privacy/index.html">Privacy</a> · <a href="impressum/index.html">Impressum</a></span>' data-fr='Votre adresse est conservée uniquement pour vous écrire au lancement du jeu. Vous pouvez en demander la suppression à tout moment. <span class="outpost-legal-links"><a href="privacy/index.html">Confidentialité</a> · <a href="impressum/index.html">Mentions légales</a></span>'>Your address is kept only so we can write when the game launches. You can ask us to delete it at any time. <span class="outpost-legal-links"><a href="privacy/index.html">Privacy</a> · <a href="impressum/index.html">Impressum</a></span></p>
+                </section>
+            </div>
+            <div class="pitch-reading">
+                <h2 class="pitch-reading__title" data-en="Further in depth reading" data-fr="Lecture plus approfondie">Further in depth reading</h2>
+                <!-- Pitch Deck DRD (bilingual: assets/PITCH_DECK_DRD.md + PITCH_DECK_DRD_EN.md) -->
 <div class="pitch-deck" data-fr="    <header class=&quot;pitch-deck__hero&quot;>
         <h2 class=&quot;pitch-deck__title&quot;><strong>DES RÉCITS DISCORDANTS</strong></h2>
         <p class=&quot;pitch-deck__tagline&quot;><strong>Le Jeu de Rôle d’ethno-science-fantasy</strong></p>
@@ -669,6 +731,7 @@
         </article>
     </div>
 </div>
+            </div>
         </section>
         
         <!-- Lore Tab (archived) -->
@@ -2059,6 +2122,20 @@ Les Bas-Iqqars (Sää'm), à la fourrure blonde ou grise, aux yeux d'un bleu gla
                         <a href="#tabletop" class="videogame-teaser-link" data-en="Enter the tabletop" data-fr="Entrer dans le tabletop">Enter the tabletop</a>
                         <a href="#chatbot" class="videogame-teaser-link" data-en="Ask the Awakener" data-fr="Questionner l'Éveilleur">Ask the Awakener</a>
                     </div>
+                    <section class="discovery-unified-outpost discovery-unified-outpost--landing-first videogame-outpost" aria-labelledby="outpost-heading-videogame">
+                        <h2 id="outpost-heading-videogame" class="screen-reader-text" data-en="Join the Outpost" data-fr="Rejoignez l'Avant-poste">Join the Outpost</h2>
+                        <form class="outpost-form" id="newsletter-form-videogame" data-newsletter-source="videogame_outpost" action="#" method="post">
+                            <label for="newsletter-email-videogame" class="screen-reader-text" data-aria-label-en="Email address" data-aria-label-fr="Adresse e-mail">Email address</label>
+                            <div class="outpost-input-wrap">
+                                <span class="outpost-input-prompt outpost-input-prompt--idle" aria-hidden="true" data-en="Join the Outpost" data-fr="Rejoignez l'Avant-poste">Join the Outpost</span>
+                                <span class="outpost-input-prompt outpost-input-prompt--hint" aria-hidden="true" data-en="thediscordingtales@gmail.com" data-fr="thediscordingtales@gmail.com">thediscordingtales@gmail.com</span>
+                                <input type="email" id="newsletter-email-videogame" name="email" autocomplete="email" required placeholder="&#8203;" data-aria-label-en="Email address" data-aria-label-fr="Adresse e-mail" aria-labelledby="outpost-heading-videogame"/>
+                            </div>
+                            <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;"/>
+                            <button type="submit" class="outpost-cta" disabled data-en="Subscribe - no spam" data-fr="S'abonner - pas de spam">Subscribe - no spam</button>
+                        </form>
+                        <p class="outpost-legal" data-en='Your address is kept only so we can write when the game launches. You can ask us to delete it at any time. <span class="outpost-legal-links"><a href="privacy/index.html">Privacy</a> · <a href="impressum/index.html">Impressum</a></span>' data-fr='Votre adresse est conservée uniquement pour vous écrire au lancement du jeu. Vous pouvez en demander la suppression à tout moment. <span class="outpost-legal-links"><a href="privacy/index.html">Confidentialité</a> · <a href="impressum/index.html">Mentions légales</a></span>'>Your address is kept only so we can write when the game launches. You can ask us to delete it at any time. <span class="outpost-legal-links"><a href="privacy/index.html">Privacy</a> · <a href="impressum/index.html">Impressum</a></span></p>
+                    </section>
                 </article>
                 <section class="vg-pillars" aria-labelledby="vg-pillars-heading">
                     <div class="vg-above-pillars">

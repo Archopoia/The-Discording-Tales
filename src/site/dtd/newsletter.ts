@@ -15,6 +15,8 @@ export function getNewsletterApiBaseUrl() {
 
 /** Row column D via Sheets API; Apps Script receives the same JSON `source`. */
 export const NEWSLETTER_SOURCE_HOMEPAGE = 'homepage_outpost';
+export const NEWSLETTER_SOURCE_PITCH = 'pitch_outpost';
+export const NEWSLETTER_SOURCE_VIDEOGAME = 'videogame_outpost';
 
 /** POST /newsletter/subscribe (Outpost sheet / Apps Script). */
 export async function subscribeOutpost(email, opts) {
@@ -42,26 +44,23 @@ function isValidEmail(email: string): boolean {
 }
 
 // ========================================
-// Newsletter Form
+// Newsletter Form (home, pitch, and the video-game page share one door)
 // ========================================
-export function initNewsletter() {
-    /* Resolve at init time: elements.newsletterForm is captured when the script first runs and can be null with some load orders. */
-    var form = document.getElementById('newsletter-form');
-    if (!form) return;
-
-    var newsletterEmailInput = document.getElementById('newsletter-email');
-    var newsletterSubmitBtn = form.querySelector('button.outpost-cta');
+function bindOutpostForm(form) {
+    var emailInput = form.querySelector('input[type="email"]');
+    var submitBtn = form.querySelector('button.outpost-cta');
+    var source = form.getAttribute('data-newsletter-source') || NEWSLETTER_SOURCE_HOMEPAGE;
 
     function updateNewsletterSubmitEnabled() {
-        if (!newsletterEmailInput || !newsletterSubmitBtn) return;
-        newsletterSubmitBtn.disabled = !isLooseNewsletterEmail(newsletterEmailInput.value);
+        if (!emailInput || !submitBtn) return;
+        submitBtn.disabled = !isLooseNewsletterEmail(emailInput.value);
     }
 
-    if (newsletterEmailInput && newsletterSubmitBtn) {
+    if (emailInput && submitBtn) {
         ['input', 'change', 'blur'].forEach(function(evt) {
-            newsletterEmailInput.addEventListener(evt, updateNewsletterSubmitEnabled);
+            emailInput.addEventListener(evt, updateNewsletterSubmitEnabled);
         });
-        newsletterEmailInput.addEventListener('paste', function() {
+        emailInput.addEventListener('paste', function() {
             setTimeout(updateNewsletterSubmitEnabled, 0);
         });
         updateNewsletterSubmitEnabled();
@@ -69,16 +68,14 @@ export function initNewsletter() {
 
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
-        const emailInput = document.getElementById('newsletter-email');
         const email = emailInput ? emailInput.value : '';
         const honeypotInput = form.querySelector('input[name="website"]');
         const honeypot = honeypotInput ? honeypotInput.value : '';
-        const submitBtn = form.querySelector('button[type="submit"]');
         const originalBtnText = submitBtn ? submitBtn.textContent : '';
 
         if (!email || !isValidEmail(email)) {
-            alert(state.currentLang === 'en' 
-                ? 'Please enter a valid email address.' 
+            alert(state.currentLang === 'en'
+                ? 'Please enter a valid email address.'
                 : 'Veuillez entrer une adresse e-mail valide.');
             return;
         }
@@ -101,7 +98,7 @@ export function initNewsletter() {
         try {
             const res = await subscribeOutpost(String(email).trim(), {
                 lang: state.currentLang,
-                source: NEWSLETTER_SOURCE_HOMEPAGE,
+                source: source,
                 honeypot: honeypot || '',
             });
 
@@ -134,4 +131,8 @@ export function initNewsletter() {
             updateNewsletterSubmitEnabled();
         }
     });
+}
+
+export function initNewsletter() {
+    document.querySelectorAll('form.outpost-form').forEach(bindOutpostForm);
 }

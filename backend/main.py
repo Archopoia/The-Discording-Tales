@@ -144,8 +144,12 @@ class NewsletterSubscribeRequest(BaseModel):
 
 _NEWSLETTER_EMAIL_RE = re.compile(r"^[^\s@]+@[^\s@]+\.[^\s@]+$")
 _SHEETS_APPEND_SCOPE = "https://www.googleapis.com/auth/spreadsheets"
-# The Outpost form sends this. Anything else is a direct poke at the signup door.
-_NEWSLETTER_ALLOWED_SOURCES = frozenset({"homepage_outpost"})
+# The Outpost forms send these. Anything else is a direct poke at the signup door.
+_NEWSLETTER_ALLOWED_SOURCES = frozenset({
+    "homepage_outpost",
+    "pitch_outpost",
+    "videogame_outpost",
+})
 # Gmail ignores dots. Four or more in the name is the dotted-junk pattern, not "first.last".
 _DOT_STUFFED_MIN_DOTS = 4
 _SIGNUP_DEDUPE_SECONDS = 600

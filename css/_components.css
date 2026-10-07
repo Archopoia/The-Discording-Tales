@@ -1055,7 +1055,7 @@
 }
 
 /* Empty (placeholder still “shown”): ghost prompts read through transparent glyphs */
-.outpost-form .outpost-input-wrap:has(#newsletter-email:placeholder-shown) input[type="email"] {
+.outpost-form .outpost-input-wrap:has(input[type="email"]:placeholder-shown) input[type="email"] {
     background: transparent;
     color: transparent;
     -webkit-text-fill-color: transparent;
@@ -1063,7 +1063,7 @@
 }
 
 /* Any real input: strong contrast; stays after blur (not tied to :focus-within) */
-.outpost-form .outpost-input-wrap:has(#newsletter-email:not(:placeholder-shown)) input[type="email"] {
+.outpost-form .outpost-input-wrap:has(input[type="email"]:not(:placeholder-shown)) input[type="email"] {
     background: var(--tdt-cream) !important;
     color: var(--tdt-burgundy) !important;
     -webkit-text-fill-color: var(--tdt-burgundy) !important;
@@ -1110,18 +1110,18 @@
     opacity: 0;
 }
 
-.outpost-form .outpost-input-wrap:has(#newsletter-email:placeholder-shown):hover .outpost-input-prompt--idle,
-.outpost-form .outpost-input-wrap:has(#newsletter-email:placeholder-shown):focus-within .outpost-input-prompt--idle {
+.outpost-form .outpost-input-wrap:has(input[type="email"]:placeholder-shown):hover .outpost-input-prompt--idle,
+.outpost-form .outpost-input-wrap:has(input[type="email"]:placeholder-shown):focus-within .outpost-input-prompt--idle {
     opacity: 0;
 }
 
-.outpost-form .outpost-input-wrap:has(#newsletter-email:placeholder-shown):hover .outpost-input-prompt--hint,
-.outpost-form .outpost-input-wrap:has(#newsletter-email:placeholder-shown):focus-within .outpost-input-prompt--hint {
+.outpost-form .outpost-input-wrap:has(input[type="email"]:placeholder-shown):hover .outpost-input-prompt--hint,
+.outpost-form .outpost-input-wrap:has(input[type="email"]:placeholder-shown):focus-within .outpost-input-prompt--hint {
     opacity: 1;
 }
 
-.outpost-form .outpost-input-wrap:has(#newsletter-email:not(:placeholder-shown)) .outpost-input-prompt--idle,
-.outpost-form .outpost-input-wrap:has(#newsletter-email:not(:placeholder-shown)) .outpost-input-prompt--hint {
+.outpost-form .outpost-input-wrap:has(input[type="email"]:not(:placeholder-shown)) .outpost-input-prompt--idle,
+.outpost-form .outpost-input-wrap:has(input[type="email"]:not(:placeholder-shown)) .outpost-input-prompt--hint {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;

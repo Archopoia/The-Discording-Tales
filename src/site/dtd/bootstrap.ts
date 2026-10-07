@@ -37,6 +37,7 @@ import { initCopyrightProtection } from './copyright';
 import { initAboutContactQuest } from './about-contact-quest';
 import { initUniverseLore } from './universe-lore';
 import { initWorldGallery } from './world-gallery';
+import { initPitchSlider } from './pitch-slider';
 
 let deferredInitDone = false;
 
@@ -90,6 +91,8 @@ document.addEventListener('DOMContentLoaded', function () {
             gallerySlot.classList.add('mobile-relocated');
         }
     }
+
+    initPitchSlider();
 
     window.addEventListener('hashchange', handleHashChange);
 
