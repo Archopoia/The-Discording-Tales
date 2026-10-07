@@ -11,19 +11,21 @@ export function initPitchSlider(): void {
     const prevBtn = root.querySelector<HTMLButtonElement>('.pitch-slider__nav--prev');
     const nextBtn = root.querySelector<HTMLButtonElement>('.pitch-slider__nav--next');
     if (!slides.length || !prevBtn || !nextBtn) return;
+    const prev = prevBtn;
+    const next = nextBtn;
 
     let index = slides.findIndex((slide) => slide.classList.contains('is-active'));
     if (index < 0) index = 0;
 
-    function show(next: number): void {
-        index = Math.max(0, Math.min(slides.length - 1, next));
+    function show(nextIndex: number): void {
+        index = Math.max(0, Math.min(slides.length - 1, nextIndex));
         slides.forEach((slide, i) => {
             const on = i === index;
             slide.classList.toggle('is-active', on);
             slide.setAttribute('aria-hidden', on ? 'false' : 'true');
         });
-        prevBtn.disabled = index === 0;
-        nextBtn.disabled = index === slides.length - 1;
+        prev.disabled = index === 0;
+        next.disabled = index === slides.length - 1;
     }
 
     prevBtn.addEventListener('click', () => show(index - 1));
