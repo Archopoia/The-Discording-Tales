@@ -27,7 +27,7 @@ const DERIVATIVES = [
 ];
 
 const OG_IMAGE_ALT =
-  'THE DISCORDING TALES / DES RÉCITS DISCORDANTS - An ethno-science-fantasy gameworld';
+  'THE DISCORDING TALES / DES RÉCITS DISCORDANTS - A weird ethno-science-fantasy Action RPG';
 
 let sharp;
 try {

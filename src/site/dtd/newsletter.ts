@@ -114,8 +114,8 @@ function bindOutpostForm(form) {
             }
 
             alert(state.currentLang === 'en'
-                ? 'Thank you. We will write when Kickstarter opens. The launch includes the video game and, on higher tiers, the tabletop PDF.'
-                : 'Merci. Nous vous écrirons à l\'ouverture de Kickstarter. Le lancement comprend le jeu vidéo et, aux paliers supérieurs, le PDF de jeu de rôle.');
+                ? 'Thank you. We will write when Kickstarter opens. The launch is the video game. The tabletop PDF is the highest tier.'
+                : 'Merci. Nous vous écrirons à l\'ouverture de Kickstarter. Le lancement, c\'est le jeu vidéo. Le PDF de jeu de rôle est le palier le plus élevé.');
             if (emailInput) emailInput.value = '';
             if (honeypotInput) honeypotInput.value = '';
         } catch (err) {

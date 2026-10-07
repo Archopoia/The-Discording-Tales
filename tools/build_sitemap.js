@@ -28,7 +28,7 @@ const HOME_FR = `${BASE}/?lang=fr`;
 const IMAGES = [
   {
     loc: `${BASE}/assets/og-tdt-1200x630.jpg`,
-    title: 'THE DISCORDING TALES - share preview (1200x630)',
+    title: 'THE DISCORDING TALES - weird ethno-science-fantasy Action RPG',
   },
   {
     loc: `${BASE}/assets/og/tdt-brand-square-600.jpg`,

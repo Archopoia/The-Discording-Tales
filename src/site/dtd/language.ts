@@ -3,13 +3,13 @@ import { updateCarouselAriaLabels } from './carousel';
 import { applyUniverseLoreLanguage } from './universe-lore';
 
 const PAGE_TITLE_EN =
-    'THE DISCORDING TALES | Des Récits Discordants – Weird ethno-science-fantasy tabletop RPG';
+    'THE DISCORDING TALES | Des Récits Discordants - Action RPG';
 const PAGE_TITLE_FR =
-    'DES RÉCITS DISCORDANTS | The Discording Tales – Jeu de rôle weird ethno-science-fantasy';
+    'DES RÉCITS DISCORDANTS | The Discording Tales - Action-RPG';
 const META_DESCRIPTION_EN =
-    'The Discording Tales (Des Récits Discordants) – For those of us who crave DISCOVERY. A weird ethno-science-fantasy tabletop RPG and gameworld. A journey through exotic cultures, unexplored lands, weird creatures, and untold ways of thinking and being.';
+    'A weird ethno-science-fantasy Action RPG: a living dungeon of alien cultures and golden-age strife. The tabletop PDF is the highest Kickstarter tier.';
 const META_DESCRIPTION_FR =
-    "Des Récits Discordants (The Discording Tales) – Pour ceux d'entre nous qui aspirent à la DÉCOUVERTE. Jeu de rôle et univers weird ethno-science-fantasy. Un voyage à travers des cultures exotiques, des terres inexplorées, des créatures étranges et des façons inédites de penser et d'être.";
+    "Un Action-RPG weird ethno-science-fantasy : un donjon vivant, une ruée vers l'âge d'or. Le PDF de jeu de rôle est le palier le plus élevé du Kickstarter.";
 
 function getPageI18n(): { title?: { en: string; fr: string }; description?: { en: string; fr: string } } | null {
     const el = document.getElementById('tdt-i18n-strings');

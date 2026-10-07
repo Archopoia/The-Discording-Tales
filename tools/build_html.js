@@ -22,7 +22,7 @@ function loadOgMeta() {
   const fallback = {
     primary: 'assets/og-tdt-1200x630.jpg',
     cacheQuery: '',
-    alt: 'THE DISCORDING TALES - An ethno-science-fantasy gameworld',
+    alt: 'THE DISCORDING TALES / DES RÉCITS DISCORDANTS - A weird ethno-science-fantasy Action RPG',
     orgLogo: 'assets/og/tdt-brand-square-512.jpg',
   };
   if (!fs.existsSync(ogMetaPath)) {

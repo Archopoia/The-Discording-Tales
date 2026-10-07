@@ -81,7 +81,7 @@ async function main() {
     id: '/',
     start_url: '/',
     description:
-      'Weird ethno-science-fantasy tabletop RPG and worldlore - Des Récits Discordants.',
+      'Weird ethno-science-fantasy Action RPG. Des Récits Discordants.',
     icons: [
       {
         src: 'assets/icons/android-chrome-192x192.png',
