@@ -54,6 +54,7 @@ jobs:
           cp 404.html site/
           cp -r privacy site/
           cp -r impressum site/
+          cp -r landing site/
           [ -f LICENSE ] && cp LICENSE site/ || true
           # Google Search Console HTML-file verification (repo root google*.html)
           find . -maxdepth 1 -name 'google*.html' -exec cp -v {} site/ \;
