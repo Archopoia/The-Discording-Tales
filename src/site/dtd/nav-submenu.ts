@@ -8,6 +8,23 @@ function setSubmenuExpanded(item: Element, open: boolean): void {
     link.setAttribute('aria-expanded', open ? 'true' : 'false');
 }
 
+function isMenuStacked(): boolean {
+    const menu = document.getElementById('primary-menu');
+    return !!menu && menu.classList.contains('menu--stacked');
+}
+
+function closeSubmenu(item: Element): void {
+    item.classList.remove('is-sub-open');
+    setSubmenuExpanded(item, false);
+}
+
+function closeAllSubmenus(except?: Element): void {
+    document.querySelectorAll('.menu-item--has-sub.is-sub-open').forEach((node) => {
+        if (except && node === except) return;
+        closeSubmenu(node);
+    });
+}
+
 function tabsWrapped(menu: Element): boolean {
     const items = menu.querySelectorAll(':scope > .menu-item');
     let top: number | null = null;
@@ -48,6 +65,7 @@ function layoutSubmenus(): void {
     const coarse = window.matchMedia('(hover: none), (pointer: coarse)').matches;
     const stacked = coarse || tabsWrapped(menu);
     menu.classList.toggle('menu--stacked', stacked);
+    if (!stacked) closeAllSubmenus();
     menu.querySelectorAll('.menu-item--has-sub').forEach((node) => {
         const item = node as HTMLElement;
         const sub = item.querySelector('.menu-sub') as HTMLElement | null;
@@ -63,7 +81,8 @@ function layoutSubmenus(): void {
 }
 
 /**
- * Top-nav hover lists. A click opens that section directly (World, Videogame, Tabletop, About sections).
+ * Top-nav section lists. On a wide screen, hover shows them and a click opens that section.
+ * On a phone (or when the bar wraps), they stay closed until Universe or About is tapped.
  */
 export function initNavSubmenus(): void {
     layoutSubmenus();
@@ -80,27 +99,50 @@ export function initNavSubmenus(): void {
     document.querySelectorAll('.menu-item--has-sub').forEach((node) => {
         const item = node as HTMLElement;
         item.addEventListener('mouseenter', function () {
-            const menu = document.getElementById('primary-menu');
-            if (!menu || !menu.classList.contains('menu--stacked')) {
-                placeSubmenu(item);
-            }
+            if (isMenuStacked()) return;
+            placeSubmenu(item);
             setSubmenuExpanded(item, true);
         });
         item.addEventListener('mouseleave', function () {
+            if (isMenuStacked()) return;
             setSubmenuExpanded(item, false);
         });
         item.addEventListener('focusin', function () {
-            const menu = document.getElementById('primary-menu');
-            if (!menu || !menu.classList.contains('menu--stacked')) {
-                placeSubmenu(item);
-            }
+            if (isMenuStacked()) return;
+            placeSubmenu(item);
             setSubmenuExpanded(item, true);
         });
         item.addEventListener('focusout', function (e) {
+            if (isMenuStacked()) return;
             const next = e.relatedTarget;
             if (!(next instanceof Node) || !item.contains(next)) {
                 setSubmenuExpanded(item, false);
             }
+        });
+
+        /* On a phone, the name is a drawer: tap to show the sections, tap again to hide them. */
+        item.addEventListener('click', function (e) {
+            if (!isMenuStacked()) return;
+            const parentLink = item.querySelector(':scope > .tab-link');
+            const target = e.target;
+            if (!parentLink || !(target instanceof Node) || !parentLink.contains(target)) return;
+            e.preventDefault();
+            e.stopPropagation();
+            if (item.classList.contains('is-sub-open')) {
+                closeSubmenu(item);
+                return;
+            }
+            closeAllSubmenus();
+            item.classList.add('is-sub-open');
+            setSubmenuExpanded(item, true);
+        }, true);
+    });
+
+    document.addEventListener('click', function (e) {
+        const target = e.target;
+        if (!(target instanceof Node)) return;
+        document.querySelectorAll('.menu-item--has-sub.is-sub-open').forEach((node) => {
+            if (!node.contains(target)) closeSubmenu(node);
         });
     });
 
@@ -129,6 +171,9 @@ export function initNavSubmenus(): void {
 
             const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+
+            const parentItem = link.closest('.menu-item--has-sub');
+            if (parentItem) closeSubmenu(parentItem);
 
             if (elements.menu) {
                 elements.menu.classList.remove('active');

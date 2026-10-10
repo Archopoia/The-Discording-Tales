@@ -1044,7 +1044,7 @@
     }
 }
 
-/* Touch: no hover, so the first-level sections stay visible and one tap opens them. */
+/* Touch: no hover. Section lists stay closed until Universe or About is tapped. */
 @media (hover: none), (pointer: coarse) {
     .menu-item--has-sub {
         display: flex;
@@ -1053,25 +1053,40 @@
     }
 
     .menu-item--has-sub > .tab-link {
-        padding-right: var(--spacing-md);
         text-align: center;
     }
 
-    .menu-item--has-sub > .tab-link::before {
-        display: none;
+    .menu-item--has-sub:hover > .tab-link::before,
+    .menu-item--has-sub:focus-within > .tab-link::before {
+        transform: none;
+        margin-top: -2px;
+    }
+
+    .menu-item--has-sub.is-sub-open > .tab-link::before {
+        transform: rotate(180deg);
+        margin-top: -3px;
     }
 
     .menu-sub {
         --menu-bridge: 0px;
-        position: static;
+        position: relative;
+        left: auto;
         transform: none;
+        display: none;
         opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
+        visibility: hidden;
+        pointer-events: none;
         min-width: 0;
         width: 100%;
-        margin-top: 0.2rem;
+        margin-top: 0;
         padding-top: 0;
+    }
+
+    .menu-item--has-sub.is-sub-open > .menu-sub {
+        display: flex;
+        visibility: visible;
+        pointer-events: auto;
+        margin-top: 0.2rem;
     }
 
     .menu-sub-link {
@@ -1084,7 +1099,7 @@
     }
 }
 
-/* Narrow bar: tabs wrap, so keep the sections in the flow instead of a floating list. */
+/* Narrow bar: tabs wrap, so the section list sits in the flow and stays closed until tapped. */
 .menu.menu--stacked .menu-item--has-sub {
     display: flex;
     flex-direction: column;
@@ -1092,25 +1107,40 @@
 }
 
 .menu.menu--stacked .menu-item--has-sub > .tab-link {
-    padding-right: var(--spacing-md);
     text-align: center;
 }
 
-.menu.menu--stacked .menu-item--has-sub > .tab-link::before {
-    display: none;
+.menu.menu--stacked .menu-item--has-sub:hover > .tab-link::before,
+.menu.menu--stacked .menu-item--has-sub:focus-within > .tab-link::before {
+    transform: none;
+    margin-top: -2px;
+}
+
+.menu.menu--stacked .menu-item--has-sub.is-sub-open > .tab-link::before {
+    transform: rotate(180deg);
+    margin-top: -3px;
 }
 
 .menu.menu--stacked .menu-sub {
     --menu-bridge: 0px;
-    position: static;
+    position: relative;
+    left: auto;
     transform: none;
+    display: none;
     opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
+    visibility: hidden;
+    pointer-events: none;
     min-width: 0;
     width: 100%;
-    margin-top: 0.2rem;
+    margin-top: 0;
     padding-top: 0;
+}
+
+.menu.menu--stacked .menu-item--has-sub.is-sub-open > .menu-sub {
+    display: flex;
+    visibility: visible;
+    pointer-events: auto;
+    margin-top: 0.2rem;
 }
 
 .menu.menu--stacked .menu-sub-link {
