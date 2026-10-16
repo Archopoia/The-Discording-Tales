@@ -7,9 +7,9 @@ const PAGE_TITLE_EN =
 const PAGE_TITLE_FR =
     'DES RÉCITS DISCORDANTS | The Discording Tales - Action-RPG';
 const META_DESCRIPTION_EN =
-    'A weird ethno-science-fantasy Action RPG: a living dungeon of alien cultures and golden-age strife. The tabletop PDF is the highest Kickstarter tier.';
+    'A weird ethno-science-fantasy Action RPG: a living dungeon of alien cultures and golden-age strife.';
 const META_DESCRIPTION_FR =
-    "Un Action-RPG weird ethno-science-fantasy : un donjon vivant, une ruée vers l'âge d'or. Le PDF de jeu de rôle est le palier le plus élevé du Kickstarter.";
+    "Un Action-RPG weird ethno-science-fantasy : un donjon vivant, une ruée vers l'âge d'or.";
 
 function getPageI18n(): { title?: { en: string; fr: string }; description?: { en: string; fr: string } } | null {
     const el = document.getElementById('tdt-i18n-strings');

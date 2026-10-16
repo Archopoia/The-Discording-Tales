@@ -4,7 +4,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.thediscordingtales.com/</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/"/>
@@ -33,7 +33,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/landing</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/landing"/>
@@ -41,7 +41,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/privacy</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/privacy"/>
@@ -51,7 +51,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/impressum</loc>
-    <lastmod>2026-10-07</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/impressum"/>
