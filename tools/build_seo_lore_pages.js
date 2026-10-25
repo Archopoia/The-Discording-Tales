@@ -102,14 +102,29 @@ ${hubList}
           headline: summary,
           description,
           inLanguage: 'en',
+          image: [
+            `${BASE}/assets/og-tdt-1200x630.jpg`,
+            `${BASE}/assets/og/tdt-brand-square-600.jpg`,
+          ],
+          datePublished: '2020-01-01T00:00:00+00:00',
+          dateModified: new Date().toISOString(),
           isPartOf: { '@type': 'WebSite', name: 'THE DISCORDING TALES', url: `${BASE}/` },
-          author: { '@type': 'Organization', name: 'The Discording Tales' },
+          author: {
+            '@type': 'Organization',
+            name: 'The Discording Tales',
+            url: `${BASE}/`,
+          },
           publisher: {
             '@type': 'Organization',
             name: 'The Discording Tales',
-            logo: { '@type': 'ImageObject', url: `${BASE}/assets/og/tdt-brand-square-512.jpg` },
+            logo: {
+              '@type': 'ImageObject',
+              url: `${BASE}/assets/og/tdt-brand-square-512.jpg`,
+              width: 512,
+              height: 512,
+            },
           },
-          mainEntityOfPage: canonical,
+          mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
           url: canonical,
         }),
         bodyHtml: `
