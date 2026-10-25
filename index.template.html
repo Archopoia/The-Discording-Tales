@@ -51,6 +51,16 @@
     
     <!-- Theme Color -->
     <meta content="#5a1f1f" name="theme-color"/>
+    <!-- Critical entrance paint: dark stage before main CSS / heavy WebPs (kills white flash). Fades live in _keyhole.css. -->
+    <style id="tdt-entrance-critical">
+      html, body { background: #1a0505; margin: 0; }
+      body.tdt-entrance-bypassed #static-loader { display: none !important; visibility: hidden !important; }
+      #static-loader {
+        position: fixed; inset: 0; z-index: 10000;
+        display: flex; align-items: center; justify-content: center;
+        background: radial-gradient(circle at center, #3d0000 0%, #1a0505 45%, #000000 100%);
+      }
+    </style>
     <!-- GM API (Tabletop chatbot): public backend for all visitors -->
     <meta name="gm-api-url" content="https://the-discording-tales-wlu5.onrender.com"/>
     <!-- Entrance bypass: within 5 min of last completed enter, skip keyhole and entrance-only assets -->
@@ -80,11 +90,18 @@
             }
             document.head.appendChild(link);
         }
-        preloadImage('assets/images/image/image12.png', 'high');
+        /* Tiny LQIPs first, then medium, then logo; full WebPs last (not blocking first paint). */
         if (!window.__TDT_ENTRANCE_BYPASS__) {
-            preloadImage('assets/images/Map_Naked.webp', 'high');
-            preloadImage('assets/images/Creusalité_NoBorders.webp', 'high');
+            preloadImage('assets/images/Map_Naked_lqip.webp', 'high');
+            preloadImage('assets/images/Creusalité_NoBorders_lqip.webp', 'high');
+            preloadImage('assets/images/Map_Naked_medium.webp', 'high');
+            preloadImage('assets/images/Creusalité_NoBorders_medium.webp', 'high');
+            preloadImage('assets/images/image/image12.png', 'high');
             preloadImage('assets/images/image/image2.png', 'high');
+            preloadImage('assets/images/Map_Naked.webp', 'low');
+            preloadImage('assets/images/Creusalité_NoBorders.webp', 'low');
+        } else {
+            preloadImage('assets/images/image/image12.png', 'high');
         }
     })();
     </script>
@@ -152,14 +169,14 @@
     })();
     </script>
     <!-- Keyhole entrance: vignette always visible; burgundy fill fades on unlock -->
-    <div id="static-loader" class="entrance-vignette" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; z-index: 10000;">
+    <div id="static-loader" class="entrance-vignette" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; z-index: 10000; background: radial-gradient(circle at center, #3d0000 0%, #1a0505 45%, #000000 100%);">
         <div id="entrance-fill" class="entrance-fill" style="position: absolute; inset: 0; pointer-events: none;">
-            <!-- Layer 1: Animated map background (bottom) -->
-            <div class="entrance-layer entrance-map-layer" aria-hidden="true"></div>
+            <!-- Layer 1: Animated map background (bottom) - LQIP first, upgraded by keyhole-entrance.js -->
+            <div class="entrance-layer entrance-map-layer entrance-layer--soft" style="background-image: url('assets/images/Map_Naked_lqip.webp');" data-entrance-medium="assets/images/Map_Naked_medium.webp" data-entrance-full="assets/images/Map_Naked.webp" aria-hidden="true"></div>
             <!-- Layer 2: Burgundy overlay (fades on hover to reveal map) -->
             <div class="entrance-layer entrance-overlay-layer" aria-hidden="true"></div>
-            <!-- Layer 3: Creusalité frame stretched to viewport -->
-            <div class="entrance-layer entrance-creusalite-layer" aria-hidden="true"></div>
+            <!-- Layer 3: Creusalité frame stretched to viewport - LQIP first -->
+            <div class="entrance-layer entrance-creusalite-layer entrance-layer--soft" style="background-image: url('assets/images/Creusalité_NoBorders_lqip.webp');" data-entrance-medium="assets/images/Creusalité_NoBorders_medium.webp" data-entrance-full="assets/images/Creusalité_NoBorders.webp" aria-hidden="true"></div>
             <!-- Layer 4: Black vignette (top - above everything) -->
             <div class="entrance-layer entrance-vignette-layer" aria-hidden="true"></div>
         </div>

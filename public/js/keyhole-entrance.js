@@ -129,6 +129,40 @@
         }
     });
 
+    /**
+     * Progressive entrance art: LQIP (inline) → medium → full.
+     * Existing *_lqip / *_medium assets were generated but never wired.
+     */
+    function upgradeEntranceLayers() {
+        var layers = document.querySelectorAll('.entrance-layer[data-entrance-medium]');
+        layers.forEach(function(el) {
+            var medium = el.getAttribute('data-entrance-medium');
+            var full = el.getAttribute('data-entrance-full');
+            if (!medium) return;
+
+            function applyUrl(url, className) {
+                return new Promise(function(resolve) {
+                    var img = new Image();
+                    img.onload = function() {
+                        el.style.backgroundImage = 'url("' + url + '")';
+                        el.classList.add(className);
+                        resolve();
+                    };
+                    img.onerror = function() {
+                        resolve();
+                    };
+                    img.src = url;
+                });
+            }
+
+            applyUrl(medium, 'is-medium').then(function() {
+                if (full) {
+                    applyUrl(full, 'is-full');
+                }
+            });
+        });
+    }
+
     function runEntrance() {
         const staticLoader = document.getElementById('static-loader');
         const entranceFill = document.getElementById('entrance-fill');
@@ -147,6 +181,8 @@
             });
             return;
         }
+
+        upgradeEntranceLayers();
 
         doorUnlock = createFullyPreloadedAudio(SOUNDS_BASE + 'door_unlock.wav', 0.7);
         chimes = createFullyPreloadedAudio(SOUNDS_BASE + 'Chimes.wav', 0.3);
@@ -387,6 +423,10 @@
     'use strict';
 
     var ENTRANCE_IMAGE_URLS = [
+        'assets/images/Map_Naked_lqip.webp',
+        'assets/images/Creusalité_NoBorders_lqip.webp',
+        'assets/images/Map_Naked_medium.webp',
+        'assets/images/Creusalité_NoBorders_medium.webp',
         'assets/images/Map_Naked.webp',
         'assets/images/Creusalité_NoBorders.webp',
         'assets/images/image/image12.png',

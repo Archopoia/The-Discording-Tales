@@ -105,6 +105,8 @@ body.entrance-active > :not(#static-loader):not(#golden-flash) {
     align-items: center;
     justify-content: center;
     gap: 0.35em 0.55em;
+    opacity: 0;
+    animation: tdtEntranceFadeIn 2.2s ease 0.35s forwards;
 }
 
 .entrance-click-hint__sep {
@@ -131,30 +133,46 @@ body.entrance-active > :not(#static-loader):not(#golden-flash) {
 
 /* Entrance fill - visible immediately on page load */
 #entrance-fill {
-    /* No fade-in - entrance is visible from start */
     opacity: 1;
     transform: translateZ(0);
     backface-visibility: hidden;
 }
 
+/* Soft LQIP start: blur until JS swaps medium/full (see keyhole-entrance.js). */
+.entrance-layer--soft {
+    filter: blur(14px);
+    transform: scale(1.04);
+    transition: filter 1.4s ease, transform 1.4s ease;
+}
+.entrance-layer--soft.is-medium,
+.entrance-layer--soft.is-full {
+    filter: blur(0);
+    transform: none;
+}
 
-/* Layer 1 (bottom): Animated map background - zoomed in, panning */
+/* Layer 1 (bottom): Animated map background - zoomed in, panning.
+   Default/LQIP set inline; medium/full swapped by JS. */
 .entrance-map-layer {
-    background-image: url("../assets/images/Map_Naked.webp");
+    background-image: url("../assets/images/Map_Naked_lqip.webp");
     background-size: 240%;
     background-position: 20% 30%;
     background-repeat: no-repeat;
-    animation: entranceMapPan 60s ease-in-out infinite;
+    opacity: 0;
+    animation:
+        tdtEntranceFadeIn 2.2s ease forwards,
+        entranceMapPan 60s ease-in-out infinite;
     transform-origin: 50% 45%;
     backface-visibility: hidden;
 }
 
 /* Layer 3: Creusalité frame - stretched to viewport */
 .entrance-creusalite-layer {
-    background-image: url("../assets/images/Creusalité_NoBorders.webp");
+    background-image: url("../assets/images/Creusalité_NoBorders_lqip.webp");
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
+    opacity: 0;
+    animation: tdtEntranceFadeIn 2.5s ease 0.08s forwards;
 }
 
 /* Layer 2: Burgundy overlay (100% opacity, fades on hover) */
@@ -190,6 +208,8 @@ body.entrance-active > :not(#static-loader):not(#golden-flash) {
         rgba(0, 0, 0, 0.4) 60%,
         rgba(0, 0, 0, 0.85) 100%
     );
+    opacity: 0;
+    animation: tdtEntranceFadeIn 2.4s ease 0.12s forwards;
 }
 
 /* Map panning animation - medium motion, visits multiple areas */
@@ -234,8 +254,22 @@ body.entrance-active > :not(#static-loader):not(#golden-flash) {
 
 /* Accessibility: disable animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
+    .entrance-map-layer,
+    .entrance-creusalite-layer,
+    .entrance-vignette-layer,
+    #enter-portfolio-btn,
+    .entrance-click-hint {
+        animation: none !important;
+        opacity: 1 !important;
+    }
+
+    .entrance-layer--soft {
+        filter: none;
+        transform: none;
+        transition: none;
+    }
+
     .entrance-map-layer {
-        animation: none;
         background-position: 50% 50%;
         background-size: 200%;
     }
@@ -254,6 +288,8 @@ body.entrance-active > :not(#static-loader):not(#golden-flash) {
 
 /* Zoom: transform scale (GPU)  -  background-size keyframes repaint the map every frame and hitch. */
 #static-loader.entrance-revealing .entrance-map-layer {
+    /* Replacing the combo fade+pan animation would snap opacity back to the rule's 0 */
+    opacity: 1;
     animation: entranceMapZoomInGpu 1.35s cubic-bezier(0.25, 0.46, 0.35, 1) forwards;
     will-change: transform;
 }
@@ -272,6 +308,11 @@ body.entrance-active > :not(#static-loader):not(#golden-flash) {
     0%   { transform: rotate(0deg); }
     50%  { transform: rotate(180deg); }
     100% { transform: rotate(0deg); }
+}
+
+/* Shared entrance reveal (also inlined early in index.template.html) */
+@keyframes tdtEntranceFadeIn {
+    to { opacity: 1; }
 }
 
 /* Enter button - styling for logo image; min touch target 44px */
@@ -294,8 +335,9 @@ body.entrance-active > :not(#static-loader):not(#golden-flash) {
     text-decoration: none !important;
     box-shadow: none !important;
     outline: none !important;
-    /* Eye iris movement - calm, observing (default state) - pure CSS, no JS */
-    animation: eyeIrisCalm 12s ease-in-out infinite;
+    /* Fade in with entrance; eye wander runs on the wrap */
+    opacity: 0;
+    animation: tdtEntranceFadeIn 2.3s ease 0.18s forwards, eyeIrisCalm 12s ease-in-out infinite 2.3s;
 }
 
 /* Wrapper so symbol + coin share one glow/rotation (filter on wrapper) */
@@ -594,7 +636,7 @@ body.entrance-active > :not(#static-loader):not(#golden-flash) {
 @media (hover: none) and (pointer: coarse), (max-width: 768px) {
     /* Eye stays centered  -  exclude exit so fade+scale animation can run */
     #enter-portfolio-btn:not(.entrance-exiting) {
-        animation: none !important;
+        animation: tdtEntranceFadeIn 2.3s ease 0.18s forwards !important;
         transform: translate(0, 0) !important;
     }
 
