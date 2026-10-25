@@ -283,62 +283,83 @@
             }, { once: true });
         }
 
-        if (enterButton) {
-            enterButton.addEventListener('click', function() {
-                window.keyholeClickInProgress = true;
-                if (staticLoader) {
-                    staticLoader.classList.add('entrance-revealing');
-                }
+        var autoEnterTimer = null;
+        var enterStarted = false;
 
-                /* Flash FIRST while content is still display:none  -  avoids multi-second main-thread
-                   layout before the animation can run (was: remove entrance-active, then append flash). */
-                var flashElement = document.createElement('div');
-                flashElement.id = 'golden-flash';
-                document.body.appendChild(flashElement);
-                var flashBloomMs = 480;
-                var flashFadeMs = 420;
-                flashElement.style.animation = 'goldenFlashBloom ' + (flashBloomMs / 1000) + 's linear forwards';
-
-                if (entranceFill) {
-                    entranceFill.style.animation = 'fadeOut 1.35s cubic-bezier(0.33, 0, 0.15, 1) forwards';
-                }
-                if (enterButton) {
-                    enterButton.classList.add('entrance-exiting');
-                }
-
-                if (doorUnlock) {
-                    doorUnlock.volume = 0.7;
-                    doorUnlock.currentTime = 0;
-                    doorUnlock.play().catch(function() {});
-                }
-
-                /* Stagger full-page unhide so it doesn't land in the same frame as the composited bloom start. */
-                setTimeout(function() {
-                    document.body.classList.remove('entrance-active');
-                }, 56);
-
-                setTimeout(function() {
-                    flashElement.classList.add('golden-flash--fading');
-                }, flashBloomMs + 16);
-
-                setTimeout(function() {
-                    if (staticLoader) {
-                        staticLoader.style.pointerEvents = 'none';
-                        staticLoader.style.display = 'none';
-                    }
-                    if (flashElement.parentNode) {
-                        flashElement.parentNode.removeChild(flashElement);
-                    }
-                    audioUnlocked = true;
-                    setTimeout(startChimesLoop, 1000);
-                    persistEntranceSession();
-                    window.dispatchEvent(new Event('tdt-entrance-complete'));
-                }, flashBloomMs + 16 + flashFadeMs + 100);
-            }, { once: true });
+        function clearAutoEnter() {
+            if (autoEnterTimer != null) {
+                clearTimeout(autoEnterTimer);
+                autoEnterTimer = null;
+            }
         }
+
+        /* Same open sequence for click and the 10s auto-open (no fake click). */
+        function completeEnter() {
+            if (enterStarted || audioUnlocked || window.keyholeClickInProgress) return;
+            enterStarted = true;
+            clearAutoEnter();
+            window.keyholeClickInProgress = true;
+
+            if (staticLoader) {
+                staticLoader.classList.add('entrance-revealing');
+            }
+
+            /* Flash FIRST while content is still display:none  -  avoids multi-second main-thread
+               layout before the animation can run (was: remove entrance-active, then append flash). */
+            var flashElement = document.createElement('div');
+            flashElement.id = 'golden-flash';
+            document.body.appendChild(flashElement);
+            var flashBloomMs = 480;
+            var flashFadeMs = 420;
+            flashElement.style.animation = 'goldenFlashBloom ' + (flashBloomMs / 1000) + 's linear forwards';
+
+            if (entranceFill) {
+                entranceFill.style.animation = 'fadeOut 1.35s cubic-bezier(0.33, 0, 0.15, 1) forwards';
+            }
+            if (enterButton) {
+                enterButton.classList.add('entrance-exiting');
+            }
+
+            if (doorUnlock) {
+                doorUnlock.volume = 0.7;
+                doorUnlock.currentTime = 0;
+                doorUnlock.play().catch(function() {});
+            }
+
+            /* Stagger full-page unhide so it doesn't land in the same frame as the composited bloom start. */
+            setTimeout(function() {
+                document.body.classList.remove('entrance-active');
+            }, 56);
+
+            setTimeout(function() {
+                flashElement.classList.add('golden-flash--fading');
+            }, flashBloomMs + 16);
+
+            setTimeout(function() {
+                if (staticLoader) {
+                    staticLoader.style.pointerEvents = 'none';
+                    staticLoader.style.display = 'none';
+                }
+                if (flashElement.parentNode) {
+                    flashElement.parentNode.removeChild(flashElement);
+                }
+                audioUnlocked = true;
+                setTimeout(startChimesLoop, 1000);
+                persistEntranceSession();
+                window.dispatchEvent(new Event('tdt-entrance-complete'));
+            }, flashBloomMs + 16 + flashFadeMs + 100);
+        }
+
+        if (enterButton) {
+            enterButton.addEventListener('click', completeEnter, { once: true });
+        }
+
+        autoEnterTimer = setTimeout(completeEnter, 10000);
 
         document.addEventListener('click', function(e) {
             if (!audioUnlocked && !window.keyholeClickInProgress && e.target !== enterButton && !(e.target && e.target.closest && e.target.closest('#enter-portfolio-btn'))) {
+                clearAutoEnter();
+                enterStarted = true;
                 if (doorUnlock) {
                     doorUnlock.volume = 0.7;
                 }

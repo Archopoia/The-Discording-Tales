@@ -24,6 +24,10 @@ npm-debug.log*
 *.swo
 *~
 
+# Local agent skills / marketing SEO tooling (not site runtime; restore with npx skills)
+.agents/
+skills-lock.json
+
 # OS files
 .DS_Store
 Thumbs.db

@@ -91,6 +91,41 @@ ${alternates}
     })
     .join('\n');
 
+  /** Indexable SEO pages from build_seo_*.js manifests (not hash SPA fragments). */
+  const seoManifestDirs = ['lore', 'world', 'guide', 'compare', 'character-sheet'];
+  const seoPaths = [];
+  for (const dir of seoManifestDirs) {
+    const manifestPath = path.join(root, dir, 'manifest.json');
+    if (!fs.existsSync(manifestPath)) continue;
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+    if (Array.isArray(manifest.paths)) seoPaths.push(...manifest.paths);
+  }
+  const hubPriority = new Set([
+    '/lore/',
+    '/world/',
+    '/world/peoples/',
+    '/world/origins/',
+    '/guide/',
+    '/guide/ethno-science-fantasy/',
+    '/compare/',
+    '/character-sheet/',
+  ]);
+  const loreBlocks = [...new Set(seoPaths)]
+    .map((p) => {
+      const rel = p.endsWith('/') ? p : `${p}/`;
+      const normalized = `${BASE}${rel}`;
+      const isHub = hubPriority.has(rel);
+      return `  <url>
+    <loc>${normalized}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>${isHub ? 'weekly' : 'monthly'}</changefreq>
+    <priority>${isHub ? '0.85' : '0.7'}</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="${normalized}"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="${normalized}"/>
+  </url>`;
+    })
+    .join('\n');
+
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
@@ -106,6 +141,7 @@ ${alternates}
 ${imageBlocks}
   </url>
 ${legalBlocks}
+${loreBlocks}
 </urlset>
 `;
 }
