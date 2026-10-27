@@ -4,14 +4,19 @@
  * Injects {{SITE_PUBLIC_BASE}} from tools/site-public-url.js (SITE_PUBLIC_URL env).
  * Builds 404.html from 404.template.html with the same base.
  *
+ * Routing:
+ *   /              → cinematic landing (from landing.template.html)
+ *   /site/         → interactive hub (from index.template.html + partials)
+ *   /landing       → redirect to /
+ *
  * Usage:
- *   node tools/build_html.js           -  build index.html from index.template.html + partials
- *   node tools/build_html.js --init   -  extract partials from index.html and create index.template.html (one-time)
+ *   node tools/build_html.js           -  build pages from templates + partials
+ *   node tools/build_html.js --init   -  extract partials from site/index.html and create index.template.html (one-time)
  */
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { getSitePublicBase } from './site-public-url.js';
+import { getSitePublicBase, getSiteRootHref } from './site-public-url.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
@@ -33,12 +38,68 @@ function loadOgMeta() {
 }
 const partialsDir = path.join(root, 'partials');
 const templatePath = path.join(root, 'index.template.html');
-const indexPath = path.join(root, 'index.html');
+const siteIndexPath = path.join(root, 'site', 'index.html');
 
 const PEOPLES_START = 287;   // 1-based, inclusive (<!-- Flip cards...)
 const PEOPLES_END = 616;     // closing </div> of peoples-gallery
 const KEYWORDS_START = 2241; // <details class="inspirations-expandable"> Keywords
 const KEYWORDS_END = 2265;   // </details>
+
+/** Rewrite root-relative asset/page paths so they resolve from /site/. */
+function rebaseForSiteSubdir(html) {
+  return html.replace(
+    /\b(href|src|poster)=(["'])(?!https?:|\/\/|#|mailto:|tel:|data:|\{\{|\/|\.\.\/)([^"']+)\2/gi,
+    '$1=$2../$3$2',
+  );
+}
+
+function applyPublicTokens(html, base, og) {
+  const ogImagePath = `${og.primary}${og.cacheQuery}`;
+  const orgLogoPath = `${og.orgLogo}${og.cacheQuery}`;
+  const rootHref = getSiteRootHref();
+  return html
+    .replaceAll('{{SITE_PUBLIC_BASE}}', base)
+    .replaceAll('{{SITE_ROOT_HREF}}', rootHref)
+    .replaceAll('{{OG_IMAGE_PATH}}', ogImagePath)
+    .replaceAll('{{OG_IMAGE_ALT}}', og.alt)
+    .replaceAll('{{ORG_LOGO_PATH}}', orgLogoPath);
+}
+
+function landingSpaBounceScript() {
+  // Legacy deep links to the interactive hub used to live at `/#…` and `/?lang=fr`.
+  // Bounce those to /site/ without stealing landing-native anchors (hero, world, team, pitch…).
+  return `<script>
+(function () {
+  var q = location.search || '';
+  if (/[?&]lang=fr\\b/i.test(q)) {
+    location.replace('site/' + q + (location.hash || ''));
+    return;
+  }
+  var h = (location.hash || '').replace(/^#/, '').split('?')[0].split('&')[0];
+  if (!h) return;
+  var keep = { top:1, hero:1, scene:1, world:1, team:1, pitch:1, 'world-title':1, 'dungeon-title':1, 'team-title':1, 'pitch-title':1, 'hero-title':1 };
+  if (keep[h]) return;
+  location.replace('site/' + location.hash + q);
+})();
+</script>`;
+}
+
+function buildLandingRedirect(base) {
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>THE DISCORDING TALES</title>
+  <link rel="canonical" href="${base}/"/>
+  <meta http-equiv="refresh" content="0;url=${base}/"/>
+  <script>location.replace(${JSON.stringify(base + '/')} + location.search + location.hash);</script>
+</head>
+<body>
+  <p><a href="${base}/">Continue to THE DISCORDING TALES</a></p>
+</body>
+</html>
+`;
+}
 
 function build() {
   const template = fs.readFileSync(templatePath, 'utf8');
@@ -74,20 +135,16 @@ function build() {
     .replace('{{pitch-deck}}', pitchDeck.trim());
   const base = getSitePublicBase();
   const og = loadOgMeta();
-  const ogImagePath = `${og.primary}${og.cacheQuery}`;
-  const orgLogoPath = `${og.orgLogo}${og.cacheQuery}`;
-  out = out
-    .replaceAll('{{SITE_PUBLIC_BASE}}', base)
-    .replaceAll('{{OG_IMAGE_PATH}}', ogImagePath)
-    .replaceAll('{{OG_IMAGE_ALT}}', og.alt)
-    .replaceAll('{{ORG_LOGO_PATH}}', orgLogoPath);
-  fs.writeFileSync(indexPath, out, 'utf8');
-  console.log('Built index.html from template + partials');
+  out = applyPublicTokens(out, base, og);
+  out = rebaseForSiteSubdir(out);
+  fs.mkdirSync(path.dirname(siteIndexPath), { recursive: true });
+  fs.writeFileSync(siteIndexPath, out, 'utf8');
+  console.log('Built site/index.html from template + partials');
 
   const fourTemplatePath = path.join(root, '404.template.html');
   const fourOutPath = path.join(root, '404.html');
   if (fs.existsSync(fourTemplatePath)) {
-    const four = fs.readFileSync(fourTemplatePath, 'utf8').replaceAll('{{SITE_PUBLIC_BASE}}', base);
+    const four = applyPublicTokens(fs.readFileSync(fourTemplatePath, 'utf8'), base, og);
     fs.writeFileSync(fourOutPath, four, 'utf8');
     console.log('Built 404.html from 404.template.html');
   }
@@ -95,21 +152,40 @@ function build() {
   const legalPages = [
     ['privacy.template.html', path.join('privacy', 'index.html')],
     ['impressum.template.html', path.join('impressum', 'index.html')],
-    ['landing.template.html', path.join('landing', 'index.html')],
+    ['scene-lab.template.html', path.join('scene-lab', 'index.html')],
   ];
   for (const [templateName, outRel] of legalPages) {
     const legalTemplatePath = path.join(root, templateName);
     if (!fs.existsSync(legalTemplatePath)) continue;
-    const html = fs.readFileSync(legalTemplatePath, 'utf8').replaceAll('{{SITE_PUBLIC_BASE}}', base);
+    const html = applyPublicTokens(fs.readFileSync(legalTemplatePath, 'utf8'), base, og);
     const legalOutPath = path.join(root, outRel);
     fs.mkdirSync(path.dirname(legalOutPath), { recursive: true });
     fs.writeFileSync(legalOutPath, html, 'utf8');
     console.log('Built', outRel, 'from', templateName);
   }
+
+  // Cinematic landing owns `/`
+  const landingTemplatePath = path.join(root, 'landing.template.html');
+  if (fs.existsSync(landingTemplatePath)) {
+    let landing = fs.readFileSync(landingTemplatePath, 'utf8');
+    // Template still uses ../ for historical /landing/ paths; flatten for root.
+    landing = landing.replaceAll('../', '');
+    landing = applyPublicTokens(landing, base, og);
+    if (!landing.includes('tdt-spa-bounce')) {
+      landing = landing.replace(/<head>/i, `<head>\n    <!-- tdt-spa-bounce -->\n    ${landingSpaBounceScript()}`);
+    }
+    fs.writeFileSync(path.join(root, 'index.html'), landing, 'utf8');
+    console.log('Built index.html from landing.template.html (homepage)');
+
+    const landingDir = path.join(root, 'landing');
+    fs.mkdirSync(landingDir, { recursive: true });
+    fs.writeFileSync(path.join(landingDir, 'index.html'), buildLandingRedirect(base), 'utf8');
+    console.log('Built landing/index.html redirect → /');
+  }
 }
 
 function init() {
-  const index = fs.readFileSync(indexPath, 'utf8');
+  const index = fs.readFileSync(siteIndexPath, 'utf8');
   const lines = index.split('\n');
   if (!fs.existsSync(partialsDir)) {
     fs.mkdirSync(partialsDir, { recursive: true });

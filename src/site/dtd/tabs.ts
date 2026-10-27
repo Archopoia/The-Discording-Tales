@@ -1,5 +1,5 @@
 import { elements, state, TAB_ORDER } from './context';
-import { clearMainNavSubmenu, ensureFirstSubTabActive } from './subtabs';
+import { ensureFirstSubTabActive } from './subtabs';
 import { setLanguage } from './language';
 
 let logoBurstTimeout: ReturnType<typeof setTimeout> | null = null;
@@ -95,16 +95,16 @@ export function loadPlayTabBundles(): Promise<unknown[]> | null {
         });
     }
     tdtPlayBundlesPromise = Promise.all([
-        injectVendorScript('js/vendor/marked.min.js', 'data-tdt-marked', function () {
+        injectVendorScript('/js/vendor/marked.min.js', 'data-tdt-marked', function () {
             return typeof (window as unknown as { marked?: unknown }).marked !== 'undefined';
         }),
-        injectVendorScript('js/vendor/purify.min.js', 'data-tdt-dompurify', function () {
+        injectVendorScript('/js/vendor/purify.min.js', 'data-tdt-dompurify', function () {
             return typeof (window as unknown as { DOMPurify?: unknown }).DOMPurify !== 'undefined';
         }),
-        injectModuleOnce('dist/play-webllm.js', 'data-tdt-play-webllm', function () {
+        injectModuleOnce('/dist/play-webllm.js', 'data-tdt-play-webllm', function () {
             return typeof (window as unknown as { getWebLLMEngine?: unknown }).getWebLLMEngine === 'function';
         }),
-        injectDeferScriptOnce('dist/character-sheet.js', 'data-tdt-character-sheet', function () {
+        injectDeferScriptOnce('/dist/character-sheet.js', 'data-tdt-character-sheet', function () {
             return !!(window as unknown as { __tdtCharacterSheetLoaded?: boolean }).__tdtCharacterSheetLoaded;
         }),
     ])
@@ -141,7 +141,6 @@ export function switchTab(tabId: string, options?: { skipScrollToTop?: boolean; 
     if (targetContent) {
         targetContent.classList.add('active');
         state.currentTab = tabId;
-        clearMainNavSubmenu();
         if (!skipScrollToTop) {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }

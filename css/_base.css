@@ -1,12 +1,12 @@
 /* ========================================
    Font Face Declarations
    ======================================== */
-/* Body Fonts - Fanwood Text & Quattrocento */
+/* Brand title / subtitle only (main + landing hero) - self-hosted */
 @font-face {
     font-family: 'Fanwood Text';
     font-style: italic;
     font-weight: 400;
-    src: url(https://fonts.wp.com/s/fanwoodtext/v17/3XFzErwl05Ad_vSCF6Fq7xX2R-zV_Pw.ttf) format('truetype');
+    src: url('../assets/Fonts/FanwoodText-Italic.ttf') format('truetype');
     font-display: swap;
 }
 
@@ -14,59 +14,25 @@
     font-family: 'Fanwood Text';
     font-style: normal;
     font-weight: 400;
-    src: url(https://fonts.wp.com/s/fanwoodtext/v17/3XFtErwl05Ad_vSCF6Fq7xX2TNzc.ttf) format('truetype');
+    src: url('../assets/Fonts/FanwoodText-Regular.ttf') format('truetype');
     font-display: swap;
 }
 
+/* Readable body */
 @font-face {
-    font-family: 'Quattrocento';
+    font-family: 'Dauphin';
     font-style: normal;
     font-weight: 400;
-    src: url(https://fonts.wp.com/s/quattrocento/v24/OZpEg_xvsDZQL_LKIF7q4jP3zWj_.ttf) format('truetype');
+    src: url('../assets/Fonts/DauphinRegular.ttf') format('truetype');
     font-display: swap;
 }
 
+/* Flavour / display headings */
 @font-face {
-    font-family: 'Quattrocento';
-    font-style: normal;
-    font-weight: 700;
-    src: url(https://fonts.wp.com/s/quattrocento/v24/OZpbg_xvsDZQL_LKIF7q4jP_eE3vfqnd.ttf) format('truetype');
-    font-display: swap;
-}
-
-/* Heading Font - Texturina */
-@font-face {
-    font-family: 'Texturina';
+    font-family: 'Mystic Cards';
     font-style: normal;
     font-weight: 400;
-    src: url('../assets/fonts/c4mM1nxpEtL3pXiAulRTkY-HGmNEX1b9NspjMwhAgliHhVrXy2eYGvUl25riW1OD.woff2') format('woff2');
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Texturina';
-    font-style: normal;
-    font-weight: 900;
-    src: url('../assets/fonts/c4mM1nxpEtL3pXiAulRTkY-HGmNEX1b9NspjMwhAgliHhVrXy2cxHfUl25riW1OD.woff2') format('woff2');
-    font-display: swap;
-}
-
-/* Quintessential (buttons / modals) — self-hosted, was Google Fonts */
-@font-face {
-    font-family: 'Quintessential';
-    font-style: normal;
-    font-weight: 400;
-    src: url('../assets/fonts/quintessential-latin-ext.woff2') format('woff2');
-    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Quintessential';
-    font-style: normal;
-    font-weight: 400;
-    src: url('../assets/fonts/quintessential-latin.woff2') format('woff2');
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    src: url('../assets/Fonts/MysticCards.ttf') format('truetype');
     font-display: swap;
 }
 
@@ -94,19 +60,23 @@ html {
 
 body {
     font-family: var(--font-body);
-    background-color: var(--tdt-dark-red);
-    /* Procedural marble texture via WebGL canvas replaces static background */
-    background: linear-gradient(
-        135deg,
-        rgba(90, 31, 31, 0.95) 0%,
-        rgba(74, 24, 24, 0.98) 50%,
-        rgba(58, 16, 16, 1) 100%
-    );
-    background-position: left top;
-    background-size: auto;
-    background-repeat: repeat;
-    background-attachment: scroll;
-    color: var(--tdt-cream);
+    background-color: var(--tdt-surface-mid);
+    /* Same red family as .main-navigation - soft, not black-crush */
+    background-image:
+        linear-gradient(
+            180deg,
+            var(--tdt-surface-mid) 0%,
+            var(--tdt-surface) 55%,
+            var(--tdt-surface-deep) 100%
+        ),
+        var(--bg-pattern);
+    background-position: left top, center;
+    background-size: auto, 720px 720px;
+    background-repeat: no-repeat, repeat;
+    background-attachment: scroll, scroll;
+    background-blend-mode: normal, soft-light;
+    /* Nav tab beige - easier on the eyes than bright cream on dark */
+    color: var(--tdt-ink);
     line-height: 1.6;
     overflow-x: clip;
     min-height: 100vh;
@@ -194,7 +164,7 @@ body::before {
     background: 
         radial-gradient(
             ellipse at 30% 20%,
-            rgba(160, 253, 218, 0.08) 0%,
+            rgba(212, 197, 168, 0.08) 0%,
             transparent 50%
         ),
         radial-gradient(
@@ -213,6 +183,42 @@ body::before {
     animation: mysticalPulse 20s ease-in-out infinite alternate;
 }
 
+/* Canvas linen weave over the page - soft tooth so flat burgundy reads as cloth */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.55;
+    mix-blend-mode: soft-light;
+    background-image: var(--tdt-tex-canvas-weave);
+    background-size: auto;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+    body {
+        background-image: linear-gradient(
+            135deg,
+            rgba(90, 31, 31, 0.95) 0%,
+            rgba(74, 24, 24, 0.98) 50%,
+            rgba(58, 16, 16, 1) 100%
+        );
+        background-blend-mode: normal;
+    }
+
+    body::after {
+        display: none;
+    }
+}
+
+@media print {
+    body::before,
+    body::after {
+        display: none;
+    }
+}
+
 @keyframes mysticalPulse {
     0% {
         opacity: 0.7;
@@ -226,8 +232,9 @@ body::before {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
-    color: var(--tdt-cream);
-    font-weight: 900;
+    color: var(--tdt-ink);
+    /* Mystic Cards is single-weight; faux-bold looks muddy */
+    font-weight: 400;
     line-height: 1.2;
     margin-bottom: var(--spacing-sm);
     /* Maximalist baroque text shadows for ornate effect */
@@ -260,14 +267,14 @@ h1, h2, h3, h4, h5, h6 {
             2px 2px 0px rgba(90, 31, 31, 0.5),
             4px 4px 8px rgba(0, 0, 0, 0.4),
             0 0 24px rgba(245, 230, 196, 0.5),
-            0 0 48px rgba(160, 253, 218, 0.2),
+            0 0 48px rgba(212, 197, 168, 0.2),
             0 0 64px rgba(245, 230, 196, 0.15);
     }
 }
 
 p {
     margin-bottom: var(--spacing-sm);
-    color: var(--tdt-cream);
+    color: var(--tdt-ink);
     max-width: 75ch;
 }
 
@@ -288,8 +295,111 @@ a {
 }
 
 a:hover, a:focus {
-    color: var(--tdt-cream);
-    text-shadow: 0 0 8px rgba(255, 245, 221, 0.5);
+    color: var(--tdt-ink-strong);
+    text-shadow: none;
+}
+
+/* ========================================
+   Shared motifs (reuse - do not invent local chrome)
+   tab | etch | cta | rule | feather-panel
+   ======================================== */
+.tdt-tab {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    color: var(--tdt-ink);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    box-shadow: none;
+    transition: color var(--transition-normal), background var(--transition-normal);
+}
+.tdt-tab:hover,
+.tdt-tab:focus {
+    color: var(--tdt-ink-strong);
+    background: var(--tdt-tab-hover-bg);
+}
+.tdt-tab.is-active,
+.tdt-tab.active {
+    color: var(--tdt-ink-strong);
+    background: var(--tdt-tab-active-bg);
+}
+
+.tdt-etch {
+    border: none;
+    border-radius: var(--tdt-etch-radius);
+    padding: var(--tdt-etch-pad-y) var(--tdt-etch-pad-x);
+    background-color: var(--tdt-etch-bg);
+    background-image: var(--tdt-etch-wash);
+    box-shadow: none;
+    color: var(--tdt-ink);
+}
+.tdt-etch:hover,
+.tdt-etch:focus {
+    background-color: var(--tdt-etch-bg-hover);
+    background-image: var(--tdt-etch-wash-hover);
+    color: var(--tdt-ink-strong);
+}
+
+.tdt-cta {
+    font-family: var(--font-heading);
+    color: var(--tdt-cta-ink);
+    background: var(--tdt-cta-bg);
+    border: var(--tdt-cta-border);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--tdt-cta-shadow);
+}
+.tdt-cta:hover,
+.tdt-cta:focus {
+    background: var(--tdt-cta-bg-hover);
+}
+
+.tdt-rule-y {
+    border-top: var(--tdt-rule-border);
+    border-bottom: var(--tdt-rule-border);
+    border-left: none;
+    border-right: none;
+}
+
+/* Scene-lab people callout language: soft beige + paper tooth + gentle feather */
+.tdt-feather-panel {
+    color: var(--tdt-panel-ink);
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: var(--tdt-panel-pad-y) var(--tdt-panel-pad-x);
+    background-image: var(--tdt-panel-face);
+    background-size: var(--tdt-panel-face-size);
+    background-blend-mode: var(--tdt-panel-face-blend);
+    -webkit-mask-image: var(--tdt-feather-panel-x), var(--tdt-feather-panel-y);
+    mask-image: var(--tdt-feather-panel-x), var(--tdt-feather-panel-y);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+}
+
+.tdt-feather-panel--soft {
+    background-image: var(--tdt-panel-face-soft);
+    background-size: var(--tdt-panel-face-size);
+    background-blend-mode: var(--tdt-panel-face-blend);
+}
+
+/* Burgundy / surface shells - same feather, darker fill */
+.tdt-feather-surface {
+    background: var(--tdt-panel-surface-bg);
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    -webkit-mask-image: var(--tdt-feather-surface-x), var(--tdt-feather-surface-y);
+    mask-image: var(--tdt-feather-surface-x), var(--tdt-feather-surface-y);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
 }
 
 img {

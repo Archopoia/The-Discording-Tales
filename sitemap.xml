@@ -4,11 +4,10 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.thediscordingtales.com/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.thediscordingtales.com/?lang=fr"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thediscordingtales.com/"/>
     <image:image>
       <image:loc>https://www.thediscordingtales.com/assets/og-tdt-1200x630.jpg</image:loc>
@@ -32,16 +31,17 @@
     </image:image>
   </url>
   <url>
-    <loc>https://www.thediscordingtales.com/landing</loc>
-    <lastmod>2026-10-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/landing"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thediscordingtales.com/landing"/>
+    <loc>https://www.thediscordingtales.com/site/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/site/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.thediscordingtales.com/site/?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thediscordingtales.com/site/"/>
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/privacy</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/privacy"/>
@@ -51,7 +51,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/impressum</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/impressum"/>
@@ -61,7 +61,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/lore/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/lore/"/>
@@ -69,7 +69,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/lore/abondances-hsaewal-samiana/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/lore/abondances-hsaewal-samiana/"/>
@@ -77,7 +77,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/lore/apparaitre-disparaitre/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/lore/apparaitre-disparaitre/"/>
@@ -85,7 +85,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/lore/artefacts-tehkswen-minzhije/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/lore/artefacts-tehkswen-minzhije/"/>
@@ -93,7 +93,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/lore/attirer-repousser/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/lore/attirer-repousser/"/>
@@ -101,7 +101,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/lore/changer-persister/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/lore/changer-persister/"/>
@@ -109,7 +109,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/lore/construit-construit/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/lore/construit-construit/"/>
@@ -117,7 +117,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/lore/corps-coeur-ril-cendrees/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/lore/corps-coeur-ril-cendrees/"/>
@@ -125,7 +125,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/lore/erreur-sioiz-zimwis/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/lore/erreur-sioiz-zimwis/"/>
@@ -133,7 +133,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/lore/festivals-wahros-hwethioz/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/lore/festivals-wahros-hwethioz/"/>
@@ -141,7 +141,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/lore/iohoi-magie/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/lore/iohoi-magie/"/>
@@ -149,7 +149,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/lore/mots-et-sens/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/lore/mots-et-sens/"/>
@@ -157,7 +157,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/lore/ordres-riliques/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/lore/ordres-riliques/"/>
@@ -165,7 +165,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/lore/rildees-astrales/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/lore/rildees-astrales/"/>
@@ -173,7 +173,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/lore/rilie-fantastique/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/lore/rilie-fantastique/"/>
@@ -181,7 +181,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/lore/rils-siwomiz/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/lore/rils-siwomiz/"/>
@@ -189,7 +189,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/lore/ruines-aiars/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/lore/ruines-aiars/"/>
@@ -197,7 +197,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/lore/signes-guident/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/lore/signes-guident/"/>
@@ -205,7 +205,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/lore/temple-yekkwui-apsebjum/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/lore/temple-yekkwui-apsebjum/"/>
@@ -213,7 +213,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/lore/tomber-elever/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/lore/tomber-elever/"/>
@@ -221,7 +221,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/lore/vie-mort/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/lore/vie-mort/"/>
@@ -229,7 +229,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/lore/vivre-ainsi/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/lore/vivre-ainsi/"/>
@@ -237,7 +237,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/lore/wom-hism-o/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/lore/wom-hism-o/"/>
@@ -245,7 +245,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/world/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/world/"/>
@@ -253,7 +253,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/world/peoples/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/world/peoples/"/>
@@ -261,7 +261,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/world/origins/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/world/origins/"/>
@@ -269,7 +269,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/world/peoples/aristois/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/world/peoples/aristois/"/>
@@ -277,7 +277,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/world/peoples/griscribes/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/world/peoples/griscribes/"/>
@@ -285,7 +285,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/world/peoples/navillis/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/world/peoples/navillis/"/>
@@ -293,7 +293,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/world/peoples/meridiens/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/world/peoples/meridiens/"/>
@@ -301,7 +301,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/world/peoples/hauts-ylfes/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/world/peoples/hauts-ylfes/"/>
@@ -309,7 +309,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/world/peoples/ylfes-pales/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/world/peoples/ylfes-pales/"/>
@@ -317,7 +317,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/world/peoples/ylfes-des-lacs/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/world/peoples/ylfes-des-lacs/"/>
@@ -325,7 +325,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/world/peoples/iqqars/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/world/peoples/iqqars/"/>
@@ -333,7 +333,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/world/peoples/slaadeens/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/world/peoples/slaadeens/"/>
@@ -341,7 +341,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/world/peoples/tchalkchais/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/world/peoples/tchalkchais/"/>
@@ -349,7 +349,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/world/origins/yommes/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/world/origins/yommes/"/>
@@ -357,7 +357,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/world/origins/yorres/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/world/origins/yorres/"/>
@@ -365,7 +365,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/world/origins/bestres/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/world/origins/bestres/"/>
@@ -373,7 +373,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/guide/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/guide/"/>
@@ -381,7 +381,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/guide/ethno-science-fantasy/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/guide/ethno-science-fantasy/"/>
@@ -389,7 +389,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/compare/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/compare/"/>
@@ -397,7 +397,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/compare/weird-fantasy-ttrpg/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/compare/weird-fantasy-ttrpg/"/>
@@ -405,7 +405,7 @@
   </url>
   <url>
     <loc>https://www.thediscordingtales.com/character-sheet/</loc>
-    <lastmod>2026-10-25</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.thediscordingtales.com/character-sheet/"/>

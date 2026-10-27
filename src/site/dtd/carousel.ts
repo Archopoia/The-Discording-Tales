@@ -90,11 +90,36 @@ export function buildOneCarousel(containerEl: HTMLElement, images: CarouselImage
             containerEl.dispatchEvent(new CustomEvent('carouselcyclecomplete', { bubbles: true }));
         }
     }
+    function stopCarouselAutoplay() {
+        if (carouselStates[id].interval) {
+            clearInterval(carouselStates[id].interval!);
+            carouselStates[id].interval = null;
+        }
+    }
     function restartCarouselAutoplay() {
-        if (carouselStates[id].interval) clearInterval(carouselStates[id].interval!);
+        stopCarouselAutoplay();
         carouselStates[id].interval = setInterval(nextSlide, 5000);
     }
-    restartCarouselAutoplay();
+    /* Only tick while the carousel is on-screen (and tab visible) */
+    if (typeof IntersectionObserver !== 'undefined') {
+        const io = new IntersectionObserver(
+            function (entries) {
+                const entry = entries[0];
+                if (entry && entry.isIntersecting && !document.hidden) {
+                    restartCarouselAutoplay();
+                } else {
+                    stopCarouselAutoplay();
+                }
+            },
+            { root: null, threshold: 0.15 }
+        );
+        io.observe(containerEl);
+        document.addEventListener('visibilitychange', function () {
+            if (document.hidden) stopCarouselAutoplay();
+        });
+    } else {
+        restartCarouselAutoplay();
+    }
 }
 
 export function initCarousel(): void {

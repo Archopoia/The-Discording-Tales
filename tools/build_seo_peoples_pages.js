@@ -32,21 +32,24 @@ const ORIGIN_META = {
     bodyKey: 'peoples.descent.yommes.body',
     fromKey: 'peoples.origins.yommes_from',
     akaKey: 'peoples.origins.yommes_aka',
-    badge: 'YÔMMES',
+    badge: 'YUMS',
+    image: 'Yums.webp',
   },
   yorres: {
     titleKey: 'peoples.descent.yorres.title',
     howKey: 'peoples.descent.yorres.how',
     bodyKey: 'peoples.descent.yorres.body',
     fromKey: 'peoples.origins.yorres_from',
-    badge: 'YÔRRES',
+    badge: 'YORS',
+    image: 'Yors.webp',
   },
   bestres: {
     titleKey: 'peoples.descent.bestres.title',
     howKey: 'peoples.descent.bestres.how',
     bodyKey: 'peoples.descent.bestres.body',
     fromKey: 'peoples.origins.bestres_from',
-    badge: 'BÊSTRES',
+    badge: 'BEINGSTS',
+    image: 'Beingsts.webp',
   },
 };
 
@@ -115,12 +118,12 @@ function build() {
   const worldBody = `
     <p class="kicker">World</p>
     <h1>Peoples and origins of The Discording Tales</h1>
-    <p class="lede">No humans. Three origins - Yômmes, Yôrres, Bêstres - and the peoples that climbed back from the crust with their own moralities, lineages, and wars.</p>
+    <p class="lede">No humans. Three origins - Yums, Yors, Beingsts - and the peoples that climbed back from the crust with their own moralities, lineages, and wars.</p>
     <h2>Browse</h2>
     <ul class="list">
       <li><a href="${esc(BASE)}/world/peoples/">All peoples</a><p>Ten playable peoples with tribes, attributes, and relations.</p></li>
-      <li><a href="${esc(BASE)}/world/origins/">Three origins</a><p>How Yômmes, Yôrres, and Bêstres came to the surface.</p></li>
-      <li><a href="${esc(BASE)}/lore/">Universe lore</a><p>Rildées, festivals, artefacts, and cosmology.</p></li>
+      <li><a href="${esc(BASE)}/world/origins/">Three origins</a><p>How Yums, Yors, and Beingsts came to the surface.</p></li>
+      <li><a href="${esc(BASE)}/lore/">Universe lore</a><p>Rild�es, festivals, artefacts, and cosmology.</p></li>
       <li><a href="${esc(BASE)}/guide/ethno-science-fantasy/">What is ethno-science-fantasy?</a><p>The genre frame for this setting.</p></li>
     </ul>`;
   fs.writeFileSync(
@@ -140,7 +143,7 @@ function build() {
         isPartOf: { '@type': 'WebSite', name: 'THE DISCORDING TALES', url: `${BASE}/` },
       }),
       bodyHtml: worldBody,
-      ctaPrimaryHref: `${BASE}/#peoples`,
+      ctaPrimaryHref: `${BASE}/site/#peoples`,
       ctaPrimaryLabel: 'Open peoples in the world',
     }),
     'utf8',
@@ -168,9 +171,9 @@ ${peoplesList}
     </ul>
     <h2>By origin</h2>
     <p class="related">
-      <a href="${esc(BASE)}/world/origins/yommes/">Yômmes</a>
-      <a href="${esc(BASE)}/world/origins/yorres/">Yôrres</a>
-      <a href="${esc(BASE)}/world/origins/bestres/">Bêstres</a>
+      <a href="${esc(BASE)}/world/origins/yommes/">Yums</a>
+      <a href="${esc(BASE)}/world/origins/yorres/">Yors</a>
+      <a href="${esc(BASE)}/world/origins/bestres/">Beingsts</a>
     </p>`;
 
   const peoplesItemList = peoples.map((p, i) => ({
@@ -197,7 +200,7 @@ ${peoplesList}
         mainEntity: { '@type': 'ItemList', itemListElement: peoplesItemList },
       }),
       bodyHtml: peoplesHubBody,
-      ctaPrimaryHref: `${BASE}/#peoples`,
+      ctaPrimaryHref: `${BASE}/site/#peoples`,
       ctaPrimaryLabel: 'Open peoples in the world',
     }),
     'utf8',
@@ -227,7 +230,7 @@ ${peoplesList}
     );
 
     const articleBody = `
-    <p class="kicker"><a href="${esc(BASE)}/world/peoples/">Peoples</a> · <a href="${esc(BASE)}/world/origins/${esc(p.origin)}/">${esc(originLabel)}</a></p>
+    <p class="kicker"><a href="${esc(BASE)}/world/peoples/">Peoples</a> � <a href="${esc(BASE)}/world/origins/${esc(p.origin)}/">${esc(originLabel)}</a></p>
     <h1>${esc(p.name)}</h1>
     <p>
       <span class="meta-chip">${esc(ORIGIN_META[p.origin]?.badge || originLabel)}</span>
@@ -236,7 +239,7 @@ ${peoplesList}
     <p class="lede">${esc(p.hook)}</p>
     <article>
       <h2>In the setting</h2>
-      <p>The <strong>${esc(p.name)}</strong> are a people of the <a href="${esc(BASE)}/world/origins/${esc(p.origin)}/">${esc(originLabel)}</a> origin in The Discording Tales / Des Récits Discordants - an ethno-science-fantasy world without humans. Their racial morality is framed as <strong>${esc(p.morality)}</strong>.</p>
+      <p>The <strong>${esc(p.name)}</strong> are a people of the <a href="${esc(BASE)}/world/origins/${esc(p.origin)}/">${esc(originLabel)}</a> origin in The Discording Tales / Des R�cits Discordants - an ethno-science-fantasy world without humans. Their racial morality is framed as <strong>${esc(p.morality)}</strong>.</p>
       ${p.relations ? `<h2>Relations</h2><p>${esc(p.relations)}</p>` : ''}
       <h2>Lineages</h2>
       ${raceBlocks || '<p>See the interactive peoples tree on the main site for lineage detail.</p>'}
@@ -289,7 +292,7 @@ ${peoplesList}
           url: `${BASE}/world/peoples/${p.slug}/`,
         }),
         bodyHtml: articleBody,
-        ctaPrimaryHref: `${BASE}/#peoples`,
+        ctaPrimaryHref: `${BASE}/site/#peoples`,
         ctaPrimaryLabel: `Open ${p.name} in the world`,
       }),
       'utf8',
@@ -301,13 +304,16 @@ ${peoplesList}
     <p class="kicker"><a href="${esc(BASE)}/world/">World</a></p>
     <h1>Three origins</h1>
     <p class="lede">${esc(en['peoples.descent.lead'] || '')}</p>
-    <ul class="list">
+    <ul class="list origin-list">
       ${['yommes', 'yorres', 'bestres']
         .map((id) => {
           const m = ORIGIN_META[id];
           const title = en[m.titleKey];
           const how = en[m.howKey];
-          return `<li><a href="${esc(BASE)}/world/origins/${id}/">${esc(title)}</a><p>${esc(how)} - ${esc(en[m.fromKey] || '')}</p></li>`;
+          const img = m.image
+            ? `<img class="origin-thumb" src="${esc(BASE)}/assets/images/people/${esc(m.image)}" alt="${esc(title)}" width="320" height="320" loading="lazy" decoding="async"/>`
+            : '';
+          return `<li><a href="${esc(BASE)}/world/origins/${id}/">${img}<span class="origin-list__text"><strong>${esc(title)}</strong><p>${esc(how)} - ${esc(en[m.fromKey] || '')}</p></span></a></li>`;
         })
         .join('\n')}
     </ul>`;
@@ -317,7 +323,7 @@ ${peoplesList}
     pageShell({
       title: 'Three origins | THE DISCORDING TALES',
       description: metaDescription(
-        'Yômmes, Yôrres, and Bêstres',
+        'Yums, Yors, and Beingsts',
         'the three origins of peoples in The Discording Tales ethno-science-fantasy setting.',
       ),
       canonical: `${BASE}/world/origins/`,
@@ -328,7 +334,7 @@ ${peoplesList}
         url: `${BASE}/world/origins/`,
       }),
       bodyHtml: originsHubBody,
-      ctaPrimaryHref: `${BASE}/#peoples`,
+      ctaPrimaryHref: `${BASE}/site/#peoples`,
       ctaPrimaryLabel: 'Open peoples in the world',
     }),
     'utf8',
@@ -348,10 +354,14 @@ ${peoplesList}
     const description = metaDescription(title, how, from, 'in The Discording Tales.');
     paths.push(`/world/origins/${id}/`);
 
+    const hero = m.image
+      ? `<figure class="origin-hero"><img src="${esc(BASE)}/assets/images/people/${esc(m.image)}" alt="${esc(title)}" width="900" height="900" loading="eager" decoding="async"/></figure>`
+      : '';
     const originBody = `
     <p class="kicker"><a href="${esc(BASE)}/world/origins/">Origins</a></p>
     <h1>${esc(title)}</h1>
     <p class="lede">${esc(how)}${from ? ` - ${esc(from)}` : ''}${aka ? ` (${esc(aka)})` : ''}</p>
+    ${hero}
     <article>
       <p>${esc(body)}</p>
       <h2>Peoples of this origin</h2>
@@ -375,7 +385,7 @@ ${peoplesList}
           isPartOf: { '@type': 'WebSite', name: 'THE DISCORDING TALES', url: `${BASE}/` },
         }),
         bodyHtml: originBody,
-        ctaPrimaryHref: `${BASE}/#peoples`,
+        ctaPrimaryHref: `${BASE}/site/#peoples`,
         ctaPrimaryLabel: 'Open peoples in the world',
       }),
       'utf8',

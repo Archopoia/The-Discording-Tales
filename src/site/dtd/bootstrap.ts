@@ -29,7 +29,6 @@ import {
 } from './landing-extra';
 import { initNewsletter } from './newsletter';
 import { initMenuToggle } from './menu-toggle';
-import { initNavSubmenus } from './nav-submenu';
 import { initWebGLShaders } from './webgl-site';
 import { handleWebGLResize } from './webgl-site';
 import { initStickyMainNav } from './nav-sticky';
@@ -38,8 +37,20 @@ import { initAboutContactQuest } from './about-contact-quest';
 import { initUniverseLore } from './universe-lore';
 import { initWorldGallery } from './world-gallery';
 import { initPitchSlider } from './pitch-slider';
+import { ensureAttributesTree, ensureUniverseLoreEn } from '../../tdt-site-data';
 
 let deferredInitDone = false;
+
+function scheduleIdle(fn: () => void, timeoutMs: number): void {
+    const ric = (window as Window & {
+        requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+    }).requestIdleCallback;
+    if (typeof ric === 'function') {
+        ric(fn, { timeout: timeoutMs });
+    } else {
+        setTimeout(fn, Math.min(timeoutMs, 400));
+    }
+}
 
 function initDeferred(): void {
     if (deferredInitDone) return;
@@ -64,18 +75,22 @@ function initDeferred(): void {
     initNewsletter();
     initScrollAnimations();
     initCharacterSheet();
-    initWebGLShaders();
 
     initStickyMainNav();
 
-    window.addEventListener('resize', handleWebGLResize);
+    /* WebGL + large JSON warm after first paint / idle - not on the critical entrance path */
+    scheduleIdle(function () {
+        initWebGLShaders();
+        window.addEventListener('resize', handleWebGLResize);
+        ensureAttributesTree().catch(function () {});
+        ensureUniverseLoreEn().catch(function () {});
+    }, 2500);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
     initLanguage();
     initImgFadeOnLoad();
     initTabs();
-    initNavSubmenus();
     initUniversMondeSidebarLinks();
     initDiscoveryGameLinks();
     initMenuToggle();

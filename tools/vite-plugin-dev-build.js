@@ -85,6 +85,11 @@ function getScriptsForFile(filePath) {
     return ['build_html.js', 'build_i18n.js'];
   }
 
+  // Large JSON manifests copied to dist/data for runtime fetch
+  if (relative.startsWith('public/data/') && relative.endsWith('.json')) {
+    return ['copy_site_data.js'];
+  }
+
   // Main-site TS / legacy IIFE scripts bundled into dist/main-site.js
   if (
     relative === 'src/main-site.ts' ||
@@ -113,6 +118,7 @@ export default function devBuildPlugin() {
       await runScripts([
         'build_rules_lore.js',
         'build_zine.js',
+        'copy_site_data.js',
         'build_html.js',
         'build_css.js',
         'build_i18n.js',
@@ -134,6 +140,7 @@ export default function devBuildPlugin() {
         path.join(ROOT, 'src', 'site'),
         path.join(ROOT, 'src', 'main-site.ts'),
         path.join(ROOT, 'public', 'js'),
+        path.join(ROOT, 'public', 'data'),
       ];
       
       for (const watchPath of watchPaths) {
@@ -163,6 +170,7 @@ export default function devBuildPlugin() {
           const order = [
             'build_rules_lore.js',
             'build_zine.js',
+            'copy_site_data.js',
             'build_html.js',
             'build_css.js',
             'build_i18n.js',

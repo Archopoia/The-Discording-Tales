@@ -39,34 +39,6 @@ export function initContact() {
   });
 }
 
-export function initJumpNav() {
-  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('.jump a'));
-  if (!links.length) return;
-  const sections = links
-    .map((l) => document.querySelector<HTMLElement>(l.getAttribute('href') || ''))
-    .filter(Boolean) as HTMLElement[];
-  if (!('IntersectionObserver' in window) || !sections.length) return;
-
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      const id = '#' + (entry.target as HTMLElement).id;
-      links.forEach((l) => {
-        if (l.getAttribute('href') === id) l.setAttribute('aria-current', 'true');
-        else l.removeAttribute('aria-current');
-      });
-      const current = document.querySelector<HTMLAnchorElement>('.jump a[aria-current="true"]');
-      if (current && current.parentElement) {
-        const nav = current.parentElement as HTMLElement;
-        const left = current.offsetLeft - (nav.clientWidth - current.offsetWidth) / 2;
-        nav.scrollTo({ left: Math.max(0, left), behavior: 'auto' });
-      }
-    });
-  }, { rootMargin: '-45% 0px -45% 0px', threshold: 0.01 });
-
-  sections.forEach((s) => io.observe(s));
-}
-
 export function initTopbarDensity() {
   const bar = document.querySelector<HTMLElement>('.topbar');
   if (!bar) return;

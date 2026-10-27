@@ -12,7 +12,7 @@
  * Special: {{i18n:script-json}} → JSON string for page title/description (for setLanguage in JS).
  *
  * Usage:
- *   node tools/build_i18n.js    -  run after build_html.js; reads and overwrites index.html
+ *   node tools/build_i18n.js    -  run after build_html.js; reads and overwrites site/index.html
  */
 import fs from 'fs';
 import path from 'path';
@@ -20,7 +20,7 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
-const indexPath = path.join(root, 'index.html');
+const indexPath = path.join(root, 'site', 'index.html');
 const localesDir = path.join(root, 'locales');
 const enPath = path.join(localesDir, 'en.json');
 const frPath = path.join(localesDir, 'fr.json');
@@ -111,7 +111,7 @@ function build() {
   }
 
   fs.writeFileSync(indexPath, out, 'utf8');
-  console.log('Built i18n: replaced {{i18n:key}} in index.html from locales/en.json and locales/fr.json');
+  console.log('Built i18n: replaced {{i18n:key}} in site/index.html from locales/en.json and locales/fr.json');
 }
 
 build();

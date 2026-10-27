@@ -1,0 +1,73 @@
+/* ARCHIVED. Not loaded by /landing/. Landing slideshow styles. */
+/* Peoples stay in a fixed column and crossfade with page scroll.
+   Contain, never cover, so the figure is fully in frame. */
+.parade {
+  position: fixed;
+  z-index: 1;
+  top: var(--bar);
+  right: 0;
+  width: min(46vw, 620px);
+  height: calc(100vh - var(--bar));
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+.parade__stage {
+  position: relative;
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
+}
+.parade__stage img {
+  position: absolute;
+  left: 50%;
+  bottom: 0.6rem;
+  max-width: 92%;
+  max-height: calc(100% - 0.6rem);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.parade__name {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: .35rem 1rem .8rem;
+  min-height: 2.6rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2vw, 1.7rem);
+  color: var(--gold);
+  text-align: center;
+}
+body.cinema main.sheet {
+  width: min(34rem, calc(52vw - 1.5rem));
+  margin-left: max(1.25rem, 4vw);
+  margin-right: auto;
+}
+.chapter--beat,
+.chapter--origin,
+.chapter--team,
+.chapter--pitch {
+  min-height: 78vh;
+}
+
+.chapter--hero .chapter__inner {
+  text-shadow: 0 2px 18px rgba(0, 0, 0, .85);
+}
+.ambient {
+  position: relative;
+  z-index: 0;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: auto;
+  max-width: 100%;
+  height: 100%;
+  margin-top: .8rem;
+  object-fit: contain;
+  object-position: left center;
+  pointer-events: none;
+}
+

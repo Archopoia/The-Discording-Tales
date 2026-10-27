@@ -68,7 +68,7 @@ export function pageShell(opts) {
     jsonLd,
     bodyHtml,
     navExtra = '',
-    ctaPrimaryHref = `${BASE}/#peoples`,
+    ctaPrimaryHref = `${BASE}/site/#peoples`,
     ctaPrimaryLabel = 'Open peoples in the world',
     ogType = 'article',
   } = opts;
@@ -130,6 +130,17 @@ export function pageShell(opts) {
     .list li { margin: 0 0 .85rem; padding-bottom: .85rem; border-bottom: 1px solid var(--line); }
     .list a { text-decoration: none; font-size: 1.1rem; }
     .list p { margin: .35rem 0 0; color: var(--muted); font-size: .95rem; }
+    .origin-list li { border-bottom: 0; padding-bottom: 0; margin-bottom: 1rem; }
+    .origin-list a { display: flex; gap: 1rem; align-items: center; color: inherit; }
+    .origin-list a:hover strong { color: var(--gold); }
+    .origin-thumb { width: 5.5rem; height: 5.5rem; object-fit: contain; object-position: center bottom; background: transparent; border-radius: 4px; flex: 0 0 auto; }
+    .origin-thumb[alt="Yums"] { width: calc(5.5rem * 0.8); height: calc(5.5rem * 0.8); }
+    .origin-thumb[alt="Beingsts"] { width: calc(5.5rem * 1.2); height: calc(5.5rem * 1.2); }
+    .origin-list__text strong { display: block; color: var(--gold); font-size: 1.15rem; }
+    .origin-hero { margin: 0 0 1.5rem; padding: 0; background: transparent; text-align: center; }
+    .origin-hero img { display: block; width: 100%; max-width: 28rem; height: auto; margin: 0 auto; object-fit: contain; }
+    .origin-hero img[alt="Yums"] { width: min(80%, calc(28rem * 0.8)); max-width: calc(28rem * 0.8); }
+    .origin-hero img[alt="Beingsts"] { width: min(120%, calc(28rem * 1.2)); max-width: none; margin-left: 50%; transform: translateX(-50%); }
     .related { display:flex; flex-wrap:wrap; gap: .5rem .85rem; margin: .75rem 0 0; }
     footer { margin-top: 3rem; color: var(--muted); font-size: .85rem; }
     footer a { margin-right: .35rem; }
@@ -142,7 +153,7 @@ export function pageShell(opts) {
       <a href="${esc(BASE)}/world/peoples/">Peoples</a>
       <a href="${esc(BASE)}/lore/">Lore</a>
       <a href="${esc(BASE)}/guide/ethno-science-fantasy/">Guide</a>
-      <a href="${esc(BASE)}/landing">Landing</a>
+      <a href="${esc(BASE)}/site/">Full site</a>
       ${navExtra}
     </nav>
     ${bodyHtml}

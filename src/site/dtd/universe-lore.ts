@@ -1,4 +1,5 @@
 // @ts-nocheck
+import { ensureUniverseLoreEn } from '../../tdt-site-data';
 
 type UniverseLoreEnBundle = {
     entries?: Record<
@@ -34,7 +35,7 @@ function cacheFrenchLoreEntries(root: HTMLElement | null) {
     });
 }
 
-export function applyUniverseLoreLanguage(lang: string) {
+function paintUniverseLoreLanguage(lang: string) {
     const root = document.getElementById('universe-lore');
     if (!root) return;
 
@@ -67,6 +68,22 @@ export function applyUniverseLoreLanguage(lang: string) {
     if (warn) {
         warn.hidden = !useEn;
     }
+}
+
+export function applyUniverseLoreLanguage(lang: string) {
+    const useEn = lang === 'en';
+    if (useEn && !loreEnBundle()) {
+        ensureUniverseLoreEn()
+            .then(function () {
+                paintUniverseLoreLanguage(lang);
+            })
+            .catch(function (err) {
+                console.warn('[DRD] Failed to load universe-lore-en.json', err);
+                paintUniverseLoreLanguage('fr');
+            });
+        return;
+    }
+    paintUniverseLoreLanguage(lang);
 }
 
 export function initUniverseLore() {

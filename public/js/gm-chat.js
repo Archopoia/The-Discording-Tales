@@ -37,7 +37,11 @@
     var PEUPLES_BY_ORIGIN = {
         'Yômmes': ['Aristois', 'Griscribes', 'Navillis', 'Méridiens'],
         'Yôrres': ['Hauts Ylfes', 'Ylfes pâles', 'Ylfes des lacs', 'Iqqars'],
-        'Bêstres': ['Slaadéens', 'Tchalkchaïs']
+        'Bêstres': ['Slaadéens', 'Tchalkchaïs'],
+        // English exonyms (canonical in EN UI)
+        'Yums': ['Aristese', 'Greyscribes', 'Navillis', 'Meridians'],
+        'Yors': ['Great Ylves', 'Pale Ylves', 'Lake Ylves', 'Iqqars'],
+        'Beingsts': ['Slaadeans', 'Tchalkchaïs']
     };
 
     /** Peoples with different male/female attribute modifiers (CSV: Attributs d'Origine, Peuple & Race). */
@@ -50,7 +54,9 @@
         var peuple = ctx && ctx.peuple;
         if (stepName === 'origin') {
             var prompt0 = isFr ? "Choisissez l'Origine de votre personnage :" : "Choose your character's Origin:";
-            return "[Choice id=origin] " + prompt0 + "\n[Option Yômmes]\n[Option Yôrres]\n[Option Bêstres]";
+            return isFr
+                ? "[Choice id=origin] " + prompt0 + "\n[Option Yômmes]\n[Option Yôrres]\n[Option Bêstres]"
+                : "[Choice id=origin] " + prompt0 + "\n[Option Yums]\n[Option Yors]\n[Option Beingsts]";
         }
         if (stepName === 'peuple' && origin) {
             var options = PEUPLES_BY_ORIGIN[origin] || [];

@@ -165,9 +165,9 @@ body.entrance-active > :not(#static-loader):not(#golden-flash) {
     backface-visibility: hidden;
 }
 
-/* Layer 3: Creusalité frame - stretched to viewport */
+/* Layer 3: Creusalit� frame - stretched to viewport */
 .entrance-creusalite-layer {
-    background-image: url("../assets/images/Creusalité_NoBorders_lqip.webp");
+    background-image: url("../assets/images/Creusalit�_NoBorders_lqip.webp");
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -286,11 +286,12 @@ body.entrance-active > :not(#static-loader):not(#golden-flash) {
     }
 }
 
-/* Zoom: transform scale (GPU)  -  background-size keyframes repaint the map every frame and hitch. */
+/* Zoom: transform scale (GPU)  -  background-size keyframes repaint the map every frame and hitch.
+   Duration stays in sync with keyhole SPIN_HOLD_MS / logo dissolve. */
 #static-loader.entrance-revealing .entrance-map-layer {
     /* Replacing the combo fade+pan animation would snap opacity back to the rule's 0 */
     opacity: 1;
-    animation: entranceMapZoomInGpu 1.35s cubic-bezier(0.25, 0.46, 0.35, 1) forwards;
+    animation: entranceMapZoomInGpu var(--entrance-exit-ms, 1.35s) cubic-bezier(0.25, 0.46, 0.35, 1) forwards;
     will-change: transform;
 }
 
@@ -303,7 +304,7 @@ body.entrance-active > :not(#static-loader):not(#golden-flash) {
     }
 }
 
-/* Logo rotation (same as site .site-logo logo-idle: 0 → 180 → 0) */
+/* Logo rotation (same as site .site-logo logo-idle: 0 ? 180 ? 0) */
 @keyframes keyholeLogoRotate {
     0%   { transform: rotate(0deg); }
     50%  { transform: rotate(180deg); }
@@ -402,10 +403,37 @@ body.entrance-active > :not(#static-loader):not(#golden-flash) {
     opacity: 0.6;
 }
 
-/* Exit: quick, readable opacity fade (no long spin  -  glow/rotate made the logo linger visually) */
-#static-loader #enter-portfolio-btn.entrance-exiting,
-#static-loader.touch-hovering #enter-portfolio-btn.entrance-exiting {
-    animation: entranceLogoFadeOut 0.55s cubic-bezier(0.33, 0, 0.2, 1) forwards !important;
+/* Enter wind-up: stop idle CSS rotate / eye wander; JS drives exponential spin on the wrap */
+#static-loader #enter-portfolio-btn.entrance-spinning:not(.entrance-exiting),
+#static-loader.touch-hovering #enter-portfolio-btn.entrance-spinning:not(.entrance-exiting),
+#static-loader:has(#entrance-hover-zone:hover) #enter-portfolio-btn.entrance-spinning:not(.entrance-exiting) {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: translate(0, 0) !important;
+    pointer-events: none !important;
+}
+
+#static-loader #enter-portfolio-btn.entrance-spinning .entrance-logo-wrap,
+#static-loader.touch-hovering #enter-portfolio-btn.entrance-spinning .entrance-logo-wrap,
+#static-loader:has(#entrance-hover-zone:hover) #enter-portfolio-btn.entrance-spinning .entrance-logo-wrap {
+    animation: none !important;
+    transition: none !important;
+}
+
+/* Spin + dissolve together (duration from --entrance-exit-ms, set on click).
+   Opacity-only keyframes: JS owns rotate on .entrance-logo-wrap. */
+#static-loader #enter-portfolio-btn.entrance-spinning.entrance-exiting,
+#static-loader.touch-hovering #enter-portfolio-btn.entrance-spinning.entrance-exiting,
+#static-loader:has(#entrance-hover-zone:hover) #enter-portfolio-btn.entrance-spinning.entrance-exiting {
+    animation: entranceLogoDissolve var(--entrance-exit-ms, 1.35s) cubic-bezier(0.33, 0, 0.2, 1) forwards !important;
+    transform: translate(0, 0) !important;
+    pointer-events: none !important;
+}
+
+/* Exit-only fallback (e.g. reduced-motion paths) */
+#static-loader #enter-portfolio-btn.entrance-exiting:not(.entrance-spinning),
+#static-loader.touch-hovering #enter-portfolio-btn.entrance-exiting:not(.entrance-spinning) {
+    animation: entranceLogoFadeOut var(--entrance-exit-ms, 0.55s) cubic-bezier(0.33, 0, 0.2, 1) forwards !important;
     pointer-events: none !important;
     opacity: 1;
 }
@@ -609,6 +637,12 @@ body.entrance-active > :not(#static-loader):not(#golden-flash) {
         opacity: 0;
         transform: scale(0.96);
     }
+}
+
+/* Parallel with spin: opacity only so JS transform on the wrap stays free */
+@keyframes entranceLogoDissolve {
+    from { opacity: 1; }
+    to { opacity: 0; }
 }
 
 /* Eye iris movement - calm, observing (default state) */

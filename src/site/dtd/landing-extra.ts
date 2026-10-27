@@ -70,7 +70,32 @@ export function initGalleriesCycling() {
         slot.classList.add('galleries-slot-hidden');
     });
 
-    setInterval(pulse, 11111);
+    let pulseTimer: ReturnType<typeof setInterval> | null = null;
+    function startPulse() {
+        if (pulseTimer) return;
+        pulseTimer = setInterval(pulse, 11111);
+    }
+    function stopPulse() {
+        if (!pulseTimer) return;
+        clearInterval(pulseTimer);
+        pulseTimer = null;
+    }
+    if (typeof IntersectionObserver !== 'undefined') {
+        const io = new IntersectionObserver(
+            function (entries) {
+                const entry = entries[0];
+                if (entry && entry.isIntersecting && !document.hidden) startPulse();
+                else stopPulse();
+            },
+            { root: null, threshold: 0.05 }
+        );
+        io.observe(slot);
+        document.addEventListener('visibilitychange', function () {
+            if (document.hidden) stopPulse();
+        });
+    } else {
+        startPulse();
+    }
 }
 
 // ========================================
@@ -251,7 +276,27 @@ export function initSoundCloudNoteState() {
             }
         });
     }
-    loadSoundCloudApi().then(bindWidget).catch(function () {});
+    function bootWhenNeeded() {
+        loadSoundCloudApi().then(bindWidget).catch(function () {});
+    }
+    /* Prefer idle so entrance paint isn't fighting w.soundcloud.com; arm early on wrap intent */
+    var armed = false;
+    function arm() {
+        if (armed) return;
+        armed = true;
+        bootWhenNeeded();
+    }
+    if (wrap) {
+        wrap.addEventListener('mouseenter', arm, { once: true });
+        wrap.addEventListener('focusin', arm, { once: true });
+        wrap.addEventListener('pointerdown', arm, { once: true });
+    }
+    var ric = window.requestIdleCallback;
+    if (typeof ric === 'function') {
+        ric(arm, { timeout: 2000 });
+    } else {
+        setTimeout(arm, 600);
+    }
 }
 
 // ========================================

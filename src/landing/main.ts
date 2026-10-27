@@ -8,16 +8,17 @@
  *   3. Mount shader backdrop (fixed canvas, uniforms follow chapters).
  *   4. Wire showcase pin + overlay choreography.
  *   5. Wire Three.js signature fly-through.
- *   6. Static UX: nav scroll-spy, topbar density, team filters, contact.
+ *   6. Static UX: topbar density.
  *   7. Preloader lifts when hero poster + first textures are decoded.
  */
 import './styles/landing.css';
 import ledger from '../../public/data/landing-cinema.json';
 import { createConductor } from './conductor';
 import { bootChapters } from './chapters';
-import { mountShaderBackdrop } from './shader-backdrop';
-import { initParade, initShowcaseVideo, initPitchSlider } from './parade';
-import { initJumpNav, initTopbarDensity } from './team';
+import { initShowcaseVideo, initPitchSlider } from './parade';
+import { initGeocosmos } from './geocosmos';
+import { initTopbarDensity } from './team';
+import { initLandingMusic } from './music';
 import { runPreloader } from './preloader';
 
 function safe(label: string, fn: () => void) {
@@ -26,18 +27,17 @@ function safe(label: string, fn: () => void) {
 
 function boot() {
   const conductor = createConductor();
-  const chapters = bootChapters(conductor, ledger as any);
+  bootChapters(conductor, ledger as any);
 
-  safe('shader', () => mountShaderBackdrop(conductor, chapters));
-  safe('parade', () => initParade(conductor));
+  safe('geo', () => initGeocosmos(conductor));
   safe('video', () => initShowcaseVideo());
   safe('pitch', () => initPitchSlider());
 
-  safe('nav', () => initJumpNav());
   safe('topbar', () => initTopbarDensity());
+  safe('music', () => initLandingMusic());
 
   // Always lift the curtain, even if a later init threw.
-  runPreloader(chapters);
+  runPreloader();
 }
 
 if (document.readyState === 'loading') {

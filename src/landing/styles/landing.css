@@ -1,8 +1,7 @@
 /* /landing/ cinematic styles.
-   Keeps the burgundy / gold / Quintessential school; modernizes layout
-   away from inset `.plate` cards toward full-bleed chapters over a
-   persistent shader canvas. All plate / sheet styles come from the
-   template's inline <style>; this file layers in cinematic behaviors.
+   Burgundy / gold school; Mystic Cards display + Dauphin body
+   (hero title/subtitle stay on Fanwood via --font-brand).
+   Full-bleed chapters over a persistent shader canvas.
 */
 
 /* ---------- Backdrop canvases ---------- */
@@ -14,7 +13,35 @@
   z-index: 0;
   pointer-events: none;
   background: #240a0a;
-  display: block;
+  display: none;
+}
+.geo {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: #1a120c;
+}
+.geo img {
+  position: absolute;
+  left: 0;
+  top: 3vh;
+  width: 100%;
+  height: 94vh;
+  max-width: none;
+  object-fit: contain;
+  object-position: center;
+  transform: rotate(var(--geo-rot, 180deg)) scale(var(--geo, 4.4));
+  transform-origin: center center;
+  will-change: transform;
+}
+.geo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--burgundy) 50%, transparent);
+  pointer-events: none;
 }
 .tdt-landing-vignette {
   position: fixed;
@@ -22,67 +49,151 @@
   z-index: 1;
   pointer-events: none;
   background:
-    radial-gradient(120% 85% at 50% 110%, rgba(0,0,0,.55), transparent 60%),
-    radial-gradient(60% 40% at 50% -10%, rgba(228,197,106,.1), transparent 60%);
+    linear-gradient(90deg, rgba(12, 6, 4, .5) 0%, rgba(12, 6, 4, .16) 36%, rgba(12, 6, 4, .05) 100%);
 }
 
 body.cinema {
   background: transparent !important;
 }
 body.cinema main.sheet,
-body.cinema > footer,
-body.cinema > header.topbar {
+body.cinema > footer {
   position: relative;
   z-index: 2;
 }
+body.cinema > header.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
 
-/* ---------- Curtain preloader ---------- */
+/* ---------- Opening gate: symbol stays put, winds up, then the view punches in ---------- */
 .tdt-curtain {
   position: fixed;
   inset: 0;
   z-index: 50;
   background: #120606;
-  color: var(--ink);
-  display: grid;
-  place-items: center;
-  transition: transform .9s cubic-bezier(.77,0,.18,1), opacity .3s linear .7s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  overflow: hidden;
+  transition: opacity .48s ease-in;
 }
 .tdt-curtain.is-lifting {
-  transform: translateY(-100%);
   opacity: 0;
+  pointer-events: none;
 }
-.tdt-curtain__inner {
-  display: grid;
-  gap: 1rem;
-  justify-items: center;
-  padding: 2rem;
+.tdt-curtain.is-lifting .gate-fill {
+  transform: scale(1.72);
+  transition: transform .48s cubic-bezier(.45, 0, 1, 1);
 }
-.tdt-curtain__brand {
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 5vw, 2.1rem);
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--ink);
+.gate-edgeblur {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  -webkit-mask-image: radial-gradient(circle at center, transparent 16%, #000 72%);
+  mask-image: radial-gradient(circle at center, transparent 16%, #000 72%);
 }
-.tdt-curtain__sub {
-  font-size: .85rem;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  color: var(--muted);
+.tdt-curtain.is-lifting .gate-edgeblur {
+  opacity: 1;
+  transition: opacity .42s ease-in;
 }
-.tdt-curtain__bar {
-  width: min(16rem, 60vw);
-  height: 2px;
-  background: rgba(228,197,106,.18);
-  overflow: hidden;
+.gate-fill { position: absolute; inset: 0; pointer-events: none; }
+.gate-layer { position: absolute; inset: 0; }
+.gate-soft {
+  filter: blur(14px);
+  transform: scale(1.04);
+  transition: filter 1.2s ease, transform 1.2s ease;
 }
-.tdt-curtain__bar::after {
-  content: '';
+.gate-soft.is-sharp { filter: none; transform: none; }
+.gate-map {
+  background-size: 240%;
+  background-position: 20% 30%;
+  background-repeat: no-repeat;
+  opacity: 0;
+  animation: gateMapIn 1.6s ease forwards, gateMapPan 60s ease-in-out infinite;
+  transform-origin: 50% 45%;
+}
+.gate-frame {
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  animation: gateMapIn 1.8s ease .08s forwards;
+}
+.gate-vignette {
+  background: radial-gradient(circle at center, transparent 0%, transparent 30%, rgba(0,0,0,.3) 55%, rgba(0,0,0,.8) 100%);
+  opacity: 0;
+  animation: gateMapIn 1.6s ease .12s forwards;
+}
+.gate-symbol {
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  animation: gateMapIn 1.4s ease .15s forwards;
+}
+.tdt-curtain.is-lifting .gate-symbol {
+  transform: scale(1.28);
+  transition: transform .48s cubic-bezier(.45, 0, 1, 1);
+}
+.gate-symbol__spin {
   display: block;
+  position: relative;
+  width: min(220px, 42vw);
+  margin: 0 auto;
+  transform-origin: center center;
+  /* Rotation is driven in preloader.ts (exponential). Glow stays here. */
+  animation: gateGlow 5s linear forwards;
+}
+.gate-symbol__base,
+.gate-symbol__coin {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.gate-symbol__coin {
+  position: absolute;
+  left: 0;
+  top: 0;
   height: 100%;
-  width: calc(var(--p, 0) * 100%);
-  background: var(--gold);
-  transition: width .3s cubic-bezier(.5,0,.2,1);
+  object-fit: contain;
+}
+@keyframes gateMapIn { to { opacity: 1; } }
+@keyframes gateGlow {
+  0% { filter: drop-shadow(0 0 10px rgba(245, 222, 179, .4)); }
+  100% { filter: drop-shadow(0 0 26px rgba(255, 245, 220, .9)) drop-shadow(0 0 64px rgba(255, 248, 230, .55)); }
+}
+@keyframes enterWorld {
+  from { transform: scale(1.16); filter: blur(11px); }
+  to { transform: none; filter: blur(0); }
+}
+html.is-entering .geo,
+html.is-entering main.sheet {
+  animation: enterWorld .48s cubic-bezier(.16, .8, .2, 1) both;
+}
+@keyframes gateMapPan {
+  0% { background-position: 20% 30%; background-size: 240%; }
+  12.5% { background-position: 70% 25%; background-size: 260%; }
+  25% { background-position: 85% 60%; background-size: 250%; }
+  37.5% { background-position: 50% 80%; background-size: 270%; }
+  50% { background-position: 15% 70%; background-size: 245%; }
+  62.5% { background-position: 30% 40%; background-size: 265%; }
+  75% { background-position: 60% 20%; background-size: 255%; }
+  87.5% { background-position: 80% 50%; background-size: 240%; }
+  100% { background-position: 20% 30%; background-size: 240%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gate-map, .gate-frame, .gate-vignette, .gate-symbol, .gate-symbol__spin {
+    animation: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+  }
 }
 
 /* ---------- Topbar density ---------- */
@@ -113,53 +224,61 @@ body.cinema main.sheet {
 }
 
 .chapter--hero {
-  height: calc(100vh - 6.5rem);
+  width: 100%;
+  margin: 0;
+  height: auto;
   min-height: 0;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   position: relative;
-  overflow: hidden;
-  padding-top: 1.6rem;
-  text-align: left;
+  overflow: visible;
+  padding: 1.6rem 1.25rem 0.15rem;
+  text-align: center;
 }
 .chapter--hero .chapter__inner {
-  width: min(60rem, 100%);
+  width: min(68rem, 100%);
   display: grid;
   gap: .7rem;
+  justify-items: center;
   flex: 0 0 auto;
   position: relative;
   z-index: 1;
+  text-align: center;
 }
 .chapter--hero .kicker {
   margin: 0;
-  letter-spacing: .22em;
+  width: 100%;
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: .28em;
   text-transform: uppercase;
-  font-size: .78rem;
+  font-size: clamp(.92rem, 1.7vw, 1.15rem);
   color: var(--gold);
 }
 .chapter--hero h1 {
-  font-size: clamp(2.3rem, 4.4vw, 4.6rem);
-  line-height: 1;
-  letter-spacing: .02em;
+  width: 100%;
+  /* Brand lock: same Fanwood title as the main site */
+  font-family: var(--font-brand, "Fanwood Text", Georgia, "Times New Roman", serif);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 4.6vw, 5.4rem);
+  line-height: .95;
+  letter-spacing: .04em;
   margin: 0;
+  text-wrap: balance;
   text-shadow: 0 4px 32px rgba(0,0,0,.4);
-}
-.chapter--hero .french {
-  margin: 0;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  font-size: .9rem;
-  color: var(--ink-soft);
 }
 .chapter--hero .tagline {
   margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(1.3rem, 3vw, 2rem);
+  width: 100%;
+  /* Brand lock: subtitle stays Fanwood */
+  font-family: var(--font-brand, "Fanwood Text", Georgia, "Times New Roman", serif);
+  font-size: clamp(1.45rem, 2.6vw, 2.35rem);
   color: var(--ink);
-  max-width: 42rem;
-  line-height: 1.3;
+  max-width: none;
+  line-height: 1.25;
+  text-wrap: balance;
 }
 .hero-cta {
   display: flex;
@@ -170,6 +289,90 @@ body.cinema main.sheet {
 .hero-cta .btn-gold,
 .hero-cta .btn-ghost {
   min-width: 10rem;
+}
+
+/* Same cream glow, lift, and underline as the main-site tabs (Hearth, Universe, Pitch). */
+.hero-actions {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .45rem .65rem;
+  margin-top: .15rem;
+}
+.hero-actions--footer {
+  margin-top: 1.35rem;
+  margin-bottom: .25rem;
+}
+.hero-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  position: relative;
+  padding: .4rem .85rem;
+  color: #d4c5a8;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: .92rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 4px;
+  line-height: 1.2;
+  transition:
+    color .5s cubic-bezier(.4, 0, .2, 1),
+    background .5s cubic-bezier(.4, 0, .2, 1),
+    box-shadow .5s cubic-bezier(.4, 0, .2, 1),
+    transform .5s cubic-bezier(.4, 0, .2, 1);
+}
+.hero-tab__icon {
+  display: block;
+  flex: none;
+  width: 1.15rem;
+  height: 1.15rem;
+}
+.hero-tab::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 80%;
+  height: 2px;
+  background: #d4c5a8;
+  box-shadow: 0 0 8px rgba(212, 197, 168, .5);
+  transform: translateX(-50%) scaleX(0);
+  transition: transform .5s cubic-bezier(.4, 0, .2, 1);
+}
+.hero-tab:hover,
+.hero-tab:focus-visible {
+  color: #d4c5a8;
+  background:
+    linear-gradient(135deg, rgba(212, 197, 168, .3), rgba(245, 230, 196, .2)),
+    rgba(212, 197, 168, .15);
+  box-shadow:
+    0 0 20px rgba(212, 197, 168, .5),
+    0 0 40px rgba(245, 230, 196, .3),
+    inset 0 1px 2px rgba(255, 248, 232, .4),
+    inset 0 -1px 2px rgba(0, 0, 0, .2);
+  text-shadow:
+    0 0 8px rgba(255, 248, 232, .6),
+    0 0 16px rgba(245, 230, 196, .4),
+    2px 2px 4px rgba(0, 0, 0, .3);
+  transform: translateY(-1px);
+  outline: none;
+}
+.hero-tab:hover::after,
+.hero-tab:focus-visible::after {
+  transform: translateX(-50%) scaleX(1);
+}
+@media (max-width: 40rem) {
+  .hero-tab { font-size: .78rem; letter-spacing: .05em; padding: .4rem .65rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-tab,
+  .hero-tab::after { transition: none; }
+  .hero-tab:hover,
+  .hero-tab:focus-visible { transform: none; }
 }
 
 /* ---------- Chapter prose beats ---------- */
@@ -196,7 +399,7 @@ body.cinema main.sheet {
 }
 .chapter--beat p { font-size: 1.08rem; color: var(--ink-soft); margin: 0 0 .85rem; }
 .chapter--beat .claim {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: clamp(1.2rem, 2.3vw, 1.5rem);
   color: var(--gold);
   letter-spacing: .02em;
@@ -434,6 +637,7 @@ body.cinema main.sheet {
   .chapter--team .roster { grid-template-columns: repeat(3, 1fr); }
 }
 .chapter--team .person {
+  text-align: left;
   display: grid;
   grid-template-columns: 3.4rem minmax(0, 1fr);
   gap: .75rem;
@@ -458,7 +662,7 @@ body.cinema main.sheet {
 }
 .chapter--team .role {
   margin: .15rem 0 .35rem;
-  color: var(--gold); font-size: .95rem; font-style: italic;
+  color: var(--gold); font-size: .95rem; font-style: normal;
 }
 .chapter--team .person p { margin: 0; font-size: .98rem; color: var(--ink-soft); }
 
@@ -541,78 +745,127 @@ body.cinema main.sheet {
   .tdt-curtain { display: none !important; }
 }
 
-/* Peoples stay in a fixed column and crossfade with page scroll.
-   Contain, never cover, so the figure is fully in frame. */
-.parade {
-  position: fixed;
-  z-index: 1;
-  top: var(--bar);
-  right: 0;
-  width: min(46vw, 620px);
-  height: calc(100vh - var(--bar));
-  pointer-events: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-}
-.parade__stage {
-  position: relative;
-  flex: 1 1 auto;
-  width: 100%;
-  min-height: 0;
-}
-.parade__stage img {
-  position: absolute;
-  left: 50%;
-  bottom: 0.6rem;
-  max-width: 92%;
-  max-height: calc(100% - 0.6rem);
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  transform: translateX(-50%);
-  pointer-events: none;
-}
-.parade__name {
-  flex: 0 0 auto;
-  margin: 0;
-  padding: .35rem 1rem .8rem;
-  min-height: 2.6rem;
-  font-family: var(--font-display);
-  font-size: clamp(1.2rem, 2vw, 1.7rem);
-  color: var(--gold);
+/* Landing slideshow (peoples + origins) is archived in archive/landing-slideshow/. */
+body.cinema main.sheet {
+  width: min(76rem, calc(100% - 2.5rem));
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
 }
-body.cinema main.sheet {
-  width: min(34rem, calc(52vw - 1.5rem));
-  margin-left: max(1.25rem, 4vw);
-  margin-right: auto;
-}
-.chapter--beat,
-.chapter--origin,
 .chapter--team,
 .chapter--pitch {
-  min-height: 78vh;
+  min-height: 0;
+  padding-top: 0.85rem;
+  padding-bottom: 0.85rem;
+}
+.chapter h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+
+.chapter--scene {
+  padding-top: 0;
+  padding-bottom: 0.15rem;
+}
+.chapter--triad {
+  padding-top: 0.15rem;
+  padding-bottom: 0.35rem;
+}
+.scene-lab-frame {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 6191 / 3307;
+  border: 0;
+  background: transparent;
+  overflow: hidden;
+  touch-action: none;
+  /* Thin rim only, so the council melts into the map instead of sitting in a frame. */
+  -webkit-mask-image:
+    linear-gradient(to right, transparent, #000 5%, #000 95%, transparent),
+    linear-gradient(to bottom, transparent, #000 7%, #000 93%, transparent);
+  mask-image:
+    linear-gradient(to right, transparent, #000 5%, #000 95%, transparent),
+    linear-gradient(to bottom, transparent, #000 7%, #000 93%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+.triad {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  text-align: center;
+}
+.triad article {
+  padding: 1.5rem 1.2rem 1.35rem;
+  background: rgba(0, 0, 0, .28);
+  border: 1px solid rgba(228, 197, 106, .22);
+}
+.triad h2 {
+  margin: 0 0 .55rem;
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+}
+.triad p,
+.triad span {
+  margin: 0;
+  color: var(--ink-soft);
+  font-family: var(--font-body);
+}
+.triad .pair {
+  display: grid;
+  gap: 1.15rem;
+}
+.triad b {
+  display: block;
+  margin: 0 0 .35rem;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  color: var(--gold);
+}
+@media (min-width: 52rem) {
+  .triad {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+  }
 }
 
 .chapter--hero .chapter__inner {
   text-shadow: 0 2px 18px rgba(0, 0, 0, .85);
 }
-.ambient {
+.ambient-wrap {
   position: relative;
   z-index: 0;
-  flex: 1 1 auto;
-  min-height: 0;
-  width: auto;
-  max-width: 100%;
+  width: min(28rem, 78vw);
+  margin: 1.5rem auto 0;
+  aspect-ratio: 9 / 16;
+}
+.landing-music {
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  left: 0;
+  bottom: 0;
+  opacity: 0;
+  pointer-events: none;
+  border: 0;
+}
+.ambient-feather {
+  position: absolute;
+  inset: 0;
+  -webkit-mask-image: radial-gradient(ellipse 70% 66% at 50% 46%, #000 30%, transparent 73%);
+  mask-image: radial-gradient(ellipse 70% 66% at 50% 46%, #000 30%, transparent 73%);
+}
+.ambient {
+  display: block;
+  width: 100%;
   height: 100%;
-  margin-top: .8rem;
-  object-fit: contain;
-  object-position: left center;
+  object-fit: cover;
+  object-position: center center;
   pointer-events: none;
 }
-
+.pitch-slider { margin: 0 auto; }
 .pitch-slider__viewport { position: relative; }
 .pitch-slider__slide { margin: 0; }
 .pitch-slider__slide img {
@@ -638,33 +891,11 @@ body.cinema main.sheet {
 .pitch-slider__nav:disabled { opacity: .35; cursor: default; }
 .pitch-slider__nav--prev { left: .4rem; }
 .pitch-slider__nav--next { right: .4rem; }
-.close-links { display: flex; gap: .7rem; margin-top: 1.4rem; flex-wrap: wrap; }
-
-[data-parade-mode="still"] .parade__stage {
+.close-links {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-  height: auto;
+  gap: .7rem;
+  margin-top: 1.4rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
-[data-parade-mode="still"] .parade__stage img {
-  position: static;
-  transform: none !important;
-  opacity: 1 !important;
-  max-height: 80vh;
-}
-[data-parade-mode="still"].parade {
-  position: relative;
-  width: 100%;
-  height: auto;
-  top: auto;
-  pointer-events: auto;
-}
-
-@media (max-width: 52rem) {
-  .parade { width: 44%; }
-  body.cinema main.sheet {
-    width: 52%;
-    margin-left: 2%;
-  }
-}
+.sheet > footer { text-align: center; }

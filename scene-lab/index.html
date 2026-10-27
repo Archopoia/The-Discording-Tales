@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="robots" content="noindex, nofollow"/>
+  <title>Scene lab | THE DISCORDING TALES</title>
+  <meta name="description" content="Local test: council scene layered hover (origins / peoples)."/>
+  <link rel="canonical" href="https://www.thediscordingtales.com/scene-lab/"/>
+  <meta content="#5a1f1f" name="theme-color"/>
+  <link href="https://www.thediscordingtales.com/assets/icons/favicon-48x48.png" rel="icon" type="image/png" sizes="48x48"/>
+  <link href="https://www.thediscordingtales.com/favicon.ico" rel="icon" sizes="48x48"/>
+  <style>
+    @font-face {
+      font-family: "Dauphin";
+      font-style: normal;
+      font-weight: 400;
+      src: url("../assets/Fonts/DauphinRegular.ttf") format("truetype");
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Mystic Cards";
+      font-style: normal;
+      font-weight: 400;
+      src: url("../assets/Fonts/MysticCards.ttf") format("truetype");
+      font-display: swap;
+    }
+
+    :root {
+      --bg: #0a0607;
+      --ink: #f3e6d8;
+      --muted: #a89482;
+      --gold: #e8c97a;
+      --line: rgba(232, 201, 122, 0.35);
+      --callout-bg: rgba(34, 18, 16, 0.92);
+      --callout-ink: #f6edd4;
+      --callout-muted: #c9b4a0;
+      --callout-border: rgba(232, 201, 122, 0.72);
+      /* People bubble: sampled lightest hover glow yellow + dark reddish ink */
+      --people-callout-bg: rgba(254, 254, 223, 0.88);
+      --people-callout-ink: #4a1c1a;
+      --people-callout-muted: #5a2a26;
+      --people-callout-border: rgba(254, 254, 223, 0.55);
+      --people-callout-name: #5a1f1f;
+      --font-display: "Mystic Cards", Palatino, Georgia, serif;
+      --font-body: "Dauphin", Georgia, "Times New Roman", serif;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background: radial-gradient(900px 480px at 50% 0%, #2a1416, var(--bg));
+      color: var(--ink);
+      font-family: var(--font-body);
+    }
+    .bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      align-items: baseline;
+      padding: 0.85rem 1.25rem;
+      border-bottom: 1px solid var(--line);
+      background: rgba(10, 6, 7, 0.85);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      backdrop-filter: blur(8px);
+    }
+    .bar a { color: var(--gold); text-decoration: none; }
+    .bar a:hover { text-decoration: underline; }
+    .bar .brand {
+      font-family: var(--font-display);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+    }
+    .bar .hint { color: var(--muted); font-size: 0.9rem; }
+    .bar .hit {
+      margin-left: auto;
+      min-height: 1.25em;
+      color: var(--gold);
+      font-family: var(--font-display);
+      letter-spacing: 0.04em;
+    }
+    .stage-wrap {
+      padding: 1rem 1.25rem 2.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .stage {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 6191 / 3307;
+      background: #000;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+      cursor: crosshair;
+      touch-action: none;
+      user-select: none;
+    }
+    .stage img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+      pointer-events: none;
+      display: block;
+    }
+    .stage .base { z-index: 0; }
+    /* Hover people/origins; each layer masks out table+woman so art+glow stay behind them */
+    .stage .hover-stack {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+    /* Foreground plates: always above hover layers, always below callouts/SVG */
+    .stage .overlay {
+      opacity: 0.5;
+      z-index: 30;
+      pointer-events: none;
+    }
+    .stage .overlay--table { z-index: 30; }
+    .stage .overlay--woman { z-index: 31; }
+    .stage .layer {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      z-index: var(--z, 1);
+      transition: opacity 120ms ease;
+      pointer-events: none;
+    }
+    .stage .layer--origin {
+      z-index: var(--z, 1);
+    }
+    .stage .layer--person {
+      z-index: var(--z, 10);
+    }
+    .stage .layer.is-lit {
+      opacity: 1;
+    }
+    .stage .layer__art,
+    .stage .layer__glow {
+      /* table/woman punch */
+      -webkit-mask-image: var(--occluder-mask);
+      mask-image: var(--occluder-mask);
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+      mask-position: center;
+      -webkit-mask-source-type: alpha;
+      mask-mode: alpha;
+    }
+    .stage .layer.is-lit .layer__art {
+      filter: brightness(1.1) saturate(1.12);
+    }
+    /* Glow duplicate: only top ~67% (no bottom-edge / bottom-third shine) */
+    .stage .layer__glow {
+      opacity: 0;
+      -webkit-mask-image:
+        var(--occluder-mask),
+        linear-gradient(to bottom, #000 0%, #000 62%, transparent 72%);
+      mask-image:
+        var(--occluder-mask),
+        linear-gradient(to bottom, #000 0%, #000 62%, transparent 72%);
+      -webkit-mask-composite: source-in;
+      mask-composite: intersect;
+      -webkit-mask-size: 100% 100%, 100% 100%;
+      mask-size: 100% 100%, 100% 100%;
+      transition: opacity 120ms ease;
+    }
+    .stage .layer.is-lit .layer__glow {
+      opacity: 1;
+      filter:
+        drop-shadow(0 0 10px rgba(245, 222, 179, 0.55))
+        drop-shadow(0 0 28px rgba(245, 222, 179, 0.65))
+        drop-shadow(0 0 56px rgba(255, 235, 198, 0.45))
+        drop-shadow(0 0 96px rgba(255, 248, 240, 0.28));
+      animation: solarShine 1.8s ease-in-out infinite alternate;
+    }
+    @keyframes solarShine {
+      0% {
+        filter:
+          drop-shadow(0 0 8px rgba(245, 222, 179, 0.45))
+          drop-shadow(0 0 22px rgba(245, 222, 179, 0.5))
+          drop-shadow(0 0 44px rgba(255, 235, 198, 0.32))
+          drop-shadow(0 0 72px rgba(255, 248, 240, 0.18));
+      }
+      100% {
+        filter:
+          drop-shadow(0 0 14px rgba(255, 245, 220, 0.75))
+          drop-shadow(0 0 36px rgba(245, 222, 179, 0.8))
+          drop-shadow(0 0 72px rgba(255, 235, 198, 0.55))
+          drop-shadow(0 0 120px rgba(255, 248, 240, 0.35));
+      }
+    }
+
+    .stage-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 40;
+      overflow: visible;
+    }
+    .stage-svg .connector {
+      fill: none;
+      stroke: var(--people-callout-border);
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      opacity: 0;
+      transition: opacity 140ms ease;
+    }
+    .stage-svg .connector.is-on { opacity: 1; }
+
+    .callout {
+      position: absolute;
+      z-index: 50;
+      width: min(270px, 46%);
+      padding: 0.7rem 0.85rem 0.8rem;
+      background: var(--callout-bg);
+      color: var(--callout-ink);
+      border: 1.5px solid var(--callout-border);
+      border-radius: 2px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+      pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+    }
+    /* People: rect plate + 4-edge mask feather (this dissolve actually kills the rim) */
+    .callout:not(.callout--origin) {
+      width: min(300px, 52%);
+      background: var(--people-callout-bg);
+      color: var(--people-callout-ink);
+      border: none;
+      border-radius: 0;
+      padding: 1.85rem 2rem 1.95rem;
+      text-align: left;
+      box-shadow: none;
+      transform: none;
+      transition:
+        opacity 420ms ease,
+        visibility 0s linear 420ms;
+      -webkit-mask-image:
+        linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, #000 20%, #000 80%, transparent 100%);
+      mask-image:
+        linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, #000 20%, #000 80%, transparent 100%);
+      -webkit-mask-composite: source-in;
+      mask-composite: intersect;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+    }
+    .callout:not(.callout--origin).is-on {
+      opacity: 1;
+      visibility: visible;
+      transition:
+        opacity 420ms ease,
+        visibility 0s linear 0s;
+    }
+    .callout:not(.callout--origin) .callout__name {
+      color: var(--people-callout-name);
+      margin-bottom: 0.4rem;
+    }
+    .callout:not(.callout--origin) .callout__body {
+      color: var(--people-callout-muted);
+    }
+    /* Origin: same borderless edge feather as the people cards. Wipe still opens toward the right. */
+    .callout--origin {
+      z-index: 55;
+      left: 10px;
+      top: 10px;
+      width: min(300px, 48%);
+      transform: none;
+      opacity: 0;
+      clip-path: inset(0 100% 0 0);
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      padding: 1.85rem 2rem 1.95rem;
+      -webkit-mask-image:
+        linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, #000 20%, #000 80%, transparent 100%);
+      mask-image:
+        linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, #000 20%, #000 80%, transparent 100%);
+      -webkit-mask-composite: source-in;
+      mask-composite: intersect;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+      transition:
+        clip-path 620ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 220ms ease,
+        visibility 0s linear 620ms;
+    }
+    .callout--origin.is-on {
+      opacity: 1;
+      visibility: visible;
+      clip-path: inset(0 0 0 0);
+      transition:
+        clip-path 620ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 200ms ease,
+        visibility 0s linear 0s;
+    }
+    @media (max-width: 40rem) {
+      .callout:not(.callout--origin),
+      .callout--origin {
+        width: min(340px, 94%);
+        padding: 0.55rem 0.75rem 0.6rem;
+        -webkit-mask-image:
+          linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%),
+          linear-gradient(to bottom, transparent 0%, #000 8%, #000 92%, transparent 100%);
+        mask-image:
+          linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%),
+          linear-gradient(to bottom, transparent 0%, #000 8%, #000 92%, transparent 100%);
+      }
+      .callout__name { font-size: 0.95rem; }
+      .callout__body { font-size: 0.68rem; line-height: 1.25; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .callout:not(.callout--origin),
+      .callout:not(.callout--origin).is-on,
+      .callout--origin,
+      .callout--origin.is-on {
+        transition: opacity 1ms linear, visibility 0s linear 0s, clip-path 1ms linear !important;
+      }
+      .callout--origin {
+        clip-path: inset(0 0 0 0);
+      }
+    }
+    .callout--origin .callout__kicker {
+      margin: 0 0 0.2rem;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--callout-muted);
+    }
+    .callout__name {
+      margin: 0 0 0.35rem;
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      color: var(--gold);
+    }
+    .callout__body {
+      margin: 0;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      line-height: 1.45;
+      color: var(--callout-muted);
+    }
+
+    .status { margin-top: 0.85rem; color: var(--muted); font-size: 0.92rem; }
+    .status strong { color: var(--ink); }
+    .loadbar {
+      position: absolute;
+      left: 22%;
+      right: 22%;
+      bottom: 7%;
+      height: 2px;
+      z-index: 40;
+      background: rgba(232, 201, 122, 0.28);
+      pointer-events: none;
+      transition: opacity .45s ease;
+    }
+    .loadbar > span {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: var(--gold);
+    }
+    .loadbar.is-done { opacity: 0; }
+    html.embed .bar { display: none; }
+    html.embed, html.embed body {
+      height: 100%;
+      overflow: hidden;
+      background: transparent;
+    }
+    html.embed .stage-wrap {
+      height: 100%;
+      padding: 0;
+      max-width: none;
+    }
+    html.embed .stage {
+      height: 100%;
+      aspect-ratio: auto;
+      border: 0;
+      box-shadow: none;
+      background: transparent;
+    }
+    html.embed .status { display: none; }
+    html.embed .status.is-error { display: block; text-align: center; }
+  </style>
+</head>
+<body>
+  <script>
+    if (new URLSearchParams(location.search).has('embed')) document.documentElement.classList.add('embed');
+  </script>
+  <div class="bar">
+    <a class="brand" href="../index.html">TDT</a>
+    <span class="hint">Scene lab - hover people or empty space near an origin</span>
+    <div class="hit" id="hit-label">-</div>
+  </div>
+
+  <div class="stage-wrap">
+    <div class="stage" id="stage" aria-label="Council scene interactive layers">
+      <img class="base" src="../assets/images/Scene/fullscene.webp" alt="Full council scene" width="6191" height="3307" decoding="async"/>
+      <div class="hover-stack" id="hover-stack" aria-hidden="true"></div>
+      <img class="overlay overlay--table" src="../assets/images/Scene/Scene_0002s_0000s_0003_TABLE.webp" alt="" width="6191" height="3307" decoding="async" draggable="false" aria-hidden="true"/>
+      <img class="overlay overlay--woman" src="../assets/images/Scene/Scene_0001s_0000_woman.webp" alt="" width="6191" height="3307" decoding="async" draggable="false" aria-hidden="true"/>
+      <svg class="stage-svg" id="stage-svg" aria-hidden="true">
+        <line class="connector" id="connector" x1="0" y1="0" x2="0" y2="0"/>
+      </svg>
+      <aside class="callout callout--origin" id="origin-callout" aria-hidden="true">
+        <p class="callout__kicker" id="origin-kicker"></p>
+        <h2 class="callout__name" id="origin-name"></h2>
+        <p class="callout__body" id="origin-body"></p>
+      </aside>
+      <aside class="callout" id="callout" aria-hidden="true">
+        <h2 class="callout__name" id="callout-name"></h2>
+        <p class="callout__body" id="callout-body"></p>
+      </aside>
+      <div class="loadbar" id="loadbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Loading the scene">
+        <span id="loadbar-fill"></span>
+      </div>
+    </div>
+    <p class="status" id="status"></p>
+  </div>
+
+  <script type="module">
+    /* Legacy codenames → current peoples (see tdt-legacy-people-names). Hooks from parade + race lore. */
+    const ORIGINS = [
+      {
+        id: 'yums',
+        memberIds: ['aristois', 'greyscribes', 'navillis', 'meridians'],
+        labelEn: 'Yums',
+        labelFr: 'Yômmes',
+        kickerEn: 'Origin',
+        kickerFr: 'Origine',
+        blurbEn: 'They see the Yors as mad enough to lock away, and the Beingsts as vermin to purge.',
+        blurbFr: 'Ils voient les Yôrres assez fous pour les enfermer, et les Bêstres comme de la vermine à purger.',
+        src: '../assets/images/Scene/Yums.webp',
+      },
+      {
+        id: 'yors',
+        memberIds: ['great-ylves', 'pale-ylves', 'lake-ylves', 'iqqars'],
+        labelEn: 'Yors',
+        labelFr: 'Yôrres',
+        kickerEn: 'Origin',
+        kickerFr: 'Origine',
+        blurbEn: 'They see the Yums as food to hunt, and the Beingsts as resources to extract.',
+        blurbFr: 'Ils voient les Yômmes comme de la nourriture à chasser, et les Bêstres comme des ressources à extraire.',
+        src: '../assets/images/Scene/Yors.webp',
+      },
+      {
+        id: 'beingsts',
+        memberIds: ['tchalkchais', 'slaadeans'],
+        labelEn: 'Beingsts',
+        labelFr: 'Bêstres',
+        kickerEn: 'Origin',
+        kickerFr: 'Origine',
+        blurbEn: 'They see the Yums as tools to enslave, and the Yors as total aliens.',
+        blurbFr: 'Ils voient les Yômmes comme des outils à asservir, et les Yôrres comme des aliens totaux.',
+        src: '../assets/images/Scene/Beingsts.webp',
+      },
+    ];
+
+    /* Yum subtypes (tree order): Aristese→Ghnomes, Greyscribes→Dwuars/Naims, Navillis→Hoppyts, Meridians→Halvlyns/Halvelyns. No subtype for Yors/Beingsts. */
+    const PEOPLE = [
+      {
+        id: 'aristois',
+        originId: 'yums',
+        labelEn: 'Aristese',
+        labelFr: 'Aristois',
+        subtypeEn: 'Ghnomes',
+        subtypeFr: 'Ghnomes',
+        blurbEn: 'Title-starved aristocrats. They breed like rabbits so the law can colonize every floral, wind-blown plateau, and they plant sculpted palaces on gigantic star-shaped mastodons. If your children will not recite the statute, they steal them and raise them in it.',
+        blurbFr: 'Aristocrates affamés de titre. Ils se reproduisent comme des lapins pour que la loi colonise chaque plateau floral battu par le vent, et plantent des palais sculptés sur d\'immenses mastodontes en forme d\'étoiles. Si vos enfants refusent le décret, on les enlève et on les élève dedans.',
+        src: '../assets/images/Scene/Lighter/Scene_0002s_0000s_0000_Aristois_Light.webp',
+        maskSrc: '../assets/images/Scene/Scene_0002s_0000s_0000_Aristois.webp',
+      },
+      {
+        id: 'greyscribes',
+        originId: 'yums',
+        labelEn: 'Greyscribes',
+        labelFr: 'Griscribes',
+        subtypeEn: 'Dwuars',
+        subtypeFr: 'Naims',
+        blurbEn: 'Knowledge, and they will pay in you. Opened alive, studied, then your skin goes on the wall so they can read through it. Hanging tents in the cold fog of the mangroves, slug-caravans on the roads, and the creed is simple: everything can be bought. Everything has a price.',
+        blurbFr: 'Le savoir, et ils paient avec vous. Ouverts vifs, étudiés, puis votre peau au mur pour qu\'ils lisent à travers. Tentes suspendues dans le froid brumeux des mangroves, caravanes-limaces sur les routes, et le credo est simple : tout s\'achète. Tout a un prix.',
+        src: '../assets/images/Scene/Lighter/Scene_0002s_0000s_0001_Greyscribes_Light.webp',
+        maskSrc: '../assets/images/Scene/Scene_0002s_0000s_0001_Greyscribes.webp',
+      },
+      {
+        id: 'iqqars',
+        originId: 'yors',
+        labelEn: 'Iqqars',
+        labelFr: 'Iqqars',
+        blurbEn: 'Semi-nomadic hunters in troglodyte refuges and round forts, on the highest peaks, above grasslands that eat. They ride flying insects to hunt insects smaller still, and they will be part of you, of anyone, of anything, at any cost. Intimacy, even if it is only an idea.',
+        blurbFr: 'Chasseurs semi-nomades, refuges troglodytes et forts ronds, sur les plus hauts pics, au-dessus de prairies qui mangent. Ils chevauchent des insectes volants pour chasser des insectes encore plus petits, et ils veulent faire partie de vous, de n\'importe qui, de n\'importe quoi, à tout prix. L\'intimité, même si ce n\'est qu\'une idée.',
+        src: '../assets/images/Scene/Lighter/Scene_0002s_0000s_0002_Iqqars_Light.webp',
+        maskSrc: '../assets/images/Scene/Scene_0002s_0000s_0002_Iqqars.webp',
+      },
+      {
+        id: 'navillis',
+        originId: 'yums',
+        labelEn: 'Navillis',
+        labelFr: 'Navillis',
+        subtypeEn: 'Hoppyts',
+        subtypeFr: 'Hoppyts',
+        blurbEn: 'Happiness is mandatory. Refuse it and they drug you until you agree. The fat of the elders is fuel. The rest live on gigantic tribal boats, gardens on the decks, unless they are out fishing the worm-like catch in the cold, windy bays.',
+        blurbFr: 'Le bonheur est obligatoire. Refusez, et ils vous droguent jusqu\'à l\'acquiescement. La graisse des anciens sert de combustible. Le reste vit sur d\'immenses bateaux tribaux, jardins sur le pont, sauf quand ils pêchent des poissons-vers dans les baies froides et ventées.',
+        src: '../assets/images/Scene/Lighter/Scene_0002s_0000s_0004_Navillis_Light.webp',
+        maskSrc: '../assets/images/Scene/Scene_0002s_0000s_0004_Navillis.webp',
+      },
+      {
+        id: 'lake-ylves',
+        originId: 'yors',
+        labelEn: 'Lake Ylves',
+        labelFr: 'Ylfes des lacs',
+        blurbEn: 'Ingenuity, or the fire. What has none of it, they destroy. Long-footed worms make the fields. Conical towers crowd the pillars in the leafy forests among the lakes, and there is no king, only a litter of low lords.',
+        blurbFr: 'L\'ingéniosité, ou le feu. Ce qui n\'en a pas, ils le détruisent. Des vers aux longs pieds font les champs. Des tours coniques ceinturent les piliers dans les forêts feuillues parmi les lacs, et il n\'y a pas de roi, seulement une portée de petits seigneurs.',
+        src: '../assets/images/Scene/Lighter/Scene_0002s_0000s_0005_Lake-Ylves_Light.webp',
+        maskSrc: '../assets/images/Scene/Scene_0002s_0000s_0005_Lake-Ylves.webp',
+      },
+      {
+        id: 'pale-ylves',
+        originId: 'yors',
+        labelEn: 'Pale Ylves',
+        labelFr: 'Ylfes pâles',
+        blurbEn: 'A king to every clan, eternal, because he births himself again each time. Clans everywhere, each with its lord, and they are the dignitaries of the Aïars, superior to the rest of you. Arboriculous pastoralists on chromatic hills, fortified houses, and a guided faith whose only prayer is more power for the clan.',
+        blurbFr: 'Un roi par clan, éternel, parce qu\'il s\'enfante lui-même à chaque fois. Des clans partout, chacun avec son seigneur, et ils sont les dignitaires des Aïars, supérieurs au reste d\'entre vous. Pastoralistes arboricoles sur des collines chromatiques, maisons fortifiées, et une foi guidée dont la seule prière est plus de pouvoir pour le clan.',
+        src: '../assets/images/Scene/Lighter/Scene_0002s_0000s_0006_Pale-Ylves_Light.webp',
+        maskSrc: '../assets/images/Scene/Scene_0002s_0000s_0006_Pale-Ylves.webp',
+      },
+      {
+        id: 'great-ylves',
+        originId: 'yors',
+        labelEn: 'Great Ylves',
+        labelFr: 'Hauts Ylfes',
+        blurbEn: 'Mastery, and the rest can burn. They breed themselves into castes and put the torch to whatever does not deserve to stand. Solitary hermits, perfect from poetry to the blade, living still on the cliff: hanging temples, bridges, ladders, and no road away.',
+        blurbFr: 'La maîtrise, et le reste peut brûler. Ils se reproduisent en castes et mettent le feu à ce qui ne mérite pas de rester. Ermites solitaires, parfaits du poème à la lame, immobiles au bord de la falaise : temples suspendus, ponts, échelles, et aucune route pour partir.',
+        src: '../assets/images/Scene/Lighter/Scene_0002s_0000s_0007_Great-Ylves_Light.webp',
+        maskSrc: '../assets/images/Scene/Scene_0002s_0000s_0007_Great-Ylves.webp',
+      },
+      {
+        id: 'meridians',
+        originId: 'yums',
+        labelEn: 'Meridians',
+        labelFr: 'Méridiens',
+        subtypeEn: 'Halvlyns',
+        subtypeFr: 'Halvelyns',
+        blurbEn: 'They grade themselves without end, and competition is holy, at any cost. They raid everything. They hate everyone, and hunt them, kin included, however close the blood. Amphibian mastodons carry the dens, half in the water, already looking for the next throat.',
+        blurbFr: 'Ils se notent sans fin, et la compétition est sainte, à n\'importe quel prix. Ils pillent tout. Ils haïssent tout le monde, et le chassent, le sang proche compris. Des mastodontes amphibies portent les tanières, déjà à moitié dans l\'eau, déjà en chasse.',
+        src: '../assets/images/Scene/Lighter/Scene_0002s_0000s_0008_Meridians_Light.webp',
+        maskSrc: '../assets/images/Scene/Scene_0002s_0000s_0008_Meridians.webp',
+      },
+      {
+        id: 'tchalkchais',
+        originId: 'beingsts',
+        labelEn: 'Tchalkchaïs',
+        labelFr: 'Tchalkchaïs',
+        blurbEn: 'Suicidal altruists, almost no self left to keep, and glad of it. Herbs grow on the backs of beasts that store the water, and the gardens wander the Delta marshes through a desert that cannot decide between blizzard and scorch.',
+        blurbFr: 'Altruistes suicidaires, presque plus de soi à sauver, et ils s\'en réjouissent. Les herbes poussent sur le dos de bêtes qui stockent l\'eau, et les jardins errent dans les marais du Delta, dans un désert qui oscille entre blizzard et fournaise.',
+        src: '../assets/images/Scene/Lighter/Scene_0002s_0000s_0009_Tchalkchais_Light.webp',
+        maskSrc: '../assets/images/Scene/Scene_0002s_0000s_0009_Tchalkchais.webp',
+      },
+      {
+        id: 'slaadeans',
+        originId: 'beingsts',
+        labelEn: 'Slaadeans',
+        labelFr: 'Slaadéens',
+        blurbEn: 'Audacious dreamers, desperate to hand everyone a vision and march them somewhere. Hunter-gatherers, caravans through snowy dunes split by hot springs. Authority already lives in each of them, so nobody needs to be handed a crown.',
+        blurbFr: 'Rêveurs audacieux, pressés de donner une vision à tous et de les mener quelque part. Cueilleurs-chasseurs, caravanes à travers des dunes de neige fendues de sources chaudes. L\'autorité habite déjà chacun d\'eux, alors personne n\'a besoin qu\'on lui tende une couronne.',
+        src: '../assets/images/Scene/Lighter/Scene_0002s_0000s_0010_Slaadeans_Light.webp',
+        maskSrc: '../assets/images/Scene/Scene_0002s_0000s_0010_Slaadeans.webp',
+      },
+    ];
+
+    const lang = (new URLSearchParams(location.search).get('lang') || 'en').toLowerCase().startsWith('fr')
+      ? 'fr'
+      : 'en';
+
+    const ALPHA_THRESHOLD = 24;
+    const MASK_SCALE = 0.2;
+    const OCCLUDER_MASK_SCALE = 0.35;
+    const STAGE_PAD = 10;
+    const GAP = 18;
+    const ORIGIN_PAD_X = 0.03;
+    const ORIGIN_PAD_TOP = 0.08;
+    const ORIGIN_PAD_BOTTOM = 0.03;
+    const TABLE_SRC = '../assets/images/Scene/Scene_0002s_0000s_0003_TABLE.webp';
+    const WOMAN_SRC = '../assets/images/Scene/Scene_0001s_0000_woman.webp';
+
+    const stage = document.getElementById('stage');
+    const hoverStack = document.getElementById('hover-stack');
+    const hitLabel = document.getElementById('hit-label');
+    const status = document.getElementById('status');
+    const callout = document.getElementById('callout');
+    const calloutName = document.getElementById('callout-name');
+    const calloutBody = document.getElementById('callout-body');
+    const originCallout = document.getElementById('origin-callout');
+    const originKicker = document.getElementById('origin-kicker');
+    const originName = document.getElementById('origin-name');
+    const originBody = document.getElementById('origin-body');
+    const connector = document.getElementById('connector');
+
+    /** @type {{ id: string, originId: string, label: string, blurb: string, el: HTMLImageElement, alpha: Uint8Array, mw: number, mh: number, bounds: object }[]} */
+    const runtime = [];
+    /** @type {{ id: string, label: string, kicker: string, blurb: string, memberIds: string[], bounds: object|null, el: HTMLImageElement, alpha: Uint8Array, mw: number, mh: number }[]} */
+    const originRuntime = [];
+
+    function peopleLabel(meta) {
+      const name = lang === 'fr' ? meta.labelFr : meta.labelEn;
+      const subtype = lang === 'fr' ? meta.subtypeFr : meta.subtypeEn;
+      return subtype ? `${name} - (${subtype})` : name;
+    }
+
+    function peopleBlurb(meta) {
+      return lang === 'fr' ? meta.blurbFr : meta.blurbEn;
+    }
+
+    function originLabel(meta) {
+      return lang === 'fr' ? meta.labelFr : meta.labelEn;
+    }
+
+    function originBlurb(meta) {
+      return lang === 'fr' ? meta.blurbFr : meta.blurbEn;
+    }
+
+    function originKickerText(meta) {
+      return lang === 'fr' ? meta.kickerFr : meta.kickerEn;
+    }
+
+    function loadImage(src) {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.decoding = 'async';
+        img.onload = () => resolve(img);
+        img.onerror = () => reject(new Error('Failed to load ' + src));
+        img.src = src;
+      });
+    }
+
+    function boundsFromAlpha(alpha, mw, mh) {
+      let minX = mw;
+      let minY = mh;
+      let maxX = -1;
+      let maxY = -1;
+      let sumX = 0;
+      let sumY = 0;
+      let count = 0;
+      for (let y = 0; y < mh; y++) {
+        const row = y * mw;
+        for (let x = 0; x < mw; x++) {
+          if (alpha[row + x] <= ALPHA_THRESHOLD) continue;
+          if (x < minX) minX = x;
+          if (y < minY) minY = y;
+          if (x > maxX) maxX = x;
+          if (y > maxY) maxY = y;
+          sumX += x;
+          sumY += y;
+          count++;
+        }
+      }
+      if (!count) return null;
+      return {
+        minX: minX / mw,
+        minY: minY / mh,
+        maxX: (maxX + 1) / mw,
+        maxY: (maxY + 1) / mh,
+        cx: sumX / count / mw,
+        cy: sumY / count / mh,
+      };
+    }
+
+    /** White = show layer pixels; transparent = hide (under table/woman). */
+    async function buildHoverOccluderMask(tableSrc, womanSrc) {
+      const [tableImg, womanImg] = await Promise.all([loadImage(tableSrc), loadImage(womanSrc)]);
+      const w = Math.max(1, Math.round(tableImg.naturalWidth * OCCLUDER_MASK_SCALE));
+      const h = Math.max(1, Math.round(tableImg.naturalHeight * OCCLUDER_MASK_SCALE));
+      const canvas = document.createElement('canvas');
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, w, h);
+      ctx.globalCompositeOperation = 'destination-out';
+      // Slight expand so soft edges / glow don't leak through the plates
+      const punch = (img) => {
+        const ox = [0, -1, 1, 0, 0, -1, 1, -1, 1];
+        const oy = [0, 0, 0, -1, 1, -1, -1, 1, 1];
+        for (let i = 0; i < ox.length; i++) {
+          ctx.drawImage(img, ox[i], oy[i], w, h);
+        }
+      };
+      punch(tableImg);
+      punch(womanImg);
+      return canvas.toDataURL('image/png');
+    }
+
+    function applyOccluderMask(el, occluderUrl) {
+      el.style.setProperty('--occluder-mask', `url("${occluderUrl}")`);
+    }
+
+    /** Art + glow twin; glow is masked to top ~2/3 so bottom has no shine. */
+    function createHoverLayer(src, kindClass, z, occluderUrl) {
+      const wrap = document.createElement('div');
+      wrap.className = `layer ${kindClass}`;
+      wrap.style.setProperty('--z', String(z));
+      applyOccluderMask(wrap, occluderUrl);
+
+      const art = document.createElement('img');
+      art.className = 'layer__art';
+      art.alt = '';
+      art.draggable = false;
+      art.src = src;
+
+      const glow = document.createElement('img');
+      glow.className = 'layer__glow';
+      glow.alt = '';
+      glow.draggable = false;
+      glow.setAttribute('aria-hidden', 'true');
+      glow.src = src;
+
+      wrap.appendChild(art);
+      wrap.appendChild(glow);
+      return wrap;
+    }
+
+    function buildAlphaMask(img) {
+      const mw = Math.max(1, Math.round(img.naturalWidth * MASK_SCALE));
+      const mh = Math.max(1, Math.round(img.naturalHeight * MASK_SCALE));
+      const canvas = document.createElement('canvas');
+      canvas.width = mw;
+      canvas.height = mh;
+      const ctx = canvas.getContext('2d', { willReadFrequently: true });
+      ctx.clearRect(0, 0, mw, mh);
+      ctx.drawImage(img, 0, 0, mw, mh);
+      const data = ctx.getImageData(0, 0, mw, mh).data;
+      const alpha = new Uint8Array(mw * mh);
+      for (let i = 0, p = 3; i < alpha.length; i++, p += 4) alpha[i] = data[p];
+      return { alpha, mw, mh, bounds: boundsFromAlpha(alpha, mw, mh) };
+    }
+
+    /** Fill enclosed transparent pockets inside the silhouette (not open gaps like between arms). */
+    function fillAlphaInterior(alpha, mw, mh) {
+      const exterior = new Uint8Array(mw * mh);
+      const stack = [];
+      const tryPush = (x, y) => {
+        if (x < 0 || y < 0 || x >= mw || y >= mh) return;
+        const i = y * mw + x;
+        if (exterior[i]) return;
+        if (alpha[i] > ALPHA_THRESHOLD) return;
+        exterior[i] = 1;
+        stack.push(i);
+      };
+      for (let x = 0; x < mw; x++) {
+        tryPush(x, 0);
+        tryPush(x, mh - 1);
+      }
+      for (let y = 0; y < mh; y++) {
+        tryPush(0, y);
+        tryPush(mw - 1, y);
+      }
+      while (stack.length) {
+        const i = stack.pop();
+        const x = i % mw;
+        const y = (i / mw) | 0;
+        tryPush(x + 1, y);
+        tryPush(x - 1, y);
+        tryPush(x, y + 1);
+        tryPush(x, y - 1);
+      }
+      for (let i = 0; i < alpha.length; i++) {
+        if (!exterior[i] && alpha[i] <= ALPHA_THRESHOLD) alpha[i] = 255;
+      }
+    }
+
+    function clamp(v, lo, hi) {
+      return Math.min(hi, Math.max(lo, v));
+    }
+
+    function rectsOverlap(a, b, slack) {
+      const s = slack || 0;
+      return !(
+        a.x + a.w + s <= b.x ||
+        b.x + b.w + s <= a.x ||
+        a.y + a.h + s <= b.y ||
+        b.y + b.h + s <= a.y
+      );
+    }
+
+    function borderPointToward(rect, tx, ty) {
+      const cx = rect.x + rect.w / 2;
+      const cy = rect.y + rect.h / 2;
+      const dx = tx - cx;
+      const dy = ty - cy;
+      if (dx === 0 && dy === 0) return { x: cx, y: cy };
+      const hx = rect.w / 2;
+      const hy = rect.h / 2;
+      const scale = Math.min(
+        hx / Math.max(Math.abs(dx), 1e-6),
+        hy / Math.max(Math.abs(dy), 1e-6)
+      );
+      return { x: cx + dx * scale, y: cy + dy * scale };
+    }
+
+    function padBounds(b) {
+      if (!b) return null;
+      return {
+        minX: clamp(b.minX - ORIGIN_PAD_X, 0, 1),
+        minY: clamp(b.minY - ORIGIN_PAD_TOP, 0, 1),
+        maxX: clamp(b.maxX + ORIGIN_PAD_X, 0, 1),
+        maxY: clamp(b.maxY + ORIGIN_PAD_BOTTOM, 0, 1),
+        cx: b.cx,
+        cy: b.cy,
+      };
+    }
+
+    function placeCallout(stageW, stageH, bubbleW, bubbleH, bounds, avoid) {
+      const char = {
+        x: bounds.minX * stageW,
+        y: bounds.minY * stageH,
+        w: (bounds.maxX - bounds.minX) * stageW,
+        h: (bounds.maxY - bounds.minY) * stageH,
+        cx: bounds.cx * stageW,
+        cy: bounds.cy * stageH,
+      };
+
+      const maxX = stageW - STAGE_PAD - bubbleW;
+      const maxY = stageH - STAGE_PAD - bubbleH;
+
+      const candidates = [
+        { x: char.x + char.w + GAP, y: char.cy - bubbleH / 2, side: 'right' },
+        { x: char.x - GAP - bubbleW, y: char.cy - bubbleH / 2, side: 'left' },
+        { x: char.cx - bubbleW / 2, y: char.y - GAP - bubbleH, side: 'above' },
+        { x: char.cx - bubbleW / 2, y: char.y + char.h + GAP, side: 'below' },
+        { x: char.x + char.w + GAP, y: char.y, side: 'right-top' },
+        { x: char.x - GAP - bubbleW, y: char.y, side: 'left-top' },
+        { x: char.x + char.w + GAP, y: char.y + char.h - bubbleH, side: 'right-bot' },
+        { x: char.x - GAP - bubbleW, y: char.y + char.h - bubbleH, side: 'left-bot' },
+      ];
+
+      let best = null;
+      let bestScore = -Infinity;
+
+      for (const c of candidates) {
+        const x = clamp(c.x, STAGE_PAD, maxX);
+        const y = clamp(c.y, STAGE_PAD, maxY);
+        const bubble = { x, y, w: bubbleW, h: bubbleH };
+        const overlapsChar = rectsOverlap(bubble, char, 6);
+        const overlapsAvoid = avoid ? rectsOverlap(bubble, avoid, 8) : false;
+        const dx = (x + bubbleW / 2) - char.cx;
+        const dy = (y + bubbleH / 2) - char.cy;
+        const dist = Math.hypot(dx, dy);
+        const clampedHard =
+          Math.abs(x - c.x) > 1 || Math.abs(y - c.y) > 1 ? 40 : 0;
+        const score =
+          (overlapsChar ? -10000 : 1000) +
+          (overlapsAvoid ? -5000 : 0) -
+          dist -
+          clampedHard +
+          (c.side.startsWith('right') || c.side.startsWith('left') ? 30 : 0);
+        if (score > bestScore) {
+          bestScore = score;
+          best = bubble;
+        }
+      }
+
+      return { bubble: best, char };
+    }
+
+    const PEOPLE_FADE_MS = 420;
+    const PEOPLE_AFTER_ORIGIN_MS = 500;
+    let peopleShowToken = 0;
+    let peopleRevealTimer = 0;
+    let pendingPersonId = null;
+    let shownPersonId = null;
+    let shownOriginId = null;
+
+    function clearPeopleRevealTimer() {
+      if (peopleRevealTimer) {
+        window.clearTimeout(peopleRevealTimer);
+        peopleRevealTimer = 0;
+      }
+    }
+
+    function hidePeopleCallout() {
+      peopleShowToken += 1;
+      clearPeopleRevealTimer();
+      pendingPersonId = null;
+      shownPersonId = null;
+      callout.classList.remove('is-on');
+      callout.setAttribute('aria-hidden', 'true');
+      connector.classList.remove('is-on');
+    }
+
+    function hideOriginCallout() {
+      originCallout.classList.remove('is-on');
+      originCallout.setAttribute('aria-hidden', 'true');
+      shownOriginId = null;
+    }
+
+    /** @returns {{ box: {x:number,y:number,w:number,h:number}|null, opened: boolean }} */
+    function layoutOriginCallout(origin) {
+      if (!origin) {
+        hideOriginCallout();
+        return { box: null, opened: false };
+      }
+      const changed = shownOriginId !== origin.id;
+      originKicker.textContent = origin.kicker;
+      originName.textContent = origin.label;
+      originBody.textContent = origin.blurb;
+      // Replay L→R unroll when switching origins
+      if (changed) {
+        originCallout.classList.remove('is-on');
+        void originCallout.offsetWidth;
+        shownOriginId = origin.id;
+      }
+      originCallout.classList.add('is-on');
+      originCallout.setAttribute('aria-hidden', 'false');
+      originCallout.style.left = STAGE_PAD + 'px';
+      originCallout.style.top = STAGE_PAD + 'px';
+      return {
+        box: {
+          x: STAGE_PAD,
+          y: STAGE_PAD,
+          w: originCallout.offsetWidth,
+          h: originCallout.offsetHeight,
+        },
+        opened: changed,
+      };
+    }
+
+    function paintPeopleCallout(layer, avoid) {
+      calloutName.textContent = layer.label;
+      calloutBody.textContent = layer.blurb;
+      callout.setAttribute('aria-hidden', 'false');
+
+      callout.style.left = '0px';
+      callout.style.top = '0px';
+      const stageW = stage.clientWidth;
+      const stageH = stage.clientHeight;
+      const bubbleW = callout.offsetWidth;
+      const bubbleH = callout.offsetHeight;
+      const { bubble, char } = placeCallout(stageW, stageH, bubbleW, bubbleH, layer.bounds, avoid);
+
+      callout.style.left = bubble.x + 'px';
+      callout.style.top = bubble.y + 'px';
+
+      const from = borderPointToward(bubble, char.cx, char.cy);
+      const to = borderPointToward(char, bubble.x + bubble.w / 2, bubble.y + bubble.h / 2);
+      connector.setAttribute('x1', from.x.toFixed(1));
+      connector.setAttribute('y1', from.y.toFixed(1));
+      connector.setAttribute('x2', to.x.toFixed(1));
+      connector.setAttribute('y2', to.y.toFixed(1));
+      callout.classList.add('is-on');
+      connector.classList.add('is-on');
+      shownPersonId = layer.id;
+    }
+
+    /**
+     * @param {{ delayMs?: number, repositionOnly?: boolean }} [opts]
+     */
+    function layoutPeopleCallout(layer, avoid, opts = {}) {
+      if (!layer || !layer.bounds) {
+        hidePeopleCallout();
+        return;
+      }
+
+      const settling = Boolean(peopleRevealTimer) || pendingPersonId != null;
+      const settledOnThis =
+        shownPersonId === layer.id &&
+        callout.classList.contains('is-on') &&
+        !settling;
+
+      // Pointer jitter / same hover: nudge only when fully settled on this person.
+      // Never interrupt an in-flight fade-out → fade-in (that was causing pops).
+      if (opts.repositionOnly) {
+        if (settledOnThis) paintPeopleCallout(layer, avoid);
+        return;
+      }
+
+      if (settledOnThis) {
+        paintPeopleCallout(layer, avoid);
+        return;
+      }
+
+      // Already animating toward this person - let it finish
+      if (pendingPersonId === layer.id && settling) return;
+
+      const token = (peopleShowToken += 1);
+      clearPeopleRevealTimer();
+      pendingPersonId = layer.id;
+      const delayMs = opts.delayMs || 0;
+      const wasOn = callout.classList.contains('is-on');
+
+      const reveal = () => {
+        if (token !== peopleShowToken) return;
+        peopleRevealTimer = 0;
+        pendingPersonId = null;
+        paintPeopleCallout(layer, avoid);
+      };
+
+      const afterFadeOut = () => {
+        if (token !== peopleShowToken) return;
+        peopleRevealTimer = window.setTimeout(reveal, delayMs);
+      };
+
+      // Always fade out first when a plate is up, then fade in the new copy
+      if (wasOn) {
+        callout.classList.remove('is-on');
+        connector.classList.remove('is-on');
+        shownPersonId = null;
+        peopleRevealTimer = window.setTimeout(afterFadeOut, PEOPLE_FADE_MS);
+        return;
+      }
+
+      peopleRevealTimer = window.setTimeout(reveal, delayMs);
+    }
+
+    const loadbar = document.getElementById('loadbar');
+    const loadfill = document.getElementById('loadbar-fill');
+    const embed = document.documentElement.classList.contains('embed');
+    const totalSteps = 1 + ORIGINS.length + PEOPLE.length;
+    let doneSteps = 0;
+
+    function setProgress() {
+      doneSteps += 1;
+      const pct = Math.min(100, Math.round((doneSteps / totalSteps) * 100));
+      if (loadfill) loadfill.style.width = pct + '%';
+      if (loadbar) loadbar.setAttribute('aria-valuenow', String(pct));
+    }
+
+    function finishProgress() {
+      if (loadfill) loadfill.style.width = '100%';
+      if (loadbar) {
+        loadbar.setAttribute('aria-valuenow', '100');
+        loadbar.classList.add('is-done');
+        window.setTimeout(() => loadbar.remove(), 480);
+      }
+      status.textContent = '';
+    }
+
+    async function boot() {
+      if (!embed) status.textContent = 'Building table/woman occluder mask…';
+      const occluderUrl = await buildHoverOccluderMask(TABLE_SRC, WOMAN_SRC);
+      hoverStack.style.setProperty('--occluder-mask', `url("${occluderUrl}")`);
+      setProgress();
+
+      for (let i = 0; i < ORIGINS.length; i++) {
+        const meta = ORIGINS[i];
+        if (!embed) status.textContent = `Building origin ${i + 1}/${ORIGINS.length}: ${originLabel(meta)}…`;
+        const img = await loadImage(meta.src);
+        const el = createHoverLayer(meta.src, 'layer--origin', i + 1, occluderUrl);
+        el.dataset.originId = meta.id;
+        hoverStack.appendChild(el);
+        const mask = buildAlphaMask(img);
+        originRuntime.push({
+          id: meta.id,
+          label: originLabel(meta),
+          kicker: originKickerText(meta),
+          blurb: originBlurb(meta),
+          memberIds: meta.memberIds.slice(),
+          bounds: padBounds(mask.bounds),
+          el,
+          alpha: mask.alpha,
+          mw: mask.mw,
+          mh: mask.mh,
+        });
+        setProgress();
+      }
+
+      for (let i = 0; i < PEOPLE.length; i++) {
+        const meta = PEOPLE[i];
+        if (!embed) status.textContent = `Building mask ${i + 1}/${PEOPLE.length}: ${peopleLabel(meta)}…`;
+        // Visual = Light art; hit mask = solid non-Light silhouette (no inner holes → no flicker)
+        const el = createHoverLayer(meta.src, 'layer--person', 10 + i, occluderUrl);
+        el.dataset.id = meta.id;
+        hoverStack.appendChild(el);
+        const maskImg = await loadImage(meta.maskSrc || meta.src);
+        const mask = buildAlphaMask(maskImg);
+        fillAlphaInterior(mask.alpha, mask.mw, mask.mh);
+        runtime.push({
+          id: meta.id,
+          originId: meta.originId,
+          label: peopleLabel(meta),
+          blurb: peopleBlurb(meta),
+          el,
+          alpha: mask.alpha,
+          mw: mask.mw,
+          mh: mask.mh,
+          bounds: boundsFromAlpha(mask.alpha, mask.mw, mask.mh),
+        });
+        setProgress();
+      }
+      finishProgress();
+      bindPointer();
+    }
+
+    let activePersonId = null;
+    let activeOriginId = null;
+    let ticking = false;
+    let lastX = 0;
+    let lastY = 0;
+
+    function sample(layer, nx, ny) {
+      const x = Math.min(layer.mw - 1, Math.max(0, (nx * layer.mw) | 0));
+      const y = Math.min(layer.mh - 1, Math.max(0, (ny * layer.mh) | 0));
+      return layer.alpha[y * layer.mw + x];
+    }
+
+    function pointInBounds(nx, ny, b) {
+      return b && nx >= b.minX && nx <= b.maxX && ny >= b.minY && ny <= b.maxY;
+    }
+
+    function pickPerson(nx, ny) {
+      for (let i = runtime.length - 1; i >= 0; i--) {
+        const layer = runtime[i];
+        if (sample(layer, nx, ny) > ALPHA_THRESHOLD) return layer;
+      }
+      return null;
+    }
+
+    function pickOriginZone(nx, ny) {
+      let best = null;
+      let bestArea = Infinity;
+      for (const o of originRuntime) {
+        if (!pointInBounds(nx, ny, o.bounds)) continue;
+        const area = (o.bounds.maxX - o.bounds.minX) * (o.bounds.maxY - o.bounds.minY);
+        if (area < bestArea) {
+          bestArea = area;
+          best = o;
+        }
+      }
+      return best;
+    }
+
+    function pickHover(clientX, clientY) {
+      const rect = stage.getBoundingClientRect();
+      if (rect.width <= 0 || rect.height <= 0) return { person: null, origin: null };
+      const nx = (clientX - rect.left) / rect.width;
+      const ny = (clientY - rect.top) / rect.height;
+      if (nx < 0 || ny < 0 || nx > 1 || ny > 1) return { person: null, origin: null };
+
+      const person = pickPerson(nx, ny);
+      if (person) {
+        const origin = originRuntime.find((o) => o.id === person.originId) || null;
+        return { person, origin };
+      }
+      return { person: null, origin: pickOriginZone(nx, ny) };
+    }
+
+    function setHover(person, origin) {
+      const nextPersonId = person ? person.id : null;
+      const nextOriginId = origin ? origin.id : null;
+      const same = nextPersonId === activePersonId && nextOriginId === activeOriginId;
+      activePersonId = nextPersonId;
+      activeOriginId = nextOriginId;
+
+      // Origin composite = one merged glow; person layer sits on top when selected
+      for (const o of originRuntime) {
+        o.el.classList.toggle('is-lit', o.id === nextOriginId);
+      }
+      for (const L of runtime) {
+        L.el.classList.toggle('is-lit', L.id === nextPersonId);
+      }
+
+      if (person) hitLabel.textContent = person.label;
+      else if (origin) hitLabel.textContent = origin.label;
+      else hitLabel.textContent = '-';
+      stage.style.cursor = person || origin ? 'pointer' : 'crosshair';
+
+      if (same && person) {
+        const { box } = layoutOriginCallout(origin);
+        layoutPeopleCallout(person, box, { repositionOnly: true });
+        return;
+      }
+      if (same && !person) {
+        layoutOriginCallout(origin);
+        hidePeopleCallout();
+        return;
+      }
+
+      const { box, opened } = layoutOriginCallout(origin);
+      if (person) {
+        layoutPeopleCallout(person, box, {
+          delayMs: opened ? PEOPLE_AFTER_ORIGIN_MS : 0,
+        });
+      } else {
+        hidePeopleCallout();
+      }
+    }
+
+    function onMove() {
+      ticking = false;
+      const hit = pickHover(lastX, lastY);
+      setHover(hit.person, hit.origin);
+    }
+
+    function bindPointer() {
+      const queue = (e) => {
+        lastX = e.clientX;
+        lastY = e.clientY;
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(onMove);
+        }
+      };
+      const isTouch = (e) => e.pointerType === 'touch';
+      stage.addEventListener('pointermove', queue, { passive: true });
+      stage.addEventListener('pointerdown', queue);
+      stage.addEventListener('pointerup', (e) => {
+        if (!isTouch(e)) return;
+        queue(e);
+      });
+      // A finger lift fires pointerleave. Keep the last tap so the card stays readable.
+      stage.addEventListener('pointerleave', (e) => {
+        if (isTouch(e)) return;
+        setHover(null, null);
+      });
+      stage.addEventListener('pointercancel', (e) => {
+        if (isTouch(e)) return;
+        setHover(null, null);
+      });
+      window.addEventListener('resize', () => {
+        if (!activePersonId && !activeOriginId) return;
+        const person = runtime.find((L) => L.id === activePersonId) || null;
+        const origin = originRuntime.find((o) => o.id === activeOriginId) || null;
+        const { box } = layoutOriginCallout(origin);
+        if (person) layoutPeopleCallout(person, box, { repositionOnly: true });
+        else hidePeopleCallout();
+      });
+    }
+
+    boot().catch((err) => {
+      console.error(err);
+      status.classList.add('is-error');
+      status.textContent = String(err && err.message ? err.message : err);
+    });
+  </script>
+</body>
+</html>

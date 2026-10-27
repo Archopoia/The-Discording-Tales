@@ -56,7 +56,7 @@ function build() {
       title: 'Universe lore | THE DISCORDING TALES',
       description: metaDescription(
         'Browse universe lore from The Discording Tales',
-        'RildÃ©es, abundances, festivals, artefacts, and more from the ethno-science-fantasy setting.',
+        'Rildées, abundances, festivals, artefacts, and more from the ethno-science-fantasy setting.',
       ),
       canonical: `${BASE}/lore/`,
       jsonLd: JSON.stringify({
@@ -64,7 +64,7 @@ function build() {
         '@type': 'CollectionPage',
         name: 'Universe lore - The Discording Tales',
         description:
-          'Indexable universe lore from The Discording Tales: astral RildÃ©es, abundances, festivals, artefacts, and the ethno-science-fantasy setting.',
+          'Indexable universe lore from The Discording Tales: astral Rildées, abundances, festivals, artefacts, and the ethno-science-fantasy setting.',
         url: `${BASE}/lore/`,
         isPartOf: { '@type': 'WebSite', name: 'THE DISCORDING TALES', url: `${BASE}/` },
         mainEntity: { '@type': 'ItemList', itemListElement: itemList },
@@ -77,7 +77,7 @@ function build() {
     <ul class="list">
 ${hubList}
     </ul>`,
-      ctaPrimaryHref: `${BASE}/#universe-lore`,
+      ctaPrimaryHref: `${BASE}/site/#universe-lore`,
       ctaPrimaryLabel: 'Open lore in the world',
     }),
     'utf8',
@@ -133,7 +133,7 @@ ${hubList}
     <article>
       ${entry.bodyHtml || ''}
     </article>`,
-        ctaPrimaryHref: `${BASE}/#universe-lore`,
+        ctaPrimaryHref: `${BASE}/site/#universe-lore`,
         ctaPrimaryLabel: 'Open lore in the world',
       }),
       'utf8',

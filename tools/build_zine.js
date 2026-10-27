@@ -291,7 +291,7 @@ function transformIntroPeoplesTable(html) {
   const tableMatch = html.match(/<table>[\s\S]*?<tbody>([\s\S]*?)<\/tbody>[\s\S]*?<\/table>/);
   if (!tableMatch) return html;
   const tbody = tableMatch[1];
-  if (!/(?:Origine|Origin)/i.test(tbody) || !/Yômmes|Yommes/i.test(tbody)) return html;
+  if (!/(?:Origine|Origin)/i.test(tbody) || !/Yômmes|Yommes|Yums/i.test(tbody)) return html;
 
   const rowRegex = /<tr>\s*<td>([\s\S]*?)<\/td>\s*<td>([\s\S]*?)<\/td>\s*<td>([\s\S]*?)<\/td>\s*<\/tr>/g;
   const cards = [];

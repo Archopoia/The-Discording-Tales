@@ -11,12 +11,19 @@ export function initStickyMainNav() {
 
         var navSlotTop = 0;
 
+        function syncMainNavHeightVar() {
+            var h = Math.max(0, Math.round(nav.getBoundingClientRect().height || nav.offsetHeight || 0));
+            /* Separate from --header-main-nav-height (creature banner bottom inset in .header-bg) */
+            document.documentElement.style.setProperty('--site-fixed-nav-height', h + 'px');
+        }
+
         function updateNavSlotTop() {
             if (nav.classList.contains('main-navigation--fixed') && placeholder.classList.contains('is-active')) {
                 navSlotTop = Math.round(placeholder.getBoundingClientRect().top + window.pageYOffset);
             } else {
                 navSlotTop = Math.round(nav.getBoundingClientRect().top + window.pageYOffset);
             }
+            syncMainNavHeightVar();
         }
 
         function applyFixed() {

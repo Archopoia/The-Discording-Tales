@@ -13,16 +13,16 @@
     <meta name="dcterms.rights" content="All rights reserved."/>
     <meta name="dcterms.rightsHolder" content="The Discording Tales / Des Récits Discordants"/>
     <meta name="google-site-verification" content="BkV6MxLHSJO_OfLDJFddsMQCCaNmx__osApXJFLsyPU"/>
-    <link rel="canonical" href="{{SITE_PUBLIC_BASE}}/"/>
+    <link rel="canonical" href="{{SITE_PUBLIC_BASE}}/site/"/>
     <link rel="sitemap" type="application/xml" title="Sitemap" href="{{SITE_PUBLIC_BASE}}/sitemap.xml"/>
-    <link rel="alternate" href="{{SITE_PUBLIC_BASE}}/" hreflang="x-default"/>
-    <link rel="alternate" href="{{SITE_PUBLIC_BASE}}/" hreflang="en"/>
-    <link rel="alternate" href="{{SITE_PUBLIC_BASE}}/?lang=fr" hreflang="fr"/>
+    <link rel="alternate" href="{{SITE_PUBLIC_BASE}}/site/" hreflang="x-default"/>
+    <link rel="alternate" href="{{SITE_PUBLIC_BASE}}/site/" hreflang="en"/>
+    <link rel="alternate" href="{{SITE_PUBLIC_BASE}}/site/?lang=fr" hreflang="fr"/>
     <!-- Open Graph -->
     <meta property="og:title" content="THE DISCORDING TALES | Des Récits Discordants - Action RPG"/>
     <meta property="og:description" content="A weird ethno-science-fantasy Action RPG: a living dungeon of alien cultures and golden-age strife."/>
     <meta property="og:type" content="website"/>
-    <meta property="og:url" content="{{SITE_PUBLIC_BASE}}/"/>
+    <meta property="og:url" content="{{SITE_PUBLIC_BASE}}/site/"/>
     <meta property="og:site_name" content="THE DISCORDING TALES"/>
     <meta property="og:locale" content="en_US"/>
     <meta property="og:locale:alternate" content="fr_FR"/>
@@ -43,10 +43,13 @@
     
     <!-- Main Stylesheet (bundled by build_css.js) -->
     <link href="dist/main-site.css" rel="stylesheet" type="text/css"/>
+    <link rel="preload" as="font" type="font/ttf" href="assets/Fonts/MysticCards.ttf" crossorigin/>
+    <link rel="preload" as="font" type="font/ttf" href="assets/Fonts/DauphinRegular.ttf" crossorigin/>
+    <link rel="preload" as="font" type="font/ttf" href="assets/Fonts/FanwoodText-Regular.ttf" crossorigin/>
+    <link rel="preload" as="font" type="font/ttf" href="assets/Fonts/FanwoodText-Italic.ttf" crossorigin/>
     <!-- SoundCloud API loads on demand after entrance (landing-extra.ts) -->
     <link rel="dns-prefetch" href="https://w.soundcloud.com"/>
-    <!-- Early fetch of main bundle (deferred execution; warms HTTP cache with SW) -->
-    <link rel="preload" href="dist/main-site.css" as="style"/>
+    <!-- Early fetch of main JS (CSS already linked above as stylesheet) -->
     <link rel="preload" href="dist/main-site.js" as="script"/>
     
     <!-- Theme Color -->
@@ -173,6 +176,12 @@
         <div id="entrance-fill" class="entrance-fill" style="position: absolute; inset: 0; pointer-events: none;">
             <!-- Layer 1: Animated map background (bottom) - LQIP first, upgraded by keyhole-entrance.js -->
             <div class="entrance-layer entrance-map-layer entrance-layer--soft" style="background-image: url('assets/images/Map_Naked_lqip.webp');" data-entrance-medium="assets/images/Map_Naked_medium.webp" data-entrance-full="assets/images/Map_Naked.webp" aria-hidden="true"></div>
+            <script>
+            (function () {
+                var map = document.querySelector('.entrance-map-layer');
+                if (map) map.style.animationDelay = '0s, ' + (-Math.random() * 60) + 's';
+            })();
+            </script>
             <!-- Layer 2: Burgundy overlay (fades on hover to reveal map) -->
             <div class="entrance-layer entrance-overlay-layer" aria-hidden="true"></div>
             <!-- Layer 3: Creusalité frame stretched to viewport - LQIP first -->
@@ -184,8 +193,8 @@
         <div id="entrance-hover-zone" aria-hidden="true"></div>
         <button id="enter-portfolio-btn" type="button" aria-label="Enter site">
             <span class="entrance-logo-wrap">
-                <img src="assets/images/image/image12.png" alt="" class="entrance-logo-base" aria-hidden="true" fetchpriority="high"/>
-                <img src="assets/images/image/image2.png" alt="" class="entrance-logo-coin" aria-hidden="true" fetchpriority="high"/>
+                <img src="assets/images/image/image12.png" alt="" class="entrance-logo-base" width="320" height="320" aria-hidden="true" fetchpriority="high" decoding="async"/>
+                <img src="assets/images/image/image2.png" alt="" class="entrance-logo-coin" width="320" height="320" aria-hidden="true" fetchpriority="high" decoding="async"/>
             </span>
         </button>
         <p class="entrance-click-hint" aria-hidden="true">
@@ -269,22 +278,8 @@
             <ul class="menu" id="primary-menu">
                 <li class="menu-item"><a href="#landing" data-tab="landing" class="tab-link active" {{i18n:nav.home}}>Hearth</a></li>
                 <li class="menu-item"><a href="#pitch" data-tab="pitch" class="tab-link" {{i18n:nav.pitch}}>Pitch</a></li>
-                <li class="menu-item menu-item--has-sub">
-                    <a href="#univers" data-tab="univers" class="tab-link" aria-haspopup="true" aria-expanded="false" {{i18n:nav.univers}}>Universe</a>
-                    <ul class="menu-sub" {{i18n-aria:nav.univers.subtabs_aria}} aria-label="Universe sections">
-                        <li><a href="#peoples" class="menu-sub-link" data-tab="univers" data-subtab="peoples" {{i18n:tpl.13}}>World</a></li>
-                        <li><a href="#videogame" class="menu-sub-link" data-tab="univers" data-subtab="videogame" {{i18n:nav.univers.videogame}}>Videogame</a></li>
-                        <li><a href="#tabletop" class="menu-sub-link" data-tab="univers" data-subtab="tabletop" {{i18n:nav.univers.tabletop}}>Tabletop</a></li>
-                    </ul>
-                </li>
-                <li class="menu-item menu-item--has-sub">
-                    <a href="#about" data-tab="about" class="tab-link" aria-haspopup="true" aria-expanded="false" {{i18n:nav.about}}>About</a>
-                    <ul class="menu-sub" {{i18n-aria:nav.about.subtabs_aria}} aria-label="About page sections">
-                        <li><a href="#about-world" class="menu-sub-link" data-tab="about" data-subtab="about-world" {{i18n:nav.about.subtab_world}}>What kind of world</a></li>
-                        <li><a href="#about-author" class="menu-sub-link" data-tab="about" data-subtab="about-author" {{i18n:nav.about.subtab_author}}>About us</a></li>
-                        <li><a href="#about-contact" class="menu-sub-link" data-tab="about" data-subtab="about-contact" {{i18n:nav.about.subtab_contact}}>Contact</a></li>
-                    </ul>
-                </li>
+                <li class="menu-item"><a href="#univers" data-tab="univers" class="tab-link" {{i18n:nav.univers}}>Universe</a></li>
+                <li class="menu-item"><a href="#about" data-tab="about" class="tab-link" {{i18n:nav.about}}>About</a></li>
             </ul>
             <div class="nav-secondary-actions" {{i18n-aria:nav.social.group_aria}}>
                 <a href="https://x.com/DiscordingTales" class="nav-icon-link nav-icon-link--x" target="_blank" rel="noopener noreferrer" {{i18n-aria:nav.social.x_aria}}>
@@ -596,19 +591,19 @@
         <section id="univers" class="tab-content has-subtabs" data-lang-key="univers">
             <div class="system-overview-dashboard univers-dashboard">
                 <nav class="system-overview-nav tab-sub-nav univers-sidebar-nav" aria-label="Universe sections">
-                    <a href="#peoples" class="tab-sub-nav-link univers-nav-main-link active" {{i18n:tpl.13}}>Monde</a>
+                    <a href="#peoples" class="tab-sub-nav-link univers-nav-main-link active" aria-expanded="true" {{i18n:tpl.13}}>Monde</a>
                     <ul class="system-overview-nav-list univers-monde-in-page-nav" aria-label="World sections">
                         <li><a href="#peoples" class="system-overview-nav-link univers-monde-sublink active" data-en="Peoples" data-fr="Peuples">Peoples</a></li>
                         <li><a href="#universe-lore" class="system-overview-nav-link univers-monde-sublink" data-en="Lore" data-fr="Lore">Lore</a></li>
                         <li><a href="#map" class="system-overview-nav-link univers-monde-sublink" data-en="Map" data-fr="Carte">Map</a></li>
                         <li><a href="#gallery" class="system-overview-nav-link univers-monde-sublink" data-en="Gallery" data-fr="Galerie">Gallery</a></li>
                     </ul>
-                    <a href="#videogame" class="tab-sub-nav-link univers-nav-main-link" {{i18n:nav.univers.videogame}}>Videogame</a>
+                    <a href="#videogame" class="tab-sub-nav-link univers-nav-main-link" aria-expanded="false" {{i18n:nav.univers.videogame}}>Videogame</a>
                     <ul class="system-overview-nav-list univers-videogame-in-page-nav" aria-label="Videogame sections">
                         <li><a href="#videogame" class="system-overview-nav-link univers-videogame-sublink" {{i18n:nav.univers.videogame.teaser}}>Teaser</a></li>
                         <li><a href="#pillars" class="system-overview-nav-link univers-videogame-sublink" {{i18n:nav.univers.videogame.pillars}}>Pillars</a></li>
                     </ul>
-                    <a href="#tabletop" class="tab-sub-nav-link univers-nav-main-link" {{i18n:nav.univers.tabletop}}>Tabletop</a>
+                    <a href="#tabletop" class="tab-sub-nav-link univers-nav-main-link" aria-expanded="false" {{i18n:nav.univers.tabletop}}>Tabletop</a>
                     <ul class="system-overview-nav-list univers-tabletop-in-page-nav" aria-label="Tabletop sections">
                         <li><a href="#tabletop" class="system-overview-nav-link univers-tabletop-sublink" {{i18n:nav.univers.tabletop.rules}}>Rules</a></li>
                         <li><a href="#zine" class="system-overview-nav-link univers-tabletop-sublink" {{i18n:nav.univers.tabletop.zine}}>Zine</a></li>
@@ -634,19 +629,31 @@
                         <p class="peoples-descent__lead" {{i18n:peoples.descent.lead}}>In the crust, it was said that once lived the Aryohpeans, now remembered as beings of light, and as makers of great artifacts, or even of magic itself. Digging still deeper they reached SIWÔMIZ, a cosmo-crystalline forest where the laws of matter invert. Through that forest pulses the Ril, the braid that permeates everything that exists. Before they went further in and disappeared, they prepared three departures. Now we remember them as the Aïars. Some claim the peoples of today come from them, as echoes of their furthest possibilities.</p>
                         <div class="peoples-descent__lines">
                             <article class="peoples-descent__line" data-line="yorres">
-                                <h4 class="peoples-descent__name"><span {{i18n:peoples.descent.yorres.title}}>Yôrres</span> <em {{i18n:peoples.descent.yorres.how}}>the kings' line</em></h4>
-                                <p {{i18n:peoples.descent.yorres.body}}>The kings purified a line of their own, selecting it until it held one extreme. What climbed back to the surface, millennia later, are the Yôrres, the ylves. Myth calls their ancestors the eight seasonal fairies.</p>
+                                <figure class="peoples-descent__figure">
+                                    <img class="peoples-descent__portrait" src="assets/images/people/Yors.webp" width="700" height="858" alt="Yors" decoding="async" loading="lazy"/>
+                                </figure>
+                                <h4 class="peoples-descent__name"><span {{i18n:peoples.descent.yorres.title}}>Yors</span> <em {{i18n:peoples.descent.yorres.how}}>the kings' line</em></h4>
+                                <p {{i18n:peoples.descent.yorres.body}}>The kings purified a line of their own, selecting it until it held one extreme. What climbed back to the surface, millennia later, are the Yors, the ylves. Myth calls their ancestors the eight seasonal fairies.</p>
                             </article>
                             <article class="peoples-descent__line" data-line="yommes">
-                                <h4 class="peoples-descent__name"><span {{i18n:peoples.descent.yommes.title}}>Yômmes</span> <em {{i18n:peoples.descent.yommes.how}}>the priests' minglings</em></h4>
-                                <p {{i18n:peoples.descent.yommes.body}}>The priests mingled. Finding their own form incomplete, they folded it into the beasts around it. What returned are the Yômmes: gnommes, dwommes, halflyns, hobblyns. Myth calls their ancestors nurseling lutins.</p>
+                                <figure class="peoples-descent__figure">
+                                    <img class="peoples-descent__portrait" src="assets/images/people/Yums.webp" width="700" height="609" alt="Yums" decoding="async" loading="lazy"/>
+                                </figure>
+                                <h4 class="peoples-descent__name"><span {{i18n:peoples.descent.yommes.title}}>Yums</span> <em {{i18n:peoples.descent.yommes.how}}>the priests' minglings</em></h4>
+                                <p {{i18n:peoples.descent.yommes.body}}>The priests mingled. Finding their own form incomplete, they folded it into the beasts around it. What returned are the Yums: ghnomes, dwuars, hoppyts, halvlyns. Myth calls their ancestors nurseling lutins.</p>
                             </article>
                             <article class="peoples-descent__line" data-line="bestres">
-                                <h4 class="peoples-descent__name"><span {{i18n:peoples.descent.bestres.title}}>Bêstres</span> <em {{i18n:peoples.descent.bestres.how}}>the people's herds</em></h4>
-                                <p {{i18n:peoples.descent.bestres.body}}>The people raised. Seeing that their own form was not an end, they lifted companions and cattle, under the Rilie, into conscious and then independent lines. What returned are the Bêstres. Myth calls their ancestors armed giants.</p>
+                                <figure class="peoples-descent__figure">
+                                    <img class="peoples-descent__portrait" src="assets/images/people/Beingsts.webp" width="700" height="680" alt="Beingsts" decoding="async" loading="lazy"/>
+                                </figure>
+                                <h4 class="peoples-descent__name"><span {{i18n:peoples.descent.bestres.title}}>Beingsts</span> <em {{i18n:peoples.descent.bestres.how}}>the people's herds</em></h4>
+                                <p {{i18n:peoples.descent.bestres.body}}>The people raised. Seeing that their own form was not an end, they lifted companions and cattle, under the Rilie, into conscious and then independent lines. What returned are the Beingsts. Myth calls their ancestors armed giants.</p>
                             </article>
                         </div>
                     </aside>
+                    <section class="peoples-scene" aria-label="Council scene">
+                        <iframe class="scene-lab-frame" src="scene-lab/?embed=1&v=4" title="Council scene" scrolling="no" loading="lazy"></iframe>
+                    </section>
                     <div class="peoples-invective" id="peoples-invective" data-invective-interval-ms="10000">
                         <p class="peoples-invective__attribution" data-en="Extract and retelling of the fiery oration « Citizens of the world » by an unknown speaker before being stoned." data-fr="Extrait reformulation de l'oration enflammée « Citoyens du monde » par un inconnu avant sa lapidation.">Extract and retelling of the fiery oration « Citizens of the world » by an unknown speaker before being stoned.</p>
                         <div
@@ -667,8 +674,8 @@
                             <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-origin="yommes">
                                 <span class="peoples-tree-toggle" aria-hidden="true"></span>
                                 <span class="peoples-tree-origin-head">
-                                <strong class="peoples-tree-origin-name" {{i18n:tpl.57}}>YÔMMES</strong>
-                                <span class="peoples-tree-morality peoples-tree-origin-aka" {{i18n:peoples.origins.yommes_aka}}>a.k.a. Gnommes, Dwommes, Halflyns, Hobblyns</span>
+                                <strong class="peoples-tree-origin-name" {{i18n:tpl.57}}>YUMS</strong>
+                                <span class="peoples-tree-morality peoples-tree-origin-aka" {{i18n:peoples.origins.yommes_aka}}>a.k.a. Ghnomes, Dwuars, Hoppyts, Halvlyns</span>
                                 <span class="peoples-tree-morality peoples-tree-origin-from" {{i18n:peoples.origins.yommes_from}}>mixes of one form and beast</span>
                                 </span>
                                 <div class="peoples-tree-children">
@@ -681,7 +688,7 @@
                             <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-origin="yorres">
                                 <span class="peoples-tree-toggle" aria-hidden="true"></span>
                                 <span class="peoples-tree-origin-head">
-                                <strong class="peoples-tree-origin-name" {{i18n:tpl.62}}>YÔRRES</strong>
+                                <strong class="peoples-tree-origin-name" {{i18n:tpl.62}}>YORS</strong>
                                 <span class="peoples-tree-morality peoples-tree-origin-from" {{i18n:peoples.origins.yorres_from}}>the kings' selected line</span>
                                 </span>
                                 <div class="peoples-tree-children">
@@ -694,7 +701,7 @@
                             <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-origin="bestres">
                                 <span class="peoples-tree-toggle" aria-hidden="true"></span>
                                 <span class="peoples-tree-origin-head">
-                                <strong class="peoples-tree-origin-name" {{i18n:tpl.67}}>BÊSTRES</strong>
+                                <strong class="peoples-tree-origin-name" {{i18n:tpl.67}}>BEINGSTS</strong>
                                 <span class="peoples-tree-morality peoples-tree-origin-from" {{i18n:peoples.origins.bestres_from}}>lines raised into peoples</span>
                                 </span>
                                 <div class="peoples-tree-children">
@@ -775,7 +782,6 @@
                         <a href="#tabletop" class="videogame-teaser-link" {{i18n:videogame.teaser.cta_tabletop}}>Enter the tabletop</a>
                         <a href="#chatbot" class="videogame-teaser-link" {{i18n:videogame.teaser.cta_chatbot}}>Ask the Awakener</a>
                     </div>
-                    <p class="videogame-release-note" {{i18n:release.videogame}}>The launch is the video game. The tabletop role-playing game PDF is in early access (300 pages and more).</p>
                     <section class="discovery-unified-outpost discovery-unified-outpost--landing-first videogame-outpost" aria-labelledby="outpost-heading-videogame">
                         <h2 id="outpost-heading-videogame" class="screen-reader-text" {{i18n:tpl.7}}>Join the Outpost</h2>
                         <form class="outpost-form" id="newsletter-form-videogame" data-newsletter-source="videogame_outpost" action="#" method="post">
@@ -975,9 +981,6 @@
 
             <!-- Tabletop: Rules / Zine / Sheet / Chatbot -->
             <div class="lore-section tab-sub-panel" data-subtab="tabletop" id="tabletop">
-                <aside class="tabletop-release" {{i18n-aria:release.book_aria}} aria-label="The tabletop PDF">
-                    <p class="release-note" {{i18n:release.book}}>The launch is the video game. This tabletop role-playing game PDF is in early access: more than 300 pages, developed over five years alongside the world.</p>
-                </aside>
                 <div class="univers-tabletop-panel univers-tabletop-panel--active" id="tabletop-rules">
                 <!-- Accordion: main worldlore sections (first expanded) -->
                 <div class="system-overview-accordion" id="system-overview-accordion">
@@ -1297,11 +1300,11 @@
                     <h4 {{i18n:tpl.205}}>A) Caractéristiques (Characteristics)</h4>
                     <div class="genre-card">
                         <h5 {{i18n:tpl.206}}>Origin → People → Race → Sex</h5>
-                        <p {{i18n:tpl.207}}>Pick <strong>Origin</strong> (Yômmes, Yôrres, Bêstres), then a <strong>People</strong> within it, then one <strong>Race</strong> within that People, then <strong>Sex</strong> (♂ / ♀ / Intersexe where applicable). Base attributes come from People (by sex) + Race. Default: Young (20–30 years), normal Taille, Stature, Gras for the People.</p>
+                        <p {{i18n:tpl.207}}>Pick <strong>Origin</strong> (Yums, Yors, Beingsts), then a <strong>People</strong> within it, then one <strong>Race</strong> within that People, then <strong>Sex</strong> (♂ / ♀ / Intersexe where applicable). Base attributes come from People (by sex) + Race. Default: Young (20–30 years), normal Taille, Stature, Gras for the People.</p>
                         <ul>
-                            <li {{i18n:tpl.208}}><strong>YÔMMES:</strong> Aristese, Greyscribes, Navillis, Meridians</li>
-                            <li {{i18n:tpl.209}}><strong>YÔRRES:</strong> Great Ylves, Pale Ylves, Lake Ylves, Iqqars</li>
-                            <li {{i18n:tpl.210}}><strong>BÊSTRES:</strong> Slaadeans, Tchalkchaïs</li>
+                            <li {{i18n:tpl.208}}><strong>YUMS:</strong> Aristese, Greyscribes, Navillis, Meridians</li>
+                            <li {{i18n:tpl.209}}><strong>YORS:</strong> Great Ylves, Pale Ylves, Lake Ylves, Iqqars</li>
+                            <li {{i18n:tpl.210}}><strong>BEINGSTS:</strong> Slaadeans, Tchalkchaïs</li>
                         </ul>
                         <p {{i18n:tpl.211}}>Example races: Aristese → Monte-Foudres, Fleuris, Des Souffles, Ambrés. Slaadeans → Hlabayan, Sydru-kal, Felichrem, Iossolam, Wijriol.</p>
                         <div class="creation-table-wrap">
@@ -2787,7 +2790,7 @@
             try { img.fetchPriority = 'low'; } catch (e) {}
             img.loading = 'eager';
             img.src = urls[index];
-            var next = function () { setTimeout(function () { warmSequentially(urls, index + 1); }, 40); };
+            var next = function () { setTimeout(function () { warmSequentially(urls, index + 1); }, 140); };
             img.onload = next;
             img.onerror = next;
         }
@@ -2825,7 +2828,7 @@
         if (!('serviceWorker' in navigator)) return;
         if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') return;
         window.addEventListener('load', function () {
-            navigator.serviceWorker.register(new URL('sw.js', location.href).href).catch(function () {});
+            navigator.serviceWorker.register(new URL('../sw.js', location.href).href).catch(function () {});
         }, { once: true });
     })();
     </script>

@@ -7,6 +7,8 @@
  *   SITE_PUBLIC_URL=https://archopoia.github.io/The-Discording-Tales npm run build
  *
  * GitHub Actions: optional repository variable SITE_PUBLIC_URL overrides this default.
+ *
+ * Routing: `/` is the cinematic landing; the interactive hub lives at `/site/`.
  */
 const DEFAULT_BASE = 'https://www.thediscordingtales.com';
 
@@ -14,4 +16,20 @@ export function getSitePublicBase() {
   const raw = (process.env.SITE_PUBLIC_URL || '').trim();
   if (!raw) return DEFAULT_BASE;
   return raw.replace(/\/+$/, '');
+}
+
+/** Pathname prefix with no trailing slash (`''` or `/The-Discording-Tales`). */
+export function getSitePathPrefix() {
+  try {
+    const pathname = new URL(getSitePublicBase()).pathname.replace(/\/+$/, '');
+    return pathname === '/' ? '' : pathname;
+  } catch {
+    return '';
+  }
+}
+
+/** Root-absolute href prefix ending with `/` (`/` or `/The-Discording-Tales/`). */
+export function getSiteRootHref() {
+  const prefix = getSitePathPrefix();
+  return prefix ? `${prefix}/` : '/';
 }

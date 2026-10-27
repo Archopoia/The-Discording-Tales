@@ -122,7 +122,7 @@ const GAMEFEEL_EN = {
   title: 'Gamefeel (video game only)',
   paras: [
     'You are in a vertical underground pocket beneath Iaôdunaï, crossed by rope platforms, crystalline faults and passages controlled by different groups.',
-    'A locked door blocks access to a landing. A living light source influences the perception of nearby creatures. A patrol of Bêstres moves according to simple rules tied to light and open spaces. An ancient Aïar mechanism is visible but partly inaccessible.',
+    'A locked door blocks access to a landing. A living light source influences the perception of nearby creatures. A patrol of Beingsts moves according to simple rules tied to light and open spaces. An ancient Aïar mechanism is visible but partly inaccessible.',
     'The creatures of this world do not move only as static enemies, but as entities driven by concrete and immediate needs. Hunger, threat and opportunity visibly structure their behaviour. A hungry ogre may cross the caverns in search of food, eat mushrooms or, if hunger becomes critical, want to eat goblins even alive. The world thus becomes a space of opportunistic predation where interactions are never entirely scripted.',
     'The consequences of these behaviours are physical and persistent in space. For example, creatures may exploit what remains of an adversary in a utilitarian way: a body may be dragged into their lair for a future meal, dismembered to be used as a weapon.',
     'You too physically interact with the world: moving a crate, debris or a body can block or divert a passage, create an improvised support, or alter an enemy route. The environment is legible from the start but rarely accessible without an understanding of the simple physical and social layers.',

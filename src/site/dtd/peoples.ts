@@ -428,7 +428,7 @@ export function initPeoplesPortraitLightbox(peoplesSection) {
         });
     }
 
-    peoplesSection.querySelectorAll('img.peoples-tree-portrait').forEach(function(img) {
+    peoplesSection.querySelectorAll('img.peoples-tree-portrait, img.peoples-descent__portrait').forEach(function(img) {
         bindPortraitLightboxTrigger(img);
     });
     peoplesSection.querySelectorAll('img.peoples-lead__height-chart').forEach(function(img) {

@@ -1,16 +1,48 @@
 /**
  * Keyhole entrance: full-screen overlay with glowing keyhole.
- * Click to enter (plays door_unlock, golden flash, then looped chimes).
+ * Click to enter (plays door_unlock, optional golden flash, then looped chimes).
  * Same behavior as Hugues.W.B.dePingon soundManager entrance.
  *
  * Iris movement is now pure CSS (eyeIrisCalm animation for idle; centers on hover).
  * Button is visible immediately (no JS gating).
+ * On enter, logo uses the same exponential wind-up spin as landing/preloader.ts.
  */
 (function() {
     'use strict';
 
-    const SOUNDS_BASE = 'assets/sounds/';
+    const SOUNDS_BASE = '/assets/sounds/';
     const ENTRANCE_SESSION_KEY = 'tdtEntranceCompletedAt';
+    /* Keep flash codepaths; set true to restore beige bloom on enter. */
+    const ENABLE_GOLDEN_FLASH = false;
+
+    /*
+     * Exponential wind-up (same curve family as landing/preloader.ts).
+     * Duration matches the map/fill dissolve so the logo finishes fading
+     * as the last turn ends - not spin-then-wait-then-leave.
+     */
+    const SPIN_HOLD_MS = 1350;
+    const SPIN_K = 2.5;
+    const SPIN_END_DEG = 1080;
+    const SPIN_A = SPIN_END_DEG / (Math.exp(SPIN_K) - 1);
+
+    function spinEntranceLogo(wrap, reduced) {
+        if (!wrap || reduced) return;
+        wrap.style.animation = 'none';
+        wrap.style.transformOrigin = 'center center';
+        var start = performance.now();
+        var omega = (SPIN_A * SPIN_K * Math.exp(SPIN_K)) / SPIN_HOLD_MS;
+        function tick(now) {
+            if (!wrap.isConnected) return;
+            var elapsed = now - start;
+            var t = elapsed / SPIN_HOLD_MS;
+            var angle = t <= 1
+                ? SPIN_A * (Math.exp(SPIN_K * t) - 1)
+                : SPIN_END_DEG + omega * (elapsed - SPIN_HOLD_MS);
+            wrap.style.transform = 'rotate(' + angle + 'deg)';
+            requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+    }
 
     function persistEntranceSession() {
         try {
@@ -336,24 +368,40 @@
             clearAutoEnter();
             window.keyholeClickInProgress = true;
 
+            var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var logoWrap = enterButton && enterButton.querySelector('.entrance-logo-wrap');
+
+            /* Spin + fade in parallel: last turn ends as the logo/fill finish dissolving. */
+            var spinMs = reducedMotion ? 400 : SPIN_HOLD_MS;
+            var exitSec = (spinMs / 1000).toFixed(2);
             if (staticLoader) {
+                staticLoader.style.setProperty('--entrance-exit-ms', exitSec + 's');
                 staticLoader.classList.add('entrance-revealing');
             }
 
+            if (enterButton) {
+                enterButton.classList.add('entrance-spinning', 'entrance-exiting');
+                enterButton.style.animation = 'none';
+                enterButton.style.transform = 'translate(0, 0)';
+                enterButton.style.setProperty('--entrance-exit-ms', exitSec + 's');
+            }
+            spinEntranceLogo(logoWrap, reducedMotion);
+
             /* Flash FIRST while content is still display:none  -  avoids multi-second main-thread
                layout before the animation can run (was: remove entrance-active, then append flash). */
-            var flashElement = document.createElement('div');
-            flashElement.id = 'golden-flash';
-            document.body.appendChild(flashElement);
+            var flashElement = null;
             var flashBloomMs = 480;
             var flashFadeMs = 420;
-            flashElement.style.animation = 'goldenFlashBloom ' + (flashBloomMs / 1000) + 's linear forwards';
+            if (ENABLE_GOLDEN_FLASH) {
+                flashElement = document.createElement('div');
+                flashElement.id = 'golden-flash';
+                document.body.appendChild(flashElement);
+                flashElement.style.animation = 'goldenFlashBloom ' + (flashBloomMs / 1000) + 's linear forwards';
+            }
 
             if (entranceFill) {
-                entranceFill.style.animation = 'fadeOut 1.35s cubic-bezier(0.33, 0, 0.15, 1) forwards';
-            }
-            if (enterButton) {
-                enterButton.classList.add('entrance-exiting');
+                entranceFill.style.animation =
+                    'fadeOut ' + exitSec + 's cubic-bezier(0.33, 0, 0.15, 1) forwards';
             }
 
             if (doorUnlock) {
@@ -367,23 +415,29 @@
                 document.body.classList.remove('entrance-active');
             }, 56);
 
-            setTimeout(function() {
-                flashElement.classList.add('golden-flash--fading');
-            }, flashBloomMs + 16);
+            if (ENABLE_GOLDEN_FLASH && flashElement) {
+                setTimeout(function() {
+                    flashElement.classList.add('golden-flash--fading');
+                }, flashBloomMs + 16);
+            }
+
+            var doneMs = ENABLE_GOLDEN_FLASH
+                ? Math.max(spinMs, flashBloomMs + 16 + flashFadeMs + 100)
+                : spinMs;
 
             setTimeout(function() {
                 if (staticLoader) {
                     staticLoader.style.pointerEvents = 'none';
                     staticLoader.style.display = 'none';
                 }
-                if (flashElement.parentNode) {
+                if (flashElement && flashElement.parentNode) {
                     flashElement.parentNode.removeChild(flashElement);
                 }
                 audioUnlocked = true;
                 setTimeout(startChimesLoop, 1000);
                 persistEntranceSession();
                 window.dispatchEvent(new Event('tdt-entrance-complete'));
-            }, flashBloomMs + 16 + flashFadeMs + 100);
+            }, doneMs);
         }
 
         if (enterButton) {
@@ -423,18 +477,18 @@
     'use strict';
 
     var ENTRANCE_IMAGE_URLS = [
-        'assets/images/Map_Naked_lqip.webp',
-        'assets/images/Creusalité_NoBorders_lqip.webp',
-        'assets/images/Map_Naked_medium.webp',
-        'assets/images/Creusalité_NoBorders_medium.webp',
-        'assets/images/Map_Naked.webp',
-        'assets/images/Creusalité_NoBorders.webp',
-        'assets/images/image/image12.png',
-        'assets/images/image/image2.png'
+        '/assets/images/Map_Naked_lqip.webp',
+        '/assets/images/Creusalité_NoBorders_lqip.webp',
+        '/assets/images/Map_Naked_medium.webp',
+        '/assets/images/Creusalité_NoBorders_medium.webp',
+        '/assets/images/Map_Naked.webp',
+        '/assets/images/Creusalité_NoBorders.webp',
+        '/assets/images/image/image12.png',
+        '/assets/images/image/image2.png'
     ];
     var PEOPLE_BANNER_URLS = [
-        'assets/images/People1.webp',
-        'assets/images/People2.webp'
+        '/assets/images/People1.webp',
+        '/assets/images/People2.webp'
     ];
 
     function loadImageForGate(url) {

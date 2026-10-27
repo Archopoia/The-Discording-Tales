@@ -42,16 +42,16 @@ function build() {
     <p class="lede">A short definition for players, GMs, and searchers who want something stranger than recycled high fantasy - and more coherent than a mood board.</p>
     <article>
       <h2>Definition</h2>
-      <p><strong>Ethno-science-fantasy</strong> is fantasy built around cultures first: peoples with their own moralities, bodies, and technologies of the strange, set in a cosmos that behaves like myth and physics at once. In <a href="${esc(BASE)}/">The Discording Tales</a> / Des Récits Discordants, there are no humans. You play inside alien needs, desires, and wills that only make sense when the rules and the lore lock together.</p>
+      <p><strong>Ethno-science-fantasy</strong> is fantasy built around cultures first: peoples with their own moralities, bodies, and technologies of the strange, set in a cosmos that behaves like myth and physics at once. In <a href="${esc(BASE)}/">The Discording Tales</a> / Des R�cits Discordants, there are no humans. You play inside alien needs, desires, and wills that only make sense when the rules and the lore lock together.</p>
       <h2>How it differs from high fantasy</h2>
-      <p>High fantasy often centers a human (or human-adjacent) moral default and a familiar medieval toolkit. Ethno-science-fantasy starts from other peoples - <a href="${esc(BASE)}/world/peoples/">Yômmes, Yôrres, Bêstres and their nations</a> - and asks what growth, wisdom, joy, or competence mean when the body and the Ril are not yours.</p>
+      <p>High fantasy often centers a human (or human-adjacent) moral default and a familiar medieval toolkit. Ethno-science-fantasy starts from other peoples - <a href="${esc(BASE)}/world/peoples/">Yums, Yors, Beingsts and their nations</a> - and asks what growth, wisdom, joy, or competence mean when the body and the Ril are not yours.</p>
       <h2>How it differs from soft science fantasy</h2>
       <p>Science fantasy can mean lasers on dragons. Here the "science" is diegetic: crystal forests where matter inverts, abundances and festivals named as forces, artefacts and orders that structure play. The wonder is ethnographic and systemic, not only spectacle.</p>
       <h2>What you can explore next</h2>
       <ul>
         <li><a href="${esc(BASE)}/world/origins/">Three origins</a> - how peoples returned from the crust</li>
         <li><a href="${esc(BASE)}/world/peoples/">Peoples index</a> - moralities, lineages, relations</li>
-        <li><a href="${esc(BASE)}/lore/">Universe lore</a> - Rildées, festivals, artefacts</li>
+        <li><a href="${esc(BASE)}/lore/">Universe lore</a> - Rild�es, festivals, artefacts</li>
         <li><a href="${esc(BASE)}/compare/weird-fantasy-ttrpg/">Weird fantasy TTRPGs</a> - where TDT sits on the shelf</li>
         <li><a href="${esc(BASE)}/character-sheet/">Character sheet</a> - play aids on the site</li>
       </ul>
@@ -132,12 +132,12 @@ function build() {
       </ol>
       <h2>Related</h2>
       <ul>
-        <li><a href="${esc(BASE)}/#sheet">Deep link: #sheet</a> on the SPA</li>
+        <li><a href="${esc(BASE)}/site/#sheet">Deep link: #sheet</a> on the SPA</li>
         <li><a href="${esc(BASE)}/guide/ethno-science-fantasy/">Ethno-science-fantasy guide</a></li>
-        <li><a href="${esc(BASE)}/landing">Project landing</a> - book, pitch, team</li>
+        <li><a href="${esc(BASE)}/">Project landing</a> - book, pitch, team</li>
       </ul>
     </article>`,
-      ctaPrimaryHref: `${BASE}/#sheet`,
+      ctaPrimaryHref: `${BASE}/site/#sheet`,
       ctaPrimaryLabel: 'Open the character sheet',
     }),
     'utf8',
@@ -188,7 +188,7 @@ function build() {
         <li>A finished AAA Action RPG you can buy today - the video path is in development; the tabletop book is already in early access</li>
       </ul>
       <h2>Who it is for</h2>
-      <p>GMs and players who want cultural friction, golden-age strife, and a living dungeon of alien societies. Investors and press who want the pitch and team should start at the <a href="${esc(BASE)}/landing">landing</a>.</p>
+      <p>GMs and players who want cultural friction, golden-age strife, and a living dungeon of alien societies. Investors and press who want the pitch and team should start at the <a href="${esc(BASE)}/">landing</a>.</p>
       <h2>Start here</h2>
       <ul>
         <li><a href="${esc(BASE)}/guide/ethno-science-fantasy/">What is ethno-science-fantasy?</a></li>

@@ -18,7 +18,7 @@ export function initPdfDownloadModal() {
     if (!openBtn || !dialog) return;
 
     var pdfFileName = 'Des Récits Discordants v0.01.pdf';
-    var pdfHref = 'assets/' + encodeURIComponent(pdfFileName);
+    var pdfHref = '/assets/' + encodeURIComponent(pdfFileName);
 
     function triggerPdfDownload() {
         var a = document.createElement('a');

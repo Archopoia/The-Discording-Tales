@@ -1,4 +1,6 @@
 // @ts-nocheck
+import { ensureAttributesTree } from '../../tdt-site-data';
+
 // ========================================
 // Shared: Accordion initializer
 // ========================================
@@ -191,18 +193,27 @@ export function initSystemOverview() {
         collapseAllSelector: '.system-overview-collapse-all'
     });
 
-    // Initialize the interactive attributes tree
+    // Initialize the interactive attributes tree (JSON fetched on demand)
     initAttributesTree();
 }
 
 // ========================================
-// Attributes Tree (data: public/data/attributes-tree.json on window.__TDT_ATTRIBUTES_TREE__)
+// Attributes Tree (data: dist/data/attributes-tree.json via ensureAttributesTree)
 // ========================================
 
 function initAttributesTree() {
-    var bundle = window.__TDT_ATTRIBUTES_TREE__;
+    ensureAttributesTree()
+        .then(function (bundle) {
+            mountAttributesTree(bundle);
+        })
+        .catch(function (err) {
+            console.warn('[DRD] Failed to load attributes-tree.json', err);
+        });
+}
+
+function mountAttributesTree(bundle) {
     if (!bundle || !bundle.attributes || !bundle.aptitudePrincipalAttr) {
-        console.warn('[DRD] Missing window.__TDT_ATTRIBUTES_TREE__ (attributes-tree.json not injected?)');
+        console.warn('[DRD] Missing window.__TDT_ATTRIBUTES_TREE__ (attributes-tree.json not loaded?)');
         return;
     }
     var APTITUDE_PRINCIPAL_ATTR = bundle.aptitudePrincipalAttr;

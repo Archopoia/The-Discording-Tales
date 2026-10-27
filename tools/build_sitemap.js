@@ -22,7 +22,7 @@ const robotsOutPath = path.join(root, 'robots.txt');
 
 const BASE = getSitePublicBase();
 const HOME = `${BASE}/`;
-const HOME_FR = `${BASE}/?lang=fr`;
+const SITE_FR = `${BASE}/site/?lang=fr`;
 
 /** @type {{ loc: string; title: string }[]} */
 const IMAGES = [
@@ -66,7 +66,7 @@ function buildXml() {
   ).join('\n');
 
   const legalPages = [
-    { path: '/landing', priority: '0.8', changefreq: 'monthly', langs: ['en'] },
+    { path: '/site/', priority: '0.95', changefreq: 'weekly', langs: ['en', 'fr'], frQuery: true },
     { path: '/privacy', priority: '0.3', changefreq: 'yearly', langs: ['en', 'fr', 'de'] },
     { path: '/impressum', priority: '0.3', changefreq: 'yearly', langs: ['en', 'fr', 'de'] },
   ];
@@ -76,8 +76,11 @@ function buildXml() {
       const langs = page.langs || ['en'];
       const alternates = langs
         .map((lang) => {
-          const href = lang === 'en' ? loc : `${loc}?lang=${lang}`;
-          return `    <xhtml:link rel="alternate" hreflang="${lang}" href="${href}"/>`;
+          if (lang === 'en') return `    <xhtml:link rel="alternate" hreflang="${lang}" href="${loc}"/>`;
+          if (page.frQuery && lang === 'fr') {
+            return `    <xhtml:link rel="alternate" hreflang="fr" href="${SITE_FR}"/>`;
+          }
+          return `    <xhtml:link rel="alternate" hreflang="${lang}" href="${loc}?lang=${lang}"/>`;
         })
         .concat(`    <xhtml:link rel="alternate" hreflang="x-default" href="${loc}"/>`)
         .join('\n');
@@ -136,7 +139,6 @@ ${alternates}
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="${HOME}"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="${HOME_FR}"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="${HOME}"/>
 ${imageBlocks}
   </url>
