@@ -48,11 +48,14 @@
     <meta name="theme-color" content="#240a0a"/>
     <link rel="icon" href="assets/icons/favicon-48x48.png" type="image/png" sizes="48x48"/>
     <link rel="icon" href="favicon.ico" sizes="48x48"/>
-    <link rel="preload" as="image" href="assets/images/PoC-TDT-October-poster.jpg"/>
+    <link rel="preload" as="image" href="assets/images/PoC-TDT-October-poster.webp"/>
+    <link rel="preload" as="image" href="assets/images/geocosmos-plain_medium.webp" fetchpriority="high"/>
+    <link rel="preload" as="image" href="assets/images/Map_Naked_lqip.webp" fetchpriority="high"/>
+    <link rel="preload" as="image" href="assets/images/Creusalité_NoBorders_lqip.webp" fetchpriority="high"/>
     <link rel="preload" as="font" type="font/ttf" href="assets/Fonts/MysticCards.ttf" crossorigin/>
     <link rel="preload" as="font" type="font/ttf" href="assets/Fonts/DauphinRegular.ttf" crossorigin/>
     <link rel="preload" as="font" type="font/ttf" href="assets/Fonts/FanwoodText-Regular.ttf" crossorigin/>
-    <link rel="stylesheet" href="dist/landing.css?v=66"/>
+    <link rel="stylesheet" href="dist/landing.css?v=69"/>
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"VideoObject","name":"The Discording Tales project showcase","description":"Project showcase for The Discording Tales: ethno-science-fantasy Action RPG and tabletop book.","thumbnailUrl":["https://www.thediscordingtales.com/assets/images/PoC-TDT-October-poster.jpg","https://www.thediscordingtales.com/assets/og-tdt-1200x630.jpg"],"contentUrl":"https://www.thediscordingtales.com/assets/images/PoC-TDT-October.mp4","uploadDate":"2025-10-01T12:00:00+00:00","duration":"PT1M30S","inLanguage":"en","publisher":{"@type":"Organization","name":"The Discording Tales","url":"https://www.thediscordingtales.com/"},"creator":{"@type":"Organization","name":"The Discording Tales","url":"https://www.thediscordingtales.com/"}}
     </script>
@@ -207,7 +210,7 @@
 
     <canvas id="tdt-landing-bg" class="tdt-landing-bg" aria-hidden="true"></canvas>
     <div class="geo" data-geo aria-hidden="true">
-        <img src="assets/images/geocosmos-plain.webp" alt="" width="3118" height="2823" decoding="async"/>
+        <img class="is-medium" src="assets/images/geocosmos-plain_medium.webp" data-src-medium="assets/images/geocosmos-plain_medium.webp" data-src-full="assets/images/geocosmos-plain.webp" alt="" width="2600" height="2354" decoding="async" fetchpriority="high"/>
     </div>
     <div class="tdt-landing-vignette" aria-hidden="true"></div>
 
@@ -225,8 +228,8 @@
         </div>
         <div class="gate-symbol">
             <span class="gate-symbol__spin">
-                <img src="assets/images/image/image12.png" alt="" class="gate-symbol__base" width="220" height="220"/>
-                <img src="assets/images/image/image2.png" alt="" class="gate-symbol__coin" width="220" height="220"/>
+                <img src="assets/images/image/image12_display.webp" alt="" class="gate-symbol__base" width="220" height="220"/>
+                <img src="assets/images/image/image2_display.webp" alt="" class="gate-symbol__coin" width="220" height="220"/>
             </span>
         </div>
         <div class="gate-edgeblur" aria-hidden="true"></div>
@@ -267,10 +270,10 @@
                 muted
                 loop
                 playsinline
-                preload="metadata"
+                preload="none"
                 width="720"
                 height="1280"
-                poster="assets/images/PoC-TDT-October-poster.jpg"
+                poster="assets/images/PoC-TDT-October-poster.webp"
                 aria-label="The Discording Tales"
             >
                 <source src="assets/images/PoC-TDT-October.mp4" type="video/mp4"/>
@@ -280,7 +283,7 @@
         </section>
 
         <section id="scene" class="chapter chapter--scene" data-chapter="showcase" aria-label="Council scene">
-            <iframe class="scene-lab-frame" src="scene-lab/?embed=1&v=8" title="Council scene" scrolling="no" loading="lazy"></iframe>
+            <iframe class="scene-lab-frame" data-src="scene-lab/?embed=1&v=12" title="Council scene" scrolling="no" loading="lazy" allow="fullscreen; screen-wake-lock"></iframe>
         </section>
 
         <section id="world" class="chapter chapter--triad" data-chapter="world-alien" aria-label="Ten Peoples, the game and the book, Living Underworld">
@@ -313,7 +316,7 @@
                 <h2 id="team-title">The Team</h2>
                 <div class="roster">
                     <article class="person person--lead" data-craft="direction">
-                        <img class="avatar" src="assets/Hugues.W.B.dePingon%20-%20roundvignette.jpg" alt="" width="144" height="144" decoding="async"/>
+                        <img class="avatar" src="assets/Hugues.W.B.dePingon%20-%20roundvignette.webp" alt="" width="144" height="144" decoding="async" loading="lazy"/>
                         <div>
                             <h3>Hugues de Pingon</h3>
                             <p class="role">Creator of the universe, creative director, lead game designer</p>
@@ -321,7 +324,7 @@
                         </div>
                     </article>
                     <article class="person" data-craft="strategy">
-                        <img class="avatar" src="assets/Patrice%20vignette.jpg" alt="" width="144" height="144" decoding="async"/>
+                        <img class="avatar" src="assets/Patrice%20vignette.webp" alt="" width="144" height="144" decoding="async" loading="lazy"/>
                         <div>
                             <h3>Patrice Le</h3>
                             <p class="role">Strategy, product, and business</p>
@@ -329,7 +332,7 @@
                         </div>
                     </article>
                     <article class="person" data-craft="art">
-                        <img class="avatar" src="assets/theotime-vignette.jpg" alt="" width="144" height="144" decoding="async"/>
+                        <img class="avatar" src="assets/theotime-vignette.webp" alt="" width="144" height="144" decoding="async" loading="lazy"/>
                         <div>
                             <h3>Théotime Millois</h3>
                             <p class="role">Creature artist</p>
@@ -395,18 +398,18 @@
                     <div class="pitch-slider__viewport">
                         <button type="button" class="pitch-slider__nav pitch-slider__nav--prev" aria-label="Previous slide"><span aria-hidden="true">‹</span></button>
                         <div class="pitch-slider__track">
-                            <figure class="pitch-slider__slide is-active"><img src="assets/images/pitch-deck/01.webp" width="1920" height="1080" alt="Pitch slide 1" decoding="async"/></figure>
-                            <figure class="pitch-slider__slide" hidden><img src="assets/images/pitch-deck/02.webp" width="1920" height="1080" alt="Pitch slide 2" decoding="async" loading="lazy"/></figure>
-                            <figure class="pitch-slider__slide" hidden><img src="assets/images/pitch-deck/03.webp" width="1920" height="1080" alt="Pitch slide 3" decoding="async" loading="lazy"/></figure>
-                            <figure class="pitch-slider__slide" hidden><img src="assets/images/pitch-deck/04.webp" width="1920" height="1080" alt="Pitch slide 4" decoding="async" loading="lazy"/></figure>
-                            <figure class="pitch-slider__slide" hidden><img src="assets/images/pitch-deck/05.webp" width="1920" height="1080" alt="Pitch slide 5" decoding="async" loading="lazy"/></figure>
-                            <figure class="pitch-slider__slide" hidden><img src="assets/images/pitch-deck/06.webp" width="1920" height="1080" alt="Pitch slide 6" decoding="async" loading="lazy"/></figure>
-                            <figure class="pitch-slider__slide" hidden><img src="assets/images/pitch-deck/07.webp" width="1920" height="1080" alt="Pitch slide 7" decoding="async" loading="lazy"/></figure>
-                            <figure class="pitch-slider__slide" hidden><img src="assets/images/pitch-deck/08.webp" width="1920" height="1080" alt="Pitch slide 8" decoding="async" loading="lazy"/></figure>
-                            <figure class="pitch-slider__slide" hidden><img src="assets/images/pitch-deck/09.webp" width="1920" height="1080" alt="Pitch slide 9" decoding="async" loading="lazy"/></figure>
-                            <figure class="pitch-slider__slide" hidden><img src="assets/images/pitch-deck/10.webp" width="1920" height="1080" alt="Pitch slide 10" decoding="async" loading="lazy"/></figure>
-                            <figure class="pitch-slider__slide" hidden><img src="assets/images/pitch-deck/11.webp" width="1920" height="1080" alt="Pitch slide 11" decoding="async" loading="lazy"/></figure>
-                            <figure class="pitch-slider__slide" hidden><img src="assets/images/pitch-deck/12.webp" width="1920" height="1080" alt="Pitch slide 12" decoding="async" loading="lazy"/></figure>
+                            <figure class="pitch-slider__slide is-active"><img src="assets/images/pitch-deck/01_lqip.webp" width="1920" height="1080" alt="Pitch slide 1" decoding="async" class="tdt-progressive is-soft" data-src-medium="assets/images/pitch-deck/01_medium.webp" data-src-full="assets/images/pitch-deck/01.webp"></figure>
+                            <figure class="pitch-slider__slide" hidden><img src="assets/images/pitch-deck/02_lqip.webp" width="1920" height="1080" alt="Pitch slide 2" decoding="async" loading="lazy" class="tdt-progressive is-soft" data-src-medium="assets/images/pitch-deck/02_medium.webp" data-src-full="assets/images/pitch-deck/02.webp"></figure>
+                            <figure class="pitch-slider__slide" hidden><img src="assets/images/pitch-deck/03_lqip.webp" width="1920" height="1080" alt="Pitch slide 3" decoding="async" loading="lazy" class="tdt-progressive is-soft" data-src-medium="assets/images/pitch-deck/03_medium.webp" data-src-full="assets/images/pitch-deck/03.webp"></figure>
+                            <figure class="pitch-slider__slide" hidden><img src="assets/images/pitch-deck/04_lqip.webp" width="1920" height="1080" alt="Pitch slide 4" decoding="async" loading="lazy" class="tdt-progressive is-soft" data-src-medium="assets/images/pitch-deck/04_medium.webp" data-src-full="assets/images/pitch-deck/04.webp"></figure>
+                            <figure class="pitch-slider__slide" hidden><img src="assets/images/pitch-deck/05_lqip.webp" width="1920" height="1080" alt="Pitch slide 5" decoding="async" loading="lazy" class="tdt-progressive is-soft" data-src-medium="assets/images/pitch-deck/05_medium.webp" data-src-full="assets/images/pitch-deck/05.webp"></figure>
+                            <figure class="pitch-slider__slide" hidden><img src="assets/images/pitch-deck/06_lqip.webp" width="1920" height="1080" alt="Pitch slide 6" decoding="async" loading="lazy" class="tdt-progressive is-soft" data-src-medium="assets/images/pitch-deck/06_medium.webp" data-src-full="assets/images/pitch-deck/06.webp"></figure>
+                            <figure class="pitch-slider__slide" hidden><img src="assets/images/pitch-deck/07_lqip.webp" width="1920" height="1080" alt="Pitch slide 7" decoding="async" loading="lazy" class="tdt-progressive is-soft" data-src-medium="assets/images/pitch-deck/07_medium.webp" data-src-full="assets/images/pitch-deck/07.webp"></figure>
+                            <figure class="pitch-slider__slide" hidden><img src="assets/images/pitch-deck/08_lqip.webp" width="1920" height="1080" alt="Pitch slide 8" decoding="async" loading="lazy" class="tdt-progressive is-soft" data-src-medium="assets/images/pitch-deck/08_medium.webp" data-src-full="assets/images/pitch-deck/08.webp"></figure>
+                            <figure class="pitch-slider__slide" hidden><img src="assets/images/pitch-deck/09_lqip.webp" width="1920" height="1080" alt="Pitch slide 9" decoding="async" loading="lazy" class="tdt-progressive is-soft" data-src-medium="assets/images/pitch-deck/09_medium.webp" data-src-full="assets/images/pitch-deck/09.webp"></figure>
+                            <figure class="pitch-slider__slide" hidden><img src="assets/images/pitch-deck/10_lqip.webp" width="1920" height="1080" alt="Pitch slide 10" decoding="async" loading="lazy" class="tdt-progressive is-soft" data-src-medium="assets/images/pitch-deck/10_medium.webp" data-src-full="assets/images/pitch-deck/10.webp"></figure>
+                            <figure class="pitch-slider__slide" hidden><img src="assets/images/pitch-deck/11_lqip.webp" width="1920" height="1080" alt="Pitch slide 11" decoding="async" loading="lazy" class="tdt-progressive is-soft" data-src-medium="assets/images/pitch-deck/11_medium.webp" data-src-full="assets/images/pitch-deck/11.webp"></figure>
+                            <figure class="pitch-slider__slide" hidden><img src="assets/images/pitch-deck/12_lqip.webp" width="1920" height="1080" alt="Pitch slide 12" decoding="async" loading="lazy" class="tdt-progressive is-soft" data-src-medium="assets/images/pitch-deck/12_medium.webp" data-src-full="assets/images/pitch-deck/12.webp"></figure>
                         </div>
                         <button type="button" class="pitch-slider__nav pitch-slider__nav--next" aria-label="Next slide"><span aria-hidden="true">›</span></button>
                     </div>
@@ -430,6 +433,6 @@
         </footer>
     </main>
 
-    <script type="module" src="dist/landing.js?v=50"></script>
+    <script defer src="dist/landing.js?v=56"></script>
 </body>
 </html>

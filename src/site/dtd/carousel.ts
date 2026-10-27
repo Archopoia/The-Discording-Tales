@@ -1,5 +1,6 @@
 import { elements, carouselStates } from './context';
 import { setupImgFade } from './dom-utils';
+import { bindProgressiveFromManifest } from './progressive-images';
 
 export function updateCarouselAriaLabels(lang: string): void {
     const prevLabel = lang === 'fr' ? 'Image précédente' : 'Previous image';
@@ -33,7 +34,7 @@ export function buildOneCarousel(containerEl: HTMLElement, images: CarouselImage
                         .map(
                             (img, index) => `
                         <div class="carousel-slide ${index === 0 ? 'active' : ''}">
-                            <img src="${img.src}" alt="${img.alt}" loading="${index === 0 ? 'eager' : 'lazy'}" />
+                            <img src="${img.src}" alt="${img.alt}" data-full-src="${img.src}" loading="${index === 0 ? 'eager' : 'lazy'}" decoding="async" />
                         </div>
                     `
                         )
@@ -45,8 +46,11 @@ export function buildOneCarousel(containerEl: HTMLElement, images: CarouselImage
             </div>
         `;
     containerEl.innerHTML = carouselHTML;
-    containerEl.querySelectorAll('img').forEach(function (img) {
-        setupImgFade(img as HTMLImageElement);
+    containerEl.querySelectorAll('img').forEach(function (node) {
+        const img = node as HTMLImageElement;
+        const full = img.getAttribute('data-full-src') || img.src;
+        bindProgressiveFromManifest(img, full);
+        setupImgFade(img);
     });
 
     const indicatorsEl = containerEl.querySelector('.carousel-indicators') as HTMLElement;

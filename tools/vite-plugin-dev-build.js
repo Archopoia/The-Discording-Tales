@@ -99,6 +99,11 @@ function getScriptsForFile(filePath) {
   ) {
     return ['build_main_site.js'];
   }
+
+  // Landing cinematic bundle
+  if (relative.startsWith('src/landing/') || relative === 'src/shared/scene-lab-immersive.ts') {
+    return ['build_landing.js'];
+  }
   
   return null;
 }
@@ -175,6 +180,7 @@ export default function devBuildPlugin() {
             'build_css.js',
             'build_i18n.js',
             'build_main_site.js',
+            'build_landing.js',
           ];
           scriptsToRun.sort((a, b) => order.indexOf(a) - order.indexOf(b));
           

@@ -415,6 +415,18 @@ img.tdt-img-ready {
     opacity: 1;
 }
 
+/* Progressive LQIP → medium → full (see progressive-images.ts) */
+img.tdt-progressive.is-soft {
+    filter: blur(12px);
+    transform: scale(1.03);
+    transition: opacity 0.48s ease-out, filter 0.9s ease, transform 0.9s ease;
+}
+img.tdt-progressive.is-medium,
+img.tdt-progressive.is-full {
+    filter: none;
+    transform: none;
+}
+
 /* Opt out: logos, tracking pixels, or images that must show before JS */
 img.tdt-img-no-fade {
     opacity: 1;

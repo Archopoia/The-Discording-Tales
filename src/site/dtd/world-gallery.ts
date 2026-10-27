@@ -1,4 +1,5 @@
 import { state } from './context';
+import { bindProgressiveFromManifest } from './progressive-images';
 
 type GalleryItem = { src: string; alt: string; altFr: string; group: string };
 
@@ -39,10 +40,12 @@ export function initWorldGallery(): void {
         card.dataset.index = String(index);
 
         const img = document.createElement('img');
-        img.src = item.src;
         img.alt = caption(item);
         img.loading = 'lazy';
         img.decoding = 'async';
+        if (!bindProgressiveFromManifest(img, item.src)) {
+            img.src = item.src;
+        }
 
         const cap = document.createElement('span');
         cap.className = 'world-gallery-card__cap';

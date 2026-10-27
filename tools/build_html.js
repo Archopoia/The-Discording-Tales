@@ -45,12 +45,72 @@ const PEOPLES_END = 616;     // closing </div> of peoples-gallery
 const KEYWORDS_START = 2241; // <details class="inspirations-expandable"> Keywords
 const KEYWORDS_END = 2265;   // </details>
 
+/** LQIP-first rewrite for heavy <img> tags using progressive-images.json. */
+function wireProgressiveHtml(html) {
+  const manifestPath = path.join(root, 'public', 'data', 'progressive-images.json');
+  if (!fs.existsSync(manifestPath)) return html;
+  let manifest;
+  try {
+    manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+  } catch {
+    return html;
+  }
+  if (!manifest || typeof manifest !== 'object') return html;
+
+  return html.replace(/<img\b([^>]*?)\/?>/gi, (full, attrs) => {
+    if (/data-src-(?:medium|full)=/i.test(attrs) || /_display\.webp/i.test(attrs) || /_lqip\.webp/i.test(attrs)) {
+      return full; // already wired / display-sized
+    }
+
+    const srcMatch = attrs.match(/\bsrc=(["'])([^"']+)\1/i);
+    if (!srcMatch) return full;
+    let src = srcMatch[2].replace(/^\.\.\//, '').replace(/^\.\//, '').replace(/^\//, '');
+    try {
+      src = decodeURIComponent(src);
+    } catch {
+      /* keep */
+    }
+    const entry = manifest[src] || manifest[src.replace(/\.(png|jpe?g)$/i, '.webp')];
+    if (!entry || !entry.lqip) return full;
+
+    let next = String(attrs).replace(/\/\s*$/, '').trim();
+    if (!/\bclass=/i.test(next)) {
+      next += ' class="tdt-progressive is-soft"';
+    } else {
+      next = next.replace(/\bclass=(["'])([^"']*)\1/i, (m, q, cls) => {
+        const parts = cls.split(/\s+/).filter(Boolean);
+        if (!parts.includes('tdt-progressive')) parts.push('tdt-progressive');
+        if (!parts.includes('is-soft')) parts.push('is-soft');
+        return `class=${q}${parts.join(' ')}${q}`;
+      });
+    }
+    next = next.replace(/\bsrc=(["'])([^"']+)\1/i, `src=$1${entry.lqip}$1`);
+    if (!/data-src-medium=/i.test(next)) next += ` data-src-medium="${entry.medium}"`;
+    if (!/data-src-full=/i.test(next)) next += ` data-src-full="${entry.full}"`;
+    return `<img ${next.trim()}>`;
+  });
+}
+
 /** Rewrite root-relative asset/page paths so they resolve from /site/. */
 function rebaseForSiteSubdir(html) {
-  return html.replace(
+  let out = html.replace(
     /\b(href|src|poster)=(["'])(?!https?:|\/\/|#|mailto:|tel:|data:|\{\{|\/|\.\.\/)([^"']+)\2/gi,
     '$1=$2../$3$2',
   );
+  /* Progressive / entrance data attrs */
+  out = out.replace(
+    /\b(data-(?:src-medium|src-full|bg-medium|bg-full|entrance-medium|entrance-full|gate-src))=(["'])(?!https?:|\/\/|#|mailto:|tel:|data:|\{\{|\/|\.\.\/)([^"']+)\2/gi,
+    '$1=$2../$3$2',
+  );
+  /* Inline style url(...) only - never touch JS identifiers like normalizeUrl(...) */
+  out = out.replace(/\bstyle=(["'])([\s\S]*?)\1/gi, (full, quote, css) => {
+    const next = css.replace(
+      /url\((['"]?)(?!https?:|\/\/|data:|\/|\.\.\/|#)([^'")]+)\1\)/gi,
+      'url($1../$2$1)',
+    );
+    return `style=${quote}${next}${quote}`;
+  });
+  return out;
 }
 
 function applyPublicTokens(html, base, og) {
@@ -136,6 +196,7 @@ function build() {
   const base = getSitePublicBase();
   const og = loadOgMeta();
   out = applyPublicTokens(out, base, og);
+  out = wireProgressiveHtml(out);
   out = rebaseForSiteSubdir(out);
   fs.mkdirSync(path.dirname(siteIndexPath), { recursive: true });
   fs.writeFileSync(siteIndexPath, out, 'utf8');
@@ -157,7 +218,8 @@ function build() {
   for (const [templateName, outRel] of legalPages) {
     const legalTemplatePath = path.join(root, templateName);
     if (!fs.existsSync(legalTemplatePath)) continue;
-    const html = applyPublicTokens(fs.readFileSync(legalTemplatePath, 'utf8'), base, og);
+    let html = applyPublicTokens(fs.readFileSync(legalTemplatePath, 'utf8'), base, og);
+    html = wireProgressiveHtml(html);
     const legalOutPath = path.join(root, outRel);
     fs.mkdirSync(path.dirname(legalOutPath), { recursive: true });
     fs.writeFileSync(legalOutPath, html, 'utf8');
@@ -171,6 +233,7 @@ function build() {
     // Template still uses ../ for historical /landing/ paths; flatten for root.
     landing = landing.replaceAll('../', '');
     landing = applyPublicTokens(landing, base, og);
+    landing = wireProgressiveHtml(landing);
     if (!landing.includes('tdt-spa-bounce')) {
       landing = landing.replace(/<head>/i, `<head>\n    <!-- tdt-spa-bounce -->\n    ${landingSpaBounceScript()}`);
     }

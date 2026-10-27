@@ -4,18 +4,21 @@
  * initial main-site.js parse.
  */
 import landingCarousels from '../public/data/landing-carousels.json';
+import progressiveImages from '../public/data/progressive-images.json';
 import type attributesTree from '../public/data/attributes-tree.json';
 import type universeLoreEn from '../public/data/universe-lore-en.json';
 
 export type TdtAttributesTreeBundle = typeof attributesTree;
 export type TdtLandingCarousels = typeof landingCarousels;
 export type TdtUniverseLoreEn = typeof universeLoreEn;
+export type TdtProgressiveImages = typeof progressiveImages;
 
 declare global {
     interface Window {
         __TDT_ATTRIBUTES_TREE__?: TdtAttributesTreeBundle;
         __TDT_LANDING_CAROUSELS__?: TdtLandingCarousels;
         __TDT_UNIVERSE_LORE_EN__?: TdtUniverseLoreEn;
+        __TDT_PROGRESSIVE_IMAGES__?: TdtProgressiveImages;
     }
 }
 
@@ -36,6 +39,7 @@ function withRootAssetUrls(decks: TdtLandingCarousels): TdtLandingCarousels {
 }
 
 window.__TDT_LANDING_CAROUSELS__ = withRootAssetUrls(landingCarousels);
+window.__TDT_PROGRESSIVE_IMAGES__ = progressiveImages;
 
 function dataUrl(name: string): string {
     try {

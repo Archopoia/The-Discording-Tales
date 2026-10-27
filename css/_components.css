@@ -431,9 +431,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    /* LQIP first (32px stretches soft); JS upgrades data-bg-medium / data-bg-full */
     background-image:
         linear-gradient(to bottom, rgba(74, 24, 24, 0.4) 0%, rgba(58, 20, 20, 0.35) 100%),
-        url('../assets/images/image/image1.webp');
+        url('../assets/images/image/image1_lqip.webp');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;

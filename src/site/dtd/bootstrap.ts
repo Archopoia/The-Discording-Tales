@@ -2,6 +2,7 @@
  * Wires DOMContentLoaded, deferred init (post-entrance), and global listeners.
  */
 import { doubleRaf, initImgFadeOnLoad } from './dom-utils';
+import { initProgressiveImages } from './progressive-images';
 import { initLanguage } from './language';
 import { initTabs } from './tabs';
 import { handleHashChange } from './routing';
@@ -37,6 +38,7 @@ import { initAboutContactQuest } from './about-contact-quest';
 import { initUniverseLore } from './universe-lore';
 import { initWorldGallery } from './world-gallery';
 import { initPitchSlider } from './pitch-slider';
+import { initSceneLabImmersive } from '../../shared/scene-lab-immersive';
 import { ensureAttributesTree, ensureUniverseLoreEn } from '../../tdt-site-data';
 
 let deferredInitDone = false;
@@ -90,6 +92,7 @@ function initDeferred(): void {
 document.addEventListener('DOMContentLoaded', function () {
     initLanguage();
     initImgFadeOnLoad();
+    initProgressiveImages();
     initTabs();
     initUniversMondeSidebarLinks();
     initDiscoveryGameLinks();
@@ -108,6 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     initPitchSlider();
+    initSceneLabImmersive();
 
     window.addEventListener('hashchange', handleHashChange);
 

@@ -3,43 +3,68 @@
  * Opening gate. The map is visible immediately (phone behaviour).
  * The symbol stays put and spins up like an engine, then the view
  * punches in and the gate fades. Nothing in the gate is a control.
+ *
+ * Hold is adaptive: lift as soon as gate medium layers are sharp,
+ * with a short floor so the spin still reads, and a hard cap so we
+ * never sit on a frozen curtain.
  */
-const HOLD_MS = 2600;
+const HOLD_MIN_MS = 480;
+const HOLD_MAX_MS = 1200;
 /* angle = A * (exp(k * t) - 1). One direction, already turning, then continuously faster. */
 const SPIN_K = 2.5;
 const SPIN_END_DEG = 1440;
 const SPIN_A = SPIN_END_DEG / (Math.exp(SPIN_K) - 1);
+
+function log(...args: unknown[]) {
+  const w = window as Window & { __TDT_LANDING_LOG__?: unknown[] };
+  (w.__TDT_LANDING_LOG__ ||= []).push({ t: Math.round(performance.now()), msg: '[preloader] ' + args.map(String).join(' ') });
+  console.info('[tdt-preloader]', ...args);
+}
 
 function spinGateSymbol(reduced) {
   const spin = document.querySelector('.gate-symbol__spin');
   if (!spin || reduced) return;
   spin.style.transformOrigin = 'center center';
   const start = performance.now();
-  // Degrees per ms at the end of the wind-up, so the fade keeps that speed.
-  const omega = (SPIN_A * SPIN_K * Math.exp(SPIN_K)) / HOLD_MS;
+  const omega = (SPIN_A * SPIN_K * Math.exp(SPIN_K)) / HOLD_MAX_MS;
   const tick = (now) => {
     if (!spin.isConnected) return;
     const elapsed = now - start;
-    const t = elapsed / HOLD_MS;
+    const t = elapsed / HOLD_MAX_MS;
     const angle = t <= 1
       ? SPIN_A * (Math.exp(SPIN_K * t) - 1)
-      : SPIN_END_DEG + omega * (elapsed - HOLD_MS);
+      : SPIN_END_DEG + omega * (elapsed - HOLD_MAX_MS);
     spin.style.transform = `rotate(${angle}deg)`;
     requestAnimationFrame(tick);
   };
   requestAnimationFrame(tick);
 }
 
-function sharpenGate(curtain: HTMLElement) {
-  curtain.querySelectorAll<HTMLElement>('[data-gate-src]').forEach((el) => {
-    const src = el.getAttribute('data-gate-src');
-    if (!src) return;
-    const img = new Image();
-    img.onload = () => {
-      el.style.backgroundImage = `url("${src}")`;
-      el.classList.add('is-sharp');
-    };
-    img.src = src;
+function sharpenGate(curtain: HTMLElement): Promise<void> {
+  const layers = [...curtain.querySelectorAll<HTMLElement>('[data-gate-src]')];
+  if (!layers.length) return Promise.resolve();
+  return Promise.all(
+    layers.map(
+      (el) =>
+        new Promise<void>((resolve) => {
+          const src = el.getAttribute('data-gate-src');
+          if (!src) {
+            resolve();
+            return;
+          }
+          const img = new Image();
+          const done = () => {
+            el.style.backgroundImage = `url("${src}")`;
+            el.classList.add('is-sharp');
+            resolve();
+          };
+          img.onload = done;
+          img.onerror = done;
+          img.src = src;
+        }),
+    ),
+  ).then(() => {
+    log('gate sharp');
   });
 }
 
@@ -50,8 +75,16 @@ export function runPreloader() {
   root.style.overflow = 'hidden';
   spinGateSymbol(reduced);
 
-  function liftCurtain() {
-    if (!curtain || curtain.classList.contains('is-lifting')) return;
+  let lifted = false;
+  function liftCurtain(reason: string) {
+    if (lifted) return;
+    lifted = true;
+    log('lift', reason, Math.round(performance.now()) + 'ms');
+    if (!curtain || curtain.classList.contains('is-lifting')) {
+      root.setAttribute('data-landing-ready', 'true');
+      document.dispatchEvent(new CustomEvent('tdt-landing-ready'));
+      return;
+    }
     curtain.classList.add('is-lifting');
     if (!reduced) root.classList.add('is-entering');
     const done = () => {
@@ -68,13 +101,28 @@ export function runPreloader() {
     document.dispatchEvent(new CustomEvent('tdt-landing-ready'));
   }
 
-  if (curtain) sharpenGate(curtain);
+  if (reduced) {
+    setTimeout(() => liftCurtain('reduced-motion'), 400);
+    return;
+  }
 
-  setTimeout(liftCurtain, reduced ? 400 : HOLD_MS);
+  const started = performance.now();
+  const gatePromise = curtain ? sharpenGate(curtain) : Promise.resolve();
+
+  // Floor: let the spin read. Cap: never block past HOLD_MAX.
+  const minWait = new Promise<void>((r) => setTimeout(r, HOLD_MIN_MS));
+  const maxWait = new Promise<'cap'>((r) => setTimeout(() => r('cap'), HOLD_MAX_MS));
+
+  Promise.race([
+    Promise.all([minWait, gatePromise]).then(() => 'ready' as const),
+    maxWait,
+  ]).then((reason) => {
+    log('hold done', reason, Math.round(performance.now() - started) + 'ms');
+    liftCurtain(reason);
+  });
 }
 
-// Hard safety: if main.ts dies before preloader runs, nuke the curtain
-// after 4 seconds so the page is never visually blocked.
+// Hard safety: if main.ts dies before preloader runs, nuke the curtain.
 if (typeof window !== 'undefined') {
   setTimeout(() => {
     const c = document.getElementById('tdt-landing-curtain');
@@ -83,6 +131,8 @@ if (typeof window !== 'undefined') {
       c.classList.add('is-lifting');
       setTimeout(() => c.remove(), 1200);
       document.documentElement.setAttribute('data-landing-ready', 'true');
+      document.dispatchEvent(new CustomEvent('tdt-landing-ready'));
+      console.warn('[tdt-preloader] safety lift');
     }
-  }, 8000);
+  }, 5000);
 }

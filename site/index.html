@@ -99,12 +99,12 @@
             preloadImage('assets/images/Creusalité_NoBorders_lqip.webp', 'high');
             preloadImage('assets/images/Map_Naked_medium.webp', 'high');
             preloadImage('assets/images/Creusalité_NoBorders_medium.webp', 'high');
-            preloadImage('assets/images/image/image12.png', 'high');
-            preloadImage('assets/images/image/image2.png', 'high');
+            preloadImage('assets/images/image/image12_display.webp', 'high');
+            preloadImage('assets/images/image/image2_display.webp', 'high');
             preloadImage('assets/images/Map_Naked.webp', 'low');
             preloadImage('assets/images/Creusalité_NoBorders.webp', 'low');
         } else {
-            preloadImage('assets/images/image/image12.png', 'high');
+            preloadImage('assets/images/image/image12_display.webp', 'high');
         }
     })();
     </script>
@@ -175,7 +175,7 @@
     <div id="static-loader" class="entrance-vignette" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; z-index: 10000; background: radial-gradient(circle at center, #3d0000 0%, #1a0505 45%, #000000 100%);">
         <div id="entrance-fill" class="entrance-fill" style="position: absolute; inset: 0; pointer-events: none;">
             <!-- Layer 1: Animated map background (bottom) - LQIP first, upgraded by keyhole-entrance.js -->
-            <div class="entrance-layer entrance-map-layer entrance-layer--soft" style="background-image: url('assets/images/Map_Naked_lqip.webp');" data-entrance-medium="assets/images/Map_Naked_medium.webp" data-entrance-full="assets/images/Map_Naked.webp" aria-hidden="true"></div>
+            <div class="entrance-layer entrance-map-layer entrance-layer--soft" style="background-image: url('../assets/images/Map_Naked_lqip.webp');" data-entrance-medium="../assets/images/Map_Naked_medium.webp" data-entrance-full="../assets/images/Map_Naked.webp" aria-hidden="true"></div>
             <script>
             (function () {
                 var map = document.querySelector('.entrance-map-layer');
@@ -185,7 +185,7 @@
             <!-- Layer 2: Burgundy overlay (fades on hover to reveal map) -->
             <div class="entrance-layer entrance-overlay-layer" aria-hidden="true"></div>
             <!-- Layer 3: Creusalité frame stretched to viewport - LQIP first -->
-            <div class="entrance-layer entrance-creusalite-layer entrance-layer--soft" style="background-image: url('assets/images/Creusalité_NoBorders_lqip.webp');" data-entrance-medium="assets/images/Creusalité_NoBorders_medium.webp" data-entrance-full="assets/images/Creusalité_NoBorders.webp" aria-hidden="true"></div>
+            <div class="entrance-layer entrance-creusalite-layer entrance-layer--soft" style="background-image: url('../assets/images/Creusalité_NoBorders_lqip.webp');" data-entrance-medium="../assets/images/Creusalité_NoBorders_medium.webp" data-entrance-full="../assets/images/Creusalité_NoBorders.webp" aria-hidden="true"></div>
             <!-- Layer 4: Black vignette (top - above everything) -->
             <div class="entrance-layer entrance-vignette-layer" aria-hidden="true"></div>
         </div>
@@ -193,8 +193,8 @@
         <div id="entrance-hover-zone" aria-hidden="true"></div>
         <button id="enter-portfolio-btn" type="button" aria-label="Enter site">
             <span class="entrance-logo-wrap">
-                <img src="../assets/images/image/image12.png" alt="" class="entrance-logo-base" width="320" height="320" aria-hidden="true" fetchpriority="high" decoding="async"/>
-                <img src="../assets/images/image/image2.png" alt="" class="entrance-logo-coin" width="320" height="320" aria-hidden="true" fetchpriority="high" decoding="async"/>
+                <img src="../assets/images/image/image12_display.webp" alt="" class="entrance-logo-base" width="320" height="320" aria-hidden="true" fetchpriority="high" decoding="async"/>
+                <img src="../assets/images/image/image2_display.webp" alt="" class="entrance-logo-coin" width="320" height="320" aria-hidden="true" fetchpriority="high" decoding="async"/>
             </span>
         </button>
         <p class="entrance-click-hint" aria-hidden="true">
@@ -245,7 +245,7 @@
                                 <span {{i18n:site.tagline2}}>awoke those mysteries believed to be warring among the stars.</span>
                             </p>
                             <a class="site-logo-link" href="#landing" {{i18n-aria:site.logo_aria}} aria-label="Hearth">
-                                <img alt="The Discording Tales Symbol" class="site-logo" src="../assets/images/image/image12.png" height="100" width="100" decoding="async" {{i18n-alt:site.logo_alt}}/>
+                                <img alt="The Discording Tales Symbol" class="site-logo" src="../assets/images/image/image12_display.webp" height="100" width="100" decoding="async" {{i18n-alt:site.logo_alt}}/>
                             </a>
                             <h1 class="site-title"><a href="#landing" rel="home" {{i18n:site.title}}>THE DISCORDING TALES</a><span class="screen-reader-text" lang="fr">Des Récits Discordants</span></h1>
                             <p class="site-genre" {{i18n:site.genre}}>the ETHNO-SCIENCE-FANTASY world</p>
@@ -267,8 +267,8 @@
             </div>
             <div class="header-creature-banner">
                 <div class="header-creature-banner-stack">
-                    <img class="header-creature-banner-img header-creature-banner-img--base" src="../assets/images/People1.webp" alt="" width="2400" height="400" decoding="async" fetchpriority="low"/>
-                    <img class="header-creature-banner-img header-creature-banner-img--kick" src="../assets/images/People2.webp" alt="" width="2400" height="400" decoding="async" fetchpriority="low"/>
+                    <img class="header-creature-banner-img header-creature-banner-img--base tdt-progressive is-soft" src="../assets/images/People1_lqip.webp" alt="" width="2400" height="400" decoding="async" fetchpriority="low" data-src-medium="../assets/images/People1_medium.webp" data-src-full="../assets/images/People1.webp">
+                    <img class="header-creature-banner-img header-creature-banner-img--kick tdt-progressive is-soft" src="../assets/images/People2_lqip.webp" alt="" width="2400" height="400" decoding="async" fetchpriority="low" data-src-medium="../assets/images/People2_medium.webp" data-src-full="../assets/images/People2.webp">
                 </div>
             </div>
         </div>
@@ -339,7 +339,7 @@
                 </section>
             </div>
             <!-- Game Pitch (AllPeople as full-width background) -->
-            <div class="pitch-wrapper">
+            <div class="pitch-wrapper tdt-progressive-bg" data-bg-medium="../assets/images/image/image1_medium.webp" data-bg-full="../assets/images/image/image1.webp">
                 <div class="pitch-section">
                     <p class="pitch-intro" {{i18n:pitch.intro}}>Explore a baroque world worthy of myths and their mystical technologies, whence flourishes alien peoples through their perpetual conflicts within extreme environments…</p>
                     <p class="pitch-golden" {{i18n:pitch.golden}}>Thence the seeds of a <strong>Golden Age Rush</strong> are sown,<br>where every paradise struggles for its overcoming :</p>
@@ -417,40 +417,40 @@
                     </button>
                     <div class="pitch-slider__track">
                         <figure class="pitch-slider__slide is-active">
-                            <img src="../assets/images/pitch-deck/01.webp" width="1920" height="1080" alt="Pitch slide 1" data-alt-en="Pitch slide 1" data-alt-fr="Diapositive 1 du pitch" decoding="async" fetchpriority="high">
+                            <img src="../assets/images/pitch-deck/01_lqip.webp" width="1920" height="1080" alt="Pitch slide 1" data-alt-en="Pitch slide 1" data-alt-fr="Diapositive 1 du pitch" decoding="async" fetchpriority="high" class="tdt-progressive is-soft" data-src-medium="../assets/images/pitch-deck/01_medium.webp" data-src-full="../assets/images/pitch-deck/01.webp">
                         </figure>
                         <figure class="pitch-slider__slide" aria-hidden="true">
-                            <img src="../assets/images/pitch-deck/02.webp" width="1920" height="1080" alt="Pitch slide 2" data-alt-en="Pitch slide 2" data-alt-fr="Diapositive 2 du pitch" decoding="async" loading="lazy">
+                            <img src="../assets/images/pitch-deck/02_lqip.webp" width="1920" height="1080" alt="Pitch slide 2" data-alt-en="Pitch slide 2" data-alt-fr="Diapositive 2 du pitch" decoding="async" loading="lazy" class="tdt-progressive is-soft" data-src-medium="../assets/images/pitch-deck/02_medium.webp" data-src-full="../assets/images/pitch-deck/02.webp">
                         </figure>
                         <figure class="pitch-slider__slide" aria-hidden="true">
-                            <img src="../assets/images/pitch-deck/03.webp" width="1920" height="1080" alt="Pitch slide 3" data-alt-en="Pitch slide 3" data-alt-fr="Diapositive 3 du pitch" decoding="async" loading="lazy">
+                            <img src="../assets/images/pitch-deck/03_lqip.webp" width="1920" height="1080" alt="Pitch slide 3" data-alt-en="Pitch slide 3" data-alt-fr="Diapositive 3 du pitch" decoding="async" loading="lazy" class="tdt-progressive is-soft" data-src-medium="../assets/images/pitch-deck/03_medium.webp" data-src-full="../assets/images/pitch-deck/03.webp">
                         </figure>
                         <figure class="pitch-slider__slide" aria-hidden="true">
-                            <img src="../assets/images/pitch-deck/04.webp" width="1920" height="1080" alt="Pitch slide 4" data-alt-en="Pitch slide 4" data-alt-fr="Diapositive 4 du pitch" decoding="async" loading="lazy">
+                            <img src="../assets/images/pitch-deck/04_lqip.webp" width="1920" height="1080" alt="Pitch slide 4" data-alt-en="Pitch slide 4" data-alt-fr="Diapositive 4 du pitch" decoding="async" loading="lazy" class="tdt-progressive is-soft" data-src-medium="../assets/images/pitch-deck/04_medium.webp" data-src-full="../assets/images/pitch-deck/04.webp">
                         </figure>
                         <figure class="pitch-slider__slide" aria-hidden="true">
-                            <img src="../assets/images/pitch-deck/05.webp" width="1920" height="1080" alt="Pitch slide 5" data-alt-en="Pitch slide 5" data-alt-fr="Diapositive 5 du pitch" decoding="async" loading="lazy">
+                            <img src="../assets/images/pitch-deck/05_lqip.webp" width="1920" height="1080" alt="Pitch slide 5" data-alt-en="Pitch slide 5" data-alt-fr="Diapositive 5 du pitch" decoding="async" loading="lazy" class="tdt-progressive is-soft" data-src-medium="../assets/images/pitch-deck/05_medium.webp" data-src-full="../assets/images/pitch-deck/05.webp">
                         </figure>
                         <figure class="pitch-slider__slide" aria-hidden="true">
-                            <img src="../assets/images/pitch-deck/06.webp" width="1920" height="1080" alt="Pitch slide 6" data-alt-en="Pitch slide 6" data-alt-fr="Diapositive 6 du pitch" decoding="async" loading="lazy">
+                            <img src="../assets/images/pitch-deck/06_lqip.webp" width="1920" height="1080" alt="Pitch slide 6" data-alt-en="Pitch slide 6" data-alt-fr="Diapositive 6 du pitch" decoding="async" loading="lazy" class="tdt-progressive is-soft" data-src-medium="../assets/images/pitch-deck/06_medium.webp" data-src-full="../assets/images/pitch-deck/06.webp">
                         </figure>
                         <figure class="pitch-slider__slide" aria-hidden="true">
-                            <img src="../assets/images/pitch-deck/07.webp" width="1920" height="1080" alt="Pitch slide 7" data-alt-en="Pitch slide 7" data-alt-fr="Diapositive 7 du pitch" decoding="async" loading="lazy">
+                            <img src="../assets/images/pitch-deck/07_lqip.webp" width="1920" height="1080" alt="Pitch slide 7" data-alt-en="Pitch slide 7" data-alt-fr="Diapositive 7 du pitch" decoding="async" loading="lazy" class="tdt-progressive is-soft" data-src-medium="../assets/images/pitch-deck/07_medium.webp" data-src-full="../assets/images/pitch-deck/07.webp">
                         </figure>
                         <figure class="pitch-slider__slide" aria-hidden="true">
-                            <img src="../assets/images/pitch-deck/08.webp" width="1920" height="1080" alt="Pitch slide 8" data-alt-en="Pitch slide 8" data-alt-fr="Diapositive 8 du pitch" decoding="async" loading="lazy">
+                            <img src="../assets/images/pitch-deck/08_lqip.webp" width="1920" height="1080" alt="Pitch slide 8" data-alt-en="Pitch slide 8" data-alt-fr="Diapositive 8 du pitch" decoding="async" loading="lazy" class="tdt-progressive is-soft" data-src-medium="../assets/images/pitch-deck/08_medium.webp" data-src-full="../assets/images/pitch-deck/08.webp">
                         </figure>
                         <figure class="pitch-slider__slide" aria-hidden="true">
-                            <img src="../assets/images/pitch-deck/09.webp" width="1920" height="1080" alt="Pitch slide 9" data-alt-en="Pitch slide 9" data-alt-fr="Diapositive 9 du pitch" decoding="async" loading="lazy">
+                            <img src="../assets/images/pitch-deck/09_lqip.webp" width="1920" height="1080" alt="Pitch slide 9" data-alt-en="Pitch slide 9" data-alt-fr="Diapositive 9 du pitch" decoding="async" loading="lazy" class="tdt-progressive is-soft" data-src-medium="../assets/images/pitch-deck/09_medium.webp" data-src-full="../assets/images/pitch-deck/09.webp">
                         </figure>
                         <figure class="pitch-slider__slide" aria-hidden="true">
-                            <img src="../assets/images/pitch-deck/10.webp" width="1920" height="1080" alt="Pitch slide 10" data-alt-en="Pitch slide 10" data-alt-fr="Diapositive 10 du pitch" decoding="async" loading="lazy">
+                            <img src="../assets/images/pitch-deck/10_lqip.webp" width="1920" height="1080" alt="Pitch slide 10" data-alt-en="Pitch slide 10" data-alt-fr="Diapositive 10 du pitch" decoding="async" loading="lazy" class="tdt-progressive is-soft" data-src-medium="../assets/images/pitch-deck/10_medium.webp" data-src-full="../assets/images/pitch-deck/10.webp">
                         </figure>
                         <figure class="pitch-slider__slide" aria-hidden="true">
-                            <img src="../assets/images/pitch-deck/11.webp" width="1920" height="1080" alt="Pitch slide 11" data-alt-en="Pitch slide 11" data-alt-fr="Diapositive 11 du pitch" decoding="async" loading="lazy">
+                            <img src="../assets/images/pitch-deck/11_lqip.webp" width="1920" height="1080" alt="Pitch slide 11" data-alt-en="Pitch slide 11" data-alt-fr="Diapositive 11 du pitch" decoding="async" loading="lazy" class="tdt-progressive is-soft" data-src-medium="../assets/images/pitch-deck/11_medium.webp" data-src-full="../assets/images/pitch-deck/11.webp">
                         </figure>
                         <figure class="pitch-slider__slide" aria-hidden="true">
-                            <img src="../assets/images/pitch-deck/12.webp" width="1920" height="1080" alt="Pitch slide 12" data-alt-en="Pitch slide 12" data-alt-fr="Diapositive 12 du pitch" decoding="async" loading="lazy">
+                            <img src="../assets/images/pitch-deck/12_lqip.webp" width="1920" height="1080" alt="Pitch slide 12" data-alt-en="Pitch slide 12" data-alt-fr="Diapositive 12 du pitch" decoding="async" loading="lazy" class="tdt-progressive is-soft" data-src-medium="../assets/images/pitch-deck/12_medium.webp" data-src-full="../assets/images/pitch-deck/12.webp">
                         </figure>
                     </div>
                     <button type="button" class="pitch-slider__nav pitch-slider__nav--next" {{i18n-aria:pitch.slider.next}} aria-label="Next slide">
@@ -883,7 +883,7 @@
                 <header class="peoples-lead">
                     <h3 class="peoples-lead__title" {{i18n:tpl.55}}>Peoples as echoes of humanity's extremes</h3>
                     <figure class="peoples-lead__figure">
-                        <img class="peoples-lead__height-chart" src="../assets/images/people/Height2%20copy.webp" alt="Relative height comparison of the ten peoples" decoding="async" loading="lazy"/>
+                        <img class="peoples-lead__height-chart tdt-progressive is-soft" src="../assets/images/people/Height2 copy_lqip.webp" alt="Relative height comparison of the ten peoples" decoding="async" loading="lazy" data-src-medium="../assets/images/people/Height2 copy_medium.webp" data-src-full="../assets/images/people/Height2 copy.webp">
                     </figure>
                 </header>
                 <div class="peoples-top" data-lang-key="peoples-content">
@@ -894,21 +894,21 @@
                         <div class="peoples-descent__lines">
                             <article class="peoples-descent__line" data-line="yorres">
                                 <figure class="peoples-descent__figure">
-                                    <img class="peoples-descent__portrait" src="../assets/images/people/Yors.webp" width="700" height="858" alt="Yors" decoding="async" loading="lazy"/>
+                                    <img class="peoples-descent__portrait tdt-progressive is-soft" src="../assets/images/people/Yors_lqip.webp" width="700" height="858" alt="Yors" decoding="async" loading="lazy" data-src-medium="../assets/images/people/Yors_medium.webp" data-src-full="../assets/images/people/Yors.webp">
                                 </figure>
                                 <h4 class="peoples-descent__name"><span {{i18n:peoples.descent.yorres.title}}>Yors</span> <em {{i18n:peoples.descent.yorres.how}}>the kings' line</em></h4>
                                 <p {{i18n:peoples.descent.yorres.body}}>The kings purified a line of their own, selecting it until it held one extreme. What climbed back to the surface, millennia later, are the Yors, the ylves. Myth calls their ancestors the eight seasonal fairies.</p>
                             </article>
                             <article class="peoples-descent__line" data-line="yommes">
                                 <figure class="peoples-descent__figure">
-                                    <img class="peoples-descent__portrait" src="../assets/images/people/Yums.webp" width="700" height="609" alt="Yums" decoding="async" loading="lazy"/>
+                                    <img class="peoples-descent__portrait tdt-progressive is-soft" src="../assets/images/people/Yums_lqip.webp" width="700" height="609" alt="Yums" decoding="async" loading="lazy" data-src-medium="../assets/images/people/Yums_medium.webp" data-src-full="../assets/images/people/Yums.webp">
                                 </figure>
                                 <h4 class="peoples-descent__name"><span {{i18n:peoples.descent.yommes.title}}>Yums</span> <em {{i18n:peoples.descent.yommes.how}}>the priests' minglings</em></h4>
                                 <p {{i18n:peoples.descent.yommes.body}}>The priests mingled. Finding their own form incomplete, they folded it into the beasts around it. What returned are the Yums: ghnomes, dwuars, hoppyts, halvlyns. Myth calls their ancestors nurseling lutins.</p>
                             </article>
                             <article class="peoples-descent__line" data-line="bestres">
                                 <figure class="peoples-descent__figure">
-                                    <img class="peoples-descent__portrait" src="../assets/images/people/Beingsts.webp" width="700" height="680" alt="Beingsts" decoding="async" loading="lazy"/>
+                                    <img class="peoples-descent__portrait tdt-progressive is-soft" src="../assets/images/people/Beingsts_lqip.webp" width="700" height="680" alt="Beingsts" decoding="async" loading="lazy" data-src-medium="../assets/images/people/Beingsts_medium.webp" data-src-full="../assets/images/people/Beingsts.webp">
                                 </figure>
                                 <h4 class="peoples-descent__name"><span {{i18n:peoples.descent.bestres.title}}>Beingsts</span> <em {{i18n:peoples.descent.bestres.how}}>the people's herds</em></h4>
                                 <p {{i18n:peoples.descent.bestres.body}}>The people raised. Seeing that their own form was not an end, they lifted companions and cattle, under the Rilie, into conscious and then independent lines. What returned are the Beingsts. Myth calls their ancestors armed giants.</p>
@@ -916,7 +916,7 @@
                         </div>
                     </aside>
                     <section class="peoples-scene" aria-label="Council scene">
-                        <iframe class="scene-lab-frame" src="../scene-lab/?embed=1&v=4" title="Council scene" scrolling="no" loading="lazy"></iframe>
+                        <iframe class="scene-lab-frame" src="../scene-lab/?embed=1&v=11" title="Council scene" scrolling="no" loading="lazy" allow="fullscreen; screen-wake-lock"></iframe>
                     </section>
                     <div class="peoples-invective" id="peoples-invective" data-invective-interval-ms="10000">
                         <p class="peoples-invective__attribution" data-en="Extract and retelling of the fiery oration « Citizens of the world » by an unknown speaker before being stoned." data-fr="Extrait reformulation de l'oration enflammée « Citoyens du monde » par un inconnu avant sa lapidation.">Extract and retelling of the fiery oration « Citizens of the world » by an unknown speaker before being stoned.</p>
@@ -943,10 +943,10 @@
                                 <span class="peoples-tree-morality peoples-tree-origin-from" {{i18n:peoples.origins.yommes_from}}>mixes of one form and beast</span>
                                 </span>
                                 <div class="peoples-tree-children">
-                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-peuple="aristois"><div class="peoples-tree-node-main"><div class="peoples-tree-head"><span class="peoples-tree-toggle"></span><div class="peoples-tree-head-main"><span class="peoples-tree-name" {{i18n:tpl.58}}>Aristese</span> <span class="peoples-tree-morality"><span {{i18n:peoples.1}}>Trepharchy</span> <em {{i18n:peoples.2}}>(Sovereign Growth)</em></span></div></div><div class="peoples-tree-races"><span class="peoples-tree-race" data-peuple="aristois" data-race="Monte-Foudres">Monte-Foudres</span><span class="peoples-tree-race" data-peuple="aristois" data-race="Fleuris">Fleuris</span><span class="peoples-tree-race" data-peuple="aristois" data-race="Des Souffles">Des Souffles</span><span class="peoples-tree-race" data-peuple="aristois" data-race="Ambrés">Ambrés</span></div></div><div class="peoples-tree-portrait-column" aria-hidden="true"><img class="peoples-tree-portrait" src="../assets/images/people/Aristois%20copy.png" alt="" decoding="async" loading="lazy"/></div></div>
-                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-peuple="griscribes"><div class="peoples-tree-node-main"><div class="peoples-tree-head"><span class="peoples-tree-toggle"></span><div class="peoples-tree-head-main"><span class="peoples-tree-name" {{i18n:tpl.59}}>Greyscribes</span> <span class="peoples-tree-morality"><span {{i18n:peoples.25}}>Mignusophy</span> <em {{i18n:peoples.26}}>(Nested Wisdom)</em></span></div></div><div class="peoples-tree-races"><span class="peoples-tree-race" data-peuple="griscribes" data-race="Arboricoles">Arboricoles</span><span class="peoples-tree-race" data-peuple="griscribes" data-race="Saute-Brumes">Saute-Brumes</span><span class="peoples-tree-race" data-peuple="griscribes" data-race="Limnicoles">Limnicoles</span><span class="peoples-tree-race" data-peuple="griscribes" data-race="D'Eau">D'Eau</span></div></div><div class="peoples-tree-portrait-column" aria-hidden="true"><img class="peoples-tree-portrait" src="../assets/images/people/Griscribes%20copy.png" alt="" decoding="async" loading="lazy"/></div></div>
-                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-peuple="navillis"><div class="peoples-tree-node-main"><div class="peoples-tree-head"><span class="peoples-tree-toggle"></span><div class="peoples-tree-head-main"><span class="peoples-tree-name" {{i18n:tpl.60}}>Navillis</span> <span class="peoples-tree-morality"><span {{i18n:peoples.29}}>Olbophely</span> <em {{i18n:peoples.30}}>(Devoted Felicity)</em></span></div></div><div class="peoples-tree-races"><span class="peoples-tree-race" data-peuple="navillis" data-race="Carmin">Carmin</span><span class="peoples-tree-race" data-peuple="navillis" data-race="Pétricole">Pétricole</span><span class="peoples-tree-race" data-peuple="navillis" data-race="Perce-Vague">Perce-Vague</span></div></div><div class="peoples-tree-portrait-column" aria-hidden="true"><img class="peoples-tree-portrait" src="../assets/images/people/Navillis%20copy.png" alt="" decoding="async" loading="lazy"/></div></div>
-                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-peuple="meridiens"><div class="peoples-tree-node-main"><div class="peoples-tree-head"><span class="peoples-tree-toggle"></span><div class="peoples-tree-head-main"><span class="peoples-tree-name" {{i18n:tpl.61}}>Meridians</span> <span class="peoples-tree-morality"><span {{i18n:peoples.33}}>Eteathly</span> <em {{i18n:peoples.34}}>(Competitive Authenticity)</em></span></div></div><div class="peoples-tree-races"><span class="peoples-tree-race" data-peuple="meridiens" data-race="Sylvains">Sylvains</span><span class="peoples-tree-race" data-peuple="meridiens" data-race="Des Monts">Des Monts</span><span class="peoples-tree-race" data-peuple="meridiens" data-race="Marche-Rêves">Marche-Rêves</span></div></div><div class="peoples-tree-portrait-column" aria-hidden="true"><img class="peoples-tree-portrait" src="../assets/images/people/M%C3%A9ridiens%20copy.png" alt="" decoding="async" loading="lazy"/></div></div>
+                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-peuple="aristois"><div class="peoples-tree-node-main"><div class="peoples-tree-head"><span class="peoples-tree-toggle"></span><div class="peoples-tree-head-main"><span class="peoples-tree-name" {{i18n:tpl.58}}>Aristese</span> <span class="peoples-tree-morality"><span {{i18n:peoples.1}}>Trepharchy</span> <em {{i18n:peoples.2}}>(Sovereign Growth)</em></span></div></div><div class="peoples-tree-races"><span class="peoples-tree-race" data-peuple="aristois" data-race="Monte-Foudres">Monte-Foudres</span><span class="peoples-tree-race" data-peuple="aristois" data-race="Fleuris">Fleuris</span><span class="peoples-tree-race" data-peuple="aristois" data-race="Des Souffles">Des Souffles</span><span class="peoples-tree-race" data-peuple="aristois" data-race="Ambrés">Ambrés</span></div></div><div class="peoples-tree-portrait-column" aria-hidden="true"><img class="peoples-tree-portrait" src="../assets/images/people/Aristois%20copy.webp" alt="" decoding="async" loading="lazy"/></div></div>
+                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-peuple="griscribes"><div class="peoples-tree-node-main"><div class="peoples-tree-head"><span class="peoples-tree-toggle"></span><div class="peoples-tree-head-main"><span class="peoples-tree-name" {{i18n:tpl.59}}>Greyscribes</span> <span class="peoples-tree-morality"><span {{i18n:peoples.25}}>Mignusophy</span> <em {{i18n:peoples.26}}>(Nested Wisdom)</em></span></div></div><div class="peoples-tree-races"><span class="peoples-tree-race" data-peuple="griscribes" data-race="Arboricoles">Arboricoles</span><span class="peoples-tree-race" data-peuple="griscribes" data-race="Saute-Brumes">Saute-Brumes</span><span class="peoples-tree-race" data-peuple="griscribes" data-race="Limnicoles">Limnicoles</span><span class="peoples-tree-race" data-peuple="griscribes" data-race="D'Eau">D'Eau</span></div></div><div class="peoples-tree-portrait-column" aria-hidden="true"><img class="peoples-tree-portrait" src="../assets/images/people/Griscribes%20copy.webp" alt="" decoding="async" loading="lazy"/></div></div>
+                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-peuple="navillis"><div class="peoples-tree-node-main"><div class="peoples-tree-head"><span class="peoples-tree-toggle"></span><div class="peoples-tree-head-main"><span class="peoples-tree-name" {{i18n:tpl.60}}>Navillis</span> <span class="peoples-tree-morality"><span {{i18n:peoples.29}}>Olbophely</span> <em {{i18n:peoples.30}}>(Devoted Felicity)</em></span></div></div><div class="peoples-tree-races"><span class="peoples-tree-race" data-peuple="navillis" data-race="Carmin">Carmin</span><span class="peoples-tree-race" data-peuple="navillis" data-race="Pétricole">Pétricole</span><span class="peoples-tree-race" data-peuple="navillis" data-race="Perce-Vague">Perce-Vague</span></div></div><div class="peoples-tree-portrait-column" aria-hidden="true"><img class="peoples-tree-portrait" src="../assets/images/people/Navillis%20copy.webp" alt="" decoding="async" loading="lazy"/></div></div>
+                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-peuple="meridiens"><div class="peoples-tree-node-main"><div class="peoples-tree-head"><span class="peoples-tree-toggle"></span><div class="peoples-tree-head-main"><span class="peoples-tree-name" {{i18n:tpl.61}}>Meridians</span> <span class="peoples-tree-morality"><span {{i18n:peoples.33}}>Eteathly</span> <em {{i18n:peoples.34}}>(Competitive Authenticity)</em></span></div></div><div class="peoples-tree-races"><span class="peoples-tree-race" data-peuple="meridiens" data-race="Sylvains">Sylvains</span><span class="peoples-tree-race" data-peuple="meridiens" data-race="Des Monts">Des Monts</span><span class="peoples-tree-race" data-peuple="meridiens" data-race="Marche-Rêves">Marche-Rêves</span></div></div><div class="peoples-tree-portrait-column" aria-hidden="true"><img class="peoples-tree-portrait" src="../assets/images/people/M%C3%A9ridiens%20copy.webp" alt="" decoding="async" loading="lazy"/></div></div>
                                 </div>
                             </div>
                             <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-origin="yorres">
@@ -956,10 +956,10 @@
                                 <span class="peoples-tree-morality peoples-tree-origin-from" {{i18n:peoples.origins.yorres_from}}>the kings' selected line</span>
                                 </span>
                                 <div class="peoples-tree-children">
-                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-peuple="hauts-ylfes"><div class="peoples-tree-node-main"><div class="peoples-tree-head"><span class="peoples-tree-toggle"></span><div class="peoples-tree-head-main"><span class="peoples-tree-name" {{i18n:tpl.63}}>Great Ylves</span> <span class="peoples-tree-morality"><span {{i18n:peoples.36}}>Edapoesy</span> <em {{i18n:peoples.37}}>(Creative Competence)</em></span></div></div><div class="peoples-tree-races"><span class="peoples-tree-race" data-peuple="hauts-ylfes" data-race="De Lunes">De Lunes</span><span class="peoples-tree-race" data-peuple="hauts-ylfes" data-race="Des Plaines">Des Plaines</span></div></div><div class="peoples-tree-portrait-column" aria-hidden="true"><img class="peoples-tree-portrait" src="../assets/images/people/Grands%20Ylfes%20copy.png" alt="" decoding="async" loading="lazy"/></div></div>
-                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-peuple="ylfes-pales"><div class="peoples-tree-node-main"><div class="peoples-tree-head"><span class="peoples-tree-toggle"></span><div class="peoples-tree-head-main"><span class="peoples-tree-name" {{i18n:tpl.64}}>Pale Ylves</span> <span class="peoples-tree-morality"><span {{i18n:peoples.41}}>Hieragogy</span> <em {{i18n:peoples.42}}>(Sacred Direction)</em></span></div></div><div class="peoples-tree-races"><span class="peoples-tree-race" data-peuple="ylfes-pales" data-race="Collinicoles">Collinicoles</span><span class="peoples-tree-race" data-peuple="ylfes-pales" data-race="Chromatiques">Chromatiques</span><span class="peoples-tree-race" data-peuple="ylfes-pales" data-race="Pastoraux">Pastoraux</span></div></div><div class="peoples-tree-portrait-column" aria-hidden="true"><img class="peoples-tree-portrait" src="../assets/images/people/Ylfes%20p%C3%A4les%20copy.png" alt="" decoding="async" loading="lazy"/></div></div>
-                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-peuple="ylfes-des-lacs"><div class="peoples-tree-node-main"><div class="peoples-tree-head"><span class="peoples-tree-toggle"></span><div class="peoples-tree-head-main"><span class="peoples-tree-name" {{i18n:tpl.65}}>Lake Ylves</span> <span class="peoples-tree-morality"><span {{i18n:peoples.47}}>Mellophrony</span> <em {{i18n:peoples.48}}>(Ingenious Volition)</em></span></div></div><div class="peoples-tree-races"><span class="peoples-tree-race" data-peuple="ylfes-des-lacs" data-race="Mâche-Troncs">Mâche-Troncs</span><span class="peoples-tree-race" data-peuple="ylfes-des-lacs" data-race="Troglodytes">Troglodytes</span><span class="peoples-tree-race" data-peuple="ylfes-des-lacs" data-race="Danse-Feuilles">Danse-Feuilles</span></div></div><div class="peoples-tree-portrait-column" aria-hidden="true"><img class="peoples-tree-portrait" src="../assets/images/people/Ylfe%20des%20lacs%20copy.png" alt="" decoding="async" loading="lazy"/></div></div>
-                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-peuple="iqqars"><div class="peoples-tree-node-main"><div class="peoples-tree-head"><span class="peoples-tree-toggle"></span><div class="peoples-tree-head-main"><span class="peoples-tree-name" {{i18n:tpl.66}}>Iqqars</span> <span class="peoples-tree-morality"><span {{i18n:peoples.50}}>Egonexy</span> <em {{i18n:peoples.51}}>(Extrinsic Intimism)</em></span></div></div><div class="peoples-tree-races"><span class="peoples-tree-race" data-peuple="iqqars" data-race="Hauts">Hauts</span><span class="peoples-tree-race" data-peuple="iqqars" data-race="Bas">Bas</span></div></div><div class="peoples-tree-portrait-column" aria-hidden="true"><img class="peoples-tree-portrait" src="../assets/images/people/Iqqars%20copy.png" alt="" decoding="async" loading="lazy"/></div></div>
+                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-peuple="hauts-ylfes"><div class="peoples-tree-node-main"><div class="peoples-tree-head"><span class="peoples-tree-toggle"></span><div class="peoples-tree-head-main"><span class="peoples-tree-name" {{i18n:tpl.63}}>Great Ylves</span> <span class="peoples-tree-morality"><span {{i18n:peoples.36}}>Edapoesy</span> <em {{i18n:peoples.37}}>(Creative Competence)</em></span></div></div><div class="peoples-tree-races"><span class="peoples-tree-race" data-peuple="hauts-ylfes" data-race="De Lunes">De Lunes</span><span class="peoples-tree-race" data-peuple="hauts-ylfes" data-race="Des Plaines">Des Plaines</span></div></div><div class="peoples-tree-portrait-column" aria-hidden="true"><img class="peoples-tree-portrait" src="../assets/images/people/Grands%20Ylfes%20copy.webp" alt="" decoding="async" loading="lazy"/></div></div>
+                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-peuple="ylfes-pales"><div class="peoples-tree-node-main"><div class="peoples-tree-head"><span class="peoples-tree-toggle"></span><div class="peoples-tree-head-main"><span class="peoples-tree-name" {{i18n:tpl.64}}>Pale Ylves</span> <span class="peoples-tree-morality"><span {{i18n:peoples.41}}>Hieragogy</span> <em {{i18n:peoples.42}}>(Sacred Direction)</em></span></div></div><div class="peoples-tree-races"><span class="peoples-tree-race" data-peuple="ylfes-pales" data-race="Collinicoles">Collinicoles</span><span class="peoples-tree-race" data-peuple="ylfes-pales" data-race="Chromatiques">Chromatiques</span><span class="peoples-tree-race" data-peuple="ylfes-pales" data-race="Pastoraux">Pastoraux</span></div></div><div class="peoples-tree-portrait-column" aria-hidden="true"><img class="peoples-tree-portrait" src="../assets/images/people/Ylfes%20p%C3%A4les%20copy.webp" alt="" decoding="async" loading="lazy"/></div></div>
+                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-peuple="ylfes-des-lacs"><div class="peoples-tree-node-main"><div class="peoples-tree-head"><span class="peoples-tree-toggle"></span><div class="peoples-tree-head-main"><span class="peoples-tree-name" {{i18n:tpl.65}}>Lake Ylves</span> <span class="peoples-tree-morality"><span {{i18n:peoples.47}}>Mellophrony</span> <em {{i18n:peoples.48}}>(Ingenious Volition)</em></span></div></div><div class="peoples-tree-races"><span class="peoples-tree-race" data-peuple="ylfes-des-lacs" data-race="Mâche-Troncs">Mâche-Troncs</span><span class="peoples-tree-race" data-peuple="ylfes-des-lacs" data-race="Troglodytes">Troglodytes</span><span class="peoples-tree-race" data-peuple="ylfes-des-lacs" data-race="Danse-Feuilles">Danse-Feuilles</span></div></div><div class="peoples-tree-portrait-column" aria-hidden="true"><img class="peoples-tree-portrait" src="../assets/images/people/Ylfe%20des%20lacs%20copy.webp" alt="" decoding="async" loading="lazy"/></div></div>
+                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-peuple="iqqars"><div class="peoples-tree-node-main"><div class="peoples-tree-head"><span class="peoples-tree-toggle"></span><div class="peoples-tree-head-main"><span class="peoples-tree-name" {{i18n:tpl.66}}>Iqqars</span> <span class="peoples-tree-morality"><span {{i18n:peoples.50}}>Egonexy</span> <em {{i18n:peoples.51}}>(Extrinsic Intimism)</em></span></div></div><div class="peoples-tree-races"><span class="peoples-tree-race" data-peuple="iqqars" data-race="Hauts">Hauts</span><span class="peoples-tree-race" data-peuple="iqqars" data-race="Bas">Bas</span></div></div><div class="peoples-tree-portrait-column" aria-hidden="true"><img class="peoples-tree-portrait tdt-progressive is-soft" src="../assets/images/people/Iqqars copy_lqip.webp" alt="" decoding="async" loading="lazy" data-src-medium="../assets/images/people/Iqqars copy_medium.webp" data-src-full="../assets/images/people/Iqqars copy.webp"></div></div>
                                 </div>
                             </div>
                             <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-origin="bestres">
@@ -969,8 +969,8 @@
                                 <span class="peoples-tree-morality peoples-tree-origin-from" {{i18n:peoples.origins.bestres_from}}>lines raised into peoples</span>
                                 </span>
                                 <div class="peoples-tree-children">
-                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-peuple="slaadeens"><div class="peoples-tree-node-main"><div class="peoples-tree-head"><span class="peoples-tree-toggle"></span><div class="peoples-tree-head-main"><span class="peoples-tree-name" {{i18n:tpl.68}}>Slaadeans</span> <span class="peoples-tree-morality"><span {{i18n:peoples.54}}>Thrasoniry</span> <em {{i18n:peoples.55}}>(Dreaming Audacity)</em></span></div></div><div class="peoples-tree-races"><span class="peoples-tree-race" data-peuple="slaadeens" data-race="Sydru-kal">Sydru-kal</span><span class="peoples-tree-race" data-peuple="slaadeens" data-race="Wijriol">Wijriol</span><span class="peoples-tree-race" data-peuple="slaadeens" data-race="Hlabayan">Hlabayan</span><span class="peoples-tree-race" data-peuple="slaadeens" data-race="Felichrem">Felichrem</span><span class="peoples-tree-race" data-peuple="slaadeens" data-race="Iossolam">Iossolam</span></div></div><div class="peoples-tree-portrait-column" aria-hidden="true"><img class="peoples-tree-portrait" src="../assets/images/people/Slaad%C3%A9ens%20copy.png" alt="" decoding="async" loading="lazy"/></div></div>
-                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-peuple="tchalkchais"><div class="peoples-tree-node-main"><div class="peoples-tree-head"><span class="peoples-tree-toggle"></span><div class="peoples-tree-head-main"><span class="peoples-tree-name" {{i18n:tpl.69}}>Tchalkchaïs</span> <span class="peoples-tree-morality"><span {{i18n:peoples.57}}>Echotysy</span> <em {{i18n:peoples.58}}>(Sacrificial Altruism)</em></span></div></div><div class="peoples-tree-races"><span class="peoples-tree-race" data-peuple="tchalkchais" data-race="Elesihin">Elesihin</span><span class="peoples-tree-race" data-peuple="tchalkchais" data-race="Ordol">Ordol</span><span class="peoples-tree-race" data-peuple="tchalkchais" data-race="Îohadam">Îohadam</span><span class="peoples-tree-race" data-peuple="tchalkchais" data-race="Nuôtarjoy">Nuôtarjoy</span><span class="peoples-tree-race" data-peuple="tchalkchais" data-race="Ikrayad">Ikrayad</span></div></div><div class="peoples-tree-portrait-column" aria-hidden="true"><img class="peoples-tree-portrait" src="../assets/images/people/Tchalkcha%C3%AF%20copy.png" alt="" decoding="async" loading="lazy"/></div></div>
+                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-peuple="slaadeens"><div class="peoples-tree-node-main"><div class="peoples-tree-head"><span class="peoples-tree-toggle"></span><div class="peoples-tree-head-main"><span class="peoples-tree-name" {{i18n:tpl.68}}>Slaadeans</span> <span class="peoples-tree-morality"><span {{i18n:peoples.54}}>Thrasoniry</span> <em {{i18n:peoples.55}}>(Dreaming Audacity)</em></span></div></div><div class="peoples-tree-races"><span class="peoples-tree-race" data-peuple="slaadeens" data-race="Sydru-kal">Sydru-kal</span><span class="peoples-tree-race" data-peuple="slaadeens" data-race="Wijriol">Wijriol</span><span class="peoples-tree-race" data-peuple="slaadeens" data-race="Hlabayan">Hlabayan</span><span class="peoples-tree-race" data-peuple="slaadeens" data-race="Felichrem">Felichrem</span><span class="peoples-tree-race" data-peuple="slaadeens" data-race="Iossolam">Iossolam</span></div></div><div class="peoples-tree-portrait-column" aria-hidden="true"><img class="peoples-tree-portrait tdt-progressive is-soft" src="../assets/images/people/Slaadéens copy_lqip.webp" alt="" decoding="async" loading="lazy" data-src-medium="../assets/images/people/Slaadéens copy_medium.webp" data-src-full="../assets/images/people/Slaadéens copy.webp"></div></div>
+                                    <div class="peoples-tree-node" role="treeitem" aria-expanded="true" data-peuple="tchalkchais"><div class="peoples-tree-node-main"><div class="peoples-tree-head"><span class="peoples-tree-toggle"></span><div class="peoples-tree-head-main"><span class="peoples-tree-name" {{i18n:tpl.69}}>Tchalkchaïs</span> <span class="peoples-tree-morality"><span {{i18n:peoples.57}}>Echotysy</span> <em {{i18n:peoples.58}}>(Sacrificial Altruism)</em></span></div></div><div class="peoples-tree-races"><span class="peoples-tree-race" data-peuple="tchalkchais" data-race="Elesihin">Elesihin</span><span class="peoples-tree-race" data-peuple="tchalkchais" data-race="Ordol">Ordol</span><span class="peoples-tree-race" data-peuple="tchalkchais" data-race="Îohadam">Îohadam</span><span class="peoples-tree-race" data-peuple="tchalkchais" data-race="Nuôtarjoy">Nuôtarjoy</span><span class="peoples-tree-race" data-peuple="tchalkchais" data-race="Ikrayad">Ikrayad</span></div></div><div class="peoples-tree-portrait-column" aria-hidden="true"><img class="peoples-tree-portrait tdt-progressive is-soft" src="../assets/images/people/Tchalkchaï copy_lqip.webp" alt="" decoding="async" loading="lazy" data-src-medium="../assets/images/people/Tchalkchaï copy_medium.webp" data-src-full="../assets/images/people/Tchalkchaï copy.webp"></div></div>
                                 </div>
                             </div>
                         </div>
@@ -1820,7 +1820,7 @@
                                 aria-label="Map"
                             >
                                 <div class="map-pan-zoom-layer" id="map-pan-zoom-layer">
-                                    <img src="../assets/images/world-map.webp" alt="" class="map-pannable-img" id="map-pannable-img" decoding="async" loading="lazy" draggable="false"/>
+                                    <img src="../assets/images/world-map_lqip.webp" alt="" class="map-pannable-img tdt-progressive is-soft" id="map-pannable-img" decoding="async" loading="lazy" draggable="false" data-src-medium="../assets/images/world-map_medium.webp" data-src-full="../assets/images/world-map.webp">
                                 </div>
                             </div>
                         </div>
@@ -1861,7 +1861,7 @@
                 <article class="videogame-teaser">
                     <div class="videogame-teaser-stage" {{i18n-aria:videogame.teaser.stage_aria}} aria-label="In-game teaser, game in development">
                         <div class="videogame-teaser-stage-frame">
-                            <img class="videogame-teaser-stage-img" src="../assets/images/image/image1.webp" alt="The ten peoples" decoding="async" loading="lazy" {{i18n-alt:videogame.teaser.img_alt}}/>
+                            <img class="videogame-teaser-stage-img tdt-progressive is-soft" src="../assets/images/image/image1_lqip.webp" data-src-medium="../assets/images/image/image1_medium.webp" data-src-full="../assets/images/image/image1.webp" alt="The ten peoples" width="2058" height="1100" decoding="async" loading="lazy" {{i18n-alt:videogame.teaser.img_alt}}/>
                             <div class="videogame-teaser-stage-veil" aria-hidden="true"></div>
                             <p class="videogame-teaser-stage-label" {{i18n:videogame.teaser.stage}}>In-game teaser · game in development</p>
                         </div>
@@ -2078,8 +2078,8 @@
                             <div class="worldlore-ruleset-block">
                                 <div class="worldlore-block worldlore-block-callout">
                                     <div class="worldlore-block-left worldlore-block-images-stack">
-                                        <figure class="worldlore-figure"><img src="../assets/images/2024/11/feuilles-de-personnage2.png" alt="Character sheets 2" loading="lazy" width="1754" height="1240"/></figure>
-                                        <figure class="worldlore-figure"><img src="../assets/images/2024/11/symbols.jpg" alt="Table of Calendar Symbols" loading="lazy" width="2480" height="1754"/></figure>
+                                        <figure class="worldlore-figure"><img src="../assets/images/2024/11/feuilles-de-personnage2_lqip.webp" alt="Character sheets 2" loading="lazy" width="1754" height="1240" class="tdt-progressive is-soft" data-src-medium="../assets/images/2024/11/feuilles-de-personnage2_medium.webp" data-src-full="../assets/images/2024/11/feuilles-de-personnage2.webp"></figure>
+                                        <figure class="worldlore-figure"><img src="../assets/images/2024/11/symbols_lqip.webp" alt="Table of Calendar Symbols" loading="lazy" width="2480" height="1754" class="tdt-progressive is-soft" data-src-medium="../assets/images/2024/11/symbols_medium.webp" data-src-full="../assets/images/2024/11/symbols.webp"></figure>
                                     </div>
                                     <div class="worldlore-block-right">
                                         <div class="callout callout-freeforming">
@@ -2134,7 +2134,7 @@
                                     <div class="worldlore-struggle-left">
                                         <h4 class="worldlore-h4" {{i18n:tpl.122}}>Roll a <strong>dynamic</strong> dice pool…</h4>
                                         <p class="worldlore-p" {{i18n:tpl.123}}>Starting with a pool of 5 &quot;fudge&quot; dice (<em>marked +1/0/-1, which can be made from normal 6-sided dice</em>), increase it with positive or negative dice, representing your character's experience or his ailments.<br/><em>These extra dices shape the chances of reaching the extremes of the character's limits, which are altered by simple modifiers (such as +3 or -2) with equipment or physical growth.</em></p>
-                                        <figure class="worldlore-figure worldlore-figure-inline"><img src="../assets/images/2024/11/fate-dice-pool.png" alt="FATE Dice pool" loading="lazy" width="150" height="82"/></figure>
+                                        <figure class="worldlore-figure worldlore-figure-inline"><img src="../assets/images/2024/11/fate-dice-pool.webp" alt="FATE Dice pool" loading="lazy" width="150" height="82"/></figure>
                                         <ul class="worldlore-list">
                                             <li {{i18n:tpl.124}}>With the total typically ranging from -5 to +5, the readings are <strong>clear</strong>, the calculations <strong>simple</strong>, and outcomes <strong>realistic</strong>.</li>
                                         </ul>
@@ -2144,7 +2144,7 @@
                                         </div>
                                     </div>
                                     <div class="worldlore-struggle-center">
-                                        <figure class="worldlore-figure worldlore-figure-strip"><img src="../assets/images/2024/11/atb_str-eng.png" alt="Attributes" loading="lazy" width="186" height="1021"/></figure>
+                                        <figure class="worldlore-figure worldlore-figure-strip"><img src="../assets/images/2024/11/atb_str-eng_lqip.webp" alt="Attributes" loading="lazy" width="186" height="1021" class="tdt-progressive is-soft" data-src-medium="../assets/images/2024/11/atb_str-eng_medium.webp" data-src-full="../assets/images/2024/11/atb_str-eng.webp"></figure>
                                     </div>
                                     <div class="worldlore-struggle-right">
                                         <h4 class="worldlore-h4" {{i18n:tpl.127}}>…Realize your <strong>failures</strong></h4>
@@ -2155,7 +2155,7 @@
                                     </div>
                                 </div>
                                 <div class="worldlore-center-block worldlore-coin-block">
-                                    <figure class="worldlore-figure worldlore-figure-coin"><img src="../assets/images/2024/11/symbolcoin.png" alt="Symbol coin" loading="lazy" width="193" height="193"/></figure>
+                                    <figure class="worldlore-figure worldlore-figure-coin"><img src="../assets/images/2024/11/symbolcoin_lqip.webp" alt="Symbol coin" loading="lazy" width="193" height="193" class="tdt-progressive is-soft" data-src-medium="../assets/images/2024/11/symbolcoin_medium.webp" data-src-full="../assets/images/2024/11/symbolcoin.webp"></figure>
                                     <h4 class="worldlore-h4" {{i18n:tpl.130}}>…eternally returning over ever increasing struggles…</h4>
                                     <p class="worldlore-p" {{i18n:tpl.131}}><strong>Embrace suffering to ASSERT YOUR WILL</strong>, for you will grow through your recovery.<br/>Ailments organically shape and refresh gameplay as well as gamemastering, presenting different <strong>burdens</strong> (<em>a wound impacts physical tasks heavily, while resentment hinders mental focus</em>) in varied <strong>conditions</strong> (<em>from floods and landslides to firestorms and snow blindness, or suffocating darkness and abysmal pressures</em>).</p>
                                     <h4 class="worldlore-h4" {{i18n:tpl.132}}>– of One against Many, and Many against One –</h4>
@@ -2171,8 +2171,8 @@
                         <div class="system-overview-accordion-body" id="system-overview-traits-body" role="region" aria-labelledby="system-overview-traits-btn">
                             <div class="worldlore-ruleset-block">
                                 <div class="worldlore-wheels">
-                                    <figure class="worldlore-figure worldlore-figure-wheel"><img src="../assets/images/2024/11/people-english-v2.png" alt="People" loading="lazy" width="1024" height="1024"/></figure>
-                                    <figure class="worldlore-figure worldlore-figure-wheel"><img src="../assets/images/2024/11/things-english.png" alt="Things" loading="lazy" width="1024" height="1024"/></figure>
+                                    <figure class="worldlore-figure worldlore-figure-wheel"><img src="../assets/images/2024/11/people-english-v2_lqip.webp" alt="People" loading="lazy" width="1024" height="1024" class="tdt-progressive is-soft" data-src-medium="../assets/images/2024/11/people-english-v2_medium.webp" data-src-full="../assets/images/2024/11/people-english-v2.webp"></figure>
+                                    <figure class="worldlore-figure worldlore-figure-wheel"><img src="../assets/images/2024/11/things-english_lqip.webp" alt="Things" loading="lazy" width="1024" height="1024" class="tdt-progressive is-soft" data-src-medium="../assets/images/2024/11/things-english_medium.webp" data-src-full="../assets/images/2024/11/things-english.webp"></figure>
                                 </div>
                                 <div class="worldlore-center-block">
                                     <p class="worldlore-p" {{i18n:tpl.135}}><em>Everyone and Everymany have their own perspective about <strong>People</strong> and <strong>Things</strong>, the world studded with countless power struggles across kinds and kingdoms all seeking to rule over one another.</em></p>
@@ -2198,7 +2198,7 @@
                                         <li {{i18n:tpl.145}}><strong>ENCOUNTERS</strong> <em>(from a lone creature to a walking army, admiring or hating you, in opulence or the most dire situation, and holding the keys to your quest or secretly working against you)</em></li>
                                     </ul>
                                 </div>
-                                <figure class="worldlore-figure worldlore-figure-rencontres"><img src="../assets/images/2024/11/rencontres.jpg" alt="Encounters" loading="lazy" width="1024" height="724"/></figure>
+                                <figure class="worldlore-figure worldlore-figure-rencontres"><img src="../assets/images/2024/11/rencontres_lqip.webp" alt="Encounters" loading="lazy" width="1024" height="724" class="tdt-progressive is-soft" data-src-medium="../assets/images/2024/11/rencontres_medium.webp" data-src-full="../assets/images/2024/11/rencontres.webp"></figure>
                             </div>
                         </div>
                     </div>

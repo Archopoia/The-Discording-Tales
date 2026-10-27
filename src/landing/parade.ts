@@ -23,8 +23,29 @@ export function initShowcaseVideo() {
     silenceShowcase(video);
     video.play().catch(() => {});
   };
-  if (video.readyState >= 2) play();
-  else video.addEventListener('canplay', play, { once: true });
+  const arm = () => {
+    if (video.preload === 'none') video.preload = 'metadata';
+    if (!video.src && video.querySelector('source')) {
+      // force load after preload change
+      video.load();
+    }
+    if (video.readyState >= 2) play();
+    else video.addEventListener('canplay', play, { once: true });
+  };
+  // Only pull the MP4 when the showcase is near the viewport.
+  if (typeof IntersectionObserver === 'undefined') {
+    arm();
+    return;
+  }
+  const io = new IntersectionObserver(
+    (entries) => {
+      if (!entries.some((e) => e.isIntersecting)) return;
+      io.disconnect();
+      arm();
+    },
+    { rootMargin: '200px 0px' },
+  );
+  io.observe(video);
 }
 
 export function initPitchSlider() {

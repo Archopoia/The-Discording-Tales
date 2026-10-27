@@ -90,7 +90,7 @@
     .stage {
       position: relative;
       width: 100%;
-      aspect-ratio: 6191 / 3307;
+      aspect-ratio: 2058 / 1100;
       background: #000;
       overflow: hidden;
       border: 1px solid var(--line);
@@ -98,17 +98,31 @@
       cursor: crosshair;
       touch-action: none;
       user-select: none;
+      /* 1 ≈ 960px stage; JS keeps callout type/padding in proportion */
+      --callout-scale: 1;
     }
     .stage img {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: fill;
+      /* Stage keeps the scene aspect ratio; contain avoids any stretch. */
+      object-fit: contain;
+      object-position: center center;
       pointer-events: none;
       display: block;
     }
-    .stage .base { z-index: 0; }
+    .stage .base { z-index: 0; transition: filter 0.9s ease; }
+    .stage .base.is-soft,
+    .stage .layer__art.is-soft,
+    .stage .layer__glow.is-soft,
+    .stage .overlay.is-soft { filter: blur(10px); }
+    .stage .base.is-medium,
+    .stage .base.is-full,
+    .stage .layer__art.is-full,
+    .stage .layer__glow.is-full,
+    .stage .overlay.is-medium,
+    .stage .overlay.is-full { filter: none; }
     /* Hover people/origins; each layer masks out table+woman so art+glow stay behind them */
     .stage .hover-stack {
       position: absolute;
@@ -218,11 +232,19 @@
     }
     .stage-svg .connector.is-on { opacity: 1; }
 
+    /*
+      Callouts scale with the stage (--callout-scale from JS), not the phone viewport.
+      Tuned at scale=1 ≈ 960px stage width so bubbles stay a fraction of the scene.
+    */
     .callout {
       position: absolute;
       z-index: 50;
-      width: min(270px, 46%);
-      padding: 0.7rem 0.85rem 0.8rem;
+      width: min(calc(270px * var(--callout-scale)), 34%);
+      max-height: min(calc(220px * var(--callout-scale)), 42%);
+      padding:
+        calc(0.7rem * var(--callout-scale))
+        calc(0.85rem * var(--callout-scale))
+        calc(0.8rem * var(--callout-scale));
       background: var(--callout-bg);
       color: var(--callout-ink);
       border: 1.5px solid var(--callout-border);
@@ -231,15 +253,20 @@
       pointer-events: none;
       opacity: 0;
       visibility: hidden;
+      overflow: hidden;
     }
     /* People: rect plate + 4-edge mask feather (this dissolve actually kills the rim) */
     .callout:not(.callout--origin) {
-      width: min(300px, 52%);
+      width: min(calc(300px * var(--callout-scale)), 36%);
+      max-height: min(calc(260px * var(--callout-scale)), 48%);
       background: var(--people-callout-bg);
       color: var(--people-callout-ink);
       border: none;
       border-radius: 0;
-      padding: 1.85rem 2rem 1.95rem;
+      padding:
+        calc(1.35rem * var(--callout-scale))
+        calc(1.45rem * var(--callout-scale))
+        calc(1.4rem * var(--callout-scale));
       text-align: left;
       box-shadow: none;
       transform: none;
@@ -268,7 +295,7 @@
     }
     .callout:not(.callout--origin) .callout__name {
       color: var(--people-callout-name);
-      margin-bottom: 0.4rem;
+      margin-bottom: calc(0.35rem * var(--callout-scale));
     }
     .callout:not(.callout--origin) .callout__body {
       color: var(--people-callout-muted);
@@ -278,14 +305,18 @@
       z-index: 55;
       left: 10px;
       top: 10px;
-      width: min(300px, 48%);
+      width: min(calc(300px * var(--callout-scale)), 34%);
+      max-height: min(calc(240px * var(--callout-scale)), 46%);
       transform: none;
       opacity: 0;
       clip-path: inset(0 100% 0 0);
       border: none;
       border-radius: 0;
       box-shadow: none;
-      padding: 1.85rem 2rem 1.95rem;
+      padding:
+        calc(1.35rem * var(--callout-scale))
+        calc(1.45rem * var(--callout-scale))
+        calc(1.4rem * var(--callout-scale));
       -webkit-mask-image:
         linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%),
         linear-gradient(to bottom, transparent 0%, #000 20%, #000 80%, transparent 100%);
@@ -312,21 +343,6 @@
         opacity 200ms ease,
         visibility 0s linear 0s;
     }
-    @media (max-width: 40rem) {
-      .callout:not(.callout--origin),
-      .callout--origin {
-        width: min(340px, 94%);
-        padding: 0.55rem 0.75rem 0.6rem;
-        -webkit-mask-image:
-          linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%),
-          linear-gradient(to bottom, transparent 0%, #000 8%, #000 92%, transparent 100%);
-        mask-image:
-          linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%),
-          linear-gradient(to bottom, transparent 0%, #000 8%, #000 92%, transparent 100%);
-      }
-      .callout__name { font-size: 0.95rem; }
-      .callout__body { font-size: 0.68rem; line-height: 1.25; }
-    }
     @media (prefers-reduced-motion: reduce) {
       .callout:not(.callout--origin),
       .callout:not(.callout--origin).is-on,
@@ -339,17 +355,17 @@
       }
     }
     .callout--origin .callout__kicker {
-      margin: 0 0 0.2rem;
+      margin: 0 0 calc(0.18rem * var(--callout-scale));
       font-family: var(--font-body);
-      font-size: 0.72rem;
+      font-size: calc(0.72rem * var(--callout-scale));
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--callout-muted);
     }
     .callout__name {
-      margin: 0 0 0.35rem;
+      margin: 0 0 calc(0.3rem * var(--callout-scale));
       font-family: var(--font-display);
-      font-size: 1.15rem;
+      font-size: calc(1.15rem * var(--callout-scale));
       font-weight: 400;
       letter-spacing: 0.03em;
       color: var(--gold);
@@ -357,8 +373,8 @@
     .callout__body {
       margin: 0;
       font-family: var(--font-body);
-      font-size: 0.95rem;
-      line-height: 1.45;
+      font-size: calc(0.92rem * var(--callout-scale));
+      line-height: 1.4;
       color: var(--callout-muted);
     }
 
@@ -392,16 +408,84 @@
       height: 100%;
       padding: 0;
       max-width: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
     }
     html.embed .stage {
-      height: 100%;
-      aspect-ratio: auto;
+      /* Keep scene aspect; letterbox inside the iframe if needed - never stretch. */
+      width: 100%;
+      height: auto;
+      max-height: 100%;
+      aspect-ratio: 2058 / 1100;
       border: 0;
       box-shadow: none;
       background: transparent;
     }
     html.embed .status { display: none; }
     html.embed .status.is-error { display: block; text-align: center; }
+
+    /* Standalone immersive (direct /scene-lab/ visit) */
+    .stage-wrap.is-immersive {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      max-width: none;
+      padding: 0;
+      margin: 0;
+      background: #050303;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .stage-wrap.is-immersive .stage {
+      width: min(100vw, calc(100vh * 2058 / 1100));
+      height: min(100vh, calc(100vw * 1100 / 2058));
+      max-width: 100vw;
+      max-height: 100vh;
+      aspect-ratio: 2058 / 1100;
+      border: 0;
+      box-shadow: none;
+      border-radius: 0;
+    }
+    .scene-lab-close {
+      position: fixed;
+      top: max(0.65rem, env(safe-area-inset-top, 0px));
+      right: max(0.65rem, env(safe-area-inset-right, 0px));
+      z-index: 50;
+      width: 2.6rem;
+      height: 2.6rem;
+      border: 1px solid rgba(232, 201, 122, 0.45);
+      border-radius: 999px;
+      background: rgba(18, 8, 8, 0.72);
+      color: #f3e6d8;
+      font-size: 1.65rem;
+      line-height: 1;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .scene-lab-rotate-hint {
+      position: fixed;
+      left: 50%;
+      bottom: max(1.25rem, env(safe-area-inset-bottom, 0px));
+      transform: translateX(-50%);
+      z-index: 50;
+      margin: 0;
+      padding: 0.55rem 0.95rem;
+      max-width: min(22rem, 92vw);
+      text-align: center;
+      font-size: 0.92rem;
+      color: #f3e6d8;
+      background: rgba(18, 8, 8, 0.78);
+      border: 1px solid rgba(232, 201, 122, 0.4);
+      border-radius: 999px;
+      pointer-events: none;
+    }
+    html.scene-lab-local-immersive,
+    html.scene-lab-local-immersive body { overflow: hidden; }
   </style>
 </head>
 <body>
@@ -416,10 +500,10 @@
 
   <div class="stage-wrap">
     <div class="stage" id="stage" aria-label="Council scene interactive layers">
-      <img class="base" src="../assets/images/Scene/fullscene.webp" alt="Full council scene" width="6191" height="3307" decoding="async"/>
+      <img class="base is-soft" src="../assets/images/image/image1_lqip.webp" data-src-medium="../assets/images/image/image1_medium.webp" data-src-full="../assets/images/image/image1.webp" alt="Full council scene" width="2058" height="1100" decoding="async"/>
       <div class="hover-stack" id="hover-stack" aria-hidden="true"></div>
-      <img class="overlay overlay--table" src="../assets/images/Scene/Scene_0002s_0000s_0003_TABLE.webp" alt="" width="6191" height="3307" decoding="async" draggable="false" aria-hidden="true"/>
-      <img class="overlay overlay--woman" src="../assets/images/Scene/Scene_0001s_0000_woman.webp" alt="" width="6191" height="3307" decoding="async" draggable="false" aria-hidden="true"/>
+      <img class="overlay overlay--table is-soft" src="../assets/images/Scene/Scene_0002s_0000s_0003_TABLE_lqip.webp" data-src-medium="../assets/images/Scene/Scene_0002s_0000s_0003_TABLE_medium.webp" data-src-full="../assets/images/Scene/Scene_0002s_0000s_0003_TABLE.webp" alt="" width="6191" height="3307" decoding="async" draggable="false" aria-hidden="true"/>
+      <img class="overlay overlay--woman is-soft" src="../assets/images/Scene/Scene_0001s_0000_woman_lqip.webp" data-src-medium="../assets/images/Scene/Scene_0001s_0000_woman_medium.webp" data-src-full="../assets/images/Scene/Scene_0001s_0000_woman.webp" alt="" width="6191" height="3307" decoding="async" draggable="false" aria-hidden="true"/>
       <svg class="stage-svg" id="stage-svg" aria-hidden="true">
         <line class="connector" id="connector" x1="0" y1="0" x2="0" y2="0"/>
       </svg>
@@ -598,6 +682,8 @@
     const OCCLUDER_MASK_SCALE = 0.35;
     const STAGE_PAD = 10;
     const GAP = 18;
+    /* Callout typography/padding designed around this stage width */
+    const CALLOUT_REF_WIDTH = 960;
     const ORIGIN_PAD_X = 0.03;
     const ORIGIN_PAD_TOP = 0.08;
     const ORIGIN_PAD_BOTTOM = 0.03;
@@ -653,6 +739,45 @@
         img.src = src;
       });
     }
+
+    /** Keep callout text/padding proportional to the rendered scene, not the phone CSS px. */
+    function syncCalloutScale() {
+      if (!stage) return;
+      const w = stage.clientWidth || CALLOUT_REF_WIDTH;
+      const scale = Math.min(1.2, Math.max(0.38, w / CALLOUT_REF_WIDTH));
+      stage.style.setProperty('--callout-scale', scale.toFixed(3));
+      const pad = Math.max(4, Math.round(10 * scale));
+      stage.style.setProperty('--callout-pad', pad + 'px');
+    }
+
+    /** LQIP → medium → full for the base plate (same pattern as entrance / geo). */
+    function upgradeBaseArt() {
+      const base = stage?.querySelector('img.base');
+      if (!base) return;
+      const medium = base.getAttribute('data-src-medium');
+      const full = base.getAttribute('data-src-full');
+      const apply = (url, cls) => loadImage(url).then((decoded) => {
+        base.src = decoded.src;
+        base.classList.add(cls);
+        base.classList.remove('is-soft');
+      }).catch(() => {});
+      const chain = medium ? apply(medium, 'is-medium') : Promise.resolve();
+      chain.then(() => {
+        if (full) return apply(full, 'is-full');
+      });
+    }
+    upgradeBaseArt();
+    document.querySelectorAll('.stage img.overlay[data-src-medium]').forEach((el) => {
+      const medium = el.getAttribute('data-src-medium');
+      const full = el.getAttribute('data-src-full');
+      const apply = (url, cls) => loadImage(url).then((decoded) => {
+        el.src = decoded.src;
+        el.classList.add(cls);
+        el.classList.remove('is-soft');
+      }).catch(() => {});
+      const chain = medium ? apply(medium, 'is-medium') : Promise.resolve();
+      chain.then(() => { if (full) return apply(full, 'is-full'); });
+    });
 
     function boundsFromAlpha(alpha, mw, mh) {
       let minX = mw;
@@ -715,7 +840,12 @@
       el.style.setProperty('--occluder-mask', `url("${occluderUrl}")`);
     }
 
-    /** Art + glow twin; glow is masked to top ~2/3 so bottom has no shine. */
+    function mediumVariant(src) {
+      return src.replace(/(\.webp)(\?.*)?$/i, '_medium.webp$2');
+    }
+
+    /** Art + glow twin; glow is masked to top ~2/3 so bottom has no shine.
+     *  Visual layers: medium first, then full (masks stay on full assets). */
     function createHoverLayer(src, kindClass, z, occluderUrl) {
       const wrap = document.createElement('div');
       wrap.className = `layer ${kindClass}`;
@@ -723,17 +853,26 @@
       applyOccluderMask(wrap, occluderUrl);
 
       const art = document.createElement('img');
-      art.className = 'layer__art';
+      art.className = 'layer__art is-soft';
       art.alt = '';
       art.draggable = false;
-      art.src = src;
+      art.src = mediumVariant(src);
 
       const glow = document.createElement('img');
-      glow.className = 'layer__glow';
+      glow.className = 'layer__glow is-soft';
       glow.alt = '';
       glow.draggable = false;
       glow.setAttribute('aria-hidden', 'true');
-      glow.src = src;
+      glow.src = mediumVariant(src);
+
+      loadImage(src).then(() => {
+        art.src = src;
+        glow.src = src;
+        art.classList.add('is-full');
+        glow.classList.add('is-full');
+        art.classList.remove('is-soft');
+        glow.classList.remove('is-soft');
+      }).catch(() => {});
 
       wrap.appendChild(art);
       wrap.appendChild(glow);
@@ -830,7 +969,12 @@
       };
     }
 
+    function stagePadPx() {
+      return Math.max(4, Math.round(STAGE_PAD * ((stage?.clientWidth || CALLOUT_REF_WIDTH) / CALLOUT_REF_WIDTH)));
+    }
+
     function placeCallout(stageW, stageH, bubbleW, bubbleH, bounds, avoid) {
+      const pad = stagePadPx();
       const char = {
         x: bounds.minX * stageW,
         y: bounds.minY * stageH,
@@ -840,8 +984,8 @@
         cy: bounds.cy * stageH,
       };
 
-      const maxX = stageW - STAGE_PAD - bubbleW;
-      const maxY = stageH - STAGE_PAD - bubbleH;
+      const maxX = stageW - pad - bubbleW;
+      const maxY = stageH - pad - bubbleH;
 
       const candidates = [
         { x: char.x + char.w + GAP, y: char.cy - bubbleH / 2, side: 'right' },
@@ -858,8 +1002,8 @@
       let bestScore = -Infinity;
 
       for (const c of candidates) {
-        const x = clamp(c.x, STAGE_PAD, maxX);
-        const y = clamp(c.y, STAGE_PAD, maxY);
+        const x = clamp(c.x, pad, maxX);
+        const y = clamp(c.y, pad, maxY);
         const bubble = { x, y, w: bubbleW, h: bubbleH };
         const overlapsChar = rectsOverlap(bubble, char, 6);
         const overlapsAvoid = avoid ? rectsOverlap(bubble, avoid, 8) : false;
@@ -932,12 +1076,14 @@
       }
       originCallout.classList.add('is-on');
       originCallout.setAttribute('aria-hidden', 'false');
-      originCallout.style.left = STAGE_PAD + 'px';
-      originCallout.style.top = STAGE_PAD + 'px';
+      syncCalloutScale();
+      const pad = Math.max(4, Math.round(STAGE_PAD * (stage.clientWidth / CALLOUT_REF_WIDTH)));
+      originCallout.style.left = pad + 'px';
+      originCallout.style.top = pad + 'px';
       return {
         box: {
-          x: STAGE_PAD,
-          y: STAGE_PAD,
+          x: pad,
+          y: pad,
           w: originCallout.offsetWidth,
           h: originCallout.offsetHeight,
         },
@@ -946,6 +1092,7 @@
     }
 
     function paintPeopleCallout(layer, avoid) {
+      syncCalloutScale();
       calloutName.textContent = layer.label;
       calloutBody.textContent = layer.blurb;
       callout.setAttribute('aria-hidden', 'false');
@@ -1212,7 +1359,16 @@
     }
 
     function bindPointer() {
-      const queue = (e) => {
+      const embedMode = document.documentElement.classList.contains('embed');
+      const requestParentEnter = () => {
+        if (!embedMode) return;
+        if (!window.parent || window.parent === window) return;
+        try {
+          window.parent.postMessage({ type: 'tdt-scene-lab', action: 'enter' }, '*');
+        } catch (_) { /* ignore */ }
+      };
+
+      const tick = (e) => {
         lastX = e.clientX;
         lastY = e.clientY;
         if (!ticking) {
@@ -1221,11 +1377,17 @@
         }
       };
       const isTouch = (e) => e.pointerType === 'touch';
-      stage.addEventListener('pointermove', queue, { passive: true });
-      stage.addEventListener('pointerdown', queue);
+      stage.addEventListener('pointermove', tick, { passive: true });
+      stage.addEventListener('pointerdown', (e) => {
+        // Phone / first press: ask parent to go immersive (clicks don't bubble out of iframe).
+        if (isTouch(e) || (embed && window.matchMedia('(pointer: coarse)').matches)) {
+          requestParentEnter();
+        }
+        tick(e);
+      });
       stage.addEventListener('pointerup', (e) => {
         if (!isTouch(e)) return;
-        queue(e);
+        tick(e);
       });
       // A finger lift fires pointerleave. Keep the last tap so the card stays readable.
       stage.addEventListener('pointerleave', (e) => {
@@ -1236,14 +1398,84 @@
         if (isTouch(e)) return;
         setHover(null, null);
       });
-      window.addEventListener('resize', () => {
+      const onResize = () => {
+        syncCalloutScale();
         if (!activePersonId && !activeOriginId) return;
         const person = runtime.find((L) => L.id === activePersonId) || null;
         const origin = originRuntime.find((o) => o.id === activeOriginId) || null;
         const { box } = layoutOriginCallout(origin);
         if (person) layoutPeopleCallout(person, box, { repositionOnly: true });
         else hidePeopleCallout();
+      };
+      window.addEventListener('resize', onResize);
+      window.addEventListener('orientationchange', () => {
+        window.setTimeout(onResize, 120);
       });
+      if (typeof ResizeObserver !== 'undefined') {
+        new ResizeObserver(onResize).observe(stage);
+      }
+      syncCalloutScale();
+
+      // Standalone /scene-lab/ page (not embed): same immersive behaviour on the stage itself.
+      if (!embedMode) {
+        const wrap = document.querySelector('.stage-wrap');
+        const close = document.createElement('button');
+        close.type = 'button';
+        close.className = 'scene-lab-close';
+        close.hidden = true;
+        close.setAttribute('aria-label', 'Close full screen');
+        close.innerHTML = '<span aria-hidden="true">×</span>';
+        document.body.appendChild(close);
+        const hint = document.createElement('p');
+        hint.className = 'scene-lab-rotate-hint';
+        hint.hidden = true;
+        hint.textContent = 'Rotate your phone for the full scene';
+        document.body.appendChild(hint);
+
+        let immersive = false;
+        const phoneLike = () =>
+          window.matchMedia('(pointer: coarse)').matches &&
+          window.matchMedia('(max-width: 900px)').matches;
+
+        const enterLocal = async () => {
+          if (immersive) return;
+          immersive = true;
+          document.documentElement.classList.add('scene-lab-local-immersive');
+          if (wrap) wrap.classList.add('is-immersive');
+          close.hidden = false;
+          if (phoneLike()) {
+            hint.hidden = false;
+            try {
+              await (wrap || stage).requestFullscreen?.();
+            } catch (_) { /* ignore */ }
+            try {
+              await screen.orientation?.lock?.('landscape');
+            } catch (_) { /* ignore */ }
+          }
+        };
+        const exitLocal = () => {
+          if (!immersive) return;
+          immersive = false;
+          document.documentElement.classList.remove('scene-lab-local-immersive');
+          wrap?.classList.remove('is-immersive');
+          close.hidden = true;
+          hint.hidden = true;
+          try { document.exitFullscreen?.(); } catch (_) { /* ignore */ }
+          try { screen.orientation?.unlock?.(); } catch (_) { /* ignore */ }
+        };
+        close.addEventListener('click', exitLocal);
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') exitLocal();
+        });
+        stage.addEventListener('pointerenter', (e) => {
+          if (e.pointerType === 'touch' || phoneLike()) return;
+          enterLocal();
+        });
+        stage.addEventListener('pointerdown', (e) => {
+          if (!phoneLike() && e.pointerType !== 'touch') return;
+          enterLocal();
+        });
+      }
     }
 
     boot().catch((err) => {

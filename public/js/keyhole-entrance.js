@@ -483,8 +483,8 @@
         '/assets/images/Creusalité_NoBorders_medium.webp',
         '/assets/images/Map_Naked.webp',
         '/assets/images/Creusalité_NoBorders.webp',
-        '/assets/images/image/image12.png',
-        '/assets/images/image/image2.png'
+        '/assets/images/image/image12_display.webp',
+        '/assets/images/image/image2_display.webp'
     ];
     var PEOPLE_BANNER_URLS = [
         '/assets/images/People1.webp',
