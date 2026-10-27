@@ -1,0 +1,670 @@
+/* /landing/ cinematic styles.
+   Keeps the burgundy / gold / Quintessential school; modernizes layout
+   away from inset `.plate` cards toward full-bleed chapters over a
+   persistent shader canvas. All plate / sheet styles come from the
+   template's inline <style>; this file layers in cinematic behaviors.
+*/
+
+/* ---------- Backdrop canvases ---------- */
+.tdt-landing-bg {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  background: #240a0a;
+  display: block;
+}
+.tdt-landing-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 85% at 50% 110%, rgba(0,0,0,.55), transparent 60%),
+    radial-gradient(60% 40% at 50% -10%, rgba(228,197,106,.1), transparent 60%);
+}
+
+body.cinema {
+  background: transparent !important;
+}
+body.cinema main.sheet,
+body.cinema > footer,
+body.cinema > header.topbar {
+  position: relative;
+  z-index: 2;
+}
+
+/* ---------- Curtain preloader ---------- */
+.tdt-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: #120606;
+  color: var(--ink);
+  display: grid;
+  place-items: center;
+  transition: transform .9s cubic-bezier(.77,0,.18,1), opacity .3s linear .7s;
+}
+.tdt-curtain.is-lifting {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+.tdt-curtain__inner {
+  display: grid;
+  gap: 1rem;
+  justify-items: center;
+  padding: 2rem;
+}
+.tdt-curtain__brand {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 5vw, 2.1rem);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.tdt-curtain__sub {
+  font-size: .85rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.tdt-curtain__bar {
+  width: min(16rem, 60vw);
+  height: 2px;
+  background: rgba(228,197,106,.18);
+  overflow: hidden;
+}
+.tdt-curtain__bar::after {
+  content: '';
+  display: block;
+  height: 100%;
+  width: calc(var(--p, 0) * 100%);
+  background: var(--gold);
+  transition: width .3s cubic-bezier(.5,0,.2,1);
+}
+
+/* ---------- Topbar density ---------- */
+.topbar {
+  transition: background-color .3s ease, border-color .3s ease, padding .3s ease;
+}
+.topbar.is-dense {
+  background: rgba(20, 6, 6, 0.78);
+}
+.topbar.is-dense .brandrow { padding-top: .35rem; padding-bottom: .25rem; }
+
+/* ---------- Full-bleed hero rework ---------- */
+body.cinema main.sheet {
+  width: 100%;
+  max-width: none;
+  padding: 0;
+}
+
+.chapter {
+  position: relative;
+  padding: clamp(3rem, 10vh, 6rem) 1.25rem;
+  margin: 0;
+}
+
+.chapter__inner {
+  width: min(68rem, 100%);
+  margin: 0 auto;
+}
+
+.chapter--hero {
+  height: calc(100vh - 6.5rem);
+  min-height: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  overflow: hidden;
+  padding-top: 1.6rem;
+  text-align: left;
+}
+.chapter--hero .chapter__inner {
+  width: min(60rem, 100%);
+  display: grid;
+  gap: .7rem;
+  flex: 0 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.chapter--hero .kicker {
+  margin: 0;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  font-size: .78rem;
+  color: var(--gold);
+}
+.chapter--hero h1 {
+  font-size: clamp(2.3rem, 4.4vw, 4.6rem);
+  line-height: 1;
+  letter-spacing: .02em;
+  margin: 0;
+  text-shadow: 0 4px 32px rgba(0,0,0,.4);
+}
+.chapter--hero .french {
+  margin: 0;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  font-size: .9rem;
+  color: var(--ink-soft);
+}
+.chapter--hero .tagline {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  color: var(--ink);
+  max-width: 42rem;
+  line-height: 1.3;
+}
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .7rem;
+  margin-top: .5rem;
+}
+.hero-cta .btn-gold,
+.hero-cta .btn-ghost {
+  min-width: 10rem;
+}
+
+/* ---------- Chapter prose beats ---------- */
+.chapter--beat .chapter__inner {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 56rem) {
+  .chapter--beat .chapter__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, .9fr);
+    gap: 3rem;
+    align-items: center;
+  }
+  .chapter--beat.is-flipped .chapter__inner > *:first-child { order: 2; }
+}
+.chapter--beat h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  margin: 0 0 .6rem;
+  font-size: clamp(1.8rem, 4.5vw, 2.9rem);
+  line-height: 1.1;
+  color: var(--ink);
+}
+.chapter--beat p { font-size: 1.08rem; color: var(--ink-soft); margin: 0 0 .85rem; }
+.chapter--beat .claim {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.3vw, 1.5rem);
+  color: var(--gold);
+  letter-spacing: .02em;
+  margin: 0 0 .9rem;
+}
+
+.beat-art {
+  position: relative;
+  display: grid;
+  gap: .75rem;
+  grid-template-columns: 1fr 1fr;
+  max-width: 32rem;
+  margin-left: auto;
+}
+.beat-art img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid rgba(228,197,106,.22);
+  background: #120606;
+  box-shadow: 0 20px 60px rgba(0,0,0,.45);
+  transition: transform .6s ease;
+}
+.beat-art img:nth-child(2) { transform: translateY(1.5rem) scale(.96); }
+
+/* ---------- Showcase pin ---------- */
+.chapter--showcase .chapter__inner {
+  position: relative;
+}
+.showcase-stage {
+  position: relative;
+  width: min(100%, 24rem, calc(80vh * 9 / 16));
+  margin: 0 auto;
+  aspect-ratio: 9 / 16;
+  background: #120606;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(228,197,106,.3);
+  box-shadow: 0 24px 80px rgba(0,0,0,.6);
+}
+.showcase-stage video { display: block; width: 100%; height: 100%; object-fit: cover; background: #000; }
+.showcase-stage .play {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: .7rem;
+  width: 100%; border: 0; padding: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.1), rgba(0,0,0,.55));
+  color: var(--ink); cursor: pointer;
+}
+.showcase-stage.is-playing .play { display: none; }
+.showcase-stage .play-disc {
+  width: 4.6rem; height: 4.6rem; border-radius: 50%;
+  border: 2px solid var(--gold); background: rgba(36,10,10,.82);
+  display: grid; place-items: center;
+  box-shadow: 0 8px 28px rgba(0,0,0,.45);
+}
+.showcase-stage .play-disc i {
+  display: block; width: 0; height: 0; margin-left: .25rem;
+  border-style: solid; border-width: .7rem 0 .7rem 1.15rem;
+  border-color: transparent transparent transparent var(--gold);
+}
+.showcase-stage .play-label {
+  font-family: var(--font-display); font-size: 1.15rem;
+  text-shadow: 0 2px 10px rgba(0,0,0,.8);
+}
+
+.showcase-captions {
+  position: absolute;
+  inset: auto 0 10vh 0;
+  display: grid;
+  gap: 0;
+  pointer-events: none;
+}
+.showcase-captions .caption {
+  margin: 0 auto;
+  padding: .8rem 1.25rem;
+  background: rgba(18,6,6,.72);
+  border-top: 1px solid rgba(228,197,106,.3);
+  border-bottom: 1px solid rgba(228,197,106,.3);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+  letter-spacing: .02em;
+  text-align: center;
+  max-width: 32rem;
+  grid-row: 1;
+  grid-column: 1;
+  will-change: opacity, transform;
+}
+
+/* ---------- Signature fly-through ---------- */
+.chapter--flythrough {
+  padding: 0;
+}
+.fly-stage {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+.fly-stage canvas {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+.fly-overlays {
+  position: absolute;
+  left: 1.25rem;
+  right: 1.25rem;
+  bottom: clamp(2rem, 10vh, 6rem);
+  display: grid;
+  pointer-events: none;
+}
+.fly-overlay {
+  grid-row: 1;
+  grid-column: 1;
+  max-width: 32rem;
+  padding: 1rem 1.1rem 1.1rem;
+  background: rgba(18,6,6,.78);
+  border-left: 2px solid var(--gold);
+  color: var(--ink);
+  will-change: opacity, transform;
+}
+.fly-overlay__kicker {
+  margin: 0; font-size: .72rem; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--gold);
+}
+.fly-overlay__title {
+  margin: .25rem 0 .4rem;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: var(--ink);
+  letter-spacing: .02em;
+}
+.fly-overlay__body {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--ink-soft);
+  max-width: 28rem;
+}
+
+[data-chapter="flythrough"][data-fly-mode="static"] .fly-overlays {
+  position: relative;
+  left: auto; right: auto; bottom: auto;
+  padding: 1.25rem;
+  grid-auto-rows: auto;
+  gap: .75rem;
+}
+.fly-waypoint-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: grid;
+  gap: .5rem;
+}
+.fly-waypoint-list li {
+  padding: .6rem .75rem;
+  border-left: 2px solid var(--gold);
+  background: rgba(0,0,0,.3);
+}
+.fly-waypoint-list b {
+  display: block;
+  font-family: var(--font-display);
+  color: var(--gold);
+}
+.fly-waypoint-list span {
+  color: var(--ink-soft);
+  font-size: .95rem;
+}
+
+/* ---------- Origin dual path ---------- */
+.chapter--origin .origin-path {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+@media (min-width: 46rem) {
+  .chapter--origin .origin-path { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+}
+.chapter--origin .origin-path li {
+  position: relative;
+  padding: 1.2rem 1.25rem;
+  border-left: 3px solid var(--gold);
+  background: rgba(0,0,0,.3);
+}
+.chapter--origin .origin-path b {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--gold);
+  font-size: 1.6rem;
+}
+.chapter--origin .origin-path span {
+  color: var(--ink-soft);
+  font-size: 1rem;
+}
+
+/* ---------- Team ---------- */
+.chapter--team .chapter__inner { max-width: 68rem; }
+.chapter--team .filters button {
+  min-height: 2.5rem;
+  padding: .35rem .9rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: .95rem;
+  cursor: pointer;
+}
+.chapter--team .filters button[aria-pressed="true"] {
+  background: var(--gold);
+  color: var(--burgundy-deep);
+  border-color: var(--gold);
+}
+.chapter--team .roster {
+  display: grid;
+  gap: .75rem;
+  grid-template-columns: 1fr;
+  margin-top: 1rem;
+}
+@media (min-width: 48rem) {
+  .chapter--team .roster { grid-template-columns: 1fr 1fr; }
+  .chapter--team .person--lead { grid-column: 1 / -1; }
+}
+@media (min-width: 68rem) {
+  .chapter--team .roster { grid-template-columns: repeat(3, 1fr); }
+}
+.chapter--team .person {
+  display: grid;
+  grid-template-columns: 3.4rem minmax(0, 1fr);
+  gap: .75rem;
+  padding: .85rem;
+  background: rgba(0,0,0,.25);
+  border: 1px solid rgba(228,197,106,.2);
+  border-radius: 4px;
+}
+.chapter--team .person--lead { background: rgba(228,197,106,.08); border-color: var(--line); }
+.chapter--team .avatar, .chapter--team .initials {
+  width: 3.4rem; height: 3.4rem; border-radius: 50%;
+  border: 1px solid var(--gold); object-fit: cover;
+}
+.chapter--team .initials {
+  display: grid; place-items: center;
+  color: var(--gold); background: rgba(0,0,0,.3);
+  font-family: var(--font-display); font-size: 1rem;
+}
+.chapter--team h3 {
+  margin: 0; font-family: var(--font-display); font-weight: 400;
+  font-size: 1.1rem;
+}
+.chapter--team .role {
+  margin: .15rem 0 .35rem;
+  color: var(--gold); font-size: .95rem; font-style: italic;
+}
+.chapter--team .person p { margin: 0; font-size: .98rem; color: var(--ink-soft); }
+
+/* ---------- Close block ---------- */
+.chapter--close .chapter__inner {
+  display: grid;
+  gap: 1.5rem;
+  text-align: left;
+}
+.chapter--close h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  color: var(--ink);
+  line-height: 1.05;
+}
+.chapter--close .close-rail {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 44rem) {
+  .chapter--close .close-rail { grid-template-columns: 1fr 1fr 1fr; }
+}
+.chapter--close .close-card {
+  padding: 1.25rem;
+  background: rgba(18,6,6,.6);
+  border: 1px solid rgba(228,197,106,.25);
+  border-radius: 4px;
+  color: var(--ink);
+  display: grid;
+  gap: .5rem;
+}
+.chapter--close .close-card h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.3rem;
+  color: var(--gold);
+}
+.chapter--close .close-card p { margin: 0; color: var(--ink-soft); font-size: .98rem; }
+.chapter--close .close-card .btn { margin-top: .25rem; }
+
+/* ---------- Contact form ---------- */
+.chapter--close form {
+  display: grid;
+  gap: .7rem;
+  max-width: 32rem;
+}
+.chapter--close label { display: grid; gap: .3rem; font-size: .95rem; color: var(--ink-soft); }
+.chapter--close input,
+.chapter--close textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+  background: rgba(0,0,0,.4);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: .7rem .75rem;
+}
+.chapter--close textarea { min-height: 7rem; resize: vertical; }
+.chapter--close button[type="submit"] {
+  min-height: 3rem;
+  border: 0;
+  border-radius: 4px;
+  background: var(--gold);
+  color: var(--burgundy-deep);
+  font: inherit; font-weight: 700; cursor: pointer;
+}
+.chapter--close button[type="submit"]:hover { background: #fff1c4; }
+.chapter--close .hint { margin: 0; color: var(--muted); font-size: .95rem; }
+
+/* ---------- Reduced motion fallbacks ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .showcase-captions .caption { opacity: 1 !important; transform: none !important; position: static; margin-top: .6rem; }
+  .fly-overlay { opacity: 1 !important; transform: none !important; }
+  .tdt-curtain { display: none !important; }
+}
+
+/* Peoples stay in a fixed column and crossfade with page scroll.
+   Contain, never cover, so the figure is fully in frame. */
+.parade {
+  position: fixed;
+  z-index: 1;
+  top: var(--bar);
+  right: 0;
+  width: min(46vw, 620px);
+  height: calc(100vh - var(--bar));
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+.parade__stage {
+  position: relative;
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
+}
+.parade__stage img {
+  position: absolute;
+  left: 50%;
+  bottom: 0.6rem;
+  max-width: 92%;
+  max-height: calc(100% - 0.6rem);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.parade__name {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: .35rem 1rem .8rem;
+  min-height: 2.6rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2vw, 1.7rem);
+  color: var(--gold);
+  text-align: center;
+}
+body.cinema main.sheet {
+  width: min(34rem, calc(52vw - 1.5rem));
+  margin-left: max(1.25rem, 4vw);
+  margin-right: auto;
+}
+.chapter--beat,
+.chapter--origin,
+.chapter--team,
+.chapter--pitch {
+  min-height: 78vh;
+}
+
+.chapter--hero .chapter__inner {
+  text-shadow: 0 2px 18px rgba(0, 0, 0, .85);
+}
+.ambient {
+  position: relative;
+  z-index: 0;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: auto;
+  max-width: 100%;
+  height: 100%;
+  margin-top: .8rem;
+  object-fit: contain;
+  object-position: left center;
+  pointer-events: none;
+}
+
+.pitch-slider__viewport { position: relative; }
+.pitch-slider__slide { margin: 0; }
+.pitch-slider__slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.pitch-slider__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  background: rgba(18, 6, 6, .72);
+  color: var(--gold);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.pitch-slider__nav:disabled { opacity: .35; cursor: default; }
+.pitch-slider__nav--prev { left: .4rem; }
+.pitch-slider__nav--next { right: .4rem; }
+.close-links { display: flex; gap: .7rem; margin-top: 1.4rem; flex-wrap: wrap; }
+
+[data-parade-mode="still"] .parade__stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  height: auto;
+}
+[data-parade-mode="still"] .parade__stage img {
+  position: static;
+  transform: none !important;
+  opacity: 1 !important;
+  max-height: 80vh;
+}
+[data-parade-mode="still"].parade {
+  position: relative;
+  width: 100%;
+  height: auto;
+  top: auto;
+  pointer-events: auto;
+}
+
+@media (max-width: 52rem) {
+  .parade { width: 44%; }
+  body.cinema main.sheet {
+    width: 52%;
+    margin-left: 2%;
+  }
+}

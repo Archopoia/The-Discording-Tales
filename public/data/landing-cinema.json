@@ -1,0 +1,143 @@
+{
+  "chapters": [
+    {
+      "id": "hero",
+      "scrollWeight": 1,
+      "palette": {
+        "ink": "#f6edd4",
+        "accent": "#e4c56a",
+        "field": "#2a0d0d"
+      },
+      "shader": { "hueShift": 0.0, "grain": 0.35, "glow": 0.55, "flow": 0.25 }
+    },
+    {
+      "id": "showcase",
+      "scrollWeight": 1.6,
+      "pin": true,
+      "palette": {
+        "ink": "#f6edd4",
+        "accent": "#e4c56a",
+        "field": "#1a0808"
+      },
+      "shader": { "hueShift": -0.04, "grain": 0.5, "glow": 0.35, "flow": 0.1 }
+    },
+    {
+      "id": "world-alien",
+      "scrollWeight": 1.2,
+      "palette": {
+        "ink": "#f6edd4",
+        "accent": "#e4c56a",
+        "field": "#3a1010"
+      },
+      "shader": { "hueShift": 0.02, "grain": 0.4, "glow": 0.65, "flow": 0.4 },
+      "parallax": [
+        "assets/images/people/Aristois copy.webp",
+        "assets/images/people/Griscribes copy.webp"
+      ]
+    },
+    {
+      "id": "world-living",
+      "scrollWeight": 1.2,
+      "palette": {
+        "ink": "#f6edd4",
+        "accent": "#e4c56a",
+        "field": "#2d1414"
+      },
+      "shader": { "hueShift": 0.06, "grain": 0.45, "glow": 0.5, "flow": 0.55 },
+      "parallax": [
+        "assets/images/areas/eadryllir.webp",
+        "assets/images/areas/bruysseliand.webp"
+      ]
+    },
+    {
+      "id": "flythrough",
+      "scrollWeight": 2.4,
+      "pin": true,
+      "palette": {
+        "ink": "#f6edd4",
+        "accent": "#e4c56a",
+        "field": "#120606"
+      },
+      "shader": { "hueShift": 0.0, "grain": 0.6, "glow": 0.3, "flow": 0.08 },
+      "waypoints": [
+        {
+          "progress": 0.05,
+          "texture": "assets/images/world-map.webp",
+          "title": "A forgotten Earth",
+          "body": "Ten peoples. Three origins. One world that does not wait."
+        },
+        {
+          "progress": 0.2,
+          "texture": "assets/images/areas/where-the-game-is-set.webp",
+          "title": "Where the game is set",
+          "body": "Places answer by the same rules as the people who live in them."
+        },
+        {
+          "progress": 0.33,
+          "texture": "assets/images/people/Aristois copy.webp",
+          "title": "Aristese",
+          "body": "A culture that feels impossible until the rules make it coherent."
+        },
+        {
+          "progress": 0.47,
+          "texture": "assets/images/people/Grands Ylfes copy.webp",
+          "title": "The Great Ylves",
+          "body": "No humans. Each people carries its own morality and craft."
+        },
+        {
+          "progress": 0.6,
+          "texture": "assets/images/areas/iossoluvvaij.webp",
+          "title": "Iossoluvvaij",
+          "body": "Underfoot, in the flowering depths, there is only discord."
+        },
+        {
+          "progress": 0.74,
+          "texture": "assets/images/people/Tchalkchaï copy.webp",
+          "title": "Tchalkchaïs",
+          "body": "Failure forges the hero. Choice sets the difficulty."
+        },
+        {
+          "progress": 0.88,
+          "texture": "assets/images/geocosmoseng.webp",
+          "title": "Geocosmos",
+          "body": "A living dungeon. Move a light, a crate, a body - the world changes with you."
+        }
+      ],
+      "mobile": {
+        "scrollWeight": 1.6,
+        "pin": false,
+        "waypoints": 5
+      }
+    },
+    {
+      "id": "origin",
+      "scrollWeight": 0.9,
+      "palette": {
+        "ink": "#f6edd4",
+        "accent": "#e4c56a",
+        "field": "#3a1010"
+      },
+      "shader": { "hueShift": 0.0, "grain": 0.35, "glow": 0.55, "flow": 0.3 }
+    },
+    {
+      "id": "team",
+      "scrollWeight": 1,
+      "palette": {
+        "ink": "#f6edd4",
+        "accent": "#e4c56a",
+        "field": "#2a0d0d"
+      },
+      "shader": { "hueShift": 0.0, "grain": 0.4, "glow": 0.45, "flow": 0.2 }
+    },
+    {
+      "id": "close",
+      "scrollWeight": 1,
+      "palette": {
+        "ink": "#f6edd4",
+        "accent": "#e4c56a",
+        "field": "#240a0a"
+      },
+      "shader": { "hueShift": -0.02, "grain": 0.35, "glow": 0.7, "flow": 0.35 }
+    }
+  ]
+}
