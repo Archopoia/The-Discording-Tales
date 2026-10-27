@@ -4,7 +4,8 @@
  * Desktop / wide: pointer enter on the embed → cover the viewport.
  * Phone: first tap inside the lab (postMessage) → same; try fullscreen +
  * landscape lock when the gesture allows it.
- * Exit: top-right close, Escape, or browser fullscreen exit.
+ * Exit: mouse leaves the picture onto the letterbox / elsewhere (desktop),
+ * top-right close, Escape, or browser fullscreen exit.
  */
 
 const MSG = 'tdt-scene-lab';
@@ -123,6 +124,8 @@ function enhance(iframe: HTMLIFrameElement): void {
     if (immersive || cooling) return;
     immersive = true;
     shell.classList.add('is-immersive');
+    close.hidden = false;
+
     document.documentElement.classList.add('scene-lab-immersive-open');
     close.hidden = false;
     close.focus({ preventScroll: true });
@@ -173,7 +176,7 @@ function enhance(iframe: HTMLIFrameElement): void {
   // Desktop / wide: intentional hover (dwell) expands it - not a drive-by while scrolling.
   let hoverTimer: number | null = null;
   const HOVER_DWELL_MS = 280;
-  shell.addEventListener('pointerenter', (e) => {
+  const onPointerEnterPicture = (e: PointerEvent) => {
     if (e.pointerType === 'touch') return;
     if (isPhoneLike()) return;
     if (hoverTimer != null) window.clearTimeout(hoverTimer);
@@ -181,15 +184,33 @@ function enhance(iframe: HTMLIFrameElement): void {
       hoverTimer = null;
       enter(false);
     }, HOVER_DWELL_MS);
-  });
-  shell.addEventListener('pointerleave', () => {
+  };
+  const onPointerLeavePicture = (e: PointerEvent) => {
+    if (e.pointerType === 'touch') return;
     if (hoverTimer != null) {
       window.clearTimeout(hoverTimer);
       hoverTimer = null;
     }
+    // Desktop: leave picture onto black letterbox / page → exit (keep × usable).
+    if (!isPhoneLike() && immersive) {
+      const to = e.relatedTarget as Node | null;
+      if (to && (close === to || close.contains(to))) return;
+      exit();
+    }
+  };
+  iframe.addEventListener('pointerenter', onPointerEnterPicture);
+  iframe.addEventListener('pointerleave', onPointerLeavePicture);
+  // Hovering the black bars (shell, not the picture) also exits.
+  shell.addEventListener('pointermove', (e) => {
+    if (!immersive || isPhoneLike()) return;
+    if (e.pointerType === 'touch') return;
+    const t = e.target as Node | null;
+    if (!t || t === iframe || iframe.contains(t)) return;
+    if (t === close || close.contains(t)) return;
+    if (t === shell || shell.contains(t)) exit();
   });
   // Explicit click also enters (covers trackpad / fidgety cursors).
-  shell.addEventListener('click', (e) => {
+  iframe.addEventListener('click', (e) => {
     if (isPhoneLike()) return;
     if ((e.target as HTMLElement)?.closest?.('.scene-lab-close')) return;
     enter(false);
