@@ -30,12 +30,14 @@
       --bg: #0a0607;
       --ink: #f3e6d8;
       --muted: #a89482;
-      --gold: #e8c97a;
-      --line: rgba(232, 201, 122, 0.35);
+      /* Site khaki (--tdt-beige-warm / landing --gold) - not a one-off yellow */
+      --gold: #d4c5a8;
+      --khaki: rgba(244, 225, 169, 0.82);
+      --line: rgba(212, 197, 168, 0.35);
       --callout-bg: rgba(34, 18, 16, 0.92);
       --callout-ink: #f6edd4;
       --callout-muted: #c9b4a0;
-      --callout-border: rgba(232, 201, 122, 0.72);
+      --callout-border: rgba(212, 197, 168, 0.55);
       /* People bubble: sampled lightest hover glow yellow + dark reddish ink */
       --people-callout-bg: rgba(254, 254, 223, 0.88);
       --people-callout-ink: #4a1c1a;
@@ -373,6 +375,10 @@
       letter-spacing: 0.03em;
       color: var(--gold);
     }
+    /* Origin title: same muted khaki as landing ethno-sci-fantasy / site-genre */
+    .callout--origin .callout__name {
+      color: var(--khaki);
+    }
     .callout__body {
       margin: 0;
       font-family: var(--font-body);
@@ -390,7 +396,7 @@
       bottom: 7%;
       height: 2px;
       z-index: 40;
-      background: rgba(232, 201, 122, 0.28);
+      background: rgba(212, 197, 168, 0.28);
       pointer-events: none;
       transition: opacity .45s ease;
     }
@@ -459,7 +465,7 @@
       z-index: 50;
       width: 2.6rem;
       height: 2.6rem;
-      border: 1px solid rgba(232, 201, 122, 0.45);
+      border: 1px solid rgba(212, 197, 168, 0.45);
       border-radius: 999px;
       background: rgba(18, 8, 8, 0.72);
       color: #f3e6d8;
@@ -486,7 +492,7 @@
       font-size: 0.92rem;
       color: #f3e6d8;
       background: rgba(18, 8, 8, 0.78);
-      border: 1px solid rgba(232, 201, 122, 0.4);
+      border: 1px solid rgba(212, 197, 168, 0.4);
       border-radius: 999px;
       pointer-events: none;
     }

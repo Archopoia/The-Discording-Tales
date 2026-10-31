@@ -373,10 +373,11 @@ body.cinema main.sheet {
   position: relative;
   padding: .4rem .85rem;
   color: rgba(244, 225, 169, 0.82);
-  font-family: var(--font-display);
+  /* Dauphin body face - same hover chrome as main-site tabs */
+  font-family: var(--font-body);
   font-weight: 400;
   font-size: .92rem;
-  letter-spacing: .08em;
+  letter-spacing: .06em;
   text-transform: uppercase;
   text-decoration: none;
   border-radius: 4px;
@@ -386,6 +387,18 @@ body.cinema main.sheet {
     background .5s cubic-bezier(.4, 0, .2, 1),
     box-shadow .5s cubic-bezier(.4, 0, .2, 1),
     transform .5s cubic-bezier(.4, 0, .2, 1);
+}
+.brandrow.hero-actions {
+  width: 100%;
+  max-width: none;
+  justify-content: space-evenly;
+  margin: 0;
+  padding: .45rem 1rem .35rem;
+  flex-wrap: wrap;
+}
+.topbar.is-dense .brandrow.hero-actions {
+  padding-top: .3rem;
+  padding-bottom: .2rem;
 }
 .hero-tab__icon {
   display: block;
@@ -824,16 +837,6 @@ body.cinema main.sheet {
   font-family: var(--font-display);
   font-weight: 400;
 }
-.chapter--pitch .pitch-lede {
-  margin: 0.35rem auto 0.85rem;
-  max-width: 36rem;
-  font-family: var(--font-body, "Dauphin", Georgia, serif);
-  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
-  line-height: 1.35;
-  text-align: center;
-  opacity: 0.88;
-}
-
 .chapter--scene {
   padding-top: 0;
   padding-bottom: 0.15rem;
@@ -972,20 +975,20 @@ html.scene-lab-immersive-open body {
   color: var(--ink);
   letter-spacing: .04em;
 }
-.triad p,
-.triad span {
+.triad p {
   margin: 0;
   color: var(--ink-soft);
   font-family: var(--font-body);
 }
-.triad .pair {
-  display: grid;
-  gap: 1.15rem;
-}
-@media (min-width: 52rem) {
+@media (min-width: 40rem) {
   .triad {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: stretch;
+  }
+}
+@media (min-width: 64rem) {
+  .triad {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
@@ -1025,6 +1028,21 @@ html.scene-lab-immersive-open body {
 }
 .pitch-slider { margin: 0 auto; }
 .pitch-slider__viewport { position: relative; }
+.pitch-slider__track {
+  /* Soft 4-edge dissolve into the landing field */
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%);
+  mask-image:
+    linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
 .pitch-slider__slide { margin: 0; }
 .pitch-slider__slide img {
   display: block;
