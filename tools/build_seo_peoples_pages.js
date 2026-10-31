@@ -331,8 +331,14 @@ ${peoplesList}
           const enSlug = originSeoSlug(id);
           const title = en[m.titleKey];
           const how = en[m.howKey];
+          const thumbClass =
+            enSlug === 'yums'
+              ? 'origin-thumb origin-thumb--yums'
+              : enSlug === 'beingsts'
+                ? 'origin-thumb origin-thumb--beingsts'
+                : 'origin-thumb';
           const img = m.image
-            ? `<img class="origin-thumb" src="${esc(BASE)}/assets/images/people/${esc(m.image)}" alt="${esc(title)}" width="320" height="320" loading="lazy" decoding="async"/>`
+            ? `<img class="${thumbClass}" src="${esc(BASE)}/assets/images/people/${esc(m.image)}" alt="${esc(title)} origin figure from The Discording Tales" width="320" height="320" loading="lazy" decoding="async"/>`
             : '';
           return `<li><a href="${esc(BASE)}/world/origins/${enSlug}/">${img}<span class="origin-list__text"><strong>${esc(title)}</strong><p>${esc(how)} - ${esc(en[m.fromKey] || '')}</p></span></a></li>`;
         })
@@ -379,8 +385,10 @@ ${peoplesList}
     const description = metaDescription(title, how, from, 'in The Discording Tales.');
     paths.push(`/world/origins/${enSlug}/`);
 
+    const heroMod =
+      enSlug === 'yums' ? ' origin-hero--yums' : enSlug === 'beingsts' ? ' origin-hero--beingsts' : '';
     const hero = m.image
-      ? `<figure class="origin-hero"><img src="${esc(BASE)}/assets/images/people/${esc(m.image)}" alt="${esc(title)}" width="900" height="900" loading="eager" decoding="async"/></figure>`
+      ? `<figure class="origin-hero${heroMod}"><img src="${esc(BASE)}/assets/images/people/${esc(m.image)}" alt="${esc(title)} origin figure from The Discording Tales ethno-science-fantasy setting" width="900" height="900" loading="eager" decoding="async"/></figure>`
       : '';
     const originBody = `
     <p class="kicker"><a href="${esc(BASE)}/world/origins/">Origins</a></p>
@@ -408,6 +416,14 @@ ${peoplesList}
           description,
           url: `${BASE}/world/origins/${enSlug}/`,
           isPartOf: { '@type': 'WebSite', name: 'THE DISCORDING TALES', url: `${BASE}/` },
+          ...(m.image
+            ? {
+                image: [
+                  `${BASE}/assets/images/people/${m.image}`,
+                  `${BASE}/assets/og-tdt-1200x630.jpg`,
+                ],
+              }
+            : {}),
         }),
         bodyHtml: originBody,
         ctaPrimaryHref: `${BASE}/site/#peoples`,

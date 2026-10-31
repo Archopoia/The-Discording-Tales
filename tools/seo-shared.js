@@ -57,8 +57,69 @@ export function resolveI18n(str, dict) {
   );
 }
 
+const BREADCRUMB_SEGMENT_LABELS = {
+  world: 'World',
+  peoples: 'Peoples',
+  origins: 'Origins',
+  lore: 'Lore',
+  guide: 'Guides',
+  'ethno-science-fantasy': 'Ethno-science-fantasy',
+  'morrowind-immersive-sim-action-rpg': 'Morrowind / immersive sim',
+  compare: 'Compare',
+  'weird-fantasy-ttrpg': 'Weird fantasy TTRPGs',
+  'morrowind-like-action-rpg': 'Morrowind-like Action RPGs',
+  rules: 'Rules',
+  attributes: 'Attributes',
+  tabletop: 'Tabletop book',
+  'character-sheet': 'Character sheet',
+};
+
 /**
- * @param {{ title: string, description: string, canonical: string, jsonLd: string, bodyHtml: string, navExtra?: string, ctaPrimaryHref?: string, ctaPrimaryLabel?: string, ogType?: string }} opts
+ * @param {string} canonical
+ * @param {string} pageTitle
+ * @returns {{ name: string, url: string }[]}
+ */
+export function breadcrumbsFromCanonical(canonical, pageTitle) {
+  let pathname = '/';
+  try {
+    pathname = new URL(canonical).pathname;
+  } catch {
+    pathname = String(canonical || '/').replace(/^https?:\/\/[^/]+/i, '') || '/';
+  }
+  const parts = pathname.replace(/\/+$/, '').split('/').filter(Boolean);
+  if (!parts.length) return [];
+  const crumbs = [{ name: 'Home', url: `${BASE}/` }];
+  let acc = '';
+  const leaf = String(pageTitle || '')
+    .split('|')[0]
+    .trim();
+  for (let i = 0; i < parts.length; i++) {
+    const seg = parts[i];
+    acc += `/${seg}`;
+    const isLast = i === parts.length - 1;
+    const name = isLast
+      ? leaf || BREADCRUMB_SEGMENT_LABELS[seg] || seg
+      : BREADCRUMB_SEGMENT_LABELS[seg] || seg.replace(/-/g, ' ');
+    crumbs.push({ name, url: `${BASE}${acc}/` });
+  }
+  return crumbs;
+}
+
+export function breadcrumbListJsonLd(crumbs) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: crumbs.map((c, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: c.name,
+      item: c.url,
+    })),
+  };
+}
+
+/**
+ * @param {{ title: string, description: string, canonical: string, jsonLd: string, bodyHtml: string, navExtra?: string, ctaPrimaryHref?: string, ctaPrimaryLabel?: string, ogType?: string, breadcrumbs?: { name: string, url: string }[] | false }} opts
  */
 export function pageShell(opts) {
   const {
@@ -71,7 +132,34 @@ export function pageShell(opts) {
     ctaPrimaryHref = `${BASE}/site/#peoples`,
     ctaPrimaryLabel = 'Open peoples in the world',
     ogType = 'article',
+    breadcrumbs: breadcrumbsOpt,
   } = opts;
+
+  const crumbs =
+    breadcrumbsOpt === false
+      ? []
+      : Array.isArray(breadcrumbsOpt) && breadcrumbsOpt.length
+        ? breadcrumbsOpt
+        : breadcrumbsFromCanonical(canonical, title);
+
+  const crumbNav =
+    crumbs.length > 1
+      ? `<nav class="crumbs" aria-label="Breadcrumb"><ol>${crumbs
+          .map((c, i) => {
+            const last = i === crumbs.length - 1;
+            return last
+              ? `<li aria-current="page">${esc(c.name)}</li>`
+              : `<li><a href="${esc(c.url)}">${esc(c.name)}</a></li>`;
+          })
+          .join('')}</ol></nav>`
+      : '';
+
+  const jsonLdBlocks = [`<script type="application/ld+json">${jsonLd}</script>`];
+  if (crumbs.length > 1) {
+    jsonLdBlocks.push(
+      `<script type="application/ld+json">${JSON.stringify(breadcrumbListJsonLd(crumbs))}</script>`,
+    );
+  }
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -100,15 +188,21 @@ export function pageShell(opts) {
   <link rel="icon" href="${esc(BASE)}/assets/icons/favicon-48x48.png" type="image/png" sizes="48x48"/>
   <link rel="icon" href="${esc(BASE)}/favicon.ico" sizes="48x48"/>
   <script src="${esc(BASE)}/assets/js/tdt-ga.js" defer></script>
-  <script type="application/ld+json">${jsonLd}</script>
+  ${jsonLdBlocks.join('\n  ')}
   <style>
     :root { color-scheme: light only; --bg:#1a0f10; --ink:#f3e6d8; --muted:#c9b4a0; --gold:#c9a227; --line:rgba(201,162,39,.35); }
     * { box-sizing: border-box; }
     body { margin:0; font-family: Georgia, "Times New Roman", serif; background: radial-gradient(1200px 600px at 50% -10%, #3a1a1c, var(--bg)); color: var(--ink); line-height: 1.65; }
     a { color: var(--gold); }
     .wrap { max-width: 44rem; margin: 0 auto; padding: 1.5rem 1.25rem 4rem; }
-    .site-bar { display:flex; flex-wrap:wrap; gap:.75rem 1.25rem; align-items:baseline; margin-bottom: 2rem; padding-bottom: .75rem; border-bottom: 1px solid var(--line); font-size: .95rem; }
+    .site-bar { display:flex; flex-wrap:wrap; gap:.75rem 1.25rem; align-items:baseline; margin-bottom: 1rem; padding-bottom: .75rem; border-bottom: 1px solid var(--line); font-size: .95rem; }
     .site-bar .brand { font-weight: 700; letter-spacing: .04em; text-decoration: none; color: var(--ink); }
+    .crumbs { margin: 0 0 1.25rem; font-size: .88rem; color: var(--muted); }
+    .crumbs ol { list-style: none; display: flex; flex-wrap: wrap; gap: .35rem .5rem; margin: 0; padding: 0; align-items: center; }
+    .crumbs li:not(:last-child)::after { content: "/"; margin-left: .5rem; opacity: .55; }
+    .crumbs a { color: var(--muted); text-decoration: none; }
+    .crumbs a:hover { color: var(--gold); }
+    .crumbs [aria-current="page"] { color: var(--ink); }
     .kicker { color: var(--muted); font-size: .85rem; text-transform: uppercase; letter-spacing: .08em; margin: 0 0 .5rem; }
     h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); line-height: 1.2; margin: 0 0 1rem; }
     h2 { font-size: 1.25rem; margin: 2rem 0 .75rem; }
@@ -135,13 +229,13 @@ export function pageShell(opts) {
     .origin-list a { display: flex; gap: 1rem; align-items: center; color: inherit; }
     .origin-list a:hover strong { color: var(--gold); }
     .origin-thumb { width: 5.5rem; height: 5.5rem; object-fit: contain; object-position: center bottom; background: transparent; border-radius: 4px; flex: 0 0 auto; }
-    .origin-thumb[alt="Yums"] { width: calc(5.5rem * 0.8); height: calc(5.5rem * 0.8); }
-    .origin-thumb[alt="Beingsts"] { width: calc(5.5rem * 1.2); height: calc(5.5rem * 1.2); }
+    .origin-thumb--yums { width: calc(5.5rem * 0.8); height: calc(5.5rem * 0.8); }
+    .origin-thumb--beingsts { width: calc(5.5rem * 1.2); height: calc(5.5rem * 1.2); }
     .origin-list__text strong { display: block; color: var(--gold); font-size: 1.15rem; }
     .origin-hero { margin: 0 0 1.5rem; padding: 0; background: transparent; text-align: center; }
     .origin-hero img { display: block; width: 100%; max-width: 28rem; height: auto; margin: 0 auto; object-fit: contain; }
-    .origin-hero img[alt="Yums"] { width: min(80%, calc(28rem * 0.8)); max-width: calc(28rem * 0.8); }
-    .origin-hero img[alt="Beingsts"] { width: min(120%, calc(28rem * 1.2)); max-width: none; margin-left: 50%; transform: translateX(-50%); }
+    .origin-hero--yums img { width: min(80%, calc(28rem * 0.8)); max-width: calc(28rem * 0.8); }
+    .origin-hero--beingsts img { width: min(120%, calc(28rem * 1.2)); max-width: none; margin-left: 50%; transform: translateX(-50%); }
     .related { display:flex; flex-wrap:wrap; gap: .5rem .85rem; margin: .75rem 0 0; }
     footer { margin-top: 3rem; color: var(--muted); font-size: .85rem; }
     footer a { margin-right: .35rem; }
@@ -160,6 +254,7 @@ export function pageShell(opts) {
       <a href="${esc(BASE)}/site/">Full site</a>
       ${navExtra}
     </nav>
+    ${crumbNav}
     ${bodyHtml}
     <aside class="cta" aria-label="Continue">
       <p>Explore the living world in the full site, or follow the launch.</p>

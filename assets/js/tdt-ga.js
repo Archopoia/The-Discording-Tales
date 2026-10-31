@@ -63,13 +63,17 @@
       '</div>';
 
     var style = document.createElement('style');
+    /* Nav beige / soft-red chrome (not yellow-gold CTA AI default) */
     style.textContent =
-      '#tdt-ga-consent{position:fixed;z-index:99999;left:0;right:0;bottom:0;display:flex;flex-wrap:wrap;gap:.75rem 1.25rem;align-items:center;justify-content:space-between;padding:.85rem 1.1rem;background:#1a1010;color:#f3e6d8;font:15px/1.4 Georgia,serif;border-top:1px solid rgba(201,162,39,.35);box-shadow:0 -8px 24px rgba(0,0,0,.35)}' +
-      '#tdt-ga-consent p{margin:0;max-width:40rem;font-size:.95rem}' +
-      '#tdt-ga-consent a{color:#c9a227}' +
+      '#tdt-ga-consent{position:fixed;z-index:99999;left:0;right:0;bottom:0;display:flex;flex-wrap:wrap;gap:.75rem 1.25rem;align-items:center;justify-content:space-between;padding:.85rem 1.1rem;background:#2a1212;color:#f6edd4;font:15px/1.4 Georgia,serif;border-top:4px double rgba(212,197,168,.55);box-shadow:0 -8px 24px rgba(0,0,0,.35)}' +
+      '#tdt-ga-consent p{margin:0;max-width:40rem;font-size:.95rem;color:#e4d5b8}' +
+      '#tdt-ga-consent a{color:#d4c5a8}' +
+      '#tdt-ga-consent a:hover{color:#fff8e8}' +
       '.tdt-ga-consent__actions{display:flex;gap:.5rem;flex-shrink:0}' +
-      '#tdt-ga-consent button{cursor:pointer;padding:.45rem .9rem;border:1px solid #c9a227;background:rgba(201,162,39,.15);color:#f3e6d8;font:inherit}' +
-      '#tdt-ga-consent .tdt-ga-consent__decline{border-color:rgba(243,230,216,.35);background:transparent}';
+      '#tdt-ga-consent button{cursor:pointer;padding:.5rem 1rem;border:2px solid #f5e6c4;border-radius:2px;background:linear-gradient(180deg,#fff8e8 0%,#d4c5a8 100%);color:#5a1f1f;font:inherit;font-weight:700}' +
+      '#tdt-ga-consent button:hover{filter:brightness(1.04)}' +
+      '#tdt-ga-consent .tdt-ga-consent__decline{border:1px solid rgba(212,197,168,.45);background:rgba(212,197,168,.12);color:#d4c5a8;font-weight:400}' +
+      '#tdt-ga-consent .tdt-ga-consent__decline:hover{background:rgba(212,197,168,.22);color:#fff8e8}';
     document.head.appendChild(style);
     document.body.appendChild(bar);
 

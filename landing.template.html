@@ -40,8 +40,11 @@
     <link rel="preload" as="font" type="font/ttf" href="../assets/Fonts/MysticCards.ttf" crossorigin/>
     <link rel="preload" as="font" type="font/ttf" href="../assets/Fonts/DauphinRegular.ttf" crossorigin/>
     <link rel="preload" as="font" type="font/ttf" href="../assets/Fonts/FanwoodText-Regular.ttf" crossorigin/>
-    <link rel="stylesheet" href="../dist/landing.css?v=73"/>
+    <link rel="stylesheet" href="../dist/landing.css?v=74"/>
     <script src="../assets/js/tdt-ga.js" defer></script>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"{{SITE_PUBLIC_BASE}}/"}]}
+    </script>
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"VideoObject","name":"The Discording Tales project showcase","description":"Project showcase for The Discording Tales: built for people still waiting on another Morrowind. First-person immersive sim action RPG and weird ethno-science-fantasy tabletop book.","thumbnailUrl":["{{SITE_PUBLIC_BASE}}/assets/images/PoC-TDT-October-poster.jpg","{{SITE_PUBLIC_BASE}}/assets/og-tdt-1200x630.jpg"],"contentUrl":"{{SITE_PUBLIC_BASE}}/assets/images/PoC-TDT-October.mp4","uploadDate":"2025-10-01T12:00:00+00:00","duration":"PT1M30S","inLanguage":"en","publisher":{"@type":"Organization","name":"The Discording Tales","url":"{{SITE_PUBLIC_BASE}}/"},"creator":{"@type":"Organization","name":"The Discording Tales","url":"{{SITE_PUBLIC_BASE}}/"}}
     </script>
@@ -73,12 +76,13 @@
             --ink: #f6edd4;
             --ink-soft: #e4d5b8;
             --muted: #c4b59a;
-            --gold: #e4c56a;
-            --gold-deep: #c9a227;
+            /* Champagne beige + soft red (nav baseline) - not yellow-gold */
+            --gold: #d4c5a8;
+            --gold-deep: #c4b59a;
             --burgundy: #3a1010;
             --burgundy-deep: #240a0a;
             --plate: rgba(18, 6, 6, 0.55);
-            --line: rgba(228, 197, 106, 0.45);
+            --line: rgba(212, 197, 168, 0.45);
             --bar: 4.25rem;
             --font-display: "Mystic Cards", Palatino, Georgia, serif;
             --font-body: "Dauphin", Georgia, "Times New Roman", serif;
@@ -109,8 +113,9 @@
             left: .75rem;
             top: .75rem;
             transform: translateY(-150%);
-            background: var(--gold);
-            color: var(--burgundy-deep);
+            background: linear-gradient(180deg, #fff8e8 0%, #d4c5a8 100%);
+            color: #5a1f1f;
+            border: 2px solid #f5e6c4;
             padding: .5rem .8rem;
             z-index: 60;
         }
@@ -122,7 +127,7 @@
             top: 0;
             z-index: 30;
             background: rgba(36, 10, 10, 0.4);
-            border-bottom: 1px solid rgba(228, 197, 106, 0.15);
+            border-bottom: 1px solid rgba(212, 197, 168, 0.18);
             padding-top: env(safe-area-inset-top);
             backdrop-filter: blur(10px);
         }
@@ -172,17 +177,21 @@
             text-align: center;
             font-family: inherit;
         }
-        .btn-gold { background: var(--gold); color: var(--burgundy-deep); border: 1px solid var(--gold); }
-        .btn-gold:hover { background: #fff1c4; }
-        .btn-ghost { border: 1px solid var(--gold); color: var(--ink); background: transparent; }
-        .btn-ghost:hover { background: rgba(228, 197, 106, 0.12); color: #fff8e8; }
+        .btn-gold {
+            background: linear-gradient(180deg, #fff8e8 0%, #d4c5a8 100%);
+            color: #5a1f1f;
+            border: 2px solid #f5e6c4;
+        }
+        .btn-gold:hover { filter: brightness(1.04); }
+        .btn-ghost { border: 1px solid var(--line); color: var(--ink); background: transparent; }
+        .btn-ghost:hover { background: rgba(212, 197, 168, 0.18); color: #fff8e8; }
 
         footer {
             padding: 2rem 1.25rem 2.5rem;
             text-align: center;
             color: var(--muted);
             font-size: .95rem;
-            border-top: 1px solid rgba(228, 197, 106, 0.18);
+            border-top: 1px solid rgba(212, 197, 168, 0.22);
         }
         footer p { margin: .35rem 0; }
         footer a { color: var(--ink-soft); }
@@ -196,7 +205,7 @@
 
     <canvas id="tdt-landing-bg" class="tdt-landing-bg" aria-hidden="true"></canvas>
     <div class="geo" data-geo aria-hidden="true">
-        <img class="is-medium" src="../assets/images/geocosmos-plain_medium.webp" data-src-medium="../assets/images/geocosmos-plain_medium.webp" data-src-full="../assets/images/geocosmos-plain.webp" alt="" width="2600" height="2354" decoding="async" fetchpriority="high"/>
+        <img class="is-medium" src="../assets/images/geocosmos-plain_medium.webp" data-src-medium="../assets/images/geocosmos-plain_medium.webp" data-src-full="../assets/images/geocosmos-plain.webp" alt="Geocosmos map of The Discording Tales underworld" width="2600" height="2354" decoding="async" fetchpriority="high"/>
     </div>
     <div class="tdt-landing-vignette" aria-hidden="true"></div>
 
@@ -214,8 +223,8 @@
         </div>
         <div class="gate-symbol">
             <span class="gate-symbol__spin">
-                <img src="../assets/images/image/image12_display.webp" alt="" class="gate-symbol__base" width="220" height="220"/>
-                <img src="../assets/images/image/image2_display.webp" alt="" class="gate-symbol__coin" width="220" height="220"/>
+                <img src="../assets/images/image/image12_display.webp" alt="Discording Tales emblem base" class="gate-symbol__base" width="220" height="220"/>
+                <img src="../assets/images/image/image2_display.webp" alt="Discording Tales emblem coin" class="gate-symbol__coin" width="220" height="220"/>
             </span>
         </div>
         <div class="gate-edgeblur" aria-hidden="true"></div>
@@ -260,7 +269,7 @@
                 width="720"
                 height="1280"
                 poster="../assets/images/PoC-TDT-October-poster.webp"
-                aria-label="The Discording Tales"
+                aria-label="The Discording Tales project showcase video"
             >
                 <source src="../assets/images/PoC-TDT-October.mp4" type="video/mp4"/>
             </video>
@@ -302,7 +311,7 @@
                 <h2 id="team-title">The Team</h2>
                 <div class="roster">
                     <article class="person person--lead" data-craft="direction">
-                        <img class="avatar" src="../assets/Hugues.W.B.dePingon%20-%20roundvignette.webp" alt="" width="144" height="144" decoding="async" loading="lazy"/>
+                        <img class="avatar" src="../assets/Hugues.W.B.dePingon%20-%20roundvignette.webp" alt="Portrait of Hugues de Pingon" width="144" height="144" decoding="async" loading="lazy"/>
                         <div>
                             <h3>Hugues de Pingon</h3>
                             <p class="role">Creator of the universe, creative director, lead game designer</p>
@@ -310,7 +319,7 @@
                         </div>
                     </article>
                     <article class="person" data-craft="strategy">
-                        <img class="avatar" src="../assets/Patrice%20vignette.webp" alt="" width="144" height="144" decoding="async" loading="lazy"/>
+                        <img class="avatar" src="../assets/Patrice%20vignette.webp" alt="Portrait of Patrice Le" width="144" height="144" decoding="async" loading="lazy"/>
                         <div>
                             <h3>Patrice Le</h3>
                             <p class="role">Strategy, product, and business</p>
@@ -318,7 +327,7 @@
                         </div>
                     </article>
                     <article class="person" data-craft="art">
-                        <img class="avatar" src="../assets/theotime-vignette.webp" alt="" width="144" height="144" decoding="async" loading="lazy"/>
+                        <img class="avatar" src="../assets/theotime-vignette.webp" alt="Portrait of Théotime Millois" width="144" height="144" decoding="async" loading="lazy"/>
                         <div>
                             <h3>Théotime Millois</h3>
                             <p class="role">Creature artist</p>
@@ -385,18 +394,18 @@
                     <div class="pitch-slider__viewport">
                         <button type="button" class="pitch-slider__nav pitch-slider__nav--prev" aria-label="Previous slide"><span aria-hidden="true">‹</span></button>
                         <div class="pitch-slider__track">
-                            <figure class="pitch-slider__slide is-active"><img src="../assets/images/pitch-deck/01.webp" width="1920" height="1080" alt="Pitch slide 1" decoding="async"/></figure>
-                            <figure class="pitch-slider__slide" hidden><img src="../assets/images/pitch-deck/02.webp" width="1920" height="1080" alt="Pitch slide 2" decoding="async" loading="lazy"/></figure>
-                            <figure class="pitch-slider__slide" hidden><img src="../assets/images/pitch-deck/03.webp" width="1920" height="1080" alt="Pitch slide 3" decoding="async" loading="lazy"/></figure>
-                            <figure class="pitch-slider__slide" hidden><img src="../assets/images/pitch-deck/04.webp" width="1920" height="1080" alt="Pitch slide 4" decoding="async" loading="lazy"/></figure>
-                            <figure class="pitch-slider__slide" hidden><img src="../assets/images/pitch-deck/05.webp" width="1920" height="1080" alt="Pitch slide 5" decoding="async" loading="lazy"/></figure>
-                            <figure class="pitch-slider__slide" hidden><img src="../assets/images/pitch-deck/06.webp" width="1920" height="1080" alt="Pitch slide 6" decoding="async" loading="lazy"/></figure>
-                            <figure class="pitch-slider__slide" hidden><img src="../assets/images/pitch-deck/07.webp" width="1920" height="1080" alt="Pitch slide 7" decoding="async" loading="lazy"/></figure>
-                            <figure class="pitch-slider__slide" hidden><img src="../assets/images/pitch-deck/08.webp" width="1920" height="1080" alt="Pitch slide 8" decoding="async" loading="lazy"/></figure>
-                            <figure class="pitch-slider__slide" hidden><img src="../assets/images/pitch-deck/09.webp" width="1920" height="1080" alt="Pitch slide 9" decoding="async" loading="lazy"/></figure>
-                            <figure class="pitch-slider__slide" hidden><img src="../assets/images/pitch-deck/10.webp" width="1920" height="1080" alt="Pitch slide 10" decoding="async" loading="lazy"/></figure>
-                            <figure class="pitch-slider__slide" hidden><img src="../assets/images/pitch-deck/11.webp" width="1920" height="1080" alt="Pitch slide 11" decoding="async" loading="lazy"/></figure>
-                            <figure class="pitch-slider__slide" hidden><img src="../assets/images/pitch-deck/12.webp" width="1920" height="1080" alt="Pitch slide 12" decoding="async" loading="lazy"/></figure>
+                            <figure class="pitch-slider__slide is-active"><img src="../assets/images/pitch-deck/01.webp" width="1920" height="1080" alt="The Discording Tales pitch deck slide 1 of 12" decoding="async"/></figure>
+                            <figure class="pitch-slider__slide" hidden><img src="../assets/images/pitch-deck/02.webp" width="1920" height="1080" alt="The Discording Tales pitch deck slide 2 of 12" decoding="async" loading="lazy"/></figure>
+                            <figure class="pitch-slider__slide" hidden><img src="../assets/images/pitch-deck/03.webp" width="1920" height="1080" alt="The Discording Tales pitch deck slide 3 of 12" decoding="async" loading="lazy"/></figure>
+                            <figure class="pitch-slider__slide" hidden><img src="../assets/images/pitch-deck/04.webp" width="1920" height="1080" alt="The Discording Tales pitch deck slide 4 of 12" decoding="async" loading="lazy"/></figure>
+                            <figure class="pitch-slider__slide" hidden><img src="../assets/images/pitch-deck/05.webp" width="1920" height="1080" alt="The Discording Tales pitch deck slide 5 of 12" decoding="async" loading="lazy"/></figure>
+                            <figure class="pitch-slider__slide" hidden><img src="../assets/images/pitch-deck/06.webp" width="1920" height="1080" alt="The Discording Tales pitch deck slide 6 of 12" decoding="async" loading="lazy"/></figure>
+                            <figure class="pitch-slider__slide" hidden><img src="../assets/images/pitch-deck/07.webp" width="1920" height="1080" alt="The Discording Tales pitch deck slide 7 of 12" decoding="async" loading="lazy"/></figure>
+                            <figure class="pitch-slider__slide" hidden><img src="../assets/images/pitch-deck/08.webp" width="1920" height="1080" alt="The Discording Tales pitch deck slide 8 of 12" decoding="async" loading="lazy"/></figure>
+                            <figure class="pitch-slider__slide" hidden><img src="../assets/images/pitch-deck/09.webp" width="1920" height="1080" alt="The Discording Tales pitch deck slide 9 of 12" decoding="async" loading="lazy"/></figure>
+                            <figure class="pitch-slider__slide" hidden><img src="../assets/images/pitch-deck/10.webp" width="1920" height="1080" alt="The Discording Tales pitch deck slide 10 of 12" decoding="async" loading="lazy"/></figure>
+                            <figure class="pitch-slider__slide" hidden><img src="../assets/images/pitch-deck/11.webp" width="1920" height="1080" alt="The Discording Tales pitch deck slide 11 of 12" decoding="async" loading="lazy"/></figure>
+                            <figure class="pitch-slider__slide" hidden><img src="../assets/images/pitch-deck/12.webp" width="1920" height="1080" alt="The Discording Tales pitch deck slide 12 of 12" decoding="async" loading="lazy"/></figure>
                         </div>
                         <button type="button" class="pitch-slider__nav pitch-slider__nav--next" aria-label="Next slide"><span aria-hidden="true">›</span></button>
                     </div>
