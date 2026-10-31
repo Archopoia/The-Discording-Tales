@@ -5350,7 +5350,7 @@ img.about-team-portrait.about-team-portrait--lead {
     position: absolute;
     top: max(0.65rem, env(safe-area-inset-top, 0px));
     right: max(0.65rem, env(safe-area-inset-right, 0px));
-    z-index: 2;
+    z-index: 3;
     width: 2.6rem;
     height: 2.6rem;
     border: 1px solid rgba(232, 201, 122, 0.45);
@@ -5364,12 +5364,22 @@ img.about-team-portrait.about-team-portrait--lead {
     align-items: center;
     justify-content: center;
     backdrop-filter: blur(8px);
+    -webkit-tap-highlight-color: transparent;
+}
+.scene-lab-close svg {
+    display: block;
+}
+.scene-lab-close.is-close {
+    font-size: 1.65rem;
 }
 .scene-lab-close:hover,
 .scene-lab-close:focus-visible {
     background: rgba(90, 31, 31, 0.9);
     border-color: rgba(232, 201, 122, 0.85);
     outline: none;
+}
+.scene-lab-shell.is-immersive .scene-lab-close {
+    position: fixed;
 }
 .scene-lab-rotate-hint {
     position: absolute;

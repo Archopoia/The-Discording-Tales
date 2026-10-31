@@ -290,19 +290,46 @@ body.cinema main.sheet {
   letter-spacing: .28em;
   text-transform: uppercase;
   font-size: clamp(.92rem, 1.7vw, 1.15rem);
-  color: var(--gold);
+  /* Same muted khaki as main-site .outpost-legal / .site-genre */
+  color: rgba(244, 225, 169, 0.82);
 }
 .chapter--hero h1 {
   width: 100%;
-  /* Brand lock: same Fanwood title as the main site */
+  /* Brand lock: same Fanwood title + main-site title glow/shadow */
   font-family: var(--font-brand, "Fanwood Text", Georgia, "Times New Roman", serif);
   font-weight: 400;
   font-size: clamp(2.6rem, 4.6vw, 5.4rem);
   line-height: .95;
-  letter-spacing: .04em;
+  letter-spacing: .05em;
   margin: 0;
   text-wrap: balance;
-  text-shadow: 0 4px 32px rgba(0,0,0,.4);
+  color: var(--ink);
+  position: relative;
+  text-shadow:
+    2px 2px 0px rgba(90, 31, 31, 0.5),
+    4px 4px 8px rgba(0, 0, 0, 0.4),
+    0 0 16px rgba(245, 230, 196, 0.3),
+    0 0 32px rgba(245, 230, 196, 0.1);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5))
+          drop-shadow(0 0 24px rgba(245, 230, 196, 0.4));
+  animation: titleGlow 4s ease-in-out infinite alternate;
+}
+@keyframes titleGlow {
+  0% {
+    text-shadow:
+      2px 2px 0px rgba(90, 31, 31, 0.5),
+      4px 4px 8px rgba(0, 0, 0, 0.4),
+      0 0 16px rgba(245, 230, 196, 0.3),
+      0 0 32px rgba(245, 230, 196, 0.1);
+  }
+  100% {
+    text-shadow:
+      2px 2px 0px rgba(90, 31, 31, 0.5),
+      4px 4px 8px rgba(0, 0, 0, 0.4),
+      0 0 24px rgba(245, 230, 196, 0.5),
+      0 0 48px rgba(212, 197, 168, 0.2),
+      0 0 64px rgba(245, 230, 196, 0.15);
+  }
 }
 .chapter--hero .tagline {
   margin: 0;
@@ -345,7 +372,7 @@ body.cinema main.sheet {
   gap: .45rem;
   position: relative;
   padding: .4rem .85rem;
-  color: #d4c5a8;
+  color: rgba(244, 225, 169, 0.82);
   font-family: var(--font-display);
   font-weight: 400;
   font-size: .92rem;
@@ -373,14 +400,14 @@ body.cinema main.sheet {
   left: 50%;
   width: 80%;
   height: 2px;
-  background: #d4c5a8;
-  box-shadow: 0 0 8px rgba(212, 197, 168, .5);
+  background: rgba(244, 225, 169, 0.82);
+  box-shadow: 0 0 8px rgba(244, 225, 169, .45);
   transform: translateX(-50%) scaleX(0);
   transition: transform .5s cubic-bezier(.4, 0, .2, 1);
 }
 .hero-tab:hover,
 .hero-tab:focus-visible {
-  color: #d4c5a8;
+  color: rgba(244, 225, 169, 0.95);
   background:
     linear-gradient(135deg, rgba(212, 197, 168, .3), rgba(245, 230, 196, .2)),
     rgba(212, 197, 168, .15);
@@ -872,7 +899,7 @@ body.cinema main.sheet {
   position: absolute;
   top: max(0.65rem, env(safe-area-inset-top, 0px));
   right: max(0.65rem, env(safe-area-inset-right, 0px));
-  z-index: 2;
+  z-index: 3;
   width: 2.6rem;
   height: 2.6rem;
   border: 1px solid rgba(232, 201, 122, 0.45);
@@ -886,12 +913,22 @@ body.cinema main.sheet {
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(8px);
+  -webkit-tap-highlight-color: transparent;
+}
+.scene-lab-close svg {
+  display: block;
+}
+.scene-lab-close.is-close {
+  font-size: 1.65rem;
 }
 .scene-lab-close:hover,
 .scene-lab-close:focus-visible {
   background: rgba(90, 31, 31, 0.9);
   border-color: rgba(232, 201, 122, 0.85);
   outline: none;
+}
+.scene-lab-shell.is-immersive .scene-lab-close {
+  position: fixed;
 }
 .scene-lab-rotate-hint {
   position: absolute;
@@ -929,7 +966,11 @@ html.scene-lab-immersive-open body {
 }
 .triad h2 {
   margin: 0 0 .55rem;
+  font-family: var(--font-display);
+  font-weight: 400;
   font-size: clamp(1.7rem, 3vw, 2.4rem);
+  color: var(--ink);
+  letter-spacing: .04em;
 }
 .triad p,
 .triad span {
@@ -940,14 +981,6 @@ html.scene-lab-immersive-open body {
 .triad .pair {
   display: grid;
   gap: 1.15rem;
-}
-.triad b {
-  display: block;
-  margin: 0 0 .35rem;
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(1.25rem, 2vw, 1.6rem);
-  color: var(--gold);
 }
 @media (min-width: 52rem) {
   .triad {

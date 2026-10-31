@@ -1,15 +1,16 @@
 /**
  * Scene-lab immersive shell (landing + /site/).
  *
- * Desktop / wide: pointer enter on the embed → cover the viewport.
- * Phone: first tap inside the lab (postMessage) → same; try fullscreen +
- * landscape lock when the gesture allows it.
- * Exit: mouse leaves the picture onto the letterbox / elsewhere (desktop),
- * top-right close, Escape, or browser fullscreen exit.
+ * Enter only via the top-right fullscreen control (or Escape to leave).
+ * Phone: click also requests browser fullscreen + landscape lock.
+ * No hover / auto-enter.
  */
 
 const MSG = 'tdt-scene-lab';
-const COOLDOWN_MS = 700;
+
+const ICON_EXPAND =
+  '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M3 9V3h6v2H5v4H3zm12-6h6v6h-2V5h-4V3zM3 15h2v4h4v2H3v-6zm16 0h2v6h-6v-2h4v-4z"/></svg>';
+const ICON_CLOSE = '<span aria-hidden="true">×</span>';
 
 function isPhoneLike(): boolean {
   if (typeof window === 'undefined') return false;
@@ -65,6 +66,20 @@ function exitBrowserFullscreen(): void {
   }
 }
 
+function paintToggle(btn: HTMLButtonElement, immersive: boolean): void {
+  if (immersive) {
+    btn.classList.add('is-close');
+    btn.setAttribute('aria-label', 'Close full screen');
+    btn.setAttribute('title', 'Close full screen');
+    btn.innerHTML = ICON_CLOSE;
+  } else {
+    btn.classList.remove('is-close');
+    btn.setAttribute('aria-label', 'Full screen');
+    btn.setAttribute('title', 'Full screen');
+    btn.innerHTML = ICON_EXPAND;
+  }
+}
+
 function wrapFrame(iframe: HTMLIFrameElement): HTMLElement {
   const existing = iframe.closest('.scene-lab-shell');
   if (existing) return existing as HTMLElement;
@@ -74,13 +89,11 @@ function wrapFrame(iframe: HTMLIFrameElement): HTMLElement {
   iframe.parentNode?.insertBefore(shell, iframe);
   shell.appendChild(iframe);
 
-  const close = document.createElement('button');
-  close.type = 'button';
-  close.className = 'scene-lab-close';
-  close.setAttribute('aria-label', 'Close full screen');
-  close.innerHTML = '<span aria-hidden="true">×</span>';
-  close.hidden = true;
-  shell.appendChild(close);
+  const toggle = document.createElement('button');
+  toggle.type = 'button';
+  toggle.className = 'scene-lab-close';
+  paintToggle(toggle, false);
+  shell.appendChild(toggle);
 
   const hint = document.createElement('p');
   hint.className = 'scene-lab-rotate-hint';
@@ -113,22 +126,19 @@ function enhance(iframe: HTMLIFrameElement): void {
   }
 
   const shell = wrapFrame(iframe);
-  const close = shell.querySelector<HTMLButtonElement>('.scene-lab-close');
+  const toggle = shell.querySelector<HTMLButtonElement>('.scene-lab-close');
   const hint = shell.querySelector<HTMLElement>('.scene-lab-rotate-hint');
-  if (!close || !hint) return;
+  if (!toggle || !hint) return;
 
   let immersive = false;
-  let cooling = false;
 
-  const enter = (fromGesture: boolean) => {
-    if (immersive || cooling) return;
+  const enter = () => {
+    if (immersive) return;
     immersive = true;
     shell.classList.add('is-immersive');
-    close.hidden = false;
-
     document.documentElement.classList.add('scene-lab-immersive-open');
-    close.hidden = false;
-    close.focus({ preventScroll: true });
+    paintToggle(toggle, true);
+    toggle.focus({ preventScroll: true });
 
     const phone = isPhoneLike();
     if (phone) {
@@ -140,7 +150,7 @@ function enhance(iframe: HTMLIFrameElement): void {
       hideHint();
       window.addEventListener('orientationchange', hideHint);
       window.matchMedia('(orientation: landscape)').addEventListener?.('change', hideHint);
-      if (fromGesture) void tryFullscreenAndLandscape(shell);
+      void tryFullscreenAndLandscape(shell);
       window.setTimeout(() => {
         if (window.matchMedia('(orientation: landscape)').matches) hint.hidden = true;
       }, 4500);
@@ -156,72 +166,24 @@ function enhance(iframe: HTMLIFrameElement): void {
     immersive = false;
     shell.classList.remove('is-immersive');
     document.documentElement.classList.remove('scene-lab-immersive-open');
-    close.hidden = true;
+    paintToggle(toggle, false);
     hint.hidden = true;
     exitBrowserFullscreen();
     iframe.contentWindow?.postMessage({ type: MSG, action: 'immersive-off' }, '*');
-
-    cooling = true;
-    window.setTimeout(() => {
-      cooling = false;
-    }, COOLDOWN_MS);
   };
 
-  close.addEventListener('click', (e) => {
+  toggle.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    exit();
+    if (immersive) exit();
+    else enter();
   });
 
-  // Desktop / wide: intentional hover (dwell) expands it - not a drive-by while scrolling.
-  let hoverTimer: number | null = null;
-  const HOVER_DWELL_MS = 280;
-  const onPointerEnterPicture = (e: PointerEvent) => {
-    if (e.pointerType === 'touch') return;
-    if (isPhoneLike()) return;
-    if (hoverTimer != null) window.clearTimeout(hoverTimer);
-    hoverTimer = window.setTimeout(() => {
-      hoverTimer = null;
-      enter(false);
-    }, HOVER_DWELL_MS);
-  };
-  const onPointerLeavePicture = (e: PointerEvent) => {
-    if (e.pointerType === 'touch') return;
-    if (hoverTimer != null) {
-      window.clearTimeout(hoverTimer);
-      hoverTimer = null;
-    }
-    // Desktop: leave picture onto black letterbox / page → exit (keep × usable).
-    if (!isPhoneLike() && immersive) {
-      const to = e.relatedTarget as Node | null;
-      if (to && (close === to || close.contains(to))) return;
-      exit();
-    }
-  };
-  iframe.addEventListener('pointerenter', onPointerEnterPicture);
-  iframe.addEventListener('pointerleave', onPointerLeavePicture);
-  // Hovering the black bars (shell, not the picture) also exits.
-  shell.addEventListener('pointermove', (e) => {
-    if (!immersive || isPhoneLike()) return;
-    if (e.pointerType === 'touch') return;
-    const t = e.target as Node | null;
-    if (!t || t === iframe || iframe.contains(t)) return;
-    if (t === close || close.contains(t)) return;
-    if (t === shell || shell.contains(t)) exit();
-  });
-  // Explicit click also enters (covers trackpad / fidgety cursors).
-  iframe.addEventListener('click', (e) => {
-    if (isPhoneLike()) return;
-    if ((e.target as HTMLElement)?.closest?.('.scene-lab-close')) return;
-    enter(false);
-  });
-
-  // Phone: first interaction arrives via postMessage from the iframe (clicks don't bubble).
+  // Legacy iframe messages: ignore auto-enter; still honor explicit exit.
   window.addEventListener('message', (ev) => {
     const data = ev.data;
     if (!data || data.type !== MSG) return;
     if (ev.source !== iframe.contentWindow) return;
-    if (data.action === 'enter') enter(true);
     if (data.action === 'exit') exit();
   });
 
@@ -229,12 +191,6 @@ function enhance(iframe: HTMLIFrameElement): void {
     if (e.key === 'Escape' && immersive) {
       e.preventDefault();
       exit();
-    }
-  });
-
-  document.addEventListener('fullscreenchange', () => {
-    if (!document.fullscreenElement && immersive && isPhoneLike()) {
-      // User swiped out of OS fullscreen - keep CSS immersive unless they hit close.
     }
   });
 

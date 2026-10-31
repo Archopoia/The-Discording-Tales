@@ -83,6 +83,7 @@
       letter-spacing: 0.04em;
     }
     .stage-wrap {
+      position: relative;
       padding: 1rem 1.25rem 2.5rem;
       max-width: 1400px;
       margin: 0 auto;
@@ -452,7 +453,7 @@
       border-radius: 0;
     }
     .scene-lab-close {
-      position: fixed;
+      position: absolute;
       top: max(0.65rem, env(safe-area-inset-top, 0px));
       right: max(0.65rem, env(safe-area-inset-right, 0px));
       z-index: 50;
@@ -468,7 +469,10 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      -webkit-tap-highlight-color: transparent;
     }
+    .scene-lab-close svg { display: block; }
+    .stage-wrap.is-immersive .scene-lab-close { position: fixed; }
     .scene-lab-rotate-hint {
       position: fixed;
       left: 50%;
@@ -1363,13 +1367,9 @@
 
     function bindPointer() {
       const embedMode = document.documentElement.classList.contains('embed');
-      const requestParentEnter = () => {
-        if (!embedMode) return;
-        if (!window.parent || window.parent === window) return;
-        try {
-          window.parent.postMessage({ type: 'tdt-scene-lab', action: 'enter' }, '*');
-        } catch (_) { /* ignore */ }
-      };
+      const ICON_EXPAND =
+        '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M3 9V3h6v2H5v4H3zm12-6h6v6h-2V5h-4V3zM3 15h2v4h4v2H3v-6zm16 0h2v6h-6v-2h4v-4z"/></svg>';
+      const ICON_CLOSE = '<span aria-hidden="true">×</span>';
 
       const tick = (e) => {
         lastX = e.clientX;
@@ -1381,13 +1381,7 @@
       };
       const isTouch = (e) => e.pointerType === 'touch';
       stage.addEventListener('pointermove', tick, { passive: true });
-      stage.addEventListener('pointerdown', (e) => {
-        // Phone / first press: ask parent to go immersive (clicks don't bubble out of iframe).
-        if (isTouch(e) || (embed && window.matchMedia('(pointer: coarse)').matches)) {
-          requestParentEnter();
-        }
-        tick(e);
-      });
+      stage.addEventListener('pointerdown', tick);
       stage.addEventListener('pointerup', (e) => {
         if (!isTouch(e)) return;
         tick(e);
@@ -1419,16 +1413,16 @@
       }
       syncCalloutScale();
 
-      // Standalone /scene-lab/ page (not embed): same immersive behaviour on the stage itself.
+      // Standalone /scene-lab/ page (not embed): fullscreen via top-right control only.
       if (!embedMode) {
         const wrap = document.querySelector('.stage-wrap');
-        const close = document.createElement('button');
-        close.type = 'button';
-        close.className = 'scene-lab-close';
-        close.hidden = true;
-        close.setAttribute('aria-label', 'Close full screen');
-        close.innerHTML = '<span aria-hidden="true">×</span>';
-        document.body.appendChild(close);
+        const toggle = document.createElement('button');
+        toggle.type = 'button';
+        toggle.className = 'scene-lab-close';
+        toggle.setAttribute('aria-label', 'Full screen');
+        toggle.setAttribute('title', 'Full screen');
+        toggle.innerHTML = ICON_EXPAND;
+        (wrap || document.body).appendChild(toggle);
         const hint = document.createElement('p');
         hint.className = 'scene-lab-rotate-hint';
         hint.hidden = true;
@@ -1440,12 +1434,26 @@
           window.matchMedia('(pointer: coarse)').matches &&
           window.matchMedia('(max-width: 900px)').matches;
 
+        const paint = (on) => {
+          if (on) {
+            toggle.classList.add('is-close');
+            toggle.setAttribute('aria-label', 'Close full screen');
+            toggle.setAttribute('title', 'Close full screen');
+            toggle.innerHTML = ICON_CLOSE;
+          } else {
+            toggle.classList.remove('is-close');
+            toggle.setAttribute('aria-label', 'Full screen');
+            toggle.setAttribute('title', 'Full screen');
+            toggle.innerHTML = ICON_EXPAND;
+          }
+        };
+
         const enterLocal = async () => {
           if (immersive) return;
           immersive = true;
           document.documentElement.classList.add('scene-lab-local-immersive');
           if (wrap) wrap.classList.add('is-immersive');
-          close.hidden = false;
+          paint(true);
           if (phoneLike()) {
             hint.hidden = false;
             try {
@@ -1461,22 +1469,19 @@
           immersive = false;
           document.documentElement.classList.remove('scene-lab-local-immersive');
           wrap?.classList.remove('is-immersive');
-          close.hidden = true;
+          paint(false);
           hint.hidden = true;
           try { document.exitFullscreen?.(); } catch (_) { /* ignore */ }
           try { screen.orientation?.unlock?.(); } catch (_) { /* ignore */ }
         };
-        close.addEventListener('click', exitLocal);
+        toggle.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          if (immersive) exitLocal();
+          else enterLocal();
+        });
         document.addEventListener('keydown', (e) => {
           if (e.key === 'Escape') exitLocal();
-        });
-        stage.addEventListener('pointerenter', (e) => {
-          if (e.pointerType === 'touch' || phoneLike()) return;
-          enterLocal();
-        });
-        stage.addEventListener('pointerdown', (e) => {
-          if (!phoneLike() && e.pointerType !== 'touch') return;
-          enterLocal();
         });
       }
     }

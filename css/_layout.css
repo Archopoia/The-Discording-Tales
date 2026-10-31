@@ -729,7 +729,8 @@
 
 .site-genre {
     font-size: 1.1rem;
-    color: var(--tdt-beige-warm);
+    /* Same muted khaki as .outpost-legal */
+    color: rgba(244, 225, 169, 0.82);
     /* Brand lock: subtitle stays Fanwood. */
     font-family: var(--font-brand);
     font-style: normal;
