@@ -1,21 +1,21 @@
 {
-  "generatedAt": "2026-10-31T11:59:58.487Z",
+  "generatedAt": "2026-10-31T12:09:38.129Z",
   "paths": [
     "/world/",
     "/world/peoples/",
     "/world/origins/",
-    "/world/peoples/aristois/",
-    "/world/peoples/griscribes/",
+    "/world/peoples/aristese/",
+    "/world/peoples/greyscribes/",
     "/world/peoples/navillis/",
-    "/world/peoples/meridiens/",
-    "/world/peoples/hauts-ylfes/",
-    "/world/peoples/ylfes-pales/",
-    "/world/peoples/ylfes-des-lacs/",
+    "/world/peoples/meridians/",
+    "/world/peoples/great-ylves/",
+    "/world/peoples/pale-ylves/",
+    "/world/peoples/lake-ylves/",
     "/world/peoples/iqqars/",
-    "/world/peoples/slaadeens/",
+    "/world/peoples/slaadeans/",
     "/world/peoples/tchalkchais/",
-    "/world/origins/yommes/",
-    "/world/origins/yorres/",
-    "/world/origins/bestres/"
+    "/world/origins/yums/",
+    "/world/origins/yors/",
+    "/world/origins/beingsts/"
   ]
 }

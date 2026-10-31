@@ -363,6 +363,7 @@ ${peoplesList}
 
   for (const id of ['yommes', 'yorres', 'bestres']) {
     const m = ORIGIN_META[id];
+    const enSlug = originSeoSlug(id);
     const title = en[m.titleKey];
     const body = en[m.bodyKey];
     const how = en[m.howKey];
@@ -370,10 +371,13 @@ ${peoplesList}
     const aka = m.akaKey ? en[m.akaKey] : '';
     const members = byOrigin[id] || [];
     const memberLinks = members
-      .map((p) => `<li><a href="${esc(BASE)}/world/peoples/${esc(p.slug)}/">${esc(p.name)}</a> - ${esc(p.hook)}</li>`)
+      .map(
+        (p) =>
+          `<li><a href="${esc(BASE)}/world/peoples/${esc(peopleSeoSlug(p.slug))}/">${esc(p.name)}</a> - ${esc(p.hook)}</li>`,
+      )
       .join('\n');
     const description = metaDescription(title, how, from, 'in The Discording Tales.');
-    paths.push(`/world/origins/${id}/`);
+    paths.push(`/world/origins/${enSlug}/`);
 
     const hero = m.image
       ? `<figure class="origin-hero"><img src="${esc(BASE)}/assets/images/people/${esc(m.image)}" alt="${esc(title)}" width="900" height="900" loading="eager" decoding="async"/></figure>`
@@ -389,20 +393,20 @@ ${peoplesList}
       <ul>${memberLinks}</ul>
     </article>`;
 
-    const dir = path.join(originsDir, id);
+    const dir = path.join(originsDir, enSlug);
     fs.mkdirSync(dir, { recursive: true });
     fs.writeFileSync(
       path.join(dir, 'index.html'),
       pageShell({
         title: `${title} | Origins | THE DISCORDING TALES`,
         description,
-        canonical: `${BASE}/world/origins/${id}/`,
+        canonical: `${BASE}/world/origins/${enSlug}/`,
         jsonLd: JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'Article',
           headline: title,
           description,
-          url: `${BASE}/world/origins/${id}/`,
+          url: `${BASE}/world/origins/${enSlug}/`,
           isPartOf: { '@type': 'WebSite', name: 'THE DISCORDING TALES', url: `${BASE}/` },
         }),
         bodyHtml: originBody,
@@ -411,6 +415,19 @@ ${peoplesList}
       }),
       'utf8',
     );
+
+    if (enSlug !== id) {
+      const legacyDir = path.join(originsDir, id);
+      fs.mkdirSync(legacyDir, { recursive: true });
+      fs.writeFileSync(
+        path.join(legacyDir, 'index.html'),
+        redirectShell({
+          to: `${BASE}/world/origins/${enSlug}/`,
+          title: `${title} moved | THE DISCORDING TALES`,
+        }),
+        'utf8',
+      );
+    }
   }
 
   writeManifestFile(worldDir, paths);

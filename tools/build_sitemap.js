@@ -95,7 +95,7 @@ ${alternates}
     .join('\n');
 
   /** Indexable SEO pages from build_seo_*.js manifests (not hash SPA fragments). */
-  const seoManifestDirs = ['lore', 'world', 'guide', 'compare', 'character-sheet'];
+  const seoManifestDirs = ['lore', 'world', 'guide', 'compare', 'character-sheet', 'tabletop', 'rules'];
   const seoPaths = [];
   for (const dir of seoManifestDirs) {
     const manifestPath = path.join(root, dir, 'manifest.json');
@@ -110,8 +110,14 @@ ${alternates}
     '/world/origins/',
     '/guide/',
     '/guide/ethno-science-fantasy/',
+    '/guide/morrowind-immersive-sim-action-rpg/',
     '/compare/',
+    '/compare/morrowind-like-action-rpg/',
+    '/compare/weird-fantasy-ttrpg/',
     '/character-sheet/',
+    '/tabletop/',
+    '/rules/',
+    '/rules/attributes/',
   ]);
   const loreBlocks = [...new Set(seoPaths)]
     .map((p) => {
