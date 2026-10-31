@@ -11,8 +11,11 @@ import {
   formatRaceBlurb,
   metaDescription,
   noEmDash,
+  originSeoSlug,
   pageShell,
+  peopleSeoSlug,
   plainText,
+  redirectShell,
   resolveI18n,
   writeManifestFile,
 } from './seo-shared.js';
@@ -124,7 +127,9 @@ function build() {
       <li><a href="${esc(BASE)}/world/peoples/">All peoples</a><p>Ten playable peoples with tribes, attributes, and relations.</p></li>
       <li><a href="${esc(BASE)}/world/origins/">Three origins</a><p>How Yums, Yors, and Beingsts came to the surface.</p></li>
       <li><a href="${esc(BASE)}/lore/">Universe lore</a><p>Rildées, festivals, artefacts, and cosmology.</p></li>
+      <li><a href="${esc(BASE)}/rules/">Rules overview</a><p>Attributes and how the tabletop system hangs together.</p></li>
       <li><a href="${esc(BASE)}/guide/ethno-science-fantasy/">What is ethno-science-fantasy?</a><p>The genre frame for this setting.</p></li>
+      <li><a href="${esc(BASE)}/guide/morrowind-immersive-sim-action-rpg/">Morrowind / immersive sim Action RPG</a><p>Why the video game is built for that appetite.</p></li>
     </ul>`;
   fs.writeFileSync(
     path.join(worldDir, 'index.html'),
@@ -156,10 +161,10 @@ function build() {
   }
 
   const peoplesList = peoples
-    .map(
-      (p) =>
-        `<li><a href="${esc(BASE)}/world/peoples/${esc(p.slug)}/">${esc(p.name)}</a><p>${esc(p.hook)} ${esc(p.morality)}</p></li>`,
-    )
+    .map((p) => {
+      const seo = peopleSeoSlug(p.slug);
+      return `<li><a href="${esc(BASE)}/world/peoples/${esc(seo)}/">${esc(p.name)}</a><p>${esc(p.hook)} ${esc(p.morality)}</p></li>`;
+    })
     .join('\n');
 
   const peoplesHubBody = `
@@ -171,15 +176,15 @@ ${peoplesList}
     </ul>
     <h2>By origin</h2>
     <p class="related">
-      <a href="${esc(BASE)}/world/origins/yommes/">Yums</a>
-      <a href="${esc(BASE)}/world/origins/yorres/">Yors</a>
-      <a href="${esc(BASE)}/world/origins/bestres/">Beingsts</a>
+      <a href="${esc(BASE)}/world/origins/yums/">Yums</a>
+      <a href="${esc(BASE)}/world/origins/yors/">Yors</a>
+      <a href="${esc(BASE)}/world/origins/beingsts/">Beingsts</a>
     </p>`;
 
   const peoplesItemList = peoples.map((p, i) => ({
     '@type': 'ListItem',
     position: i + 1,
-    url: `${BASE}/world/peoples/${p.slug}/`,
+    url: `${BASE}/world/peoples/${peopleSeoSlug(p.slug)}/`,
     name: p.name,
   }));
 
@@ -205,11 +210,13 @@ ${peoplesList}
     }),
     'utf8',
   );
-  paths.push(...peoples.map((p) => `/world/peoples/${p.slug}/`));
-
-  // Per-people pages
+  // Per-people pages (EN SEO slug canonical; legacy FR slug ? redirect)
   for (const p of peoples) {
+    const seoSlug = peopleSeoSlug(p.slug);
+    const originEn = originSeoSlug(p.origin);
     const originLabel = en[ORIGIN_META[p.origin]?.titleKey] || p.origin;
+    paths.push(`/world/peoples/${seoSlug}/`);
+
     const raceBlocks = p.races
       .map((r) => {
         const body = formatRaceBlurb(r.blurb);
@@ -219,7 +226,7 @@ ${peoplesList}
 
     const siblings = peoples
       .filter((x) => x.origin === p.origin && x.slug !== p.slug)
-      .map((x) => `<a href="${esc(BASE)}/world/peoples/${esc(x.slug)}/">${esc(x.name)}</a>`)
+      .map((x) => `<a href="${esc(BASE)}/world/peoples/${esc(peopleSeoSlug(x.slug))}/">${esc(x.name)}</a>`)
       .join(' ');
 
     const description = metaDescription(
@@ -230,7 +237,7 @@ ${peoplesList}
     );
 
     const articleBody = `
-    <p class="kicker"><a href="${esc(BASE)}/world/peoples/">Peoples</a> · <a href="${esc(BASE)}/world/origins/${esc(p.origin)}/">${esc(originLabel)}</a></p>
+    <p class="kicker"><a href="${esc(BASE)}/world/peoples/">Peoples</a> · <a href="${esc(BASE)}/world/origins/${esc(originEn)}/">${esc(originLabel)}</a></p>
     <h1>${esc(p.name)}</h1>
     <p>
       <span class="meta-chip">${esc(ORIGIN_META[p.origin]?.badge || originLabel)}</span>
@@ -239,7 +246,7 @@ ${peoplesList}
     <p class="lede">${esc(p.hook)}</p>
     <article>
       <h2>In the setting</h2>
-      <p>The <strong>${esc(p.name)}</strong> are a people of the <a href="${esc(BASE)}/world/origins/${esc(p.origin)}/">${esc(originLabel)}</a> origin in The Discording Tales / Des Récits Discordants - an ethno-science-fantasy world without humans. Their racial morality is framed as <strong>${esc(p.morality)}</strong>.</p>
+      <p>The <strong>${esc(p.name)}</strong> are a people of the <a href="${esc(BASE)}/world/origins/${esc(originEn)}/">${esc(originLabel)}</a> origin in The Discording Tales / Des Récits Discordants - an ethno-science-fantasy world without humans. Their racial morality is framed as <strong>${esc(p.morality)}</strong>.</p>
       ${p.relations ? `<h2>Relations</h2><p>${esc(p.relations)}</p>` : ''}
       <h2>Lineages</h2>
       ${raceBlocks || '<p>See the interactive peoples tree on the main site for lineage detail.</p>'}
@@ -249,14 +256,14 @@ ${peoplesList}
       ${siblings ? `<h2>Other ${esc(originLabel)}</h2><p class="related">${siblings}</p>` : ''}
     </article>`;
 
-    const dir = path.join(peoplesDir, p.slug);
+    const dir = path.join(peoplesDir, seoSlug);
     fs.mkdirSync(dir, { recursive: true });
     fs.writeFileSync(
       path.join(dir, 'index.html'),
       pageShell({
         title: `${p.name} | Peoples | THE DISCORDING TALES`,
         description,
-        canonical: `${BASE}/world/peoples/${p.slug}/`,
+        canonical: `${BASE}/world/peoples/${seoSlug}/`,
         jsonLd: JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'Article',
@@ -287,9 +294,9 @@ ${peoplesList}
           },
           mainEntityOfPage: {
             '@type': 'WebPage',
-            '@id': `${BASE}/world/peoples/${p.slug}/`,
+            '@id': `${BASE}/world/peoples/${seoSlug}/`,
           },
-          url: `${BASE}/world/peoples/${p.slug}/`,
+          url: `${BASE}/world/peoples/${seoSlug}/`,
         }),
         bodyHtml: articleBody,
         ctaPrimaryHref: `${BASE}/site/#peoples`,
@@ -297,6 +304,19 @@ ${peoplesList}
       }),
       'utf8',
     );
+
+    if (seoSlug !== p.slug) {
+      const legacyDir = path.join(peoplesDir, p.slug);
+      fs.mkdirSync(legacyDir, { recursive: true });
+      fs.writeFileSync(
+        path.join(legacyDir, 'index.html'),
+        redirectShell({
+          to: `${BASE}/world/peoples/${seoSlug}/`,
+          title: `${p.name} moved | THE DISCORDING TALES`,
+        }),
+        'utf8',
+      );
+    }
   }
 
   // Origins hub + pages
@@ -308,12 +328,13 @@ ${peoplesList}
       ${['yommes', 'yorres', 'bestres']
         .map((id) => {
           const m = ORIGIN_META[id];
+          const enSlug = originSeoSlug(id);
           const title = en[m.titleKey];
           const how = en[m.howKey];
           const img = m.image
             ? `<img class="origin-thumb" src="${esc(BASE)}/assets/images/people/${esc(m.image)}" alt="${esc(title)}" width="320" height="320" loading="lazy" decoding="async"/>`
             : '';
-          return `<li><a href="${esc(BASE)}/world/origins/${id}/">${img}<span class="origin-list__text"><strong>${esc(title)}</strong><p>${esc(how)} - ${esc(en[m.fromKey] || '')}</p></span></a></li>`;
+          return `<li><a href="${esc(BASE)}/world/origins/${enSlug}/">${img}<span class="origin-list__text"><strong>${esc(title)}</strong><p>${esc(how)} - ${esc(en[m.fromKey] || '')}</p></span></a></li>`;
         })
         .join('\n')}
     </ul>`;

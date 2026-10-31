@@ -152,7 +152,10 @@ export function pageShell(opts) {
       <a class="brand" href="${esc(BASE)}/">THE DISCORDING TALES</a>
       <a href="${esc(BASE)}/world/peoples/">Peoples</a>
       <a href="${esc(BASE)}/lore/">Lore</a>
-      <a href="${esc(BASE)}/guide/ethno-science-fantasy/">Guide</a>
+      <a href="${esc(BASE)}/rules/">Rules</a>
+      <a href="${esc(BASE)}/guide/">Guides</a>
+      <a href="${esc(BASE)}/compare/">Compare</a>
+      <a href="${esc(BASE)}/tabletop/">Tabletop</a>
       <a href="${esc(BASE)}/site/">Full site</a>
       ${navExtra}
     </nav>
@@ -166,13 +169,19 @@ export function pageShell(opts) {
       </div>
     </aside>
     <footer>
-      <p>The Discording Tales / Des Récits Discordants - ethno-science-fantasy Action RPG &amp; tabletop book.</p>
+      <p>The Discording Tales / Des Récits Discordants - weird ethno-science-fantasy first-person immersive sim Action RPG &amp; tabletop book. Built for people still waiting on another Morrowind.</p>
       <p>
+        <a href="${esc(BASE)}/">Landing</a> ·
         <a href="${esc(BASE)}/world/peoples/">Peoples</a> ·
+        <a href="${esc(BASE)}/world/origins/">Origins</a> ·
         <a href="${esc(BASE)}/lore/">Lore</a> ·
-        <a href="${esc(BASE)}/guide/ethno-science-fantasy/">Guide</a> ·
+        <a href="${esc(BASE)}/rules/">Rules</a> ·
+        <a href="${esc(BASE)}/guide/ethno-science-fantasy/">Ethno guide</a> ·
+        <a href="${esc(BASE)}/guide/morrowind-immersive-sim-action-rpg/">Morrowind / imsim</a> ·
+        <a href="${esc(BASE)}/compare/weird-fantasy-ttrpg/">Weird TTRPG</a> ·
+        <a href="${esc(BASE)}/compare/morrowind-like-action-rpg/">Morrowind-like ARPG</a> ·
+        <a href="${esc(BASE)}/tabletop/">Tabletop book</a> ·
         <a href="${esc(BASE)}/character-sheet/">Character sheet</a> ·
-        <a href="${esc(BASE)}/compare/weird-fantasy-ttrpg/">Compare</a> ·
         <a href="${esc(BASE)}/privacy">Privacy</a> ·
         <a href="${esc(BASE)}/impressum">Impressum</a>
       </p>
@@ -190,6 +199,60 @@ export function writeManifestFile(outDir, paths) {
     paths: [...new Set(paths)],
   };
   fs.writeFileSync(path.join(outDir, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n', 'utf8');
+}
+
+/**
+ * Static redirect page for GitHub Pages (no true 301). Canonical + refresh to target.
+ * @param {{ to: string, title?: string }} opts
+ */
+export function redirectShell(opts) {
+  const to = opts.to;
+  const title = opts.title || 'Moved';
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>${esc(title)}</title>
+  <link rel="canonical" href="${esc(to)}"/>
+  <meta name="robots" content="noindex, follow"/>
+  <meta http-equiv="refresh" content="0;url=${esc(to)}"/>
+  <script>location.replace(${JSON.stringify(to)});</script>
+</head>
+<body>
+  <p>This page moved to <a href="${esc(to)}">${esc(to)}</a>.</p>
+</body>
+</html>
+`;
+}
+
+/** Legacy FR book slug → EN SEO slug (peoples). Same-value keys are no-ops. */
+export const PEOPLE_EN_SLUG = {
+  aristois: 'aristese',
+  griscribes: 'greyscribes',
+  navillis: 'navillis',
+  meridiens: 'meridians',
+  'hauts-ylfes': 'great-ylves',
+  'ylfes-pales': 'pale-ylves',
+  'ylfes-des-lacs': 'lake-ylves',
+  iqqars: 'iqqars',
+  slaadeens: 'slaadeans',
+  tchalkchais: 'tchalkchais',
+};
+
+/** Legacy origin folder → EN SEO slug. */
+export const ORIGIN_EN_SLUG = {
+  yommes: 'yums',
+  yorres: 'yors',
+  bestres: 'beingsts',
+};
+
+export function peopleSeoSlug(legacy) {
+  return PEOPLE_EN_SLUG[legacy] || legacy;
+}
+
+export function originSeoSlug(legacy) {
+  return ORIGIN_EN_SLUG[legacy] || legacy;
 }
 
 export function formatRaceBlurb(text) {
