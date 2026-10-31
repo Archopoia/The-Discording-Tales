@@ -257,28 +257,29 @@
     }
     /* People: rect plate + 4-edge mask feather (this dissolve actually kills the rim) */
     .callout:not(.callout--origin) {
-      width: min(calc(300px * var(--callout-scale)), 36%);
-      max-height: min(calc(260px * var(--callout-scale)), 48%);
+      width: min(calc(440px * var(--callout-scale)), 48%);
+      max-height: min(calc(300px * var(--callout-scale)), 52%);
       background: var(--people-callout-bg);
       color: var(--people-callout-ink);
       border: none;
       border-radius: 0;
       padding:
-        calc(1.35rem * var(--callout-scale))
-        calc(1.45rem * var(--callout-scale))
-        calc(1.4rem * var(--callout-scale));
+        calc(1.7rem * var(--callout-scale))
+        calc(1.85rem * var(--callout-scale))
+        calc(1.75rem * var(--callout-scale));
       text-align: left;
       box-shadow: none;
       transform: none;
       transition:
         opacity 420ms ease,
         visibility 0s linear 420ms;
+      /* Soft rim only: solid core ~84% so copy stays on clear plate */
       -webkit-mask-image:
-        linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%),
-        linear-gradient(to bottom, transparent 0%, #000 20%, #000 80%, transparent 100%);
+        linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%);
       mask-image:
-        linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%),
-        linear-gradient(to bottom, transparent 0%, #000 20%, #000 80%, transparent 100%);
+        linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%);
       -webkit-mask-composite: source-in;
       mask-composite: intersect;
       -webkit-mask-repeat: no-repeat;
@@ -296,6 +297,7 @@
     .callout:not(.callout--origin) .callout__name {
       color: var(--people-callout-name);
       margin-bottom: calc(0.35rem * var(--callout-scale));
+      white-space: nowrap;
     }
     .callout:not(.callout--origin) .callout__body {
       color: var(--people-callout-muted);
@@ -305,8 +307,8 @@
       z-index: 55;
       left: 10px;
       top: 10px;
-      width: min(calc(300px * var(--callout-scale)), 34%);
-      max-height: min(calc(240px * var(--callout-scale)), 46%);
+      width: min(calc(420px * var(--callout-scale)), 44%);
+      max-height: min(calc(280px * var(--callout-scale)), 50%);
       transform: none;
       opacity: 0;
       clip-path: inset(0 100% 0 0);
@@ -314,15 +316,15 @@
       border-radius: 0;
       box-shadow: none;
       padding:
-        calc(1.35rem * var(--callout-scale))
-        calc(1.45rem * var(--callout-scale))
-        calc(1.4rem * var(--callout-scale));
+        calc(1.7rem * var(--callout-scale))
+        calc(1.85rem * var(--callout-scale))
+        calc(1.75rem * var(--callout-scale));
       -webkit-mask-image:
-        linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%),
-        linear-gradient(to bottom, transparent 0%, #000 20%, #000 80%, transparent 100%);
+        linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%);
       mask-image:
-        linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%),
-        linear-gradient(to bottom, transparent 0%, #000 20%, #000 80%, transparent 100%);
+        linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%);
       -webkit-mask-composite: source-in;
       mask-composite: intersect;
       -webkit-mask-repeat: no-repeat;
@@ -744,7 +746,8 @@
     function syncCalloutScale() {
       if (!stage) return;
       const w = stage.clientWidth || CALLOUT_REF_WIDTH;
-      const scale = Math.min(1.2, Math.max(0.38, w / CALLOUT_REF_WIDTH));
+      /* Allow wider immersive plates; was 1.2 → ~360px even on 1080p+ */
+      const scale = Math.min(1.55, Math.max(0.38, w / CALLOUT_REF_WIDTH));
       stage.style.setProperty('--callout-scale', scale.toFixed(3));
       const pad = Math.max(4, Math.round(10 * scale));
       stage.style.setProperty('--callout-pad', pad + 'px');

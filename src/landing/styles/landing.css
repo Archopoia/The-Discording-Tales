@@ -37,6 +37,21 @@
   transform-origin: center center;
   will-change: transform;
   transition: filter 1.2s ease;
+  /* Strong L/R dissolve so the plate rim vanishes into the field at max zoom-out */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 26%,
+    #000 74%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 26%,
+    #000 74%,
+    transparent 100%
+  );
 }
 /* Soft LQIP start; JS swaps medium/full (see geocosmos.ts). */
 .geo img.is-soft {

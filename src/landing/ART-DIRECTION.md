@@ -8,7 +8,7 @@ Lives next to the code it governs. Follow before touching chrome.
 - Body: `Fanwood Text, Georgia, Times New Roman, serif`
 - Palette tokens (from `landing.template.html` `:root`): `--ink #f6edd4`, `--ink-soft #e4d5b8`, `--muted #c4b59a`, `--gold #e4c56a`, `--gold-deep #c9a227`, `--burgundy #3a1010`, `--burgundy-deep #240a0a`
 - Theme color: `#5a1f1f`
-- Tagline voice: "A world that doesn't wait for you."
+- Tagline voice: "A world that doesn't wait for you"
 - Bilingual title treatment: EN primary, FR as subtitle in letterspaced small caps
 - Discreet ornament unit (gold hairline + rotated square) as rare divider only
 
