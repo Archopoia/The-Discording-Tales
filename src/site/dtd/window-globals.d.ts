@@ -17,5 +17,8 @@ declare global {
         SC?: unknown;
         GM_API_URL?: string;
         __tdtCharacterSheetLoaded?: boolean;
+        gtag?: (...args: unknown[]) => void;
+        dataLayer?: unknown[];
+        tdtTrack?: (name: string, params?: Record<string, string>) => void;
     }
 }

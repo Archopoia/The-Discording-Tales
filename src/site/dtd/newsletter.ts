@@ -116,6 +116,13 @@ function bindOutpostForm(form) {
             alert(state.currentLang === 'en'
                 ? 'Thank you. We will write when Kickstarter opens. The launch is the video game.'
                 : 'Merci. Nous vous écrirons à l\'ouverture de Kickstarter. Le lancement, c\'est le jeu vidéo.');
+            try {
+                if (typeof window.tdtTrack === 'function') {
+                    window.tdtTrack('outpost_subscribe', { source: source });
+                }
+            } catch (trackErr) {
+                /* ignore */
+            }
             if (emailInput) emailInput.value = '';
             if (honeypotInput) honeypotInput.value = '';
         } catch (err) {

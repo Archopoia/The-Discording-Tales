@@ -99,6 +99,7 @@ export function pageShell(opts) {
   <meta name="theme-color" content="#5a1f1f"/>
   <link rel="icon" href="${esc(BASE)}/assets/icons/favicon-48x48.png" type="image/png" sizes="48x48"/>
   <link rel="icon" href="${esc(BASE)}/favicon.ico" sizes="48x48"/>
+  <script src="${esc(BASE)}/assets/js/tdt-ga.js" defer></script>
   <script type="application/ld+json">${jsonLd}</script>
   <style>
     :root { color-scheme: light only; --bg:#1a0f10; --ink:#f3e6d8; --muted:#c9b4a0; --gold:#c9a227; --line:rgba(201,162,39,.35); }
