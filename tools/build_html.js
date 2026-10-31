@@ -27,7 +27,7 @@ function loadOgMeta() {
   const fallback = {
     primary: 'assets/og-tdt-1200x630.jpg',
     cacheQuery: '',
-    alt: 'THE DISCORDING TALES / DES RÉCITS DISCORDANTS - A weird ethno-science-fantasy Action RPG',
+    alt: 'THE DISCORDING TALES / DES RÉCITS DISCORDANTS - Built for people still waiting on another Morrowind',
     orgLogo: 'assets/og/tdt-brand-square-512.jpg',
   };
   if (!fs.existsSync(ogMetaPath)) {

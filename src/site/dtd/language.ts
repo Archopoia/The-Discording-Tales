@@ -7,9 +7,9 @@ const PAGE_TITLE_EN =
 const PAGE_TITLE_FR =
     'DES RÉCITS DISCORDANTS | The Discording Tales - Action-RPG';
 const META_DESCRIPTION_EN =
-    'A weird ethno-science-fantasy Action RPG: a living dungeon of alien cultures and golden-age strife.';
+    'Built for people still waiting on another Morrowind. First-person immersive sim action RPG: alien cultures, living underworld, ethno-science-fantasy.';
 const META_DESCRIPTION_FR =
-    "Un Action-RPG weird ethno-science-fantasy : un donjon vivant, une ruée vers l'âge d'or.";
+    'Pour ceux qui attendent encore un autre Morrowind. Action-RPG immersive sim à la première personne : cultures alien, sous-monde vivant, ethno-science-fantasy.';
 
 function getPageI18n(): { title?: { en: string; fr: string }; description?: { en: string; fr: string } } | null {
     const el = document.getElementById('tdt-i18n-strings');

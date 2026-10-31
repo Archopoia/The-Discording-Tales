@@ -784,6 +784,15 @@ body.cinema main.sheet {
   font-family: var(--font-display);
   font-weight: 400;
 }
+.chapter--pitch .pitch-lede {
+  margin: 0.35rem auto 0.85rem;
+  max-width: 36rem;
+  font-family: var(--font-body, "Dauphin", Georgia, serif);
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+  line-height: 1.35;
+  text-align: center;
+  opacity: 0.88;
+}
 
 .chapter--scene {
   padding-top: 0;

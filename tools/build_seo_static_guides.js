@@ -19,7 +19,7 @@ function build() {
   const guideCanonical = `${BASE}/guide/ethno-science-fantasy/`;
   const guideDesc = metaDescription(
     'Ethno-science-fantasy is the genre frame of The Discording Tales',
-    'alien cultures, inverted matter, and playable moralities without humans.',
+    'alien cultures, no humans, and a first-person immersive sim Action RPG for people still waiting on another Morrowind.',
   );
   fs.writeFileSync(
     path.join(root, 'guide', 'ethno-science-fantasy', 'index.html'),
@@ -56,7 +56,7 @@ function build() {
         <li><a href="${esc(BASE)}/character-sheet/">Character sheet</a> - play aids on the site</li>
       </ul>
       <h2>Dual path</h2>
-      <p>The same world is a <strong>tabletop book</strong> (early-access PDF, 300 pages and more) and an <strong>Action RPG</strong> in development. The public site is the bilingual hub for both.</p>
+      <p>The same world is a <strong>tabletop book</strong> (early-access PDF, 300 pages and more) and a <strong>first-person immersive sim Action RPG</strong> in development - built for people still waiting on another Morrowind: alien cultures, systemic denseness, no human default. The public site is the bilingual hub for both.</p>
     </article>`,
       ctaPrimaryHref: `${BASE}/world/peoples/`,
       ctaPrimaryLabel: 'Browse peoples',
@@ -150,7 +150,7 @@ function build() {
   const compareCanonical = `${BASE}/compare/weird-fantasy-ttrpg/`;
   const compareDesc = metaDescription(
     'Where The Discording Tales sits among weird fantasy and science-fantasy TTRPGs',
-    'no humans, ethnographic depth, dual tabletop and Action RPG path.',
+    'no humans, ethnographic depth, dual tabletop and Morrowind-hungry first-person immersive sim Action RPG.',
   );
   fs.writeFileSync(
     path.join(root, 'compare', 'weird-fantasy-ttrpg', 'index.html'),
@@ -178,17 +178,19 @@ function build() {
         <li><strong>No humans</strong> - you are always a guest in alien needs</li>
         <li><strong>Ethnographic density</strong> - <a href="${esc(BASE)}/world/peoples/">ten peoples</a>, lineages, and origin myths that are playable</li>
         <li><strong>System + world lock</strong> - lore is not a separate coffee-table book from the rules</li>
-        <li><strong>Dual path</strong> - tabletop early-access book (300+ pages) and an Action RPG in development</li>
+        <li><strong>Dual path</strong> - tabletop early-access book (300+ pages) and a first-person immersive sim Action RPG in development</li>
+        <li><strong>Morrowind appetite, not a clone pitch</strong> - built for people still waiting on another Morrowind; supporting systems nods to Arx Fatalis, Gothic factions, Kenshi-scale world simulation</li>
         <li><strong>Bilingual hub</strong> - EN/FR site as the canonical discovery surface</li>
       </ul>
       <h2>What it is not</h2>
       <ul>
         <li>A drop-in D&amp;D 5e setting with new monsters</li>
         <li>Cozy pastoral fantasy</li>
+        <li>A Vvardenfell reskin - ethno-science-fantasy with no humans is the differentiator once the Morrowind hook lands</li>
         <li>A finished AAA Action RPG you can buy today - the video path is in development; the tabletop book is already in early access</li>
       </ul>
       <h2>Who it is for</h2>
-      <p>GMs and players who want cultural friction, golden-age strife, and a living dungeon of alien societies. Investors and press who want the pitch and team should start at the <a href="${esc(BASE)}/">landing</a>.</p>
+      <p>GMs and players who want cultural friction, golden-age strife, and a living dungeon of alien societies - and Action RPG players still waiting on another Morrowind. Investors and press who want the pitch and team should start at the <a href="${esc(BASE)}/">landing</a>.</p>
       <h2>Start here</h2>
       <ul>
         <li><a href="${esc(BASE)}/guide/ethno-science-fantasy/">What is ethno-science-fantasy?</a></li>

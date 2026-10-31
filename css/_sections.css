@@ -6642,6 +6642,15 @@ body.tdt-peoples-portrait-lightbox-open {
     padding: var(--spacing-md) 0 var(--spacing-xl);
 }
 
+.pitch-investor-lede {
+    max-width: 42rem;
+    margin: 0 auto var(--spacing-md);
+    padding: 0 var(--spacing-md);
+    text-align: center;
+    font-size: 1.05rem;
+    line-height: 1.4;
+}
+
 .pitch-slider {
     max-width: 1200px;
     margin: 0 auto var(--spacing-lg);
